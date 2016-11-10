@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Upload-Demo </title>
+</head>
+<body>
+	<p><input type="file" id="file" value="upload-file" /></p>
+</body>
+<script>
+	var file = document.getElementById("file");
+	file.onchange = function(){
+		var _file = this.files[0], 
+			size  = _file.size, 
+			success = -1; // 成功次数：因腾讯云需要初始化分片，第一次并不是真的开始传输文件，此处从 -1 开始计算。
+        var chunk_size = 100, count = Math.ceil(size / chunk_size);
+
+        var getBlob = function(start){
+        	var s = start * chunk_size;
+        	return _file.slice(s, s + chunk_size)
+        };
+       
+		var postFile = function(blob,type){
+			var xhr = new XMLHttpRequest();
+			    xhr.onreadystatechange = function () {
+			        if (xhr.readyState == 4) {
+			            console.log(xhr.responseText);
+			           if (xhr.status == 200) {
+			           	 	success ++;
+				            if (success > count) {
+				            	console.log('upload-completed');
+				            }else{
+					            postFile(getBlob(success),2);
+				            }
+			           }
+			        }
+			    };
+			    var formData = new FormData();
+			    if (type == 1) {
+					formData.append('op','upload_slice_init');
+					// formData.append('fileContent',blob);
+					formData.append('filesize',size);
+					formData.append('sha','bsjCk+eoMdCNBzZKkl1Sm0nFi3s=');
+					formData.append('slice_size',524288);
+			    }else{
+			    	formData.append('op','upload_slice');
+					formData.append('fileContent',blob);
+					formData.append('sha','bsjCk+eoMdCNBzZKkl1Sm0nFi3s=');
+					formData.append('session','上个请求取');
+					formData.append('offset','');
+
+			    }
+
+			    var url = "http://web.file.myqcloud.com/files/v1/10011010/" + _file.name + "?sign=nx2NWq06aYPGxLI5wxndaKq03rNhPTEwMDExMDEwJms9QUtJRDV4UDhscUtoSVd4eUpHbnJXd3NiY0xTRzJZRmJ2Zlp4JmU9MTQ3ODY2NDUzNyZ0PTE0Nzg2NjM5Mzcmcj0xMjM4ODk3OTgxJmY9JmI9dGVzdA==";
+			    xhr.open("POST", url, false);
+			    var sBoundary = "---------------------------" + Date.now().toString(16);
+			    xhr.setRequestHeader('Content-Type', 'multipart/form-data;boundary=' + sBoundary);
+			    xhr.send(formData);
+		};
+
+		postFile(getBlob(success),1);
+	}
+
+</script>
+</html> 
