@@ -8,6 +8,7 @@ var url          = require('url');
 
 var app = express()
 var multipartMiddleware = multiparty();
+
 app.use(multiparty({uploadDir:'./file' }));
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -16,6 +17,11 @@ app.all('*', function(req, res, next) {
     res.header("X-Powered-By",' 3.2.1')
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
+});
+
+app.get('/', function(req, res, next){
+  res.set({'Content-Type': 'text/html'});
+  res.sendfile('./uploader.html');
 });
 
 app.post('/base64', function(req, resp){
@@ -66,3 +72,4 @@ app.get('/:name',function(req,res,next){
     }
 });
 app.listen(9090)
+console.log('listener port : 9090');
