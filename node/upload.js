@@ -1,75 +1,80 @@
-var express      = require('express')
-var multiparty   = require('connect-multiparty');
-var uuid         = require('node-uuid');
-var fs           = require('fs');
-var path         = require('path');
-var querystring  = require("querystring");
-var url          = require('url');
+(function(win){
 
-var app = express()
-var multipartMiddleware = multiparty();
+	var options = {
+			xhr:{
+				domain:'',
+				method:'post'
+			},
+			send_chunk:true,
+			chunk_size:10,  // 单位 MB 。
+			headers : {},
+			file_data_name:'file',
+			multipart_params:{}, // 扩展 formData
+			use_formData:true	 // false 默认直接发送，将上传内容传入 upload 方法。
+		}, 
+		listener;
 
-app.use(multiparty({uploadDir:'./file' }));
-app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("X-Powered-By",' 3.2.1')
-    res.header("Content-Type", "application/json;charset=utf-8");
-    next();
-});
+	var init = function(listener, options){
+		this.listener = listener;
+		this.options  = options;
+	};
 
-app.get('/', function(req, res, next){
-  res.set({'Content-Type': 'text/html'});
-  res.sendfile('./uploader.html');
-});
+	var upload = function(data, options){
+		var me = this, multiQueue, chunkQueue;
+		// todo : calcute file size : data is a file or string
 
-app.post('/base64', function(req, resp){
-    var imgData = req.body.imgData,
-        base64Data = imgData.replace(/^data:image\/\w+;base64,/, ""),
-        dataBuffer = new Buffer(base64Data, 'base64'),
-        imageName = uuid.v1() + '.png';
-    fs.writeFile('./file' + imageName, dataBuffer, function(err) {
-        if(err){
-          resp.end(err);
-        }else{
-          resp.end(JSON.stringify({name:imageName,size:base64Data.length/1024,path:'./' + imageName}));
-        }
-    });
-});
+		// 多选,赋值给队列变量消费发送。
+		if(typeof data == 'array'){
+			queue = data;
+		}
 
-app.post('/upload', multipartMiddleware, function(req, resp) {
-  resp.end(JSON.stringify({'name': req.files.file.originalFilename,'size': req.files.file.size,path:req.files.file.path}));
-});
+		var chun_size = options.chun_size * 1024;
+		if (options.send_chunk && typeof data == 'object' && data.size < chun_size) {
+			// 分包
+		}
 
-app.get('/:name',function(req,res,next){
-    var queryOpts = querystring.parse(url.parse(req.url).query),
-        fileName = req.params.name;
-    if (queryOpts.attname) {
-       var filePath = path.join('./file', fileName);
-       var stats = fs.statSync(filePath);
-       if(stats.isFile()){
-          res.set({
-             'Content-Type': 'application/octet-stream',
-             'Content-Disposition': 'attachment; filename=' + (encodeURIComponent(queryOpts.attname) || fileName),
-             'Content-Length': stats.size
-          });
-          fs.createReadStream(filePath).pipe(res);
-       } else {
-          res.end(404);
-       }
-    }else{
-       fs.readFile('./file/' + fileName,'binary',function(err, file) {
-       	if (err) {
-        	  res.end(err);
-        	  return;
-       	}else{
-           res.writeHead(200, {'Content-Type': 'image/jpeg'});
-           res.write(file,'binary');
-           res.end();
-       	}
-       });
-    }
-});
-app.listen(9090)
-console.log('listener port : 9090');
+		var uploadNextChunk = function(){
+			var xhr;
+			if ('XMLHttpRequest' in win) {
+				xhr = new XMLHttpRequest();
+			}else{
+				throw new Error('插件暂时支持非 XMLHttpRequest');
+			}
+			// 默认发送 OPTIONS 请求，文件服务器需支持 OPTIONS 。
+			xhr.upload.onprogress = function(event){
+				var percent = Math.floor(event.loaded / event.total * 100);
+				me.listener.onUploadProgress({fileId:'', loaded:event.loaded, total:event.total, percent:percent});
+			};
+
+			xhr.onreadystatechange = function(){
+			 	if (xhr.readyState == 4) {
+		            if (xhr.status == 200) {
+		           	 	if (xhr.responseText) {
+		           	 		// callbacks.onSuccess(JSON.parse(xhr.responseText));
+		           	 	}else{
+		           	 		me.listener.onError();
+		           	 	}
+		            }
+		       }
+			};
+
+			xhr.open(options.xhr.method, options.xhr.domain, true);
+			xhr.setRequestHeader('Content-type', 'multipart/form-data');
+			if (options.headers) {
+				for(var key in headers){
+					xhr.setRequestHeader(key, headers[key]);
+				}
+			}
+
+		};
+
+	};
+
+
+	win.uploadFile = {
+		options:options,
+		listener:listener,
+		init:init,
+		upload:upload
+	};
+})(window);

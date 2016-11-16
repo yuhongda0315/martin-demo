@@ -3,18 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title> Martin - Demo </title>
-</head>
-<script>
-	var a = 1;
-	function f(){
-		function n() {
-			alert(a)
-		}
-		// var a = 2;
-		n();
+    <script src = "./upload/uploader.js"></script>
+   <style type = "text/css">
+	.container{
+		position: absolute; 
+		height: 40px; 
+		width: 300px; 
+		color: Silver;
+    	border-width: 1px; 
+    	border-style: Solid;
 	}
-	f();
-</script>
+	.progressBar{
+		position: absolute; 
+		height: inherit; 
+		width: 0%; 
+		background-color: gray;
+	}
+
+	.progressContent{
+		position: absolute; 
+		height: inherit; 
+		width: 100%;
+		text-align:center; 
+		font-size:32px;
+	}
+	#success-log{
+		float: right;
+	}
+</style>
+</head>
 <body>
+	<p><input type="file" id="file" value="upload-file" /></p>
+
+	<div class="container" id="container">
+        <div class = "progressBar" id= "progressBar"></div>
+        <div class = "progressContent" id = "progressContent">
+        </div>
+    </div> 
+    <div id="success-log"></div>
 </body>
+<script>
+   UploadFile.init({
+   		image : {
+		 	domain: 'http://127.0.0.1:9090/upload'								
+	  	}
+   	},{
+		onError	: function (fileUId, errorCode) { 
+			console.log(errorCode);
+		},
+		onProgress : function (fileUId, loaded, total, percent) {
+			var progressBar 	= document.getElementById('progressBar'), 
+				progressContent = document.getElementById('progressContent');
+				progressBar.style.width = percent + '%';
+        		progressContent.innerHTML = percent + "%";
+		},
+		onCompleted : function (fileUId, data) { 
+			document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
+		}
+	  });
+   
+   var file = document.getElementById("file");
+		// 参数化
+	file.onchange = function(){
+		UploadFile.uploadFile('image', 'fileId001', this.files[0]);
+	}
+	
+</script>
+
 </html>
