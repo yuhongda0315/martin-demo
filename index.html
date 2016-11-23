@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title> Martin - Demo </title>
+    <script src = "./js/jquery-1.9.1.js"></script>
+    <script src = "./upload/tencent/swfobject.js"></script>
+    <script src = "./upload/tencent.js"></script>
     <script src = "./upload/uploader.js"></script>
    <style type = "text/css">
 	.container{
@@ -33,7 +36,9 @@
 </style>
 </head>
 <body>
-	<p><input type="file" id="file" value="upload-file" /></p>
+	<p>File：<input type="file" id="file-Id" value="upload-file" /></p>
+
+	<p>Image：<input type="button" id="image-Id" value="Image"/></p>
 
 	<div class="container" id="container">
         <div class = "progressBar" id= "progressBar"></div>
@@ -41,33 +46,100 @@
         </div>
     </div> 
     <div id="success-log"></div>
+    <object id="qs" width="0" height="0" type="application/x-shockwave-flash" data="http://10.252.54.148:8066/upload/tencent/Somethingtest.swf" style="visibility: visible;"></object>
 </body>
 <script>
-   UploadFile.init({
-   		image : {
-		 	domain: 'http://127.0.0.1:9090/upload'								
-	  	}
-   	},{
-		onError	: function (fileUId, errorCode) { 
-			console.log(errorCode);
-		},
-		onProgress : function (fileUId, loaded, total, percent) {
-			var progressBar 	= document.getElementById('progressBar'), 
-				progressContent = document.getElementById('progressContent');
-				progressBar.style.width = percent + '%';
-        		progressContent.innerHTML = percent + "%";
-		},
-		onCompleted : function (fileUId, data) { 
-			document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
-		}
-	  });
-   
-   var file = document.getElementById("file");
-		// 参数化
+// ----------- 七牛
+	// var config = { 
+	// 			domain: 'http://upload.qiniu.com',
+	// 		 	multi_parmas : {
+	// 		 		token : "CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:CwFQEeak463Q6cc3eIEZRNKbzUU=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7J25hbWUnOiAkKGZuYW1lKSwnc2l6ZSc6ICQoZnNpemUpLCd3JzogJChpbWFnZUluZm8ud2lkdGgpLCdoJzogJChpbWFnZUluZm8uaGVpZ2h0KSwnaGFzaCc6ICQoZXRhZyl9IiwiZGVhZGxpbmUiOjE0Nzk3NDkwNjd9"
+	// 		 	}
+	// 		 };
+	// var fileUpload = UploadFile.init(config);
+
+	// var callback = {
+	// 		onError	: function (errorCode) { 
+	// 			console.log(errorCode);
+	// 		},
+	// 		onProgress : function (loaded, total) {
+	// 			var percent = Math.floor(loaded/total*100);
+	// 			var progressBar 	= document.getElementById('progressBar'), 
+	// 				progressContent = document.getElementById('progressContent');
+	// 				progressBar.style.width = percent + '%';
+	//         		progressContent.innerHTML = percent + "%";
+	// 		},
+	// 		onCompleted : function (data) { 
+	// 			document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
+	// 		} 
+	//  };
+
+	// var file = document.getElementById("file");
+	// file.onchange = function(){
+	// 	fileUpload.upload(this.files[0], callback);
+	// };
+
+
+// ----------tencent
+
+	var callback = {
+			onError	: function (errorCode) { 
+				console.log(errorCode);
+			},
+			onProgress : function (loaded, total) {
+				var percent = Math.floor(loaded/total*100);
+				var progressBar 	= document.getElementById('progressBar'), 
+					progressContent = document.getElementById('progressContent');
+					progressBar.style.width = percent + '%';
+	        		progressContent.innerHTML = percent + "%";
+			},
+			onCompleted : function (data) { 
+				document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
+			} 
+	 };
+
+	var fileConfig = { 
+				domain: 'http://web.file.myqcloud.com/files/v1/10011010',
+			 	multi_parmas : {op: 'upload', insertOnly:0},
+			 	file_data_name : 'fileContent',
+			 	support_options:false,
+			 	chunk_size:1048576,
+			 	refreshSign:function(cb){
+					$.ajax({
+		                type: "GET",
+		                url: "http://10.126.85.204:9528/uploadandsign?bid=3&passwd=test&bucket_name=test&mediatype=1&expired=99999999999999",
+		                dataType: "text",
+		                success: function (data) {
+		                    var data = JSON.parse(data);
+		                	cb({path:'http://web.file.myqcloud.com/files/v1/10011010' + data.path, sign:data.sign});
+		                }
+		            });
+			 	}
+			 };
+	var fileUpload = UploadFile.init(fileConfig);
+
+	var file = document.getElementById("file-Id");
 	file.onchange = function(){
-		UploadFile.uploadFile('image', 'fileId001', this.files[0]);
-	}
-	
+		fileUpload.upload(file.files[0], callback);
+	};
+
+
+	var image = document.getElementById('image-Id');
+	var imgConfig = { 
+				domain: 'http://upload.58cdn.com.cn/json?rand=0.1928/',
+			 	data:UploadFile.buildData.json,
+			 	file_data_name:'Pic-Data',
+			 	multi_parmas:{
+			 		"Pic-Size": "0 * 0",
+                    "Pic-Encoding": "base64",
+                    "Pic-Path": "/p1/"
+			 	}
+			 };
+	var imgUpload = UploadFile.init(imgConfig);
+	image.onclick = function(){
+		imgUpload.upload(base64, callback);
+	};
+	var base64 = "/9j/4AAQSkZJRgABAQAAAQABAAD...."
 </script>
 
 </html>
