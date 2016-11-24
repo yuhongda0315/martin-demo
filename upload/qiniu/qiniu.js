@@ -1,3 +1,4 @@
+(function(win){
 	function uploadQiniu(file, opts, callback) { 
 		if (file.size && opts.chunk_size < file.size) {
 			uploadNextChunk(file, opts, callback);
@@ -7,7 +8,7 @@
 		}
 	}
 
-	var offset = 0, filename="", fileSize = 0;
+	var offset = 0, filename = "", fileSize = 0;
 
 	function uploadNextChunk(blob, opts, callback) {
 		opts.filesize = blob.size;
@@ -101,3 +102,5 @@
 
 		return url;
 	}
+	win.uploadProcess = uploadQiniu;
+})(window);

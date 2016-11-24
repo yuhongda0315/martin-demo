@@ -19,7 +19,6 @@
 		}
 	}
 
-
 	function uploadData(data, options, callback) {
 		// TODO 兼容
 		var xhr = new XMLHttpRequest(),interval = 0;
