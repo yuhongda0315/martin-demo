@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Qiniu - Upload </title>
-    <script src = "./qiniu.js"></script>
+    <title> Qiniu - Ali </title>
+    <!-- <script src="./promise.js"></script> -->
+    <script src = "./aliyun-oss-sdk.min.js"></script>
+    <script src = "./ali.js"></script>
     <script src = "../uploader.js"></script>
    <style type = "text/css">
 	.container{
@@ -64,13 +66,15 @@
 //---FILE----------------------------------------------------------------------------------------------------
 
 	var config = { 
-				domain: 'http://upload.qiniu.com',
+				domain: 'http://martin0035.oss-cn-shanghai.aliyuncs.com',
 			 	multi_parmas : {
-			 		token : "livk5rb3__JZjCtEi....."
+			 		appServer : "http://localhost:3000",
+			 		bucket : 'martin0035',
+			 		region : 'oss-cn-shanghai',
+			 		OSSUrl : './aliyun-oss-sdk.min.js'
 			 	}
 			 };
-	var fileUpload = UploadFile.init(config);
-	
+
 	var callback = {
 			onError	: function (errorCode) { 
 				console.log(errorCode);
@@ -87,6 +91,8 @@
 			} 
 	 };
 
+	var fileUpload = UploadFile.init(config);
+
 	var file = document.getElementById("file-Id");
 	file.onchange = function(){
 		fileUpload.upload(this.files[0], callback);
@@ -95,13 +101,13 @@
 //---IMAGE----------------------------------------------------------------------------------------------------
 
 	var image = document.getElementById('image-Id');
-	var token = 'livk5rb3__JZjCtEi...';
 	var imgConfig = { 
-				domain: 'http://upload.qiniu.com/putb64/-1',
-			 	data:UploadFile.dataType.data,
-			 	headers:{
-			 		'Content-type':'application/octet-stream',
-			 		'Authorization' : 'UpToken ' + token
+				domain: 'http://martin0035.oss-cn-shanghai.aliyuncs.com',
+			 	multi_parmas : {
+			 		appServer : "http://localhost:3000",
+			 		bucket : 'martin0035',
+			 		region : 'oss-cn-shanghai',
+			 		OSSUrl : './aliyun-oss-sdk.min.js'
 			 	}
 			 };
 
