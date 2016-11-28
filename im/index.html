@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> IM - Demo </title>
+    <script src = "../js/jquery-3.1.1.min.js"></script>
+    <script src = "../js/vue-2.0.1.js"></script>
+    <script src = "../js/RongIMLib.js"></script>
+	<script src = "./DataModel.js"></script>
+</head>
+<body>
+</body>
+<script>
+RongIM.init("8luwapkvucoil",null);
+RongIM.Status.onChange = function(status){
+	switch(status){
+        case RongIMLib.ConnectionStatus.CONNECTING:
+            console.log('正在链接');
+            break;
+	 	case RongIMLib.ConnectionStatus.CONNECTED:
+            console.log('链接成功');
+	 		RongIM.Conversation.get(function(conversationList){
+	 			console.log(conversationList);
+	 		});
+            break;
+        case RongIMLib.ConnectionStatus.DISCONNECTED:
+            console.log('断开连接');
+            break;
+	}
+};
+RongIM.getInstance().connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
+</script>
+
+</html>

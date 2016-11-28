@@ -11,17 +11,18 @@
 				var index = 0, items = [];
 				var invoke = function(){
 					if (index == data.length) {
-						callback();
+						callback(items);
+						return;
 					}
 					var conversation = data[index];
-					User.get(conversation.targetId,function(user){
+					RongIM.User.get(conversation.targetId,function(user){
 						conversation.userInfo = user;
 						items[index] = conversation;
 						index++;
 						invoke();
 					});
 				};
-				//迭代消费 data ，封装用户信息 User.get(userId, function(user){});
+				invoke();
 			}else{
 				//直接封装会话对象。
 			}
@@ -42,7 +43,7 @@
 
 		RongIMClient.setConnectionStatusListener({
 		    onChanged: function (status) {
-		    	Status.set(status);
+		    	RongIM.Status.set(status);
 		    }
 		});
 
@@ -85,18 +86,22 @@
 		}else{
 			RongIM._instance = new RongIM(appkey, dataAccessProvider, options);
 		}
-		API.getUsers(function(users){
+		RongIM.API.getUsers(function(users){
     		User.set(users);
     	});
-		API.getFriendShip(function(data){
+		RongIM.API.getFriendShip(function(data){
 			FriendShip.set(data);
 		});
-		API.getGroups(function(data){
+		RongIM.API.getGroups(function(data){
 			// 获取群组成员
 			// 处理 UserRelation
 			Group.set(data);
 		});
 
+	};
+
+	RongIM.getInstance = function(){
+		return RongIM._instance;
 	};
 
 	RongIM.prototype.sendMessage = function(conversationType, targetId, content){
@@ -106,13 +111,7 @@
 	RongIM.prototype.connect = function(token){
 		RongIMClient.connect(token, {
 	        onSuccess: function(userId) {
-	        	RongIMClient.getInstance().getConversationList({
-				  onSuccess: function(list) {
-				  	Conversation.set(list);
-				  },
-				  onError: function(error) {
-				  }
-				},null);
+	        
 	        },
 	        onTokenIncorrect: function() {
 	        	Status.set(RongIMLib.ConnectionState.TOKEN_INCORRECT);
@@ -133,7 +132,7 @@
 			if (userId in this.data) {
 				callback(this.data[userId]);
 			}else{
-				API.getUserInfo(userId, function(user){
+				RongIM.API.getUserInfo(userId, function(user){
 					callback(user);
 				});
 			}
@@ -178,10 +177,10 @@
 		},
 		getUserGroup:function(userId){
 			var relation = this.data[userId];
-			return relation || { group:[], chatroom:[], discussion[]}
+			return relation || { group:[], chatroom:[], discussion:[]}
 		},
 		clearUserGroup:function(userId){
-			this.
+			
 		}
 	};
 
@@ -214,7 +213,13 @@
 	};
 	
 	RongIM.API = { 
-		getUserInfo:function(userId, callback){ },
+		getUserInfo:function(userId, callback){ 
+			var users = [{id:'1001',name:'yangchaun',poritraidUri:''},
+						 {id:'1002',name:'fuyun',poritraidUri:''},
+						 {id:'1003',name:'zhengyi',poritraidUri:''},
+						 {id:'1004',name:'martin',poritraidUri:''}]
+			callback(users[Math.floor(Math.random() * 4 )]);
+		},
 		getUsers:function(callback){},
 		getFriendShip : function(callback){ },
 		getGroups:function(callback){ },
@@ -259,22 +264,26 @@
 	// callback.data : {newIdx:0, oldIdx:0, data:conversation}
 	RongIM.Conversation = {
 		data : [],
-		get : function(callback){ 
-			Util.composeConversation(this.data,function(list){
-				callback(list);
-			});
+		get : function(callback){
+			var me = this; 
+			RongIMClient.getInstance().getConversationList({
+			 onSuccess: function(result) {
+			  	Util.composeConversation(result,function(items){
+			  		var list = RongIM.API.sortConversationList(items);
+			  		if (list.length > Util.opts.max_conversation_count) list.length = Util.opts.max_conversation_count;
+					me.data.concat(list);
+					callback(list);
+				});
+			  },
+			  onError: function(error) {
+			  }
+			},null);
 		},
 		set : function(conversations){
 			var me = this;
-			if (this.data.length == 0) {
-				var list = API.sortConversationList(conversations);
-				if (list.length > Util.opts.max_conversation_count) list.length = Util.opts.max_conversation_count;
-				me.data.push(list);
-			}else{
-				Util.addConversation(conversations, function(index){
-					me.onChange({newIdx:0, oldIdx:index, data:conversation});
-				});
-			}
+			Util.addConversation(conversations, function(index){
+				me.onChange({newIdx:0, oldIdx:index, data:conversation});
+			});
 		},
 		remove:function(){ },
 		onChange : function(data){ }
