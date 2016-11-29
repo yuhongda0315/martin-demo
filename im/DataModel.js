@@ -214,10 +214,10 @@
 	
 	RongIM.API = { 
 		getUserInfo:function(userId, callback){ 
-			var users = [{id:'1001',name:'yangchaun',poritraidUri:''},
-						 {id:'1002',name:'fuyun',poritraidUri:''},
-						 {id:'1003',name:'zhengyi',poritraidUri:''},
-						 {id:'1004',name:'martin',poritraidUri:''}]
+			var users = [{id:'1001',name:'yangchaun',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/FhNGcU1t9fqeY8RNU9YLxB_uC0CW'},
+						 {id:'1002',name:'fuyun',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570511241467041'},
+						 {id:'1003',name:'zhengyi',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/FjsNMjYoVKfGmA86SNwnggfKgE6_'},
+						 {id:'1004',name:'martin',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/u0LUuhzHm1466557920584458984'}]
 			callback(users[Math.floor(Math.random() * 4 )]);
 		},
 		getUsers:function(callback){},

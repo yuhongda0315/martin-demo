@@ -7,8 +7,45 @@
     <script src = "../js/vue-2.0.1.js"></script>
     <script src = "../js/RongIMLib.js"></script>
 	<script src = "./DataModel.js"></script>
+	<link rel="stylesheet" href="../css/sealtalk.css">
+	<style>
+		#conversations{
+		width:300px;
+		height:100%;
+		border:1px solid #e1e9f0;
+		float:left;
+	}
+	.seal-conversation-time{
+		margin-top:-12px;
+		margin-bottom:5px;
+	}
+	.list{
+		display:inline-block;
+		display:none;
+		width:150px;
+		border:1px solid #000;
+		margin-right:5px;
+	}
+	</style>
 </head>
 <body>
+<div id="conversations">
+	<div class="seal-conversation-item" v-for="conversation in list"  v-on:click="showItem(conversation.targetId)">
+		<div class="seal-conversation-avatar">
+			<img v-bind:src.once="conversation.userInfo.portraitUri" alt="">
+		</div>
+		<div class="seal-conversation-name">
+			{{conversation.userInfo.name}}
+		</div>
+		<div class="seal-conversation-time">
+			{{new Date(conversation.sentTime).toTimeString().substr(0,8)}}
+		</div>
+		<div class="seal-conversation-msg">
+			<span class="seal-conversation-member">{{conversation.member}}</span>：
+			{{conversation.latestMessage.content.content || '其他消息'}}
+		</div>
+	</div>
+</div>
 </body>
 <script>
 RongIM.init("8luwapkvucoil",null);
@@ -20,7 +57,7 @@ RongIM.Status.onChange = function(status){
 	 	case RongIMLib.ConnectionStatus.CONNECTED:
             console.log('链接成功');
 	 		RongIM.Conversation.get(function(conversationList){
-	 			console.log(conversationList);
+	 			showConversation(conversationList);
 	 		});
             break;
         case RongIMLib.ConnectionStatus.DISCONNECTED:
@@ -29,6 +66,21 @@ RongIM.Status.onChange = function(status){
 	}
 };
 RongIM.getInstance().connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
+
+function showConversation(conversationList){
+	var cons = new Vue({
+		el : "#conversations",
+		data : {
+			list : conversationList
+		},
+		methods : {
+			showItem : function(id){
+				alert("show conversation by id= " + id);
+			}
+		}
+	});
+}
+
 </script>
 
 </html>
