@@ -12,6 +12,11 @@
 				callback(key,obj[key]);
 			}
 		},
+		createConvresation:function(message){
+			var conversation = RongIMClient._memoryStore.conversationList.slice(0,1)[0];
+			conversation.senderUserInfo = message.senderUserInfo;
+			return conversation;
+		},
 		composeObject:function(data, callback){
 			if (Util.getPrototype.call(data) == "[object Array]") {
 				var index = 0, items = [];
@@ -97,6 +102,7 @@
 		               break;
 		            default:
 		        }
+		        RongIM.Message.set(message);
 		    }
 		});
 	}
@@ -265,7 +271,7 @@
 				var users = {'1002':{id:'1002',name:'zhaoliu',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/675NdFjkx1466733699776768066'},
 							'1003':{id:'1003',name:'wangwu',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/FjsNMjYoVKfGmA86SNwnggfKgE6_'},
 							'1004':{id:'1004',name:'lisi',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570511241467041'},
-							'1005':{id:'1005',name:'zhangsan',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/FsVw17aXIP2BnW02Eo27GiIKTSIF'},
+							'1005':{id:'1005',name:'zhangsan',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/Fh4fnCvnO_SOwpuMPYGBnzBwrx6A'},
 							'1001':{id:'1001',name:'Martin',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/u0LUuhzHm1466557920584458984'}}
 				callback(users[userId] || defaultUser);
 			}
@@ -327,7 +333,19 @@
 	RongIM.Message = {
 		dataKey:'conversation_',
 		data:{},
-		set:function(message){},
+		set:function(message){
+			var me = this;
+			var	key = me.dataKey + message.conversationType + message.targetId;
+			Util.composeObject(message, function(result){
+				if (me.data[key]) {
+					me.data[key].unshift(result);
+				}else{
+					me.data[key] = [message];
+				}
+				RongIM.Conversation.set(Util.createConvresation(message));
+				me.onChange(message);
+			});
+		},
 		get:function(conversationType, targetId, position, callback){ 
 			var me = this;
 			var	key = me.dataKey + conversationType + targetId;
@@ -370,8 +388,8 @@
 				  	Util.composeObject(result,function(items){
 				  		var list = RongIM.API.sortConversationList(items);
 				  		if (list.length > Util.opts.max_conversation_count) list.length = Util.opts.max_conversation_count;
-						me.data.concat(list);
-						callback(list);
+						me.data = list;
+						callback(me.data);
 					});
 				  },
 				  onError: function(error) {
@@ -385,18 +403,19 @@
 			}
 		},
 		set : function(conversation){
-			var me = this, topIndex = 0;
+			var me = this, topIndex = 0, isInsert=true;
 			var oldIdx = 0;
 			for(var i =0,len=me.data.length; i<len; i++){
 				if (me.data[i].conversationType == conversation.conversationType && me.data[i].targetId == conversation.targetId) {
-					me.data.splice(i,1);
+					me.data.unshift(me.data.splice(i,1)[0])
 					oldIdx = i;
+					isInsert = false;
 					break;
 				}
 			}
 			//TODO  setTop
-			me.data.unshift(conversation);
-			me.onChange({newIdx:0, oldIdx:oldIdx, data:conversation});
+			isInsert && me.data.unshift(conversation);
+			me.onChange(me.data);
 		},
 		clearUnReadCount:function(conversationType, targetId){ },
 		remove:function(conversationType, targetId, callback){
@@ -411,7 +430,7 @@
 				}
 			}
 		},
-		onChange : function(data){ }
+		onChange : function(list){ }
 	};
 
 	RongIM.Status = { 

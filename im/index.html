@@ -18,6 +18,9 @@ html,body{
 	margin:0;
 	padding:0;
 }	
+.flip-list-move {
+  transition: transform 1s;
+}
 </style>
 
 <div class="seal-main">
@@ -69,7 +72,7 @@ html,body{
 						<div class="seal-conversation-msg">
 							<span class="seal-conversation-member">{{conversation.senderUserInfo.name}}</span>：{{conversation.latestMessage.content.content || '其他消息'}}
 						</div>
-					</div>		
+					</div>	
 				</div>
 			</div>
 
@@ -97,8 +100,10 @@ html,body{
 							{{ message.content.content }}
 						</div>
 						<div class="seal-conversation-msg" v-if="message.messageType == 'ImageMessage'">
-							{{ message.content.content}}
-							<img v-bind:src.once="message.content.content" alt="">
+							<img v-bind:src.once="message.content.imageUri" alt="">
+						</div>
+						<div class="seal-conversation-msg" v-if="message.messageType == 'VoiceMessage'">
+							[语音消息]
 						</div>
 					</div>
 				</div>
@@ -241,6 +246,7 @@ html,body{
 </div>
 </body>
 <script>
+var currentConversationType,currentTargetId;
 RongIM.init("8luwapkvucoil",null);
 RongIM.Status.onChange = function(status){
 	switch(status){
@@ -271,6 +277,13 @@ var msgs = new Vue({
 	}
 });	
 
+RongIM.Message.onChange = function(message){
+	var _list = msgs.$data.list;
+	_list.push(message);
+	msgs.$set(msgs.$data,"list",_list);	
+};
+
+//---------------------------------------------------------------------------------------
 function showConversation(conversationList){
 	var cons = new Vue({
 		el : "#seal-conversation",
@@ -281,6 +294,8 @@ function showConversation(conversationList){
 			showItem : function(item){
 				$("#seal-panel-conversation").show(10);
 				$(".seal-cover").hide();
+				currentConversationType = item.conversationType;
+				currentTargetId = item.currentTargetId;
 				RongIM.Message.get(item.conversationType, item.targetId, 1, function(list, hasMore){
 					msgs.$set(msgs.$data,"list",list);	
 					msgs.$set(msgs.$data,"info",item.senderUserInfo);	
@@ -289,7 +304,11 @@ function showConversation(conversationList){
 			}
 		}
 	});
+	RongIM.Conversation.onChange = function(list){
+		cons.$set(cons.$data,"list",list);	
+	};
 }
+
 
 </script>
 
