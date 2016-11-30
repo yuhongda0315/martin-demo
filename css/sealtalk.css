@@ -337,6 +337,14 @@
 .seal-conversation-item:hover {
   background-color: #ebf2f7;
 }
+.seal-conversation-item .badge{
+  float: right;
+  padding: 0px 5px;
+  background-color:red;
+  font-weight:normal;
+  color: #fff;
+  border-radius: 10px;
+}
 .seal-conversation-avatar {
   float: left;
   padding-right: 14px;

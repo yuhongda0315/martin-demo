@@ -19,7 +19,7 @@ html,body{
 	padding:0;
 }	
 .flip-list-move {
-  transition: transform 1s;
+  transition: transform 0.8s;
 }
 </style>
 
@@ -59,7 +59,8 @@ html,body{
 					<input type="text" placeholder="搜索">
 				</div>
 				<div class="seal-conversation-list">
-					<div class="seal-conversation-item" v-for="conversation in list"  v-on:click="showItem(conversation)">
+ 				<transition-group name="flip-list" tag="div">
+					<div class="seal-conversation-item" v-for="conversation in list"  v-on:click="showItem(conversation)" v-bind:key="conversation">
 						<div class="seal-conversation-avatar">
 							<img v-bind:src.once="conversation.senderUserInfo.portraitUri" alt="">
 						</div>
@@ -68,11 +69,16 @@ html,body{
 						</div>
 						<div class="seal-conversation-time">
 							{{new Date(conversation.sentTime).toTimeString().substr(0,8)}}
+
+						</div>
+						<div>
+							<span class="badge" v-if="conversation.unreadMessageCount > 0">{{conversation.unreadMessageCount}}</span>
 						</div>
 						<div class="seal-conversation-msg">
 							<span class="seal-conversation-member">{{conversation.senderUserInfo.name}}</span>：{{conversation.latestMessage.content.content || '其他消息'}}
 						</div>
 					</div>	
+  				</transition-group>
 				</div>
 			</div>
 
@@ -115,10 +121,10 @@ html,body{
 						<a href="" class="seal-msg-file">文件</a>
 					</div>
 					<div class="seal-msg-content" contenteditable="true">
-						请输入文字
+						
 					</div>
 					<div class="seal-msg-send">
-						<a href="">发送</a>
+						<a href="#">发送</a>
 					</div>
 				</div>
 			</div>
@@ -246,16 +252,16 @@ html,body{
 </div>
 </body>
 <script>
-var currentConversationType,currentTargetId;
-RongIM.init("8luwapkvucoil",null);
-RongIM.Status.onChange = function(status){
+var currentConversationType, currentTargetId;
+var _instance = IM.init("8luwapkvucoil",null);
+_instance.Status.onChange = function(status){
 	switch(status){
         case RongIMLib.ConnectionStatus.CONNECTING:
             console.log('正在链接');
             break;
 	 	case RongIMLib.ConnectionStatus.CONNECTED:
             console.log('链接成功');
-	 		RongIM.Conversation.get(function(conversationList){
+	 		_instance.Conversation.get(function(conversationList){
 	 			showConversation(conversationList);
 	 		});
             break;
@@ -266,7 +272,7 @@ RongIM.Status.onChange = function(status){
             console.log(status);
 	}
 };
-RongIM.getInstance().connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
+_instance.connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
 
 var msgs = new Vue({
 	el : "#seal-panel-conversation",
@@ -277,13 +283,10 @@ var msgs = new Vue({
 	}
 });	
 
-RongIM.Message.onChange = function(message){
-	var _list = msgs.$data.list;
-	_list.push(message);
-	msgs.$set(msgs.$data,"list",_list);	
+_instance.Message.onChange = function(message){
+
 };
 
-//---------------------------------------------------------------------------------------
 function showConversation(conversationList){
 	var cons = new Vue({
 		el : "#seal-conversation",
@@ -295,8 +298,8 @@ function showConversation(conversationList){
 				$("#seal-panel-conversation").show(10);
 				$(".seal-cover").hide();
 				currentConversationType = item.conversationType;
-				currentTargetId = item.currentTargetId;
-				RongIM.Message.get(item.conversationType, item.targetId, 1, function(list, hasMore){
+				currentTargetId = item.targetId;
+				_instance.Message.get(item.conversationType, item.targetId, 1, function(list, hasMore){
 					msgs.$set(msgs.$data,"list",list);	
 					msgs.$set(msgs.$data,"info",item.senderUserInfo);	
 					msgs.$set(msgs.$data,"hasMore",hasMore);	
@@ -304,11 +307,17 @@ function showConversation(conversationList){
 			}
 		}
 	});
-	RongIM.Conversation.onChange = function(list){
-		cons.$set(cons.$data,"list",list);	
+	_instance.Conversation.onChange = function(conversation){
+
 	};
 }
 
+$('.seal-msg-send a:eq(0)').click(function(){
+	var content = $('.seal-msg-content').html();
+	var msg = new RongIMLib.TextMessage({content:content});
+	_instance.sendMessage(currentConversationType, currentTargetId, msg);
+	$('.seal-msg-content').html("")
+});
 
 </script>
 
