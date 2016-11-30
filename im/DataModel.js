@@ -3,10 +3,16 @@
 	var Util = {
 		opts:{ 
 			max_msg_count:20,
-			max_conversation_count:50
+			max_conversation_count:50,
+			get_historyMsg_count:20
 		},
 		getPrototype:Object.prototype.toString,
-		composeConversation:function(data, callback){
+		forEach:function(obj,callback){
+			for(var key in obj){
+				callback(key,obj[key]);
+			}
+		},
+		composeObject:function(data, callback){
 			if (Util.getPrototype.call(data) == "[object Array]") {
 				var index = 0, items = [];
 				var invoke = function(){
@@ -14,26 +20,41 @@
 						callback(items);
 						return;
 					}
-					var conversation = data[index];
-					RongIM.User.get(conversation.targetId,function(user){
-						conversation.userInfo = user;
-						items[index] = conversation;
+					var obj = data[index];
+					Util.composeUserInfo(obj, function(result){
+						items[index] = result;
 						index++;
 						invoke();
 					});
 				};
 				invoke();
 			}else{
-				//直接封装会话对象。
+				Util.composeUserInfo(data, function(result){
+					callback(result);
+				});
 			}
 		},
-		addConversation:function(conversation, callback){
-			// 置顶问题
-			var isInsert = false;
-			if (isInsert) {
-				// 封装会话，并返回
+		composeUserInfo:function(data, callback){
+			if (data.conversationType == RongIMLib.ConversationType.PRIVATE) {
+				RongIM.User.get(data.targetId || data.senderUserId,function(user){
+					data.senderUserInfo = user;
+					callback(data);
+				});
+			}else if(data.conversationType == RongIMLib.ConversationType.GROUP){
+				if (data.latestMessage) {
+					RongIM.Group.get(function(group){
+						data.senderUserInfo = group;
+						callback(data);
+					},data.targetId);
+				}else{
+					RongIM.Group.get(function(group){
+						data.senderUserInfo = group;
+						callback(data);
+					},data.senderUserId);					
+				}
 			}else{
-				// 修改最后一条消息，返回。
+				data.senderUserInfo = {};
+				callback(data);
 			}
 		}
 	};
@@ -93,8 +114,6 @@
 			FriendShip.set(data);
 		});
 		RongIM.API.getGroups(function(data){
-			// 获取群组成员
-			// 处理 UserRelation
 			Group.set(data);
 		});
 
@@ -114,10 +133,10 @@
 	        
 	        },
 	        onTokenIncorrect: function() {
-	        	Status.set(RongIMLib.ConnectionState.TOKEN_INCORRECT);
+	        	RongIM.Status.set(RongIMLib.ConnectionState.TOKEN_INCORRECT);
 	        },
 	        onError:function(errorCode){
-	        	Status.set(errorCode);
+	        	RongIM.Status.set(errorCode);
 	        }
 	    });
 	}
@@ -125,20 +144,25 @@
 	RongIM.prototype.disconnect = function(){
 		RongIMClient.getInstance().disconnect();
 	};
-	//好友和陌生人
+	/**
+		data:{ }
+		set: users 格式： { userId1 : {id:'', name:'', portraitUri:''}, userId2 : {id:'', name:'', portraitUri:''}  }
+	*/
 	RongIM.User = {
-		data:{'userId':{name:'zhangsan'}},
-		get:function(userId,callback){ 
-			if (userId in this.data) {
-				callback(this.data[userId]);
-			}else{
-				RongIM.API.getUserInfo(userId, function(user){
-					callback(user);
-				});
-			}
+		data:{},
+		get:function(userId,callback){
+			var me = this;
+			RongIM.API.getUserInfo(me.data, userId, function(user){
+				me.data[userId] = user;
+				callback(user);
+			});
 		},
 		set:function(users){
-
+			var me = this;
+			Util.forEach(users, function(key, value){
+				// TODO 用户信息修改后全局联动
+				me.data[key] = value;
+			});
 		}
 	};
 	
@@ -183,49 +207,87 @@
 			
 		}
 	};
-
+	/**
+		data: { 'groupId':[] }
+		onChange: {groupId:'', memebers:[]}
+	*/
 	RongIM.GroupMembers = { 
-		data : { 'groupId':[] },
+		data : {  },
 		set:function(groupId, memebers){
 			this.data[groupId] = memebers;
+			this.onChange({ groupId:groupId, memebers:memebers});
 		},
 		get:function(groupId, callback){
 			if (UserRelation.getUserGroup(groupId).group.length > 0 ) {
-				// 服务器获取。
+				RongIM.API.getGroupInfo([], groupId, function(group){
+					callback(group);
+				});
 			}else{
 				callback(this.data[groupId]);
 			}
 		},
 		onChange:function(data){ 
-			//data.groupId
-			//data.members
+			
 		}
 	};
 
+	/**
+		data:数据格式:[]
+		get: callback 必传参数, groupId 可选参数
+	*/
 	RongIM.Group = {
 		data:[],
 		set:function(data){ },
-		get:function(callback){
-			return this.data;
+		get:function(callback, groupId){
+			if (typeof groupId == 'undefined') {
+				return this.data;
+			}else{
+				RongIM.API.getGroupInfo(this.data, groupId, function(group){
+					callback(group);
+				});
+			}
 		},
 		remove:function(){},
 		onChange:function(group){}
 	};
 	
+	/**
+	getUserInfo.data 数据模型中缓存的数据，自己决定在 data 中取或在服务取
+	*/
 	RongIM.API = { 
-		getUserInfo:function(userId, callback){ 
-			var users = [{id:'1001',name:'yangchaun',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/FhNGcU1t9fqeY8RNU9YLxB_uC0CW'},
-						 {id:'1002',name:'fuyun',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570511241467041'},
-						 {id:'1003',name:'zhengyi',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/FjsNMjYoVKfGmA86SNwnggfKgE6_'},
-						 {id:'1004',name:'martin',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/u0LUuhzHm1466557920584458984'}]
-			callback(users[Math.floor(Math.random() * 4 )]);
+		getUserInfo:function(data, userId, callback){
+			if (userId in data) {
+				callback(data[userId]);
+			}else{
+				var defaultUser = {
+					name:'陌生人',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1476068767254905029'
+				};
+				var users = {'1002':{id:'1002',name:'zhaoliu',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/675NdFjkx1466733699776768066'},
+							'1003':{id:'1003',name:'wangwu',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/FjsNMjYoVKfGmA86SNwnggfKgE6_'},
+							'1004':{id:'1004',name:'lisi',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570511241467041'},
+							'1005':{id:'1005',name:'zhangsan',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/FsVw17aXIP2BnW02Eo27GiIKTSIF'},
+							'1001':{id:'1001',name:'Martin',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/u0LUuhzHm1466557920584458984'}}
+				callback(users[userId] || defaultUser);
+			}
 		},
 		getUsers:function(callback){},
 		getFriendShip : function(callback){ },
 		getGroups:function(callback){ },
 		getGroupMembers:function(callback){ },
+		getGroupInfo:function(data, groupId, callback){ 
+			if (data.length > 0) {
+				for(var i=0,len = data.length; i<len; i++){
+					if (data[i].group.id == groupId) {
+						callback(data[i]);
+						break;
+					}
+				}
+			}else{
+				callback({id:'"daGroup9901"',name:'RongCloud',portraitUri:'http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570097727076172'});
+			}
+		},
 		getConversationList : function(callback){ },
-		getHistoryMessages : function(callback){ },
+		
 		sortConversationList : function(conversationList, callback){ 
 			var convers = [];
 	        for (var i = 0, len = conversationList.length; i < len; i++) {
@@ -246,46 +308,109 @@
 	            }
 	        }
 	        return convers.concat(conversationList);
+		},
+		removeConversation:function(conversationType, targetId, callback){},
+		getHistoryMessages : function(conversationType, targetId, timestamp, callback){ 
+			RongIMLib.RongIMClient.getInstance().getHistoryMessages(conversationType, targetId, timestamp, Util.opts.get_historyMsg_count, {
+			  onSuccess: function(list, hasMore) {
+			  	callback(list, hasMore);
+			  },
+			  onError: function(error) { }
+			});
 		}
 	};
 	/**
 	1、值存储实时消息和补偿消息（更改 getHistoryMessages 时间戳），不存储历史消息,当前会话没有历史消息和补偿消息除外
+	2、get.position 1、点击会话 2、调用历史消息接口
+	3、get.callback(list,hasMore)
 	*/
 	RongIM.Message = {
-		data:{'conversationType_targetId' : [] },
+		dataKey:'conversation_',
+		data:{},
 		set:function(message){},
 		get:function(conversationType, targetId, position, callback){ 
-			//position 标志哪里获取的 1、会话点击 2、 调用历史消息
+			var me = this;
+			var	key = me.dataKey + conversationType + targetId;
+			var memoryMsgs = me.data[key];
+			if (position == 2 || !memoryMsgs) {
+				var timestamp = memoryMsgs ? memoryMsgs[memoryMsgs.length - 1].sentTime : 0; 
+				RongIM.API.getHistoryMessages(conversationType, targetId, timestamp, function(list, hasMore){
+					Util.composeObject(list, function(result){
+						if (!memoryMsgs) {
+							me.data[key] = result;
+						}else if(memoryMsgs.length < Util.opts.get_historyMsg_count){
+							me.data[key].concat(result);
+						}
+						setTimeout(function(){
+							callback(result, hasMore);
+						});
+					});
+				});
+			}else{
+				setTimeout(function(){
+					callback(me.data[key], true);
+				});
+			}
 		},
 		update:function(message){ },
 		onChange:function(message){}
 	};
 
-	// callback.data : {newIdx:0, oldIdx:0, data:conversation}
+	/**
+
+	callback.data : {newIdx:0, oldIdx:0, data:conversation}
+	*/
 	RongIM.Conversation = {
 		data : [],
 		get : function(callback){
 			var me = this; 
-			RongIMClient.getInstance().getConversationList({
-			 onSuccess: function(result) {
-			  	Util.composeConversation(result,function(items){
+			if (me.data.length == 0) {
+				RongIMClient.getInstance().getConversationList({
+				 onSuccess: function(result) {
+				  	Util.composeObject(result,function(items){
+				  		var list = RongIM.API.sortConversationList(items);
+				  		if (list.length > Util.opts.max_conversation_count) list.length = Util.opts.max_conversation_count;
+						me.data.concat(list);
+						callback(list);
+					});
+				  },
+				  onError: function(error) {
+				  }
+				},[1,3]);
+			}else{
+				Util.composeObject(me.data,function(items){
 			  		var list = RongIM.API.sortConversationList(items);
-			  		if (list.length > Util.opts.max_conversation_count) list.length = Util.opts.max_conversation_count;
-					me.data.concat(list);
 					callback(list);
 				});
-			  },
-			  onError: function(error) {
-			  }
-			},null);
+			}
 		},
-		set : function(conversations){
+		set : function(conversation){
+			var me = this, topIndex = 0;
+			var oldIdx = 0;
+			for(var i =0,len=me.data.length; i<len; i++){
+				if (me.data[i].conversationType == conversation.conversationType && me.data[i].targetId == conversation.targetId) {
+					me.data.splice(i,1);
+					oldIdx = i;
+					break;
+				}
+			}
+			//TODO  setTop
+			me.data.unshift(conversation);
+			me.onChange({newIdx:0, oldIdx:oldIdx, data:conversation});
+		},
+		clearUnReadCount:function(conversationType, targetId){ },
+		remove:function(conversationType, targetId, callback){
 			var me = this;
-			Util.addConversation(conversations, function(index){
-				me.onChange({newIdx:0, oldIdx:index, data:conversation});
-			});
+			for(var i =0,len=me.data.length; i<len; i++){
+				if (me.data[i].conversationType == conversation.conversationType && me.data[i].targetId == conversation.targetId) {
+					RongIM.API.removeConversation(me.data[i], function(){
+						me.data.splice(i,1);
+						me.clearUnReadCount(conversationType, targetId);
+					});
+					break;
+				}
+			}
 		},
-		remove:function(){ },
 		onChange : function(data){ }
 	};
 

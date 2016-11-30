@@ -8,43 +8,236 @@
     <script src = "../js/RongIMLib.js"></script>
 	<script src = "./DataModel.js"></script>
 	<link rel="stylesheet" href="../css/sealtalk.css">
-	<style>
-		#conversations{
-		width:300px;
-		height:100%;
-		border:1px solid #e1e9f0;
-		float:left;
-	}
-	.seal-conversation-time{
-		margin-top:-12px;
-		margin-bottom:5px;
-	}
-	.list{
-		display:inline-block;
-		display:none;
-		width:150px;
-		border:1px solid #000;
-		margin-right:5px;
-	}
-	</style>
+	
 </head>
 <body>
-<div id="conversations">
-	<div class="seal-conversation-item" v-for="conversation in list"  v-on:click="showItem(conversation.targetId)">
-		<div class="seal-conversation-avatar">
-			<img v-bind:src.once="conversation.userInfo.portraitUri" alt="">
+<style>
+/*外层目标容器定义*/
+html,body{
+	height:100%;
+	margin:0;
+	padding:0;
+}	
+</style>
+
+<div class="seal-main">
+	
+	<!--会话页 begin-->
+	<div class="seal-conversation-main">
+		<div class="seal-nav">
+			<div class="seal-nav-item seal-nav-account">
+				<a href="#seal-account-detail">
+					<img src="http://7xogjk.com1.z0.glb.clouddn.com/u0LUuhzHm1466557920584458984" alt="">
+				</a>
+			</div>
+
+			<div class="seal-nav-item seal-nav-conversation">
+				<a href="#seal-conversation">会话列表</a>
+			</div>
+
+			<div class="seal-nav-item seal-nav-members">
+				<a href="#seal-members">好友列表</a>
+			</div>
+
+			<div class="seal-nav-item seal-nav-add">
+				<a href="#seal-add">添加好友/群组</a>
+			</div>
 		</div>
-		<div class="seal-conversation-name">
-			{{conversation.userInfo.name}}
-		</div>
-		<div class="seal-conversation-time">
-			{{new Date(conversation.sentTime).toTimeString().substr(0,8)}}
-		</div>
-		<div class="seal-conversation-msg">
-			<span class="seal-conversation-member">{{conversation.member}}</span>：
-			{{conversation.latestMessage.content.content || '其他消息'}}
+
+		<div class="seal-panel">
+			<!--封面图片 -->
+			<div class="seal-panel-main seal-cover">
+				
+			</div>
+
+			<!--会话列表 -->
+			<div class="seal-panel-sider seal-conversation" id="seal-conversation">
+				<div class="seal-search">
+					<input type="text" placeholder="搜索">
+				</div>
+				<div class="seal-conversation-list">
+					<div class="seal-conversation-item" v-for="conversation in list"  v-on:click="showItem(conversation)">
+						<div class="seal-conversation-avatar">
+							<img v-bind:src.once="conversation.senderUserInfo.portraitUri" alt="">
+						</div>
+						<div class="seal-conversation-name">
+							{{conversation.senderUserInfo.name}}
+						</div>
+						<div class="seal-conversation-time">
+							{{new Date(conversation.sentTime).toTimeString().substr(0,8)}}
+						</div>
+						<div class="seal-conversation-msg">
+							<span class="seal-conversation-member">{{conversation.senderUserInfo.name}}</span>：{{conversation.latestMessage.content.content || '其他消息'}}
+						</div>
+					</div>		
+				</div>
+			</div>
+
+			<!--会话详情 -->
+			<div class="seal-panel-main" id="seal-panel-conversation" style="display: none;">
+				<div class="seal-title seal-conversation-title">
+					{{ info.name }}
+				</div>
+
+				<div class="seal-conversation-msg-list">
+					<div class="seal-conversation-msg-older">
+						<a href="">查看历史消息</a>
+					</div>
+				<!-- 	<div class="seal-conversation-time">
+						11.21
+					</div> -->
+					<div class="seal-conversation-msg-item"  v-for="message in list">
+						<div class="seal-conversation-avatar">
+							<img v-bind:src.once="message.senderUserInfo.portraitUri" alt="">
+						</div>
+						<div class="seal-conversation-name">
+							{{ message.senderUserInfo.name }}
+						</div>
+						<div class="seal-conversation-msg" v-if="message.messageType == 'TextMessage'">
+							{{ message.content.content }}
+						</div>
+						<div class="seal-conversation-msg" v-if="message.messageType == 'ImageMessage'">
+							{{ message.content.content}}
+							<img v-bind:src.once="message.content.content" alt="">
+						</div>
+					</div>
+				</div>
+
+				<div class="seal-msg-box">
+					<div class="seal-msg-tools">
+						<a href="" class="seal-msg-emoji">emoji</a>
+						<a href="" class="seal-msg-image">图片</a>
+						<a href="" class="seal-msg-file">文件</a>
+					</div>
+					<div class="seal-msg-content" contenteditable="true">
+						请输入文字
+					</div>
+					<div class="seal-msg-send">
+						<a href="">发送</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="seal-panel-main seal-account-detail" id="seal-panel-personal" style="display:none">
+				<!--个人详情页 -->
+				<div class="" id="seal-account-detail">
+					<div class="seal-title">
+						<h2>用户设置</h2>
+						<a href="" class="seal-title-btnleft">返回</a>
+						<a href="" class="seal-title-btnright">编辑</a>
+					</div>
+
+					<div class="seal-account-info">
+						<div class="seal-account-avatar">
+							<img src="http://7xogjk.com1.z0.glb.clouddn.com/u0LUuhzHm1466557920584458984" alt="">
+							<span>用户名</span>
+						</div>
+						<ul>
+							<li class="seal-account-safe">
+								<label>账号安全</label>
+								<a href="">修改密码</a>
+							</li>
+							<li class="seal-account-system-msg">
+								<label>系统消息</label>
+								<a href="" class="seal-system-msg-off">不接收</a>
+							</li>
+							<li class="seal-account-system-msg">
+								<label>系统消息</label>
+								<a href="" class="seal-system-msg-on">接收</a>
+							</li>
+							<li class="seal-account-pravite">
+								<label>隐私</label>
+								<a href="">黑名单</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="seal-signout">
+						<a href="#signout">退出登录</a>
+					</div>
+				</div>
+			</div>
+
+			<!--好友列表 -->
+			<div class="seal-panel-sider seal-members" id="seal-members" style="display:none">
+				<div class="seal-search">
+					<input type="text" placeholder="搜索">
+				</div>
+				<div class="seal-system-notification">
+					<div class="seal-member-type"><h2>新消息</h2></div>
+					<div class="seal-system-notify">
+						新通知
+					</div>
+				</div>
+				<div class="seal-member-group">
+					<div class="seal-member-type"><h2>好友</h2></div>
+					<div class="seal-member-item seal-group-item">
+						<div class="seal-member-avatar">
+							<span style="background-image:url(http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570097727076172)">好友昵称</span>
+						</div>
+						<div class="seal-member-name">
+							好友昵称
+						</div>
+					</div>
+					<div class="seal-member-item seal-group-item">
+						<div class="seal-member-avatar">
+							<span style="background-image:url(http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570097727076172)">好友昵称</span>
+						</div>
+						<div class="seal-member-name">
+							好友昵称
+						</div>
+					</div>
+				</div>
+				<div class="seal-member-friend">
+					<div class="seal-member-type"><h2>群组</h2></div>
+					<div class="seal-member-item seal-friend-item">
+						<div class="seal-member-avatar">
+							<span style="background-image:url(http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963)">好友昵称</span>
+						</div>
+						<div class="seal-member-name">
+							好友昵称
+						</div>
+					</div>
+					<div class="seal-member-item seal-friend-item">
+						<div class="seal-member-avatar">
+							<span style="background-image:url(http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963)">好友昵称</span>
+						</div>
+						<div class="seal-member-name">
+							好友昵称
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--好友列表 end -->
 		</div>
 	</div>
+
+
+
+	<!--效果演示代码 to del -->
+	<script>
+
+		$(".seal-nav-conversation a:eq(0)").click(function(){
+			$("#seal-members").hide();
+			$("#seal-conversation").show();
+			$("#seal-panel-personal").hide();
+			return false;
+		});
+		$(".seal-nav-account a:eq(0)").click(function(){
+			$("#seal-panel-conversation").hide();
+			$("#seal-conversation").show();
+			$("#seal-panel-personal").show(10);
+			$(".seal-cover").hide();
+			return false;
+		});
+		$(".seal-nav-members a:eq(0)").click(function(){
+			$("#seal-conversation").hide();
+			$("#seal-members").show(10);
+			$(".seal-cover").show();
+			return false;
+		});
+	</script>
 </div>
 </body>
 <script>
@@ -63,19 +256,36 @@ RongIM.Status.onChange = function(status){
         case RongIMLib.ConnectionStatus.DISCONNECTED:
             console.log('断开连接');
             break;
+        default:
+            console.log(status);
 	}
 };
 RongIM.getInstance().connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
 
+var msgs = new Vue({
+	el : "#seal-panel-conversation",
+	data : {
+		list : [],
+		info:{},
+		hasMore:true
+	}
+});	
+
 function showConversation(conversationList){
 	var cons = new Vue({
-		el : "#conversations",
+		el : "#seal-conversation",
 		data : {
 			list : conversationList
 		},
 		methods : {
-			showItem : function(id){
-				alert("show conversation by id= " + id);
+			showItem : function(item){
+				$("#seal-panel-conversation").show(10);
+				$(".seal-cover").hide();
+				RongIM.Message.get(item.conversationType, item.targetId, 1, function(list, hasMore){
+					msgs.$set(msgs.$data,"list",list);	
+					msgs.$set(msgs.$data,"info",item.senderUserInfo);	
+					msgs.$set(msgs.$data,"hasMore",hasMore);	
+				});
 			}
 		}
 	});
