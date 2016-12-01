@@ -10,36 +10,6 @@
 		onMessage:function(message){ },
 		onError:function(error, message){ }
 	};
- 
-	var sendMessage = function(conversationType, targetId, content){
-		RongIMClient.getInstance().sendMessage(conversationType, targetId, content, {
-                onSuccess: function (message) {
-                   Listener.onMessage(message);
-                },
-                onError: function (errorCode,message) {
-                   Listener.onError(errorCode, message); 
-                }
-            }
-        );
-	};
-
-	var connect = function(token){
-		RongIMClient.connect(token, {
-	        onSuccess: function(userId) {
-	        
-	        }, 
-	        onTokenIncorrect: function() {
-	        	Listener.onStatusChange(RongIMLib.ConnectionState.TOKEN_INCORRECT);
-	        },
-	        onError:function(errorCode){
-	        	Listener.onStatusChange(errorCode);
-	        }
-	    });
-	};
-
-	var disconnect = function(){
-		RongIMClient.getInstance().disconnect();
-	};
 
 	var init = function(appkey, dataAccessProvider, options){
 
@@ -76,10 +46,7 @@
 			Message:Message,
 			Discussion:Discussion,
 			ChatRoom:ChatRoom,
-			Status:Status,
-			sendMessage:sendMessage,
-			connect:connect,
-			disconnect:disconnect
+			Status:Status
 		}
 	};
 
@@ -211,6 +178,17 @@
 			  },
 			  onError: function(error) { }
 			});
+		},
+		sendMessage:function(conversationType, targetId, content){
+			RongIMClient.getInstance().sendMessage(conversationType, targetId, content, {
+	                onSuccess: function (message) {
+	                   Listener.onMessage(message);
+	                },
+	                onError: function (errorCode,message) {
+	                   Listener.onError(errorCode, message); 
+	                }
+	            }
+	        );
 		}
 	};
 
@@ -344,7 +322,7 @@
 				me.onChange(message);
 			});
 		},
-		get:function(conversationType, targetId, position, callback){ 
+		get:function(conversationType, targetId, position, callback){
 			var me = this;
 			var	key = me.dataKey + conversationType + targetId;
 			var memoryMsgs = me.data[key];
@@ -367,6 +345,9 @@
 					callback(me.data[key], true);
 				});
 			}
+		},
+		sendMessage:function(conversationType, targetId, content){
+			API.sendMessage(conversationType, targetId, content);
 		},
 		update:function(message){ },
 		onChange:function(message){}
@@ -427,6 +408,20 @@
 	var Status = { 
 		set : function(status){
 			this.onChange(status);
+		},
+		connect:function(token){
+			RongIMClient.connect(token, {
+		        onSuccess: function(userId) {}, 
+		        onTokenIncorrect: function() {
+		        	Listener.onStatusChange(RongIMLib.ConnectionState.TOKEN_INCORRECT);
+		        },
+		        onError:function(errorCode){
+		        	Listener.onStatusChange(errorCode);
+		        }
+		    });
+		},
+		disconnect:function(){
+			RongIMClient.getInstance().disconnect();
 		},
 		onChange:function(status){ }
 	};

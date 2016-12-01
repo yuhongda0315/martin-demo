@@ -252,6 +252,7 @@ html,body{
 </div>
 </body>
 <script>
+
 var currentConversationType, currentTargetId;
 var _instance = IM.init("8luwapkvucoil",null);
 _instance.Status.onChange = function(status){
@@ -272,7 +273,7 @@ _instance.Status.onChange = function(status){
             console.log(status);
 	}
 };
-_instance.connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
+_instance.Status.connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
 
 var msgs = new Vue({
 	el : "#seal-panel-conversation",
@@ -315,7 +316,7 @@ function showConversation(conversationList){
 $('.seal-msg-send a:eq(0)').click(function(){
 	var content = $('.seal-msg-content').html();
 	var msg = new RongIMLib.TextMessage({content:content});
-	_instance.sendMessage(currentConversationType, currentTargetId, msg);
+	_instance.Message.sendMessage(currentConversationType, currentTargetId, msg);
 	$('.seal-msg-content').html("")
 });
 
