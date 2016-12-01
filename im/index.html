@@ -22,7 +22,9 @@ html,body{
   transition: transform 0.8s;
 }
 </style>
-
+<!-- 	<ul id="contextMenu" class="contextMenu">
+		<li class="btnItem"><a href="#Delete">Conv-Delete</a></li>
+	</ul> -->
 <div class="seal-main">
 	
 	<!--会话页 begin-->
@@ -89,8 +91,8 @@ html,body{
 				</div>
 
 				<div class="seal-conversation-msg-list">
-					<div class="seal-conversation-msg-older">
-						<a href="">查看历史消息</a>
+					<div class="seal-conversation-msg-older" v-if="hasMore">
+						<a href="#">查看历史消息</a>
 					</div>
 				<!-- 	<div class="seal-conversation-time">
 						11.21
@@ -228,7 +230,6 @@ html,body{
 
 	<!--效果演示代码 to del -->
 	<script>
-
 		$(".seal-nav-conversation a:eq(0)").click(function(){
 			$("#seal-members").hide();
 			$("#seal-conversation").show();
@@ -300,8 +301,9 @@ function showConversation(conversationList){
 				$(".seal-cover").hide();
 				currentConversationType = item.conversationType;
 				currentTargetId = item.targetId;
-				_instance.Message.get(item.conversationType, item.targetId, 1, function(list, hasMore){
-					msgs.$set(msgs.$data,"list",list);	
+				_instance.Conversation.clearUnReadCount(currentConversationType, currentTargetId);
+				_instance.Message.get(item.conversationType, item.targetId, 1, 0, function(list, hasMore){
+					msgs.$set(msgs.$data,"list",list);		
 					msgs.$set(msgs.$data,"info",item.senderUserInfo);	
 					msgs.$set(msgs.$data,"hasMore",hasMore);	
 				});
@@ -320,6 +322,13 @@ $('.seal-msg-send a:eq(0)').click(function(){
 	$('.seal-msg-content').html("")
 });
 
+$('.seal-conversation-msg-older a:eq(0)').click(function(){
+	var _list = msgs.$data.list;
+	_instance.Message.get(currentConversationType, currentTargetId, 2, _list[0].sentTime, function(list, hasMore){
+		msgs.$set(msgs.$data,"list",list.concat(_list));	
+		msgs.$set(msgs.$data,"hasMore",hasMore);	
+	});
+});
 </script>
 
 </html>
