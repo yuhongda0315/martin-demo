@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title> IM - Demo </title>
     <script src = "../js/jquery-3.1.1.min.js"></script>
     <script src = "../js/vue-2.0.1.js"></script>
+    <script src = "data.js"></script>
     <script src = "../js/RongIMLib.js"></script>
 	<script src = "./DataModel.js"></script>
 	<link rel="stylesheet" href="../css/sealtalk.css">
@@ -74,6 +75,9 @@ html,body{
 
 						</div>
 						<div>
+							<span class="remove" v-on:click.stop="removeConversation(conversation)">x</span>
+						</div>
+						<div>
 							<span class="badge" v-if="conversation.unreadMessageCount > 0">{{conversation.unreadMessageCount}}</span>
 						</div>
 						<div class="seal-conversation-msg">
@@ -91,13 +95,14 @@ html,body{
 				</div>
 
 				<div class="seal-conversation-msg-list">
-					<div class="seal-conversation-msg-older" v-if="hasMore">
+					<div class="seal-conversation-msg-older" >
 						<a href="#">查看历史消息</a>
 					</div>
 				<!-- 	<div class="seal-conversation-time">
 						11.21
 					</div> -->
-					<div class="seal-conversation-msg-item"  v-for="message in list">
+					<!-- <transition-group name="flip-list" tag="div"> -->
+					<div class="seal-conversation-msg-item"  v-for="message in list" >
 						<div class="seal-conversation-avatar">
 							<img v-bind:src.once="message.senderUserInfo.portraitUri" alt="">
 						</div>
@@ -114,6 +119,7 @@ html,body{
 							[语音消息]
 						</div>
 					</div>
+					<!-- </transition-group> -->
 				</div>
 
 				<div class="seal-msg-box">
@@ -171,6 +177,38 @@ html,body{
 				</div>
 			</div>
 
+			<!-- 群详细信息 -->
+			<div class="seal-panel-main seal-group-detail" id="seal-panel-group" style="display:none">
+				<div class="" id="seal-account-detail">
+					<div class="seal-title">
+						<h2>群信息</h2>
+						<a href="" class="seal-title-btnleft">返回</a>
+					</div>
+					
+					<div class="seal-group-info-box">
+						<div class="seal-group-photo">
+							<img v-bind:src.once="groupInfo.portraitUri" alt="">
+						</div>
+						<div class="seal-group-info">
+							<span>{{groupInfo.name}}</span>
+						</div>
+						<div class="seal-group-info">
+							<span>{{groupInfo.memberCount}} 人</span>
+						</div>
+					</div>
+					<div class="seal-group-members" v-for="member in list">
+						<div class="seal-group-item">
+							<div class="seal-group-member-avatar">
+								<img v-bind:src.once="member.user.portraitUri" alt="">
+							</div>
+							<div class="seal-group-member-name">
+								{{member.user.nickname}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<!--好友列表 -->
 			<div class="seal-panel-sider seal-members" id="seal-members" style="display:none">
 				<div class="seal-search">
@@ -182,41 +220,27 @@ html,body{
 						新通知
 					</div>
 				</div>
-				<div class="seal-member-group">
+				<div class="seal-member-friend" id="seal-friend-item" >
 					<div class="seal-member-type"><h2>好友</h2></div>
-					<div class="seal-member-item seal-group-item">
+
+					<div class="seal-member-item seal-friend-item" v-for="friend in list">
 						<div class="seal-member-avatar">
-							<span style="background-image:url(http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570097727076172)">好友昵称</span>
+							<img v-bind:src.once="friend.user.portraitUri" alt="">
 						</div>
 						<div class="seal-member-name">
-							好友昵称
+							{{friend.user.nickname}}
 						</div>
 					</div>
-					<div class="seal-member-item seal-group-item">
-						<div class="seal-member-avatar">
-							<span style="background-image:url(http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570097727076172)">好友昵称</span>
-						</div>
-						<div class="seal-member-name">
-							好友昵称
-						</div>
-					</div>
+					
 				</div>
-				<div class="seal-member-friend">
+				<div class="seal-member-group" id="seal-group-item">
 					<div class="seal-member-type"><h2>群组</h2></div>
-					<div class="seal-member-item seal-friend-item">
+					<div class="seal-member-item " v-for="group in list" v-on:click="showGroupInfo(group.group)">
 						<div class="seal-member-avatar">
-							<span style="background-image:url(http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963)">好友昵称</span>
+							<img v-bind:src.once="group.group.portraitUri" alt="">
 						</div>
 						<div class="seal-member-name">
-							好友昵称
-						</div>
-					</div>
-					<div class="seal-member-item seal-friend-item">
-						<div class="seal-member-avatar">
-							<span style="background-image:url(http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963)">好友昵称</span>
-						</div>
-						<div class="seal-member-name">
-							好友昵称
+							{{group.group.name}}
 						</div>
 					</div>
 				</div>
@@ -231,8 +255,8 @@ html,body{
 	<!--效果演示代码 to del -->
 	<script>
 		$(".seal-nav-conversation a:eq(0)").click(function(){
-			$("#seal-members").hide();
 			$("#seal-conversation").show();
+			$("#seal-members").hide();
 			$("#seal-panel-personal").hide();
 			return false;
 		});
@@ -255,7 +279,7 @@ html,body{
 <script>
 
 var currentConversationType, currentTargetId;
-var _instance = IM.init("8luwapkvucoil",null);
+var _instance = RongDataModel.init("8luwapkvucoil",null);
 _instance.Status.onChange = function(status){
 	switch(status){
         case RongIMLib.ConnectionStatus.CONNECTING:
@@ -266,6 +290,8 @@ _instance.Status.onChange = function(status){
 	 		_instance.Conversation.get(function(conversationList){
 	 			showConversation(conversationList);
 	 		});
+	 		showFriendShip(_instance.FriendShip.get());
+	 		showGroups(_instance.Group.get());
             break;
         case RongIMLib.ConnectionStatus.DISCONNECTED:
             console.log('断开连接');
@@ -289,6 +315,14 @@ _instance.Message.onChange = function(message){
 
 };
 
+$('.seal-conversation-msg-older a:eq(0)').click(function(){
+	var _list = msgs.$data.list;
+	_instance.Message.get(currentConversationType, currentTargetId, 2, _list[0].sentTime, function(list, hasMore){
+		msgs.$set(msgs.$data,"list",list.concat(_list));	
+		msgs.$set(msgs.$data,"hasMore",hasMore);	
+	});
+});
+
 function showConversation(conversationList){
 	var cons = new Vue({
 		el : "#seal-conversation",
@@ -307,6 +341,9 @@ function showConversation(conversationList){
 					msgs.$set(msgs.$data,"info",item.senderUserInfo);	
 					msgs.$set(msgs.$data,"hasMore",hasMore);	
 				});
+			},
+			removeConversation:function(item){
+				_instance.Conversation.remove(item.conversationType, item.targetId);
 			}
 		}
 	});
@@ -315,19 +352,55 @@ function showConversation(conversationList){
 	};
 }
 
+function showFriendShip(friends){
+	var firend = new Vue({
+		el : "#seal-friend-item",
+		data : {
+			list : friends
+		}
+	});
+}
+
+function showGroups(groups){
+	var group = new Vue({
+		el : "#seal-group-item",
+		data : {
+			list : groups
+		},
+		methods:{
+			showGroupInfo:function(group){
+				$(".seal-cover").hide();
+				$("#seal-conversation").hide();
+				$("#seal-panel-conversation").hide();
+				$("#seal-panel-personal").hide();
+				$("#seal-panel-group").show();
+				showGroupMembers(group);
+			}
+		}
+	});
+}
+
+var groupMember = new Vue({
+		el:'#seal-panel-group',
+		data:{
+			groupInfo:{},
+			list : []
+		}
+	});
+
+function  showGroupMembers(group){
+	groupMember.onChange = function(){}
+	_instance.GroupMembers.get(group.id, function(list){
+		groupMember.$set(groupMember.$data,"list",list);
+		groupMember.$set(groupMember.$data,"groupInfo",group);
+	});
+}
+
 $('.seal-msg-send a:eq(0)').click(function(){
 	var content = $('.seal-msg-content').html();
 	var msg = new RongIMLib.TextMessage({content:content});
 	_instance.Message.sendMessage(currentConversationType, currentTargetId, msg);
 	$('.seal-msg-content').html("")
-});
-
-$('.seal-conversation-msg-older a:eq(0)').click(function(){
-	var _list = msgs.$data.list;
-	_instance.Message.get(currentConversationType, currentTargetId, 2, _list[0].sentTime, function(list, hasMore){
-		msgs.$set(msgs.$data,"list",list.concat(_list));	
-		msgs.$set(msgs.$data,"hasMore",hasMore);	
-	});
 });
 </script>
 

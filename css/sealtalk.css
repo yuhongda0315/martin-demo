@@ -345,6 +345,19 @@
   color: #fff;
   border-radius: 10px;
 }
+.seal-conversation-item:hover .remove {
+  display: block;
+}
+.seal-conversation-item .remove {
+  float: right;
+  padding: 0px 5px;
+  background-color:orange;
+  font-weight:normal;
+  color: #fff;
+  border-radius: 10px;
+  margin-left: 5px;
+  display: none;
+}
 .seal-conversation-avatar {
   float: left;
   padding-right: 14px;
@@ -480,25 +493,29 @@
   line-height: 36px;
   padding-left: 20px;
 }
+
 .seal-member-item {
+  cursor: pointer;
   margin: 0 0 0 20px;
   padding: 10px 0;
   border-bottom: 1px solid #e1e9f0;
+  clear: both;
 }
+
+.seal-member-item:hover {
+  background: rgba(55, 55, 55, 0.1);
+}
+
 .seal-member-avatar {
-  vertical-align: top;
-  display: inline-block;
-  margin-right: 10px;
-}
-.seal-member-avatar span {
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background-size: 100% 100%;
-  font-size: 0;
   float: left;
+  padding-right: 14px;
 }
+.seal-member-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50%;
+}
+
 .seal-member-name {
   display: inline-block;
   line-height: 35px;
@@ -574,6 +591,7 @@
   border-radius: 20px;
   margin-top: -1px;
 }
+
 .seal-account-system-msg a.seal-system-msg-off {
   border: 1px solid #dfdfdf;
 }
@@ -604,3 +622,49 @@
   font-size: 16px;
 }
 
+/* Group */
+.seal-group-detail {
+  height: 100%;
+  background: #fff;
+  padding-bottom: 20px;
+}
+
+.seal-group-info-box{
+  padding: 40px;
+  border-bottom: solid 1px orange;
+}
+.seal-group-info-box .seal-group-photo{
+  float: left;
+}
+.seal-group-info-box .seal-group-photo img{
+  width: 55px;
+  height: 55px;
+  border-radius: 50% 50%;
+}
+.seal-group-info-box .seal-group-info{
+  
+}
+.seal-group-info-box .seal-group-info span{
+  padding: 14px;
+  
+}
+.seal-group-item{
+  float: left;
+  cursor: pointer;
+  padding: 14px;
+}
+.seal-group-members{
+  /*clear: both;*/
+}
+.seal-group-member-avatar {
+  padding-right: 14px;
+}
+.seal-group-member-avatar img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50% 50%;
+}
+.seal-group-member-name {
+  font-weight: 700;
+  color: #000;
+}

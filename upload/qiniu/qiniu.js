@@ -59,7 +59,7 @@
 	           	 	if (xhr.responseText) {
 	           	 		var result = JSON.parse(xhr.responseText.replace(/'/g,'"'));
 	           	 		result.filename = options.unique_value;
-	           	 		callback.onCompleted(JSON.stringify(result));
+	           	 		callback.onCompleted(result);
 	           	 	}else{
 	           	 		callback.onError(UploadFile.ErrorCode.POST_DATA_ERROR);
 	           	 	}
