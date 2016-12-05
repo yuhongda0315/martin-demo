@@ -57,7 +57,9 @@
 			if (xhr.readyState == 4) {
 	            if (xhr.status == 200) {
 	           	 	if (xhr.responseText) {
-	           	 		callback.onCompleted(xhr.responseText);
+	           	 		var result = JSON.parse(xhr.responseText.replace(/'/g,'"'));
+	           	 		result.filename = options.unique_value;
+	           	 		callback.onCompleted(JSON.stringify(result));
 	           	 	}else{
 	           	 		callback.onError(UploadFile.ErrorCode.POST_DATA_ERROR);
 	           	 	}
