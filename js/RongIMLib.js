@@ -7687,6 +7687,7 @@ var RongIMLib;
                     });
                 }
             }, null, methodType);
+            msg.messageId = RongIMLib.MessageIdHandler.messageId + "";
         };
         ServerDataProvider.prototype.setConnectionStatusListener = function (listener) {
             if (RongIMLib.RongIMClient.bridge) {

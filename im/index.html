@@ -7,7 +7,7 @@
     <script src = "../js/vue-2.0.1.js"></script>
     <script src = "data.js"></script>
     <script src = "../js/RongIMLib.js"></script>
-	<script src = "./DataModel.js"></script>
+	<script src = "./datamodel-new.js"></script>
 	<link rel="stylesheet" href="../css/sealtalk.css">
 	
 </head>
@@ -65,10 +65,10 @@ html,body{
  				<transition-group name="flip-list" tag="div">
 					<div class="seal-conversation-item" v-for="conversation in list"  v-on:click="showItem(conversation)" v-bind:key="conversation">
 						<div class="seal-conversation-avatar">
-							<img v-bind:src.once="conversation.senderUserInfo.portraitUri" alt="">
+							<img v-bind:src.once="conversation.user.portraitUri" alt="">
 						</div>
 						<div class="seal-conversation-name">
-							{{conversation.senderUserInfo.name}}
+							{{conversation.user.name}}
 						</div>
 						<div class="seal-conversation-time">
 							{{new Date(conversation.sentTime).toTimeString().substr(0,8)}}
@@ -81,7 +81,7 @@ html,body{
 							<span class="badge" v-if="conversation.unreadMessageCount > 0">{{conversation.unreadMessageCount}}</span>
 						</div>
 						<div class="seal-conversation-msg">
-							<span class="seal-conversation-member">{{conversation.senderUserInfo.name}}</span>：{{conversation.latestMessage.content.content || '其他消息'}}
+							<span class="seal-conversation-member">{{conversation.user.name}}</span>：{{conversation.latestMessage.content.content || '其他消息'}}
 						</div>
 					</div>	
   				</transition-group>
@@ -104,14 +104,21 @@ html,body{
 					<!-- <transition-group name="flip-list" tag="div"> -->
 					<div class="seal-conversation-msg-item"  v-for="message in list" >
 						<div class="seal-conversation-avatar">
-							<img v-bind:src.once="message.senderUserInfo.portraitUri" alt="">
+							<img v-bind:src.once="message.user.portraitUri" alt="">
 						</div>
 						<div class="seal-conversation-name">
-							{{ message.senderUserInfo.name }}
+							{{ message.user.name }}
+						</div>
+						<div class="seal-conversation-msg-status" v-if="message.sentStatus == 10">
+								<span>sending</span>
+						</div>
+						<div class="seal-conversation-msg-status" v-if="message.sentStatus == 20">
+								<span>！</span>
 						</div>
 						<div class="seal-conversation-msg" v-if="message.messageType == 'TextMessage'">
 							{{ message.content.content }}
 						</div>
+						
 						<div class="seal-conversation-msg" v-if="message.messageType == 'ImageMessage'">
 							<img v-bind:src.once="message.content.imageUri" alt="">
 						</div>
@@ -196,16 +203,16 @@ html,body{
 							<span>{{groupInfo.memberCount}} 人</span>
 						</div>
 					</div>
-					<div class="seal-group-members" v-for="member in list">
-						<div class="seal-group-item">
-							<div class="seal-group-member-avatar">
-								<img v-bind:src.once="member.user.portraitUri" alt="">
-							</div>
-							<div class="seal-group-member-name">
-								{{member.user.nickname}}
+						<div class="seal-group-members" v-for="member in list">
+							<div class="seal-group-item">
+								<div class="seal-group-member-avatar">
+									<img v-bind:src.once="member.user.portraitUri" alt="">
+								</div>
+								<div class="seal-group-member-name">
+									{{member.user.nickname}}
+								</div>
 							</div>
 						</div>
-					</div>
 				</div>
 			</div>
 
@@ -279,8 +286,8 @@ html,body{
 <script>
 
 var currentConversationType, currentTargetId;
-var _instance = RongDataModel.init("8luwapkvucoil",null);
-_instance.Status.onChange = function(status){
+var _instance = RongDataModel.init({appkey:"8luwapkvucoil"});
+_instance.Status.watch = function(status){
 	switch(status){
         case RongIMLib.ConnectionStatus.CONNECTING:
             console.log('正在链接');
@@ -290,7 +297,7 @@ _instance.Status.onChange = function(status){
 	 		_instance.Conversation.get(function(conversationList){
 	 			showConversation(conversationList);
 	 		});
-	 		showFriendShip(_instance.FriendShip.get());
+	 		showFriendShip(_instance.Friend.get());
 	 		showGroups(_instance.Group.get());
             break;
         case RongIMLib.ConnectionStatus.DISCONNECTED:
@@ -311,13 +318,19 @@ var msgs = new Vue({
 	}
 });	
 
-_instance.Message.onChange = function(message){
+_instance.Message.watch = function(message){
 
 };
 
 $('.seal-conversation-msg-older a:eq(0)').click(function(){
 	var _list = msgs.$data.list;
-	_instance.Message.get(currentConversationType, currentTargetId, 2, _list[0].sentTime, function(list, hasMore){
+	var params = {
+		conversationType:currentConversationType, 
+		targetId:currentTargetId, 
+		position:2, 
+		timestamp:_list[0].sentTime
+	};
+	_instance.Message.get(params, function(list, hasMore){
 		msgs.$set(msgs.$data,"list",list.concat(_list));	
 		msgs.$set(msgs.$data,"hasMore",hasMore);	
 	});
@@ -336,9 +349,15 @@ function showConversation(conversationList){
 				currentConversationType = item.conversationType;
 				currentTargetId = item.targetId;
 				_instance.Conversation.clearUnReadCount(currentConversationType, currentTargetId);
-				_instance.Message.get(item.conversationType, item.targetId, 1, 0, function(list, hasMore){
+				var params = {
+						conversationType:item.conversationType, 
+						targetId:item.targetId, 
+						position:1, 
+						timestamp:0
+					};
+				_instance.Message.get(params, function(list, hasMore){
 					msgs.$set(msgs.$data,"list",list);		
-					msgs.$set(msgs.$data,"info",item.senderUserInfo);	
+					msgs.$set(msgs.$data,"info",item.user);	
 					msgs.$set(msgs.$data,"hasMore",hasMore);	
 				});
 			},
@@ -347,7 +366,7 @@ function showConversation(conversationList){
 			}
 		}
 	});
-	_instance.Conversation.onChange = function(conversation){
+	_instance.Conversation.watch = function(conversation){
 
 	};
 }
@@ -389,8 +408,7 @@ var groupMember = new Vue({
 	});
 
 function  showGroupMembers(group){
-	groupMember.onChange = function(){}
-	_instance.GroupMembers.get(group.id, function(list){
+	_instance.Group.getMembers(group.id, function(list){
 		groupMember.$set(groupMember.$data,"list",list);
 		groupMember.$set(groupMember.$data,"groupInfo",group);
 	});
@@ -398,8 +416,13 @@ function  showGroupMembers(group){
 
 $('.seal-msg-send a:eq(0)').click(function(){
 	var content = $('.seal-msg-content').html();
-	var msg = new RongIMLib.TextMessage({content:content});
-	_instance.Message.sendMessage(currentConversationType, currentTargetId, msg);
+	var msg = new _instance.Message.TextMessage({content:content});
+	var params = {
+		conversationType:currentConversationType, 
+		targetId:currentTargetId, 
+		content:msg
+	};
+	_instance.Message.send(params);
 	$('.seal-msg-content').html("")
 });
 </script>

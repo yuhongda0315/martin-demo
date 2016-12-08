@@ -375,6 +375,15 @@
   color: #8e969f;
   font-size: 14px;
 }
+.seal-conversation-msg-status{
+}
+.seal-conversation-msg-status span{
+  padding: 0px 2px;
+  background-color:red;
+  font-weight:normal;
+  color: #fff;
+  border-radius: 10px;
+}
 .seal-conversation-list {
   height: 100%;
   overflow: auto;
@@ -390,6 +399,10 @@
   box-sizing: border-box;
   padding: 0 2em;
   overflow: auto;
+}
+.seal-conversation-msg-list .seal-conversation-name{
+  float: left;
+  margin-right: 30px;
 }
 .seal-conversation-msg-older {
   text-align: center;
@@ -496,7 +509,7 @@
 
 .seal-member-item {
   cursor: pointer;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 3px;
   padding: 10px 0;
   border-bottom: 1px solid #e1e9f0;
   clear: both;
