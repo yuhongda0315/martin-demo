@@ -14,7 +14,6 @@ app.all('*', function(req, res, next) {
 var friends = {"code":200,"result":[{"displayName":"","message":"我是施剑峰","status":20,"updatedAt":"2016-11-25T06:48:36.000Z","user":{"id":"OIBbeKlkx","nickname":"施剑峰","region":"86","phone":"18500682675","portraitUri":""}},{"displayName":"","message":"","status":20,"updatedAt":"2016-10-18T04:32:09.000Z","user":{"id":"675NdFjkx","nickname":"杨川","region":"86","phone":"18201252063","portraitUri":"http://7xogjk.com1.z0.glb.clouddn.com/675NdFjkx1466733699776768066"}},{"displayName":"","message":"杨攀","status":20,"updatedAt":"2016-06-27T03:13:22.000Z","user":{"id":"ImgEatRGU","nickname":"杨攀","region":"86","phone":"13911558980","portraitUri":"http://7xogjk.com1.z0.glb.clouddn.com/ImgEatRGU1463128238995328857"}},{"displayName":"","message":"","status":20,"updatedAt":"2016-03-02T07:09:30.000Z","user":{"id":"mi8t76DVu","nickname":"吕朋","region":"86","phone":"13521935282","portraitUri":"http://7xogjk.com1.z0.glb.clouddn.com/mi8t76DVu1466759842147481934"}}]};
 
 app.get('/friendship/all',function(req,res,next){
-   // var name = req.params.name;
   res.send(friends);
   next();
 });
@@ -38,5 +37,40 @@ app.get('/group/:groupId/members', function(req, res, next){
   res.send(groupMembers[groupId] || []);
   next();
 });
+
+
+var users = {
+  '1002': {
+    id: '1002',
+    name: '小企鹅',
+    portraitUri: 'http://7xogjk.com1.z0.glb.clouddn.com/675NdFjkx1466733699776768066'
+  },
+  '1003': {
+    id: '1003',
+    name: '飞翔的企鹅',
+    portraitUri: 'http://7xogjk.com1.z0.glb.clouddn.com/FjsNMjYoVKfGmA86SNwnggfKgE6_'
+  },
+  '1004': {
+    id: '1004',
+    name: 'CPU',
+    portraitUri: 'http://7xogjk.com1.z0.glb.clouddn.com/Tp6nLyUKX1466570511241467041'
+  },
+  '1005': {
+    id: '1005',
+    name: '西湖龙井',
+    portraitUri: 'http://7xogjk.com1.z0.glb.clouddn.com/Fh4fnCvnO_SOwpuMPYGBnzBwrx6A'
+  },
+  '1001': {
+    id: '1001',
+    name: '大海飞',
+    portraitUri: 'http://7xogjk.com1.z0.glb.clouddn.com/u0LUuhzHm1466557920584458984'
+  }
+};
+
+app.get('/user/all', function(req, res, next){
+  res.send({code:200, result:users});
+  next();
+});
+
 app.listen(3587);
 console.log('listener port : 3587');

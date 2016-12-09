@@ -1,18 +1,26 @@
 "use strict";
 (function(win, RongIMLib, RongIMClient) {
-    /** 配置项 */
-    var option = {
-        max_msg_count: 20,
-        max_conversation_count: 50,
-        get_historyMsg_count: 5,
-        server_path: 'http://127.0.0.1:3587/'
-    };
+    var option = (function() {
+        return {
+            max_msg_count: 20,
+            max_conversation_count: 50,
+            get_historyMsg_count: 5,
+            server_path: 'http://127.0.0.1:3587/'
+        };
+    })();
+
     /** 工具类 */
     var forEach = function(object, callback) {
         for (var key in object) {
             callback(key, object[key]);
         }
     };
+    var loop = function(arrs, callback) {
+        for (var i = 0, len = arrs.length; i < len; i++) {
+            callback(arrs[i]);
+        }
+    };
+    var currentUserId = "";
     var getPrototype = Object.prototype.toString;
     var events = {}; // 事件存储格式:events.MessageWatcher : [fun1, fun2]
     var emit = function(name, data) {
@@ -21,17 +29,14 @@
                 events[name][i](data);
             }
         }
-        return
     };
-    var on = function(name, func) {
+    var watcher = function(name, func) {
         if (typeof func != 'function' || typeof name != 'string') return;
         events[name] = events[name] || [];
         events[name].push(func);
     };
     var destroy = function(name) {
-        if (name in events) {
-            delete events[name];
-        }
+        delete events[name];
     };
 
     var request = function(url, data, callback) {
@@ -48,24 +53,44 @@
         xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         xhr.send(data);
     };
-    var generateData = function(obj) {
+    var jsonStringify = function(obj) {
         return JSON.stringify(obj);
     };
+    // 数据格式:var user = {zhangsan:{id:'zhangsan',name:'name'}};
+    var userFormat = function(data, callback) {
+        for (var i = 0, len = data.length; i < len; i++) {
+            var user = data[i].user,
+                obj = {};
+            obj[user.id] = user;
+            callback(obj);
+        }
+    };
+
     /** User DataModel region */
+    // 没有提供 User 接口，暂时使用假数据。
+    var userPath = {
+        all: 'user/all',
+        get: 'user/{userId}',
+        upate: 'user/{userId}/update'
+    };
     var UserDataProvider = {
         get: function(userId, callback) {
-            // eg : var user = {'zhagnsan': {name: 'zhangsan'}};
-            callback(defaultUser);
+            //TODO 
+            var data = {
+                name: '陌生人',
+                portraitUri: 'http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1476068767254905029'
+            };
+            var user = {};
+            user[userId] = user; 
+            callback(user);
         },
         getAll: function(callback) {
-            callback(users);
+            request(userPath.all, null, function(data) {
+                callback(data.result);
+            });
         },
         update: function(users, callback) {
-            // eg : var user = {'zhagnsan': {name: 'zhangsan'}};
             callback(users);
-        },
-        remove: function(userIds, callback) {
-            // TODO remove users.
         }
     };
 
@@ -90,10 +115,18 @@
                 });
             }
         };
+        // 此方不从服务器获取用户信息,返回值数据格式 var users = {zhangsan:{id:'zhagnsan',name:'name'}};
+        var getUsers = function(userIds, callback) {
+            var users = {};
+            for (var i = 0, len = userIds.length; i < len; i++) {
+                userIds[i] in data && (users[userIds[i]] = data[userIds]);
+            }
+            callback(users);
+        };
         var _push = function(userId, user) {
             data[userId] = user;
         };
-        on('onUserWatcher', function(data) {
+        watcher('User', function(data) {
             forEach(data, function(userId, user) {
                 _push(userId, user);
             });
@@ -101,49 +134,78 @@
         return {
             set: set,
             get: get,
+            getUsers: getUsers,
             data: data,
             UserDataProvider: userProvider
         };
     })(UserDataProvider);
 
     UserDataProvider.getAll(function(data) {
-        emit('onUserWatcher', data);
+        emit('User', data);
     });
     /** User DataModel end region */
 
     /** Friend DataModel region */
     var friendPath = {
-        all: 'friendship/all'
+        all: 'friendship/all',
+        invite: 'friendship/invite',
+        agree: 'friendship/agree',
+        ignore: 'friendship/ignore',
+        remove: 'friendship/delete',
+        setDisplayName: 'friendship/set_display_name'
     };
     var FriendDataProvider = {
-        add: function(friend, callback) {
-            callback({});
+        invite: function(friendId, callback) {
+            var data = {
+                friendId: friendId
+            };
+            result(friendPath.invite, jsonStringify(data), callback);
         },
         getAll: function(callback) {
             request(friendPath.all, null, callback);
         },
-        update: function(friends, callback) {
-            var friends = [];
-            callback(friends);
+        agree: function(friendId, callback) {
+            var data = {
+                friendId: friendId
+            };
+            result(friendPath.agree, jsonStringify(data), callback);
         },
-        remove: function(friendIds, callback) {
-            var friendIds = [];
-            callback(friendIds);
+        ignore: function(friendId, callback) {
+            var data = {
+                friendId: friendId
+            };
+            result(friendPath.ignore, jsonStringify(data), callback);
+        },
+        setDisplayName: function(friendId, displayName, callback) {
+            var data = {
+                friendId: friendId,
+                displayName: displayName
+            };
+            result(friendPath.setDisplayName, jsonStringify(data), callback);
+        },
+        remove: function(friendId, callback) {
+            var data = {
+                friendId: friendId
+            };
+            result(friendPath.remove, jsonStringify(data), callback);
         }
     };
 
     var Friend = (function(friendDataProvider) {
         var data = [];
-        var watch = function(friend) {
-
-        };
-        var add = function(friend) {
-            friendDataProvider.add(friend, function(result) {
+        var watch = function(friend) {};
+        var invite = function(friendId) {
+            friendDataProvider.invite(friendId, function(result) {
                 data.push(result);
                 Friend.watch(result);
             });
         };
-
+        var agree = function(friendId, callback) {
+            friendDataProvider.agree(friendId, callback);
+        };
+        var ignore = function(friendId, callback) {
+            friendDataProvider.ignore(friendId, callback);
+        };
         var _success = function(result, cb) {
             for (var i = 0, len = data.length; i < len; i++) {
                 if (data[i].user.id == result.user.id) {
@@ -153,15 +215,15 @@
                 }
             }
         };
-        var remove = function(friend) {
-            friendDataProvider.remove(friend, function(result) {
+        var remove = function(friendId) {
+            friendDataProvider.remove(friendId, function(result) {
                 _success(result, function(index) {
                     data.splice(i, 1);
                 });
             });
         };
-        var set = function(friend) {
-            friendDataProvider.update(friend, function(result) {
+        var setDisplayName = function(friendId, displayName) {
+            friendDataProvider.set_display_name(friendId, displayName, function(result) {
                 _success(result, function(index) {
                     data[i] = result;
                 });
@@ -173,30 +235,23 @@
         var _push = function(friends) {
             data = friends;
         };
+        FriendDataProvider.getAll(function(data) {
+            _push(data.result);
+            userFormat(data.result, function(user) {
+                emit('User', user);
+            });
+        });
         return {
-            add: add,
+            invite: invite,
             remove: remove,
-            set: set,
+            ignore: ignore,
+            agree: agree,
+            setDisplayName: setDisplayName,
             get: get,
             watch: watch,
-            FriendDataProvider: friendDataProvider,
-            _push: _push
+            FriendDataProvider: friendDataProvider
         };
     })(FriendDataProvider);
-    var convertDataToUser = function(data, callback) {
-        for (var i = 0, len = data.length; i < len; i++) {
-            var user = data[i].user,
-                obj = {};
-            obj[user.id] = user;
-            callback(obj);
-        }
-    };
-    FriendDataProvider.getAll(function(data) {
-        Friend._push(data.result);
-        convertDataToUser(data.result, function(user) {
-            emit('onUserWatcher', user);
-        });
-    });
     /** Friend DataModel end region*/
 
     /** Group DataModel region*/
@@ -208,7 +263,7 @@
         quit: 'group/quit',
         dismiss: 'group/dismiss',
         transfer: 'group/transfer',
-        set_bulletin: 'group/set_bulletin',
+        notice: 'group/set_bulletin',
         set_portrait_uri: 'group/set_portrait_uri',
         set_display_name: 'group/set_display_name',
         rename: 'group/rename',
@@ -224,58 +279,58 @@
             var data = {
                 memberIds: memberIds
             };
-            request(groupPath.create, generateData(data), callback);
+            request(groupPath.create, jsonStringify(data), callback);
         },
         join: function(groupId) {
             var data = {
                 groupId: groupId
             };
-            request(groupPath.join, generateData(data), callback);
+            request(groupPath.join, jsonStringify(data), callback);
         },
         quit: function(groupId) {
             var data = {
                 groupId: groupId
             };
-            request(groupPath.quit, generateData(data), callback);
+            request(groupPath.quit, jsonStringify(data), callback);
         },
         dismiss: function(groupId) {
             var data = {
                 groupId: groupId
             };
-            request(groupPath.dismiss, generateData(data), callback);
+            request(groupPath.dismiss, jsonStringify(data), callback);
         },
-        transfer: function(groupId, userId) {
+        transferManager: function(groupId, userId) {
             var data = {
                 groupId: groupId
             };
-            request(groupPath.dismiss, generateData(data), callback);
+            request(groupPath.dismiss, jsonStringify(data), callback);
         },
-        setBulletin: function(groupId, bulletin, callback) {
+        setNotice: function(groupId, bulletin, callback) {
             var data = {
                 groupId: groupId,
                 bulletin: bulletin
             };
-            request(groupPath.set_bulletin, generateData(data), callback);
+            request(groupPath.notice, jsonStringify(data), callback);
         },
         setPortaitUri: function(groupId, portraiUri) {
             var data = {
                 groupId: groupId
             };
-            request(groupPath.set_portrait_uri, generateData(data), callback);
+            request(groupPath.set_portrait_uri, jsonStringify(data), callback);
         },
         setDisplayName: function(groupId, displayName) {
             var data = {
                 groupId: groupId,
                 displayName: displayName
             };
-            request(groupPath.set_display_name, generateData(data), callback);
+            request(groupPath.set_display_name, jsonStringify(data), callback);
         },
-        groupRename: function(groupId, name) {
+        rename: function(groupId, name) {
             var data = {
                 groupId: groupId,
                 name: name
             };
-            request(groupPath.rename, generateData(data), callback);
+            request(groupPath.rename, jsonStringify(data), callback);
         },
         getMembers: function(groupId, callback) {
             request(groupPath.members.replace(/{groupId}/, groupId), null, function(data) {
@@ -286,95 +341,179 @@
             var data = {
                 groupId: groupId
             };
-            request(groupPath.add, generateData(data), callback);
+            request(groupPath.add, jsonStringify(data), callback);
         },
         kickMember: function(groupId, memberIds) {
             var data = {
                 groupId: groupId,
                 memberIds
             };
-            request(groupPath.kick, generateData(data), callback);
+            request(groupPath.kick, jsonStringify(data), callback);
         }
     };
 
     var Group = (function(groupDatProvider) {
         var data = [],
-            members = {};
+            groupMembers = {};
+        var createMember = function(user) {
+            return {
+                displayName: "",
+                role: 0,
+                createdAt: +new Date,
+                updatedAt: +new Date,
+                user: user
+            };
+        };
         var create = function(name, memberIds) {
-            groupDatProvider.create(name, memberIds, function(data) {
-                // data.groupId, data.members
-            });
-        };
-        var join = function(groupId) {
-            groupDatProvider.join(groupId, function() {
-                // emit member change
-            });
-        };
-        var quit = function(groupId) {
-            groupDatProvider.quit(groupId, function() {
-                // emit member change
+            /**
+                var group = {name:'', portraitUri:''}
+             */
+            groupDatProvider.create(group, memberIds, function(data) {
+                var groupId = data.result.id;
+                var groupInfo = {
+                    role: 1,
+                    group: {
+                        id: groupId,
+                        name: group.name,
+                        portraitUri: group.portraitUri,
+                        creatorId: currentUserId,
+                        memberCount: memberIds.length,
+                        maxMemberCount: 500
+                    }
+                };
+                data.push(groupInfo);
+                var members = [];
+                User.getUsers(memberIds, function(users) {
+                    for (var i = 0, len = memberIds.length; i < len; i++) {
+                        var memberId = memberIds[i];
+                        memberId in users && members.push(createMember(users[memberId]));
+                    }
+                    groupMembers[groupId].concat(members);
+                });
             });
         };
         var get = function() {
             return data;
         };
-        var dismiss = function(groupId) {
-            groupDatProvider.dismiss(groupId, function() {
-                // emit member change
+        var join = function(groupId) {
+            groupDatProvider.join(groupId, function() {
+                User.get(currentUserId, function(user) {
+                    groupMembers[groupId].push(createMember(user));
+                });
             });
         };
-        var transfer = function(groupId, userId) {
-            groupDatProvider.transfer(groupId, userId, function() {
-                // emit memberMananger change
+
+        var memberHandle = function(groupId, userId, callback) {
+            var members = groupMembers[groupId];
+            for (var i = 0, len = members.length; i < len; i++) {
+                if (userId == members[i].user.id) {
+                    callback(i);
+                    break;
+                }
+            }
+        };
+        var quit = function(groupId) {
+            groupDatProvider.quit(groupId, function() {
+                memberHandle(groupId, currentUserId, function(index) {
+                    groupMembers[groupId].splice(index, 1);
+                });
             });
         };
-        var setBulletin = function(groupId, bulletin, callback) {
-            groupDatProvider.setBulletin(groupId, bulletin, function() {
-                callback();
+        var addMember = function(groupId, memberIds) {
+            groupDatProvider.addMember(groupId, memberIds, function() {
+                User.getUsers(memberIds, function(users) {
+                    for (var i = 0, len = memberIds.length; i < len; i++) {
+                        var memberId = memberIds[i];
+                        memberId in users && members.push(createMember(users[memberId]));
+                    }
+                    groupMembers[groupId].concat(members);
+                });
             });
         };
-        var setPortaitUri = function(groupId, portraiUri) {
-            groupDatProvider.setPortaitUri(groupId, bulletin, function() {
-                // emit groupInfo change
+        var kickMember = function(groupId, memberIds) {
+            groupDatProvider.kickMember(groupId, memberIds, function() {
+                for (var i = 0, len = memberIds.length; i < len; i++) {
+                    memberHandle(groupId, memberIds[i], function(index) {
+                        groupMembers[groupId].splice(index, 1);
+                    });
+                }
             });
         };
         var setDisplayName = function(groupId, displayName) {
             groupDatProvider.setDisplayName(groupId, displayName, function() {
-                // emit groupInfo change
+                memberHandle(groupId, currentUserId, function(index) {
+                    groupMembers[groupId][index].displayName = displayName;
+                });
             });
         };
-        var groupRename = function(groupId, name) {
-            groupDatProvider.groupRename(groupId, displayName, function() {
-                // emit groupInfo change
+        var transferManager = function(groupId, userId) {
+            groupDatProvider.transferManager(groupId, userId, function() {
+                // 取消自己是管理员身份
+                memberHandle(groupId, currentUserId, function(index) {
+                    groupMembers[groupId][index].role = 1;
+                });
+                // 绑定指定用户为管理员
+                memberHandle(groupId, userId, function(index) {
+                    groupMembers[groupId][index].role = 0;
+                });
             });
         };
         var getMembers = function(groupId, callback) {
-            if (groupId in members) {
-                callback(members[groupId]);
+            if (groupId in groupMembers) {
+                callback(groupMembers[groupId]);
             } else {
                 var cacheMembers = function(members) {
-                    convertDataToUser(members, function(user) {
-                        emit('onUserWatcher', user); // fire onUserWatcher, cache userInfo.
+                    userFormat(members, function(user) {
+                        emit('User', user); // fire User, cache userInfo.
                     });
-                    members[groupId] = members;
+                    groupMembers[groupId] = members;
                     callback(members);
                 };
                 groupDatProvider.getMembers(groupId, cacheMembers);
             }
         };
-        var addMember = function(groupId, memberIds) {
-            groupDatProvider.addMember(groupId, memberIds, function() {
-                // emit member change
+
+        var groupHandle = function(grupId, callback) {
+            for (var i = 0, len = data.length; i < len; i++) {
+                if (groupId == data[i].group.id) {
+                    callback(i);
+                    break;
+                }
+            }
+        };
+        var dismiss = function(groupId) {
+            groupDatProvider.dismiss(groupId, function() {
+                groupHandle(groupId, function(index) {
+                    data.splice(i, 1);
+                    delete groupMembers[groupId];
+                });
             });
         };
-        var kickMember = function(groupId, memberIds) {
-            groupDatProvider.kickMember(groupId, memberIds, function() {
-                // emit member change
+        var setPortaitUri = function(groupId, portraitUri) {
+            groupDatProvider.setPortaitUri(groupId, bulletin, function() {
+                groupHandle(groupId, function(index) {
+                    data[index].group.portraitUri = portraitUri;
+                });
+            });
+        };
+        var rename = function(groupId, name) {
+            groupDatProvider.rename(groupId, displayName, function() {
+                groupHandle(groupId, function(index) {
+                    data[index].group.name = name;
+                });
+            });
+        };
+        var setNotice = function(groupId, bulletin, callback) {
+            groupDatProvider.setNotice(groupId, bulletin, function() {
+                callback();
             });
         };
         var _pushGrups = function(groups) {
             data = groups;
         };
+        GroupDataProvider.get(function(data) {
+            _pushGrups(data.result);
+        });
 
         return {
             create: create,
@@ -382,24 +521,21 @@
             quit: quit,
             get: get,
             dismiss: dismiss,
-            transfer: transfer,
-            setBulletin: setBulletin,
+            transferManager: transferManager,
+            setNotice: setNotice,
             setPortaitUri: setPortaitUri,
             setDisplayName: setDisplayName,
-            groupRename: groupRename,
+            rename: rename,
             getMembers: getMembers,
             addMember: addMember,
-            kickMember: kickMember,
-            _pushGrups: _pushGrups
+            kickMember: kickMember
         };
     })(GroupDataProvider);
-    GroupDataProvider.get(function(data) {
-        Group._pushGrups(data.result);
-    });
+
     /** Group DataModel end region */
 
     /** Conversation DataModel region */
-    var ConDataProvider = {
+    var ConversationDataProvider = {
         getConversationList: function(callback) {
             RongIMLib.RongIMClient.getInstance().getConversationList({
                 onSuccess: function(result) {
@@ -443,32 +579,33 @@
         }
     };
 
-    var bindUserProcess = function(data, callback) {
-        var _cb = function(user) {
+    var bindUser = function(data, callback) {
+        var process = function(user) {
             data.user = user;
             callback && callback(data);
         };
         if (data.conversationType == RongIMLib.ConversationType.PRIVATE) {
-            User.get(data.senderUserId || data.targetId, _cb);
+            User.get(data.senderUserId || data.targetId, process);
         } else if (data.conversationType == RongIMLib.ConversationType.GROUP) {
             if (data.latestMessage) {
-                Group.get(_cb, data.targetId);
+                Group.get(process, data.targetId);
             } else {
-                User.get(data.senderUserId, _cb);
+                User.get(data.senderUserId, process);
             }
         } else {
-            _cb({});
+            // TODO 扩展
+            process({});
         }
     };
 
     var composeUserInfo = function(data, callback) {
         if (getPrototype.call(data) == '[object Array]') {
             for (var i = 0, len = data.length; i < len; i++) {
-                bindUserProcess(data[i]);
+                bindUser(data[i]);
             }
             callback(data);
         } else {
-            bindUserProcess(data, callback);
+            bindUser(data, callback);
         }
     };
     var Conversation = (function(conDataProvider) {
@@ -476,7 +613,6 @@
         var watch = function(conversation) {
 
         };
-
         var get = function(callback) {
             conDataProvider.getConversationList(function(conversations) {
                 composeUserInfo(conversations, function(items) {
@@ -524,9 +660,7 @@
             data.splice(index, 1);
             clearUnReadCount(conversationType, targetId);
         };
-        // remote:是否删除服务器
-        var remove = function(conversationType, targetId, remote) {
-            remote && conDataProvider.remove(conversationType, targetId);
+        var hidden = function(conversationType, targetId) {
             for (var i = 0, len = data.length; i < len; i++) {
                 if (data[i].conversationType == conversationType && data[i].targetId == targetId) {
                     removeConversation(i, conversationType, targetId);
@@ -534,23 +668,43 @@
                 }
             }
         };
-        on('onConversationWatcher', function(data) {
+        var remove = function(conversationType, targetId, remote) {
+            conDataProvider.remove(conversationType, targetId);
+            hidden(conversationType, targetId);
+        };
+
+        watcher('Conversation', function(data) {
             data = data || RongIMClient._memoryStore.conversationList.slice(0, 1)[0];
             set(data);
         });
 
         return {
+            hidden: hidden,
             remove: remove,
             set: set,
             get: get,
             clearUnReadCount: clearUnReadCount,
             watch: watch
         };
-    })(ConDataProvider);
+    })(ConversationDataProvider);
 
     /** Conversation DataModel end region */
 
     /** Message DataModel region */
+    var getMessageId = function() {
+        return RongIMLib.MessageIdHandler.messageId + 1;
+    };
+    var genLocalMsg = function(params) {
+        var msg = new RongIMLib.Message();
+        msg.content = params.content;
+        msg.conversationType = params.conversationType;
+        msg.targetId = params.targetId;
+        msg.senderUserId = currentUserId;
+        msg.sentStatus = RongIMLib.SentStatus.SENDING;
+        msg.messageId = getMessageId();
+        msg.messageType = params.content.messageName;
+        return msg;
+    };
     var MessageDataProvider = {
         getHistoryMessages: function(params, callback) {
             RongIMLib.RongIMClient.getInstance().getHistoryMessages(params.conversationType, params.targetId, params.timestamp, option.get_historyMsg_count, {
@@ -561,15 +715,7 @@
             });
         },
         sendMessage: function(params, callback) {
-            var msg = new RongIMLib.Message();
-            msg.content = params.content;
-            msg.conversationType = params.conversationType;
-            msg.targetId = params.targetId;
-            msg.senderUserId = RongIMClient.getInstance().getCurrentUserId();
-            msg.sentStatus = RongIMLib.SentStatus.SENDING;
-            msg.messageId = RongIMLib.MessageIdHandler.messageId + 1;
-            msg.messageType = params.content.messageName;
-            callback(msg);
+            callback(genLocalMsg(params));
             RongIMLib.RongIMClient.getInstance().sendMessage(params.conversationType, params.targetId, params.content, {
                 onSuccess: function(message) {
                     callback(message);
@@ -620,7 +766,7 @@
                     }
                 }
                 isInsert && data[key].push(message);
-                emit('onConversationWatcher');
+                emit('Conversation');
                 Message.watch(message);
             });
 
@@ -631,11 +777,10 @@
                 _push(message);
             });
         };
-
-        on('onMessageWatcher', function(message) {
+        watcher('Message', function(message) {
             Message._push(message);
         });
-        return {
+        var userModel = {
             set: set,
             get: get,
             send: send,
@@ -643,6 +788,12 @@
             TextMessage: RongIMLib.TextMessage,
             MessageDataProvider: messageDataProvider
         };
+        // 动态暴露 RongIMLib Message 相关属性。
+        var bindings = ['TextMessage', 'FileMessage', 'ImageMessage'];
+        loop(bindings, function(proto) {
+            userModel[proto] = RongIMLib[proto];
+        });
+        return userModel;
     })(MessageDataProvider);
 
 
@@ -657,7 +808,9 @@
         };
         var connect = function(token) {
             RongIMClient.connect(token, {
-                onSuccess: function(userId) {},
+                onSuccess: function(userId) {
+                    currentUserId = RongIMClient.getInstance().getCurrentUserId();
+                },
                 onTokenIncorrect: function() {
                     Status.watch(RongIMLib.ConnectionState.TOKEN_INCORRECT);
                 },
@@ -673,30 +826,42 @@
             data = status;
             Status.watch(status);
         };
-        on('onStatusWatcher', function(status) {
+        watcher('Status', function(status) {
             _push(status);
         });
-        return {
+        var statusModel = {
             get: get,
             connect: connect,
             disconnect: disconnect,
             watch: watch
         };
+        // 动态暴露 RongIMLib 状态相关属性。
+        var bindings = ['ConnectionStatus'];
+        loop(bindings, function(proto) {
+            statusModel[proto] = RongIMLib[proto];
+        });
+        return statusModel;
     })();
-
-
     /** Status DataModel end region */
 
+    /**
+        var config = {
+            appkey:'',
+            dataAccessProvider:null,
+            im:{},
+            sdk:{navi:''}
+        };
+    */
     var init = function(config) {
-        RongIMClient.init(config.appkey, config.dataAccessProvider, config.option);
+        RongIMClient.init(config.appkey, config.dataAccessProvider, config.sdk);
         RongIMClient.setConnectionStatusListener({
             onChanged: function(status) {
-                emit('onStatusWatcher', status);
+                emit('Status', status);
             }
         });
         RongIMClient.setOnReceiveMessageListener({
             onReceived: function(message) {
-                emit('onMessageWatcher', message);
+                emit('Message', message);
             }
         });
 
@@ -706,7 +871,8 @@
             Friend: Friend,
             Conversation: Conversation,
             Message: Message,
-            Status: Status
+            Status: Status,
+            option: option
         };
     };
 

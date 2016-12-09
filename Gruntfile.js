@@ -32,14 +32,26 @@ module.exports = function(grunt){
                 },
 
                 files: [  //下面文件的改变就会实时刷新网页
-                    '*.html',
+                    'index.html',
                     'css/**/*.css',
                     'js/**/*.js'
                 ]
             }
-        }
+        },
+        jsdoc : {
+          dist : {
+              src: ['im/doc.js'],
+              options: {
+                  destination: 'doc'
+              }
+          }
+      }
     });
 
+    grunt.registerTask('doc', [
+        'jsdoc'
+    ]);
+    
     grunt.registerTask('serve', [
         'connect:server',
         'watch'
