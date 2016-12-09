@@ -5,7 +5,8 @@
             max_msg_count: 20,
             max_conversation_count: 50,
             get_historyMsg_count: 5,
-            server_path: 'http://127.0.0.1:3587/'
+            // 接口测试服务
+            server_path: 'http://10.10.112.167:3587/' 
         };
     })();
 
