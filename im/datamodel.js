@@ -17,7 +17,8 @@
             max_conversation_count: 50,
             get_historyMsg_count: 5,
             // 接口测试服务
-            server_path: 'http://10.10.112.167:3587/'
+            server_path: 'http://10.10.112.167:3587/',
+            data:['User', 'Group', 'Friend']
         };
     })();
 
@@ -243,6 +244,12 @@
                 _push(userId, user);
             });
         });
+
+        watcher('Pull_User', function() {
+            UserDataProvider.getAll(function(data) {
+                emit('User', data);
+            });
+        });
         return {
             login: login,
             set: set,
@@ -252,11 +259,6 @@
             UserDataProvider: userProvider
         };
     })(UserDataProvider);
-    // TODO 请勿删除注释代码
-    // UserDataProvider.getAll(function(data) {
-    //     emit('User', data);
-    // });
-
     /** User DataModel end region */
 
     /** Friend DataModel region */
@@ -276,17 +278,17 @@
      * @enum {string}
      */
     var friendPath = {
-        /** 获取好友列表 */        
+        /** 获取好友列表 */
         all: 'friendship/all',
-        /** 申请加好友 */        
+        /** 申请加好友 */
         invite: 'friendship/invite',
-        /** 同意加好友 */        
+        /** 同意加好友 */
         agree: 'friendship/agree',
-        /** 忽略加好友请求 */        
+        /** 忽略加好友请求 */
         ignore: 'friendship/ignore',
-        /** 删除好友 */        
+        /** 删除好友 */
         remove: 'friendship/delete',
-        /** 设置好友备注 */        
+        /** 设置好友备注 */
         setDisplayName: 'friendship/set_display_name'
     };
 
@@ -365,16 +367,16 @@
 
     var Friend = (function(friendDataProvider) {
         var data = [];
-       /** 
-         * 好友数据变化监控方法
-         * @memberof Friend 
-         * @param {string}     friend - 好友 
-           @example
-           var _instance = RongDataModel.init({appkey:'appkey'});\
-           _instance.Friend.watch = function(friend){
-                // 所有好友数据发生变化会触发 watch 
-           };
-         */
+        /** 
+          * 好友数据变化监控方法
+          * @memberof Friend 
+          * @param {string}     friend - 好友 
+            @example
+            var _instance = RongDataModel.init({appkey:'appkey'});\
+            _instance.Friend.watch = function(friend){
+                 // 所有好友数据发生变化会触发 watch 
+            };
+          */
         var watch = function(friend) {};
         /** 
          * 申请加好友
@@ -481,12 +483,15 @@
         var _push = function(friends) {
             data = friends;
         };
-        FriendDataProvider.getAll(function(data) {
-            _push(data.result);
-            userFormat(data.result, function(user) {
-                emit('User', user);
+        watcher('Pull_Friend', function() {
+            FriendDataProvider.getAll(function(data) {
+                _push(data.result);
+                userFormat(data.result, function(user) {
+                    emit('User', user);
+                });
             });
         });
+
         return {
             invite: invite,
             remove: remove,
@@ -1059,10 +1064,11 @@
         var _pushGrups = function(groups) {
             data = groups;
         };
-        GroupDataProvider.get(function(data) {
-            _pushGrups(data.result);
+        watcher('Pull_Group', function() {
+            GroupDataProvider.get(function(data) {
+                _pushGrups(data.result);
+            });
         });
-
         return {
             create: create,
             join: join,
@@ -1608,31 +1614,41 @@
     })();
     /** Status DataModel end region */
 
+    var pullModelData = function(kinds) {
+        for (var i = 0, len = kinds.length; i < len; i++) {
+            var key = 'Pull_' + kinds[i];
+            emit(key);
+        }
+    };
     /**
      * 初始化
      * @memberof RongDataModel
      * @static
      * @example
         var config = {
-            appkey:'',                  // 必传
-            dataAccessProvider:null,    // 可选
-            im:{                        // 可选
-                max_msg_count:20,
-                max_conversation_count:50,
-                get_historyMsg_count:5,
-                server_path:''
+            appkey:'',                              // 必传
+            dataAccessProvider:null,                // 可选
+            dm:{                                    // 可选
+                max_msg_count:20,                   // 本地缓存消息条数上限
+                max_conversation_count:50,          // 本地缓存会话个数上限
+                get_historyMsg_count:5,             // 每次拉取历史消息个数
+                server_path:'http://api.cn/',       // Server 地址,请以 '/' 结尾
+                data:['User', 'Group', 'Friend']    // 可选 默认获取用户、群组、好友信息
             },                      
-            sdk:{navi:''}               // 可选
+            sdk:{navi:''}                           // 可选
         };
         var _instance = RongDataModel.init(config);
      */
     var init = function(config) {
-        if (config && config.im) {
-            var imOpts = config.im;
-            forEach(imOpts, function(key, value){
+        if (config && config.dm) {
+            var imOpts = config.dm;
+            forEach(imOpts, function(key, value) {
                 option[key] = value;
             });
         }
+        
+        pullModelData(option.data);
+
         RongIMClient.init(config.appkey, config.dataAccessProvider, config.sdk);
         RongIMClient.setConnectionStatusListener({
             onChanged: function(status) {
