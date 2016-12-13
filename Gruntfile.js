@@ -24,7 +24,6 @@ module.exports = function(grunt){
            }
          }
         },
-
         watch: {
             livereload: {
                 options: {
@@ -38,17 +37,23 @@ module.exports = function(grunt){
                 ]
             }
         },
+        clean: {
+          doc: ["im/doc"]
+        },
         jsdoc : {
           dist : {
-              src: ['im/doc.js'],
+              src: ['im/datamodel.js'],
               options: {
-                  destination: 'doc'
+                  destination: 'im/doc',
+                  template : "node_modules/ink-docstrap/template",
+                  configure : "node_modules/ink-docstrap/template/jsdoc.conf.json"
               }
           }
       }
     });
 
     grunt.registerTask('doc', [
+        'clean:doc',
         'jsdoc'
     ]);
     

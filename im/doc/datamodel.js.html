@@ -1,4 +1,76 @@
-/**
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>RongDataModel Source: datamodel.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">RongDataModel</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="Conversation.html">Conversation</a></li><li><a href="ConversationProvider.html">ConversationProvider</a></li><li><a href="Friend.html">Friend</a></li><li><a href="FriendProvider.html">FriendProvider</a></li><li><a href="Group.html">Group</a></li><li><a href="GroupProvider.html">GroupProvider</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageProvider.html">MessageProvider</a></li><li><a href="RongDataModel.html">RongDataModel</a></li><li><a href="Status.html">Status</a></li><li><a href="User.html">User</a></li><li><a href="UserProvider.html">UserProvider</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: datamodel.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
  * 初始化数据模型可以得到如下模型：
  * @namespace RongDataModel
  * @property {object}  User         - {@link User} 
@@ -28,7 +100,7 @@
         }
     };
     var loop = function(arrs, callback) {
-        for (var i = 0, len = arrs.length; i < len; i++) {
+        for (var i = 0, len = arrs.length; i &lt; len; i++) {
             callback(arrs[i]);
         }
     };
@@ -37,7 +109,7 @@
     var events = {}; // 事件存储格式:events.MessageWatcher : [fun1, fun2]
     var emit = function(name, data) {
         if (name in events) {
-            for (var i = 0, len = events[name].length; i < len; i++) {
+            for (var i = 0, len = events[name].length; i &lt; len; i++) {
                 events[name][i](data);
             }
         }
@@ -70,7 +142,7 @@
     };
     // 数据格式:var user = {zhangsan:{id:'zhangsan',name:'name'}};
     var userFormat = function(data, callback) {
-        for (var i = 0, len = data.length; i < len; i++) {
+        for (var i = 0, len = data.length; i &lt; len; i++) {
             var user = data[i].user,
                 obj = {};
             obj[user.id] = user;
@@ -230,8 +302,8 @@
          */
         var getUsers = function(userIds, callback) {
             var users = {};
-            for (var i = 0, len = userIds.length; i < len; i++) {
-                userIds[i] in data && (users[userIds[i]] = data[userIds]);
+            for (var i = 0, len = userIds.length; i &lt; len; i++) {
+                userIds[i] in data &amp;&amp; (users[userIds[i]] = data[userIds]);
             }
             callback(users);
         };
@@ -423,7 +495,7 @@
             friendDataProvider.ignore(friendId, callback);
         };
         var _success = function(result, cb) {
-            for (var i = 0, len = data.length; i < len; i++) {
+            for (var i = 0, len = data.length; i &lt; len; i++) {
                 if (data[i].user.id == result.user.id) {
                     cb(i);
                     Friend.watch(result);
@@ -757,9 +829,9 @@
                 data.push(groupInfo);
                 var members = [];
                 User.getUsers(memberIds, function(users) {
-                    for (var i = 0, len = memberIds.length; i < len; i++) {
+                    for (var i = 0, len = memberIds.length; i &lt; len; i++) {
                         var memberId = memberIds[i];
-                        memberId in users && members.push(createMember(users[memberId]));
+                        memberId in users &amp;&amp; members.push(createMember(users[memberId]));
                     }
                     groupMembers[groupId].concat(members);
                 });
@@ -802,7 +874,7 @@
 
         var memberHandle = function(groupId, userId, callback) {
             var members = groupMembers[groupId];
-            for (var i = 0, len = members.length; i < len; i++) {
+            for (var i = 0, len = members.length; i &lt; len; i++) {
                 if (userId == members[i].user.id) {
                     callback(i);
                     break;
@@ -848,9 +920,9 @@
         var addMember = function(groupId, memberIds, callback) {
             groupDatProvider.addMember(groupId, memberIds, function() {
                 User.getUsers(memberIds, function(users) {
-                    for (var i = 0, len = memberIds.length; i < len; i++) {
+                    for (var i = 0, len = memberIds.length; i &lt; len; i++) {
                         var memberId = memberIds[i];
-                        memberId in users && members.push(createMember(users[memberId]));
+                        memberId in users &amp;&amp; members.push(createMember(users[memberId]));
                     }
                     groupMembers[groupId].concat(members);
                 });
@@ -874,7 +946,7 @@
          */
         var kickMember = function(groupId, memberIds, callback) {
             groupDatProvider.kickMember(groupId, memberIds, function() {
-                for (var i = 0, len = memberIds.length; i < len; i++) {
+                for (var i = 0, len = memberIds.length; i &lt; len; i++) {
                     memberHandle(groupId, memberIds[i], function(index) {
                         groupMembers[groupId].splice(index, 1);
                     });
@@ -961,7 +1033,7 @@
         };
 
         var groupHandle = function(grupId, callback) {
-            for (var i = 0, len = data.length; i < len; i++) {
+            for (var i = 0, len = data.length; i &lt; len; i++) {
                 if (groupId == data[i].group.id) {
                     callback(i);
                     break;
@@ -1108,7 +1180,7 @@
         },
         sortConversationList: function(conversationList, callback) {
             var convers = [];
-            for (var i = 0, len = conversationList.length; i < len; i++) {
+            for (var i = 0, len = conversationList.length; i &lt; len; i++) {
                 if (!conversationList[i]) {
                     continue;
                 }
@@ -1117,8 +1189,8 @@
                     conversationList.splice(i, 1);
                     continue;
                 }
-                for (var j = 0; j < len - i - 1; j++) {
-                    if (conversationList[j].sentTime < conversationList[j + 1].sentTime) {
+                for (var j = 0; j &lt; len - i - 1; j++) {
+                    if (conversationList[j].sentTime &lt; conversationList[j + 1].sentTime) {
                         var swap = conversationList[j];
                         conversationList[j] = conversationList[j + 1];
                         conversationList[j + 1] = swap;
@@ -1156,7 +1228,7 @@
     var bindUser = function(data, callback) {
         var process = function(user) {
             data.user = user;
-            callback && callback(data);
+            callback &amp;&amp; callback(data);
         };
         if (data.conversationType == RongIMLib.ConversationType.PRIVATE) {
             User.get(data.senderUserId || data.targetId, process);
@@ -1174,7 +1246,7 @@
 
     var composeUserInfo = function(data, callback) {
         if (getPrototype.call(data) == '[object Array]') {
-            for (var i = 0, len = data.length; i < len; i++) {
+            for (var i = 0, len = data.length; i &lt; len; i++) {
                 bindUser(data[i]);
             }
             callback(data);
@@ -1237,8 +1309,8 @@
          */
         var set = function(conversation) {
             var isInsert = true;
-            for (var i = 0, len = data.length; i < len; i++) {
-                if (data[i].conversationType == conversation.conversationType && data[i].targetId == conversation.targetId) {
+            for (var i = 0, len = data.length; i &lt; len; i++) {
+                if (data[i].conversationType == conversation.conversationType &amp;&amp; data[i].targetId == conversation.targetId) {
                     setConversationTop(data.splice(i, 1)[0]);
                     isInsert = false;
                     break;
@@ -1268,8 +1340,8 @@
             var clearUnread = function(conversation) {
                 conversation.unreadMessageCount = 0;
             };
-            for (var i = 0, len = data.length; i < len; i++) {
-                if (data[i].conversationType == conversationType && data[i].targetId == targetId) {
+            for (var i = 0, len = data.length; i &lt; len; i++) {
+                if (data[i].conversationType == conversationType &amp;&amp; data[i].targetId == targetId) {
                     clearUnread(data[i]);
                     break;
                 }
@@ -1292,8 +1364,8 @@
             _instance.Conversation.hidden(conversationType, targetId);
          */
         var hidden = function(conversationType, targetId) {
-            for (var i = 0, len = data.length; i < len; i++) {
-                if (data[i].conversationType == conversationType && data[i].targetId == targetId) {
+            for (var i = 0, len = data.length; i &lt; len; i++) {
+                if (data[i].conversationType == conversationType &amp;&amp; data[i].targetId == targetId) {
                     removeConversation(i, conversationType, targetId);
                     break;
                 }
@@ -1446,7 +1518,7 @@
                     composeUserInfo(list, function(result) {
                         if (!memoryMsgs) {
                             data[key] = result;
-                        } else if (memoryMsgs.length < option.max_msg_count) {
+                        } else if (memoryMsgs.length &lt; option.max_msg_count) {
                             data[key].concat(result);
                         }
                         callback(result, hasMore);
@@ -1461,14 +1533,14 @@
             var isInsert = true;
             composeUserInfo(message, function() {
                 data[key] = data[key] || [];
-                for (var i = 0, len = data[key].length; i < len; i++) {
+                for (var i = 0, len = data[key].length; i &lt; len; i++) {
                     if (data[key][i].messageId == message.messageId) {
                         data[key][i].sentStatus = message.sentStatus;
                         isInsert = false;
                         break;
                     }
                 }
-                isInsert && data[key].push(message);
+                isInsert &amp;&amp; data[key].push(message);
                 emit('Conversation');
                 Message.watch(message);
             });
@@ -1627,7 +1699,7 @@
         var _instance = RongDataModel.init(config);
      */
     var init = function(config) {
-        if (config && config.im) {
+        if (config &amp;&amp; config.im) {
             var imOpts = config.im;
             forEach(imOpts, function(key, value){
                 option[key] = value;
@@ -1659,4 +1731,136 @@
     win.RongDataModel = {
         init: init
     };
-})(window, RongIMLib, RongIMClient);
+})(window, RongIMLib, RongIMClient);</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	
+		on Tue Dec 13th 2016
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
