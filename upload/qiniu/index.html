@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title> Qiniu - Upload </title>
-    <script src = "./qiniu.js"></script>
-    <script src = "../uploader.js"></script>
+    <script src = "./qiniu-1.0.0.js"></script>
+    <script src = "../uploader-1.0.0.js"></script>
+    <script src="../up-client-1.0.0.js"></script>
    <style type = "text/css">
 	.container{
 		position: absolute; 
@@ -63,14 +64,42 @@
 
 //---FILE----------------------------------------------------------------------------------------------------
 
-	var config = { 
-				domain: 'http://upload.qiniu.com',
-			 	multi_parmas : {
-			 		token :"livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:MdikmGzRY6_Rq2-sb8NqVG-RaBk=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7J25hbWUnOiAkKGZuYW1lKSwnc2l6ZSc6ICQoZnNpemUpLCd3JzogJChpbWFnZUluZm8ud2lkdGgpLCdoJzogJChpbWFnZUluZm8uaGVpZ2h0KSwnaGFzaCc6ICQoZXRhZyl9IiwiZGVhZGxpbmUiOjE0ODEyNzg4MDN9"
-			 	}
-			 };
-	var fileUpload = UploadFile.init(config);
+	// var config = { 
+	// 			domain: 'http://upload.qiniu.com',
+	// 		 	multi_parmas : {
+	// 		 		token :"livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:5g_5joxZsogORdWq5VTuAS-aPIE=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7XCJuYW1lXCI6ICQoZm5hbWUpLFwic2l6ZVwiOiAkKGZzaXplKSxcIndcIjogJChpbWFnZUluZm8ud2lkdGgpLFwiaFwiOiAkKGltYWdlSW5mby5oZWlnaHQpLFwiaGFzaFwiOiAkKGV0YWcpfSIsImRlYWRsaW5lIjoxNDgzNDMwNjI3fQ=="
+	// 		 	}
+	// 		 };
+	// var fileUpload = UploadFile.init(config);
 	
+	// var callback = {
+	// 		onError	: function (errorCode) { 
+	// 			console.log(errorCode);
+	// 		},
+	// 		onProgress : function (loaded, total) {
+	// 			var percent = Math.floor(loaded/total*100);
+	// 			var progressBar 	= document.getElementById('progressBar'), 
+	// 				progressContent = document.getElementById('progressContent');
+	// 				progressBar.style.width = percent + '%';
+	//         		progressContent.innerHTML = percent + "%";
+	// 		},
+	// 		onCompleted : function (data) { 
+	// 			document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
+	// 		} 
+	//  };
+
+	// var file = document.getElementById("file-Id");
+	// file.onchange = function(){
+	// 	fileUpload.upload(this.files[0], callback);
+	// };
+
+	var config = { 
+			domain: 'http://upload.qiniu.com',
+			getToken: function(callback){
+				var token = "livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:kKVTKOwB9JJRy0rcGGnsZMjG_ow=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7XCJuYW1lXCI6ICQoZm5hbWUpLFwic2l6ZVwiOiAkKGZzaXplKSxcIndcIjogJChpbWFnZUluZm8ud2lkdGgpLFwiaFwiOiAkKGltYWdlSW5mby5oZWlnaHQpLFwiaGFzaFwiOiAkKGV0YWcpfSIsImRlYWRsaW5lIjoxNDgzNTAzNjAzfQ==";
+				callback(token);
+			}
+		 };
 	var callback = {
 			onError	: function (errorCode) { 
 				console.log(errorCode);
@@ -89,28 +118,26 @@
 
 	var file = document.getElementById("file-Id");
 	file.onchange = function(){
-		fileUpload.upload(this.files[0], callback);
+		UploadClient.uploadFile(this.files[0], config, callback);
 	};
 
 //---IMAGE----------------------------------------------------------------------------------------------------
 
 	var image = document.getElementById('image-Id');
-	var token = 'livk5rb3__JZjCtEi...';
 	var imgConfig = { 
 				domain: 'http://upload.qiniu.com/putb64/-1',
-			 	data:UploadFile.dataType.data,
-			 	headers:{
-			 		'Content-type':'application/octet-stream',
-			 		'Authorization' : 'UpToken ' + token
-			 	}
+			 	data: UploadClient.dataType.data,
+				getToken: function(callback){
+					var token = "livk5rb3__JZjCtEiM";
+					callback(token);
+				}
 			 };
 
-	var imgUpload = UploadFile.init(imgConfig);
-		
 		image.onclick = function(){
-			imgUpload.upload(base64, callback);
+			UploadClient.uploadImgBase64(base64, imgConfig, callback);
 		};
-	var base64 = "/9j/4AAQSkZJRgABAQA...";
+	var base64 = "iVBORw0KGgoAAAANSUhEUgAAAGQAAADwC";
+
 </script>
 
 </html>
