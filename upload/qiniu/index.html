@@ -96,7 +96,7 @@
 	var config = { 
 			domain: 'http://upload.qiniu.com',
 			getToken: function(callback){
-				var token = "CddrKW5AbOMQaDR";
+				var token = "livk5rb3__JZjCtEiMxX";
 				callback(token);
 			}
 		 };
@@ -112,15 +112,17 @@
 	        		progressContent.innerHTML = percent + "%";
 			},
 			onCompleted : function (data) { 
-				console.log(data);
+				console.log(data.thumbnail);
 				document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
 			} 
 	 };
 
 	var file = document.getElementById("file-Id");
 	file.onchange = function(){
-		var uploadFile = new UploadClient.File(config);
-		uploadFile.upload(this.files[0], callback);
+		var _file = this.files[0];
+		UploadClient.initImage(config, function(uploadFile){
+			uploadFile.upload(_file, callback);
+		});
 	};
 
 //---IMAGE----------------------------------------------------------------------------------------------------
@@ -130,14 +132,15 @@
 				domain: 'http://upload.qiniu.com/putb64/-1',
 			 	data: UploadClient.dataType.data,
 				getToken: function(callback){
-					var token = "CddrKW5AbOMQaDRwc";
+					var token = "livk5rb3__JZjCtEiMxX";
 					callback(token);
 				}
 			 };
 
 		image.onclick = function(){
-			var uploadFile = new UploadClient.ImgBase64(imgConfig);
-			uploadFile.upload(base64, callback);
+			UploadClient.initImgBase64(imgConfig, function(uploadFile){
+				uploadFile.upload(base64, callback);
+			});
 		};
 	var base64 = "iVBORw0KGgoAAAANSUhEUgAAAGQAAADwCAYAAAD";
 

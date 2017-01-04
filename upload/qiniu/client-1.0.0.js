@@ -125,15 +125,35 @@ var UploadClient = (function(win) {
         });
     };
 
-    var File = function(config) {
+    var File = function(instance) {
         var me = this;
-        _init(config, function(instance) {
-            me.instance = instance;
-        });
-
+        this.instance = instance
         this.upload = function(file, callback) {
             var data = {
                 file: file
+            };
+            _upload(data, me.instance, callback);
+        };
+        this.cancel = function() {
+            me.instance.cancel();
+        };
+    };
+
+    var initFile = function(config, callback) {
+        _init(config, function(instance) {
+            var uploadFile = new File(instance);
+            callback(uploadFile);
+        });
+    };
+
+    var Img = function(instance, cfg) {
+        var me = this;
+        this.cfg = cfg;
+        this.instance = instance;
+        this.upload = function(file, callback) {
+            var data = {
+                file: file,
+                compress: me.cfg
             };
             _upload(data, me.instance, callback);
         };
@@ -143,31 +163,17 @@ var UploadClient = (function(win) {
         };
     };
 
-    var Img = function(config) {
-        var me = this;
-        this.config = config;
+    var initImage = function(config, callback) {
         _init(config, function(instance) {
-            me.instance = instance;
-        });
-
-        this.upload = function(file, callback) {
             var compress = {
-                height: me.config.height || 240,
-                width: me.config.width || 240,
-                quality: me.config.quality || 0.5,
-                scale: me.config.scale || 2.4
+                height: config.height || 240,
+                width: config.width || 240,
+                quality: config.quality || 0.5,
+                scale: config.scale || 2.4
             };
-            var data = {
-                file: file,
-                compress: compress
-            };
-            console.log(me.compressThumbnail);
-            _upload(data, me.instance, callback);
-        };
-
-        this.cancel = function() {
-            me.instance.cancel();
-        };
+            var uploadImage = new Img(instance, compress);
+            callback(uploadImage);
+        });
     };
 
     var ImgBase64 = function(config) {
@@ -175,10 +181,15 @@ var UploadClient = (function(win) {
         Img.call(this, config);
     };
 
+    var initImgBase64 = function(config, callback){
+        config.base64 = true;
+        initImage.call(this, config, callback);
+    };
+
     return {
-        File: File,
-        Image: Img,
-        ImgBase64: ImgBase64,
+        initFile: initFile,
+        initImage: initImage,
+        initImgBase64: initImgBase64,
         dataType: UploadFile.dataType
     };
 })(window);
