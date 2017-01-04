@@ -80,17 +80,26 @@ var UploadClient = (function(win) {
     };
 
     _init = function(config, callback) {
-        config.getToken(function(token) {
-            config.multi_parmas || (config.multi_parmas = {});
-            config.multi_parmas.token = token;
+        if (config.getToken) {
+            config.getToken(function(token) {
+                config.multi_parmas || (config.multi_parmas = {});
+                config.multi_parmas.token = token;
+                config.headers || (config.headers = {});
+                if (config.base64) {
+                    config.headers['Content-type'] = 'application/octet-stream';
+                    config.headers['Authorization'] = 'UpToken ' + token;
+                }
+                var instance = UploadFile.init(config);
+                callback(instance);
+            });
+        } else {
             config.headers || (config.headers = {});
             if (config.base64) {
                 config.headers['Content-type'] = 'application/octet-stream';
-                config.headers['Authorization'] = 'UpToken ' + token;
             }
             var instance = UploadFile.init(config);
             callback(instance);
-        });
+        }
     };
 
     var _upload = function(data, instance, callback) {
@@ -112,82 +121,64 @@ var UploadClient = (function(win) {
                 } else {
                     callback.onCompleted(result);
                 }
-
-                // if (!config.getUrl) {
-                //     throw new Error('getUrl is undefined.');
-                // }
-                // var params = {
-                //     uname: result.filename,
-                //     oriname: result.name
-                // };
-                // config.getUrl(params, function(url) {
-                //     result.url = url;
-                //     var compress = config.compressThumbnail || _compress;
-                //     if (data.compress) {
-                //         compress(data, function(thumbnail) {
-                //             result.thumbnail = thumbnail;
-                //             callback.onCompleted(result);
-                //         });
-                //     } else {
-                //         callback.onCompleted(result);
-                //     }
-                // });
             }
         });
     };
-    /**
-     * 自定义获取 token 的方法
-     * config.getToken(callback)
-     * 自定义获取 url 方法
-     * config.getUrl(callback)
-     */
-    var uploadFile = function(file, config, callback) {
+
+    var File = function(config) {
+        var me = this;
         _init(config, function(instance) {
-            var data = {
-                file: file,
-                compressThumbnail:config.compressThumbnail
-            };
-            _upload(data, instance, callback);
+            me.instance = instance;
         });
+
+        this.upload = function(file, callback) {
+            var data = {
+                file: file
+            };
+            _upload(data, me.instance, callback);
+        };
+
+        this.cancel = function() {
+            me.instance.cancel();
+        };
     };
 
-    var uploadImage = function(file, config, callback) {
+    var Img = function(config) {
+        var me = this;
+        this.config = config;
         _init(config, function(instance) {
+            me.instance = instance;
+        });
+
+        this.upload = function(file, callback) {
+            var compress = {
+                height: me.config.height || 240,
+                width: me.config.width || 240,
+                quality: me.config.quality || 0.5,
+                scale: me.config.scale || 2.4
+            };
             var data = {
                 file: file,
-                compress: {
-                    height: config.height || 240,
-                    width: config.width || 240,
-                    quality: config.quality || 0.5,
-                    scale: config.scale || 2.4
-                },
-                compressThumbnail:config.compressThumbnail
+                compress: compress
             };
-            _upload(data, instance, callback);
-        });
+            console.log(me.compressThumbnail);
+            _upload(data, me.instance, callback);
+        };
+
+        this.cancel = function() {
+            me.instance.cancel();
+        };
     };
 
-    var uploadImgBase64 = function(base64, config, callback) {
+    var ImgBase64 = function(config) {
         config.base64 = true;
-        _init(config, function(instance) {
-            var data = {
-                file: base64,
-                compress: {
-                    height: config.height || 240,
-                    width: config.width || 240,
-                    quality: config.quality || 0.5,
-                    scale: config.scale || 2.4
-                },
-                compressThumbnail:config.compressThumbnail
-            };
-            _upload(data, instance, callback);
-        });
+        Img.call(this, config);
     };
 
     return {
-        uploadFile: uploadFile,
-        uploadImage: uploadImage,
-        uploadImgBase64: uploadImgBase64,
+        File: File,
+        Image: Img,
+        ImgBase64: ImgBase64,
         dataType: UploadFile.dataType
     };
 })(window);

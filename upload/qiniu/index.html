@@ -96,7 +96,7 @@
 	var config = { 
 			domain: 'http://upload.qiniu.com',
 			getToken: function(callback){
-				var token = "CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:nXbGoaGR4RcG73P1otFk3nKbVu4=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7XCJuYW1lXCI6ICQoZm5hbWUpLFwic2l6ZVwiOiAkKGZzaXplKSxcIndcIjogJChpbWFnZUluZm8ud2lkdGgpLFwiaFwiOiAkKGltYWdlSW5mby5oZWlnaHQpLFwiaGFzaFwiOiAkKGV0YWcpfSIsImRlYWRsaW5lIjoxNDgzNTE0MzM3fQ==";
+				var token = "CddrKW5AbOMQaDR";
 				callback(token);
 			}
 		 };
@@ -112,13 +112,15 @@
 	        		progressContent.innerHTML = percent + "%";
 			},
 			onCompleted : function (data) { 
+				console.log(data);
 				document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
 			} 
 	 };
 
 	var file = document.getElementById("file-Id");
 	file.onchange = function(){
-		UploadClient.uploadFile(this.files[0], config, callback);
+		var uploadFile = new UploadClient.File(config);
+		uploadFile.upload(this.files[0], callback);
 	};
 
 //---IMAGE----------------------------------------------------------------------------------------------------
@@ -128,15 +130,16 @@
 				domain: 'http://upload.qiniu.com/putb64/-1',
 			 	data: UploadClient.dataType.data,
 				getToken: function(callback){
-					var token = "livk5rb3__JZjCtEiM";
+					var token = "CddrKW5AbOMQaDRwc";
 					callback(token);
 				}
 			 };
 
 		image.onclick = function(){
-			UploadClient.uploadImgBase64(base64, imgConfig, callback);
+			var uploadFile = new UploadClient.ImgBase64(imgConfig);
+			uploadFile.upload(base64, callback);
 		};
-	var base64 = "iVBORw0KGgoAAAANSUhEUgAAAGQAAADwC";
+	var base64 = "iVBORw0KGgoAAAANSUhEUgAAAGQAAADwCAYAAAD";
 
 </script>
 

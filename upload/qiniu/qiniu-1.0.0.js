@@ -74,6 +74,8 @@
 		}
 		xhr.open(options.method, url, true);
 
+		callback.onOpen(xhr);
+
 		if (options.stream) {
 			xhr.setRequestHeader('authorization','UpToken '+options.multi_parmas.token);
 		}
