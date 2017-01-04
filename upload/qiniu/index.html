@@ -5,7 +5,7 @@
     <title> Qiniu - Upload </title>
     <script src = "./qiniu-1.0.0.js"></script>
     <script src = "../uploader-1.0.0.js"></script>
-    <script src="../up-client-1.0.0.js"></script>
+    <script src="./client-1.0.0.js"></script>
    <style type = "text/css">
 	.container{
 		position: absolute; 
@@ -96,7 +96,7 @@
 	var config = { 
 			domain: 'http://upload.qiniu.com',
 			getToken: function(callback){
-				var token = "livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:kKVTKOwB9JJRy0rcGGnsZMjG_ow=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7XCJuYW1lXCI6ICQoZm5hbWUpLFwic2l6ZVwiOiAkKGZzaXplKSxcIndcIjogJChpbWFnZUluZm8ud2lkdGgpLFwiaFwiOiAkKGltYWdlSW5mby5oZWlnaHQpLFwiaGFzaFwiOiAkKGV0YWcpfSIsImRlYWRsaW5lIjoxNDgzNTAzNjAzfQ==";
+				var token = "CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:nXbGoaGR4RcG73P1otFk3nKbVu4=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7XCJuYW1lXCI6ICQoZm5hbWUpLFwic2l6ZVwiOiAkKGZzaXplKSxcIndcIjogJChpbWFnZUluZm8ud2lkdGgpLFwiaFwiOiAkKGltYWdlSW5mby5oZWlnaHQpLFwiaGFzaFwiOiAkKGV0YWcpfSIsImRlYWRsaW5lIjoxNDgzNTE0MzM3fQ==";
 				callback(token);
 			}
 		 };
@@ -124,7 +124,7 @@
 //---IMAGE----------------------------------------------------------------------------------------------------
 
 	var image = document.getElementById('image-Id');
-	var imgConfig = { 
+	var imgConfig = {
 				domain: 'http://upload.qiniu.com/putb64/-1',
 			 	data: UploadClient.dataType.data,
 				getToken: function(callback){

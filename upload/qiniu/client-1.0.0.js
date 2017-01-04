@@ -103,7 +103,7 @@ var UploadClient = (function(win) {
             },
             onCompleted: function(result) {
                 result.filename || (result.filename = result.hash);
-                var compress = config.compressThumbnail || _compress;
+                var compress = data.compressThumbnail || _compress;
                 if (data.compress) {
                     compress(data, function(thumbnail) {
                         result.thumbnail = thumbnail;
@@ -144,7 +144,8 @@ var UploadClient = (function(win) {
     var uploadFile = function(file, config, callback) {
         _init(config, function(instance) {
             var data = {
-                file: file
+                file: file,
+                compressThumbnail:config.compressThumbnail
             };
             _upload(data, instance, callback);
         });
@@ -159,7 +160,8 @@ var UploadClient = (function(win) {
                     width: config.width || 240,
                     quality: config.quality || 0.5,
                     scale: config.scale || 2.4
-                }
+                },
+                compressThumbnail:config.compressThumbnail
             };
             _upload(data, instance, callback);
         });
@@ -175,7 +177,8 @@ var UploadClient = (function(win) {
                     width: config.width || 240,
                     quality: config.quality || 0.5,
                     scale: config.scale || 2.4
-                }
+                },
+                compressThumbnail:config.compressThumbnail
             };
             _upload(data, instance, callback);
         });
