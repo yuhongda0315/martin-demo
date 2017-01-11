@@ -6,19 +6,30 @@
 		data: getData
 	};
 
+	function genUId() {
+		var date = new Date().getTime();
+		var uuid = 'xxxxxx4xxxyxxxxxxx'.replace(/[xy]/g, function(c) {
+			var r = (date + Math.random() * 16) % 16 | 0;
+			date = Math.floor(date / 16);
+			return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+		});
+		return uuid;
+	};
+
 	function mergeOption(opts) {
 		var options = {
 			domain: '',
 			method: 'POST',
 			file_data_name: 'file',
 			unique_key: 'key',
-			base64_size: 10 * 1024 * 1024,
-			chunk_size: 10 * 1024 * 1024,
+			base64_size: 4 * 1024 * 1024,
+			chunk_size: 4 * 1024 * 1024,
 			headers: {},
 			multi_parmas: {},
 			query: {},
 			support_options: true,
-			data: dataType.form
+			data: dataType.form,
+			genUId: genUId
 		};
 		if (!opts || !opts.domain) {
 			throw new Error('domain is null');
@@ -28,16 +39,6 @@
 		}
 		return options;
 	}
-
-	function genUUID() {
-		var date = new Date().getTime();
-		var uuid = 'xxxxxx4xxxyxxxxxxx'.replace(/[xy]/g, function(c) {
-			var r = (date + Math.random() * 16) % 16 | 0;
-			date = Math.floor(date / 16);
-			return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-		});
-		return uuid;
-	};
 
 	function mEach(m, callback) {
 		for (var key in m) {
@@ -49,7 +50,7 @@
 		var form = new FormData();
 		if (opts.unique_key) {
 			var suffix = file.name.substr(file.name.lastIndexOf('.'));
-			var unique_value = genUUID() + suffix;
+			var unique_value = genUId() + suffix;
 			form.append(opts.unique_key, unique_value);
 			opts.unique_value = unique_value;
 		}
@@ -64,7 +65,7 @@
 		var data = {};
 		if (opts.unique_key) {
 			var suffix = file.name.substr(file.name.lastIndexOf('.'));
-			var unique_value = genUUID() + suffix;
+			var unique_value = genUId() + suffix;
 			data[opts.unique_key] = unique_value;
 			opts.unique_value = unique_value;
 		}

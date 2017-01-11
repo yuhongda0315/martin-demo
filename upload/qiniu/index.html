@@ -44,7 +44,9 @@
         <div class = "progressContent" id = "progressContent">
         </div>
     </div> 
-    <div id="success-log"></div>
+    <div id="success-log">
+    	<img src="" alt="" id="showImage">
+    </div>
 </body>
 <script>
 
@@ -96,7 +98,7 @@
 	var config = { 
 			domain: 'http://upload.qiniu.com',
 			getToken: function(callback){
-				var token = "livk5rb3__JZjCtEiMxX";
+				var token = "CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:0ZIWXsNEMmwHFSWKb2F_I_jBV2Y=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7XCJuYW1lXCI6ICQoZm5hbWUpLFwic2l6ZVwiOiAkKGZzaXplKSxcIndcIjogJChpbWFnZUluZm8ud2lkdGgpLFwiaFwiOiAkKGltYWdlSW5mby5oZWlnaHQpLFwiaGFzaFwiOiAkKGV0YWcpfSIsImRlYWRsaW5lIjoxNDg0MTI2NTU2fQ==";
 				callback(token);
 			}
 		 };
@@ -112,8 +114,8 @@
 	        		progressContent.innerHTML = percent + "%";
 			},
 			onCompleted : function (data) { 
-				console.log(data.thumbnail);
-				document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
+				// document.getElementById('success-log').innerHTML += JSON.stringify(data) + '</br>';
+				document.getElementById('showImage').src = 'data:image/png;base64,' + data.thumbnail;
 			} 
 	 };
 

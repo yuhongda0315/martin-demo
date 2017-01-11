@@ -1,39 +1,52 @@
-var UploadClient = (function(win) {
-    var calcPosition = function(height, width, opts) {
-        var isheight = width < height,
-            scale = isheight ? height / width : width / height;
+(function(global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+        typeof define === 'function' && define.amd ? define(factory) : (global.UploadClient = factory());
+}(this, function() {
+    var calcPosition = function(width, height, opts) {
+        var isheight = width < height;
+        var scale = isheight ? height / width : width / height;
         var zoom, x = 0,
             y = 0,
             w, h;
-        if (scale > opts.scale) {
+
+        var gtScale = function() {
             if (isheight) {
                 zoom = width / 100;
                 w = 100;
                 h = height / zoom;
-                y = (h - 240) / 2;
+                y = (h - opts.maxHeight) / 2;
             } else {
                 zoom = height / 100;
                 h = 100;
                 w = width / zoom;
-                x = (w - 240) / 2;
+                x = (w - opts.maxWidth) / 2;
             }
-        } else {
+            return {
+                w: w,
+                h: h,
+                x: -x,
+                y: -y
+            };
+        };
+        
+        var ltScale = function() {
             if (isheight) {
-                zoom = height / 240;
-                h = 240;
+                zoom = height / opts.maxHeight;
+                h = opts.maxHeight;
                 w = width / zoom;
             } else {
-                zoom = width / 240;
-                w = 240;
+                zoom = width / opts.maxWidth;
+                w = opts.maxWidth;
                 h = height / zoom;
             }
-        }
-        return {
-            w: w,
-            h: h,
-            x: -x,
-            y: -y
+            return {
+                w: w,
+                h: h,
+                x: -x,
+                y: -y
+            };
         };
+        return scale > opts.scale ? gtScale() : ltScale();
     };
 
     var getBlobUrl = function(file) {
@@ -47,10 +60,8 @@ var UploadClient = (function(win) {
         var img = new Image();
         img.onload = function() {
             var pos = calcPosition(img.width, img.height, opts);
-            var width = opts.width;
-            var height = opts.height;
-            canvas.width = pos.w > width ? width : pos.w;
-            canvas.height = pos.h > height ? height : pos.h;
+            canvas.width = pos.w > opts.maxWidth ? opts.maxWidth : pos.w;
+            canvas.height = pos.h > opts.maxHeight ? opts.maxHeight : pos.h;
             context.drawImage(img, pos.x, pos.y, pos.w, pos.h);
             try {
                 var base64 = canvas.toDataURL(file.type, opts.quality);
@@ -64,19 +75,10 @@ var UploadClient = (function(win) {
         img.src = typeof file == 'string' ? 'data:image/png;base64,' + file : getBlobUrl(file);
     };
 
-    var _compressBase64 = function(base64, opts, callback) {
-        getThumbnail(base64, opts, callback);
-    };
-
-    var _compressFile = function(file, opts, callback) {
-        getThumbnail(file, opts, callback);
-    };
-
     var _compress = function(data, callback) {
         var file = data.file;
         var opts = data.compress;
-        var getThumb = typeof file == 'string' ? _compressBase64 : _compressFile;
-        getThumb(file, opts, callback);
+        getThumbnail(file, opts, callback);
     };
 
     _init = function(config, callback) {
@@ -166,8 +168,8 @@ var UploadClient = (function(win) {
     var initImage = function(config, callback) {
         _init(config, function(instance) {
             var compress = {
-                height: config.height || 240,
-                width: config.width || 240,
+                maxHeight: config.height || 240,
+                maxWidth: config.width || 240,
                 quality: config.quality || 0.5,
                 scale: config.scale || 2.4
             };
@@ -181,7 +183,7 @@ var UploadClient = (function(win) {
         Img.call(this, config);
     };
 
-    var initImgBase64 = function(config, callback){
+    var initImgBase64 = function(config, callback) {
         config.base64 = true;
         initImage.call(this, config, callback);
     };
@@ -192,4 +194,4 @@ var UploadClient = (function(win) {
         initImgBase64: initImgBase64,
         dataType: UploadFile.dataType
     };
-})(window);
+}));

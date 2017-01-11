@@ -1,8 +1,24 @@
 # 上传插件使用说明 - 七牛云
 
-## 初始化
+### 引入
 
-使用七牛云存储文件必须设置 `multi_params` 对象中的 token 属性，某则将上传失败。
+http:
+
+```js
+<script src="http://cdn.ronghub.com/RongIMLib-2.2.4.min.js"></script> 
+```
+
+https:
+
+```js
+<script src="https://cdn.ronghub.com/RongIMLib-2.2.4.min.js"></script>
+```
+
+### 接口
+
+#### 参数
+
+1、配置项
 
 ```
  var config = {
@@ -10,47 +26,141 @@
 	  	file_data_name	: 'file',										// default : file , 文件对象的 key 。
 	 	base64_size		: 10,											// default : 10 单位 MB 。
 		chunk_size		: 10,											// default : 10 单位 MB 。
-		headers			: { Content-Type : 'multipart/form-data'},		// default : { Content-Type : 'multipart/form-data'} ,增加 requestHeader 需扩展。 
+		headers			: { Content-Type : 'multipart/form-data'},		// default : { Content-Type : 'multipart/form-data'} , 按需扩展。
 	  	multi_parmas	: { },											// default : {} 扩展上传属性 。
 	  	query			: { },											// default : {}	扩展 url 参数 e.g. http://rongcloud.cn?name=zhangsan 。
 	  	support_options : true,											// default : true, 文件服务器不支持 OPTIONS 请求需设置为 false。
-		data 			: dataType.form 								// default : dataType.form 默认提供：form、json、data 数据直传三种方式。
-
+		data 			: UploadClient.dataType.form,					// default : 默认提供：form、json、data 数据直传三种方式。
+		getToken		: function(callback){}
   	};
 ```
 
-## 上传文件
-
-上传文件必须设置回调函数，用以接收上传信息。
-
-`fileUpload.upload(data, callback);`  data 值可以是 base64 或 file 对象。
-
-token 获取方式请参考七牛云文档说明。
+2、上传回调
 
 ```
-var config = { 
-	domain: 'http://upload.qiniu.com',
- 	multi_parmas : {
- 		token : "livk5rb3__JZjCtEi....."
- 	}
- };
-
 var callback = {
-		onError	: function () { 
-			// 上传失败。
-		},
-		onProgress : function (loaded, total) {
-			// 处理进度条。
-		},
-		onCompleted : function (data) { 
-			// data : 上传成功，文件服务器响应值。
-		} 
- };
+	onError	: function () { 
+		// 文件上传失败
+	},
+	onProgress : function (loaded, total) {
+		// 上传进度
+	},
+	onCompleted : function (data) { 
+		// 上传完成
+	} 
+};
+```
 
-var fileUpload = UploadFile.init(config);
-var file = document.getElementById("file-Id");
-file.onchange = function(){
-	fileUpload.upload(this.files[0], callback);
+### 上传文件
+
+```js
+// FileInput
+<input type="file" id="fileId" value="UploadFile" />
+
+// 配置项
+var config = {
+	domain: 'http://upload.qiniu.com',
+	getToken: function(callback){
+		var token = "livk5rb3__JZjCtEiMxX";
+		callback(token);
+	}
 };
 
+// 回调
+var callback = {
+	onError	: function () { 
+		// 文件上传失败
+	},
+	onProgress : function (loaded, total) {
+		// 上传进度
+	},
+	onCompleted : function (data) { 
+		// 上传完成
+	} 
+};
+
+var file = document.getElementById("fileId");
+
+file.onchange = function(){
+	var _file = this.files[0];
+	UploadClient.initFile(config, function(uploadFile){
+		uploadFile.upload(_file, callback);
+	});
+};
+```
+
+### 上传图片
+
+```js
+// FileInput
+<input type="file" id="fileId" value="UploadImage" />
+
+// 配置项
+var config = {
+	domain: 'http://upload.qiniu.com',
+	getToken: function(callback){
+		var token = "livk5rb3__JZjCtEiMxX";
+		callback(token);
+	}
+};
+
+// 回调
+var callback = {
+	onError	: function () { 
+		// 文件上传失败
+	},
+	onProgress : function (loaded, total) {
+		// 上传进度
+	},
+	onCompleted : function (data) { 
+		// 上传完成
+	} 
+};
+
+var file = document.getElementById("fileId");
+
+file.onchange = function(){
+	var _file = this.files[0];
+	UploadClient.initImage(config, function(uploadImage){
+		uploadImage.upload(_file, callback);
+	});
+};
+```
+
+### 上传 Base64 图片
+
+```js
+// Upload Button
+<input type="button" id="fileId" value="UploadBase64" />
+
+// 配置项
+var config = {
+	domain: 'http://upload.qiniu.com',
+	getToken: function(callback){
+		var token = "livk5rb3__JZjCtEiMxX";
+		callback(token);
+	}
+};
+
+// 回调
+var callback = {
+	onError	: function () { 
+		// 文件上传失败
+	},
+	onProgress : function (loaded, total) {
+		// 上传进度
+	},
+	onCompleted : function (data) { 
+		// 上传完成
+	} 
+};
+// File 按钮
+var file = document.getElementById("fileId");
+// base64 格式的图片
+var base64 = "iVBORw0KGgoAAAANSUhEUgAAAGQAAADwCAYAAAD...";
+file.onclick = function(){
+	UploadClient.initImgBase64(config, function(uploadBase64){
+		uploadBase64.upload(base64, callback);
+	});
+};
 ```
