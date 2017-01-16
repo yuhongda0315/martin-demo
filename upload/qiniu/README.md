@@ -2,16 +2,12 @@
 
 ### 引入
 
-http:
+参考 index.html 引用方法，把以下三个文件拷贝到项目下。
 
-```js
-<script src="http://cdn.ronghub.com/RongIMLib-2.2.4.min.js"></script> 
 ```
-
-https:
-
-```js
-<script src="https://cdn.ronghub.com/RongIMLib-2.2.4.min.js"></script>
+    <script src = "./qiniu.js"></script>
+    <script src = "../upload.js"></script>
+    <script src="./init.js"></script>
 ```
 
 ### 接口
