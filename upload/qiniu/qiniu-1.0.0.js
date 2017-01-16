@@ -219,6 +219,7 @@
 
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
+				xhr.responseText = xhr.responseText || "{}";
 				var result = JSON.parse(xhr.responseText.replace(/'/g, '"'));
 				result.filename = options.unique_value;
 				callback.onCompleted(result);
