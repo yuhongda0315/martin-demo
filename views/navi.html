@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Navi </title>
+    <style>
+        body{
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    
+</div>
+</body>
+<script>
+var $ = function(id){
+    return document.getElementById(id);
+};
+
+var showTips = function(tip){
+    $('content').innerHTML += JSON.stringify(tip) + '</b>';
+};
+
+window.getServerEndpoint = function(x){
+    showTips(x);
+};
+
+function Navi(address){
+    var appkey = '8luwapkvucoil';
+    var token = encodeURIComponent('hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==');
+    var xss = document.createElement("script");
+    xss.src = 'https://' + address + '/navi.js?appId=' + appkey + '&token=' + token + '&callBack=getServerEndpoint&t='+ (+new Date);
+    document.body.appendChild(xss);
+    xss.onerror = function () {
+       console.log('requet navi error.');
+    };
+    // 兼容性
+    xss.onreadystatechange = function () {
+        xss.readyState == "loaded" && console.log('requet navi success.');
+    };
+}
+
+var addresses = ['172.20.10.118','172.20.10.9','172.20.10.105','172.20.10.26','172.20.10.17',
+                 '172.20.10.219','172.20.10.195','172.20.10.172','172.20.10.5','172.20.10.8',
+                 '172.20.10.7','172.20.10.4','172.20.10.3','172.20.10.11','172.20.10.12',
+                 '172.20.10.13','172.20.10.38','172.20.10.39','172.20.10.37','172.20.10.34',
+                 '172.20.10.35','172.20.10.32','172.20.10.33','172.20.10.31','172.20.10.19',
+                 '172.20.10.29','172.20.10.20','172.20.10.23','172.20.10.22','172.20.10.25',
+                 '172.20.10.27','172.20.10.40','172.20.10.64'];
+
+for(var i = 0, len = addresses.length; i < len; i++){
+    Navi(addresses[i]);
+}
+</script>
+</html> 

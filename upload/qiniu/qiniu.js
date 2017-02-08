@@ -178,7 +178,12 @@
 				ctxStore[blob.uniqueName] = ctxStore[blob.uniqueName] || [];
 				ctxStore[blob.uniqueName].push(chunkRes.ctx);
 				if (offset < blob.size) {
-					uploadNextChunk(blob, opts, callback);
+					if (chunkRes.ctx) {
+						uploadNextChunk(blob, opts, callback);
+					}else{
+						offset = 0;
+						delete ctxStore[blob.uniqueName]
+					}
 				} else {
 					offset = 0;
 					delete opts.isChunk;
@@ -219,8 +224,8 @@
 
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
-				xhr.responseText = xhr.responseText || "{}";
-				var result = JSON.parse(xhr.responseText.replace(/'/g, '"'));
+				var result = xhr.responseText || "{}";
+				result = JSON.parse(result);
 				result.filename = options.unique_value;
 				callback.onCompleted(result);
 			}

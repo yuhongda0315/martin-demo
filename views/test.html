@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Demo </title>
+</head>
+<body>
+	
+</body>
+<script>
+//打乱数组顺序
+Array.prototype.shuffle = function() {
+	this.sort(function(){ return 0.5 - Math.random() });
+};
+
+// 原型链继承
+// function Shape() {
+// 	this.name = 'Shape';
+// 	this.toString = function() {
+// 		return this.name;
+// 	};
+// }
+
+// function TwoDShape() {
+// 	this.name = '2D Shape';
+// }
+
+// function Triangle(side, height) {
+// 	this.name = 'triangle';
+// 	this.getArea = function() {
+// 		return side * height / 2;
+// 	};
+// }
+
+// TwoDShape.prototype = new Shape();
+// TwoDShape.prototype.constructor = TwoDShape;
+
+// Triangle.prototype = new TwoDShape();
+// Triangle.prototype.constructor = Triangle;
+
+
+//原型共享
+
+// function Shape() { }
+// Shape.prototype.name = 'Shape';
+// Shape.prototype.toString = function(){
+// 	return this.name;
+// };
+
+// function TwoDShape() { }
+// TwoDShape.prototype = new Shape;
+// TwoDShape.prototype.constructor = TwoDShape;
+// TwoDShape.prototype.name = 'TwoDShape';
+
+// function Triangle(side, height) {
+// 	this.name = 'Triangle';
+// 	this.getArea = function() {
+// 		return side * height / 2;
+// 	};
+// }
+// Triangle.prototype = new TwoDShape();
+// Triangle.prototype.constructor = Triangle;
+// Triangle.prototype.name = 'Triangle';
+
+// var trianle = new Triangle(10, 5);
+// trianle.getArea();  // 25
+// trianle.toString(); // 'Triangle'
+
+
+// 只继承原型
+// function Shape() {}
+// Shape.prototype.name = 'Shape';
+// Shape.prototype.toString = function(){
+// 	return this.name;
+// };
+
+// function TwoDShape(){}
+// TwoDShape.prototype = Shape.prototype;
+// TwoDShape.prototype.constructor = TwoDShape;
+// TwoDShape.prototype.name = 'TwoDShape';
+
+// function Triangle(side, height){
+// 	this.side = side;
+// 	this.height = height;
+// }
+// Triangle.prototype = TwoDShape.prototype;
+// Triangle.prototype.constructor = Triangle;
+// Triangle.prototype.name = 'Triangle';
+// Triangle.prototype.getArea = function(){
+// 	return this.side * this.height / 2;
+// };
+
+function extendCopy(p){
+    var c = {};
+    for(var i in p){
+        c[i] = p[i];
+    }
+    c.uber = p;
+    return c;
+}
+
+var shape = {
+    name: 'Shape',
+    toString: function(){
+        return this.name;
+    }
+};
+
+var twoDee = extendCopy(shape);
+twoDee.name = '2D shape';
+twoDee.toString = function(){
+    return this.uber.toString() + ',' + this.name;
+};
+
+var triangle = extendCopy(twoDee);
+triangle.name = 'Triangle';
+triangle.getArea = function(){
+    return this.side * this.height / 2;
+};
+</script>
+</html> 
