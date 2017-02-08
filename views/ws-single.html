@@ -4,82 +4,48 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>WS-Demo</title>
-<!-- <script type="text/javascript" src="js/jquery-1.9.1.js"></script> -->
 <script src="https://cdn.ronghub.com/RongIMLib-2.2.4.min.js"></script>
-  <style type="text/css">
-    body {
-      font-size: 13px;
-      background-color: black;
-      color: white;
-    }
+<style type="text/css">
+  body {
+    font-size: 13px;
+    background-color: black;
+    color: white;
+  }
 
-    #content {
-      float: left;
-      border-right: 1px solid white;
-      margin-right: 20px;
-      padding-right: 20px;
-    }
-
-    span {
-      margin-right: 50px;
-    }
-  </style>
+  #content {
+    float: left;
+    border-right: 1px solid white;
+    margin-right: 20px;
+    padding-right: 20px;
+  }
+</style>
 
 
 </head>
 
 <body height="600px" width="600px">
-  <input type="button" name="name" value="Go" id="initId">
-  <input type="button" name="name" value="Clear" id="clearId"> 成功个数：
-  <span id="successCount">0</span>
-  失败个数：
-  <span id="errorCount">0</span>
-  总个数：
-  <span id="totalCount">0</span>
-  <a href="http://www.baidu.com" id="myTagA">走</a>
-  <button type="button" name="button"跳转 id="testButton">Button</button>
+  <input type="button" name="name" value="Clear" id="clearId"> 
   <hr/>
   <div id="content"></div>
-  <div id="errorInfo"></div>
   <script type="text/javascript">
-    var errorDiv = document.getElementById('errorInfo');
-    var rightDiv = document.getElementById('content');
-    var successCountSpan = document.getElementById('successCount');
-    var errorCountSpan = document.getElementById('errorCount');
-    var totalCountSpan = document.getElementById('totalCount');
-    var successCount = 0,
-      errorCount = 0,index=0;
+    var cotent = document.getElementById('content');
 
     function consoleInfo(str) {
-      rightDiv.innerHTML += str + "<br/>";
-      successCount += 1;
-      successCountSpan.innerHTML = successCount;
-      totalCountSpan.innerHTML = (successCount + errorCount);
+      cotent.innerHTML += str + "<br/>";
     }
 
-    function consoleErrorInfo(str) {
-      errorDiv.innerHTML += str + "<br/>";
-      errorCount += 1;
-      errorCountSpan.innerHTML = errorCount;
-      totalCountSpan.innerHTML = (successCount + errorCount);
-    }
-    
+    document.onreadystatechange = function(){
+       console.log(document.readyState);
+    };
+
     init();
 
     document.getElementById('clearId').onclick = function() {
-      errorDiv.innerHTML = "";
-      rightDiv.innerHTML = "";
-      num = 0;
-      successCount = 0;
-      errorCount = 0;
-      successCountSpan.innerHTML = successCount;
-      errorCountSpan.innerHTML = errorCount;
-      totalCountSpan.innerHTML = 0;
-      index =  0;
+      cotent.innerHTML = "";
     }
 
     function init() {
-      consoleInfo("init - log");
+      consoleInfo("init - executed");
       RongIMClient.init("8luwapkvucoil");
       var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
 
@@ -110,15 +76,14 @@
             case RongIMLib.ConnectionStatus.BLOCK:
               break;
             case RongIMLib.ConnectionStatus.NETWORK_UNAVAILABLE:
-              console.log('网络不可用');
-              RongIMClient.reconnect();
+              consoleInfo('网络不可用');
               break;
           }
         }
       });
       RongIMClient.setOnReceiveMessageListener({
         onReceived: function(message) {
-            consoleInfo('>>>>>>>');
+            consoleInfo('------华丽分割线------');
             consoleInfo(JSON.stringify(message));
         }
       });
@@ -127,7 +92,7 @@
           consoleInfo("Login successfully." + userId);
         },
         onTokenIncorrect: function() {
-          consoleErrorInfo('token无效');
+          consoleInfo('token无效');
         },
         onError:function(errorCode){
               var info = '';
@@ -151,7 +116,7 @@
                   info = 'token无效';
                   break;
               }
-              consoleErrorInfo(errorCode);
+              consoleInfo(errorCode);
             }
       });
     }
