@@ -56,6 +56,10 @@
       consoleInfo('window - abort');
     });
 
+    window.addEventListener("pageshow", function(){
+      consoleInfo('window - pageshow');
+    });
+    
     init();
 
     document.getElementById('clearId').onclick = function() {
