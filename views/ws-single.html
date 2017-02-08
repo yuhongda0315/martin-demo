@@ -35,14 +35,6 @@
       cotent.innerHTML += str + "<br/>";
     }
 
-    document.onreadystatechange = function(){
-       consoleInfo(document.readyState);
-    };
-
-    window.onload = function(){
-       consoleInfo('window - loaded');
-    };
-
     window.addEventListener('focus', function(){
       consoleInfo('window - focus');
     });
@@ -50,16 +42,6 @@
     window.addEventListener('blur', function(){
       consoleInfo('window - blur');
     });
-
-    window.addEventListener('abort', function(){
-      consoleInfo('window - abort');
-    });
-
-    window.addEventListener("pageshow", function(){
-      consoleInfo('window - pageshow');
-    });
-    
-    init();
 
     document.getElementById('clearId').onclick = function() {
       cotent.innerHTML = "";
@@ -140,6 +122,8 @@
             }
       });
     }
+
+    init();
   </script>
 </body>
 
