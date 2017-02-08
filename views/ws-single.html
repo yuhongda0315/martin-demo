@@ -35,9 +35,12 @@
     }
 
     document.onreadystatechange = function(){
-       console.log(document.readyState);
+       consoleInfo(document.readyState);
     };
 
+    window.onload = function(){
+       consoleInfo('window - loaded');
+    };
     init();
 
     document.getElementById('clearId').onclick = function() {
