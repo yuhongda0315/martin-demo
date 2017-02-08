@@ -45,6 +45,7 @@
 
     window.addEventListener('focus', function(){
       consoleInfo('window - focus');
+      location.reload();
     });
 
     window.addEventListener('blur', function(){
@@ -62,7 +63,6 @@
     }
 
     function init() {
-      consoleInfo("init - executed");
       RongIMClient.init("8luwapkvucoil");
       var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
 
