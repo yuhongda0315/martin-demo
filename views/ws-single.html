@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>WS-Demo</title>
 <script src="https://cdn.ronghub.com/RongIMLib-2.2.4.min.js"></script>
+<!-- <script src="js/RongIMLib.js"></script> -->
 <style type="text/css">
   body {
     font-size: 13px;
@@ -41,6 +42,19 @@
     window.onload = function(){
        consoleInfo('window - loaded');
     };
+
+    window.addEventListener('focus', function(){
+      consoleInfo('window - focus');
+    });
+
+    window.addEventListener('blur', function(){
+      consoleInfo('window - blur');
+    });
+
+    window.addEventListener('abort', function(){
+      consoleInfo('window - abort');
+    });
+
     init();
 
     document.getElementById('clearId').onclick = function() {
