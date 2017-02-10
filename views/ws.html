@@ -26,6 +26,7 @@
 <body height="600px" width="600px">
   Appkey <input type="text" id='appId'> | 
   Token: <input type="text" id="tokenId"> |
+  Navi: <input type="text" id='naviId'> | 
   <input type="button" value='Connect' id='connectId'>
   <hr/>
   <div id="content"></div>
@@ -37,7 +38,8 @@
 
     function init() {
       var appkey =  $('appId').value,
-          token = $('tokenId').value;;
+          token = $('tokenId').value,
+          navi = $('naviId').value || 'nav.cn.ronghub.com';
 
       if (!appkey) {
         console.error('appkey is empty.');
@@ -51,7 +53,7 @@
       // RongIMClient.init("8luwapkvucoil");
       // var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
 
-      RongIMClient.init(appkey);
+      RongIMClient.init(appkey, null, {navi: navi});
 
       RongIMClient.setConnectionStatusListener({
         onChanged: function(status) {
