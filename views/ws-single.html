@@ -4,53 +4,99 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>WS-Demo</title>
-<script src="https://cdn.ronghub.com/RongIMLib-2.2.4.min.js"></script>
-<!-- <script src="js/RongIMLib.js"></script> -->
-<style type="text/css">
-  body {
-    font-size: 13px;
-    background-color: black;
-    color: white;
-  }
+<script src="https://cdn.ronghub.com/RongIMLib-dev-1.0.2.js"></script>
+  <style type="text/css">
+    body {
+      font-size: 13px;
+      background-color: black;
+      color: white;
+    }
 
-  #content {
-    float: left;
-    border-right: 1px solid white;
-    margin-right: 20px;
-    padding-right: 20px;
-  }
-</style>
+    #content {
+      float: left;
+      border-right: 1px solid white;
+      margin-right: 20px;
+      padding-right: 20px;
+    }
+
+    span {
+      margin-right: 50px;
+    }
+  </style>
 
 
 </head>
 
 <body height="600px" width="600px">
-  <input type="button" name="name" value="Clear" id="clearId"> 
+  <input type="button" name="name" value="Go" id="initId">
+  <input type="button" name="name" value="Clear" id="clearId"> 成功个数：
+  <span id="successCount">0</span>
+  失败个数：
+  <span id="errorCount">0</span>
+  总个数：
+  <span id="totalCount">0</span>
+  <a href="http://www.baidu.com" id="myTagA">走</a>
+  <button type="button" name="button"跳转 id="testButton">Button</button>
   <hr/>
   <div id="content"></div>
+  <div id="errorInfo"></div>
   <script type="text/javascript">
-    var cotent = document.getElementById('content');
+    var errorDiv = document.getElementById('errorInfo');
+    var rightDiv = document.getElementById('content');
+    var successCountSpan = document.getElementById('successCount');
+    var errorCountSpan = document.getElementById('errorCount');
+    var totalCountSpan = document.getElementById('totalCount');
+    var successCount = 0,
+      errorCount = 0,index=0;
 
     function consoleInfo(str) {
-      cotent.innerHTML += str + "<br/>";
+      rightDiv.innerHTML += str + "<br/>";
+      successCount += 1;
+      successCountSpan.innerHTML = successCount;
+      totalCountSpan.innerHTML = (successCount + errorCount);
     }
 
-    window.addEventListener('focus', function(){
-      consoleInfo('window - focus');
-    });
-
-    window.addEventListener('blur', function(){
-      consoleInfo('window - blur');
-    });
-
+    function consoleErrorInfo(str) {
+      errorDiv.innerHTML += str + "<br/>";
+      errorCount += 1;
+      errorCountSpan.innerHTML = errorCount;
+      totalCountSpan.innerHTML = (successCount + errorCount);
+    }
+    init();
+    document.getElementById("initId").onclick = function() {
+        if (funArrs.length == index ||funArrs.length < index) {
+            rightDiv.innerHTML +="<h3>执行完毕,请刷新</h3>";
+            return;
+        }
+        var str = funArrs[index]+"()";
+        eval(str);
+        // index++;
+    }
     document.getElementById('clearId').onclick = function() {
-      cotent.innerHTML = "";
+      errorDiv.innerHTML = "";
+      rightDiv.innerHTML = "";
+      num = 0;
+      successCount = 0;
+      errorCount = 0;
+      successCountSpan.innerHTML = successCount;
+      errorCountSpan.innerHTML = errorCount;
+      totalCountSpan.innerHTML = 0;
+      index =  0;
     }
 
-    function init() {
-      RongIMClient.init("8luwapkvucoil");
-      var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
+    function init() {//e0x9wycfx7flq   self:8luwapkvucoil  // IE 下切换用户
+      // cocal : orCwsCHs9pYHfLLCfAVpDKOd4p1PG0cvD2kpyDJu+i0jPUkxyWc0Y2Mo2zek2KQV5A+1kLLNWGDRSBg61koz6w==
+      // wahaha : 8xnBCDp5UtbhxTJOgI39Po7LpJ9aWJrhdeMrxM9/KQbacbFcYXrkp4rEhVIyH+82R4xQJkHod8E1C8UtjSx2qQ==
 
+      // RongIMClient.init("8luwapkvucoil");
+      // var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
+
+      RongIMClient.init("c9kqb3rdkkn8j");
+      var token = "7QCKObcKBM5j6jCYkYy73MmZCygxvEIJlvPHz5ojxys1wlaw6fUkBzjWBYc46IZ2MqRtHNpgb7ldK8SUo27PQA==";
+      
+      // RongIMClient.init("e0x9wycfx7flq", null, {navi:'119.254.111.49:9100'});
+      // var token = "vCHlXyIFR6W3/xbBY5yLtF+Shv2KV+zuCWxUpBep0x+L94PUAFjqGP243FChNg+Zoroy6R3trk7Uncrwg4vvug==";
+     
       RongIMClient.setConnectionStatusListener({
         onChanged: function(status) {
           switch (status) {
@@ -78,14 +124,15 @@
             case RongIMLib.ConnectionStatus.BLOCK:
               break;
             case RongIMLib.ConnectionStatus.NETWORK_UNAVAILABLE:
-              consoleInfo('网络不可用');
+              console.log('网络不可用');
+              RongIMClient.reconnect();
               break;
           }
         }
       });
       RongIMClient.setOnReceiveMessageListener({
         onReceived: function(message) {
-            consoleInfo('------华丽分割线------');
+            consoleInfo('>>>>>>>');
             consoleInfo(JSON.stringify(message));
         }
       });
@@ -94,7 +141,7 @@
           consoleInfo("Login successfully." + userId);
         },
         onTokenIncorrect: function() {
-          consoleInfo('token无效');
+          consoleErrorInfo('token无效');
         },
         onError:function(errorCode){
               var info = '';
@@ -118,12 +165,362 @@
                   info = 'token无效';
                   break;
               }
-              consoleInfo(errorCode);
+              consoleErrorInfo(errorCode);
             }
       });
     }
 
-    init();
+    var funArrs = ["sendMessage"];
+
+    function sendMessage(){
+        var message = RongIMLib.TextMessage.obtain("Ping" + (+new Date));
+          RongIMLib.RongIMClient.getInstance().sendMessage(RongIMLib.ConversationType.CHATROOM, "10254", message, {
+            onSuccess: function(data) {
+              consoleInfo("Send Successfully");
+            },
+            onError: function(errorcode) {
+              consoleErrorInfo("SendMessage,errorcode:" + errorcode);
+            }
+          });
+    }
+    function sendTextMessage(){
+        RongIMLib.RongIMClient.getInstance().sendTextMessage(RongIMLib.ConversationType.PRIVATE, "1001", "what", {
+          onSuccess: function(data) {
+            consoleInfo("SendTextMessage Successfully");
+          },
+          onError: function(errorcode) {
+            consoleErrorInfo("SendTextMessage,errorcode:" + errorcode);
+          }
+        });
+    }
+
+    function hasUnreadMessages(){
+      RongIMLib.RongIMClient.getInstance().hasRemoteUnreadMessages("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==", {
+        onSuccess: function(hasMsg) {
+          consoleInfo("HasUnreadMessages successfully");
+        },
+        onError: function(error) {
+          consoleErrorInfo("HasUnreadMessages,errorcode:" + error);
+        }
+      });
+    }
+    function createDiscussion(){
+        RongIMLib.RongIMClient.getInstance().createDiscussion("WebSDKV2-Dis-Name", ["1001", "1002"], {
+          onSuccess: function(discussId) {
+            consoleInfo("Discussion's id is " + discussId);
+          },
+          onError: function(error) {
+            consoleErrorInfo("CreateDiscussion:errorcode:" + error);
+          }
+        });
+    }
+    function addMemberToDiscussion(){
+        RongIMLib.RongIMClient.getInstance().addMemberToDiscussion("843cc013-7e22-4393-b400-54b168ed7dc4", ["1004"], {
+          onSuccess: function() {
+            consoleInfo("addMemberToDiscussion Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("AddMemberToDiscussion:errorcode:" + error);
+          }
+        });
+    }
+    function getDiscussion(){
+        RongIMLib.RongIMClient.getInstance().getDiscussion("cdab1514-1e52-4804-bcc9-50f5f89e8a55", {
+          onSuccess: function(discuss) {
+            consoleInfo("GetDiscussion successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("GetDiscussion:errorcode:" + error);
+          }
+        });
+    }
+    function removeMemberFromDiscussion(){
+        RongIMLib.RongIMClient.getInstance().removeMemberFromDiscussion("843cc013-7e22-4393-b400-54b168ed7dc4", "1004", {
+          onSuccess: function() {
+            consoleInfo("RemoveMember Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("RemoveMember:errorcode:" + error);
+          }
+        });
+    }
+    function quitDiscussion(){
+        RongIMLib.RongIMClient.getInstance().quitDiscussion("ff636ffe-5b90-4897-b998-e27c1f03ef6b", {
+          onSuccess: function() {
+            consoleInfo("QuitDiscussion Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("QuitDiscussion:errorcode:" + error);
+          }
+        });
+    }
+    function setDiscussionName(){
+          RongIMLib.RongIMClient.getInstance().setDiscussionName("cdab1514-1e52-4804-bcc9-50f5f89e8a55", "大融云", {
+            onSuccess: function() {
+              consoleInfo("setDiscussionName Successfully");
+            },
+            onError: function(error) {
+              consoleErrorInfo("setDiscussionName:errorcode:" + error);
+            }
+          });
+    }
+    function setDiscussionInviteStatus(){
+        RongIMLib.RongIMClient.getInstance().setDiscussionInviteStatus("cdab1514-1e52-4804-bcc9-50f5f89e8a55", RongIMLib.DiscussionInviteStatus.CLOSED, {
+          onSuccess: function() {
+            consoleInfo("setDiscussionInviteStatus Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("setDiscussionInviteStatus:errorcode:" + error);
+          }
+        });
+    }
+    function joinGroup(){
+        RongIMLib.RongIMClient.getInstance().joinGroup("cocalGroup", "WskTestGroup", {
+          onSuccess: function() {
+            consoleInfo("joinGroup Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("joinGroup:errorcode:" + error);
+          }
+        });
+    }
+    function quitGroup(){
+          RongIMLib.RongIMClient.getInstance().quitGroup("cocalGroup", {
+            onSuccess: function() {
+              consoleInfo("quitGroup Successfully");
+            },
+            onError: function(error) {
+              consoleErrorInfo("quitGroup:errorcode:" + error);
+            }
+          });
+    }
+    function joinChatRoom(){
+        RongIMLib.RongIMClient.getInstance().joinChatRoom("chatRoom2015", 2, {
+          onSuccess: function() {
+            consoleInfo("joinChatRoom Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("joinChatRoom:errorcode:" + error);
+          }
+        });
+    }
+    function quitChatRoom(){
+        RongIMLib.RongIMClient.getInstance().quitChatRoom("chatRoom2015", {
+          onSuccess: function() {
+            consoleInfo("quitChatRoom Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("quitChatRoom:errorcode:" + error);
+          }
+        });
+    }
+    function addToBlacklist(){
+        RongIMLib.RongIMClient.getInstance().addToBlacklist("1002", {
+          onSuccess: function() {
+            consoleInfo("addToBlacklist Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("addToBlacklist:errorcode:" + error);
+          }
+        });
+    }
+    function getBlacklist(){
+        RongIMLib.RongIMClient.getInstance().getBlacklist({
+          onSuccess: function(data) {
+            consoleInfo(data);
+          },
+          onError: function(error) {
+            consoleErrorInfo("getBlacklist:errorcode:" + error);
+          }
+        });
+    }
+    function getBlacklistStatus(){
+        RongIMLib.RongIMClient.getInstance().getBlacklistStatus({
+          onSuccess: function(data) {
+            consoleInfo(data);
+          },
+          onError: function(error) {
+            consoleErrorInfo("getBlacklist:errorcode:" + error);
+          }
+        });
+    }
+    function removeFromBlacklist(){
+        RongIMLib.RongIMClient.getInstance().removeFromBlacklist("1002", {
+          onSuccess: function() {
+            consoleInfo("removeFromBlacklist Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("removeFromBlacklist:errorcode:" + error);
+          }
+        });
+    }
+    function saveTextMessageDraft(){
+        RongIMLib.RongIMClient.getInstance().saveTextMessageDraft(RongIMLib.ConversationType.PRIVATE, "1005", "drafTextMessageTest hello!!!", {
+          onSuccess: function() {
+            consoleInfo("saveTextMessageDraft Successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("saveTextMessageDraft:errorcode:" + error);
+          }
+        });
+    }
+    function getTextMessageDraft(){
+        RongIMLib.RongIMClient.getInstance().getTextMessageDraft(RongIMLib.ConversationType.PRIVATE, "1005", {
+          onSuccess: function(draf) {
+            consoleInfo("GetTextMessageDraf Successfully" + draf);
+          },
+          onError: function(error) {
+            consoleErrorInfo("getTextMessageDraft:errorcode:" + error);
+          }
+        });
+    }
+    function clearTextMessageDraft(){
+        RongIMLib.RongIMClient.getInstance().clearTextMessageDraft(RongIMLib.ConversationType.PRIVATE, "1002", {
+          onSuccess: function(isClear) {
+            consoleInfo("clearTextMessageDraft Successfully" + isClear);
+          },
+          onError: function(error) {
+            consoleErrorInfo("clearTextMessageDraft:errorcode:" + error);
+          }
+        });
+    }
+    function getTotalUnreadCount(){
+        RongIMLib.RongIMClient.getInstance().getTotalUnreadCount({
+          onSuccess: function(count) {
+            consoleInfo("TotalUnreadCount Successfully" + count);
+          },
+          onError: function(error) {
+            consoleErrorInfo("getTotalUnreadCount:errorcode:" + error);
+          }
+        });
+    }
+    function getConversationUnreadCount(){
+        RongIMLib.RongIMClient.getInstance().getConversationUnreadCount([RongIMLib.ConversationType.PRIVATE], {
+          onSuccess: function(count) {
+            consoleInfo("getConversationUnreadCount Successfully" + count);
+          },
+          onError: function(error) {
+            consoleErrorInfo("getConversationUnreadCount:errorcode:" + error);
+          }
+        });
+    }
+    function getUnreadCount(){
+        RongIMLib.RongIMClient.getInstance().getUnreadCount(RongIMLib.ConversationType.PRIVATE, "lisi",{
+          onSuccess:function(count){
+            consoleInfo("getUnreadCount Successfully"+count);
+          }
+        });
+
+    }
+    function getCurrentConnectionStatus(){
+        var status = RongIMLib.RongIMClient.getInstance().getCurrentConnectionStatus();
+        switch (status) {
+          case RongIMLib.ConnectionStatus.CONNECTED:
+            consoleInfo("已连接");
+            break;
+          case RongIMLib.ConnectionStatus.DISCONNECTED:
+            consoleInfo("已断开");
+            break;
+          default:
+            consoleErrorInfo("状态为解析:" + status);
+        }
+    }
+    function getConnectionChannel(){
+        var channel;
+        channel = RongIMLib.RongIMClient.getInstance().getConnectionChannel();
+        switch (channel) {
+          case 1:
+            consoleInfo("websocket");
+            break;
+          case 2:
+            consoleInfo("xhr-polling");
+            break;
+        }
+    }
+    function getStorageProvider(){
+        var provider = RongIMLib.RongIMClient.getInstance().getStorageProvider();
+        consoleInfo("getStorageProvider Successfully "+provider);
+    }
+    function getCurrentUserId(){
+      var userId = RongIMLib.RongIMClient.getInstance().getCurrentUserId();
+      consoleInfo("getCurrentUserId Successfully"+userId);
+    }
+
+    function disconnect(){
+      RongIMLib.RongIMClient.getInstance().disconnect();
+      consoleInfo("disconnect successfully");
+    }
+    function reconnect(){
+        RongIMLib.RongIMClient.reconnect({
+          onSuccess: function() {
+            consoleInfo("reconnect Successfully");
+          },
+          onError: function() {
+            consoleErrorInfo("reconnect:error");
+          }
+        });
+    }
+    function getHistoryMessages(){
+      RongIMLib.RongIMClient.getInstance().getHistoryMessages(1, "ljgMZJKas", null, 10, {
+          onSuccess: function(list, hasMsg) {
+            consoleInfo(JSON.stringify(list));
+          },
+          onError: function(error) {
+            consoleErrorInfo("GetHistoryMessages,errorcode:" + error);
+          }
+        });
+    }
+    function show() {
+      var conversation = RongIMLib.RongIMClient.getInstance().createConversation(RongIMLib.ConversationType.PRIVATE, "zhaoliu", "小标题");
+      consoleInfo("createConversation Successfully");
+      RongIMClient.getInstance().getConversationList({
+          onSuccess: function(list) {
+            consoleInfo(JSON.stringify(list));
+          },
+          onError: function(error) {
+          }
+        },null);
+      setTimeout(function() {
+        return RongIMLib.RongIMClient.getInstance().removeConversation(RongIMLib.ConversationType.PRIVATE, "1001", {
+          onSuccess: function(isRemove) {
+            consoleInfo("removeConversation:" + isRemove);
+          },
+          onError: function(error) {
+            consoleErrorInfo("removeConversation,errorcode:" + error);
+          }
+        });
+      }, 135);
+      setTimeout(function() {
+        RongIMLib.RongIMClient.getInstance().getConversation(RongIMLib.ConversationType.PRIVATE, "1003", {
+          onSuccess: function(conver, hasConver) {
+            consoleInfo(conver);
+          },
+          onError: function(error) {
+            consoleErrorInfo("getConversation,errorcode:" + error);
+          }
+        });
+      }, 140);
+      // setTimeout(function() {
+      //   RongIMLib.RongIMClient.getInstance().clearConversations({
+      //     onSuccess: function(isOk) {
+      //       consoleInfo("clearConversations successfully");
+      //     },
+      //     onError: function(error) {
+      //       consoleErrorInfo("clearConversations,errorcode:" + error);
+      //     }
+      //   });
+      // }, 145);
+      setTimeout(function() {
+        RongIMLib.RongIMClient.getInstance().setConversationToTop(RongIMLib.ConversationType.PRIVATE, "1001", {
+          onSuccess: function(isTop) {
+            consoleInfo("setTop successfully");
+          },
+          onError: function(error) {
+            consoleErrorInfo("SetConversationToTop,errorcode:" + error);
+          }
+        });
+      }, 130);
+    }
   </script>
 </body>
 

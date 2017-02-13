@@ -1,0 +1,81 @@
+<html> 
+<title>Random</title> 
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8"> 
+    <style type="text/css">
+        .container{
+            border: 2px solid green;
+            margin: 0 auto;
+            width: 350px;
+        }
+        .member{
+            width:100px;
+            height:60px;
+            background:#ccc;
+            float:left;
+            border:2px solid white;
+            text-align:center;
+            margin-top:10px;
+            padding-top:40px;
+            margin-left: 10px;
+            text-align: center;
+        }
+        .selected{
+            background: #7D9EC0;
+        }
+        .button-box{
+            margin-bottom: 10px;  
+        }
+    </style>
+</head> 
+<body> 
+     <div class="button-box">
+        <input type="button" value="Start" id="start">
+     </div>
+     <div class="container" id="container">
+       <!--   <div class="member">1</div>
+         <div class="member">2</div>
+         <div class="member">3</div>
+         <div class="member">4</div>
+         <div class="member">5</div>
+         <div class="member">6</div> -->
+     </div>
+
+</body> 
+<script src="../js/random.js"></script>
+<script>
+    var $ = function(id){
+        return document.getElementById(id);
+    };
+
+    var genId = function(num){
+        return 'random-member-' + num;
+    };
+
+    var changeStyle = function(node, name){
+        node.className = name;
+    };
+
+    var config = {
+        members: ['水色', '杨川', 'Eva', '福运', 'Martin', 'Once again'],
+        element: document.getElementById('container')
+    };
+
+    ParRandom(config, function(instance){
+        var oldNum = 0, isContinue = true;
+        $('start').onclick = function(){
+            if (!isContinue) {
+                return;
+            }
+            instance.start(function(opt){
+                var index = opt.index;
+                var oldNode = $(genId(oldNum));
+                oldNum = opt.index;
+                var node = $(genId(index));
+                changeStyle(oldNode, 'member');
+                changeStyle(node, 'member selected');
+            });
+        };
+    });
+</script>
+</html>
