@@ -25,11 +25,14 @@
         }
         .button-box{
             margin-bottom: 10px;  
+            float: left;
         }
     </style>
 </head> 
 <body> 
      <div class="button-box">
+        <textarea name="" cols="30" rows="20" id="content">Eva|福运|杨川|竖线分隔|Once again</textarea>
+        <input type="button" value="Init" id="init">
         <input type="button" value="Start" id="start">
      </div>
      <div class="container" id="container">
@@ -56,26 +59,37 @@
         node.className = name;
     };
 
-    var config = {
-        members: ['杨川', 'Eva', '福运', 'Once again'],
-        element: document.getElementById('container')
+    $('init').onclick = function(){
+
+        var content = $('content').value;
+
+        if (!content) {
+            return;
+        }
+
+        var config = {
+            members: content.split('|'),
+            element: document.getElementById('container')
+        };
+
+        ParRandom(config, function(instance){
+            var oldNum = 0, isContinue = true;
+            $('start').onclick = function(){
+                if (!isContinue) {
+                    return;
+                }
+                instance.start(function(opt){
+                    var index = opt.index;
+                    var oldNode = $(genId(oldNum));
+                    oldNum = opt.index;
+                    var node = $(genId(index));
+                    changeStyle(oldNode, 'member');
+                    changeStyle(node, 'member selected');
+                });
+            };
+        });
     };
 
-    ParRandom(config, function(instance){
-        var oldNum = 0, isContinue = true;
-        $('start').onclick = function(){
-            if (!isContinue) {
-                return;
-            }
-            instance.start(function(opt){
-                var index = opt.index;
-                var oldNode = $(genId(oldNum));
-                oldNum = opt.index;
-                var node = $(genId(index));
-                changeStyle(oldNode, 'member');
-                changeStyle(node, 'member selected');
-            });
-        };
-    });
+    
 </script>
 </html>

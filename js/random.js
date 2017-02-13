@@ -73,7 +73,7 @@ var ParRandom = (function() {
                 speed = 1;
                 restart();
             },
-            50: function() {
+            80: function() {
                 speed = 0;
                 count = 0;
                 clearInterval(timer);
