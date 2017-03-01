@@ -1,9 +1,22763 @@
-function _typeof(t){return t&&"undefined"!=typeof Symbol&&t.constructor===Symbol?"symbol":typeof t}if(function(t,e){"object"==typeof module&&"object"==typeof module.exports?module.exports=t.document?e(t,!0):function(t){if(!t.document)throw new Error("jQuery requires a window with a document");return e(t)}:e(t)}("undefined"!=typeof window?window:this,function(t,e){function n(t){var e=!!t&&"length"in t&&t.length,n=st.type(t);return"function"===n||st.isWindow(t)?!1:"array"===n||0===e||"number"==typeof e&&e>0&&e-1 in t}function i(t,e,n){if(st.isFunction(e))return st.grep(t,function(t,i){return!!e.call(t,i,t)!==n});if(e.nodeType)return st.grep(t,function(t){return t===e!==n});if("string"==typeof e){if(mt.test(e))return st.filter(e,t,n);e=st.filter(e,t)}return st.grep(t,function(t){return Z.call(e,t)>-1!==n})}function o(t,e){for(;(t=t[e])&&1!==t.nodeType;);return t}function s(t){var e={};return st.each(t.match(wt)||[],function(t,n){e[n]=!0}),e}function r(){Q.removeEventListener("DOMContentLoaded",r),t.removeEventListener("load",r),st.ready()}function a(){this.expando=st.expando+a.uid++}function l(t,e,n){var i;if(void 0===n&&1===t.nodeType)if(i="data-"+e.replace(St,"-$&").toLowerCase(),n=t.getAttribute(i),"string"==typeof n){try{n="true"===n?!0:"false"===n?!1:"null"===n?null:+n+""===n?+n:_t.test(n)?st.parseJSON(n):n}catch(o){}$t.set(t,e,n)}else n=void 0;return n}function c(t,e,n,i){var o,s=1,r=20,a=i?function(){return i.cur()}:function(){return st.css(t,e,"")},l=a(),c=n&&n[3]||(st.cssNumber[e]?"":"px"),h=(st.cssNumber[e]||"px"!==c&&+l)&&Nt.exec(st.css(t,e));if(h&&h[3]!==c){c=c||h[3],n=n||[],h=+l||1;do s=s||".5",h/=s,st.style(t,e,h+c);while(s!==(s=a()/l)&&1!==s&&--r)}return n&&(h=+h||+l||0,o=n[1]?h+(n[1]+1)*n[2]:+n[2],i&&(i.unit=c,i.start=h,i.end=o)),o}function h(t,e){var n="undefined"!=typeof t.getElementsByTagName?t.getElementsByTagName(e||"*"):"undefined"!=typeof t.querySelectorAll?t.querySelectorAll(e||"*"):[];return void 0===e||e&&st.nodeName(t,e)?st.merge([t],n):n}function u(t,e){for(var n=0,i=t.length;i>n;n++)Et.set(t[n],"globalEval",!e||Et.get(e[n],"globalEval"))}function p(t,e,n,i,o){for(var s,r,a,l,c,p,d=e.createDocumentFragment(),f=[],m=0,g=t.length;g>m;m++)if(s=t[m],s||0===s)if("object"===st.type(s))st.merge(f,s.nodeType?[s]:s);else if(Bt.test(s)){for(r=r||d.appendChild(e.createElement("div")),a=(It.exec(s)||["",""])[1].toLowerCase(),l=Pt[a]||Pt._default,r.innerHTML=l[1]+st.htmlPrefilter(s)+l[2],p=l[0];p--;)r=r.lastChild;st.merge(f,r.childNodes),r=d.firstChild,r.textContent=""}else f.push(e.createTextNode(s));for(d.textContent="",m=0;s=f[m++];)if(i&&st.inArray(s,i)>-1)o&&o.push(s);else if(c=st.contains(s.ownerDocument,s),r=h(d.appendChild(s),"script"),c&&u(r),n)for(p=0;s=r[p++];)Ot.test(s.type||"")&&n.push(s);return d}function d(){return!0}function f(){return!1}function m(){try{return Q.activeElement}catch(t){}}function g(t,e,n,i,o,s){var r,a;if("object"==typeof e){"string"!=typeof n&&(i=i||n,n=void 0);for(a in e)g(t,a,n,i,e[a],s);return t}if(null==i&&null==o?(o=n,i=n=void 0):null==o&&("string"==typeof n?(o=i,i=void 0):(o=i,i=n,n=void 0)),o===!1)o=f;else if(!o)return this;return 1===s&&(r=o,o=function(t){return st().off(t),r.apply(this,arguments)},o.guid=r.guid||(r.guid=st.guid++)),t.each(function(){st.event.add(this,e,o,i,n)})}function v(t,e){return st.nodeName(t,"table")&&st.nodeName(11!==e.nodeType?e:e.firstChild,"tr")?t.getElementsByTagName("tbody")[0]||t:t}function y(t){return t.type=(null!==t.getAttribute("type"))+"/"+t.type,t}function b(t){var e=Ut.exec(t.type);return e?t.type=e[1]:t.removeAttribute("type"),t}function x(t,e){var n,i,o,s,r,a,l,c;if(1===e.nodeType){if(Et.hasData(t)&&(s=Et.access(t),r=Et.set(e,s),c=s.events)){delete r.handle,r.events={};for(o in c)for(n=0,i=c[o].length;i>n;n++)st.event.add(e,o,c[o][n])}$t.hasData(t)&&(a=$t.access(t),l=st.extend({},a),$t.set(e,l))}}function w(t,e){var n=e.nodeName.toLowerCase();"input"===n&&Lt.test(t.type)?e.checked=t.checked:"input"!==n&&"textarea"!==n||(e.defaultValue=t.defaultValue)}function C(t,e,n,i){e=K.apply([],e);var o,s,r,a,l,c,u=0,d=t.length,f=d-1,m=e[0],g=st.isFunction(m);if(g||d>1&&"string"==typeof m&&!it.checkClone&&zt.test(m))return t.each(function(o){var s=t.eq(o);g&&(e[0]=m.call(this,o,s.html())),C(s,e,n,i)});if(d&&(o=p(e,t[0].ownerDocument,!1,t,i),s=o.firstChild,1===o.childNodes.length&&(o=s),s||i)){for(r=st.map(h(o,"script"),y),a=r.length;d>u;u++)l=o,u!==f&&(l=st.clone(l,!0,!0),a&&st.merge(r,h(l,"script"))),n.call(t[u],l,u);if(a)for(c=r[r.length-1].ownerDocument,st.map(r,b),u=0;a>u;u++)l=r[u],Ot.test(l.type||"")&&!Et.access(l,"globalEval")&&st.contains(c,l)&&(l.src?st._evalUrl&&st._evalUrl(l.src):st.globalEval(l.textContent.replace(Wt,"")))}return t}function k(t,e,n){for(var i,o=e?st.filter(e,t):t,s=0;null!=(i=o[s]);s++)n||1!==i.nodeType||st.cleanData(h(i)),i.parentNode&&(n&&st.contains(i.ownerDocument,i)&&u(h(i,"script")),i.parentNode.removeChild(i));return t}function T(t,e){var n=st(e.createElement(t)).appendTo(e.body),i=st.css(n[0],"display");return n.detach(),i}function E(t){var e=Q,n=Xt[t];return n||(n=T(t,e),"none"!==n&&n||(Vt=(Vt||st("<iframe frameborder='0' width='0' height='0'/>")).appendTo(e.documentElement),e=Vt[0].contentDocument,e.write(),e.close(),n=T(t,e),Vt.detach()),Xt[t]=n),n}function $(t,e,n){var i,o,s,r,a=t.style;return n=n||Yt(t),n&&(r=n.getPropertyValue(e)||n[e],""!==r||st.contains(t.ownerDocument,t)||(r=st.style(t,e)),!it.pixelMarginRight()&&Qt.test(r)&&Jt.test(e)&&(i=a.width,o=a.minWidth,s=a.maxWidth,a.minWidth=a.maxWidth=a.width=r,r=n.width,a.width=i,a.minWidth=o,a.maxWidth=s)),void 0!==r?r+"":r}function _(t,e){return{get:function(){return t()?void delete this.get:(this.get=e).apply(this,arguments)}}}function S(t){if(t in ie)return t;for(var e=t[0].toUpperCase()+t.slice(1),n=ne.length;n--;)if(t=ne[n]+e,t in ie)return t}function A(t,e,n){var i=Nt.exec(e);return i?Math.max(0,i[2]-(n||0))+(i[3]||"px"):e}function N(t,e,n,i,o){for(var s=n===(i?"border":"content")?4:"width"===e?1:0,r=0;4>s;s+=2)"margin"===n&&(r+=st.css(t,n+Dt[s],!0,o)),i?("content"===n&&(r-=st.css(t,"padding"+Dt[s],!0,o)),"margin"!==n&&(r-=st.css(t,"border"+Dt[s]+"Width",!0,o))):(r+=st.css(t,"padding"+Dt[s],!0,o),"padding"!==n&&(r+=st.css(t,"border"+Dt[s]+"Width",!0,o)));return r}function D(e,n,i){var o=!0,s="width"===n?e.offsetWidth:e.offsetHeight,r=Yt(e),a="border-box"===st.css(e,"boxSizing",!1,r);if(Q.msFullscreenElement&&t.top!==t&&e.getClientRects().length&&(s=Math.round(100*e.getBoundingClientRect()[n])),0>=s||null==s){if(s=$(e,n,r),(0>s||null==s)&&(s=e.style[n]),Qt.test(s))return s;o=a&&(it.boxSizingReliable()||s===e.style[n]),s=parseFloat(s)||0}return s+N(e,n,i||(a?"border":"content"),o,r)+"px"}function j(t,e){for(var n,i,o,s=[],r=0,a=t.length;a>r;r++)i=t[r],i.style&&(s[r]=Et.get(i,"olddisplay"),n=i.style.display,e?(s[r]||"none"!==n||(i.style.display=""),""===i.style.display&&jt(i)&&(s[r]=Et.access(i,"olddisplay",E(i.nodeName)))):(o=jt(i),"none"===n&&o||Et.set(i,"olddisplay",o?n:st.css(i,"display"))));for(r=0;a>r;r++)i=t[r],i.style&&(e&&"none"!==i.style.display&&""!==i.style.display||(i.style.display=e?s[r]||"":"none"));return t}function L(t,e,n,i,o){return new L.prototype.init(t,e,n,i,o)}function I(){return t.setTimeout(function(){oe=void 0}),oe=st.now()}function O(t,e){var n,i=0,o={height:t};for(e=e?1:0;4>i;i+=2-e)n=Dt[i],o["margin"+n]=o["padding"+n]=t;return e&&(o.opacity=o.width=t),o}function P(t,e,n){for(var i,o=(q.tweeners[e]||[]).concat(q.tweeners["*"]),s=0,r=o.length;r>s;s++)if(i=o[s].call(n,e,t))return i}function B(t,e,n){var i,o,s,r,a,l,c,h,u=this,p={},d=t.style,f=t.nodeType&&jt(t),m=Et.get(t,"fxshow");n.queue||(a=st._queueHooks(t,"fx"),null==a.unqueued&&(a.unqueued=0,l=a.empty.fire,a.empty.fire=function(){a.unqueued||l()}),a.unqueued++,u.always(function(){u.always(function(){a.unqueued--,st.queue(t,"fx").length||a.empty.fire()})})),1===t.nodeType&&("height"in e||"width"in e)&&(n.overflow=[d.overflow,d.overflowX,d.overflowY],c=st.css(t,"display"),h="none"===c?Et.get(t,"olddisplay")||E(t.nodeName):c,"inline"===h&&"none"===st.css(t,"float")&&(d.display="inline-block")),n.overflow&&(d.overflow="hidden",u.always(function(){d.overflow=n.overflow[0],d.overflowX=n.overflow[1],d.overflowY=n.overflow[2]}));for(i in e)if(o=e[i],re.exec(o)){if(delete e[i],s=s||"toggle"===o,o===(f?"hide":"show")){if("show"!==o||!m||void 0===m[i])continue;f=!0}p[i]=m&&m[i]||st.style(t,i)}else c=void 0;if(st.isEmptyObject(p))"inline"===("none"===c?E(t.nodeName):c)&&(d.display=c);else{m?"hidden"in m&&(f=m.hidden):m=Et.access(t,"fxshow",{}),s&&(m.hidden=!f),f?st(t).show():u.done(function(){st(t).hide()}),u.done(function(){var e;Et.remove(t,"fxshow");for(e in p)st.style(t,e,p[e])});for(i in p)r=P(f?m[i]:0,i,u),i in m||(m[i]=r.start,f&&(r.end=r.start,r.start="width"===i||"height"===i?1:0))}}function R(t,e){var n,i,o,s,r;for(n in t)if(i=st.camelCase(n),o=e[i],s=t[n],st.isArray(s)&&(o=s[1],s=t[n]=s[0]),n!==i&&(t[i]=s,delete t[n]),r=st.cssHooks[i],r&&"expand"in r){s=r.expand(s),delete t[i];for(n in s)n in t||(t[n]=s[n],e[n]=o)}else e[i]=o}function q(t,e,n){var i,o,s=0,r=q.prefilters.length,a=st.Deferred().always(function(){delete l.elem}),l=function(){if(o)return!1;for(var e=oe||I(),n=Math.max(0,c.startTime+c.duration-e),i=n/c.duration||0,s=1-i,r=0,l=c.tweens.length;l>r;r++)c.tweens[r].run(s);return a.notifyWith(t,[c,s,n]),1>s&&l?n:(a.resolveWith(t,[c]),!1)},c=a.promise({elem:t,props:st.extend({},e),opts:st.extend(!0,{specialEasing:{},easing:st.easing._default},n),originalProperties:e,originalOptions:n,startTime:oe||I(),duration:n.duration,tweens:[],createTween:function(e,n){var i=st.Tween(t,c.opts,e,n,c.opts.specialEasing[e]||c.opts.easing);return c.tweens.push(i),i},stop:function(e){var n=0,i=e?c.tweens.length:0;if(o)return this;for(o=!0;i>n;n++)c.tweens[n].run(1);return e?(a.notifyWith(t,[c,1,0]),a.resolveWith(t,[c,e])):a.rejectWith(t,[c,e]),this}}),h=c.props;for(R(h,c.opts.specialEasing);r>s;s++)if(i=q.prefilters[s].call(c,t,h,c.opts))return st.isFunction(i.stop)&&(st._queueHooks(c.elem,c.opts.queue).stop=st.proxy(i.stop,i)),i;return st.map(h,P,c),st.isFunction(c.opts.start)&&c.opts.start.call(t,c),st.fx.timer(st.extend(l,{elem:t,anim:c,queue:c.opts.queue})),c.progress(c.opts.progress).done(c.opts.done,c.opts.complete).fail(c.opts.fail).always(c.opts.always)}function H(t){return t.getAttribute&&t.getAttribute("class")||""}function F(t){return function(e,n){"string"!=typeof e&&(n=e,e="*");var i,o=0,s=e.toLowerCase().match(wt)||[];if(st.isFunction(n))for(;i=s[o++];)"+"===i[0]?(i=i.slice(1)||"*",(t[i]=t[i]||[]).unshift(n)):(t[i]=t[i]||[]).push(n)}}function M(t,e,n,i){function o(a){var l;return s[a]=!0,st.each(t[a]||[],function(t,a){var c=a(e,n,i);return"string"!=typeof c||r||s[c]?r?!(l=c):void 0:(e.dataTypes.unshift(c),o(c),!1)}),l}var s={},r=t===Ee;return o(e.dataTypes[0])||!s["*"]&&o("*")}function z(t,e){var n,i,o=st.ajaxSettings.flatOptions||{};for(n in e)void 0!==e[n]&&((o[n]?t:i||(i={}))[n]=e[n]);return i&&st.extend(!0,t,i),t}function U(t,e,n){for(var i,o,s,r,a=t.contents,l=t.dataTypes;"*"===l[0];)l.shift(),void 0===i&&(i=t.mimeType||e.getResponseHeader("Content-Type"));if(i)for(o in a)if(a[o]&&a[o].test(i)){l.unshift(o);break}if(l[0]in n)s=l[0];else{for(o in n){if(!l[0]||t.converters[o+" "+l[0]]){s=o;break}r||(r=o)}s=s||r}return s?(s!==l[0]&&l.unshift(s),n[s]):void 0}function W(t,e,n,i){var o,s,r,a,l,c={},h=t.dataTypes.slice();if(h[1])for(r in t.converters)c[r.toLowerCase()]=t.converters[r];for(s=h.shift();s;)if(t.responseFields[s]&&(n[t.responseFields[s]]=e),!l&&i&&t.dataFilter&&(e=t.dataFilter(e,t.dataType)),l=s,s=h.shift())if("*"===s)s=l;else if("*"!==l&&l!==s){if(r=c[l+" "+s]||c["* "+s],!r)for(o in c)if(a=o.split(" "),a[1]===s&&(r=c[l+" "+a[0]]||c["* "+a[0]])){r===!0?r=c[o]:c[o]!==!0&&(s=a[0],h.unshift(a[1]));break}if(r!==!0)if(r&&t["throws"])e=r(e);else try{e=r(e)}catch(u){return{state:"parsererror",error:r?u:"No conversion from "+l+" to "+s}}}return{state:"success",data:e}}function V(t,e,n,i){var o;if(st.isArray(e))st.each(e,function(e,o){n||Ae.test(t)?i(t,o):V(t+"["+("object"==typeof o&&null!=o?e:"")+"]",o,n,i)});else if(n||"object"!==st.type(e))i(t,e);else for(o in e)V(t+"["+o+"]",e[o],n,i)}function X(t){return st.isWindow(t)?t:9===t.nodeType&&t.defaultView}var J=[],Q=t.document,Y=J.slice,K=J.concat,G=J.push,Z=J.indexOf,tt={},et=tt.toString,nt=tt.hasOwnProperty,it={},ot="2.2.0",st=function(t,e){return new st.fn.init(t,e)},rt=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,at=/^-ms-/,lt=/-([\da-z])/gi,ct=function(t,e){return e.toUpperCase()};st.fn=st.prototype={jquery:ot,constructor:st,selector:"",length:0,toArray:function(){return Y.call(this)},get:function(t){return null!=t?0>t?this[t+this.length]:this[t]:Y.call(this)},pushStack:function(t){var e=st.merge(this.constructor(),t);return e.prevObject=this,e.context=this.context,e},each:function(t){return st.each(this,t)},map:function(t){return this.pushStack(st.map(this,function(e,n){return t.call(e,n,e)}))},slice:function(){return this.pushStack(Y.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(t){var e=this.length,n=+t+(0>t?e:0);return this.pushStack(n>=0&&e>n?[this[n]]:[])},end:function(){return this.prevObject||this.constructor()},push:G,sort:J.sort,splice:J.splice},st.extend=st.fn.extend=function(){var t,e,n,i,o,s,r=arguments[0]||{},a=1,l=arguments.length,c=!1;for("boolean"==typeof r&&(c=r,r=arguments[a]||{},a++),"object"==typeof r||st.isFunction(r)||(r={}),a===l&&(r=this,a--);l>a;a++)if(null!=(t=arguments[a]))for(e in t)n=r[e],i=t[e],r!==i&&(c&&i&&(st.isPlainObject(i)||(o=st.isArray(i)))?(o?(o=!1,s=n&&st.isArray(n)?n:[]):s=n&&st.isPlainObject(n)?n:{},r[e]=st.extend(c,s,i)):void 0!==i&&(r[e]=i));return r},st.extend({expando:"jQuery"+(ot+Math.random()).replace(/\D/g,""),isReady:!0,error:function(t){throw new Error(t)},noop:function(){},isFunction:function(t){return"function"===st.type(t)},isArray:Array.isArray,isWindow:function(t){return null!=t&&t===t.window},isNumeric:function(t){var e=t&&t.toString();return!st.isArray(t)&&e-parseFloat(e)+1>=0},isPlainObject:function(t){return"object"!==st.type(t)||t.nodeType||st.isWindow(t)?!1:!t.constructor||nt.call(t.constructor.prototype,"isPrototypeOf")},isEmptyObject:function(t){var e;for(e in t)return!1;return!0},type:function(t){return null==t?t+"":"object"==typeof t||"function"==typeof t?tt[et.call(t)]||"object":typeof t},globalEval:function(t){var e,n=eval;t=st.trim(t),t&&(1===t.indexOf("use strict")?(e=Q.createElement("script"),e.text=t,Q.head.appendChild(e).parentNode.removeChild(e)):n(t))},camelCase:function(t){return t.replace(at,"ms-").replace(lt,ct)},nodeName:function(t,e){return t.nodeName&&t.nodeName.toLowerCase()===e.toLowerCase()},each:function(t,e){var i,o=0;if(n(t))for(i=t.length;i>o&&e.call(t[o],o,t[o])!==!1;o++);else for(o in t)if(e.call(t[o],o,t[o])===!1)break;return t},trim:function(t){return null==t?"":(t+"").replace(rt,"")},makeArray:function(t,e){var i=e||[];return null!=t&&(n(Object(t))?st.merge(i,"string"==typeof t?[t]:t):G.call(i,t)),i},inArray:function(t,e,n){return null==e?-1:Z.call(e,t,n)},merge:function(t,e){for(var n=+e.length,i=0,o=t.length;n>i;i++)t[o++]=e[i];return t.length=o,t},grep:function(t,e,n){for(var i,o=[],s=0,r=t.length,a=!n;r>s;s++)i=!e(t[s],s),i!==a&&o.push(t[s]);return o},map:function(t,e,i){var o,s,r=0,a=[];if(n(t))for(o=t.length;o>r;r++)s=e(t[r],r,i),null!=s&&a.push(s);else for(r in t)s=e(t[r],r,i),null!=s&&a.push(s);return K.apply([],a)},guid:1,proxy:function(t,e){var n,i,o;return"string"==typeof e&&(n=t[e],e=t,t=n),st.isFunction(t)?(i=Y.call(arguments,2),o=function(){return t.apply(e||this,i.concat(Y.call(arguments)))},o.guid=t.guid=t.guid||st.guid++,o):void 0},now:Date.now,support:it}),"function"==typeof Symbol&&(st.fn[Symbol.iterator]=J[Symbol.iterator]),st.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),function(t,e){tt["[object "+e+"]"]=e.toLowerCase()});var ht=function(t){function e(t,e,n,i){var o,s,r,a,l,c,u,d,f=e&&e.ownerDocument,m=e?e.nodeType:9;if(n=n||[],"string"!=typeof t||!t||1!==m&&9!==m&&11!==m)return n;if(!i&&((e?e.ownerDocument||e:H)!==j&&D(e),e=e||j,I)){if(11!==m&&(c=vt.exec(t)))if(o=c[1]){if(9===m){if(!(r=e.getElementById(o)))return n;if(r.id===o)return n.push(r),n}else if(f&&(r=f.getElementById(o))&&R(e,r)&&r.id===o)return n.push(r),n}else{if(c[2])return G.apply(n,e.getElementsByTagName(t)),n;if((o=c[3])&&w.getElementsByClassName&&e.getElementsByClassName)return G.apply(n,e.getElementsByClassName(o)),n}if(w.qsa&&!W[t+" "]&&(!O||!O.test(t))){if(1!==m)f=e,d=t;else if("object"!==e.nodeName.toLowerCase()){for((a=e.getAttribute("id"))?a=a.replace(bt,"\\$&"):e.setAttribute("id",a=q),u=E(t),s=u.length,l=pt.test(a)?"#"+a:"[id='"+a+"']";s--;)u[s]=l+" "+p(u[s]);d=u.join(","),f=yt.test(t)&&h(e.parentNode)||e}if(d)try{return G.apply(n,f.querySelectorAll(d)),n}catch(g){}finally{a===q&&e.removeAttribute("id")}}}return _(t.replace(at,"$1"),e,n,i)}function n(){function t(n,i){return e.push(n+" ")>C.cacheLength&&delete t[e.shift()],t[n+" "]=i}var e=[];return t}function i(t){return t[q]=!0,t}function o(t){var e=j.createElement("div");try{return!!t(e)}catch(n){return!1}finally{e.parentNode&&e.parentNode.removeChild(e),e=null}}function s(t,e){for(var n=t.split("|"),i=n.length;i--;)C.attrHandle[n[i]]=e}function r(t,e){var n=e&&t,i=n&&1===t.nodeType&&1===e.nodeType&&(~e.sourceIndex||X)-(~t.sourceIndex||X);if(i)return i;if(n)for(;n=n.nextSibling;)if(n===e)return-1;return t?1:-1}function a(t){return function(e){var n=e.nodeName.toLowerCase();return"input"===n&&e.type===t}}function l(t){return function(e){var n=e.nodeName.toLowerCase();return("input"===n||"button"===n)&&e.type===t}}function c(t){return i(function(e){return e=+e,i(function(n,i){for(var o,s=t([],n.length,e),r=s.length;r--;)n[o=s[r]]&&(n[o]=!(i[o]=n[o]))})})}function h(t){return t&&"undefined"!=typeof t.getElementsByTagName&&t}function u(){}function p(t){for(var e=0,n=t.length,i="";n>e;e++)i+=t[e].value;return i}function d(t,e,n){var i=e.dir,o=n&&"parentNode"===i,s=M++;return e.first?function(e,n,s){for(;e=e[i];)if(1===e.nodeType||o)return t(e,n,s)}:function(e,n,r){var a,l,c,h=[F,s];if(r){for(;e=e[i];)if((1===e.nodeType||o)&&t(e,n,r))return!0}else for(;e=e[i];)if(1===e.nodeType||o){if(c=e[q]||(e[q]={}),l=c[e.uniqueID]||(c[e.uniqueID]={}),(a=l[i])&&a[0]===F&&a[1]===s)return h[2]=a[2];if(l[i]=h,h[2]=t(e,n,r))return!0}}}function f(t){return t.length>1?function(e,n,i){for(var o=t.length;o--;)if(!t[o](e,n,i))return!1;return!0}:t[0]}function m(t,n,i){for(var o=0,s=n.length;s>o;o++)e(t,n[o],i);return i}function g(t,e,n,i,o){for(var s,r=[],a=0,l=t.length,c=null!=e;l>a;a++)(s=t[a])&&(n&&!n(s,i,o)||(r.push(s),c&&e.push(a)));return r}function v(t,e,n,o,s,r){return o&&!o[q]&&(o=v(o)),s&&!s[q]&&(s=v(s,r)),i(function(i,r,a,l){var c,h,u,p=[],d=[],f=r.length,v=i||m(e||"*",a.nodeType?[a]:a,[]),y=!t||!i&&e?v:g(v,p,t,a,l),b=n?s||(i?t:f||o)?[]:r:y;if(n&&n(y,b,a,l),o)for(c=g(b,d),o(c,[],a,l),h=c.length;h--;)(u=c[h])&&(b[d[h]]=!(y[d[h]]=u));if(i){if(s||t){if(s){for(c=[],h=b.length;h--;)(u=b[h])&&c.push(y[h]=u);s(null,b=[],c,l)}for(h=b.length;h--;)(u=b[h])&&(c=s?tt(i,u):p[h])>-1&&(i[c]=!(r[c]=u))}}else b=g(b===r?b.splice(f,b.length):b),s?s(null,r,b,l):G.apply(r,b)})}function y(t){for(var e,n,i,o=t.length,s=C.relative[t[0].type],r=s||C.relative[" "],a=s?1:0,l=d(function(t){return t===e},r,!0),c=d(function(t){return tt(e,t)>-1},r,!0),h=[function(t,n,i){var o=!s&&(i||n!==S)||((e=n).nodeType?l(t,n,i):c(t,n,i));return e=null,o}];o>a;a++)if(n=C.relative[t[a].type])h=[d(f(h),n)];else{if(n=C.filter[t[a].type].apply(null,t[a].matches),n[q]){for(i=++a;o>i&&!C.relative[t[i].type];i++);return v(a>1&&f(h),a>1&&p(t.slice(0,a-1).concat({value:" "===t[a-2].type?"*":""})).replace(at,"$1"),n,i>a&&y(t.slice(a,i)),o>i&&y(t=t.slice(i)),o>i&&p(t))}h.push(n)}return f(h)}function b(t,n){var o=n.length>0,s=t.length>0,r=function(i,r,a,l,c){var h,u,p,d=0,f="0",m=i&&[],v=[],y=S,b=i||s&&C.find.TAG("*",c),x=F+=null==y?1:Math.random()||.1,w=b.length;for(c&&(S=r===j||r||c);f!==w&&null!=(h=b[f]);f++){if(s&&h){for(u=0,r||h.ownerDocument===j||(D(h),a=!I);p=t[u++];)if(p(h,r||j,a)){l.push(h);break}c&&(F=x)}o&&((h=!p&&h)&&d--,i&&m.push(h))}if(d+=f,o&&f!==d){for(u=0;p=n[u++];)p(m,v,r,a);if(i){if(d>0)for(;f--;)m[f]||v[f]||(v[f]=Y.call(l));v=g(v)}G.apply(l,v),c&&!i&&v.length>0&&d+n.length>1&&e.uniqueSort(l)}return c&&(F=x,S=y),m};return o?i(r):r}var x,w,C,k,T,E,$,_,S,A,N,D,j,L,I,O,P,B,R,q="sizzle"+1*new Date,H=t.document,F=0,M=0,z=n(),U=n(),W=n(),V=function(t,e){return t===e&&(N=!0),0},X=1<<31,J={}.hasOwnProperty,Q=[],Y=Q.pop,K=Q.push,G=Q.push,Z=Q.slice,tt=function(t,e){for(var n=0,i=t.length;i>n;n++)if(t[n]===e)return n;return-1},et="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",nt="[\\x20\\t\\r\\n\\f]",it="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",ot="\\["+nt+"*("+it+")(?:"+nt+"*([*^$|!~]?=)"+nt+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+it+"))|)"+nt+"*\\]",st=":("+it+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+ot+")*)|.*)\\)|)",rt=new RegExp(nt+"+","g"),at=new RegExp("^"+nt+"+|((?:^|[^\\\\])(?:\\\\.)*)"+nt+"+$","g"),lt=new RegExp("^"+nt+"*,"+nt+"*"),ct=new RegExp("^"+nt+"*([>+~]|"+nt+")"+nt+"*"),ht=new RegExp("="+nt+"*([^\\]'\"]*?)"+nt+"*\\]","g"),ut=new RegExp(st),pt=new RegExp("^"+it+"$"),dt={ID:new RegExp("^#("+it+")"),CLASS:new RegExp("^\\.("+it+")"),TAG:new RegExp("^("+it+"|[*])"),ATTR:new RegExp("^"+ot),PSEUDO:new RegExp("^"+st),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+nt+"*(even|odd|(([+-]|)(\\d*)n|)"+nt+"*(?:([+-]|)"+nt+"*(\\d+)|))"+nt+"*\\)|)","i"),bool:new RegExp("^(?:"+et+")$","i"),needsContext:new RegExp("^"+nt+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+nt+"*((?:-\\d)?\\d*)"+nt+"*\\)|)(?=[^-]|$)","i")},ft=/^(?:input|select|textarea|button)$/i,mt=/^h\d$/i,gt=/^[^{]+\{\s*\[native \w/,vt=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,yt=/[+~]/,bt=/'|\\/g,xt=new RegExp("\\\\([\\da-f]{1,6}"+nt+"?|("+nt+")|.)","ig"),wt=function(t,e,n){var i="0x"+e-65536;return i!==i||n?e:0>i?String.fromCharCode(i+65536):String.fromCharCode(i>>10|55296,1023&i|56320)},Ct=function(){D()};try{G.apply(Q=Z.call(H.childNodes),H.childNodes),Q[H.childNodes.length].nodeType}catch(kt){G={apply:Q.length?function(t,e){K.apply(t,Z.call(e))}:function(t,e){for(var n=t.length,i=0;t[n++]=e[i++];);t.length=n-1}}}w=e.support={},T=e.isXML=function(t){var e=t&&(t.ownerDocument||t).documentElement;return e?"HTML"!==e.nodeName:!1},D=e.setDocument=function(t){var e,n,i=t?t.ownerDocument||t:H;return i!==j&&9===i.nodeType&&i.documentElement?(j=i,L=j.documentElement,I=!T(j),(n=j.defaultView)&&n.top!==n&&(n.addEventListener?n.addEventListener("unload",Ct,!1):n.attachEvent&&n.attachEvent("onunload",Ct)),w.attributes=o(function(t){return t.className="i",!t.getAttribute("className")}),w.getElementsByTagName=o(function(t){return t.appendChild(j.createComment("")),!t.getElementsByTagName("*").length}),w.getElementsByClassName=gt.test(j.getElementsByClassName),w.getById=o(function(t){return L.appendChild(t).id=q,!j.getElementsByName||!j.getElementsByName(q).length}),w.getById?(C.find.ID=function(t,e){if("undefined"!=typeof e.getElementById&&I){var n=e.getElementById(t);return n?[n]:[]}},C.filter.ID=function(t){var e=t.replace(xt,wt);return function(t){return t.getAttribute("id")===e}}):(delete C.find.ID,C.filter.ID=function(t){var e=t.replace(xt,wt);return function(t){var n="undefined"!=typeof t.getAttributeNode&&t.getAttributeNode("id");return n&&n.value===e}}),C.find.TAG=w.getElementsByTagName?function(t,e){return"undefined"!=typeof e.getElementsByTagName?e.getElementsByTagName(t):w.qsa?e.querySelectorAll(t):void 0}:function(t,e){var n,i=[],o=0,s=e.getElementsByTagName(t);if("*"===t){for(;n=s[o++];)1===n.nodeType&&i.push(n);return i}return s},C.find.CLASS=w.getElementsByClassName&&function(t,e){return"undefined"!=typeof e.getElementsByClassName&&I?e.getElementsByClassName(t):void 0},P=[],O=[],(w.qsa=gt.test(j.querySelectorAll))&&(o(function(t){L.appendChild(t).innerHTML="<a id='"+q+"'></a><select id='"+q+"-\r\\' msallowcapture=''><option selected=''></option></select>",t.querySelectorAll("[msallowcapture^='']").length&&O.push("[*^$]="+nt+"*(?:''|\"\")"),t.querySelectorAll("[selected]").length||O.push("\\["+nt+"*(?:value|"+et+")"),t.querySelectorAll("[id~="+q+"-]").length||O.push("~="),t.querySelectorAll(":checked").length||O.push(":checked"),t.querySelectorAll("a#"+q+"+*").length||O.push(".#.+[+~]")}),o(function(t){var e=j.createElement("input");e.setAttribute("type","hidden"),t.appendChild(e).setAttribute("name","D"),t.querySelectorAll("[name=d]").length&&O.push("name"+nt+"*[*^$|!~]?="),t.querySelectorAll(":enabled").length||O.push(":enabled",":disabled"),t.querySelectorAll("*,:x"),O.push(",.*:")})),(w.matchesSelector=gt.test(B=L.matches||L.webkitMatchesSelector||L.mozMatchesSelector||L.oMatchesSelector||L.msMatchesSelector))&&o(function(t){w.disconnectedMatch=B.call(t,"div"),B.call(t,"[s!='']:x"),P.push("!=",st)}),O=O.length&&new RegExp(O.join("|")),P=P.length&&new RegExp(P.join("|")),e=gt.test(L.compareDocumentPosition),R=e||gt.test(L.contains)?function(t,e){var n=9===t.nodeType?t.documentElement:t,i=e&&e.parentNode;return t===i||!(!i||1!==i.nodeType||!(n.contains?n.contains(i):t.compareDocumentPosition&&16&t.compareDocumentPosition(i)))}:function(t,e){if(e)for(;e=e.parentNode;)if(e===t)return!0;return!1},V=e?function(t,e){if(t===e)return N=!0,0;var n=!t.compareDocumentPosition-!e.compareDocumentPosition;return n?n:(n=(t.ownerDocument||t)===(e.ownerDocument||e)?t.compareDocumentPosition(e):1,1&n||!w.sortDetached&&e.compareDocumentPosition(t)===n?t===j||t.ownerDocument===H&&R(H,t)?-1:e===j||e.ownerDocument===H&&R(H,e)?1:A?tt(A,t)-tt(A,e):0:4&n?-1:1)}:function(t,e){if(t===e)return N=!0,0;var n,i=0,o=t.parentNode,s=e.parentNode,a=[t],l=[e];if(!o||!s)return t===j?-1:e===j?1:o?-1:s?1:A?tt(A,t)-tt(A,e):0;if(o===s)return r(t,e);for(n=t;n=n.parentNode;)a.unshift(n);for(n=e;n=n.parentNode;)l.unshift(n);for(;a[i]===l[i];)i++;return i?r(a[i],l[i]):a[i]===H?-1:l[i]===H?1:0},j):j},e.matches=function(t,n){return e(t,null,null,n)},e.matchesSelector=function(t,n){if((t.ownerDocument||t)!==j&&D(t),n=n.replace(ht,"='$1']"),w.matchesSelector&&I&&!W[n+" "]&&(!P||!P.test(n))&&(!O||!O.test(n)))try{var i=B.call(t,n);if(i||w.disconnectedMatch||t.document&&11!==t.document.nodeType)return i}catch(o){}return e(n,j,null,[t]).length>0},e.contains=function(t,e){return(t.ownerDocument||t)!==j&&D(t),R(t,e)},e.attr=function(t,e){(t.ownerDocument||t)!==j&&D(t);var n=C.attrHandle[e.toLowerCase()],i=n&&J.call(C.attrHandle,e.toLowerCase())?n(t,e,!I):void 0;return void 0!==i?i:w.attributes||!I?t.getAttribute(e):(i=t.getAttributeNode(e))&&i.specified?i.value:null},e.error=function(t){throw new Error("Syntax error, unrecognized expression: "+t)},e.uniqueSort=function(t){var e,n=[],i=0,o=0;if(N=!w.detectDuplicates,A=!w.sortStable&&t.slice(0),t.sort(V),N){for(;e=t[o++];)e===t[o]&&(i=n.push(o));for(;i--;)t.splice(n[i],1)}return A=null,t},k=e.getText=function(t){var e,n="",i=0,o=t.nodeType;if(o){if(1===o||9===o||11===o){if("string"==typeof t.textContent)return t.textContent;for(t=t.firstChild;t;t=t.nextSibling)n+=k(t)}else if(3===o||4===o)return t.nodeValue}else for(;e=t[i++];)n+=k(e);return n},C=e.selectors={cacheLength:50,createPseudo:i,match:dt,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(t){return t[1]=t[1].replace(xt,wt),t[3]=(t[3]||t[4]||t[5]||"").replace(xt,wt),"~="===t[2]&&(t[3]=" "+t[3]+" "),t.slice(0,4)},CHILD:function(t){return t[1]=t[1].toLowerCase(),"nth"===t[1].slice(0,3)?(t[3]||e.error(t[0]),t[4]=+(t[4]?t[5]+(t[6]||1):2*("even"===t[3]||"odd"===t[3])),t[5]=+(t[7]+t[8]||"odd"===t[3])):t[3]&&e.error(t[0]),t},PSEUDO:function(t){var e,n=!t[6]&&t[2];return dt.CHILD.test(t[0])?null:(t[3]?t[2]=t[4]||t[5]||"":n&&ut.test(n)&&(e=E(n,!0))&&(e=n.indexOf(")",n.length-e)-n.length)&&(t[0]=t[0].slice(0,e),t[2]=n.slice(0,e)),t.slice(0,3))}},filter:{TAG:function(t){var e=t.replace(xt,wt).toLowerCase();return"*"===t?function(){return!0}:function(t){return t.nodeName&&t.nodeName.toLowerCase()===e}},CLASS:function(t){var e=z[t+" "];return e||(e=new RegExp("(^|"+nt+")"+t+"("+nt+"|$)"))&&z(t,function(t){return e.test("string"==typeof t.className&&t.className||"undefined"!=typeof t.getAttribute&&t.getAttribute("class")||"")})},ATTR:function(t,n,i){return function(o){var s=e.attr(o,t);return null==s?"!="===n:n?(s+="","="===n?s===i:"!="===n?s!==i:"^="===n?i&&0===s.indexOf(i):"*="===n?i&&s.indexOf(i)>-1:"$="===n?i&&s.slice(-i.length)===i:"~="===n?(" "+s.replace(rt," ")+" ").indexOf(i)>-1:"|="===n?s===i||s.slice(0,i.length+1)===i+"-":!1):!0}},CHILD:function(t,e,n,i,o){var s="nth"!==t.slice(0,3),r="last"!==t.slice(-4),a="of-type"===e;return 1===i&&0===o?function(t){return!!t.parentNode}:function(e,n,l){var c,h,u,p,d,f,m=s!==r?"nextSibling":"previousSibling",g=e.parentNode,v=a&&e.nodeName.toLowerCase(),y=!l&&!a,b=!1;if(g){if(s){for(;m;){for(p=e;p=p[m];)if(a?p.nodeName.toLowerCase()===v:1===p.nodeType)return!1;f=m="only"===t&&!f&&"nextSibling"}return!0}if(f=[r?g.firstChild:g.lastChild],r&&y){for(p=g,u=p[q]||(p[q]={}),h=u[p.uniqueID]||(u[p.uniqueID]={}),c=h[t]||[],d=c[0]===F&&c[1],b=d&&c[2],p=d&&g.childNodes[d];p=++d&&p&&p[m]||(b=d=0)||f.pop();)if(1===p.nodeType&&++b&&p===e){h[t]=[F,d,b];break}}else if(y&&(p=e,u=p[q]||(p[q]={}),h=u[p.uniqueID]||(u[p.uniqueID]={}),c=h[t]||[],d=c[0]===F&&c[1],b=d),b===!1)for(;(p=++d&&p&&p[m]||(b=d=0)||f.pop())&&((a?p.nodeName.toLowerCase()!==v:1!==p.nodeType)||!++b||(y&&(u=p[q]||(p[q]={}),h=u[p.uniqueID]||(u[p.uniqueID]={}),h[t]=[F,b]),p!==e)););return b-=o,b===i||b%i===0&&b/i>=0}}},PSEUDO:function(t,n){var o,s=C.pseudos[t]||C.setFilters[t.toLowerCase()]||e.error("unsupported pseudo: "+t);return s[q]?s(n):s.length>1?(o=[t,t,"",n],C.setFilters.hasOwnProperty(t.toLowerCase())?i(function(t,e){for(var i,o=s(t,n),r=o.length;r--;)i=tt(t,o[r]),t[i]=!(e[i]=o[r])}):function(t){return s(t,0,o)}):s}},pseudos:{not:i(function(t){var e=[],n=[],o=$(t.replace(at,"$1"));return o[q]?i(function(t,e,n,i){for(var s,r=o(t,null,i,[]),a=t.length;a--;)(s=r[a])&&(t[a]=!(e[a]=s))}):function(t,i,s){return e[0]=t,o(e,null,s,n),e[0]=null,!n.pop()}}),has:i(function(t){return function(n){return e(t,n).length>0}}),contains:i(function(t){return t=t.replace(xt,wt),function(e){return(e.textContent||e.innerText||k(e)).indexOf(t)>-1}}),lang:i(function(t){return pt.test(t||"")||e.error("unsupported lang: "+t),t=t.replace(xt,wt).toLowerCase(),function(e){var n;do if(n=I?e.lang:e.getAttribute("xml:lang")||e.getAttribute("lang"))return n=n.toLowerCase(),n===t||0===n.indexOf(t+"-");while((e=e.parentNode)&&1===e.nodeType);return!1}}),target:function(e){var n=t.location&&t.location.hash;return n&&n.slice(1)===e.id},root:function(t){return t===L},focus:function(t){return t===j.activeElement&&(!j.hasFocus||j.hasFocus())&&!!(t.type||t.href||~t.tabIndex)},enabled:function(t){return t.disabled===!1},disabled:function(t){return t.disabled===!0},checked:function(t){var e=t.nodeName.toLowerCase();return"input"===e&&!!t.checked||"option"===e&&!!t.selected},selected:function(t){return t.parentNode&&t.parentNode.selectedIndex,t.selected===!0},empty:function(t){for(t=t.firstChild;t;t=t.nextSibling)if(t.nodeType<6)return!1;return!0},parent:function(t){return!C.pseudos.empty(t)},header:function(t){return mt.test(t.nodeName)},input:function(t){return ft.test(t.nodeName)},button:function(t){var e=t.nodeName.toLowerCase();return"input"===e&&"button"===t.type||"button"===e},text:function(t){var e;return"input"===t.nodeName.toLowerCase()&&"text"===t.type&&(null==(e=t.getAttribute("type"))||"text"===e.toLowerCase())},first:c(function(){return[0]}),last:c(function(t,e){return[e-1]}),eq:c(function(t,e,n){return[0>n?n+e:n]}),even:c(function(t,e){for(var n=0;e>n;n+=2)t.push(n);
-return t}),odd:c(function(t,e){for(var n=1;e>n;n+=2)t.push(n);return t}),lt:c(function(t,e,n){for(var i=0>n?n+e:n;--i>=0;)t.push(i);return t}),gt:c(function(t,e,n){for(var i=0>n?n+e:n;++i<e;)t.push(i);return t})}},C.pseudos.nth=C.pseudos.eq;for(x in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})C.pseudos[x]=a(x);for(x in{submit:!0,reset:!0})C.pseudos[x]=l(x);return u.prototype=C.filters=C.pseudos,C.setFilters=new u,E=e.tokenize=function(t,n){var i,o,s,r,a,l,c,h=U[t+" "];if(h)return n?0:h.slice(0);for(a=t,l=[],c=C.preFilter;a;){i&&!(o=lt.exec(a))||(o&&(a=a.slice(o[0].length)||a),l.push(s=[])),i=!1,(o=ct.exec(a))&&(i=o.shift(),s.push({value:i,type:o[0].replace(at," ")}),a=a.slice(i.length));for(r in C.filter)!(o=dt[r].exec(a))||c[r]&&!(o=c[r](o))||(i=o.shift(),s.push({value:i,type:r,matches:o}),a=a.slice(i.length));if(!i)break}return n?a.length:a?e.error(t):U(t,l).slice(0)},$=e.compile=function(t,e){var n,i=[],o=[],s=W[t+" "];if(!s){for(e||(e=E(t)),n=e.length;n--;)s=y(e[n]),s[q]?i.push(s):o.push(s);s=W(t,b(o,i)),s.selector=t}return s},_=e.select=function(t,e,n,i){var o,s,r,a,l,c="function"==typeof t&&t,u=!i&&E(t=c.selector||t);if(n=n||[],1===u.length){if(s=u[0]=u[0].slice(0),s.length>2&&"ID"===(r=s[0]).type&&w.getById&&9===e.nodeType&&I&&C.relative[s[1].type]){if(e=(C.find.ID(r.matches[0].replace(xt,wt),e)||[])[0],!e)return n;c&&(e=e.parentNode),t=t.slice(s.shift().value.length)}for(o=dt.needsContext.test(t)?0:s.length;o--&&(r=s[o],!C.relative[a=r.type]);)if((l=C.find[a])&&(i=l(r.matches[0].replace(xt,wt),yt.test(s[0].type)&&h(e.parentNode)||e))){if(s.splice(o,1),t=i.length&&p(s),!t)return G.apply(n,i),n;break}}return(c||$(t,u))(i,e,!I,n,!e||yt.test(t)&&h(e.parentNode)||e),n},w.sortStable=q.split("").sort(V).join("")===q,w.detectDuplicates=!!N,D(),w.sortDetached=o(function(t){return 1&t.compareDocumentPosition(j.createElement("div"))}),o(function(t){return t.innerHTML="<a href='#'></a>","#"===t.firstChild.getAttribute("href")})||s("type|href|height|width",function(t,e,n){return n?void 0:t.getAttribute(e,"type"===e.toLowerCase()?1:2)}),w.attributes&&o(function(t){return t.innerHTML="<input/>",t.firstChild.setAttribute("value",""),""===t.firstChild.getAttribute("value")})||s("value",function(t,e,n){return n||"input"!==t.nodeName.toLowerCase()?void 0:t.defaultValue}),o(function(t){return null==t.getAttribute("disabled")})||s(et,function(t,e,n){var i;return n?void 0:t[e]===!0?e.toLowerCase():(i=t.getAttributeNode(e))&&i.specified?i.value:null}),e}(t);st.find=ht,st.expr=ht.selectors,st.expr[":"]=st.expr.pseudos,st.uniqueSort=st.unique=ht.uniqueSort,st.text=ht.getText,st.isXMLDoc=ht.isXML,st.contains=ht.contains;var ut=function(t,e,n){for(var i=[],o=void 0!==n;(t=t[e])&&9!==t.nodeType;)if(1===t.nodeType){if(o&&st(t).is(n))break;i.push(t)}return i},pt=function(t,e){for(var n=[];t;t=t.nextSibling)1===t.nodeType&&t!==e&&n.push(t);return n},dt=st.expr.match.needsContext,ft=/^<([\w-]+)\s*\/?>(?:<\/\1>|)$/,mt=/^.[^:#\[\.,]*$/;st.filter=function(t,e,n){var i=e[0];return n&&(t=":not("+t+")"),1===e.length&&1===i.nodeType?st.find.matchesSelector(i,t)?[i]:[]:st.find.matches(t,st.grep(e,function(t){return 1===t.nodeType}))},st.fn.extend({find:function(t){var e,n=this.length,i=[],o=this;if("string"!=typeof t)return this.pushStack(st(t).filter(function(){for(e=0;n>e;e++)if(st.contains(o[e],this))return!0}));for(e=0;n>e;e++)st.find(t,o[e],i);return i=this.pushStack(n>1?st.unique(i):i),i.selector=this.selector?this.selector+" "+t:t,i},filter:function(t){return this.pushStack(i(this,t||[],!1))},not:function(t){return this.pushStack(i(this,t||[],!0))},is:function(t){return!!i(this,"string"==typeof t&&dt.test(t)?st(t):t||[],!1).length}});var gt,vt=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,yt=st.fn.init=function(t,e,n){var i,o;if(!t)return this;if(n=n||gt,"string"==typeof t){if(i="<"===t[0]&&">"===t[t.length-1]&&t.length>=3?[null,t,null]:vt.exec(t),!i||!i[1]&&e)return!e||e.jquery?(e||n).find(t):this.constructor(e).find(t);if(i[1]){if(e=e instanceof st?e[0]:e,st.merge(this,st.parseHTML(i[1],e&&e.nodeType?e.ownerDocument||e:Q,!0)),ft.test(i[1])&&st.isPlainObject(e))for(i in e)st.isFunction(this[i])?this[i](e[i]):this.attr(i,e[i]);return this}return o=Q.getElementById(i[2]),o&&o.parentNode&&(this.length=1,this[0]=o),this.context=Q,this.selector=t,this}return t.nodeType?(this.context=this[0]=t,this.length=1,this):st.isFunction(t)?void 0!==n.ready?n.ready(t):t(st):(void 0!==t.selector&&(this.selector=t.selector,this.context=t.context),st.makeArray(t,this))};yt.prototype=st.fn,gt=st(Q);var bt=/^(?:parents|prev(?:Until|All))/,xt={children:!0,contents:!0,next:!0,prev:!0};st.fn.extend({has:function(t){var e=st(t,this),n=e.length;return this.filter(function(){for(var t=0;n>t;t++)if(st.contains(this,e[t]))return!0})},closest:function(t,e){for(var n,i=0,o=this.length,s=[],r=dt.test(t)||"string"!=typeof t?st(t,e||this.context):0;o>i;i++)for(n=this[i];n&&n!==e;n=n.parentNode)if(n.nodeType<11&&(r?r.index(n)>-1:1===n.nodeType&&st.find.matchesSelector(n,t))){s.push(n);break}return this.pushStack(s.length>1?st.uniqueSort(s):s)},index:function(t){return t?"string"==typeof t?Z.call(st(t),this[0]):Z.call(this,t.jquery?t[0]:t):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(t,e){return this.pushStack(st.uniqueSort(st.merge(this.get(),st(t,e))))},addBack:function(t){return this.add(null==t?this.prevObject:this.prevObject.filter(t))}}),st.each({parent:function(t){var e=t.parentNode;return e&&11!==e.nodeType?e:null},parents:function(t){return ut(t,"parentNode")},parentsUntil:function(t,e,n){return ut(t,"parentNode",n)},next:function(t){return o(t,"nextSibling")},prev:function(t){return o(t,"previousSibling")},nextAll:function(t){return ut(t,"nextSibling")},prevAll:function(t){return ut(t,"previousSibling")},nextUntil:function(t,e,n){return ut(t,"nextSibling",n)},prevUntil:function(t,e,n){return ut(t,"previousSibling",n)},siblings:function(t){return pt((t.parentNode||{}).firstChild,t)},children:function(t){return pt(t.firstChild)},contents:function(t){return t.contentDocument||st.merge([],t.childNodes)}},function(t,e){st.fn[t]=function(n,i){var o=st.map(this,e,n);return"Until"!==t.slice(-5)&&(i=n),i&&"string"==typeof i&&(o=st.filter(i,o)),this.length>1&&(xt[t]||st.uniqueSort(o),bt.test(t)&&o.reverse()),this.pushStack(o)}});var wt=/\S+/g;st.Callbacks=function(t){t="string"==typeof t?s(t):st.extend({},t);var e,n,i,o,r=[],a=[],l=-1,c=function(){for(o=t.once,i=e=!0;a.length;l=-1)for(n=a.shift();++l<r.length;)r[l].apply(n[0],n[1])===!1&&t.stopOnFalse&&(l=r.length,n=!1);t.memory||(n=!1),e=!1,o&&(r=n?[]:"")},h={add:function(){return r&&(n&&!e&&(l=r.length-1,a.push(n)),function i(e){st.each(e,function(e,n){st.isFunction(n)?t.unique&&h.has(n)||r.push(n):n&&n.length&&"string"!==st.type(n)&&i(n)})}(arguments),n&&!e&&c()),this},remove:function(){return st.each(arguments,function(t,e){for(var n;(n=st.inArray(e,r,n))>-1;)r.splice(n,1),l>=n&&l--}),this},has:function(t){return t?st.inArray(t,r)>-1:r.length>0},empty:function(){return r&&(r=[]),this},disable:function(){return o=a=[],r=n="",this},disabled:function(){return!r},lock:function(){return o=a=[],n||(r=n=""),this},locked:function(){return!!o},fireWith:function(t,n){return o||(n=n||[],n=[t,n.slice?n.slice():n],a.push(n),e||c()),this},fire:function(){return h.fireWith(this,arguments),this},fired:function(){return!!i}};return h},st.extend({Deferred:function(t){var e=[["resolve","done",st.Callbacks("once memory"),"resolved"],["reject","fail",st.Callbacks("once memory"),"rejected"],["notify","progress",st.Callbacks("memory")]],n="pending",i={state:function(){return n},always:function(){return o.done(arguments).fail(arguments),this},then:function(){var t=arguments;return st.Deferred(function(n){st.each(e,function(e,s){var r=st.isFunction(t[e])&&t[e];o[s[1]](function(){var t=r&&r.apply(this,arguments);t&&st.isFunction(t.promise)?t.promise().progress(n.notify).done(n.resolve).fail(n.reject):n[s[0]+"With"](this===i?n.promise():this,r?[t]:arguments)})}),t=null}).promise()},promise:function(t){return null!=t?st.extend(t,i):i}},o={};return i.pipe=i.then,st.each(e,function(t,s){var r=s[2],a=s[3];i[s[1]]=r.add,a&&r.add(function(){n=a},e[1^t][2].disable,e[2][2].lock),o[s[0]]=function(){return o[s[0]+"With"](this===o?i:this,arguments),this},o[s[0]+"With"]=r.fireWith}),i.promise(o),t&&t.call(o,o),o},when:function(t){var e,n,i,o=0,s=Y.call(arguments),r=s.length,a=1!==r||t&&st.isFunction(t.promise)?r:0,l=1===a?t:st.Deferred(),c=function(t,n,i){return function(o){n[t]=this,i[t]=arguments.length>1?Y.call(arguments):o,i===e?l.notifyWith(n,i):--a||l.resolveWith(n,i)}};if(r>1)for(e=new Array(r),n=new Array(r),i=new Array(r);r>o;o++)s[o]&&st.isFunction(s[o].promise)?s[o].promise().progress(c(o,n,e)).done(c(o,i,s)).fail(l.reject):--a;return a||l.resolveWith(i,s),l.promise()}});var Ct;st.fn.ready=function(t){return st.ready.promise().done(t),this},st.extend({isReady:!1,readyWait:1,holdReady:function(t){t?st.readyWait++:st.ready(!0)},ready:function(t){(t===!0?--st.readyWait:st.isReady)||(st.isReady=!0,t!==!0&&--st.readyWait>0||(Ct.resolveWith(Q,[st]),st.fn.triggerHandler&&(st(Q).triggerHandler("ready"),st(Q).off("ready"))))}}),st.ready.promise=function(e){return Ct||(Ct=st.Deferred(),"complete"===Q.readyState||"loading"!==Q.readyState&&!Q.documentElement.doScroll?t.setTimeout(st.ready):(Q.addEventListener("DOMContentLoaded",r),t.addEventListener("load",r))),Ct.promise(e)},st.ready.promise();var kt=function(t,e,n,i,o,s,r){var a=0,l=t.length,c=null==n;if("object"===st.type(n)){o=!0;for(a in n)kt(t,e,a,n[a],!0,s,r)}else if(void 0!==i&&(o=!0,st.isFunction(i)||(r=!0),c&&(r?(e.call(t,i),e=null):(c=e,e=function(t,e,n){return c.call(st(t),n)})),e))for(;l>a;a++)e(t[a],n,r?i:i.call(t[a],a,e(t[a],n)));return o?t:c?e.call(t):l?e(t[0],n):s},Tt=function(t){return 1===t.nodeType||9===t.nodeType||!+t.nodeType};a.uid=1,a.prototype={register:function(t,e){var n=e||{};return t.nodeType?t[this.expando]=n:Object.defineProperty(t,this.expando,{value:n,writable:!0,configurable:!0}),t[this.expando]},cache:function(t){if(!Tt(t))return{};var e=t[this.expando];return e||(e={},Tt(t)&&(t.nodeType?t[this.expando]=e:Object.defineProperty(t,this.expando,{value:e,configurable:!0}))),e},set:function(t,e,n){var i,o=this.cache(t);if("string"==typeof e)o[e]=n;else for(i in e)o[i]=e[i];return o},get:function(t,e){return void 0===e?this.cache(t):t[this.expando]&&t[this.expando][e]},access:function(t,e,n){var i;return void 0===e||e&&"string"==typeof e&&void 0===n?(i=this.get(t,e),void 0!==i?i:this.get(t,st.camelCase(e))):(this.set(t,e,n),void 0!==n?n:e)},remove:function(t,e){var n,i,o,s=t[this.expando];if(void 0!==s){if(void 0===e)this.register(t);else{st.isArray(e)?i=e.concat(e.map(st.camelCase)):(o=st.camelCase(e),e in s?i=[e,o]:(i=o,i=i in s?[i]:i.match(wt)||[])),n=i.length;for(;n--;)delete s[i[n]]}(void 0===e||st.isEmptyObject(s))&&(t.nodeType?t[this.expando]=void 0:delete t[this.expando])}},hasData:function(t){var e=t[this.expando];return void 0!==e&&!st.isEmptyObject(e)}};var Et=new a,$t=new a,_t=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,St=/[A-Z]/g;st.extend({hasData:function(t){return $t.hasData(t)||Et.hasData(t)},data:function(t,e,n){return $t.access(t,e,n)},removeData:function(t,e){$t.remove(t,e)},_data:function(t,e,n){return Et.access(t,e,n)},_removeData:function(t,e){Et.remove(t,e)}}),st.fn.extend({data:function(t,e){var n,i,o,s=this[0],r=s&&s.attributes;if(void 0===t){if(this.length&&(o=$t.get(s),1===s.nodeType&&!Et.get(s,"hasDataAttrs"))){for(n=r.length;n--;)r[n]&&(i=r[n].name,0===i.indexOf("data-")&&(i=st.camelCase(i.slice(5)),l(s,i,o[i])));Et.set(s,"hasDataAttrs",!0)}return o}return"object"==typeof t?this.each(function(){$t.set(this,t)}):kt(this,function(e){var n,i;if(s&&void 0===e){if(n=$t.get(s,t)||$t.get(s,t.replace(St,"-$&").toLowerCase()),void 0!==n)return n;if(i=st.camelCase(t),n=$t.get(s,i),void 0!==n)return n;if(n=l(s,i,void 0),void 0!==n)return n}else i=st.camelCase(t),this.each(function(){var n=$t.get(this,i);$t.set(this,i,e),t.indexOf("-")>-1&&void 0!==n&&$t.set(this,t,e)})},null,e,arguments.length>1,null,!0)},removeData:function(t){return this.each(function(){$t.remove(this,t)})}}),st.extend({queue:function(t,e,n){var i;return t?(e=(e||"fx")+"queue",i=Et.get(t,e),n&&(!i||st.isArray(n)?i=Et.access(t,e,st.makeArray(n)):i.push(n)),i||[]):void 0},dequeue:function(t,e){e=e||"fx";var n=st.queue(t,e),i=n.length,o=n.shift(),s=st._queueHooks(t,e),r=function(){st.dequeue(t,e)};"inprogress"===o&&(o=n.shift(),i--),o&&("fx"===e&&n.unshift("inprogress"),delete s.stop,o.call(t,r,s)),!i&&s&&s.empty.fire()},_queueHooks:function(t,e){var n=e+"queueHooks";return Et.get(t,n)||Et.access(t,n,{empty:st.Callbacks("once memory").add(function(){Et.remove(t,[e+"queue",n])})})}}),st.fn.extend({queue:function(t,e){var n=2;return"string"!=typeof t&&(e=t,t="fx",n--),arguments.length<n?st.queue(this[0],t):void 0===e?this:this.each(function(){var n=st.queue(this,t,e);st._queueHooks(this,t),"fx"===t&&"inprogress"!==n[0]&&st.dequeue(this,t)})},dequeue:function(t){return this.each(function(){st.dequeue(this,t)})},clearQueue:function(t){return this.queue(t||"fx",[])},promise:function(t,e){var n,i=1,o=st.Deferred(),s=this,r=this.length,a=function(){--i||o.resolveWith(s,[s])};for("string"!=typeof t&&(e=t,t=void 0),t=t||"fx";r--;)n=Et.get(s[r],t+"queueHooks"),n&&n.empty&&(i++,n.empty.add(a));return a(),o.promise(e)}});var At=/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,Nt=new RegExp("^(?:([+-])=|)("+At+")([a-z%]*)$","i"),Dt=["Top","Right","Bottom","Left"],jt=function(t,e){return t=e||t,"none"===st.css(t,"display")||!st.contains(t.ownerDocument,t)},Lt=/^(?:checkbox|radio)$/i,It=/<([\w:-]+)/,Ot=/^$|\/(?:java|ecma)script/i,Pt={option:[1,"<select multiple='multiple'>","</select>"],thead:[1,"<table>","</table>"],col:[2,"<table><colgroup>","</colgroup></table>"],tr:[2,"<table><tbody>","</tbody></table>"],td:[3,"<table><tbody><tr>","</tr></tbody></table>"],_default:[0,"",""]};Pt.optgroup=Pt.option,Pt.tbody=Pt.tfoot=Pt.colgroup=Pt.caption=Pt.thead,Pt.th=Pt.td;var Bt=/<|&#?\w+;/;!function(){var t=Q.createDocumentFragment(),e=t.appendChild(Q.createElement("div")),n=Q.createElement("input");n.setAttribute("type","radio"),n.setAttribute("checked","checked"),n.setAttribute("name","t"),e.appendChild(n),it.checkClone=e.cloneNode(!0).cloneNode(!0).lastChild.checked,e.innerHTML="<textarea>x</textarea>",it.noCloneChecked=!!e.cloneNode(!0).lastChild.defaultValue}();var Rt=/^key/,qt=/^(?:mouse|pointer|contextmenu|drag|drop)|click/,Ht=/^([^.]*)(?:\.(.+)|)/;st.event={global:{},add:function(t,e,n,i,o){var s,r,a,l,c,h,u,p,d,f,m,g=Et.get(t);if(g)for(n.handler&&(s=n,n=s.handler,o=s.selector),n.guid||(n.guid=st.guid++),(l=g.events)||(l=g.events={}),(r=g.handle)||(r=g.handle=function(e){return"undefined"!=typeof st&&st.event.triggered!==e.type?st.event.dispatch.apply(t,arguments):void 0}),e=(e||"").match(wt)||[""],c=e.length;c--;)a=Ht.exec(e[c])||[],d=m=a[1],f=(a[2]||"").split(".").sort(),d&&(u=st.event.special[d]||{},d=(o?u.delegateType:u.bindType)||d,u=st.event.special[d]||{},h=st.extend({type:d,origType:m,data:i,handler:n,guid:n.guid,selector:o,needsContext:o&&st.expr.match.needsContext.test(o),namespace:f.join(".")},s),(p=l[d])||(p=l[d]=[],p.delegateCount=0,u.setup&&u.setup.call(t,i,f,r)!==!1||t.addEventListener&&t.addEventListener(d,r)),u.add&&(u.add.call(t,h),h.handler.guid||(h.handler.guid=n.guid)),o?p.splice(p.delegateCount++,0,h):p.push(h),st.event.global[d]=!0)},remove:function(t,e,n,i,o){var s,r,a,l,c,h,u,p,d,f,m,g=Et.hasData(t)&&Et.get(t);if(g&&(l=g.events)){for(e=(e||"").match(wt)||[""],c=e.length;c--;)if(a=Ht.exec(e[c])||[],d=m=a[1],f=(a[2]||"").split(".").sort(),d){for(u=st.event.special[d]||{},d=(i?u.delegateType:u.bindType)||d,p=l[d]||[],a=a[2]&&new RegExp("(^|\\.)"+f.join("\\.(?:.*\\.|)")+"(\\.|$)"),r=s=p.length;s--;)h=p[s],!o&&m!==h.origType||n&&n.guid!==h.guid||a&&!a.test(h.namespace)||i&&i!==h.selector&&("**"!==i||!h.selector)||(p.splice(s,1),h.selector&&p.delegateCount--,u.remove&&u.remove.call(t,h));r&&!p.length&&(u.teardown&&u.teardown.call(t,f,g.handle)!==!1||st.removeEvent(t,d,g.handle),delete l[d])}else for(d in l)st.event.remove(t,d+e[c],n,i,!0);st.isEmptyObject(l)&&Et.remove(t,"handle events")}},dispatch:function(t){t=st.event.fix(t);var e,n,i,o,s,r=[],a=Y.call(arguments),l=(Et.get(this,"events")||{})[t.type]||[],c=st.event.special[t.type]||{};if(a[0]=t,t.delegateTarget=this,!c.preDispatch||c.preDispatch.call(this,t)!==!1){for(r=st.event.handlers.call(this,t,l),e=0;(o=r[e++])&&!t.isPropagationStopped();)for(t.currentTarget=o.elem,n=0;(s=o.handlers[n++])&&!t.isImmediatePropagationStopped();)t.rnamespace&&!t.rnamespace.test(s.namespace)||(t.handleObj=s,t.data=s.data,i=((st.event.special[s.origType]||{}).handle||s.handler).apply(o.elem,a),void 0!==i&&(t.result=i)===!1&&(t.preventDefault(),t.stopPropagation()));return c.postDispatch&&c.postDispatch.call(this,t),t.result}},handlers:function(t,e){var n,i,o,s,r=[],a=e.delegateCount,l=t.target;if(a&&l.nodeType&&("click"!==t.type||isNaN(t.button)||t.button<1))for(;l!==this;l=l.parentNode||this)if(1===l.nodeType&&(l.disabled!==!0||"click"!==t.type)){for(i=[],n=0;a>n;n++)s=e[n],o=s.selector+" ",void 0===i[o]&&(i[o]=s.needsContext?st(o,this).index(l)>-1:st.find(o,this,null,[l]).length),i[o]&&i.push(s);i.length&&r.push({elem:l,handlers:i})}return a<e.length&&r.push({elem:this,handlers:e.slice(a)}),r},props:"altKey bubbles cancelable ctrlKey currentTarget detail eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),fixHooks:{},keyHooks:{props:"char charCode key keyCode".split(" "),filter:function(t,e){return null==t.which&&(t.which=null!=e.charCode?e.charCode:e.keyCode),t}},mouseHooks:{props:"button buttons clientX clientY offsetX offsetY pageX pageY screenX screenY toElement".split(" "),filter:function(t,e){var n,i,o,s=e.button;return null==t.pageX&&null!=e.clientX&&(n=t.target.ownerDocument||Q,i=n.documentElement,o=n.body,t.pageX=e.clientX+(i&&i.scrollLeft||o&&o.scrollLeft||0)-(i&&i.clientLeft||o&&o.clientLeft||0),t.pageY=e.clientY+(i&&i.scrollTop||o&&o.scrollTop||0)-(i&&i.clientTop||o&&o.clientTop||0)),t.which||void 0===s||(t.which=1&s?1:2&s?3:4&s?2:0),t}},fix:function(t){if(t[st.expando])return t;var e,n,i,o=t.type,s=t,r=this.fixHooks[o];for(r||(this.fixHooks[o]=r=qt.test(o)?this.mouseHooks:Rt.test(o)?this.keyHooks:{}),i=r.props?this.props.concat(r.props):this.props,t=new st.Event(s),e=i.length;e--;)n=i[e],t[n]=s[n];return t.target||(t.target=Q),3===t.target.nodeType&&(t.target=t.target.parentNode),r.filter?r.filter(t,s):t},special:{load:{noBubble:!0},focus:{trigger:function(){return this!==m()&&this.focus?(this.focus(),!1):void 0},delegateType:"focusin"},blur:{trigger:function(){return this===m()&&this.blur?(this.blur(),!1):void 0},delegateType:"focusout"},click:{trigger:function(){return"checkbox"===this.type&&this.click&&st.nodeName(this,"input")?(this.click(),!1):void 0},_default:function(t){return st.nodeName(t.target,"a")}},beforeunload:{postDispatch:function(t){void 0!==t.result&&t.originalEvent&&(t.originalEvent.returnValue=t.result)}}}},st.removeEvent=function(t,e,n){t.removeEventListener&&t.removeEventListener(e,n)},st.Event=function(t,e){return this instanceof st.Event?(t&&t.type?(this.originalEvent=t,this.type=t.type,this.isDefaultPrevented=t.defaultPrevented||void 0===t.defaultPrevented&&t.returnValue===!1?d:f):this.type=t,e&&st.extend(this,e),this.timeStamp=t&&t.timeStamp||st.now(),void(this[st.expando]=!0)):new st.Event(t,e)},st.Event.prototype={constructor:st.Event,isDefaultPrevented:f,isPropagationStopped:f,isImmediatePropagationStopped:f,preventDefault:function(){var t=this.originalEvent;this.isDefaultPrevented=d,t&&t.preventDefault()},stopPropagation:function(){var t=this.originalEvent;this.isPropagationStopped=d,t&&t.stopPropagation()},stopImmediatePropagation:function(){var t=this.originalEvent;this.isImmediatePropagationStopped=d,t&&t.stopImmediatePropagation(),this.stopPropagation()}},st.each({mouseenter:"mouseover",mouseleave:"mouseout",pointerenter:"pointerover",pointerleave:"pointerout"},function(t,e){st.event.special[t]={delegateType:e,bindType:e,handle:function(t){var n,i=this,o=t.relatedTarget,s=t.handleObj;return o&&(o===i||st.contains(i,o))||(t.type=s.origType,n=s.handler.apply(this,arguments),t.type=e),n}}}),st.fn.extend({on:function(t,e,n,i){return g(this,t,e,n,i)},one:function(t,e,n,i){return g(this,t,e,n,i,1)},off:function(t,e,n){var i,o;if(t&&t.preventDefault&&t.handleObj)return i=t.handleObj,st(t.delegateTarget).off(i.namespace?i.origType+"."+i.namespace:i.origType,i.selector,i.handler),this;if("object"==typeof t){for(o in t)this.off(o,e,t[o]);return this}return e!==!1&&"function"!=typeof e||(n=e,e=void 0),n===!1&&(n=f),this.each(function(){st.event.remove(this,t,n,e)})}});var Ft=/<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:-]+)[^>]*)\/>/gi,Mt=/<script|<style|<link/i,zt=/checked\s*(?:[^=]|=\s*.checked.)/i,Ut=/^true\/(.*)/,Wt=/^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;st.extend({htmlPrefilter:function(t){return t.replace(Ft,"<$1></$2>")},clone:function(t,e,n){var i,o,s,r,a=t.cloneNode(!0),l=st.contains(t.ownerDocument,t);if(!(it.noCloneChecked||1!==t.nodeType&&11!==t.nodeType||st.isXMLDoc(t)))for(r=h(a),s=h(t),i=0,o=s.length;o>i;i++)w(s[i],r[i]);if(e)if(n)for(s=s||h(t),r=r||h(a),i=0,o=s.length;o>i;i++)x(s[i],r[i]);else x(t,a);return r=h(a,"script"),r.length>0&&u(r,!l&&h(t,"script")),a},cleanData:function(t){for(var e,n,i,o=st.event.special,s=0;void 0!==(n=t[s]);s++)if(Tt(n)){if(e=n[Et.expando]){if(e.events)for(i in e.events)o[i]?st.event.remove(n,i):st.removeEvent(n,i,e.handle);n[Et.expando]=void 0}n[$t.expando]&&(n[$t.expando]=void 0)}}}),st.fn.extend({domManip:C,detach:function(t){return k(this,t,!0)},remove:function(t){return k(this,t)},text:function(t){return kt(this,function(t){return void 0===t?st.text(this):this.empty().each(function(){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||(this.textContent=t)})},null,t,arguments.length)},append:function(){return C(this,arguments,function(t){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var e=v(this,t);e.appendChild(t)}})},prepend:function(){return C(this,arguments,function(t){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var e=v(this,t);e.insertBefore(t,e.firstChild)}})},before:function(){return C(this,arguments,function(t){this.parentNode&&this.parentNode.insertBefore(t,this)})},after:function(){return C(this,arguments,function(t){this.parentNode&&this.parentNode.insertBefore(t,this.nextSibling)})},empty:function(){for(var t,e=0;null!=(t=this[e]);e++)1===t.nodeType&&(st.cleanData(h(t,!1)),t.textContent="");return this},clone:function(t,e){return t=null==t?!1:t,e=null==e?t:e,this.map(function(){return st.clone(this,t,e)})},html:function(t){return kt(this,function(t){var e=this[0]||{},n=0,i=this.length;if(void 0===t&&1===e.nodeType)return e.innerHTML;if("string"==typeof t&&!Mt.test(t)&&!Pt[(It.exec(t)||["",""])[1].toLowerCase()]){t=st.htmlPrefilter(t);try{for(;i>n;n++)e=this[n]||{},1===e.nodeType&&(st.cleanData(h(e,!1)),e.innerHTML=t);e=0}catch(o){}}e&&this.empty().append(t)},null,t,arguments.length)},replaceWith:function(){var t=[];return C(this,arguments,function(e){var n=this.parentNode;st.inArray(this,t)<0&&(st.cleanData(h(this)),n&&n.replaceChild(e,this))},t)}}),st.each({appendTo:"append",prependTo:"prepend",insertBefore:"before",insertAfter:"after",replaceAll:"replaceWith"},function(t,e){st.fn[t]=function(t){for(var n,i=[],o=st(t),s=o.length-1,r=0;s>=r;r++)n=r===s?this:this.clone(!0),st(o[r])[e](n),G.apply(i,n.get());return this.pushStack(i)}});var Vt,Xt={HTML:"block",BODY:"block"},Jt=/^margin/,Qt=new RegExp("^("+At+")(?!px)[a-z%]+$","i"),Yt=function(e){var n=e.ownerDocument.defaultView;return n.opener||(n=t),n.getComputedStyle(e)},Kt=function(t,e,n,i){var o,s,r={};for(s in e)r[s]=t.style[s],t.style[s]=e[s];o=n.apply(t,i||[]);for(s in e)t.style[s]=r[s];return o},Gt=Q.documentElement;!function(){function e(){a.style.cssText="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;position:relative;display:block;margin:auto;border:1px;padding:1px;top:1%;width:50%",a.innerHTML="",Gt.appendChild(r);var e=t.getComputedStyle(a);n="1%"!==e.top,s="2px"===e.marginLeft,i="4px"===e.width,a.style.marginRight="50%",o="4px"===e.marginRight,Gt.removeChild(r)}var n,i,o,s,r=Q.createElement("div"),a=Q.createElement("div");a.style&&(a.style.backgroundClip="content-box",a.cloneNode(!0).style.backgroundClip="",it.clearCloneStyle="content-box"===a.style.backgroundClip,r.style.cssText="border:0;width:8px;height:0;top:0;left:-9999px;padding:0;margin-top:1px;position:absolute",r.appendChild(a),st.extend(it,{pixelPosition:function(){return e(),n},boxSizingReliable:function(){return null==i&&e(),i},pixelMarginRight:function(){return null==i&&e(),o},reliableMarginLeft:function(){return null==i&&e(),s},reliableMarginRight:function(){var e,n=a.appendChild(Q.createElement("div"));return n.style.cssText=a.style.cssText="-webkit-box-sizing:content-box;box-sizing:content-box;display:block;margin:0;border:0;padding:0",n.style.marginRight=n.style.width="0",a.style.width="1px",Gt.appendChild(r),e=!parseFloat(t.getComputedStyle(n).marginRight),Gt.removeChild(r),a.removeChild(n),e}}))}();var Zt=/^(none|table(?!-c[ea]).+)/,te={position:"absolute",visibility:"hidden",display:"block"},ee={letterSpacing:"0",fontWeight:"400"},ne=["Webkit","O","Moz","ms"],ie=Q.createElement("div").style;st.extend({cssHooks:{opacity:{get:function(t,e){if(e){var n=$(t,"opacity");return""===n?"1":n}}}},cssNumber:{animationIterationCount:!0,columnCount:!0,fillOpacity:!0,flexGrow:!0,flexShrink:!0,fontWeight:!0,lineHeight:!0,opacity:!0,order:!0,orphans:!0,widows:!0,zIndex:!0,zoom:!0},cssProps:{"float":"cssFloat"},style:function(t,e,n,i){if(t&&3!==t.nodeType&&8!==t.nodeType&&t.style){var o,s,r,a=st.camelCase(e),l=t.style;return e=st.cssProps[a]||(st.cssProps[a]=S(a)||a),r=st.cssHooks[e]||st.cssHooks[a],void 0===n?r&&"get"in r&&void 0!==(o=r.get(t,!1,i))?o:l[e]:(s=typeof n,"string"===s&&(o=Nt.exec(n))&&o[1]&&(n=c(t,e,o),s="number"),null!=n&&n===n&&("number"===s&&(n+=o&&o[3]||(st.cssNumber[a]?"":"px")),it.clearCloneStyle||""!==n||0!==e.indexOf("background")||(l[e]="inherit"),r&&"set"in r&&void 0===(n=r.set(t,n,i))||(l[e]=n)),void 0)}},css:function(t,e,n,i){var o,s,r,a=st.camelCase(e);return e=st.cssProps[a]||(st.cssProps[a]=S(a)||a),r=st.cssHooks[e]||st.cssHooks[a],r&&"get"in r&&(o=r.get(t,!0,n)),void 0===o&&(o=$(t,e,i)),"normal"===o&&e in ee&&(o=ee[e]),""===n||n?(s=parseFloat(o),n===!0||isFinite(s)?s||0:o):o}}),st.each(["height","width"],function(t,e){st.cssHooks[e]={get:function(t,n,i){return n?Zt.test(st.css(t,"display"))&&0===t.offsetWidth?Kt(t,te,function(){return D(t,e,i)}):D(t,e,i):void 0},set:function(t,n,i){var o,s=i&&Yt(t),r=i&&N(t,e,i,"border-box"===st.css(t,"boxSizing",!1,s),s);return r&&(o=Nt.exec(n))&&"px"!==(o[3]||"px")&&(t.style[e]=n,n=st.css(t,e)),A(t,n,r)}}}),st.cssHooks.marginLeft=_(it.reliableMarginLeft,function(t,e){return e?(parseFloat($(t,"marginLeft"))||t.getBoundingClientRect().left-Kt(t,{marginLeft:0},function(){return t.getBoundingClientRect().left}))+"px":void 0}),st.cssHooks.marginRight=_(it.reliableMarginRight,function(t,e){return e?Kt(t,{display:"inline-block"},$,[t,"marginRight"]):void 0}),st.each({margin:"",padding:"",border:"Width"},function(t,e){st.cssHooks[t+e]={expand:function(n){for(var i=0,o={},s="string"==typeof n?n.split(" "):[n];4>i;i++)o[t+Dt[i]+e]=s[i]||s[i-2]||s[0];return o}},Jt.test(t)||(st.cssHooks[t+e].set=A)}),st.fn.extend({css:function(t,e){return kt(this,function(t,e,n){var i,o,s={},r=0;if(st.isArray(e)){for(i=Yt(t),o=e.length;o>r;r++)s[e[r]]=st.css(t,e[r],!1,i);return s}return void 0!==n?st.style(t,e,n):st.css(t,e)},t,e,arguments.length>1)},show:function(){return j(this,!0)},hide:function(){return j(this)},toggle:function(t){return"boolean"==typeof t?t?this.show():this.hide():this.each(function(){jt(this)?st(this).show():st(this).hide()})}}),st.Tween=L,L.prototype={constructor:L,init:function(t,e,n,i,o,s){this.elem=t,this.prop=n,this.easing=o||st.easing._default,this.options=e,this.start=this.now=this.cur(),this.end=i,this.unit=s||(st.cssNumber[n]?"":"px")},cur:function(){var t=L.propHooks[this.prop];return t&&t.get?t.get(this):L.propHooks._default.get(this)},run:function(t){var e,n=L.propHooks[this.prop];return this.options.duration?this.pos=e=st.easing[this.easing](t,this.options.duration*t,0,1,this.options.duration):this.pos=e=t,this.now=(this.end-this.start)*e+this.start,this.options.step&&this.options.step.call(this.elem,this.now,this),n&&n.set?n.set(this):L.propHooks._default.set(this),this}},L.prototype.init.prototype=L.prototype,L.propHooks={_default:{get:function(t){var e;return 1!==t.elem.nodeType||null!=t.elem[t.prop]&&null==t.elem.style[t.prop]?t.elem[t.prop]:(e=st.css(t.elem,t.prop,""),e&&"auto"!==e?e:0)},set:function(t){st.fx.step[t.prop]?st.fx.step[t.prop](t):1!==t.elem.nodeType||null==t.elem.style[st.cssProps[t.prop]]&&!st.cssHooks[t.prop]?t.elem[t.prop]=t.now:st.style(t.elem,t.prop,t.now+t.unit)}}},L.propHooks.scrollTop=L.propHooks.scrollLeft={set:function(t){t.elem.nodeType&&t.elem.parentNode&&(t.elem[t.prop]=t.now)}},st.easing={linear:function(t){return t},swing:function(t){return.5-Math.cos(t*Math.PI)/2},_default:"swing"},st.fx=L.prototype.init,st.fx.step={};var oe,se,re=/^(?:toggle|show|hide)$/,ae=/queueHooks$/;st.Animation=st.extend(q,{tweeners:{"*":[function(t,e){var n=this.createTween(t,e);return c(n.elem,t,Nt.exec(e),n),n}]},tweener:function(t,e){st.isFunction(t)?(e=t,t=["*"]):t=t.match(wt);for(var n,i=0,o=t.length;o>i;i++)n=t[i],q.tweeners[n]=q.tweeners[n]||[],q.tweeners[n].unshift(e)},prefilters:[B],prefilter:function(t,e){e?q.prefilters.unshift(t):q.prefilters.push(t)}}),st.speed=function(t,e,n){var i=t&&"object"==typeof t?st.extend({},t):{complete:n||!n&&e||st.isFunction(t)&&t,duration:t,easing:n&&e||e&&!st.isFunction(e)&&e};return i.duration=st.fx.off?0:"number"==typeof i.duration?i.duration:i.duration in st.fx.speeds?st.fx.speeds[i.duration]:st.fx.speeds._default,null!=i.queue&&i.queue!==!0||(i.queue="fx"),i.old=i.complete,i.complete=function(){st.isFunction(i.old)&&i.old.call(this),i.queue&&st.dequeue(this,i.queue)},i},st.fn.extend({fadeTo:function(t,e,n,i){return this.filter(jt).css("opacity",0).show().end().animate({opacity:e},t,n,i)},animate:function(t,e,n,i){var o=st.isEmptyObject(t),s=st.speed(e,n,i),r=function(){var e=q(this,st.extend({},t),s);(o||Et.get(this,"finish"))&&e.stop(!0)};return r.finish=r,o||s.queue===!1?this.each(r):this.queue(s.queue,r)},stop:function(t,e,n){var i=function(t){var e=t.stop;delete t.stop,e(n)};return"string"!=typeof t&&(n=e,e=t,t=void 0),e&&t!==!1&&this.queue(t||"fx",[]),this.each(function(){var e=!0,o=null!=t&&t+"queueHooks",s=st.timers,r=Et.get(this);if(o)r[o]&&r[o].stop&&i(r[o]);else for(o in r)r[o]&&r[o].stop&&ae.test(o)&&i(r[o]);for(o=s.length;o--;)s[o].elem!==this||null!=t&&s[o].queue!==t||(s[o].anim.stop(n),e=!1,s.splice(o,1));!e&&n||st.dequeue(this,t)})},finish:function(t){return t!==!1&&(t=t||"fx"),this.each(function(){var e,n=Et.get(this),i=n[t+"queue"],o=n[t+"queueHooks"],s=st.timers,r=i?i.length:0;for(n.finish=!0,st.queue(this,t,[]),o&&o.stop&&o.stop.call(this,!0),e=s.length;e--;)s[e].elem===this&&s[e].queue===t&&(s[e].anim.stop(!0),s.splice(e,1));for(e=0;r>e;e++)i[e]&&i[e].finish&&i[e].finish.call(this);delete n.finish})}}),st.each(["toggle","show","hide"],function(t,e){var n=st.fn[e];st.fn[e]=function(t,i,o){return null==t||"boolean"==typeof t?n.apply(this,arguments):this.animate(O(e,!0),t,i,o)}}),st.each({slideDown:O("show"),slideUp:O("hide"),slideToggle:O("toggle"),fadeIn:{opacity:"show"},fadeOut:{opacity:"hide"},fadeToggle:{opacity:"toggle"}},function(t,e){st.fn[t]=function(t,n,i){return this.animate(e,t,n,i)}}),st.timers=[],st.fx.tick=function(){var t,e=0,n=st.timers;for(oe=st.now();e<n.length;e++)t=n[e],t()||n[e]!==t||n.splice(e--,1);n.length||st.fx.stop(),
-oe=void 0},st.fx.timer=function(t){st.timers.push(t),t()?st.fx.start():st.timers.pop()},st.fx.interval=13,st.fx.start=function(){se||(se=t.setInterval(st.fx.tick,st.fx.interval))},st.fx.stop=function(){t.clearInterval(se),se=null},st.fx.speeds={slow:600,fast:200,_default:400},st.fn.delay=function(e,n){return e=st.fx?st.fx.speeds[e]||e:e,n=n||"fx",this.queue(n,function(n,i){var o=t.setTimeout(n,e);i.stop=function(){t.clearTimeout(o)}})},function(){var t=Q.createElement("input"),e=Q.createElement("select"),n=e.appendChild(Q.createElement("option"));t.type="checkbox",it.checkOn=""!==t.value,it.optSelected=n.selected,e.disabled=!0,it.optDisabled=!n.disabled,t=Q.createElement("input"),t.value="t",t.type="radio",it.radioValue="t"===t.value}();var le,ce=st.expr.attrHandle;st.fn.extend({attr:function(t,e){return kt(this,st.attr,t,e,arguments.length>1)},removeAttr:function(t){return this.each(function(){st.removeAttr(this,t)})}}),st.extend({attr:function(t,e,n){var i,o,s=t.nodeType;if(3!==s&&8!==s&&2!==s)return"undefined"==typeof t.getAttribute?st.prop(t,e,n):(1===s&&st.isXMLDoc(t)||(e=e.toLowerCase(),o=st.attrHooks[e]||(st.expr.match.bool.test(e)?le:void 0)),void 0!==n?null===n?void st.removeAttr(t,e):o&&"set"in o&&void 0!==(i=o.set(t,n,e))?i:(t.setAttribute(e,n+""),n):o&&"get"in o&&null!==(i=o.get(t,e))?i:(i=st.find.attr(t,e),null==i?void 0:i))},attrHooks:{type:{set:function(t,e){if(!it.radioValue&&"radio"===e&&st.nodeName(t,"input")){var n=t.value;return t.setAttribute("type",e),n&&(t.value=n),e}}}},removeAttr:function(t,e){var n,i,o=0,s=e&&e.match(wt);if(s&&1===t.nodeType)for(;n=s[o++];)i=st.propFix[n]||n,st.expr.match.bool.test(n)&&(t[i]=!1),t.removeAttribute(n)}}),le={set:function(t,e,n){return e===!1?st.removeAttr(t,n):t.setAttribute(n,n),n}},st.each(st.expr.match.bool.source.match(/\w+/g),function(t,e){var n=ce[e]||st.find.attr;ce[e]=function(t,e,i){var o,s;return i||(s=ce[e],ce[e]=o,o=null!=n(t,e,i)?e.toLowerCase():null,ce[e]=s),o}});var he=/^(?:input|select|textarea|button)$/i,ue=/^(?:a|area)$/i;st.fn.extend({prop:function(t,e){return kt(this,st.prop,t,e,arguments.length>1)},removeProp:function(t){return this.each(function(){delete this[st.propFix[t]||t]})}}),st.extend({prop:function(t,e,n){var i,o,s=t.nodeType;if(3!==s&&8!==s&&2!==s)return 1===s&&st.isXMLDoc(t)||(e=st.propFix[e]||e,o=st.propHooks[e]),void 0!==n?o&&"set"in o&&void 0!==(i=o.set(t,n,e))?i:t[e]=n:o&&"get"in o&&null!==(i=o.get(t,e))?i:t[e]},propHooks:{tabIndex:{get:function(t){var e=st.find.attr(t,"tabindex");return e?parseInt(e,10):he.test(t.nodeName)||ue.test(t.nodeName)&&t.href?0:-1}}},propFix:{"for":"htmlFor","class":"className"}}),it.optSelected||(st.propHooks.selected={get:function(t){var e=t.parentNode;return e&&e.parentNode&&e.parentNode.selectedIndex,null}}),st.each(["tabIndex","readOnly","maxLength","cellSpacing","cellPadding","rowSpan","colSpan","useMap","frameBorder","contentEditable"],function(){st.propFix[this.toLowerCase()]=this});var pe=/[\t\r\n\f]/g;st.fn.extend({addClass:function(t){var e,n,i,o,s,r,a,l=0;if(st.isFunction(t))return this.each(function(e){st(this).addClass(t.call(this,e,H(this)))});if("string"==typeof t&&t)for(e=t.match(wt)||[];n=this[l++];)if(o=H(n),i=1===n.nodeType&&(" "+o+" ").replace(pe," ")){for(r=0;s=e[r++];)i.indexOf(" "+s+" ")<0&&(i+=s+" ");a=st.trim(i),o!==a&&n.setAttribute("class",a)}return this},removeClass:function(t){var e,n,i,o,s,r,a,l=0;if(st.isFunction(t))return this.each(function(e){st(this).removeClass(t.call(this,e,H(this)))});if(!arguments.length)return this.attr("class","");if("string"==typeof t&&t)for(e=t.match(wt)||[];n=this[l++];)if(o=H(n),i=1===n.nodeType&&(" "+o+" ").replace(pe," ")){for(r=0;s=e[r++];)for(;i.indexOf(" "+s+" ")>-1;)i=i.replace(" "+s+" "," ");a=st.trim(i),o!==a&&n.setAttribute("class",a)}return this},toggleClass:function(t,e){var n=typeof t;return"boolean"==typeof e&&"string"===n?e?this.addClass(t):this.removeClass(t):st.isFunction(t)?this.each(function(n){st(this).toggleClass(t.call(this,n,H(this),e),e)}):this.each(function(){var e,i,o,s;if("string"===n)for(i=0,o=st(this),s=t.match(wt)||[];e=s[i++];)o.hasClass(e)?o.removeClass(e):o.addClass(e);else void 0!==t&&"boolean"!==n||(e=H(this),e&&Et.set(this,"__className__",e),this.setAttribute&&this.setAttribute("class",e||t===!1?"":Et.get(this,"__className__")||""))})},hasClass:function(t){var e,n,i=0;for(e=" "+t+" ";n=this[i++];)if(1===n.nodeType&&(" "+H(n)+" ").replace(pe," ").indexOf(e)>-1)return!0;return!1}});var de=/\r/g;st.fn.extend({val:function(t){var e,n,i,o=this[0];{if(arguments.length)return i=st.isFunction(t),this.each(function(n){var o;1===this.nodeType&&(o=i?t.call(this,n,st(this).val()):t,null==o?o="":"number"==typeof o?o+="":st.isArray(o)&&(o=st.map(o,function(t){return null==t?"":t+""})),e=st.valHooks[this.type]||st.valHooks[this.nodeName.toLowerCase()],e&&"set"in e&&void 0!==e.set(this,o,"value")||(this.value=o))});if(o)return e=st.valHooks[o.type]||st.valHooks[o.nodeName.toLowerCase()],e&&"get"in e&&void 0!==(n=e.get(o,"value"))?n:(n=o.value,"string"==typeof n?n.replace(de,""):null==n?"":n)}}}),st.extend({valHooks:{option:{get:function(t){return st.trim(t.value)}},select:{get:function(t){for(var e,n,i=t.options,o=t.selectedIndex,s="select-one"===t.type||0>o,r=s?null:[],a=s?o+1:i.length,l=0>o?a:s?o:0;a>l;l++)if(n=i[l],(n.selected||l===o)&&(it.optDisabled?!n.disabled:null===n.getAttribute("disabled"))&&(!n.parentNode.disabled||!st.nodeName(n.parentNode,"optgroup"))){if(e=st(n).val(),s)return e;r.push(e)}return r},set:function(t,e){for(var n,i,o=t.options,s=st.makeArray(e),r=o.length;r--;)i=o[r],(i.selected=st.inArray(st.valHooks.option.get(i),s)>-1)&&(n=!0);return n||(t.selectedIndex=-1),s}}}}),st.each(["radio","checkbox"],function(){st.valHooks[this]={set:function(t,e){return st.isArray(e)?t.checked=st.inArray(st(t).val(),e)>-1:void 0}},it.checkOn||(st.valHooks[this].get=function(t){return null===t.getAttribute("value")?"on":t.value})});var fe=/^(?:focusinfocus|focusoutblur)$/;st.extend(st.event,{trigger:function(e,n,i,o){var s,r,a,l,c,h,u,p=[i||Q],d=nt.call(e,"type")?e.type:e,f=nt.call(e,"namespace")?e.namespace.split("."):[];if(r=a=i=i||Q,3!==i.nodeType&&8!==i.nodeType&&!fe.test(d+st.event.triggered)&&(d.indexOf(".")>-1&&(f=d.split("."),d=f.shift(),f.sort()),c=d.indexOf(":")<0&&"on"+d,e=e[st.expando]?e:new st.Event(d,"object"==typeof e&&e),e.isTrigger=o?2:3,e.namespace=f.join("."),e.rnamespace=e.namespace?new RegExp("(^|\\.)"+f.join("\\.(?:.*\\.|)")+"(\\.|$)"):null,e.result=void 0,e.target||(e.target=i),n=null==n?[e]:st.makeArray(n,[e]),u=st.event.special[d]||{},o||!u.trigger||u.trigger.apply(i,n)!==!1)){if(!o&&!u.noBubble&&!st.isWindow(i)){for(l=u.delegateType||d,fe.test(l+d)||(r=r.parentNode);r;r=r.parentNode)p.push(r),a=r;a===(i.ownerDocument||Q)&&p.push(a.defaultView||a.parentWindow||t)}for(s=0;(r=p[s++])&&!e.isPropagationStopped();)e.type=s>1?l:u.bindType||d,h=(Et.get(r,"events")||{})[e.type]&&Et.get(r,"handle"),h&&h.apply(r,n),h=c&&r[c],h&&h.apply&&Tt(r)&&(e.result=h.apply(r,n),e.result===!1&&e.preventDefault());return e.type=d,o||e.isDefaultPrevented()||u._default&&u._default.apply(p.pop(),n)!==!1||!Tt(i)||c&&st.isFunction(i[d])&&!st.isWindow(i)&&(a=i[c],a&&(i[c]=null),st.event.triggered=d,i[d](),st.event.triggered=void 0,a&&(i[c]=a)),e.result}},simulate:function(t,e,n){var i=st.extend(new st.Event,n,{type:t,isSimulated:!0});st.event.trigger(i,null,e),i.isDefaultPrevented()&&n.preventDefault()}}),st.fn.extend({trigger:function(t,e){return this.each(function(){st.event.trigger(t,e,this)})},triggerHandler:function(t,e){var n=this[0];return n?st.event.trigger(t,e,n,!0):void 0}}),st.each("blur focus focusin focusout load resize scroll unload click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup error contextmenu".split(" "),function(t,e){st.fn[e]=function(t,n){return arguments.length>0?this.on(e,null,t,n):this.trigger(e)}}),st.fn.extend({hover:function(t,e){return this.mouseenter(t).mouseleave(e||t)}}),it.focusin="onfocusin"in t,it.focusin||st.each({focus:"focusin",blur:"focusout"},function(t,e){var n=function(t){st.event.simulate(e,t.target,st.event.fix(t))};st.event.special[e]={setup:function(){var i=this.ownerDocument||this,o=Et.access(i,e);o||i.addEventListener(t,n,!0),Et.access(i,e,(o||0)+1)},teardown:function(){var i=this.ownerDocument||this,o=Et.access(i,e)-1;o?Et.access(i,e,o):(i.removeEventListener(t,n,!0),Et.remove(i,e))}}});var me=t.location,ge=st.now(),ve=/\?/;st.parseJSON=function(t){return JSON.parse(t+"")},st.parseXML=function(e){var n;if(!e||"string"!=typeof e)return null;try{n=(new t.DOMParser).parseFromString(e,"text/xml")}catch(i){n=void 0}return n&&!n.getElementsByTagName("parsererror").length||st.error("Invalid XML: "+e),n};var ye=/#.*$/,be=/([?&])_=[^&]*/,xe=/^(.*?):[ \t]*([^\r\n]*)$/gm,we=/^(?:about|app|app-storage|.+-extension|file|res|widget):$/,Ce=/^(?:GET|HEAD)$/,ke=/^\/\//,Te={},Ee={},$e="*/".concat("*"),_e=Q.createElement("a");_e.href=me.href,st.extend({active:0,lastModified:{},etag:{},ajaxSettings:{url:me.href,type:"GET",isLocal:we.test(me.protocol),global:!0,processData:!0,async:!0,contentType:"application/x-www-form-urlencoded; charset=UTF-8",accepts:{"*":$e,text:"text/plain",html:"text/html",xml:"application/xml, text/xml",json:"application/json, text/javascript"},contents:{xml:/\bxml\b/,html:/\bhtml/,json:/\bjson\b/},responseFields:{xml:"responseXML",text:"responseText",json:"responseJSON"},converters:{"* text":String,"text html":!0,"text json":st.parseJSON,"text xml":st.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(t,e){return e?z(z(t,st.ajaxSettings),e):z(st.ajaxSettings,t)},ajaxPrefilter:F(Te),ajaxTransport:F(Ee),ajax:function(e,n){function i(e,n,i,a){var c,u,y,b,w,k=n;2!==x&&(x=2,l&&t.clearTimeout(l),o=void 0,r=a||"",C.readyState=e>0?4:0,c=e>=200&&300>e||304===e,i&&(b=U(p,C,i)),b=W(p,b,C,c),c?(p.ifModified&&(w=C.getResponseHeader("Last-Modified"),w&&(st.lastModified[s]=w),w=C.getResponseHeader("etag"),w&&(st.etag[s]=w)),204===e||"HEAD"===p.type?k="nocontent":304===e?k="notmodified":(k=b.state,u=b.data,y=b.error,c=!y)):(y=k,!e&&k||(k="error",0>e&&(e=0))),C.status=e,C.statusText=(n||k)+"",c?m.resolveWith(d,[u,k,C]):m.rejectWith(d,[C,k,y]),C.statusCode(v),v=void 0,h&&f.trigger(c?"ajaxSuccess":"ajaxError",[C,p,c?u:y]),g.fireWith(d,[C,k]),h&&(f.trigger("ajaxComplete",[C,p]),--st.active||st.event.trigger("ajaxStop")))}"object"==typeof e&&(n=e,e=void 0),n=n||{};var o,s,r,a,l,c,h,u,p=st.ajaxSetup({},n),d=p.context||p,f=p.context&&(d.nodeType||d.jquery)?st(d):st.event,m=st.Deferred(),g=st.Callbacks("once memory"),v=p.statusCode||{},y={},b={},x=0,w="canceled",C={readyState:0,getResponseHeader:function(t){var e;if(2===x){if(!a)for(a={};e=xe.exec(r);)a[e[1].toLowerCase()]=e[2];e=a[t.toLowerCase()]}return null==e?null:e},getAllResponseHeaders:function(){return 2===x?r:null},setRequestHeader:function(t,e){var n=t.toLowerCase();return x||(t=b[n]=b[n]||t,y[t]=e),this},overrideMimeType:function(t){return x||(p.mimeType=t),this},statusCode:function(t){var e;if(t)if(2>x)for(e in t)v[e]=[v[e],t[e]];else C.always(t[C.status]);return this},abort:function(t){var e=t||w;return o&&o.abort(e),i(0,e),this}};if(m.promise(C).complete=g.add,C.success=C.done,C.error=C.fail,p.url=((e||p.url||me.href)+"").replace(ye,"").replace(ke,me.protocol+"//"),p.type=n.method||n.type||p.method||p.type,p.dataTypes=st.trim(p.dataType||"*").toLowerCase().match(wt)||[""],null==p.crossDomain){c=Q.createElement("a");try{c.href=p.url,c.href=c.href,p.crossDomain=_e.protocol+"//"+_e.host!=c.protocol+"//"+c.host}catch(k){p.crossDomain=!0}}if(p.data&&p.processData&&"string"!=typeof p.data&&(p.data=st.param(p.data,p.traditional)),M(Te,p,n,C),2===x)return C;h=st.event&&p.global,h&&0===st.active++&&st.event.trigger("ajaxStart"),p.type=p.type.toUpperCase(),p.hasContent=!Ce.test(p.type),s=p.url,p.hasContent||(p.data&&(s=p.url+=(ve.test(s)?"&":"?")+p.data,delete p.data),p.cache===!1&&(p.url=be.test(s)?s.replace(be,"$1_="+ge++):s+(ve.test(s)?"&":"?")+"_="+ge++)),p.ifModified&&(st.lastModified[s]&&C.setRequestHeader("If-Modified-Since",st.lastModified[s]),st.etag[s]&&C.setRequestHeader("If-None-Match",st.etag[s])),(p.data&&p.hasContent&&p.contentType!==!1||n.contentType)&&C.setRequestHeader("Content-Type",p.contentType),C.setRequestHeader("Accept",p.dataTypes[0]&&p.accepts[p.dataTypes[0]]?p.accepts[p.dataTypes[0]]+("*"!==p.dataTypes[0]?", "+$e+"; q=0.01":""):p.accepts["*"]);for(u in p.headers)C.setRequestHeader(u,p.headers[u]);if(p.beforeSend&&(p.beforeSend.call(d,C,p)===!1||2===x))return C.abort();w="abort";for(u in{success:1,error:1,complete:1})C[u](p[u]);if(o=M(Ee,p,n,C)){if(C.readyState=1,h&&f.trigger("ajaxSend",[C,p]),2===x)return C;p.async&&p.timeout>0&&(l=t.setTimeout(function(){C.abort("timeout")},p.timeout));try{x=1,o.send(y,i)}catch(k){if(!(2>x))throw k;i(-1,k)}}else i(-1,"No Transport");return C},getJSON:function(t,e,n){return st.get(t,e,n,"json")},getScript:function(t,e){return st.get(t,void 0,e,"script")}}),st.each(["get","post"],function(t,e){st[e]=function(t,n,i,o){return st.isFunction(n)&&(o=o||i,i=n,n=void 0),st.ajax(st.extend({url:t,type:e,dataType:o,data:n,success:i},st.isPlainObject(t)&&t))}}),st._evalUrl=function(t){return st.ajax({url:t,type:"GET",dataType:"script",async:!1,global:!1,"throws":!0})},st.fn.extend({wrapAll:function(t){var e;return st.isFunction(t)?this.each(function(e){st(this).wrapAll(t.call(this,e))}):(this[0]&&(e=st(t,this[0].ownerDocument).eq(0).clone(!0),this[0].parentNode&&e.insertBefore(this[0]),e.map(function(){for(var t=this;t.firstElementChild;)t=t.firstElementChild;return t}).append(this)),this)},wrapInner:function(t){return st.isFunction(t)?this.each(function(e){st(this).wrapInner(t.call(this,e))}):this.each(function(){var e=st(this),n=e.contents();n.length?n.wrapAll(t):e.append(t)})},wrap:function(t){var e=st.isFunction(t);return this.each(function(n){st(this).wrapAll(e?t.call(this,n):t)})},unwrap:function(){return this.parent().each(function(){st.nodeName(this,"body")||st(this).replaceWith(this.childNodes)}).end()}}),st.expr.filters.hidden=function(t){return!st.expr.filters.visible(t)},st.expr.filters.visible=function(t){return t.offsetWidth>0||t.offsetHeight>0||t.getClientRects().length>0};var Se=/%20/g,Ae=/\[\]$/,Ne=/\r?\n/g,De=/^(?:submit|button|image|reset|file)$/i,je=/^(?:input|select|textarea|keygen)/i;st.param=function(t,e){var n,i=[],o=function(t,e){e=st.isFunction(e)?e():null==e?"":e,i[i.length]=encodeURIComponent(t)+"="+encodeURIComponent(e)};if(void 0===e&&(e=st.ajaxSettings&&st.ajaxSettings.traditional),st.isArray(t)||t.jquery&&!st.isPlainObject(t))st.each(t,function(){o(this.name,this.value)});else for(n in t)V(n,t[n],e,o);return i.join("&").replace(Se,"+")},st.fn.extend({serialize:function(){return st.param(this.serializeArray())},serializeArray:function(){return this.map(function(){var t=st.prop(this,"elements");return t?st.makeArray(t):this}).filter(function(){var t=this.type;return this.name&&!st(this).is(":disabled")&&je.test(this.nodeName)&&!De.test(t)&&(this.checked||!Lt.test(t))}).map(function(t,e){var n=st(this).val();return null==n?null:st.isArray(n)?st.map(n,function(t){return{name:e.name,value:t.replace(Ne,"\r\n")}}):{name:e.name,value:n.replace(Ne,"\r\n")}}).get()}}),st.ajaxSettings.xhr=function(){try{return new t.XMLHttpRequest}catch(e){}};var Le={0:200,1223:204},Ie=st.ajaxSettings.xhr();it.cors=!!Ie&&"withCredentials"in Ie,it.ajax=Ie=!!Ie,st.ajaxTransport(function(e){var n,i;return it.cors||Ie&&!e.crossDomain?{send:function(o,s){var r,a=e.xhr();if(a.open(e.type,e.url,e.async,e.username,e.password),e.xhrFields)for(r in e.xhrFields)a[r]=e.xhrFields[r];e.mimeType&&a.overrideMimeType&&a.overrideMimeType(e.mimeType),e.crossDomain||o["X-Requested-With"]||(o["X-Requested-With"]="XMLHttpRequest");for(r in o)a.setRequestHeader(r,o[r]);n=function(t){return function(){n&&(n=i=a.onload=a.onerror=a.onabort=a.onreadystatechange=null,"abort"===t?a.abort():"error"===t?"number"!=typeof a.status?s(0,"error"):s(a.status,a.statusText):s(Le[a.status]||a.status,a.statusText,"text"!==(a.responseType||"text")||"string"!=typeof a.responseText?{binary:a.response}:{text:a.responseText},a.getAllResponseHeaders()))}},a.onload=n(),i=a.onerror=n("error"),void 0!==a.onabort?a.onabort=i:a.onreadystatechange=function(){4===a.readyState&&t.setTimeout(function(){n&&i()})},n=n("abort");try{a.send(e.hasContent&&e.data||null)}catch(l){if(n)throw l}},abort:function(){n&&n()}}:void 0}),st.ajaxSetup({accepts:{script:"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"},contents:{script:/\b(?:java|ecma)script\b/},converters:{"text script":function(t){return st.globalEval(t),t}}}),st.ajaxPrefilter("script",function(t){void 0===t.cache&&(t.cache=!1),t.crossDomain&&(t.type="GET")}),st.ajaxTransport("script",function(t){if(t.crossDomain){var e,n;return{send:function(i,o){e=st("<script>").prop({charset:t.scriptCharset,src:t.url}).on("load error",n=function(t){e.remove(),n=null,t&&o("error"===t.type?404:200,t.type)}),Q.head.appendChild(e[0])},abort:function(){n&&n()}}}});var Oe=[],Pe=/(=)\?(?=&|$)|\?\?/;st.ajaxSetup({jsonp:"callback",jsonpCallback:function(){var t=Oe.pop()||st.expando+"_"+ge++;return this[t]=!0,t}}),st.ajaxPrefilter("json jsonp",function(e,n,i){var o,s,r,a=e.jsonp!==!1&&(Pe.test(e.url)?"url":"string"==typeof e.data&&0===(e.contentType||"").indexOf("application/x-www-form-urlencoded")&&Pe.test(e.data)&&"data");return a||"jsonp"===e.dataTypes[0]?(o=e.jsonpCallback=st.isFunction(e.jsonpCallback)?e.jsonpCallback():e.jsonpCallback,a?e[a]=e[a].replace(Pe,"$1"+o):e.jsonp!==!1&&(e.url+=(ve.test(e.url)?"&":"?")+e.jsonp+"="+o),e.converters["script json"]=function(){return r||st.error(o+" was not called"),r[0]},e.dataTypes[0]="json",s=t[o],t[o]=function(){r=arguments},i.always(function(){void 0===s?st(t).removeProp(o):t[o]=s,e[o]&&(e.jsonpCallback=n.jsonpCallback,Oe.push(o)),r&&st.isFunction(s)&&s(r[0]),r=s=void 0}),"script"):void 0}),it.createHTMLDocument=function(){var t=Q.implementation.createHTMLDocument("").body;return t.innerHTML="<form></form><form></form>",2===t.childNodes.length}(),st.parseHTML=function(t,e,n){if(!t||"string"!=typeof t)return null;"boolean"==typeof e&&(n=e,e=!1),e=e||(it.createHTMLDocument?Q.implementation.createHTMLDocument(""):Q);var i=ft.exec(t),o=!n&&[];return i?[e.createElement(i[1])]:(i=p([t],e,o),o&&o.length&&st(o).remove(),st.merge([],i.childNodes))};var Be=st.fn.load;st.fn.load=function(t,e,n){if("string"!=typeof t&&Be)return Be.apply(this,arguments);var i,o,s,r=this,a=t.indexOf(" ");return a>-1&&(i=st.trim(t.slice(a)),t=t.slice(0,a)),st.isFunction(e)?(n=e,e=void 0):e&&"object"==typeof e&&(o="POST"),r.length>0&&st.ajax({url:t,type:o||"GET",dataType:"html",data:e}).done(function(t){s=arguments,r.html(i?st("<div>").append(st.parseHTML(t)).find(i):t)}).always(n&&function(t,e){r.each(function(){n.apply(r,s||[t.responseText,e,t])})}),this},st.each(["ajaxStart","ajaxStop","ajaxComplete","ajaxError","ajaxSuccess","ajaxSend"],function(t,e){st.fn[e]=function(t){return this.on(e,t)}}),st.expr.filters.animated=function(t){return st.grep(st.timers,function(e){return t===e.elem}).length},st.offset={setOffset:function(t,e,n){var i,o,s,r,a,l,c,h=st.css(t,"position"),u=st(t),p={};"static"===h&&(t.style.position="relative"),a=u.offset(),s=st.css(t,"top"),l=st.css(t,"left"),c=("absolute"===h||"fixed"===h)&&(s+l).indexOf("auto")>-1,c?(i=u.position(),r=i.top,o=i.left):(r=parseFloat(s)||0,o=parseFloat(l)||0),st.isFunction(e)&&(e=e.call(t,n,st.extend({},a))),null!=e.top&&(p.top=e.top-a.top+r),null!=e.left&&(p.left=e.left-a.left+o),"using"in e?e.using.call(t,p):u.css(p)}},st.fn.extend({offset:function(t){if(arguments.length)return void 0===t?this:this.each(function(e){st.offset.setOffset(this,t,e)});var e,n,i=this[0],o={top:0,left:0},s=i&&i.ownerDocument;if(s)return e=s.documentElement,st.contains(e,i)?(o=i.getBoundingClientRect(),n=X(s),{top:o.top+n.pageYOffset-e.clientTop,left:o.left+n.pageXOffset-e.clientLeft}):o},position:function(){if(this[0]){var t,e,n=this[0],i={top:0,left:0};return"fixed"===st.css(n,"position")?e=n.getBoundingClientRect():(t=this.offsetParent(),e=this.offset(),st.nodeName(t[0],"html")||(i=t.offset()),i.top+=st.css(t[0],"borderTopWidth",!0)-t.scrollTop(),i.left+=st.css(t[0],"borderLeftWidth",!0)-t.scrollLeft()),{top:e.top-i.top-st.css(n,"marginTop",!0),left:e.left-i.left-st.css(n,"marginLeft",!0)}}},offsetParent:function(){return this.map(function(){for(var t=this.offsetParent;t&&"static"===st.css(t,"position");)t=t.offsetParent;return t||Gt})}}),st.each({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(t,e){var n="pageYOffset"===e;st.fn[t]=function(i){return kt(this,function(t,i,o){var s=X(t);return void 0===o?s?s[e]:t[i]:void(s?s.scrollTo(n?s.pageXOffset:o,n?o:s.pageYOffset):t[i]=o)},t,i,arguments.length)}}),st.each(["top","left"],function(t,e){st.cssHooks[e]=_(it.pixelPosition,function(t,n){return n?(n=$(t,e),Qt.test(n)?st(t).position()[e]+"px":n):void 0})}),st.each({Height:"height",Width:"width"},function(t,e){st.each({padding:"inner"+t,content:e,"":"outer"+t},function(n,i){st.fn[i]=function(i,o){var s=arguments.length&&(n||"boolean"!=typeof i),r=n||(i===!0||o===!0?"margin":"border");return kt(this,function(e,n,i){var o;return st.isWindow(e)?e.document.documentElement["client"+t]:9===e.nodeType?(o=e.documentElement,Math.max(e.body["scroll"+t],o["scroll"+t],e.body["offset"+t],o["offset"+t],o["client"+t])):void 0===i?st.css(e,n,r):st.style(e,n,i,r)},e,s?i:void 0,s,null)}})}),st.fn.extend({bind:function(t,e,n){return this.on(t,null,e,n)},unbind:function(t,e){return this.off(t,null,e)},delegate:function(t,e,n,i){return this.on(e,t,n,i)},undelegate:function(t,e,n){return 1===arguments.length?this.off(t,"**"):this.off(e,t||"**",n)},size:function(){return this.length}}),st.fn.andSelf=st.fn.addBack,"function"==typeof define&&define.amd&&define("jquery",[],function(){return st});var Re=t.jQuery,qe=t.$;return st.noConflict=function(e){return t.$===st&&(t.$=qe),e&&t.jQuery===st&&(t.jQuery=Re),st},e||(t.jQuery=t.$=st),st}),"undefined"==typeof jQuery)throw new Error("jquery-confirm requires jQuery");var jconfirm,Jconfirm;if(function(t){t.fn.confirm=function(e,n){return"undefined"==typeof e&&(e={}),"string"==typeof e&&(e={content:e,title:n?n:!1}),t(this).each(function(){var n=t(this);n.on("click",function(i){i.preventDefault();var o=t.extend({},e);n.attr("data-title")&&(o.title=n.attr("data-title")),n.attr("data-content")&&(o.content=n.attr("data-content")),o.$target=n,n.attr("href")&&!e.confirm&&(o.confirm=function(){location.href=n.attr("href")}),t.confirm(o)})}),t(this)},t.confirm=function(t,e){return"undefined"==typeof t&&(t={}),"string"==typeof t&&(t={content:t,title:e?e:!1}),jconfirm(t)},t.alert=function(t,e){return"undefined"==typeof t&&(t={}),"string"==typeof t&&(t={content:t,title:e?e:!1}),t.cancelButton=!1,jconfirm(t)},t.dialog=function(t,e){return"undefined"==typeof t&&(t={}),"string"==typeof t&&(t={content:t,title:e?e:!1}),t.cancelButton=!1,t.confirmButton=!1,t.confirmKeys=[13],jconfirm(t)},jconfirm=function(e){"undefined"==typeof e&&(e={}),jconfirm.defaults&&t.extend(jconfirm.pluginDefaults,jconfirm.defaults);var e=t.extend({},jconfirm.pluginDefaults,e);return new Jconfirm(e)},Jconfirm=function(e){t.extend(this,e),this._init()},Jconfirm.prototype={_init:function(){var t=this;this._rand=Math.round(99999*Math.random()),this._buildHTML(),this._bindEvents(),setTimeout(function(){t.open(),t._watchContent()},0)},_buildHTML:function(){var e=this;this.animation="anim-"+this.animation.toLowerCase(),this.closeAnimation="anim-"+this.closeAnimation.toLowerCase(),this.theme="jconfirm-"+this.theme.toLowerCase(),"anim-none"==this.animation&&(this.animationSpeed=0),this._lastFocused=t("body").find(":focus"),this.$el=t(this.template).appendTo(this.container).addClass(this.theme),this.$el.find(".jconfirm-box-container").addClass(this.columnClass),this.$el.find(".jconfirm-bg").css(this._getCSS(this.animationSpeed,1)),this.$el.find(".jconfirm-bg").css("opacity",this.opacity),this.$b=this.$el.find(".jconfirm-box").css(this._getCSS(this.animationSpeed,this.animationBounce)).addClass(this.animation),this.$body=this.$b,this.rtl&&this.$el.addClass("rtl"),this._contentReady=t.Deferred(),this._modalReady=t.Deferred(),this.$title=this.$el.find(".title"),this.contentDiv=this.$el.find("div.content"),this.$content=this.contentDiv,this.$contentPane=this.$el.find(".content-pane"),this.$icon=this.$el.find(".icon-c"),this.$closeIcon=this.$el.find(".closeIcon"),this.$contentPane.css(this._getCSS(this.animationSpeed,1)),this.setTitle(),this.setIcon(),this._setButtons(),this.closeIconClass&&this.$closeIcon.html('<i class="'+this.closeIconClass+'"></i>'),e._contentHash=this._hash(e.$content.html()),t.when(this._contentReady,this._modalReady).then(function(){e.setContent(),e.setTitle(),e.setIcon()}),this._getContent(),this._imagesLoaded(),this.autoClose&&this._startCountDown()},_unwatchContent:function(){clearInterval(this._timer)},_hash:function(){return btoa(encodeURIComponent(this.$content.html()))},_watchContent:function(){var t=this;this._timer=setInterval(function(){var e=t._hash(t.$content.html());t._contentHash!=e&&(t._contentHash=e,t.setDialogCenter(),t._imagesLoaded())},this.watchInterval)},_bindEvents:function(){var e=this,n=!1;this.$el.find(".jconfirm-scrollpane").click(function(t){n||(e.backgroundDismiss?(e.cancel(),e.close()):(e.$b.addClass("hilight"),setTimeout(function(){e.$b.removeClass("hilight")},800))),n=!1}),this.$el.find(".jconfirm-box").click(function(t){n=!0}),this.$confirmButton&&this.$confirmButton.click(function(t){t.preventDefault();var n=e.confirm(e.$b);e._stopCountDown(),e.onAction("confirm"),("undefined"==typeof n||n)&&e.close()}),this.$cancelButton&&this.$cancelButton.click(function(t){t.preventDefault();var n=e.cancel(e.$b);e._stopCountDown(),e.onAction("cancel"),("undefined"==typeof n||n)&&e.close()}),this.$closeButton&&this.$closeButton.click(function(t){t.preventDefault(),e._stopCountDown(),e.cancel(),e.onAction("close"),e.close()}),this.keyboardEnabled&&setTimeout(function(){t(window).on("keyup."+this._rand,function(t){e.reactOnKey(t)})},500),t(window).on("resize."+this._rand,function(){e.setDialogCenter(!0)})},_getCSS:function(t,e){return{"-webkit-transition-duration":t/1e3+"s","transition-duration":t/1e3+"s","-webkit-transition-timing-function":"cubic-bezier(.36,1.1,.2, "+e+")","transition-timing-function":"cubic-bezier(.36,1.1,.2, "+e+")"}},_imagesLoaded:function(){var e=this;t.each(this.$content.find("img:not(.loaded)"),function(n,i){var o=setInterval(function(){var n=t(i).css("height");"0px"!==n&&(t(i).addClass("loaded"),e.setDialogCenter(),clearInterval(o))},40)})},_setButtons:function(){this.$btnc=this.$el.find(".buttons"),this.confirmButton&&""!==t.trim(this.confirmButton)&&(this.$confirmButton=t('<button type="button" class="btn">'+this.confirmButton+"</button>").appendTo(this.$btnc).addClass(this.confirmButtonClass)),this.cancelButton&&""!==t.trim(this.cancelButton)&&(this.$cancelButton=t('<button type="button" class="btn">'+this.cancelButton+"</button>").appendTo(this.$btnc).addClass(this.cancelButtonClass)),this.confirmButton||this.cancelButton||this.$btnc.hide(),this.confirmButton||this.cancelButton||null!==this.closeIcon||(this.$closeButton=this.$b.find(".closeIcon").show()),this.closeIcon===!0&&(this.$closeButton=this.$b.find(".closeIcon").show())},setTitle:function(t){this.title="undefined"!=typeof t?t:this.title,this.$title.html(this.title||"")},setIcon:function(t){this.title="undefined"!=typeof string?t:this.title,this.$icon.html(this.icon?'<i class="'+this.icon+'"></i>':"")},setContent:function(t){this.content="undefined"==typeof t?this.content:t,""==this.content?(this.$content.html(this.content),this.$contentPane.hide()):(this.$content.html(this.content),this.$contentPane.show()),this.$content.hasClass("loading")&&(this.$content.removeClass("loading"),this.$btnc.find("button").prop("disabled",!1))},_getContent:function(e){var n=this;if(e=e?e:this.content,this._isAjax=!1,this.content)if("string"==typeof this.content)if("url:"===this.content.substr(0,4).toLowerCase()){this._isAjax=!0,this.$content.addClass("loading"),this.$btnc.find("button").prop("disabled",!0);var i=this.content.substring(4,this.content.length);t.get(i).done(function(t){n.content=t,n._contentReady.resolve()}).always(function(t,e,i){"function"==typeof n.contentLoaded&&n.contentLoaded(t,e,i)})}else this.setContent(this.content),this._contentReady.reject();else if("function"==typeof this.content){this.$content.addClass("loading"),this.$btnc.find("button").attr("disabled","disabled");var o=this.content(this);"object"!=typeof o?console.error("The content function must return jquery promise."):"function"!=typeof o.always?console.error("The object returned is not a jquery promise."):(this._isAjax=!0,o.always(function(t,e){n._contentReady.resolve()}))}else console.error("Invalid option for property content, passed: "+typeof this.content);else this.content="",this.setContent(this.content),this._contentReady.reject();this.setDialogCenter()},_stopCountDown:function(){clearInterval(this.timerInterval),this.$cd&&this.$cd.remove()},_startCountDown:function(){var e=this.autoClose.split("|");if(/cancel/.test(e[0])&&"alert"===this.type)return!1;if(/confirm|cancel/.test(e[0])){this.$cd=t('<span class="countdown">').appendTo(this["$"+e[0]+"Button"]);var n=this;n.$cd.parent().click();var i=e[1]/1e3;this.timerInterval=setInterval(function(){n.$cd.html(" ("+(i-=1)+")"),0===i&&(n.$cd.html(""),n.$cd.parent().trigger("click"),clearInterval(n.timerInterval))},1e3)}else console.error("Invalid option "+e[0]+", must be confirm/cancel")},reactOnKey:function e(n){var i=t(".jconfirm");if(i.eq(i.length-1)[0]!==this.$el[0])return!1;var e=n.which;return this.contentDiv.find(":input").is(":focus")&&/13|32/.test(e)?!1:(-1!==t.inArray(e,this.cancelKeys)&&(this.$cancelButton?this.$cancelButton.click():this.close()),void(-1!==t.inArray(e,this.confirmKeys)&&this.$confirmButton&&this.$confirmButton.click()))},setDialogCenter:function(){if("none"==this.$contentPane.css("display"))var e=0,n=0;else{var e=this.$content.outerHeight(),n=this.$contentPane.height();0==n&&(n=e)}var i=100,o=this.$content.outerWidth();this.$content.css({clip:"rect(0px "+(i+o)+"px "+e+"px -"+i+"px)"}),this.$contentPane.css({height:e});var s=t(window).height(),r=this.$b.outerHeight()-n+e,a=(s-r)/2,l=100;if(r>s-l){var c={"margin-top":l/2,"margin-bottom":l/2};t("body").addClass("jconfirm-noscroll")}else{var c={"margin-top":a};t("body").removeClass("jconfirm-noscroll")}this.$b.css(c)},close:function(){var e=this;if(this.isClosed())return!1;"function"==typeof this.onClose&&this.onClose(),this._unwatchContent(),e._lastFocused.focus(),t(window).unbind("resize."+this._rand),this.keyboardEnabled&&t(window).unbind("keyup."+this._rand),e.$el.find(".jconfirm-bg").removeClass("seen"),t("body").removeClass("jconfirm-noscroll"),this.$b.addClass(this.closeAnimation);var n="anim-none"==this.closeAnimation?0:this.animationSpeed;return setTimeout(function(){e.$el.remove()},25*n/100),jconfirm.record.closed+=1,jconfirm.record.currentlyOpen-=1,!0},open:function(){var t=this;if(this.isClosed())return!1;t.$el.find(".jconfirm-bg").addClass("seen"),this.$b.removeClass(this.animation),this.$b.find("input[autofocus]:visible:first").focus(),jconfirm.record.opened+=1,jconfirm.record.currentlyOpen+=1,"function"==typeof this.onOpen&&this.onOpen();var e="jconfirm-box"+this._rand;return this.$b.attr("aria-labelledby",e).attr("tabindex",-1).focus(),this.$title?this.$title.attr("id",e):this.$content&&this.$content.attr("id",e),setTimeout(function(){t.$b.css({"transition-property":t.$b.css("transition-property")+", margin"}),t._modalReady.resolve()},this.animationSpeed),!0},isClosed:function(){return""===this.$el.css("display")}},jconfirm.pluginDefaults={template:'<div class="jconfirm"><div class="jconfirm-bg"></div><div class="jconfirm-scrollpane"><div class="container"><div class="row"><div class="jconfirm-box-container"><div class="jconfirm-box" role="dialog" aria-labelledby="labelled" tabindex="-1"><div class="closeIcon">&times;</div><div class="title-c"><span class="icon-c"></span><span class="title"></span></div><div class="content-pane"><div class="content"></div></div><div class="buttons"></div><div class="jquery-clear"></div></div></div></div></div></div></div>',
-title:"Hello",content:"Are you sure to continue?",contentLoaded:function(){},icon:"",opacity:.2,confirmButton:"Okay",cancelButton:"Close",confirmButtonClass:"btn-default",cancelButtonClass:"btn-default",theme:"white",animation:"zoom",closeAnimation:"scale",animationSpeed:500,animationBounce:1.2,keyboardEnabled:!1,rtl:!1,confirmKeys:[13],cancelKeys:[27],container:"body",confirm:function(){},cancel:function(){},backgroundDismiss:!1,autoClose:!1,closeIcon:null,closeIconClass:!1,watchInterval:100,columnClass:"col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1",onOpen:function(){},onClose:function(){},onAction:function(){}},jconfirm.record={opened:0,closed:0,currentlyOpen:0}}(jQuery),function(t,e){"function"==typeof define&&define.amd?define(["jquery"],function(t){return e(t)}):"object"==typeof exports?module.exports=e(require("jquery")):e(jQuery)}(this,function(t){!function(t){"use strict";function e(e){var n=[{re:/[\xC0-\xC6]/g,ch:"A"},{re:/[\xE0-\xE6]/g,ch:"a"},{re:/[\xC8-\xCB]/g,ch:"E"},{re:/[\xE8-\xEB]/g,ch:"e"},{re:/[\xCC-\xCF]/g,ch:"I"},{re:/[\xEC-\xEF]/g,ch:"i"},{re:/[\xD2-\xD6]/g,ch:"O"},{re:/[\xF2-\xF6]/g,ch:"o"},{re:/[\xD9-\xDC]/g,ch:"U"},{re:/[\xF9-\xFC]/g,ch:"u"},{re:/[\xC7-\xE7]/g,ch:"c"},{re:/[\xD1]/g,ch:"N"},{re:/[\xF1]/g,ch:"n"}];return t.each(n,function(){e=e.replace(this.re,this.ch)}),e}function n(t){var e={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;","`":"&#x60;"},n="(?:"+Object.keys(e).join("|")+")",i=new RegExp(n),o=new RegExp(n,"g"),s=null==t?"":""+t;return i.test(s)?s.replace(o,function(t){return e[t]}):s}function i(e,n){var i=arguments,s=e,r=n;[].shift.apply(i);var a,l=this.each(function(){var e=t(this);if(e.is("select")){var n=e.data("selectpicker"),l="object"==typeof s&&s;if(n){if(l)for(var c in l)l.hasOwnProperty(c)&&(n.options[c]=l[c])}else{var h=t.extend({},o.DEFAULTS,t.fn.selectpicker.defaults||{},e.data(),l);h.template=t.extend({},o.DEFAULTS.template,t.fn.selectpicker.defaults?t.fn.selectpicker.defaults.template:{},e.data().template,l.template),e.data("selectpicker",n=new o(this,h,r))}"string"==typeof s&&(a=n[s]instanceof Function?n[s].apply(n,i):n.options[s])}});return"undefined"!=typeof a?a:l}String.prototype.includes||!function(){var t={}.toString,e=function(){try{var t={},e=Object.defineProperty,n=e(t,t,t)&&e}catch(i){}return n}(),n="".indexOf,i=function(e){if(null==this)throw new TypeError;var i=String(this);if(e&&"[object RegExp]"==t.call(e))throw new TypeError;var o=i.length,s=String(e),r=s.length,a=arguments.length>1?arguments[1]:void 0,l=a?Number(a):0;l!=l&&(l=0);var c=Math.min(Math.max(l,0),o);return r+c>o?!1:-1!=n.call(i,s,l)};e?e(String.prototype,"includes",{value:i,configurable:!0,writable:!0}):String.prototype.includes=i}(),String.prototype.startsWith||!function(){var t=function(){try{var t={},e=Object.defineProperty,n=e(t,t,t)&&e}catch(i){}return n}(),e={}.toString,n=function(t){if(null==this)throw new TypeError;var n=String(this);if(t&&"[object RegExp]"==e.call(t))throw new TypeError;var i=n.length,o=String(t),s=o.length,r=arguments.length>1?arguments[1]:void 0,a=r?Number(r):0;a!=a&&(a=0);var l=Math.min(Math.max(a,0),i);if(s+l>i)return!1;for(var c=-1;++c<s;)if(n.charCodeAt(l+c)!=o.charCodeAt(c))return!1;return!0};t?t(String.prototype,"startsWith",{value:n,configurable:!0,writable:!0}):String.prototype.startsWith=n}(),Object.keys||(Object.keys=function(t,e,n){n=[];for(e in t)n.hasOwnProperty.call(t,e)&&n.push(e);return n}),t.fn.triggerNative=function(t){var e,n=this[0];n.dispatchEvent?("function"==typeof Event?e=new Event(t,{bubbles:!0}):(e=document.createEvent("Event"),e.initEvent(t,!0,!1)),n.dispatchEvent(e)):(n.fireEvent&&(e=document.createEventObject(),e.eventType=t,n.fireEvent("on"+t,e)),this.trigger(t))},t.expr[":"].icontains=function(e,n,i){var o=t(e),s=(o.data("tokens")||o.text()).toUpperCase();return s.includes(i[3].toUpperCase())},t.expr[":"].ibegins=function(e,n,i){var o=t(e),s=(o.data("tokens")||o.text()).toUpperCase();return s.startsWith(i[3].toUpperCase())},t.expr[":"].aicontains=function(e,n,i){var o=t(e),s=(o.data("tokens")||o.data("normalizedText")||o.text()).toUpperCase();return s.includes(i[3].toUpperCase())},t.expr[":"].aibegins=function(e,n,i){var o=t(e),s=(o.data("tokens")||o.data("normalizedText")||o.text()).toUpperCase();return s.startsWith(i[3].toUpperCase())};var o=function(e,n,i){i&&(i.stopPropagation(),i.preventDefault()),this.$element=t(e),this.$newElement=null,this.$button=null,this.$menu=null,this.$lis=null,this.options=n,null===this.options.title&&(this.options.title=this.$element.attr("title")),this.val=o.prototype.val,this.render=o.prototype.render,this.refresh=o.prototype.refresh,this.setStyle=o.prototype.setStyle,this.selectAll=o.prototype.selectAll,this.deselectAll=o.prototype.deselectAll,this.destroy=o.prototype.destroy,this.remove=o.prototype.remove,this.show=o.prototype.show,this.hide=o.prototype.hide,this.init()};o.VERSION="1.10.0",o.DEFAULTS={noneSelectedText:"Nothing selected",noneResultsText:"No results matched {0}",countSelectedText:function(t,e){return 1==t?"{0} item selected":"{0} items selected"},maxOptionsText:function(t,e){return[1==t?"Limit reached ({n} item max)":"Limit reached ({n} items max)",1==e?"Group limit reached ({n} item max)":"Group limit reached ({n} items max)"]},selectAllText:"Select All",deselectAllText:"Deselect All",doneButton:!1,doneButtonText:"Close",multipleSeparator:", ",styleBase:"btn",style:"btn-default",size:"auto",title:null,selectedTextFormat:"values",width:!1,container:!1,hideDisabled:!1,showSubtext:!1,showIcon:!0,showContent:!0,dropupAuto:!0,header:!1,liveSearch:!1,liveSearchPlaceholder:null,liveSearchNormalize:!1,liveSearchStyle:"contains",actionsBox:!1,iconBase:"glyphicon",tickIcon:"glyphicon-ok",showTick:!1,template:{caret:'<span class="caret"></span>'},maxOptions:!1,mobile:!1,selectOnTab:!1,dropdownAlignRight:!1},o.prototype={constructor:o,init:function(){var e=this,n=this.$element.attr("id");this.$element.addClass("bs-select-hidden"),this.liObj={},this.multiple=this.$element.prop("multiple"),this.autofocus=this.$element.prop("autofocus"),this.$newElement=this.createView(),this.$element.after(this.$newElement).appendTo(this.$newElement),this.$button=this.$newElement.children("button"),this.$menu=this.$newElement.children(".dropdown-menu"),this.$menuInner=this.$menu.children(".inner"),this.$searchbox=this.$menu.find("input"),this.$element.removeClass("bs-select-hidden"),this.options.dropdownAlignRight&&this.$menu.addClass("dropdown-menu-right"),"undefined"!=typeof n&&(this.$button.attr("data-id",n),t('label[for="'+n+'"]').click(function(t){t.preventDefault(),e.$button.focus()})),this.checkDisabled(),this.clickListener(),this.options.liveSearch&&this.liveSearchListener(),this.render(),this.setStyle(),this.setWidth(),this.options.container&&this.selectPosition(),this.$menu.data("this",this),this.$newElement.data("this",this),this.options.mobile&&this.mobile(),this.$newElement.on({"hide.bs.dropdown":function(t){e.$element.trigger("hide.bs.select",t)},"hidden.bs.dropdown":function(t){e.$element.trigger("hidden.bs.select",t)},"show.bs.dropdown":function(t){e.$element.trigger("show.bs.select",t)},"shown.bs.dropdown":function(t){e.$element.trigger("shown.bs.select",t)}}),e.$element[0].hasAttribute("required")&&this.$element.on("invalid",function(){e.$button.addClass("bs-invalid").focus(),e.$element.on({"focus.bs.select":function(){e.$button.focus(),e.$element.off("focus.bs.select")},"shown.bs.select":function(){e.$element.val(e.$element.val()).off("shown.bs.select")},"rendered.bs.select":function(){this.validity.valid&&e.$button.removeClass("bs-invalid"),e.$element.off("rendered.bs.select")}})}),setTimeout(function(){e.$element.trigger("loaded.bs.select")})},createDropdown:function(){var e=this.multiple||this.options.showTick?" show-tick":"",i=this.$element.parent().hasClass("input-group")?" input-group-btn":"",o=this.autofocus?" autofocus":"",s=this.options.header?'<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>'+this.options.header+"</div>":"",r=this.options.liveSearch?'<div class="bs-searchbox"><input type="text" class="form-control" autocomplete="off"'+(null===this.options.liveSearchPlaceholder?"":' placeholder="'+n(this.options.liveSearchPlaceholder)+'"')+"></div>":"",a=this.multiple&&this.options.actionsBox?'<div class="bs-actionsbox"><div class="btn-group btn-group-sm btn-block"><button type="button" class="actions-btn bs-select-all btn btn-default">'+this.options.selectAllText+'</button><button type="button" class="actions-btn bs-deselect-all btn btn-default">'+this.options.deselectAllText+"</button></div></div>":"",l=this.multiple&&this.options.doneButton?'<div class="bs-donebutton"><div class="btn-group btn-block"><button type="button" class="btn btn-sm btn-default">'+this.options.doneButtonText+"</button></div></div>":"",c='<div class="btn-group bootstrap-select'+e+i+'"><button type="button" class="'+this.options.styleBase+' dropdown-toggle" data-toggle="dropdown"'+o+'><span class="filter-option pull-left"></span>&nbsp;<span class="bs-caret">'+this.options.template.caret+'</span></button><div class="dropdown-menu open">'+s+r+a+'<ul class="dropdown-menu inner" role="menu"></ul>'+l+"</div></div>";return t(c)},createView:function(){var t=this.createDropdown(),e=this.createLi();return t.find("ul")[0].innerHTML=e,t},reloadLi:function(){this.destroyLi();var t=this.createLi();this.$menuInner[0].innerHTML=t},destroyLi:function(){this.$menu.find("li").remove()},createLi:function(){var i=this,o=[],s=0,r=document.createElement("option"),a=-1,l=function(t,e,n,i){return"<li"+("undefined"!=typeof n&""!==n?' class="'+n+'"':"")+("undefined"!=typeof e&null!==e?' data-original-index="'+e+'"':"")+("undefined"!=typeof i&null!==i?'data-optgroup="'+i+'"':"")+">"+t+"</li>"},c=function(t,o,s,r){return'<a tabindex="0"'+("undefined"!=typeof o?' class="'+o+'"':"")+("undefined"!=typeof s?' style="'+s+'"':"")+(i.options.liveSearchNormalize?' data-normalized-text="'+e(n(t))+'"':"")+("undefined"!=typeof r||null!==r?' data-tokens="'+r+'"':"")+">"+t+'<span class="'+i.options.iconBase+" "+i.options.tickIcon+' check-mark"></span></a>'};if(this.options.title&&!this.multiple&&(a--,!this.$element.find(".bs-title-option").length)){var h=this.$element[0];r.className="bs-title-option",r.appendChild(document.createTextNode(this.options.title)),r.value="",h.insertBefore(r,h.firstChild),void 0===t(h.options[h.selectedIndex]).attr("selected")&&(r.selected=!0)}return this.$element.find("option").each(function(e){var n=t(this);if(a++,!n.hasClass("bs-title-option")){var r=this.className||"",h=this.style.cssText,u=n.data("content")?n.data("content"):n.html(),p=n.data("tokens")?n.data("tokens"):null,d="undefined"!=typeof n.data("subtext")?'<small class="text-muted">'+n.data("subtext")+"</small>":"",f="undefined"!=typeof n.data("icon")?'<span class="'+i.options.iconBase+" "+n.data("icon")+'"></span> ':"",m="OPTGROUP"===this.parentNode.tagName,g=this.disabled||m&&this.parentNode.disabled;if(""!==f&&g&&(f="<span>"+f+"</span>"),i.options.hideDisabled&&g&&!m)return void a--;if(n.data("content")||(u=f+'<span class="text">'+u+d+"</span>"),m&&n.data("divider")!==!0){var v=" "+this.parentNode.className||"";if(0===n.index()){s+=1;var y=this.parentNode.label,b="undefined"!=typeof n.parent().data("subtext")?'<small class="text-muted">'+n.parent().data("subtext")+"</small>":"",x=n.parent().data("icon")?'<span class="'+i.options.iconBase+" "+n.parent().data("icon")+'"></span> ':"";y=x+'<span class="text">'+y+b+"</span>",0!==e&&o.length>0&&(a++,o.push(l("",null,"divider",s+"div"))),a++,o.push(l(y,null,"dropdown-header"+v,s))}if(i.options.hideDisabled&&g)return void a--;o.push(l(c(u,"opt "+r+v,h,p),e,"",s))}else n.data("divider")===!0?o.push(l("",e,"divider")):n.data("hidden")===!0?o.push(l(c(u,r,h,p),e,"hidden is-hidden")):(this.previousElementSibling&&"OPTGROUP"===this.previousElementSibling.tagName&&(a++,o.push(l("",null,"divider",s+"div"))),o.push(l(c(u,r,h,p),e)));i.liObj[e]=a}}),this.multiple||0!==this.$element.find("option:selected").length||this.options.title||this.$element.find("option").eq(0).prop("selected",!0).attr("selected","selected"),o.join("")},findLis:function(){return null==this.$lis&&(this.$lis=this.$menu.find("li")),this.$lis},render:function(e){var n,i=this;e!==!1&&this.$element.find("option").each(function(t){var e=i.findLis().eq(i.liObj[t]);i.setDisabled(t,this.disabled||"OPTGROUP"===this.parentNode.tagName&&this.parentNode.disabled,e),i.setSelected(t,this.selected,e)}),this.tabIndex();var o=this.$element.find("option").map(function(){if(this.selected){if(i.options.hideDisabled&&(this.disabled||"OPTGROUP"===this.parentNode.tagName&&this.parentNode.disabled))return;var e,n=t(this),o=n.data("icon")&&i.options.showIcon?'<i class="'+i.options.iconBase+" "+n.data("icon")+'"></i> ':"";return e=i.options.showSubtext&&n.data("subtext")&&!i.multiple?' <small class="text-muted">'+n.data("subtext")+"</small>":"","undefined"!=typeof n.attr("title")?n.attr("title"):n.data("content")&&i.options.showContent?n.data("content"):o+n.html()+e}}).toArray(),s=this.multiple?o.join(this.options.multipleSeparator):o[0];if(this.multiple&&this.options.selectedTextFormat.indexOf("count")>-1){var r=this.options.selectedTextFormat.split(">");if(r.length>1&&o.length>r[1]||1==r.length&&o.length>=2){n=this.options.hideDisabled?", [disabled]":"";var a=this.$element.find("option").not('[data-divider="true"], [data-hidden="true"]'+n).length,l="function"==typeof this.options.countSelectedText?this.options.countSelectedText(o.length,a):this.options.countSelectedText;s=l.replace("{0}",o.length.toString()).replace("{1}",a.toString())}}void 0==this.options.title&&(this.options.title=this.$element.attr("title")),"static"==this.options.selectedTextFormat&&(s=this.options.title),s||(s="undefined"!=typeof this.options.title?this.options.title:this.options.noneSelectedText),this.$button.attr("title",t.trim(s.replace(/<[^>]*>?/g,""))),this.$button.children(".filter-option").html(s),this.$element.trigger("rendered.bs.select")},setStyle:function(t,e){this.$element.attr("class")&&this.$newElement.addClass(this.$element.attr("class").replace(/selectpicker|mobile-device|bs-select-hidden|validate\[.*\]/gi,""));var n=t?t:this.options.style;"add"==e?this.$button.addClass(n):"remove"==e?this.$button.removeClass(n):(this.$button.removeClass(this.options.style),this.$button.addClass(n))},liHeight:function(e){if(e||this.options.size!==!1&&!this.sizeInfo){var n=document.createElement("div"),i=document.createElement("div"),o=document.createElement("ul"),s=document.createElement("li"),r=document.createElement("li"),a=document.createElement("a"),l=document.createElement("span"),c=this.options.header&&this.$menu.find(".popover-title").length>0?this.$menu.find(".popover-title")[0].cloneNode(!0):null,h=this.options.liveSearch?document.createElement("div"):null,u=this.options.actionsBox&&this.multiple&&this.$menu.find(".bs-actionsbox").length>0?this.$menu.find(".bs-actionsbox")[0].cloneNode(!0):null,p=this.options.doneButton&&this.multiple&&this.$menu.find(".bs-donebutton").length>0?this.$menu.find(".bs-donebutton")[0].cloneNode(!0):null;if(l.className="text",n.className=this.$menu[0].parentNode.className+" open",i.className="dropdown-menu open",o.className="dropdown-menu inner",s.className="divider",l.appendChild(document.createTextNode("Inner text")),a.appendChild(l),r.appendChild(a),o.appendChild(r),o.appendChild(s),c&&i.appendChild(c),h){var d=document.createElement("span");h.className="bs-searchbox",d.className="form-control",h.appendChild(d),i.appendChild(h)}u&&i.appendChild(u),i.appendChild(o),p&&i.appendChild(p),n.appendChild(i),document.body.appendChild(n);var f=a.offsetHeight,m=c?c.offsetHeight:0,g=h?h.offsetHeight:0,v=u?u.offsetHeight:0,y=p?p.offsetHeight:0,b=t(s).outerHeight(!0),x="function"==typeof getComputedStyle?getComputedStyle(i):!1,w=x?null:t(i),C=parseInt(x?x.paddingTop:w.css("paddingTop"))+parseInt(x?x.paddingBottom:w.css("paddingBottom"))+parseInt(x?x.borderTopWidth:w.css("borderTopWidth"))+parseInt(x?x.borderBottomWidth:w.css("borderBottomWidth")),k=C+parseInt(x?x.marginTop:w.css("marginTop"))+parseInt(x?x.marginBottom:w.css("marginBottom"))+2;document.body.removeChild(n),this.sizeInfo={liHeight:f,headerHeight:m,searchHeight:g,actionsHeight:v,doneButtonHeight:y,dividerHeight:b,menuPadding:C,menuExtras:k}}},setSize:function(){if(this.findLis(),this.liHeight(),this.options.header&&this.$menu.css("padding-top",0),this.options.size!==!1){var e,n,i,o,s=this,r=this.$menu,a=this.$menuInner,l=t(window),c=this.$newElement[0].offsetHeight,h=this.sizeInfo.liHeight,u=this.sizeInfo.headerHeight,p=this.sizeInfo.searchHeight,d=this.sizeInfo.actionsHeight,f=this.sizeInfo.doneButtonHeight,m=this.sizeInfo.dividerHeight,g=this.sizeInfo.menuPadding,v=this.sizeInfo.menuExtras,y=this.options.hideDisabled?".disabled":"",b=function(){i=s.$newElement.offset().top-l.scrollTop(),o=l.height()-i-c};if(b(),"auto"===this.options.size){var x=function(){var l,c=function(e,n){return function(i){return n?i.classList?i.classList.contains(e):t(i).hasClass(e):!(i.classList?i.classList.contains(e):t(i).hasClass(e))}},m=s.$menuInner[0].getElementsByTagName("li"),y=Array.prototype.filter?Array.prototype.filter.call(m,c("hidden",!1)):s.$lis.not(".hidden"),x=Array.prototype.filter?Array.prototype.filter.call(y,c("dropdown-header",!0)):y.filter(".dropdown-header");b(),e=o-v,s.options.container?(r.data("height")||r.data("height",r.height()),n=r.data("height")):n=r.height(),s.options.dropupAuto&&s.$newElement.toggleClass("dropup",i>o&&n>e-v),s.$newElement.hasClass("dropup")&&(e=i-v),l=y.length+x.length>3?3*h+v-2:0,r.css({"max-height":e+"px",overflow:"hidden","min-height":l+u+p+d+f+"px"}),a.css({"max-height":e-u-p-d-f-g+"px","overflow-y":"auto","min-height":Math.max(l-g,0)+"px"})};x(),this.$searchbox.off("input.getSize propertychange.getSize").on("input.getSize propertychange.getSize",x),l.off("resize.getSize scroll.getSize").on("resize.getSize scroll.getSize",x)}else if(this.options.size&&"auto"!=this.options.size&&this.$lis.not(y).length>this.options.size){var w=this.$lis.not(".divider").not(y).children().slice(0,this.options.size).last().parent().index(),C=this.$lis.slice(0,w+1).filter(".divider").length;e=h*this.options.size+C*m+g,s.options.container?(r.data("height")||r.data("height",r.height()),n=r.data("height")):n=r.height(),s.options.dropupAuto&&this.$newElement.toggleClass("dropup",i>o&&n>e-v),r.css({"max-height":e+u+p+d+f+"px",overflow:"hidden","min-height":""}),a.css({"max-height":e-g+"px","overflow-y":"auto","min-height":""})}}},setWidth:function(){if("auto"===this.options.width){this.$menu.css("min-width","0");var t=this.$menu.parent().clone().appendTo("body"),e=this.options.container?this.$newElement.clone().appendTo("body"):t,n=t.children(".dropdown-menu").outerWidth(),i=e.css("width","auto").children("button").outerWidth();t.remove(),e.remove(),this.$newElement.css("width",Math.max(n,i)+"px")}else"fit"===this.options.width?(this.$menu.css("min-width",""),this.$newElement.css("width","").addClass("fit-width")):this.options.width?(this.$menu.css("min-width",""),this.$newElement.css("width",this.options.width)):(this.$menu.css("min-width",""),this.$newElement.css("width",""));this.$newElement.hasClass("fit-width")&&"fit"!==this.options.width&&this.$newElement.removeClass("fit-width")},selectPosition:function(){this.$bsContainer=t('<div class="bs-container" />');var e,n,i=this,o=function(t){i.$bsContainer.addClass(t.attr("class").replace(/form-control|fit-width/gi,"")).toggleClass("dropup",t.hasClass("dropup")),e=t.offset(),n=t.hasClass("dropup")?0:t[0].offsetHeight,i.$bsContainer.css({top:e.top+n,left:e.left,width:t[0].offsetWidth})};this.$button.on("click",function(){var e=t(this);i.isDisabled()||(o(i.$newElement),i.$bsContainer.appendTo(i.options.container).toggleClass("open",!e.hasClass("open")).append(i.$menu))}),t(window).on("resize scroll",function(){o(i.$newElement)}),this.$element.on("hide.bs.select",function(){i.$menu.data("height",i.$menu.height()),i.$bsContainer.detach()})},setSelected:function(t,e,n){n||(n=this.findLis().eq(this.liObj[t])),n.toggleClass("selected",e)},setDisabled:function(t,e,n){n||(n=this.findLis().eq(this.liObj[t])),e?n.addClass("disabled").children("a").attr("href","#").attr("tabindex",-1):n.removeClass("disabled").children("a").removeAttr("href").attr("tabindex",0)},isDisabled:function(){return this.$element[0].disabled},checkDisabled:function(){var t=this;this.isDisabled()?(this.$newElement.addClass("disabled"),this.$button.addClass("disabled").attr("tabindex",-1)):(this.$button.hasClass("disabled")&&(this.$newElement.removeClass("disabled"),this.$button.removeClass("disabled")),-1!=this.$button.attr("tabindex")||this.$element.data("tabindex")||this.$button.removeAttr("tabindex")),this.$button.click(function(){return!t.isDisabled()})},tabIndex:function(){this.$element.data("tabindex")!==this.$element.attr("tabindex")&&-98!==this.$element.attr("tabindex")&&"-98"!==this.$element.attr("tabindex")&&(this.$element.data("tabindex",this.$element.attr("tabindex")),this.$button.attr("tabindex",this.$element.data("tabindex"))),this.$element.attr("tabindex",-98)},clickListener:function(){var e=this,n=t(document);this.$newElement.on("touchstart.dropdown",".dropdown-menu",function(t){t.stopPropagation()}),n.data("spaceSelect",!1),this.$button.on("keyup",function(t){/(32)/.test(t.keyCode.toString(10))&&n.data("spaceSelect")&&(t.preventDefault(),n.data("spaceSelect",!1))}),this.$button.on("click",function(){e.setSize()}),this.$element.on("shown.bs.select",function(){if(e.options.liveSearch||e.multiple){if(!e.multiple){var t=e.liObj[e.$element[0].selectedIndex];if("number"!=typeof t||e.options.size===!1)return;var n=e.$lis.eq(t)[0].offsetTop-e.$menuInner[0].offsetTop;n=n-e.$menuInner[0].offsetHeight/2+e.sizeInfo.liHeight/2,e.$menuInner[0].scrollTop=n}}else e.$menuInner.find(".selected a").focus()}),this.$menuInner.on("click","li a",function(n){var i=t(this),o=i.parent().data("originalIndex"),s=e.$element.val(),r=e.$element.prop("selectedIndex");if(e.multiple&&n.stopPropagation(),n.preventDefault(),!e.isDisabled()&&!i.parent().hasClass("disabled")){var a=e.$element.find("option"),l=a.eq(o),c=l.prop("selected"),h=l.parent("optgroup"),u=e.options.maxOptions,p=h.data("maxOptions")||!1;if(e.multiple){if(l.prop("selected",!c),e.setSelected(o,!c),i.blur(),u!==!1||p!==!1){var d=u<a.filter(":selected").length,f=p<h.find("option:selected").length;if(u&&d||p&&f)if(u&&1==u)a.prop("selected",!1),l.prop("selected",!0),e.$menuInner.find(".selected").removeClass("selected"),e.setSelected(o,!0);else if(p&&1==p){h.find("option:selected").prop("selected",!1),l.prop("selected",!0);var m=i.parent().data("optgroup");e.$menuInner.find('[data-optgroup="'+m+'"]').removeClass("selected"),e.setSelected(o,!0)}else{var g="function"==typeof e.options.maxOptionsText?e.options.maxOptionsText(u,p):e.options.maxOptionsText,v=g[0].replace("{n}",u),y=g[1].replace("{n}",p),b=t('<div class="notify"></div>');g[2]&&(v=v.replace("{var}",g[2][u>1?0:1]),y=y.replace("{var}",g[2][p>1?0:1])),l.prop("selected",!1),e.$menu.append(b),u&&d&&(b.append(t("<div>"+v+"</div>")),e.$element.trigger("maxReached.bs.select")),p&&f&&(b.append(t("<div>"+y+"</div>")),e.$element.trigger("maxReachedGrp.bs.select")),setTimeout(function(){e.setSelected(o,!1)},10),b.delay(750).fadeOut(300,function(){t(this).remove()})}}}else a.prop("selected",!1),l.prop("selected",!0),e.$menuInner.find(".selected").removeClass("selected"),e.setSelected(o,!0);e.multiple?e.options.liveSearch&&e.$searchbox.focus():e.$button.focus(),(s!=e.$element.val()&&e.multiple||r!=e.$element.prop("selectedIndex")&&!e.multiple)&&e.$element.trigger("changed.bs.select",[o,l.prop("selected"),c]).triggerNative("change")}}),this.$menu.on("click","li.disabled a, .popover-title, .popover-title :not(.close)",function(n){n.currentTarget==this&&(n.preventDefault(),n.stopPropagation(),e.options.liveSearch&&!t(n.target).hasClass("close")?e.$searchbox.focus():e.$button.focus())}),this.$menuInner.on("click",".divider, .dropdown-header",function(t){t.preventDefault(),t.stopPropagation(),e.options.liveSearch?e.$searchbox.focus():e.$button.focus()}),this.$menu.on("click",".popover-title .close",function(){e.$button.click()}),this.$searchbox.on("click",function(t){t.stopPropagation()}),this.$menu.on("click",".actions-btn",function(n){e.options.liveSearch?e.$searchbox.focus():e.$button.focus(),n.preventDefault(),n.stopPropagation(),t(this).hasClass("bs-select-all")?e.selectAll():e.deselectAll()}),this.$element.change(function(){e.render(!1)})},liveSearchListener:function(){var i=this,o=t('<li class="no-results"></li>');this.$button.on("click.dropdown.data-api touchstart.dropdown.data-api",function(){i.$menuInner.find(".active").removeClass("active"),i.$searchbox.val()&&(i.$searchbox.val(""),i.$lis.not(".is-hidden").removeClass("hidden"),o.parent().length&&o.remove()),i.multiple||i.$menuInner.find(".selected").addClass("active"),setTimeout(function(){i.$searchbox.focus()},10)}),this.$searchbox.on("click.dropdown.data-api focus.dropdown.data-api touchend.dropdown.data-api",function(t){t.stopPropagation()}),this.$searchbox.on("input propertychange",function(){if(i.$searchbox.val()){var s=i.$lis.not(".is-hidden").removeClass("hidden").children("a");s=i.options.liveSearchNormalize?s.not(":a"+i._searchStyle()+'("'+e(i.$searchbox.val())+'")'):s.not(":"+i._searchStyle()+'("'+i.$searchbox.val()+'")'),s.parent().addClass("hidden"),i.$lis.filter(".dropdown-header").each(function(){var e=t(this),n=e.data("optgroup");0===i.$lis.filter("[data-optgroup="+n+"]").not(e).not(".hidden").length&&(e.addClass("hidden"),i.$lis.filter("[data-optgroup="+n+"div]").addClass("hidden"))});var r=i.$lis.not(".hidden");r.each(function(e){var n=t(this);n.hasClass("divider")&&(n.index()===r.first().index()||n.index()===r.last().index()||r.eq(e+1).hasClass("divider"))&&n.addClass("hidden")}),i.$lis.not(".hidden, .no-results").length?o.parent().length&&o.remove():(o.parent().length&&o.remove(),o.html(i.options.noneResultsText.replace("{0}",'"'+n(i.$searchbox.val())+'"')).show(),i.$menuInner.append(o))}else i.$lis.not(".is-hidden").removeClass("hidden"),o.parent().length&&o.remove();i.$lis.filter(".active").removeClass("active"),i.$searchbox.val()&&i.$lis.not(".hidden, .divider, .dropdown-header").eq(0).addClass("active").children("a").focus(),t(this).focus()})},_searchStyle:function(){var t={begins:"ibegins",startsWith:"ibegins"};return t[this.options.liveSearchStyle]||"icontains"},val:function(t){return"undefined"!=typeof t?(this.$element.val(t),this.render(),this.$element):this.$element.val()},changeAll:function(e){"undefined"==typeof e&&(e=!0),this.findLis();for(var n=this.$element.find("option"),i=this.$lis.not(".divider, .dropdown-header, .disabled, .hidden").toggleClass("selected",e),o=i.length,s=[],r=0;o>r;r++){var a=i[r].getAttribute("data-original-index");s[s.length]=n.eq(a)[0]}t(s).prop("selected",e),this.render(!1),this.$element.trigger("changed.bs.select").triggerNative("change")},selectAll:function(){return this.changeAll(!0)},deselectAll:function(){return this.changeAll(!1)},toggle:function(t){t=t||window.event,t&&t.stopPropagation(),this.$button.trigger("click")},keydown:function(n){var i,o,s,r,a,l,c,h,u,p=t(this),d=p.is("input")?p.parent().parent():p.parent(),f=d.data("this"),m=":not(.disabled, .hidden, .dropdown-header, .divider)",g={32:" ",48:"0",49:"1",50:"2",51:"3",52:"4",53:"5",54:"6",55:"7",56:"8",57:"9",59:";",65:"a",66:"b",67:"c",68:"d",69:"e",70:"f",71:"g",72:"h",73:"i",74:"j",75:"k",76:"l",77:"m",78:"n",79:"o",80:"p",81:"q",82:"r",83:"s",84:"t",85:"u",86:"v",87:"w",88:"x",89:"y",90:"z",96:"0",97:"1",98:"2",99:"3",100:"4",101:"5",102:"6",103:"7",104:"8",105:"9"};if(f.options.liveSearch&&(d=p.parent().parent()),f.options.container&&(d=f.$menu),i=t("[role=menu] li",d),u=f.$newElement.hasClass("open"),!u&&(n.keyCode>=48&&n.keyCode<=57||n.keyCode>=96&&n.keyCode<=105||n.keyCode>=65&&n.keyCode<=90)&&(f.options.container?f.$button.trigger("click"):(f.setSize(),f.$menu.parent().addClass("open"),u=!0),f.$searchbox.focus()),f.options.liveSearch&&(/(^9$|27)/.test(n.keyCode.toString(10))&&u&&0===f.$menu.find(".active").length&&(n.preventDefault(),f.$menu.parent().removeClass("open"),f.options.container&&f.$newElement.removeClass("open"),f.$button.focus()),i=t("[role=menu] li"+m,d),p.val()||/(38|40)/.test(n.keyCode.toString(10))||0===i.filter(".active").length&&(i=f.$menuInner.find("li"),i=f.options.liveSearchNormalize?i.filter(":a"+f._searchStyle()+"("+e(g[n.keyCode])+")"):i.filter(":"+f._searchStyle()+"("+g[n.keyCode]+")"))),i.length){if(/(38|40)/.test(n.keyCode.toString(10)))o=i.index(i.find("a").filter(":focus").parent()),r=i.filter(m).first().index(),a=i.filter(m).last().index(),s=i.eq(o).nextAll(m).eq(0).index(),l=i.eq(o).prevAll(m).eq(0).index(),c=i.eq(s).prevAll(m).eq(0).index(),f.options.liveSearch&&(i.each(function(e){t(this).hasClass("disabled")||t(this).data("index",e)}),o=i.index(i.filter(".active")),r=i.first().data("index"),a=i.last().data("index"),s=i.eq(o).nextAll().eq(0).data("index"),l=i.eq(o).prevAll().eq(0).data("index"),c=i.eq(s).prevAll().eq(0).data("index")),h=p.data("prevIndex"),38==n.keyCode?(f.options.liveSearch&&o--,o!=c&&o>l&&(o=l),r>o&&(o=r),o==h&&(o=a)):40==n.keyCode&&(f.options.liveSearch&&o++,-1==o&&(o=0),o!=c&&s>o&&(o=s),o>a&&(o=a),o==h&&(o=r)),p.data("prevIndex",o),f.options.liveSearch?(n.preventDefault(),p.hasClass("dropdown-toggle")||(i.removeClass("active").eq(o).addClass("active").children("a").focus(),p.focus())):i.eq(o).children("a").focus();else if(!p.is("input")){var v,y,b=[];i.each(function(){t(this).hasClass("disabled")||t.trim(t(this).children("a").text().toLowerCase()).substring(0,1)==g[n.keyCode]&&b.push(t(this).index())}),v=t(document).data("keycount"),v++,t(document).data("keycount",v),y=t.trim(t(":focus").text().toLowerCase()).substring(0,1),y!=g[n.keyCode]?(v=1,t(document).data("keycount",v)):v>=b.length&&(t(document).data("keycount",0),v>b.length&&(v=1)),i.eq(b[v-1]).children("a").focus()}if((/(13|32)/.test(n.keyCode.toString(10))||/(^9$)/.test(n.keyCode.toString(10))&&f.options.selectOnTab)&&u){if(/(32)/.test(n.keyCode.toString(10))||n.preventDefault(),f.options.liveSearch)/(32)/.test(n.keyCode.toString(10))||(f.$menuInner.find(".active a").click(),p.focus());else{var x=t(":focus");x.click(),x.focus(),n.preventDefault(),t(document).data("spaceSelect",!0)}t(document).data("keycount",0)}(/(^9$|27)/.test(n.keyCode.toString(10))&&u&&(f.multiple||f.options.liveSearch)||/(27)/.test(n.keyCode.toString(10))&&!u)&&(f.$menu.parent().removeClass("open"),f.options.container&&f.$newElement.removeClass("open"),f.$button.focus())}},mobile:function(){this.$element.addClass("mobile-device")},refresh:function(){this.$lis=null,this.liObj={},this.reloadLi(),this.render(),this.checkDisabled(),this.liHeight(!0),this.setStyle(),this.setWidth(),this.$lis&&this.$searchbox.trigger("propertychange"),this.$element.trigger("refreshed.bs.select")},hide:function(){this.$newElement.hide()},show:function(){this.$newElement.show()},remove:function(){this.$newElement.remove(),this.$element.remove()},destroy:function(){this.$newElement.before(this.$element).remove(),this.$bsContainer?this.$bsContainer.remove():this.$menu.remove(),this.$element.off(".bs.select").removeData("selectpicker").removeClass("bs-select-hidden selectpicker")}};var s=t.fn.selectpicker;t.fn.selectpicker=i,t.fn.selectpicker.Constructor=o,t.fn.selectpicker.noConflict=function(){return t.fn.selectpicker=s,this},t(document).data("keycount",0).on("keydown.bs.select",'.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="menu"], .bs-searchbox input',o.prototype.keydown).on("focusin.modal",'.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="menu"], .bs-searchbox input',function(t){t.stopPropagation();
-}),t(window).on("load.bs.select.data-api",function(){t(".selectpicker").each(function(){var e=t(this);i.call(e,e.data())})})}(t)}),function(t){if("function"==typeof define&&define.amd)define(["jquery"],t);else if("object"===("undefined"==typeof module?"undefined":_typeof(module))&&module.exports){var e;try{e=require("jquery")}catch(n){e=null}module.exports=t(e)}else window&&(window.Slider=t(window.jQuery))}(function(t){var e;return function(t){"use strict";function e(){}function n(t){function n(e){e.prototype.option||(e.prototype.option=function(e){t.isPlainObject(e)&&(this.options=t.extend(!0,this.options,e))})}function o(e,n){t.fn[e]=function(o){if("string"==typeof o){for(var r=i.call(arguments,1),a=0,l=this.length;l>a;a++){var c=this[a],h=t.data(c,e);if(h)if(t.isFunction(h[o])&&"_"!==o.charAt(0)){var u=h[o].apply(h,r);if(void 0!==u&&u!==h)return u}else s("no such method '"+o+"' for "+e+" instance");else s("cannot call methods on "+e+" prior to initialization; attempted to call '"+o+"'")}return this}var p=this.map(function(){var i=t.data(this,e);return i?(i.option(o),i._init()):(i=new n(this,o),t.data(this,e,i)),t(this)});return!p||p.length>1?p:p[0]}}if(t){var s="undefined"==typeof console?e:function(t){console.error(t)};return t.bridget=function(t,e){n(e),o(t,e)},t.bridget}}var i=Array.prototype.slice;n(t)}(t),function(t){function n(e,n){function i(t,e){var n="data-slider-"+e.replace(/_/g,"-"),i=t.getAttribute(n);try{return JSON.parse(i)}catch(o){return i}}this._state={value:null,enabled:null,offset:null,size:null,percentage:null,inDrag:!1,over:!1},"string"==typeof e?this.element=document.querySelector(e):e instanceof HTMLElement&&(this.element=e),n=n?n:{};for(var s=Object.keys(this.defaultOptions),r=0;r<s.length;r++){var a=s[r],l=n[a];l="undefined"!=typeof l?l:i(this.element,a),l=null!==l?l:this.defaultOptions[a],this.options||(this.options={}),this.options[a]=l}"vertical"!==this.options.orientation||"top"!==this.options.tooltip_position&&"bottom"!==this.options.tooltip_position?"horizontal"!==this.options.orientation||"left"!==this.options.tooltip_position&&"right"!==this.options.tooltip_position||(this.options.tooltip_position="top"):this.options.tooltip_position="right";var c,h,u,p,d,f=this.element.style.width,m=!1,g=this.element.parentNode;if(this.sliderElem)m=!0;else{this.sliderElem=document.createElement("div"),this.sliderElem.className="slider";var v=document.createElement("div");v.className="slider-track",h=document.createElement("div"),h.className="slider-track-low",c=document.createElement("div"),c.className="slider-selection",u=document.createElement("div"),u.className="slider-track-high",p=document.createElement("div"),p.className="slider-handle min-slider-handle",p.setAttribute("role","slider"),p.setAttribute("aria-valuemin",this.options.min),p.setAttribute("aria-valuemax",this.options.max),d=document.createElement("div"),d.className="slider-handle max-slider-handle",d.setAttribute("role","slider"),d.setAttribute("aria-valuemin",this.options.min),d.setAttribute("aria-valuemax",this.options.max),v.appendChild(h),v.appendChild(c),v.appendChild(u);var y=Array.isArray(this.options.labelledby);if(y&&this.options.labelledby[0]&&p.setAttribute("aria-labelledby",this.options.labelledby[0]),y&&this.options.labelledby[1]&&d.setAttribute("aria-labelledby",this.options.labelledby[1]),!y&&this.options.labelledby&&(p.setAttribute("aria-labelledby",this.options.labelledby),d.setAttribute("aria-labelledby",this.options.labelledby)),this.ticks=[],Array.isArray(this.options.ticks)&&this.options.ticks.length>0){for(r=0;r<this.options.ticks.length;r++){var b=document.createElement("div");b.className="slider-tick",this.ticks.push(b),v.appendChild(b)}c.className+=" tick-slider-selection"}if(v.appendChild(p),v.appendChild(d),this.tickLabels=[],Array.isArray(this.options.ticks_labels)&&this.options.ticks_labels.length>0)for(this.tickLabelContainer=document.createElement("div"),this.tickLabelContainer.className="slider-tick-label-container",r=0;r<this.options.ticks_labels.length;r++){var x=document.createElement("div"),w=0===this.options.ticks_positions.length,C=this.options.reversed&&w?this.options.ticks_labels.length-(r+1):r;x.className="slider-tick-label",x.innerHTML=this.options.ticks_labels[C],this.tickLabels.push(x),this.tickLabelContainer.appendChild(x)}var k=function(t){var e=document.createElement("div");e.className="tooltip-arrow";var n=document.createElement("div");n.className="tooltip-inner",t.appendChild(e),t.appendChild(n)},T=document.createElement("div");T.className="tooltip tooltip-main",T.setAttribute("role","presentation"),k(T);var E=document.createElement("div");E.className="tooltip tooltip-min",E.setAttribute("role","presentation"),k(E);var $=document.createElement("div");$.className="tooltip tooltip-max",$.setAttribute("role","presentation"),k($),this.sliderElem.appendChild(v),this.sliderElem.appendChild(T),this.sliderElem.appendChild(E),this.sliderElem.appendChild($),this.tickLabelContainer&&this.sliderElem.appendChild(this.tickLabelContainer),g.insertBefore(this.sliderElem,this.element),this.element.style.display="none"}if(t&&(this.$element=t(this.element),this.$sliderElem=t(this.sliderElem)),this.eventToCallbackMap={},this.sliderElem.id=this.options.id,this.touchCapable="ontouchstart"in window||window.DocumentTouch&&document instanceof window.DocumentTouch,this.tooltip=this.sliderElem.querySelector(".tooltip-main"),this.tooltipInner=this.tooltip.querySelector(".tooltip-inner"),this.tooltip_min=this.sliderElem.querySelector(".tooltip-min"),this.tooltipInner_min=this.tooltip_min.querySelector(".tooltip-inner"),this.tooltip_max=this.sliderElem.querySelector(".tooltip-max"),this.tooltipInner_max=this.tooltip_max.querySelector(".tooltip-inner"),o[this.options.scale]&&(this.options.scale=o[this.options.scale]),m===!0&&(this._removeClass(this.sliderElem,"slider-horizontal"),this._removeClass(this.sliderElem,"slider-vertical"),this._removeClass(this.tooltip,"hide"),this._removeClass(this.tooltip_min,"hide"),this._removeClass(this.tooltip_max,"hide"),["left","top","width","height"].forEach(function(t){this._removeProperty(this.trackLow,t),this._removeProperty(this.trackSelection,t),this._removeProperty(this.trackHigh,t)},this),[this.handle1,this.handle2].forEach(function(t){this._removeProperty(t,"left"),this._removeProperty(t,"top")},this),[this.tooltip,this.tooltip_min,this.tooltip_max].forEach(function(t){this._removeProperty(t,"left"),this._removeProperty(t,"top"),this._removeProperty(t,"margin-left"),this._removeProperty(t,"margin-top"),this._removeClass(t,"right"),this._removeClass(t,"top")},this)),"vertical"===this.options.orientation?(this._addClass(this.sliderElem,"slider-vertical"),this.stylePos="top",this.mousePos="pageY",this.sizePos="offsetHeight"):(this._addClass(this.sliderElem,"slider-horizontal"),this.sliderElem.style.width=f,this.options.orientation="horizontal",this.stylePos="left",this.mousePos="pageX",this.sizePos="offsetWidth"),this._setTooltipPosition(),Array.isArray(this.options.ticks)&&this.options.ticks.length>0&&(this.options.max=Math.max.apply(Math,this.options.ticks),this.options.min=Math.min.apply(Math,this.options.ticks)),Array.isArray(this.options.value)?(this.options.range=!0,this._state.value=this.options.value):this.options.range?this._state.value=[this.options.value,this.options.max]:this._state.value=this.options.value,this.trackLow=h||this.trackLow,this.trackSelection=c||this.trackSelection,this.trackHigh=u||this.trackHigh,"none"===this.options.selection&&(this._addClass(this.trackLow,"hide"),this._addClass(this.trackSelection,"hide"),this._addClass(this.trackHigh,"hide")),this.handle1=p||this.handle1,this.handle2=d||this.handle2,m===!0)for(this._removeClass(this.handle1,"round triangle"),this._removeClass(this.handle2,"round triangle hide"),r=0;r<this.ticks.length;r++)this._removeClass(this.ticks[r],"round triangle hide");var _=["round","triangle","custom"],S=-1!==_.indexOf(this.options.handle);if(S)for(this._addClass(this.handle1,this.options.handle),this._addClass(this.handle2,this.options.handle),r=0;r<this.ticks.length;r++)this._addClass(this.ticks[r],this.options.handle);this._state.offset=this._offset(this.sliderElem),this._state.size=this.sliderElem[this.sizePos],this.setValue(this._state.value),this.handle1Keydown=this._keydown.bind(this,0),this.handle1.addEventListener("keydown",this.handle1Keydown,!1),this.handle2Keydown=this._keydown.bind(this,1),this.handle2.addEventListener("keydown",this.handle2Keydown,!1),this.mousedown=this._mousedown.bind(this),this.touchCapable&&this.sliderElem.addEventListener("touchstart",this.mousedown,!1),this.sliderElem.addEventListener("mousedown",this.mousedown,!1),this.resize=this._resize.bind(this),window.addEventListener("resize",this.resize,!1),"hide"===this.options.tooltip?(this._addClass(this.tooltip,"hide"),this._addClass(this.tooltip_min,"hide"),this._addClass(this.tooltip_max,"hide")):"always"===this.options.tooltip?(this._showTooltip(),this._alwaysShowTooltip=!0):(this.showTooltip=this._showTooltip.bind(this),this.hideTooltip=this._hideTooltip.bind(this),this.sliderElem.addEventListener("mouseenter",this.showTooltip,!1),this.sliderElem.addEventListener("mouseleave",this.hideTooltip,!1),this.handle1.addEventListener("focus",this.showTooltip,!1),this.handle1.addEventListener("blur",this.hideTooltip,!1),this.handle2.addEventListener("focus",this.showTooltip,!1),this.handle2.addEventListener("blur",this.hideTooltip,!1)),this.options.enabled?this.enable():this.disable()}var i={formatInvalidInputErrorMsg:function(t){return"Invalid input value '"+t+"' passed in"},callingContextNotSliderInstance:"Calling context element does not have instance of Slider bound to it. Check your code to make sure the JQuery object returned from the call to the slider() initializer is calling the method"},o={linear:{toValue:function(t){var e=t/100*(this.options.max-this.options.min),n=!0;if(this.options.ticks_positions.length>0){for(var i,o,s,r=0,a=1;a<this.options.ticks_positions.length;a++)if(t<=this.options.ticks_positions[a]){i=this.options.ticks[a-1],s=this.options.ticks_positions[a-1],o=this.options.ticks[a],r=this.options.ticks_positions[a];break}var l=(t-s)/(r-s);e=i+l*(o-i),n=!1}var c=n?this.options.min:0,h=c+Math.round(e/this.options.step)*this.options.step;return h<this.options.min?this.options.min:h>this.options.max?this.options.max:h},toPercentage:function(t){if(this.options.max===this.options.min)return 0;if(this.options.ticks_positions.length>0){for(var e,n,i,o=0,s=0;s<this.options.ticks.length;s++)if(t<=this.options.ticks[s]){e=s>0?this.options.ticks[s-1]:0,i=s>0?this.options.ticks_positions[s-1]:0,n=this.options.ticks[s],o=this.options.ticks_positions[s];break}if(s>0){var r=(t-e)/(n-e);return i+r*(o-i)}}return 100*(t-this.options.min)/(this.options.max-this.options.min)}},logarithmic:{toValue:function(t){var e=0===this.options.min?0:Math.log(this.options.min),n=Math.log(this.options.max),i=Math.exp(e+(n-e)*t/100);return i=this.options.min+Math.round((i-this.options.min)/this.options.step)*this.options.step,i<this.options.min?this.options.min:i>this.options.max?this.options.max:i},toPercentage:function(t){if(this.options.max===this.options.min)return 0;var e=Math.log(this.options.max),n=0===this.options.min?0:Math.log(this.options.min),i=0===t?0:Math.log(t);return 100*(i-n)/(e-n)}}};if(e=function(t,e){return n.call(this,t,e),this},e.prototype={_init:function(){},constructor:e,defaultOptions:{id:"",min:0,max:10,step:1,precision:0,orientation:"horizontal",value:5,range:!1,selection:"before",tooltip:"show",tooltip_split:!1,handle:"round",reversed:!1,enabled:!0,formatter:function(t){return Array.isArray(t)?t[0]+" : "+t[1]:t},natural_arrow_keys:!1,ticks:[],ticks_positions:[],ticks_labels:[],ticks_snap_bounds:0,scale:"linear",focus:!1,tooltip_position:null,labelledby:null},getElement:function(){return this.sliderElem},getValue:function(){return this.options.range?this._state.value:this._state.value[0]},setValue:function(t,e,n){t||(t=0);var i=this.getValue();this._state.value=this._validateInputValue(t);var o=this._applyPrecision.bind(this);this.options.range?(this._state.value[0]=o(this._state.value[0]),this._state.value[1]=o(this._state.value[1]),this._state.value[0]=Math.max(this.options.min,Math.min(this.options.max,this._state.value[0])),this._state.value[1]=Math.max(this.options.min,Math.min(this.options.max,this._state.value[1]))):(this._state.value=o(this._state.value),this._state.value=[Math.max(this.options.min,Math.min(this.options.max,this._state.value))],this._addClass(this.handle2,"hide"),"after"===this.options.selection?this._state.value[1]=this.options.max:this._state.value[1]=this.options.min),this.options.max>this.options.min?this._state.percentage=[this._toPercentage(this._state.value[0]),this._toPercentage(this._state.value[1]),100*this.options.step/(this.options.max-this.options.min)]:this._state.percentage=[0,0,100],this._layout();var s=this.options.range?this._state.value:this._state.value[0];return this._setDataVal(s),e===!0&&this._trigger("slide",s),i!==s&&n===!0&&this._trigger("change",{oldValue:i,newValue:s}),this},destroy:function(){this._removeSliderEventHandlers(),this.sliderElem.parentNode.removeChild(this.sliderElem),this.element.style.display="",this._cleanUpEventCallbacksMap(),this.element.removeAttribute("data"),t&&(this._unbindJQueryEventHandlers(),this.$element.removeData("slider"))},disable:function(){return this._state.enabled=!1,this.handle1.removeAttribute("tabindex"),this.handle2.removeAttribute("tabindex"),this._addClass(this.sliderElem,"slider-disabled"),this._trigger("slideDisabled"),this},enable:function(){return this._state.enabled=!0,this.handle1.setAttribute("tabindex",0),this.handle2.setAttribute("tabindex",0),this._removeClass(this.sliderElem,"slider-disabled"),this._trigger("slideEnabled"),this},toggle:function(){return this._state.enabled?this.disable():this.enable(),this},isEnabled:function(){return this._state.enabled},on:function(t,e){return this._bindNonQueryEventHandler(t,e),this},off:function(e,n){t?(this.$element.off(e,n),this.$sliderElem.off(e,n)):this._unbindNonQueryEventHandler(e,n)},getAttribute:function(t){return t?this.options[t]:this.options},setAttribute:function(t,e){return this.options[t]=e,this},refresh:function(){return this._removeSliderEventHandlers(),n.call(this,this.element,this.options),t&&t.data(this.element,"slider",this),this},relayout:function(){return this._layout(),this},_removeSliderEventHandlers:function(){this.handle1.removeEventListener("keydown",this.handle1Keydown,!1),this.handle2.removeEventListener("keydown",this.handle2Keydown,!1),this.showTooltip&&(this.handle1.removeEventListener("focus",this.showTooltip,!1),this.handle2.removeEventListener("focus",this.showTooltip,!1)),this.hideTooltip&&(this.handle1.removeEventListener("blur",this.hideTooltip,!1),this.handle2.removeEventListener("blur",this.hideTooltip,!1)),this.showTooltip&&this.sliderElem.removeEventListener("mouseenter",this.showTooltip,!1),this.hideTooltip&&this.sliderElem.removeEventListener("mouseleave",this.hideTooltip,!1),this.sliderElem.removeEventListener("touchstart",this.mousedown,!1),this.sliderElem.removeEventListener("mousedown",this.mousedown,!1),window.removeEventListener("resize",this.resize,!1)},_bindNonQueryEventHandler:function(t,e){void 0===this.eventToCallbackMap[t]&&(this.eventToCallbackMap[t]=[]),this.eventToCallbackMap[t].push(e)},_unbindNonQueryEventHandler:function(t,e){var n=this.eventToCallbackMap[t];if(void 0!==n)for(var i=0;i<n.length;i++)if(n[i]===e){n.splice(i,1);break}},_cleanUpEventCallbacksMap:function(){for(var t=Object.keys(this.eventToCallbackMap),e=0;e<t.length;e++){var n=t[e];this.eventToCallbackMap[n]=null}},_showTooltip:function(){this.options.tooltip_split===!1?(this._addClass(this.tooltip,"in"),this.tooltip_min.style.display="none",this.tooltip_max.style.display="none"):(this._addClass(this.tooltip_min,"in"),this._addClass(this.tooltip_max,"in"),this.tooltip.style.display="none"),this._state.over=!0},_hideTooltip:function(){this._state.inDrag===!1&&this.alwaysShowTooltip!==!0&&(this._removeClass(this.tooltip,"in"),this._removeClass(this.tooltip_min,"in"),this._removeClass(this.tooltip_max,"in")),this._state.over=!1},_layout:function(){var t;if(t=this.options.reversed?[100-this._state.percentage[0],this.options.range?100-this._state.percentage[1]:this._state.percentage[1]]:[this._state.percentage[0],this._state.percentage[1]],this.handle1.style[this.stylePos]=t[0]+"%",this.handle1.setAttribute("aria-valuenow",this._state.value[0]),this.handle2.style[this.stylePos]=t[1]+"%",this.handle2.setAttribute("aria-valuenow",this._state.value[1]),Array.isArray(this.options.ticks)&&this.options.ticks.length>0){var e="vertical"===this.options.orientation?"height":"width",n="vertical"===this.options.orientation?"marginTop":"marginLeft",i=this._state.size/(this.options.ticks.length-1);if(this.tickLabelContainer){var o=0;if(0===this.options.ticks_positions.length)"vertical"!==this.options.orientation&&(this.tickLabelContainer.style[n]=-i/2+"px"),o=this.tickLabelContainer.offsetHeight;else for(s=0;s<this.tickLabelContainer.childNodes.length;s++)this.tickLabelContainer.childNodes[s].offsetHeight>o&&(o=this.tickLabelContainer.childNodes[s].offsetHeight);"horizontal"===this.options.orientation&&(this.sliderElem.style.marginBottom=o+"px")}for(var s=0;s<this.options.ticks.length;s++){var r=this.options.ticks_positions[s]||this._toPercentage(this.options.ticks[s]);this.options.reversed&&(r=100-r),this.ticks[s].style[this.stylePos]=r+"%",this._removeClass(this.ticks[s],"in-selection"),this.options.range?r>=t[0]&&r<=t[1]&&this._addClass(this.ticks[s],"in-selection"):"after"===this.options.selection&&r>=t[0]?this._addClass(this.ticks[s],"in-selection"):"before"===this.options.selection&&r<=t[0]&&this._addClass(this.ticks[s],"in-selection"),this.tickLabels[s]&&(this.tickLabels[s].style[e]=i+"px","vertical"!==this.options.orientation&&void 0!==this.options.ticks_positions[s]?(this.tickLabels[s].style.position="absolute",this.tickLabels[s].style[this.stylePos]=r+"%",this.tickLabels[s].style[n]=-i/2+"px"):"vertical"===this.options.orientation&&(this.tickLabels[s].style.marginLeft=this.sliderElem.offsetWidth+"px",this.tickLabelContainer.style.marginTop=this.sliderElem.offsetWidth/2*-1+"px"))}}var a;if(this.options.range){a=this.options.formatter(this._state.value),this._setText(this.tooltipInner,a),this.tooltip.style[this.stylePos]=(t[1]+t[0])/2+"%","vertical"===this.options.orientation?this._css(this.tooltip,"margin-top",-this.tooltip.offsetHeight/2+"px"):this._css(this.tooltip,"margin-left",-this.tooltip.offsetWidth/2+"px"),"vertical"===this.options.orientation?this._css(this.tooltip,"margin-top",-this.tooltip.offsetHeight/2+"px"):this._css(this.tooltip,"margin-left",-this.tooltip.offsetWidth/2+"px");var l=this.options.formatter(this._state.value[0]);this._setText(this.tooltipInner_min,l);var c=this.options.formatter(this._state.value[1]);this._setText(this.tooltipInner_max,c),this.tooltip_min.style[this.stylePos]=t[0]+"%","vertical"===this.options.orientation?this._css(this.tooltip_min,"margin-top",-this.tooltip_min.offsetHeight/2+"px"):this._css(this.tooltip_min,"margin-left",-this.tooltip_min.offsetWidth/2+"px"),this.tooltip_max.style[this.stylePos]=t[1]+"%","vertical"===this.options.orientation?this._css(this.tooltip_max,"margin-top",-this.tooltip_max.offsetHeight/2+"px"):this._css(this.tooltip_max,"margin-left",-this.tooltip_max.offsetWidth/2+"px")}else a=this.options.formatter(this._state.value[0]),this._setText(this.tooltipInner,a),this.tooltip.style[this.stylePos]=t[0]+"%","vertical"===this.options.orientation?this._css(this.tooltip,"margin-top",-this.tooltip.offsetHeight/2+"px"):this._css(this.tooltip,"margin-left",-this.tooltip.offsetWidth/2+"px");if("vertical"===this.options.orientation)this.trackLow.style.top="0",this.trackLow.style.height=Math.min(t[0],t[1])+"%",this.trackSelection.style.top=Math.min(t[0],t[1])+"%",this.trackSelection.style.height=Math.abs(t[0]-t[1])+"%",this.trackHigh.style.bottom="0",this.trackHigh.style.height=100-Math.min(t[0],t[1])-Math.abs(t[0]-t[1])+"%";else{this.trackLow.style.left="0",this.trackLow.style.width=Math.min(t[0],t[1])+"%",this.trackSelection.style.left=Math.min(t[0],t[1])+"%",this.trackSelection.style.width=Math.abs(t[0]-t[1])+"%",this.trackHigh.style.right="0",this.trackHigh.style.width=100-Math.min(t[0],t[1])-Math.abs(t[0]-t[1])+"%";var h=this.tooltip_min.getBoundingClientRect(),u=this.tooltip_max.getBoundingClientRect();"bottom"===this.options.tooltip_position?h.right>u.left?(this._removeClass(this.tooltip_max,"bottom"),this._addClass(this.tooltip_max,"top"),this.tooltip_max.style.top="",this.tooltip_max.style.bottom="22px"):(this._removeClass(this.tooltip_max,"top"),this._addClass(this.tooltip_max,"bottom"),this.tooltip_max.style.top=this.tooltip_min.style.top,this.tooltip_max.style.bottom=""):h.right>u.left?(this._removeClass(this.tooltip_max,"top"),this._addClass(this.tooltip_max,"bottom"),this.tooltip_max.style.top="18px"):(this._removeClass(this.tooltip_max,"bottom"),this._addClass(this.tooltip_max,"top"),this.tooltip_max.style.top=this.tooltip_min.style.top)}},_resize:function(t){this._state.offset=this._offset(this.sliderElem),this._state.size=this.sliderElem[this.sizePos],this._layout()},_removeProperty:function(t,e){t.style.removeProperty?t.style.removeProperty(e):t.style.removeAttribute(e)},_mousedown:function(t){if(!this._state.enabled)return!1;this._state.offset=this._offset(this.sliderElem),this._state.size=this.sliderElem[this.sizePos];var e=this._getPercentage(t);if(this.options.range){var n=Math.abs(this._state.percentage[0]-e),i=Math.abs(this._state.percentage[1]-e);this._state.dragged=i>n?0:1}else this._state.dragged=0;this._state.percentage[this._state.dragged]=e,this._layout(),this.touchCapable&&(document.removeEventListener("touchmove",this.mousemove,!1),document.removeEventListener("touchend",this.mouseup,!1)),this.mousemove&&document.removeEventListener("mousemove",this.mousemove,!1),this.mouseup&&document.removeEventListener("mouseup",this.mouseup,!1),this.mousemove=this._mousemove.bind(this),this.mouseup=this._mouseup.bind(this),this.touchCapable&&(document.addEventListener("touchmove",this.mousemove,!1),document.addEventListener("touchend",this.mouseup,!1)),document.addEventListener("mousemove",this.mousemove,!1),document.addEventListener("mouseup",this.mouseup,!1),this._state.inDrag=!0;var o=this._calculateValue();return this._trigger("slideStart",o),this._setDataVal(o),this.setValue(o,!1,!0),this._pauseEvent(t),this.options.focus&&this._triggerFocusOnHandle(this._state.dragged),!0},_triggerFocusOnHandle:function(t){0===t&&this.handle1.focus(),1===t&&this.handle2.focus()},_keydown:function(t,e){if(!this._state.enabled)return!1;var n;switch(e.keyCode){case 37:case 40:n=-1;break;case 39:case 38:n=1}if(n){if(this.options.natural_arrow_keys){var i="vertical"===this.options.orientation&&!this.options.reversed,o="horizontal"===this.options.orientation&&this.options.reversed;(i||o)&&(n=-n)}var s=this._state.value[t]+n*this.options.step;return this.options.range&&(s=[t?this._state.value[0]:s,t?s:this._state.value[1]]),this._trigger("slideStart",s),this._setDataVal(s),this.setValue(s,!0,!0),this._setDataVal(s),this._trigger("slideStop",s),this._layout(),this._pauseEvent(e),!1}},_pauseEvent:function(t){t.stopPropagation&&t.stopPropagation(),t.preventDefault&&t.preventDefault(),t.cancelBubble=!0,t.returnValue=!1},_mousemove:function(t){if(!this._state.enabled)return!1;var e=this._getPercentage(t);this._adjustPercentageForRangeSliders(e),this._state.percentage[this._state.dragged]=e,this._layout();var n=this._calculateValue(!0);return this.setValue(n,!0,!0),!1},_adjustPercentageForRangeSliders:function(t){if(this.options.range){var e=this._getNumDigitsAfterDecimalPlace(t);e=e?e-1:0;var n=this._applyToFixedAndParseFloat(t,e);0===this._state.dragged&&this._applyToFixedAndParseFloat(this._state.percentage[1],e)<n?(this._state.percentage[0]=this._state.percentage[1],this._state.dragged=1):1===this._state.dragged&&this._applyToFixedAndParseFloat(this._state.percentage[0],e)>n&&(this._state.percentage[1]=this._state.percentage[0],this._state.dragged=0)}},_mouseup:function(){if(!this._state.enabled)return!1;this.touchCapable&&(document.removeEventListener("touchmove",this.mousemove,!1),document.removeEventListener("touchend",this.mouseup,!1)),document.removeEventListener("mousemove",this.mousemove,!1),document.removeEventListener("mouseup",this.mouseup,!1),this._state.inDrag=!1,this._state.over===!1&&this._hideTooltip();var t=this._calculateValue(!0);return this._layout(),this._setDataVal(t),this._trigger("slideStop",t),!1},_calculateValue:function(t){var e;if(this.options.range?(e=[this.options.min,this.options.max],0!==this._state.percentage[0]&&(e[0]=this._toValue(this._state.percentage[0]),e[0]=this._applyPrecision(e[0])),100!==this._state.percentage[1]&&(e[1]=this._toValue(this._state.percentage[1]),e[1]=this._applyPrecision(e[1]))):(e=this._toValue(this._state.percentage[0]),e=parseFloat(e),e=this._applyPrecision(e)),t){for(var n=[e,1/0],i=0;i<this.options.ticks.length;i++){var o=Math.abs(this.options.ticks[i]-e);o<=n[1]&&(n=[this.options.ticks[i],o])}if(n[1]<=this.options.ticks_snap_bounds)return n[0]}return e},_applyPrecision:function(t){var e=this.options.precision||this._getNumDigitsAfterDecimalPlace(this.options.step);return this._applyToFixedAndParseFloat(t,e)},_getNumDigitsAfterDecimalPlace:function(t){var e=(""+t).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);return e?Math.max(0,(e[1]?e[1].length:0)-(e[2]?+e[2]:0)):0},_applyToFixedAndParseFloat:function(t,e){var n=t.toFixed(e);return parseFloat(n)},_getPercentage:function(t){!this.touchCapable||"touchstart"!==t.type&&"touchmove"!==t.type||(t=t.touches[0]);var e=t[this.mousePos],n=this._state.offset[this.stylePos],i=e-n,o=i/this._state.size*100;return o=Math.round(o/this._state.percentage[2])*this._state.percentage[2],this.options.reversed&&(o=100-o),Math.max(0,Math.min(100,o))},_validateInputValue:function(t){if("number"==typeof t)return t;if(Array.isArray(t))return this._validateArray(t),t;throw new Error(i.formatInvalidInputErrorMsg(t))},_validateArray:function(t){for(var e=0;e<t.length;e++){var n=t[e];if("number"!=typeof n)throw new Error(i.formatInvalidInputErrorMsg(n))}},_setDataVal:function(t){this.element.setAttribute("data-value",t),this.element.setAttribute("value",t),this.element.value=t},_trigger:function(e,n){n=n||0===n?n:void 0;var i=this.eventToCallbackMap[e];if(i&&i.length)for(var o=0;o<i.length;o++){var s=i[o];s(n)}t&&this._triggerJQueryEvent(e,n)},_triggerJQueryEvent:function(t,e){var n={type:t,value:e};this.$element.trigger(n),this.$sliderElem.trigger(n)},_unbindJQueryEventHandlers:function(){this.$element.off(),this.$sliderElem.off()},_setText:function(t,e){"undefined"!=typeof t.textContent?t.textContent=e:"undefined"!=typeof t.innerText&&(t.innerText=e)},_removeClass:function(t,e){for(var n=e.split(" "),i=t.className,o=0;o<n.length;o++){var s=n[o],r=new RegExp("(?:\\s|^)"+s+"(?:\\s|$)");i=i.replace(r," ")}t.className=i.trim()},_addClass:function(t,e){for(var n=e.split(" "),i=t.className,o=0;o<n.length;o++){var s=n[o],r=new RegExp("(?:\\s|^)"+s+"(?:\\s|$)"),a=r.test(i);a||(i+=" "+s)}t.className=i.trim()},_offsetLeft:function(t){return t.getBoundingClientRect().left},_offsetTop:function(t){for(var e=t.offsetTop;(t=t.offsetParent)&&!isNaN(t.offsetTop);)e+=t.offsetTop,"BODY"!==t.tagName&&(e-=t.scrollTop);return e},_offset:function(t){return{left:this._offsetLeft(t),top:this._offsetTop(t)}},_css:function(e,n,i){if(t)t.style(e,n,i);else{var o=n.replace(/^-ms-/,"ms-").replace(/-([\da-z])/gi,function(t,e){return e.toUpperCase()});e.style[o]=i}},_toValue:function(t){return this.options.scale.toValue.apply(this,[t])},_toPercentage:function(t){return this.options.scale.toPercentage.apply(this,[t])},_setTooltipPosition:function(){var t=[this.tooltip,this.tooltip_min,this.tooltip_max];if("vertical"===this.options.orientation){var e=this.options.tooltip_position||"right",n="left"===e?"right":"left";t.forEach(function(t){this._addClass(t,e),t.style[n]="100%"}.bind(this))}else"bottom"===this.options.tooltip_position?t.forEach(function(t){this._addClass(t,"bottom"),t.style.top="22px"}.bind(this)):t.forEach(function(t){this._addClass(t,"top"),t.style.top=-this.tooltip.outerHeight-14+"px"}.bind(this))}},t){var s=t.fn.slider?"bootstrapSlider":"slider";t.bridget(s,e)}}(t),e}),"undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+function(t){"use strict";var e=t.fn.jquery.split(" ")[0].split(".");if(e[0]<2&&e[1]<9||1==e[0]&&9==e[1]&&e[2]<1||e[0]>2)throw new Error("Bootstrap's JavaScript requires jQuery version 1.9.1 or higher, but lower than version 3")}(jQuery),+function(t){"use strict";function e(){var t=document.createElement("bootstrap"),e={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"};for(var n in e)if(void 0!==t.style[n])return{end:e[n]};return!1}t.fn.emulateTransitionEnd=function(e){var n=!1,i=this;t(this).one("bsTransitionEnd",function(){n=!0});var o=function(){n||t(i).trigger(t.support.transition.end)};return setTimeout(o,e),this},t(function(){t.support.transition=e(),t.support.transition&&(t.event.special.bsTransitionEnd={bindType:t.support.transition.end,delegateType:t.support.transition.end,handle:function(e){return t(e.target).is(this)?e.handleObj.handler.apply(this,arguments):void 0}})})}(jQuery),+function(t){"use strict";function e(e){return this.each(function(){var n=t(this),o=n.data("bs.alert");o||n.data("bs.alert",o=new i(this)),"string"==typeof e&&o[e].call(n)})}var n='[data-dismiss="alert"]',i=function(e){t(e).on("click",n,this.close)};i.VERSION="3.3.6",i.TRANSITION_DURATION=150,i.prototype.close=function(e){function n(){r.detach().trigger("closed.bs.alert").remove()}var o=t(this),s=o.attr("data-target");s||(s=o.attr("href"),s=s&&s.replace(/.*(?=#[^\s]*$)/,""));var r=t(s);e&&e.preventDefault(),r.length||(r=o.closest(".alert")),r.trigger(e=t.Event("close.bs.alert")),e.isDefaultPrevented()||(r.removeClass("in"),t.support.transition&&r.hasClass("fade")?r.one("bsTransitionEnd",n).emulateTransitionEnd(i.TRANSITION_DURATION):n())};var o=t.fn.alert;t.fn.alert=e,t.fn.alert.Constructor=i,t.fn.alert.noConflict=function(){return t.fn.alert=o,this},t(document).on("click.bs.alert.data-api",n,i.prototype.close)}(jQuery),+function(t){"use strict";function e(e){return this.each(function(){var i=t(this),o=i.data("bs.button"),s="object"==typeof e&&e;o||i.data("bs.button",o=new n(this,s)),"toggle"==e?o.toggle():e&&o.setState(e)})}var n=function(e,i){this.$element=t(e),this.options=t.extend({},n.DEFAULTS,i),this.isLoading=!1};n.VERSION="3.3.6",n.DEFAULTS={loadingText:"loading..."},n.prototype.setState=function(e){var n="disabled",i=this.$element,o=i.is("input")?"val":"html",s=i.data();e+="Text",null==s.resetText&&i.data("resetText",i[o]()),setTimeout(t.proxy(function(){i[o](null==s[e]?this.options[e]:s[e]),"loadingText"==e?(this.isLoading=!0,i.addClass(n).attr(n,n)):this.isLoading&&(this.isLoading=!1,i.removeClass(n).removeAttr(n))},this),0)},n.prototype.toggle=function(){var t=!0,e=this.$element.closest('[data-toggle="buttons"]');if(e.length){var n=this.$element.find("input");"radio"==n.prop("type")?(n.prop("checked")&&(t=!1),e.find(".active").removeClass("active"),this.$element.addClass("active")):"checkbox"==n.prop("type")&&(n.prop("checked")!==this.$element.hasClass("active")&&(t=!1),this.$element.toggleClass("active")),n.prop("checked",this.$element.hasClass("active")),t&&n.trigger("change")}else this.$element.attr("aria-pressed",!this.$element.hasClass("active")),this.$element.toggleClass("active")};var i=t.fn.button;t.fn.button=e,t.fn.button.Constructor=n,t.fn.button.noConflict=function(){return t.fn.button=i,
-this},t(document).on("click.bs.button.data-api",'[data-toggle^="button"]',function(n){var i=t(n.target);i.hasClass("btn")||(i=i.closest(".btn")),e.call(i,"toggle"),t(n.target).is('input[type="radio"]')||t(n.target).is('input[type="checkbox"]')||n.preventDefault()}).on("focus.bs.button.data-api blur.bs.button.data-api",'[data-toggle^="button"]',function(e){t(e.target).closest(".btn").toggleClass("focus",/^focus(in)?$/.test(e.type))})}(jQuery),+function(t){"use strict";function e(e){return this.each(function(){var i=t(this),o=i.data("bs.carousel"),s=t.extend({},n.DEFAULTS,i.data(),"object"==typeof e&&e),r="string"==typeof e?e:s.slide;o||i.data("bs.carousel",o=new n(this,s)),"number"==typeof e?o.to(e):r?o[r]():s.interval&&o.pause().cycle()})}var n=function(e,n){this.$element=t(e),this.$indicators=this.$element.find(".carousel-indicators"),this.options=n,this.paused=null,this.sliding=null,this.interval=null,this.$active=null,this.$items=null,this.options.keyboard&&this.$element.on("keydown.bs.carousel",t.proxy(this.keydown,this)),"hover"==this.options.pause&&!("ontouchstart"in document.documentElement)&&this.$element.on("mouseenter.bs.carousel",t.proxy(this.pause,this)).on("mouseleave.bs.carousel",t.proxy(this.cycle,this))};n.VERSION="3.3.6",n.TRANSITION_DURATION=600,n.DEFAULTS={interval:5e3,pause:"hover",wrap:!0,keyboard:!0},n.prototype.keydown=function(t){if(!/input|textarea/i.test(t.target.tagName)){switch(t.which){case 37:this.prev();break;case 39:this.next();break;default:return}t.preventDefault()}},n.prototype.cycle=function(e){return e||(this.paused=!1),this.interval&&clearInterval(this.interval),this.options.interval&&!this.paused&&(this.interval=setInterval(t.proxy(this.next,this),this.options.interval)),this},n.prototype.getItemIndex=function(t){return this.$items=t.parent().children(".item"),this.$items.index(t||this.$active)},n.prototype.getItemForDirection=function(t,e){var n=this.getItemIndex(e),i="prev"==t&&0===n||"next"==t&&n==this.$items.length-1;if(i&&!this.options.wrap)return e;var o="prev"==t?-1:1,s=(n+o)%this.$items.length;return this.$items.eq(s)},n.prototype.to=function(t){var e=this,n=this.getItemIndex(this.$active=this.$element.find(".item.active"));return t>this.$items.length-1||0>t?void 0:this.sliding?this.$element.one("slid.bs.carousel",function(){e.to(t)}):n==t?this.pause().cycle():this.slide(t>n?"next":"prev",this.$items.eq(t))},n.prototype.pause=function(e){return e||(this.paused=!0),this.$element.find(".next, .prev").length&&t.support.transition&&(this.$element.trigger(t.support.transition.end),this.cycle(!0)),this.interval=clearInterval(this.interval),this},n.prototype.next=function(){return this.sliding?void 0:this.slide("next")},n.prototype.prev=function(){return this.sliding?void 0:this.slide("prev")},n.prototype.slide=function(e,i){var o=this.$element.find(".item.active"),s=i||this.getItemForDirection(e,o),r=this.interval,a="next"==e?"left":"right",l=this;if(s.hasClass("active"))return this.sliding=!1;var c=s[0],h=t.Event("slide.bs.carousel",{relatedTarget:c,direction:a});if(this.$element.trigger(h),!h.isDefaultPrevented()){if(this.sliding=!0,r&&this.pause(),this.$indicators.length){this.$indicators.find(".active").removeClass("active");var u=t(this.$indicators.children()[this.getItemIndex(s)]);u&&u.addClass("active")}var p=t.Event("slid.bs.carousel",{relatedTarget:c,direction:a});return t.support.transition&&this.$element.hasClass("slide")?(s.addClass(e),s[0].offsetWidth,o.addClass(a),s.addClass(a),o.one("bsTransitionEnd",function(){s.removeClass([e,a].join(" ")).addClass("active"),o.removeClass(["active",a].join(" ")),l.sliding=!1,setTimeout(function(){l.$element.trigger(p)},0)}).emulateTransitionEnd(n.TRANSITION_DURATION)):(o.removeClass("active"),s.addClass("active"),this.sliding=!1,this.$element.trigger(p)),r&&this.cycle(),this}};var i=t.fn.carousel;t.fn.carousel=e,t.fn.carousel.Constructor=n,t.fn.carousel.noConflict=function(){return t.fn.carousel=i,this};var o=function(n){var i,o=t(this),s=t(o.attr("data-target")||(i=o.attr("href"))&&i.replace(/.*(?=#[^\s]+$)/,""));if(s.hasClass("carousel")){var r=t.extend({},s.data(),o.data()),a=o.attr("data-slide-to");a&&(r.interval=!1),e.call(s,r),a&&s.data("bs.carousel").to(a),n.preventDefault()}};t(document).on("click.bs.carousel.data-api","[data-slide]",o).on("click.bs.carousel.data-api","[data-slide-to]",o),t(window).on("load",function(){t('[data-ride="carousel"]').each(function(){var n=t(this);e.call(n,n.data())})})}(jQuery),+function(t){"use strict";function e(e){var n,i=e.attr("data-target")||(n=e.attr("href"))&&n.replace(/.*(?=#[^\s]+$)/,"");return t(i)}function n(e){return this.each(function(){var n=t(this),o=n.data("bs.collapse"),s=t.extend({},i.DEFAULTS,n.data(),"object"==typeof e&&e);!o&&s.toggle&&/show|hide/.test(e)&&(s.toggle=!1),o||n.data("bs.collapse",o=new i(this,s)),"string"==typeof e&&o[e]()})}var i=function(e,n){this.$element=t(e),this.options=t.extend({},i.DEFAULTS,n),this.$trigger=t('[data-toggle="collapse"][href="#'+e.id+'"],[data-toggle="collapse"][data-target="#'+e.id+'"]'),this.transitioning=null,this.options.parent?this.$parent=this.getParent():this.addAriaAndCollapsedClass(this.$element,this.$trigger),this.options.toggle&&this.toggle()};i.VERSION="3.3.6",i.TRANSITION_DURATION=350,i.DEFAULTS={toggle:!0},i.prototype.dimension=function(){var t=this.$element.hasClass("width");return t?"width":"height"},i.prototype.show=function(){if(!this.transitioning&&!this.$element.hasClass("in")){var e,o=this.$parent&&this.$parent.children(".panel").children(".in, .collapsing");if(!(o&&o.length&&(e=o.data("bs.collapse"),e&&e.transitioning))){var s=t.Event("show.bs.collapse");if(this.$element.trigger(s),!s.isDefaultPrevented()){o&&o.length&&(n.call(o,"hide"),e||o.data("bs.collapse",null));var r=this.dimension();this.$element.removeClass("collapse").addClass("collapsing")[r](0).attr("aria-expanded",!0),this.$trigger.removeClass("collapsed").attr("aria-expanded",!0),this.transitioning=1;var a=function(){this.$element.removeClass("collapsing").addClass("collapse in")[r](""),this.transitioning=0,this.$element.trigger("shown.bs.collapse")};if(!t.support.transition)return a.call(this);var l=t.camelCase(["scroll",r].join("-"));this.$element.one("bsTransitionEnd",t.proxy(a,this)).emulateTransitionEnd(i.TRANSITION_DURATION)[r](this.$element[0][l])}}}},i.prototype.hide=function(){if(!this.transitioning&&this.$element.hasClass("in")){var e=t.Event("hide.bs.collapse");if(this.$element.trigger(e),!e.isDefaultPrevented()){var n=this.dimension();this.$element[n](this.$element[n]())[0].offsetHeight,this.$element.addClass("collapsing").removeClass("collapse in").attr("aria-expanded",!1),this.$trigger.addClass("collapsed").attr("aria-expanded",!1),this.transitioning=1;var o=function(){this.transitioning=0,this.$element.removeClass("collapsing").addClass("collapse").trigger("hidden.bs.collapse")};return t.support.transition?void this.$element[n](0).one("bsTransitionEnd",t.proxy(o,this)).emulateTransitionEnd(i.TRANSITION_DURATION):o.call(this)}}},i.prototype.toggle=function(){this[this.$element.hasClass("in")?"hide":"show"]()},i.prototype.getParent=function(){return t(this.options.parent).find('[data-toggle="collapse"][data-parent="'+this.options.parent+'"]').each(t.proxy(function(n,i){var o=t(i);this.addAriaAndCollapsedClass(e(o),o)},this)).end()},i.prototype.addAriaAndCollapsedClass=function(t,e){var n=t.hasClass("in");t.attr("aria-expanded",n),e.toggleClass("collapsed",!n).attr("aria-expanded",n)};var o=t.fn.collapse;t.fn.collapse=n,t.fn.collapse.Constructor=i,t.fn.collapse.noConflict=function(){return t.fn.collapse=o,this},t(document).on("click.bs.collapse.data-api",'[data-toggle="collapse"]',function(i){var o=t(this);o.attr("data-target")||i.preventDefault();var s=e(o),r=s.data("bs.collapse"),a=r?"toggle":o.data();n.call(s,a)})}(jQuery),+function(t){"use strict";function e(e){var n=e.attr("data-target");n||(n=e.attr("href"),n=n&&/#[A-Za-z]/.test(n)&&n.replace(/.*(?=#[^\s]*$)/,""));var i=n&&t(n);return i&&i.length?i:e.parent()}function n(n){n&&3===n.which||(t(o).remove(),t(s).each(function(){var i=t(this),o=e(i),s={relatedTarget:this};o.hasClass("open")&&(n&&"click"==n.type&&/input|textarea/i.test(n.target.tagName)&&t.contains(o[0],n.target)||(o.trigger(n=t.Event("hide.bs.dropdown",s)),n.isDefaultPrevented()||(i.attr("aria-expanded","false"),o.removeClass("open").trigger(t.Event("hidden.bs.dropdown",s)))))}))}function i(e){return this.each(function(){var n=t(this),i=n.data("bs.dropdown");i||n.data("bs.dropdown",i=new r(this)),"string"==typeof e&&i[e].call(n)})}var o=".dropdown-backdrop",s='[data-toggle="dropdown"]',r=function(e){t(e).on("click.bs.dropdown",this.toggle)};r.VERSION="3.3.6",r.prototype.toggle=function(i){var o=t(this);if(!o.is(".disabled, :disabled")){var s=e(o),r=s.hasClass("open");if(n(),!r){"ontouchstart"in document.documentElement&&!s.closest(".navbar-nav").length&&t(document.createElement("div")).addClass("dropdown-backdrop").insertAfter(t(this)).on("click",n);var a={relatedTarget:this};if(s.trigger(i=t.Event("show.bs.dropdown",a)),i.isDefaultPrevented())return;o.trigger("focus").attr("aria-expanded","true"),s.toggleClass("open").trigger(t.Event("shown.bs.dropdown",a))}return!1}},r.prototype.keydown=function(n){if(/(38|40|27|32)/.test(n.which)&&!/input|textarea/i.test(n.target.tagName)){var i=t(this);if(n.preventDefault(),n.stopPropagation(),!i.is(".disabled, :disabled")){var o=e(i),r=o.hasClass("open");if(!r&&27!=n.which||r&&27==n.which)return 27==n.which&&o.find(s).trigger("focus"),i.trigger("click");var a=" li:not(.disabled):visible a",l=o.find(".dropdown-menu"+a);if(l.length){var c=l.index(n.target);38==n.which&&c>0&&c--,40==n.which&&c<l.length-1&&c++,~c||(c=0),l.eq(c).trigger("focus")}}}};var a=t.fn.dropdown;t.fn.dropdown=i,t.fn.dropdown.Constructor=r,t.fn.dropdown.noConflict=function(){return t.fn.dropdown=a,this},t(document).on("click.bs.dropdown.data-api",n).on("click.bs.dropdown.data-api",".dropdown form",function(t){t.stopPropagation()}).on("click.bs.dropdown.data-api",s,r.prototype.toggle).on("keydown.bs.dropdown.data-api",s,r.prototype.keydown).on("keydown.bs.dropdown.data-api",".dropdown-menu",r.prototype.keydown)}(jQuery),+function(t){"use strict";function e(e,i){return this.each(function(){var o=t(this),s=o.data("bs.modal"),r=t.extend({},n.DEFAULTS,o.data(),"object"==typeof e&&e);s||o.data("bs.modal",s=new n(this,r)),"string"==typeof e?s[e](i):r.show&&s.show(i)})}var n=function(e,n){this.options=n,this.$body=t(document.body),this.$element=t(e),this.$dialog=this.$element.find(".modal-dialog"),this.$backdrop=null,this.isShown=null,this.originalBodyPad=null,this.scrollbarWidth=0,this.ignoreBackdropClick=!1,this.options.remote&&this.$element.find(".modal-content").load(this.options.remote,t.proxy(function(){this.$element.trigger("loaded.bs.modal")},this))};n.VERSION="3.3.6",n.TRANSITION_DURATION=300,n.BACKDROP_TRANSITION_DURATION=150,n.DEFAULTS={backdrop:!0,keyboard:!0,show:!0},n.prototype.toggle=function(t){return this.isShown?this.hide():this.show(t)},n.prototype.show=function(e){var i=this,o=t.Event("show.bs.modal",{relatedTarget:e});this.$element.trigger(o),this.isShown||o.isDefaultPrevented()||(this.isShown=!0,this.checkScrollbar(),this.setScrollbar(),this.$body.addClass("modal-open"),this.escape(),this.resize(),this.$element.on("click.dismiss.bs.modal",'[data-dismiss="modal"]',t.proxy(this.hide,this)),this.$dialog.on("mousedown.dismiss.bs.modal",function(){i.$element.one("mouseup.dismiss.bs.modal",function(e){t(e.target).is(i.$element)&&(i.ignoreBackdropClick=!0)})}),this.backdrop(function(){var o=t.support.transition&&i.$element.hasClass("fade");i.$element.parent().length||i.$element.appendTo(i.$body),i.$element.show().scrollTop(0),i.adjustDialog(),o&&i.$element[0].offsetWidth,i.$element.addClass("in"),i.enforceFocus();var s=t.Event("shown.bs.modal",{relatedTarget:e});o?i.$dialog.one("bsTransitionEnd",function(){i.$element.trigger("focus").trigger(s)}).emulateTransitionEnd(n.TRANSITION_DURATION):i.$element.trigger("focus").trigger(s)}))},n.prototype.hide=function(e){e&&e.preventDefault(),e=t.Event("hide.bs.modal"),this.$element.trigger(e),this.isShown&&!e.isDefaultPrevented()&&(this.isShown=!1,this.escape(),this.resize(),t(document).off("focusin.bs.modal"),this.$element.removeClass("in").off("click.dismiss.bs.modal").off("mouseup.dismiss.bs.modal"),this.$dialog.off("mousedown.dismiss.bs.modal"),t.support.transition&&this.$element.hasClass("fade")?this.$element.one("bsTransitionEnd",t.proxy(this.hideModal,this)).emulateTransitionEnd(n.TRANSITION_DURATION):this.hideModal())},n.prototype.enforceFocus=function(){t(document).off("focusin.bs.modal").on("focusin.bs.modal",t.proxy(function(t){this.$element[0]===t.target||this.$element.has(t.target).length||this.$element.trigger("focus")},this))},n.prototype.escape=function(){this.isShown&&this.options.keyboard?this.$element.on("keydown.dismiss.bs.modal",t.proxy(function(t){27==t.which&&this.hide()},this)):this.isShown||this.$element.off("keydown.dismiss.bs.modal")},n.prototype.resize=function(){this.isShown?t(window).on("resize.bs.modal",t.proxy(this.handleUpdate,this)):t(window).off("resize.bs.modal")},n.prototype.hideModal=function(){var t=this;this.$element.hide(),this.backdrop(function(){t.$body.removeClass("modal-open"),t.resetAdjustments(),t.resetScrollbar(),t.$element.trigger("hidden.bs.modal")})},n.prototype.removeBackdrop=function(){this.$backdrop&&this.$backdrop.remove(),this.$backdrop=null},n.prototype.backdrop=function(e){var i=this,o=this.$element.hasClass("fade")?"fade":"";if(this.isShown&&this.options.backdrop){var s=t.support.transition&&o;if(this.$backdrop=t(document.createElement("div")).addClass("modal-backdrop "+o).appendTo(this.$body),this.$element.on("click.dismiss.bs.modal",t.proxy(function(t){return this.ignoreBackdropClick?void(this.ignoreBackdropClick=!1):void(t.target===t.currentTarget&&("static"==this.options.backdrop?this.$element[0].focus():this.hide()))},this)),s&&this.$backdrop[0].offsetWidth,this.$backdrop.addClass("in"),!e)return;s?this.$backdrop.one("bsTransitionEnd",e).emulateTransitionEnd(n.BACKDROP_TRANSITION_DURATION):e()}else if(!this.isShown&&this.$backdrop){this.$backdrop.removeClass("in");var r=function(){i.removeBackdrop(),e&&e()};t.support.transition&&this.$element.hasClass("fade")?this.$backdrop.one("bsTransitionEnd",r).emulateTransitionEnd(n.BACKDROP_TRANSITION_DURATION):r()}else e&&e()},n.prototype.handleUpdate=function(){this.adjustDialog()},n.prototype.adjustDialog=function(){var t=this.$element[0].scrollHeight>document.documentElement.clientHeight;this.$element.css({paddingLeft:!this.bodyIsOverflowing&&t?this.scrollbarWidth:"",paddingRight:this.bodyIsOverflowing&&!t?this.scrollbarWidth:""})},n.prototype.resetAdjustments=function(){this.$element.css({paddingLeft:"",paddingRight:""})},n.prototype.checkScrollbar=function(){var t=window.innerWidth;if(!t){var e=document.documentElement.getBoundingClientRect();t=e.right-Math.abs(e.left)}this.bodyIsOverflowing=document.body.clientWidth<t,this.scrollbarWidth=this.measureScrollbar()},n.prototype.setScrollbar=function(){var t=parseInt(this.$body.css("padding-right")||0,10);this.originalBodyPad=document.body.style.paddingRight||"",this.bodyIsOverflowing&&this.$body.css("padding-right",t+this.scrollbarWidth)},n.prototype.resetScrollbar=function(){this.$body.css("padding-right",this.originalBodyPad)},n.prototype.measureScrollbar=function(){var t=document.createElement("div");t.className="modal-scrollbar-measure",this.$body.append(t);var e=t.offsetWidth-t.clientWidth;return this.$body[0].removeChild(t),e};var i=t.fn.modal;t.fn.modal=e,t.fn.modal.Constructor=n,t.fn.modal.noConflict=function(){return t.fn.modal=i,this},t(document).on("click.bs.modal.data-api",'[data-toggle="modal"]',function(n){var i=t(this),o=i.attr("href"),s=t(i.attr("data-target")||o&&o.replace(/.*(?=#[^\s]+$)/,"")),r=s.data("bs.modal")?"toggle":t.extend({remote:!/#/.test(o)&&o},s.data(),i.data());i.is("a")&&n.preventDefault(),s.one("show.bs.modal",function(t){t.isDefaultPrevented()||s.one("hidden.bs.modal",function(){i.is(":visible")&&i.trigger("focus")})}),e.call(s,r,this)})}(jQuery),+function(t){"use strict";function e(e){return this.each(function(){var i=t(this),o=i.data("bs.tooltip"),s="object"==typeof e&&e;!o&&/destroy|hide/.test(e)||(o||i.data("bs.tooltip",o=new n(this,s)),"string"==typeof e&&o[e]())})}var n=function(t,e){this.type=null,this.options=null,this.enabled=null,this.timeout=null,this.hoverState=null,this.$element=null,this.inState=null,this.init("tooltip",t,e)};n.VERSION="3.3.6",n.TRANSITION_DURATION=150,n.DEFAULTS={animation:!0,placement:"top",selector:!1,template:'<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',trigger:"hover focus",title:"",delay:0,html:!1,container:!1,viewport:{selector:"body",padding:0}},n.prototype.init=function(e,n,i){if(this.enabled=!0,this.type=e,this.$element=t(n),this.options=this.getOptions(i),this.$viewport=this.options.viewport&&t(t.isFunction(this.options.viewport)?this.options.viewport.call(this,this.$element):this.options.viewport.selector||this.options.viewport),this.inState={click:!1,hover:!1,focus:!1},this.$element[0]instanceof document.constructor&&!this.options.selector)throw new Error("`selector` option must be specified when initializing "+this.type+" on the window.document object!");for(var o=this.options.trigger.split(" "),s=o.length;s--;){var r=o[s];if("click"==r)this.$element.on("click."+this.type,this.options.selector,t.proxy(this.toggle,this));else if("manual"!=r){var a="hover"==r?"mouseenter":"focusin",l="hover"==r?"mouseleave":"focusout";this.$element.on(a+"."+this.type,this.options.selector,t.proxy(this.enter,this)),this.$element.on(l+"."+this.type,this.options.selector,t.proxy(this.leave,this))}}this.options.selector?this._options=t.extend({},this.options,{trigger:"manual",selector:""}):this.fixTitle()},n.prototype.getDefaults=function(){return n.DEFAULTS},n.prototype.getOptions=function(e){return e=t.extend({},this.getDefaults(),this.$element.data(),e),e.delay&&"number"==typeof e.delay&&(e.delay={show:e.delay,hide:e.delay}),e},n.prototype.getDelegateOptions=function(){var e={},n=this.getDefaults();return this._options&&t.each(this._options,function(t,i){n[t]!=i&&(e[t]=i)}),e},n.prototype.enter=function(e){var n=e instanceof this.constructor?e:t(e.currentTarget).data("bs."+this.type);return n||(n=new this.constructor(e.currentTarget,this.getDelegateOptions()),t(e.currentTarget).data("bs."+this.type,n)),e instanceof t.Event&&(n.inState["focusin"==e.type?"focus":"hover"]=!0),n.tip().hasClass("in")||"in"==n.hoverState?void(n.hoverState="in"):(clearTimeout(n.timeout),n.hoverState="in",n.options.delay&&n.options.delay.show?void(n.timeout=setTimeout(function(){"in"==n.hoverState&&n.show()},n.options.delay.show)):n.show())},n.prototype.isInStateTrue=function(){for(var t in this.inState)if(this.inState[t])return!0;return!1},n.prototype.leave=function(e){var n=e instanceof this.constructor?e:t(e.currentTarget).data("bs."+this.type);return n||(n=new this.constructor(e.currentTarget,this.getDelegateOptions()),t(e.currentTarget).data("bs."+this.type,n)),e instanceof t.Event&&(n.inState["focusout"==e.type?"focus":"hover"]=!1),n.isInStateTrue()?void 0:(clearTimeout(n.timeout),n.hoverState="out",n.options.delay&&n.options.delay.hide?void(n.timeout=setTimeout(function(){"out"==n.hoverState&&n.hide()},n.options.delay.hide)):n.hide())},n.prototype.show=function(){var e=t.Event("show.bs."+this.type);if(this.hasContent()&&this.enabled){this.$element.trigger(e);var i=t.contains(this.$element[0].ownerDocument.documentElement,this.$element[0]);if(e.isDefaultPrevented()||!i)return;var o=this,s=this.tip(),r=this.getUID(this.type);this.setContent(),s.attr("id",r),this.$element.attr("aria-describedby",r),this.options.animation&&s.addClass("fade");var a="function"==typeof this.options.placement?this.options.placement.call(this,s[0],this.$element[0]):this.options.placement,l=/\s?auto?\s?/i,c=l.test(a);c&&(a=a.replace(l,"")||"top"),s.detach().css({top:0,left:0,display:"block"}).addClass(a).data("bs."+this.type,this),this.options.container?s.appendTo(this.options.container):s.insertAfter(this.$element),this.$element.trigger("inserted.bs."+this.type);var h=this.getPosition(),u=s[0].offsetWidth,p=s[0].offsetHeight;if(c){var d=a,f=this.getPosition(this.$viewport);a="bottom"==a&&h.bottom+p>f.bottom?"top":"top"==a&&h.top-p<f.top?"bottom":"right"==a&&h.right+u>f.width?"left":"left"==a&&h.left-u<f.left?"right":a,s.removeClass(d).addClass(a)}var m=this.getCalculatedOffset(a,h,u,p);this.applyPlacement(m,a);var g=function(){var t=o.hoverState;o.$element.trigger("shown.bs."+o.type),o.hoverState=null,"out"==t&&o.leave(o)};t.support.transition&&this.$tip.hasClass("fade")?s.one("bsTransitionEnd",g).emulateTransitionEnd(n.TRANSITION_DURATION):g()}},n.prototype.applyPlacement=function(e,n){var i=this.tip(),o=i[0].offsetWidth,s=i[0].offsetHeight,r=parseInt(i.css("margin-top"),10),a=parseInt(i.css("margin-left"),10);isNaN(r)&&(r=0),isNaN(a)&&(a=0),e.top+=r,e.left+=a,t.offset.setOffset(i[0],t.extend({using:function(t){i.css({top:Math.round(t.top),left:Math.round(t.left)})}},e),0),i.addClass("in");var l=i[0].offsetWidth,c=i[0].offsetHeight;"top"==n&&c!=s&&(e.top=e.top+s-c);var h=this.getViewportAdjustedDelta(n,e,l,c);h.left?e.left+=h.left:e.top+=h.top;var u=/top|bottom/.test(n),p=u?2*h.left-o+l:2*h.top-s+c,d=u?"offsetWidth":"offsetHeight";i.offset(e),this.replaceArrow(p,i[0][d],u)},n.prototype.replaceArrow=function(t,e,n){this.arrow().css(n?"left":"top",50*(1-t/e)+"%").css(n?"top":"left","")},n.prototype.setContent=function(){var t=this.tip(),e=this.getTitle();t.find(".tooltip-inner")[this.options.html?"html":"text"](e),t.removeClass("fade in top bottom left right")},n.prototype.hide=function(e){function i(){"in"!=o.hoverState&&s.detach(),o.$element.removeAttr("aria-describedby").trigger("hidden.bs."+o.type),e&&e()}var o=this,s=t(this.$tip),r=t.Event("hide.bs."+this.type);return this.$element.trigger(r),r.isDefaultPrevented()?void 0:(s.removeClass("in"),t.support.transition&&s.hasClass("fade")?s.one("bsTransitionEnd",i).emulateTransitionEnd(n.TRANSITION_DURATION):i(),this.hoverState=null,this)},n.prototype.fixTitle=function(){var t=this.$element;(t.attr("title")||"string"!=typeof t.attr("data-original-title"))&&t.attr("data-original-title",t.attr("title")||"").attr("title","")},n.prototype.hasContent=function(){return this.getTitle()},n.prototype.getPosition=function(e){e=e||this.$element;var n=e[0],i="BODY"==n.tagName,o=n.getBoundingClientRect();null==o.width&&(o=t.extend({},o,{width:o.right-o.left,height:o.bottom-o.top}));var s=i?{top:0,left:0}:e.offset(),r={scroll:i?document.documentElement.scrollTop||document.body.scrollTop:e.scrollTop()},a=i?{width:t(window).width(),height:t(window).height()}:null;return t.extend({},o,r,a,s)},n.prototype.getCalculatedOffset=function(t,e,n,i){return"bottom"==t?{top:e.top+e.height,left:e.left+e.width/2-n/2}:"top"==t?{top:e.top-i,left:e.left+e.width/2-n/2}:"left"==t?{top:e.top+e.height/2-i/2,left:e.left-n}:{top:e.top+e.height/2-i/2,left:e.left+e.width}},n.prototype.getViewportAdjustedDelta=function(t,e,n,i){var o={top:0,left:0};if(!this.$viewport)return o;var s=this.options.viewport&&this.options.viewport.padding||0,r=this.getPosition(this.$viewport);if(/right|left/.test(t)){var a=e.top-s-r.scroll,l=e.top+s-r.scroll+i;a<r.top?o.top=r.top-a:l>r.top+r.height&&(o.top=r.top+r.height-l)}else{var c=e.left-s,h=e.left+s+n;c<r.left?o.left=r.left-c:h>r.right&&(o.left=r.left+r.width-h)}return o},n.prototype.getTitle=function(){var t,e=this.$element,n=this.options;return t=e.attr("data-original-title")||("function"==typeof n.title?n.title.call(e[0]):n.title)},n.prototype.getUID=function(t){do t+=~~(1e6*Math.random());while(document.getElementById(t));return t},n.prototype.tip=function(){if(!this.$tip&&(this.$tip=t(this.options.template),1!=this.$tip.length))throw new Error(this.type+" `template` option must consist of exactly 1 top-level element!");return this.$tip},n.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".tooltip-arrow")},n.prototype.enable=function(){this.enabled=!0},n.prototype.disable=function(){this.enabled=!1},n.prototype.toggleEnabled=function(){this.enabled=!this.enabled},n.prototype.toggle=function(e){var n=this;e&&(n=t(e.currentTarget).data("bs."+this.type),n||(n=new this.constructor(e.currentTarget,this.getDelegateOptions()),t(e.currentTarget).data("bs."+this.type,n))),e?(n.inState.click=!n.inState.click,n.isInStateTrue()?n.enter(n):n.leave(n)):n.tip().hasClass("in")?n.leave(n):n.enter(n)},n.prototype.destroy=function(){var t=this;clearTimeout(this.timeout),this.hide(function(){t.$element.off("."+t.type).removeData("bs."+t.type),t.$tip&&t.$tip.detach(),t.$tip=null,t.$arrow=null,t.$viewport=null})};var i=t.fn.tooltip;t.fn.tooltip=e,t.fn.tooltip.Constructor=n,t.fn.tooltip.noConflict=function(){return t.fn.tooltip=i,this}}(jQuery),+function(t){"use strict";function e(e){return this.each(function(){var i=t(this),o=i.data("bs.popover"),s="object"==typeof e&&e;!o&&/destroy|hide/.test(e)||(o||i.data("bs.popover",o=new n(this,s)),"string"==typeof e&&o[e]())})}var n=function(t,e){this.init("popover",t,e)};if(!t.fn.tooltip)throw new Error("Popover requires tooltip.js");n.VERSION="3.3.6",n.DEFAULTS=t.extend({},t.fn.tooltip.Constructor.DEFAULTS,{placement:"right",trigger:"click",content:"",template:'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'}),n.prototype=t.extend({},t.fn.tooltip.Constructor.prototype),n.prototype.constructor=n,n.prototype.getDefaults=function(){return n.DEFAULTS},n.prototype.setContent=function(){var t=this.tip(),e=this.getTitle(),n=this.getContent();t.find(".popover-title")[this.options.html?"html":"text"](e),t.find(".popover-content").children().detach().end()[this.options.html?"string"==typeof n?"html":"append":"text"](n),t.removeClass("fade top bottom left right in"),t.find(".popover-title").html()||t.find(".popover-title").hide()},n.prototype.hasContent=function(){return this.getTitle()||this.getContent()},n.prototype.getContent=function(){var t=this.$element,e=this.options;return t.attr("data-content")||("function"==typeof e.content?e.content.call(t[0]):e.content)},n.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".arrow")};var i=t.fn.popover;t.fn.popover=e,t.fn.popover.Constructor=n,t.fn.popover.noConflict=function(){return t.fn.popover=i,this}}(jQuery),+function(t){"use strict";function e(n,i){this.$body=t(document.body),this.$scrollElement=t(t(n).is(document.body)?window:n),this.options=t.extend({},e.DEFAULTS,i),this.selector=(this.options.target||"")+" .nav li > a",this.offsets=[],this.targets=[],this.activeTarget=null,this.scrollHeight=0,this.$scrollElement.on("scroll.bs.scrollspy",t.proxy(this.process,this)),this.refresh(),this.process()}function n(n){return this.each(function(){var i=t(this),o=i.data("bs.scrollspy"),s="object"==typeof n&&n;o||i.data("bs.scrollspy",o=new e(this,s)),"string"==typeof n&&o[n]()})}e.VERSION="3.3.6",e.DEFAULTS={offset:10},e.prototype.getScrollHeight=function(){return this.$scrollElement[0].scrollHeight||Math.max(this.$body[0].scrollHeight,document.documentElement.scrollHeight)},e.prototype.refresh=function(){var e=this,n="offset",i=0;this.offsets=[],this.targets=[],this.scrollHeight=this.getScrollHeight(),t.isWindow(this.$scrollElement[0])||(n="position",i=this.$scrollElement.scrollTop()),this.$body.find(this.selector).map(function(){var e=t(this),o=e.data("target")||e.attr("href"),s=/^#./.test(o)&&t(o);return s&&s.length&&s.is(":visible")&&[[s[n]().top+i,o]]||null}).sort(function(t,e){return t[0]-e[0]}).each(function(){e.offsets.push(this[0]),e.targets.push(this[1])})},e.prototype.process=function(){var t,e=this.$scrollElement.scrollTop()+this.options.offset,n=this.getScrollHeight(),i=this.options.offset+n-this.$scrollElement.height(),o=this.offsets,s=this.targets,r=this.activeTarget;if(this.scrollHeight!=n&&this.refresh(),e>=i)return r!=(t=s[s.length-1])&&this.activate(t);if(r&&e<o[0])return this.activeTarget=null,this.clear();for(t=o.length;t--;)r!=s[t]&&e>=o[t]&&(void 0===o[t+1]||e<o[t+1])&&this.activate(s[t])},e.prototype.activate=function(e){this.activeTarget=e,this.clear();var n=this.selector+'[data-target="'+e+'"],'+this.selector+'[href="'+e+'"]',i=t(n).parents("li").addClass("active");i.parent(".dropdown-menu").length&&(i=i.closest("li.dropdown").addClass("active")),i.trigger("activate.bs.scrollspy")},e.prototype.clear=function(){t(this.selector).parentsUntil(this.options.target,".active").removeClass("active")};var i=t.fn.scrollspy;t.fn.scrollspy=n,t.fn.scrollspy.Constructor=e,t.fn.scrollspy.noConflict=function(){return t.fn.scrollspy=i,this},t(window).on("load.bs.scrollspy.data-api",function(){t('[data-spy="scroll"]').each(function(){var e=t(this);n.call(e,e.data())})})}(jQuery),+function(t){"use strict";function e(e){return this.each(function(){var i=t(this),o=i.data("bs.tab");o||i.data("bs.tab",o=new n(this)),"string"==typeof e&&o[e]()})}var n=function(e){this.element=t(e)};n.VERSION="3.3.6",n.TRANSITION_DURATION=150,n.prototype.show=function(){var e=this.element,n=e.closest("ul:not(.dropdown-menu)"),i=e.data("target");if(i||(i=e.attr("href"),i=i&&i.replace(/.*(?=#[^\s]*$)/,"")),!e.parent("li").hasClass("active")){var o=n.find(".active:last a"),s=t.Event("hide.bs.tab",{relatedTarget:e[0]}),r=t.Event("show.bs.tab",{relatedTarget:o[0]});if(o.trigger(s),e.trigger(r),!r.isDefaultPrevented()&&!s.isDefaultPrevented()){var a=t(i);this.activate(e.closest("li"),n),this.activate(a,a.parent(),function(){o.trigger({type:"hidden.bs.tab",relatedTarget:e[0]}),e.trigger({type:"shown.bs.tab",relatedTarget:o[0]})})}}},n.prototype.activate=function(e,i,o){function s(){r.removeClass("active").find("> .dropdown-menu > .active").removeClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded",!1),e.addClass("active").find('[data-toggle="tab"]').attr("aria-expanded",!0),a?(e[0].offsetWidth,e.addClass("in")):e.removeClass("fade"),e.parent(".dropdown-menu").length&&e.closest("li.dropdown").addClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded",!0),o&&o()}var r=i.find("> .active"),a=o&&t.support.transition&&(r.length&&r.hasClass("fade")||!!i.find("> .fade").length);r.length&&a?r.one("bsTransitionEnd",s).emulateTransitionEnd(n.TRANSITION_DURATION):s(),r.removeClass("in")};var i=t.fn.tab;t.fn.tab=e,t.fn.tab.Constructor=n,t.fn.tab.noConflict=function(){return t.fn.tab=i,this};var o=function(n){n.preventDefault(),e.call(t(this),"show")};t(document).on("click.bs.tab.data-api",'[data-toggle="tab"]',o).on("click.bs.tab.data-api",'[data-toggle="pill"]',o)}(jQuery),+function(t){"use strict";function e(e){return this.each(function(){var i=t(this),o=i.data("bs.affix"),s="object"==typeof e&&e;o||i.data("bs.affix",o=new n(this,s)),"string"==typeof e&&o[e]()})}var n=function(e,i){this.options=t.extend({},n.DEFAULTS,i),this.$target=t(this.options.target).on("scroll.bs.affix.data-api",t.proxy(this.checkPosition,this)).on("click.bs.affix.data-api",t.proxy(this.checkPositionWithEventLoop,this)),this.$element=t(e),this.affixed=null,this.unpin=null,this.pinnedOffset=null,this.checkPosition()};n.VERSION="3.3.6",n.RESET="affix affix-top affix-bottom",n.DEFAULTS={offset:0,target:window},n.prototype.getState=function(t,e,n,i){var o=this.$target.scrollTop(),s=this.$element.offset(),r=this.$target.height();if(null!=n&&"top"==this.affixed)return n>o?"top":!1;if("bottom"==this.affixed)return null!=n?o+this.unpin<=s.top?!1:"bottom":t-i>=o+r?!1:"bottom";var a=null==this.affixed,l=a?o:s.top,c=a?r:e;return null!=n&&n>=o?"top":null!=i&&l+c>=t-i?"bottom":!1},n.prototype.getPinnedOffset=function(){if(this.pinnedOffset)return this.pinnedOffset;this.$element.removeClass(n.RESET).addClass("affix");
-var t=this.$target.scrollTop(),e=this.$element.offset();return this.pinnedOffset=e.top-t},n.prototype.checkPositionWithEventLoop=function(){setTimeout(t.proxy(this.checkPosition,this),1)},n.prototype.checkPosition=function(){if(this.$element.is(":visible")){var e=this.$element.height(),i=this.options.offset,o=i.top,s=i.bottom,r=Math.max(t(document).height(),t(document.body).height());"object"!=typeof i&&(s=o=i),"function"==typeof o&&(o=i.top(this.$element)),"function"==typeof s&&(s=i.bottom(this.$element));var a=this.getState(r,e,o,s);if(this.affixed!=a){null!=this.unpin&&this.$element.css("top","");var l="affix"+(a?"-"+a:""),c=t.Event(l+".bs.affix");if(this.$element.trigger(c),c.isDefaultPrevented())return;this.affixed=a,this.unpin="bottom"==a?this.getPinnedOffset():null,this.$element.removeClass(n.RESET).addClass(l).trigger(l.replace("affix","affixed")+".bs.affix")}"bottom"==a&&this.$element.offset({top:r-e-s})}};var i=t.fn.affix;t.fn.affix=e,t.fn.affix.Constructor=n,t.fn.affix.noConflict=function(){return t.fn.affix=i,this},t(window).on("load",function(){t('[data-spy="affix"]').each(function(){var n=t(this),i=n.data();i.offset=i.offset||{},null!=i.offsetBottom&&(i.offset.bottom=i.offsetBottom),null!=i.offsetTop&&(i.offset.top=i.offsetTop),e.call(n,i)})})}(jQuery),function(t,e){function n(){var t=m.elements;return"string"==typeof t?t.split(" "):t}function i(t){var e=f[t[p]];return e||(e={},d++,t[p]=d,f[d]=e),e}function o(t,n,o){return n||(n=e),l?n.createElement(t):(o||(o=i(n)),n=o.cache[t]?o.cache[t].cloneNode():u.test(t)?(o.cache[t]=o.createElem(t)).cloneNode():o.createElem(t),n.canHaveChildren&&!h.test(t)?o.frag.appendChild(n):n)}function s(t,e){e.cache||(e.cache={},e.createElem=t.createElement,e.createFrag=t.createDocumentFragment,e.frag=e.createFrag()),t.createElement=function(n){return m.shivMethods?o(n,t,e):e.createElem(n)},t.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+n().join().replace(/\w+/g,function(t){return e.createElem(t),e.frag.createElement(t),'c("'+t+'")'})+");return n}")(m,e.frag)}function r(t){t||(t=e);var n=i(t);if(m.shivCSS&&!a&&!n.hasCSS){var o,r=t;o=r.createElement("p"),r=r.getElementsByTagName("head")[0]||r.documentElement,o.innerHTML="x<style>article,aside,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}</style>",o=r.insertBefore(o.lastChild,r.firstChild),n.hasCSS=!!o}return l||s(t,n),t}var a,l,c=t.html5||{},h=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,u=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,p="_html5shiv",d=0,f={};!function(){try{var t=e.createElement("a");t.innerHTML="<xyz></xyz>",a="hidden"in t;var n;if(!(n=1==t.childNodes.length)){e.createElement("a");var i=e.createDocumentFragment();n="undefined"==typeof i.cloneNode||"undefined"==typeof i.createDocumentFragment||"undefined"==typeof i.createElement}l=n}catch(o){l=a=!0}}();var m={elements:c.elements||"abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup main mark meter nav output progress section summary time video",version:"3.6.2",shivCSS:!1!==c.shivCSS,supportsUnknownElements:l,shivMethods:!1!==c.shivMethods,type:"default",shivDocument:r,createElement:o,createDocumentFragment:function(t,o){if(t||(t=e),l)return t.createDocumentFragment();for(var o=o||i(t),s=o.frag.cloneNode(),r=0,a=n(),c=a.length;c>r;r++)s.createElement(a[r]);return s}};t.html5=m,r(e)}(this,document),function(t){if("function"==typeof define&&define.amd)define(t);else if("object"==typeof exports)module.exports=t();else{var e=window.Cookies,n=window.Cookies=t();n.noConflict=function(){return window.Cookies=e,n}}}(function(){function t(){for(var t=0,e={};t<arguments.length;t++){var n=arguments[t];for(var i in n)e[i]=n[i]}return e}function e(n){function i(e,o,s){var r;if(arguments.length>1){if(s=t({path:"/"},i.defaults,s),"number"==typeof s.expires){var a=new Date;a.setMilliseconds(a.getMilliseconds()+864e5*s.expires),s.expires=a}try{r=JSON.stringify(o),/^[\{\[]/.test(r)&&(o=r)}catch(l){}return o=n.write?n.write(o,e):encodeURIComponent(String(o)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),e=encodeURIComponent(String(e)),e=e.replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent),e=e.replace(/[\(\)]/g,escape),document.cookie=[e,"=",o,s.expires&&"; expires="+s.expires.toUTCString(),s.path&&"; path="+s.path,s.domain&&"; domain="+s.domain,s.secure?"; secure":""].join("")}e||(r={});for(var c=document.cookie?document.cookie.split("; "):[],h=/(%[0-9A-Z]{2})+/g,u=0;u<c.length;u++){var p=c[u].split("="),d=p[0].replace(h,decodeURIComponent),f=p.slice(1).join("=");'"'===f.charAt(0)&&(f=f.slice(1,-1));try{if(f=n.read?n.read(f,d):n(f,d)||f.replace(h,decodeURIComponent),this.json)try{f=JSON.parse(f)}catch(l){}if(e===d){r=f;break}e||(r[d]=f)}catch(l){}}return r}return i.get=i.set=i,i.getJSON=function(){return i.apply({json:!0},[].slice.call(arguments))},i.defaults={},i.remove=function(e,n){i(e,"",t(n,{expires:-1}))},i.withConverter=e,i}return e(function(){})}),!function(t){"use strict";t.matchMedia=t.matchMedia||function(t){var e,n=t.documentElement,i=n.firstElementChild||n.firstChild,o=t.createElement("body"),s=t.createElement("div");return s.id="mq-test-1",s.style.cssText="position:absolute;top:-100em",o.style.background="none",o.appendChild(s),function(t){return s.innerHTML='&shy;<style media="'+t+'"> #mq-test-1 { width: 42px; }</style>',n.insertBefore(o,i),e=42===s.offsetWidth,n.removeChild(o),{matches:e,media:t}}}(t.document)}(this),function(t){"use strict";function e(){w(!0)}var n={};t.respond=n,n.update=function(){};var i=[],o=function(){var e=!1;try{e=new t.XMLHttpRequest}catch(n){e=new t.ActiveXObject("Microsoft.XMLHTTP")}return function(){return e}}(),s=function(t,e){var n=o();n&&(n.open("GET",t,!0),n.onreadystatechange=function(){4!==n.readyState||200!==n.status&&304!==n.status||e(n.responseText)},4!==n.readyState&&n.send(null))},r=function(t){return t.replace(n.regex.minmaxwh,"").match(n.regex.other)};if(n.ajax=s,n.queue=i,n.unsupportedmq=r,n.regex={media:/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi,keyframes:/@(?:\-(?:o|moz|webkit)\-)?keyframes[^\{]+\{(?:[^\{\}]*\{[^\}\{]*\})+[^\}]*\}/gi,comments:/\/\*[^*]*\*+([^\/][^*]*\*+)*\//gi,urls:/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,findStyles:/@media *([^\{]+)\{([\S\s]+?)$/,only:/(only\s+)?([a-zA-Z]+)\s?/,minw:/\(\s*min\-width\s*:\s*(\s*[0-9\.]+)(px|em)\s*\)/,maxw:/\(\s*max\-width\s*:\s*(\s*[0-9\.]+)(px|em)\s*\)/,minmaxwh:/\(\s*m(in|ax)\-(height|width)\s*:\s*(\s*[0-9\.]+)(px|em)\s*\)/gi,other:/\([^\)]*\)/g},n.mediaQueriesSupported=t.matchMedia&&null!==t.matchMedia("only all")&&t.matchMedia("only all").matches,!n.mediaQueriesSupported){var a,l,c,h=t.document,u=h.documentElement,p=[],d=[],f=[],m={},g=30,v=h.getElementsByTagName("head")[0]||u,y=h.getElementsByTagName("base")[0],b=v.getElementsByTagName("link"),x=function(){var t,e=h.createElement("div"),n=h.body,i=u.style.fontSize,o=n&&n.style.fontSize,s=!1;return e.style.cssText="position:absolute;font-size:1em;width:1em",n||(n=s=h.createElement("body"),n.style.background="none"),u.style.fontSize="100%",n.style.fontSize="100%",n.appendChild(e),s&&u.insertBefore(n,u.firstChild),t=e.offsetWidth,s?u.removeChild(n):n.removeChild(e),u.style.fontSize=i,o&&(n.style.fontSize=o),t=c=parseFloat(t)},w=function(e){var n="clientWidth",i=u[n],o="CSS1Compat"===h.compatMode&&i||h.body[n]||i,s={},r=b[b.length-1],m=(new Date).getTime();if(e&&a&&g>m-a)return t.clearTimeout(l),void(l=t.setTimeout(w,g));a=m;for(var y in p)if(p.hasOwnProperty(y)){var C=p[y],k=C.minw,T=C.maxw,E=null===k,$=null===T,_="em";k&&(k=parseFloat(k)*(k.indexOf(_)>-1?c||x():1)),T&&(T=parseFloat(T)*(T.indexOf(_)>-1?c||x():1)),C.hasquery&&(E&&$||!(E||o>=k)||!($||T>=o))||(s[C.media]||(s[C.media]=[]),s[C.media].push(d[C.rules]))}for(var S in f)f.hasOwnProperty(S)&&f[S]&&f[S].parentNode===v&&v.removeChild(f[S]);f.length=0;for(var A in s)if(s.hasOwnProperty(A)){var N=h.createElement("style"),D=s[A].join("\n");N.type="text/css",N.media=A,v.insertBefore(N,r.nextSibling),N.styleSheet?N.styleSheet.cssText=D:N.appendChild(h.createTextNode(D)),f.push(N)}},C=function(t,e,i){var o=t.replace(n.regex.comments,"").replace(n.regex.keyframes,"").match(n.regex.media),s=o&&o.length||0;e=e.substring(0,e.lastIndexOf("/"));var a=function(t){return t.replace(n.regex.urls,"$1"+e+"$2$3")},l=!s&&i;e.length&&(e+="/"),l&&(s=1);for(var c=0;s>c;c++){var h,u,f,m;l?(h=i,d.push(a(t))):(h=o[c].match(n.regex.findStyles)&&RegExp.$1,d.push(RegExp.$2&&a(RegExp.$2))),f=h.split(","),m=f.length;for(var g=0;m>g;g++)u=f[g],r(u)||p.push({media:u.split("(")[0].match(n.regex.only)&&RegExp.$2||"all",rules:d.length-1,hasquery:u.indexOf("(")>-1,minw:u.match(n.regex.minw)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:u.match(n.regex.maxw)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}w()},k=function(){if(i.length){var e=i.shift();s(e.href,function(n){C(n,e.href,e.media),m[e.href]=!0,t.setTimeout(function(){k()},0)})}},T=function(){for(var e=0;e<b.length;e++){var n=b[e],o=n.href,s=n.media,r=n.rel&&"stylesheet"===n.rel.toLowerCase();o&&r&&!m[o]&&(n.styleSheet&&n.styleSheet.rawCssText?(C(n.styleSheet.rawCssText,o,s),m[o]=!0):(!/^([a-zA-Z:]*\/\/)/.test(o)&&!y||o.replace(RegExp.$1,"").split("/")[0]===t.location.host)&&("//"===o.substring(0,2)&&(o=t.location.protocol+o),i.push({href:o,media:s})))}k()};T(),n.update=T,n.getEmValue=x,t.addEventListener?t.addEventListener("resize",e,!1):t.attachEvent&&t.attachEvent("onresize",e)}}(this),function(){"use strict";var t="undefined"!=typeof module&&module.exports,e="undefined"!=typeof Element&&"ALLOW_KEYBOARD_INPUT"in Element,n=function(){for(var t,e,n=[["requestFullscreen","exitFullscreen","fullscreenElement","fullscreenEnabled","fullscreenchange","fullscreenerror"],["webkitRequestFullscreen","webkitExitFullscreen","webkitFullscreenElement","webkitFullscreenEnabled","webkitfullscreenchange","webkitfullscreenerror"],["webkitRequestFullScreen","webkitCancelFullScreen","webkitCurrentFullScreenElement","webkitCancelFullScreen","webkitfullscreenchange","webkitfullscreenerror"],["mozRequestFullScreen","mozCancelFullScreen","mozFullScreenElement","mozFullScreenEnabled","mozfullscreenchange","mozfullscreenerror"],["msRequestFullscreen","msExitFullscreen","msFullscreenElement","msFullscreenEnabled","MSFullscreenChange","MSFullscreenError"]],i=0,o=n.length,s={};o>i;i++)if(t=n[i],t&&t[1]in document){for(i=0,e=t.length;e>i;i++)s[n[0][i]]=t[i];return s}return!1}(),i={request:function(t){var i=n.requestFullscreen;t=t||document.documentElement,/5\.1[\.\d]* Safari/.test(navigator.userAgent)?t[i]():t[i](e&&Element.ALLOW_KEYBOARD_INPUT)},exit:function(){document[n.exitFullscreen]()},toggle:function(t){this.isFullscreen?this.exit():this.request(t)},raw:n};return n?(Object.defineProperties(i,{isFullscreen:{get:function(){return Boolean(document[n.fullscreenElement])}},element:{enumerable:!0,get:function(){return document[n.fullscreenElement]}},enabled:{enumerable:!0,get:function(){return Boolean(document[n.fullscreenEnabled])}}}),void(t?module.exports=i:window.screenfull=i)):void(t?module.exports=!1:window.screenfull=!1)}(),!function(t){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var e;"undefined"!=typeof window?e=window:"undefined"!=typeof global?e=global:"undefined"!=typeof self&&(e=self),e.io=t()}}(function(){var t;return function e(t,n,i){function o(r,a){if(!n[r]){if(!t[r]){var l="function"==typeof require&&require;if(!a&&l)return l(r,!0);if(s)return s(r,!0);throw new Error("Cannot find module '"+r+"'")}var c=n[r]={exports:{}};t[r][0].call(c.exports,function(e){var n=t[r][1][e];return o(n?n:e)},c,c.exports,e,t,n,i)}return n[r].exports}for(var s="function"==typeof require&&require,r=0;r<i.length;r++)o(i[r]);return o}({1:[function(t,e,n){e.exports=t("./lib/")},{"./lib/":2}],2:[function(t,e,n){function i(t,e){"object"==typeof t&&(e=t,t=void 0),e=e||{};var n,i=o(t),s=i.source,c=i.id,h=i.path,u=l[c]&&l[c].nsps[h]&&h==l[c].nsps[h].nsp,p=e.forceNew||e["force new connection"]||!1===e.multiplex||u;return p?(a("ignoring socket cache for %s",s),n=r(s,e)):(l[c]||(a("new io instance for %s",s),l[c]=r(s,e)),n=l[c]),n.socket(i.path)}var o=t("./url"),s=t("socket.io-parser"),r=t("./manager"),a=t("debug")("socket.io-client");e.exports=n=i;var l=n.managers={};n.protocol=s.protocol,n.connect=i,n.Manager=t("./manager"),n.Socket=t("./socket")},{"./manager":3,"./socket":5,"./url":6,debug:10,"socket.io-parser":44}],3:[function(t,e,n){function i(t,e){return this instanceof i?(t&&"object"==typeof t&&(e=t,t=void 0),e=e||{},e.path=e.path||"/socket.io",this.nsps={},this.subs=[],this.opts=e,this.reconnection(e.reconnection!==!1),this.reconnectionAttempts(e.reconnectionAttempts||1/0),this.reconnectionDelay(e.reconnectionDelay||1e3),this.reconnectionDelayMax(e.reconnectionDelayMax||5e3),this.randomizationFactor(e.randomizationFactor||.5),this.backoff=new p({min:this.reconnectionDelay(),max:this.reconnectionDelayMax(),jitter:this.randomizationFactor()}),this.timeout(null==e.timeout?2e4:e.timeout),this.readyState="closed",this.uri=t,this.connected=[],this.encoding=!1,this.packetBuffer=[],this.encoder=new a.Encoder,this.decoder=new a.Decoder,this.autoConnect=e.autoConnect!==!1,void(this.autoConnect&&this.open())):new i(t,e)}var o=(t("./url"),t("engine.io-client")),s=t("./socket"),r=t("component-emitter"),a=t("socket.io-parser"),l=t("./on"),c=t("component-bind"),h=(t("object-component"),t("debug")("socket.io-client:manager")),u=t("indexof"),p=t("backo2");e.exports=i,i.prototype.emitAll=function(){this.emit.apply(this,arguments);for(var t in this.nsps)this.nsps[t].emit.apply(this.nsps[t],arguments)},i.prototype.updateSocketIds=function(){for(var t in this.nsps)this.nsps[t].id=this.engine.id},r(i.prototype),i.prototype.reconnection=function(t){return arguments.length?(this._reconnection=!!t,this):this._reconnection},i.prototype.reconnectionAttempts=function(t){return arguments.length?(this._reconnectionAttempts=t,this):this._reconnectionAttempts},i.prototype.reconnectionDelay=function(t){return arguments.length?(this._reconnectionDelay=t,this.backoff&&this.backoff.setMin(t),this):this._reconnectionDelay},i.prototype.randomizationFactor=function(t){return arguments.length?(this._randomizationFactor=t,this.backoff&&this.backoff.setJitter(t),this):this._randomizationFactor},i.prototype.reconnectionDelayMax=function(t){return arguments.length?(this._reconnectionDelayMax=t,this.backoff&&this.backoff.setMax(t),this):this._reconnectionDelayMax},i.prototype.timeout=function(t){return arguments.length?(this._timeout=t,this):this._timeout},i.prototype.maybeReconnectOnOpen=function(){!this.reconnecting&&this._reconnection&&0===this.backoff.attempts&&this.reconnect()},i.prototype.open=i.prototype.connect=function(t){if(h("readyState %s",this.readyState),~this.readyState.indexOf("open"))return this;h("opening %s",this.uri),this.engine=o(this.uri,this.opts);var e=this.engine,n=this;this.readyState="opening",this.skipReconnect=!1;var i=l(e,"open",function(){n.onopen(),t&&t()}),s=l(e,"error",function(e){if(h("connect_error"),n.cleanup(),n.readyState="closed",n.emitAll("connect_error",e),t){var i=new Error("Connection error");i.data=e,t(i)}else n.maybeReconnectOnOpen()});if(!1!==this._timeout){var r=this._timeout;h("connect attempt will timeout after %d",r);var a=setTimeout(function(){h("connect attempt timed out after %d",r),i.destroy(),e.close(),e.emit("error","timeout"),n.emitAll("connect_timeout",r)},r);this.subs.push({destroy:function(){clearTimeout(a)}})}return this.subs.push(i),this.subs.push(s),this},i.prototype.onopen=function(){h("open"),this.cleanup(),this.readyState="open",this.emit("open");var t=this.engine;this.subs.push(l(t,"data",c(this,"ondata"))),this.subs.push(l(this.decoder,"decoded",c(this,"ondecoded"))),this.subs.push(l(t,"error",c(this,"onerror"))),this.subs.push(l(t,"close",c(this,"onclose")))},i.prototype.ondata=function(t){this.decoder.add(t)},i.prototype.ondecoded=function(t){this.emit("packet",t)},i.prototype.onerror=function(t){h("error",t),this.emitAll("error",t)},i.prototype.socket=function(t){var e=this.nsps[t];if(!e){e=new s(this,t),this.nsps[t]=e;var n=this;e.on("connect",function(){e.id=n.engine.id,~u(n.connected,e)||n.connected.push(e)})}return e},i.prototype.destroy=function(t){var e=u(this.connected,t);~e&&this.connected.splice(e,1),this.connected.length||this.close()},i.prototype.packet=function(t){h("writing packet %j",t);var e=this;e.encoding?e.packetBuffer.push(t):(e.encoding=!0,this.encoder.encode(t,function(t){for(var n=0;n<t.length;n++)e.engine.write(t[n]);e.encoding=!1,e.processPacketQueue()}))},i.prototype.processPacketQueue=function(){if(this.packetBuffer.length>0&&!this.encoding){var t=this.packetBuffer.shift();this.packet(t)}},i.prototype.cleanup=function(){for(var t;t=this.subs.shift();)t.destroy();this.packetBuffer=[],this.encoding=!1,this.decoder.destroy()},i.prototype.close=i.prototype.disconnect=function(){this.skipReconnect=!0,this.backoff.reset(),this.readyState="closed",this.engine&&this.engine.close()},i.prototype.onclose=function(t){h("close"),this.cleanup(),this.backoff.reset(),this.readyState="closed",this.emit("close",t),this._reconnection&&!this.skipReconnect&&this.reconnect()},i.prototype.reconnect=function(){if(this.reconnecting||this.skipReconnect)return this;var t=this;if(this.backoff.attempts>=this._reconnectionAttempts)h("reconnect failed"),this.backoff.reset(),this.emitAll("reconnect_failed"),this.reconnecting=!1;else{var e=this.backoff.duration();h("will wait %dms before reconnect attempt",e),this.reconnecting=!0;var n=setTimeout(function(){t.skipReconnect||(h("attempting reconnect"),t.emitAll("reconnect_attempt",t.backoff.attempts),t.emitAll("reconnecting",t.backoff.attempts),t.skipReconnect||t.open(function(e){e?(h("reconnect attempt error"),t.reconnecting=!1,t.reconnect(),t.emitAll("reconnect_error",e.data)):(h("reconnect success"),t.onreconnect())}))},e);this.subs.push({destroy:function(){clearTimeout(n)}})}},i.prototype.onreconnect=function(){var t=this.backoff.attempts;this.reconnecting=!1,this.backoff.reset(),this.updateSocketIds(),this.emitAll("reconnect",t)}},{"./on":4,"./socket":5,"./url":6,backo2:7,"component-bind":8,"component-emitter":9,debug:10,"engine.io-client":11,indexof:40,"object-component":41,"socket.io-parser":44}],4:[function(t,e,n){function i(t,e,n){return t.on(e,n),{destroy:function(){t.removeListener(e,n)}}}e.exports=i},{}],5:[function(t,e,n){function i(t,e){this.io=t,this.nsp=e,this.json=this,this.ids=0,this.acks={},this.io.autoConnect&&this.open(),this.receiveBuffer=[],this.sendBuffer=[],this.connected=!1,this.disconnected=!0}var o=t("socket.io-parser"),s=t("component-emitter"),r=t("to-array"),a=t("./on"),l=t("component-bind"),c=t("debug")("socket.io-client:socket"),h=t("has-binary");e.exports=n=i;var u={connect:1,connect_error:1,connect_timeout:1,disconnect:1,error:1,reconnect:1,reconnect_attempt:1,reconnect_failed:1,reconnect_error:1,reconnecting:1},p=s.prototype.emit;s(i.prototype),i.prototype.subEvents=function(){if(!this.subs){var t=this.io;this.subs=[a(t,"open",l(this,"onopen")),a(t,"packet",l(this,"onpacket")),a(t,"close",l(this,"onclose"))]}},i.prototype.open=i.prototype.connect=function(){return this.connected?this:(this.subEvents(),this.io.open(),"open"==this.io.readyState&&this.onopen(),this)},i.prototype.send=function(){var t=r(arguments);return t.unshift("message"),this.emit.apply(this,t),this},i.prototype.emit=function(t){if(u.hasOwnProperty(t))return p.apply(this,arguments),this;var e=r(arguments),n=o.EVENT;h(e)&&(n=o.BINARY_EVENT);var i={type:n,data:e};return"function"==typeof e[e.length-1]&&(c("emitting packet with ack id %d",this.ids),this.acks[this.ids]=e.pop(),i.id=this.ids++),this.connected?this.packet(i):this.sendBuffer.push(i),this},i.prototype.packet=function(t){t.nsp=this.nsp,this.io.packet(t)},i.prototype.onopen=function(){c("transport is open - connecting"),"/"!=this.nsp&&this.packet({type:o.CONNECT})},i.prototype.onclose=function(t){c("close (%s)",t),this.connected=!1,this.disconnected=!0,delete this.id,this.emit("disconnect",t)},i.prototype.onpacket=function(t){if(t.nsp==this.nsp)switch(t.type){case o.CONNECT:this.onconnect();break;case o.EVENT:this.onevent(t);break;case o.BINARY_EVENT:this.onevent(t);break;case o.ACK:this.onack(t);break;case o.BINARY_ACK:this.onack(t);break;case o.DISCONNECT:this.ondisconnect();break;case o.ERROR:this.emit("error",t.data)}},i.prototype.onevent=function(t){var e=t.data||[];c("emitting event %j",e),null!=t.id&&(c("attaching ack callback to event"),e.push(this.ack(t.id))),this.connected?p.apply(this,e):this.receiveBuffer.push(e)},i.prototype.ack=function(t){var e=this,n=!1;return function(){if(!n){n=!0;var i=r(arguments);c("sending ack %j",i);var s=h(i)?o.BINARY_ACK:o.ACK;e.packet({type:s,id:t,data:i})}}},i.prototype.onack=function(t){c("calling ack %s with %j",t.id,t.data);var e=this.acks[t.id];e.apply(this,t.data),delete this.acks[t.id]},i.prototype.onconnect=function(){this.connected=!0,this.disconnected=!1,this.emit("connect"),this.emitBuffered()},i.prototype.emitBuffered=function(){var t;for(t=0;t<this.receiveBuffer.length;t++)p.apply(this,this.receiveBuffer[t]);for(this.receiveBuffer=[],t=0;t<this.sendBuffer.length;t++)this.packet(this.sendBuffer[t]);this.sendBuffer=[]},i.prototype.ondisconnect=function(){c("server disconnect (%s)",this.nsp),this.destroy(),this.onclose("io server disconnect")},i.prototype.destroy=function(){if(this.subs){for(var t=0;t<this.subs.length;t++)this.subs[t].destroy();this.subs=null}this.io.destroy(this)},i.prototype.close=i.prototype.disconnect=function(){return this.connected&&(c("performing disconnect (%s)",this.nsp),this.packet({type:o.DISCONNECT})),this.destroy(),this.connected&&this.onclose("io client disconnect"),this}},{"./on":4,"component-bind":8,"component-emitter":9,debug:10,"has-binary":36,"socket.io-parser":44,"to-array":48}],6:[function(t,e,n){(function(n){function i(t,e){var i=t,e=e||n.location;return null==t&&(t=e.protocol+"//"+e.host),"string"==typeof t&&("/"==t.charAt(0)&&(t="/"==t.charAt(1)?e.protocol+t:e.hostname+t),/^(https?|wss?):\/\//.test(t)||(s("protocol-less url %s",t),t="undefined"!=typeof e?e.protocol+"//"+t:"https://"+t),s("parse %s",t),i=o(t)),i.port||(/^(http|ws)$/.test(i.protocol)?i.port="80":/^(http|ws)s$/.test(i.protocol)&&(i.port="443")),i.path=i.path||"/",i.id=i.protocol+"://"+i.host+":"+i.port,i.href=i.protocol+"://"+i.host+(e&&e.port==i.port?"":":"+i.port),i}var o=t("parseuri"),s=t("debug")("socket.io-client:url");e.exports=i}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{debug:10,parseuri:42}],7:[function(t,e,n){function i(t){t=t||{},this.ms=t.min||100,this.max=t.max||1e4,this.factor=t.factor||2,this.jitter=t.jitter>0&&t.jitter<=1?t.jitter:0,this.attempts=0}e.exports=i,i.prototype.duration=function(){var t=this.ms*Math.pow(this.factor,this.attempts++);if(this.jitter){var e=Math.random(),n=Math.floor(e*this.jitter*t);t=0==(1&Math.floor(10*e))?t-n:t+n}return 0|Math.min(t,this.max)},i.prototype.reset=function(){this.attempts=0},i.prototype.setMin=function(t){this.ms=t},i.prototype.setMax=function(t){this.max=t},i.prototype.setJitter=function(t){this.jitter=t}},{}],8:[function(t,e,n){var i=[].slice;e.exports=function(t,e){if("string"==typeof e&&(e=t[e]),"function"!=typeof e)throw new Error("bind() requires a function");var n=i.call(arguments,2);return function(){return e.apply(t,n.concat(i.call(arguments)))}}},{}],9:[function(t,e,n){function i(t){return t?o(t):void 0}function o(t){for(var e in i.prototype)t[e]=i.prototype[e];return t}e.exports=i,i.prototype.on=i.prototype.addEventListener=function(t,e){return this._callbacks=this._callbacks||{},(this._callbacks[t]=this._callbacks[t]||[]).push(e),this},i.prototype.once=function(t,e){function n(){i.off(t,n),e.apply(this,arguments)}var i=this;return this._callbacks=this._callbacks||{},n.fn=e,this.on(t,n),this},i.prototype.off=i.prototype.removeListener=i.prototype.removeAllListeners=i.prototype.removeEventListener=function(t,e){if(this._callbacks=this._callbacks||{},0==arguments.length)return this._callbacks={},this;var n=this._callbacks[t];if(!n)return this;if(1==arguments.length)return delete this._callbacks[t],this;for(var i,o=0;o<n.length;o++)if(i=n[o],i===e||i.fn===e){n.splice(o,1);break}return this},i.prototype.emit=function(t){this._callbacks=this._callbacks||{};var e=[].slice.call(arguments,1),n=this._callbacks[t];if(n){n=n.slice(0);for(var i=0,o=n.length;o>i;++i)n[i].apply(this,e)}return this},i.prototype.listeners=function(t){return this._callbacks=this._callbacks||{},this._callbacks[t]||[]},i.prototype.hasListeners=function(t){return!!this.listeners(t).length}},{}],10:[function(t,e,n){function i(t){return i.enabled(t)?function(e){e=o(e);var n=new Date,s=n-(i[t]||n);i[t]=n,e=t+" "+e+" +"+i.humanize(s),window.console&&console.log&&Function.prototype.apply.call(console.log,console,arguments)}:function(){}}function o(t){return t instanceof Error?t.stack||t.message:t}e.exports=i,i.names=[],i.skips=[],i.enable=function(t){try{localStorage.debug=t}catch(e){}for(var n=(t||"").split(/[\s,]+/),o=n.length,s=0;o>s;s++)t=n[s].replace("*",".*?"),"-"===t[0]?i.skips.push(new RegExp("^"+t.substr(1)+"$")):i.names.push(new RegExp("^"+t+"$"))},i.disable=function(){i.enable("")},i.humanize=function(t){var e=1e3,n=6e4,i=60*n;return t>=i?(t/i).toFixed(1)+"h":t>=n?(t/n).toFixed(1)+"m":t>=e?(t/e|0)+"s":t+"ms"},i.enabled=function(t){for(var e=0,n=i.skips.length;n>e;e++)if(i.skips[e].test(t))return!1;for(var e=0,n=i.names.length;n>e;e++)if(i.names[e].test(t))return!0;return!1};try{window.localStorage&&i.enable(localStorage.debug)}catch(s){}},{}],11:[function(t,e,n){e.exports=t("./lib/")},{"./lib/":12}],12:[function(t,e,n){e.exports=t("./socket"),e.exports.parser=t("engine.io-parser")},{"./socket":13,"engine.io-parser":25}],13:[function(t,e,n){(function(n){function i(t,e){if(!(this instanceof i))return new i(t,e);if(e=e||{},t&&"object"==typeof t&&(e=t,t=null),t&&(t=h(t),e.host=t.host,e.secure="https"==t.protocol||"wss"==t.protocol,e.port=t.port,t.query&&(e.query=t.query)),this.secure=null!=e.secure?e.secure:n.location&&"https:"==location.protocol,e.host){var o=e.host.split(":");e.hostname=o.shift(),o.length?e.port=o.pop():e.port||(e.port=this.secure?"443":"80")}this.agent=e.agent||!1,this.hostname=e.hostname||(n.location?location.hostname:"localhost"),this.port=e.port||(n.location&&location.port?location.port:this.secure?443:80),this.query=e.query||{},"string"==typeof this.query&&(this.query=p.decode(this.query)),this.upgrade=!1!==e.upgrade,this.path=(e.path||"/engine.io").replace(/\/$/,"")+"/",this.forceJSONP=!!e.forceJSONP,this.jsonp=!1!==e.jsonp,this.forceBase64=!!e.forceBase64,this.enablesXDR=!!e.enablesXDR,this.timestampParam=e.timestampParam||"t",this.timestampRequests=e.timestampRequests,this.transports=e.transports||["polling","websocket"],this.readyState="",this.writeBuffer=[],this.callbackBuffer=[],this.policyPort=e.policyPort||843,this.rememberUpgrade=e.rememberUpgrade||!1,this.binaryType=null,this.onlyBinaryUpgrades=e.onlyBinaryUpgrades,this.pfx=e.pfx||null,this.key=e.key||null,this.passphrase=e.passphrase||null,this.cert=e.cert||null,this.ca=e.ca||null,this.ciphers=e.ciphers||null,this.rejectUnauthorized=e.rejectUnauthorized||null,this.open()}function o(t){var e={};for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e}var s=t("./transports"),r=t("component-emitter"),a=t("debug")("engine.io-client:socket"),l=t("indexof"),c=t("engine.io-parser"),h=t("parseuri"),u=t("parsejson"),p=t("parseqs");e.exports=i,i.priorWebsocketSuccess=!1,r(i.prototype),i.protocol=c.protocol,i.Socket=i,i.Transport=t("./transport"),i.transports=t("./transports"),i.parser=t("engine.io-parser"),i.prototype.createTransport=function(t){a('creating transport "%s"',t);var e=o(this.query);e.EIO=c.protocol,e.transport=t,this.id&&(e.sid=this.id);var n=new s[t]({agent:this.agent,hostname:this.hostname,port:this.port,secure:this.secure,path:this.path,query:e,forceJSONP:this.forceJSONP,jsonp:this.jsonp,forceBase64:this.forceBase64,enablesXDR:this.enablesXDR,timestampRequests:this.timestampRequests,timestampParam:this.timestampParam,policyPort:this.policyPort,socket:this,pfx:this.pfx,key:this.key,passphrase:this.passphrase,cert:this.cert,ca:this.ca,ciphers:this.ciphers,rejectUnauthorized:this.rejectUnauthorized});return n},i.prototype.open=function(){var t;if(this.rememberUpgrade&&i.priorWebsocketSuccess&&-1!=this.transports.indexOf("websocket"))t="websocket";else{if(0==this.transports.length){var e=this;return void setTimeout(function(){e.emit("error","No transports available")},0)}t=this.transports[0]}this.readyState="opening";var t;try{t=this.createTransport(t)}catch(n){return this.transports.shift(),void this.open()}t.open(),this.setTransport(t)},i.prototype.setTransport=function(t){a("setting transport %s",t.name);var e=this;this.transport&&(a("clearing existing transport %s",this.transport.name),this.transport.removeAllListeners()),this.transport=t,t.on("drain",function(){e.onDrain()}).on("packet",function(t){e.onPacket(t)}).on("error",function(t){e.onError(t)}).on("close",function(){e.onClose("transport close")})},i.prototype.probe=function(t){function e(){if(p.onlyBinaryUpgrades){var e=!this.supportsBinary&&p.transport.supportsBinary;u=u||e}u||(a('probe transport "%s" opened',t),h.send([{type:"ping",data:"probe"}]),h.once("packet",function(e){if(!u)if("pong"==e.type&&"probe"==e.data){if(a('probe transport "%s" pong',t),p.upgrading=!0,p.emit("upgrading",h),!h)return;i.priorWebsocketSuccess="websocket"==h.name,a('pausing current transport "%s"',p.transport.name),p.transport.pause(function(){u||"closed"!=p.readyState&&(a("changing transport and sending upgrade packet"),c(),p.setTransport(h),h.send([{type:"upgrade"}]),p.emit("upgrade",h),h=null,p.upgrading=!1,p.flush())})}else{a('probe transport "%s" failed',t);var n=new Error("probe error");n.transport=h.name,p.emit("upgradeError",n)}}))}function n(){u||(u=!0,c(),h.close(),h=null)}function o(e){var i=new Error("probe error: "+e);i.transport=h.name,n(),a('probe transport "%s" failed because of error: %s',t,e),p.emit("upgradeError",i)}function s(){o("transport closed")}function r(){o("socket closed")}function l(t){h&&t.name!=h.name&&(a('"%s" works - aborting "%s"',t.name,h.name),n())}function c(){h.removeListener("open",e),h.removeListener("error",o),h.removeListener("close",s),p.removeListener("close",r),p.removeListener("upgrading",l)}a('probing transport "%s"',t);var h=this.createTransport(t,{probe:1}),u=!1,p=this;i.priorWebsocketSuccess=!1,h.once("open",e),h.once("error",o),h.once("close",s),this.once("close",r),this.once("upgrading",l),h.open()},i.prototype.onOpen=function(){if(a("socket open"),this.readyState="open",i.priorWebsocketSuccess="websocket"==this.transport.name,this.emit("open"),this.flush(),"open"==this.readyState&&this.upgrade&&this.transport.pause){a("starting upgrade probes");for(var t=0,e=this.upgrades.length;e>t;t++)this.probe(this.upgrades[t])}},i.prototype.onPacket=function(t){if("opening"==this.readyState||"open"==this.readyState)switch(a('socket receive: type "%s", data "%s"',t.type,t.data),this.emit("packet",t),this.emit("heartbeat"),t.type){case"open":this.onHandshake(u(t.data));break;case"pong":this.setPing();break;case"error":var e=new Error("server error");e.code=t.data,this.emit("error",e);break;case"message":this.emit("data",t.data),this.emit("message",t.data)}else a('packet received with socket readyState "%s"',this.readyState)},i.prototype.onHandshake=function(t){this.emit("handshake",t),this.id=t.sid,this.transport.query.sid=t.sid,this.upgrades=this.filterUpgrades(t.upgrades),this.pingInterval=t.pingInterval,this.pingTimeout=t.pingTimeout,
-this.onOpen(),"closed"!=this.readyState&&(this.setPing(),this.removeListener("heartbeat",this.onHeartbeat),this.on("heartbeat",this.onHeartbeat))},i.prototype.onHeartbeat=function(t){clearTimeout(this.pingTimeoutTimer);var e=this;e.pingTimeoutTimer=setTimeout(function(){"closed"!=e.readyState&&e.onClose("ping timeout")},t||e.pingInterval+e.pingTimeout)},i.prototype.setPing=function(){var t=this;clearTimeout(t.pingIntervalTimer),t.pingIntervalTimer=setTimeout(function(){a("writing ping packet - expecting pong within %sms",t.pingTimeout),t.ping(),t.onHeartbeat(t.pingTimeout)},t.pingInterval)},i.prototype.ping=function(){this.sendPacket("ping")},i.prototype.onDrain=function(){for(var t=0;t<this.prevBufferLen;t++)this.callbackBuffer[t]&&this.callbackBuffer[t]();this.writeBuffer.splice(0,this.prevBufferLen),this.callbackBuffer.splice(0,this.prevBufferLen),this.prevBufferLen=0,0==this.writeBuffer.length?this.emit("drain"):this.flush()},i.prototype.flush=function(){"closed"!=this.readyState&&this.transport.writable&&!this.upgrading&&this.writeBuffer.length&&(this.transport.send(this.writeBuffer),this.prevBufferLen=this.writeBuffer.length,this.emit("flush"))},i.prototype.write=i.prototype.send=function(t,e){return this.sendPacket("message",t,e),this},i.prototype.sendPacket=function(t,e,n){if("closing"!=this.readyState&&"closed"!=this.readyState){var i={type:t,data:e};this.emit("packetCreate",i),this.writeBuffer.push(i),this.callbackBuffer.push(n),this.flush()}},i.prototype.close=function(){function t(){i.onClose("forced close"),a("socket closing - telling transport to close"),i.transport.close()}function e(){i.removeListener("upgrade",e),i.removeListener("upgradeError",e),t()}function n(){i.once("upgrade",e),i.once("upgradeError",e)}if("opening"==this.readyState||"open"==this.readyState){this.readyState="closing";var i=this;this.writeBuffer.length?this.once("drain",function(){this.upgrading?n():t()}):this.upgrading?n():t()}return this},i.prototype.onError=function(t){a("socket error %j",t),i.priorWebsocketSuccess=!1,this.emit("error",t),this.onClose("transport error",t)},i.prototype.onClose=function(t,e){if("opening"==this.readyState||"open"==this.readyState||"closing"==this.readyState){a('socket close with reason: "%s"',t);var n=this;clearTimeout(this.pingIntervalTimer),clearTimeout(this.pingTimeoutTimer),setTimeout(function(){n.writeBuffer=[],n.callbackBuffer=[],n.prevBufferLen=0},0),this.transport.removeAllListeners("close"),this.transport.close(),this.transport.removeAllListeners(),this.readyState="closed",this.id=null,this.emit("close",t,e)}},i.prototype.filterUpgrades=function(t){for(var e=[],n=0,i=t.length;i>n;n++)~l(this.transports,t[n])&&e.push(t[n]);return e}}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./transport":14,"./transports":15,"component-emitter":9,debug:22,"engine.io-parser":25,indexof:40,parsejson:32,parseqs:33,parseuri:34}],14:[function(t,e,n){function i(t){this.path=t.path,this.hostname=t.hostname,this.port=t.port,this.secure=t.secure,this.query=t.query,this.timestampParam=t.timestampParam,this.timestampRequests=t.timestampRequests,this.readyState="",this.agent=t.agent||!1,this.socket=t.socket,this.enablesXDR=t.enablesXDR,this.pfx=t.pfx,this.key=t.key,this.passphrase=t.passphrase,this.cert=t.cert,this.ca=t.ca,this.ciphers=t.ciphers,this.rejectUnauthorized=t.rejectUnauthorized}var o=t("engine.io-parser"),s=t("component-emitter");e.exports=i,s(i.prototype),i.timestamps=0,i.prototype.onError=function(t,e){var n=new Error(t);return n.type="TransportError",n.description=e,this.emit("error",n),this},i.prototype.open=function(){return"closed"!=this.readyState&&""!=this.readyState||(this.readyState="opening",this.doOpen()),this},i.prototype.close=function(){return"opening"!=this.readyState&&"open"!=this.readyState||(this.doClose(),this.onClose()),this},i.prototype.send=function(t){if("open"!=this.readyState)throw new Error("Transport not open");this.write(t)},i.prototype.onOpen=function(){this.readyState="open",this.writable=!0,this.emit("open")},i.prototype.onData=function(t){var e=o.decodePacket(t,this.socket.binaryType);this.onPacket(e)},i.prototype.onPacket=function(t){this.emit("packet",t)},i.prototype.onClose=function(){this.readyState="closed",this.emit("close")}},{"component-emitter":9,"engine.io-parser":25}],15:[function(t,e,n){(function(e){function i(t){var n,i=!1,a=!1,l=!1!==t.jsonp;if(e.location){var c="https:"==location.protocol,h=location.port;h||(h=c?443:80),i=t.hostname!=location.hostname||h!=t.port,a=t.secure!=c}if(t.xdomain=i,t.xscheme=a,n=new o(t),"open"in n&&!t.forceJSONP)return new s(t);if(!l)throw new Error("JSONP disabled");return new r(t)}var o=t("xmlhttprequest"),s=t("./polling-xhr"),r=t("./polling-jsonp"),a=t("./websocket");n.polling=i,n.websocket=a}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./polling-jsonp":16,"./polling-xhr":17,"./websocket":19,xmlhttprequest:20}],16:[function(t,e,n){(function(n){function i(){}function o(t){s.call(this,t),this.query=this.query||{},a||(n.___eio||(n.___eio=[]),a=n.___eio),this.index=a.length;var e=this;a.push(function(t){e.onData(t)}),this.query.j=this.index,n.document&&n.addEventListener&&n.addEventListener("beforeunload",function(){e.script&&(e.script.onerror=i)},!1)}var s=t("./polling"),r=t("component-inherit");e.exports=o;var a,l=/\n/g,c=/\\n/g;r(o,s),o.prototype.supportsBinary=!1,o.prototype.doClose=function(){this.script&&(this.script.parentNode.removeChild(this.script),this.script=null),this.form&&(this.form.parentNode.removeChild(this.form),this.form=null,this.iframe=null),s.prototype.doClose.call(this)},o.prototype.doPoll=function(){var t=this,e=document.createElement("script");this.script&&(this.script.parentNode.removeChild(this.script),this.script=null),e.async=!0,e.src=this.uri(),e.onerror=function(e){t.onError("jsonp poll error",e)};var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n),this.script=e;var i="undefined"!=typeof navigator&&/gecko/i.test(navigator.userAgent);i&&setTimeout(function(){var t=document.createElement("iframe");document.body.appendChild(t),document.body.removeChild(t)},100)},o.prototype.doWrite=function(t,e){function n(){i(),e()}function i(){if(o.iframe)try{o.form.removeChild(o.iframe)}catch(t){o.onError("jsonp polling iframe removal error",t)}try{var e='<iframe src="javascript:0" name="'+o.iframeId+'">';s=document.createElement(e)}catch(t){s=document.createElement("iframe"),s.name=o.iframeId,s.src="javascript:0"}s.id=o.iframeId,o.form.appendChild(s),o.iframe=s}var o=this;if(!this.form){var s,r=document.createElement("form"),a=document.createElement("textarea"),h=this.iframeId="eio_iframe_"+this.index;r.className="socketio",r.style.position="absolute",r.style.top="-1000px",r.style.left="-1000px",r.target=h,r.method="POST",r.setAttribute("accept-charset","utf-8"),a.name="d",r.appendChild(a),document.body.appendChild(r),this.form=r,this.area=a}this.form.action=this.uri(),i(),t=t.replace(c,"\\\n"),this.area.value=t.replace(l,"\\n");try{this.form.submit()}catch(u){}this.iframe.attachEvent?this.iframe.onreadystatechange=function(){"complete"==o.iframe.readyState&&n()}:this.iframe.onload=n}}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./polling":18,"component-inherit":21}],17:[function(t,e,n){(function(n){function i(){}function o(t){if(l.call(this,t),n.location){var e="https:"==location.protocol,i=location.port;i||(i=e?443:80),this.xd=t.hostname!=n.location.hostname||i!=t.port,this.xs=t.secure!=e}}function s(t){this.method=t.method||"GET",this.uri=t.uri,this.xd=!!t.xd,this.xs=!!t.xs,this.async=!1!==t.async,this.data=void 0!=t.data?t.data:null,this.agent=t.agent,this.isBinary=t.isBinary,this.supportsBinary=t.supportsBinary,this.enablesXDR=t.enablesXDR,this.pfx=t.pfx,this.key=t.key,this.passphrase=t.passphrase,this.cert=t.cert,this.ca=t.ca,this.ciphers=t.ciphers,this.rejectUnauthorized=t.rejectUnauthorized,this.create()}function r(){for(var t in s.requests)s.requests.hasOwnProperty(t)&&s.requests[t].abort()}var a=t("xmlhttprequest"),l=t("./polling"),c=t("component-emitter"),h=t("component-inherit"),u=t("debug")("engine.io-client:polling-xhr");e.exports=o,e.exports.Request=s,h(o,l),o.prototype.supportsBinary=!0,o.prototype.request=function(t){return t=t||{},t.uri=this.uri(),t.xd=this.xd,t.xs=this.xs,t.agent=this.agent||!1,t.supportsBinary=this.supportsBinary,t.enablesXDR=this.enablesXDR,t.pfx=this.pfx,t.key=this.key,t.passphrase=this.passphrase,t.cert=this.cert,t.ca=this.ca,t.ciphers=this.ciphers,t.rejectUnauthorized=this.rejectUnauthorized,new s(t)},o.prototype.doWrite=function(t,e){var n="string"!=typeof t&&void 0!==t,i=this.request({method:"POST",data:t,isBinary:n}),o=this;i.on("success",e),i.on("error",function(t){o.onError("xhr post error",t)}),this.sendXhr=i},o.prototype.doPoll=function(){u("xhr poll");var t=this.request(),e=this;t.on("data",function(t){e.onData(t)}),t.on("error",function(t){e.onError("xhr poll error",t)}),this.pollXhr=t},c(s.prototype),s.prototype.create=function(){var t={agent:this.agent,xdomain:this.xd,xscheme:this.xs,enablesXDR:this.enablesXDR};t.pfx=this.pfx,t.key=this.key,t.passphrase=this.passphrase,t.cert=this.cert,t.ca=this.ca,t.ciphers=this.ciphers,t.rejectUnauthorized=this.rejectUnauthorized;var e=this.xhr=new a(t),i=this;try{if(u("xhr open %s: %s",this.method,this.uri),e.open(this.method,this.uri,this.async),this.supportsBinary&&(e.responseType="arraybuffer"),"POST"==this.method)try{this.isBinary?e.setRequestHeader("Content-type","application/octet-stream"):e.setRequestHeader("Content-type","text/plain;charset=UTF-8")}catch(o){}"withCredentials"in e&&(e.withCredentials=!0),this.hasXDR()?(e.onload=function(){i.onLoad()},e.onerror=function(){i.onError(e.responseText)}):e.onreadystatechange=function(){4==e.readyState&&(200==e.status||1223==e.status?i.onLoad():setTimeout(function(){i.onError(e.status)},0))},u("xhr data %s",this.data),e.send(this.data)}catch(o){return void setTimeout(function(){i.onError(o)},0)}n.document&&(this.index=s.requestsCount++,s.requests[this.index]=this)},s.prototype.onSuccess=function(){this.emit("success"),this.cleanup()},s.prototype.onData=function(t){this.emit("data",t),this.onSuccess()},s.prototype.onError=function(t){this.emit("error",t),this.cleanup(!0)},s.prototype.cleanup=function(t){if("undefined"!=typeof this.xhr&&null!==this.xhr){if(this.hasXDR()?this.xhr.onload=this.xhr.onerror=i:this.xhr.onreadystatechange=i,t)try{this.xhr.abort()}catch(e){}n.document&&delete s.requests[this.index],this.xhr=null}},s.prototype.onLoad=function(){var t;try{var e;try{e=this.xhr.getResponseHeader("Content-Type").split(";")[0]}catch(n){}t="application/octet-stream"===e?this.xhr.response:this.supportsBinary?"ok":this.xhr.responseText}catch(n){this.onError(n)}null!=t&&this.onData(t)},s.prototype.hasXDR=function(){return"undefined"!=typeof n.XDomainRequest&&!this.xs&&this.enablesXDR},s.prototype.abort=function(){this.cleanup()},n.document&&(s.requestsCount=0,s.requests={},n.attachEvent?n.attachEvent("onunload",r):n.addEventListener&&n.addEventListener("beforeunload",r,!1))}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./polling":18,"component-emitter":9,"component-inherit":21,debug:22,xmlhttprequest:20}],18:[function(t,e,n){function i(t){var e=t&&t.forceBase64;c&&!e||(this.supportsBinary=!1),o.call(this,t)}var o=t("../transport"),s=t("parseqs"),r=t("engine.io-parser"),a=t("component-inherit"),l=t("debug")("engine.io-client:polling");e.exports=i;var c=function(){var e=t("xmlhttprequest"),n=new e({xdomain:!1});return null!=n.responseType}();a(i,o),i.prototype.name="polling",i.prototype.doOpen=function(){this.poll()},i.prototype.pause=function(t){function e(){l("paused"),n.readyState="paused",t()}var n=this;if(this.readyState="pausing",this.polling||!this.writable){var i=0;this.polling&&(l("we are currently polling - waiting to pause"),i++,this.once("pollComplete",function(){l("pre-pause polling complete"),--i||e()})),this.writable||(l("we are currently writing - waiting to pause"),i++,this.once("drain",function(){l("pre-pause writing complete"),--i||e()}))}else e()},i.prototype.poll=function(){l("polling"),this.polling=!0,this.doPoll(),this.emit("poll")},i.prototype.onData=function(t){var e=this;l("polling got data %s",t);var n=function(t,n,i){return"opening"==e.readyState&&e.onOpen(),"close"==t.type?(e.onClose(),!1):void e.onPacket(t)};r.decodePayload(t,this.socket.binaryType,n),"closed"!=this.readyState&&(this.polling=!1,this.emit("pollComplete"),"open"==this.readyState?this.poll():l('ignoring poll - transport state "%s"',this.readyState))},i.prototype.doClose=function(){function t(){l("writing close packet"),e.write([{type:"close"}])}var e=this;"open"==this.readyState?(l("transport open - closing"),t()):(l("transport not open - deferring close"),this.once("open",t))},i.prototype.write=function(t){var e=this;this.writable=!1;var n=function(){e.writable=!0,e.emit("drain")},e=this;r.encodePayload(t,this.supportsBinary,function(t){e.doWrite(t,n)})},i.prototype.uri=function(){var t=this.query||{},e=this.secure?"https":"http",n="";return!1!==this.timestampRequests&&(t[this.timestampParam]=+new Date+"-"+o.timestamps++),this.supportsBinary||t.sid||(t.b64=1),t=s.encode(t),this.port&&("https"==e&&443!=this.port||"http"==e&&80!=this.port)&&(n=":"+this.port),t.length&&(t="?"+t),e+"://"+this.hostname+n+this.path+t}},{"../transport":14,"component-inherit":21,debug:22,"engine.io-parser":25,parseqs:33,xmlhttprequest:20}],19:[function(t,e,n){function i(t){var e=t&&t.forceBase64;e&&(this.supportsBinary=!1),o.call(this,t)}var o=t("../transport"),s=t("engine.io-parser"),r=t("parseqs"),a=t("component-inherit"),l=t("debug")("engine.io-client:websocket"),c=t("ws");e.exports=i,a(i,o),i.prototype.name="websocket",i.prototype.supportsBinary=!0,i.prototype.doOpen=function(){if(this.check()){var t=this.uri(),e=void 0,n={agent:this.agent};n.pfx=this.pfx,n.key=this.key,n.passphrase=this.passphrase,n.cert=this.cert,n.ca=this.ca,n.ciphers=this.ciphers,n.rejectUnauthorized=this.rejectUnauthorized,this.ws=new c(t,e,n),void 0===this.ws.binaryType&&(this.supportsBinary=!1),this.ws.binaryType="arraybuffer",this.addEventListeners()}},i.prototype.addEventListeners=function(){var t=this;this.ws.onopen=function(){t.onOpen()},this.ws.onclose=function(){t.onClose()},this.ws.onmessage=function(e){t.onData(e.data)},this.ws.onerror=function(e){t.onError("websocket error",e)}},"undefined"!=typeof navigator&&/iPad|iPhone|iPod/i.test(navigator.userAgent)&&(i.prototype.onData=function(t){var e=this;setTimeout(function(){o.prototype.onData.call(e,t)},0)}),i.prototype.write=function(t){function e(){n.writable=!0,n.emit("drain")}var n=this;this.writable=!1;for(var i=0,o=t.length;o>i;i++)s.encodePacket(t[i],this.supportsBinary,function(t){try{n.ws.send(t)}catch(e){l("websocket closed before onclose event")}});setTimeout(e,1)},i.prototype.onClose=function(){o.prototype.onClose.call(this)},i.prototype.doClose=function(){"undefined"!=typeof this.ws&&this.ws.close()},i.prototype.uri=function(){var t=this.query||{},e=this.secure?"wss":"ws",n="";return this.port&&("wss"==e&&443!=this.port||"ws"==e&&80!=this.port)&&(n=":"+this.port),this.timestampRequests&&(t[this.timestampParam]=+new Date),this.supportsBinary||(t.b64=1),t=r.encode(t),t.length&&(t="?"+t),e+"://"+this.hostname+n+this.path+t},i.prototype.check=function(){return!(!c||"__initialize"in c&&this.name===i.prototype.name)}},{"../transport":14,"component-inherit":21,debug:22,"engine.io-parser":25,parseqs:33,ws:35}],20:[function(t,e,n){var i=t("has-cors");e.exports=function(t){var e=t.xdomain,n=t.xscheme,o=t.enablesXDR;try{if("undefined"!=typeof XMLHttpRequest&&(!e||i))return new XMLHttpRequest}catch(s){}try{if("undefined"!=typeof XDomainRequest&&!n&&o)return new XDomainRequest}catch(s){}if(!e)try{return new ActiveXObject("Microsoft.XMLHTTP")}catch(s){}}},{"has-cors":38}],21:[function(t,e,n){e.exports=function(t,e){var n=function(){};n.prototype=e.prototype,t.prototype=new n,t.prototype.constructor=t}},{}],22:[function(t,e,n){function i(){return"WebkitAppearance"in document.documentElement.style||window.console&&(console.firebug||console.exception&&console.table)||navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)&&parseInt(RegExp.$1,10)>=31}function o(){var t=arguments,e=this.useColors;if(t[0]=(e?"%c":"")+this.namespace+(e?" %c":" ")+t[0]+(e?"%c ":" ")+"+"+n.humanize(this.diff),!e)return t;var i="color: "+this.color;t=[t[0],i,"color: inherit"].concat(Array.prototype.slice.call(t,1));var o=0,s=0;return t[0].replace(/%[a-z%]/g,function(t){"%"!==t&&(o++,"%c"===t&&(s=o))}),t.splice(s,0,i),t}function s(){return"object"==typeof console&&"function"==typeof console.log&&Function.prototype.apply.call(console.log,console,arguments)}function r(t){try{null==t?localStorage.removeItem("debug"):localStorage.debug=t}catch(e){}}function a(){var t;try{t=localStorage.debug}catch(e){}return t}n=e.exports=t("./debug"),n.log=s,n.formatArgs=o,n.save=r,n.load=a,n.useColors=i,n.colors=["lightseagreen","forestgreen","goldenrod","dodgerblue","darkorchid","crimson"],n.formatters.j=function(t){return JSON.stringify(t)},n.enable(a())},{"./debug":23}],23:[function(t,e,n){function i(){return n.colors[h++%n.colors.length]}function o(t){function e(){}function o(){var t=o,e=+new Date,s=e-(c||e);t.diff=s,t.prev=c,t.curr=e,c=e,null==t.useColors&&(t.useColors=n.useColors()),null==t.color&&t.useColors&&(t.color=i());var r=Array.prototype.slice.call(arguments);r[0]=n.coerce(r[0]),"string"!=typeof r[0]&&(r=["%o"].concat(r));var a=0;r[0]=r[0].replace(/%([a-z%])/g,function(e,i){if("%"===e)return e;a++;var o=n.formatters[i];if("function"==typeof o){var s=r[a];e=o.call(t,s),r.splice(a,1),a--}return e}),"function"==typeof n.formatArgs&&(r=n.formatArgs.apply(t,r));var l=o.log||n.log||console.log.bind(console);l.apply(t,r)}e.enabled=!1,o.enabled=!0;var s=n.enabled(t)?o:e;return s.namespace=t,s}function s(t){n.save(t);for(var e=(t||"").split(/[\s,]+/),i=e.length,o=0;i>o;o++)e[o]&&(t=e[o].replace(/\*/g,".*?"),"-"===t[0]?n.skips.push(new RegExp("^"+t.substr(1)+"$")):n.names.push(new RegExp("^"+t+"$")))}function r(){n.enable("")}function a(t){var e,i;for(e=0,i=n.skips.length;i>e;e++)if(n.skips[e].test(t))return!1;for(e=0,i=n.names.length;i>e;e++)if(n.names[e].test(t))return!0;return!1}function l(t){return t instanceof Error?t.stack||t.message:t}n=e.exports=o,n.coerce=l,n.disable=r,n.enable=s,n.enabled=a,n.humanize=t("ms"),n.names=[],n.skips=[],n.formatters={};var c,h=0},{ms:24}],24:[function(t,e,n){function i(t){var e=/^((?:\d+)?\.?\d+) *(ms|seconds?|s|minutes?|m|hours?|h|days?|d|years?|y)?$/i.exec(t);if(e){var n=parseFloat(e[1]),i=(e[2]||"ms").toLowerCase();switch(i){case"years":case"year":case"y":return n*u;case"days":case"day":case"d":return n*h;case"hours":case"hour":case"h":return n*c;case"minutes":case"minute":case"m":return n*l;case"seconds":case"second":case"s":return n*a;case"ms":return n}}}function o(t){return t>=h?Math.round(t/h)+"d":t>=c?Math.round(t/c)+"h":t>=l?Math.round(t/l)+"m":t>=a?Math.round(t/a)+"s":t+"ms"}function s(t){return r(t,h,"day")||r(t,c,"hour")||r(t,l,"minute")||r(t,a,"second")||t+" ms"}function r(t,e,n){return e>t?void 0:1.5*e>t?Math.floor(t/e)+" "+n:Math.ceil(t/e)+" "+n+"s"}var a=1e3,l=60*a,c=60*l,h=24*c,u=365.25*h;e.exports=function(t,e){return e=e||{},"string"==typeof t?i(t):e["long"]?s(t):o(t)}},{}],25:[function(t,e,n){(function(e){function i(t,e){var i="b"+n.packets[t.type]+t.data.data;return e(i)}function o(t,e,i){if(!e)return n.encodeBase64Packet(t,i);var o=t.data,s=new Uint8Array(o),r=new Uint8Array(1+o.byteLength);r[0]=v[t.type];for(var a=0;a<s.length;a++)r[a+1]=s[a];return i(r.buffer)}function s(t,e,i){if(!e)return n.encodeBase64Packet(t,i);var o=new FileReader;return o.onload=function(){t.data=o.result,n.encodePacket(t,e,!0,i)},o.readAsArrayBuffer(t.data)}function r(t,e,i){if(!e)return n.encodeBase64Packet(t,i);if(g)return s(t,e,i);var o=new Uint8Array(1);o[0]=v[t.type];var r=new x([o.buffer,t.data]);return i(r)}function a(t,e,n){for(var i=new Array(t.length),o=p(t.length,n),s=function(t,n,o){e(n,function(e,n){i[t]=n,o(e,i)})},r=0;r<t.length;r++)s(r,t[r],o)}var l=t("./keys"),c=t("has-binary"),h=t("arraybuffer.slice"),u=t("base64-arraybuffer"),p=t("after"),d=t("utf8"),f=navigator.userAgent.match(/Android/i),m=/PhantomJS/i.test(navigator.userAgent),g=f||m;n.protocol=3;var v=n.packets={open:0,close:1,ping:2,pong:3,message:4,upgrade:5,noop:6},y=l(v),b={type:"error",data:"parser error"},x=t("blob");n.encodePacket=function(t,n,s,a){"function"==typeof n&&(a=n,n=!1),"function"==typeof s&&(a=s,s=null);var l=void 0===t.data?void 0:t.data.buffer||t.data;if(e.ArrayBuffer&&l instanceof ArrayBuffer)return o(t,n,a);if(x&&l instanceof e.Blob)return r(t,n,a);if(l&&l.base64)return i(t,a);var c=v[t.type];return void 0!==t.data&&(c+=s?d.encode(String(t.data)):String(t.data)),a(""+c)},n.encodeBase64Packet=function(t,i){var o="b"+n.packets[t.type];if(x&&t.data instanceof x){var s=new FileReader;return s.onload=function(){var t=s.result.split(",")[1];i(o+t)},s.readAsDataURL(t.data)}var r;try{r=String.fromCharCode.apply(null,new Uint8Array(t.data))}catch(a){for(var l=new Uint8Array(t.data),c=new Array(l.length),h=0;h<l.length;h++)c[h]=l[h];r=String.fromCharCode.apply(null,c)}return o+=e.btoa(r),i(o)},n.decodePacket=function(t,e,i){if("string"==typeof t||void 0===t){if("b"==t.charAt(0))return n.decodeBase64Packet(t.substr(1),e);if(i)try{t=d.decode(t)}catch(o){return b}var s=t.charAt(0);return Number(s)==s&&y[s]?t.length>1?{type:y[s],data:t.substring(1)}:{type:y[s]}:b}var r=new Uint8Array(t),s=r[0],a=h(t,1);return x&&"blob"===e&&(a=new x([a])),{type:y[s],data:a}},n.decodeBase64Packet=function(t,n){var i=y[t.charAt(0)];if(!e.ArrayBuffer)return{type:i,data:{base64:!0,data:t.substr(1)}};var o=u.decode(t.substr(1));return"blob"===n&&x&&(o=new x([o])),{type:i,data:o}},n.encodePayload=function(t,e,i){function o(t){return t.length+":"+t}function s(t,i){n.encodePacket(t,r?e:!1,!0,function(t){i(null,o(t))})}"function"==typeof e&&(i=e,e=null);var r=c(t);return e&&r?x&&!g?n.encodePayloadAsBlob(t,i):n.encodePayloadAsArrayBuffer(t,i):t.length?void a(t,s,function(t,e){return i(e.join(""))}):i("0:")},n.decodePayload=function(t,e,i){if("string"!=typeof t)return n.decodePayloadAsBinary(t,e,i);"function"==typeof e&&(i=e,e=null);var o;if(""==t)return i(b,0,1);for(var s,r,a="",l=0,c=t.length;c>l;l++){var h=t.charAt(l);if(":"!=h)a+=h;else{if(""==a||a!=(s=Number(a)))return i(b,0,1);if(r=t.substr(l+1,s),a!=r.length)return i(b,0,1);if(r.length){if(o=n.decodePacket(r,e,!0),b.type==o.type&&b.data==o.data)return i(b,0,1);var u=i(o,l+s,c);if(!1===u)return}l+=s,a=""}}return""!=a?i(b,0,1):void 0},n.encodePayloadAsArrayBuffer=function(t,e){function i(t,e){n.encodePacket(t,!0,!0,function(t){return e(null,t)})}return t.length?void a(t,i,function(t,n){var i=n.reduce(function(t,e){var n;return n="string"==typeof e?e.length:e.byteLength,t+n.toString().length+n+2},0),o=new Uint8Array(i),s=0;return n.forEach(function(t){var e="string"==typeof t,n=t;if(e){for(var i=new Uint8Array(t.length),r=0;r<t.length;r++)i[r]=t.charCodeAt(r);n=i.buffer}e?o[s++]=0:o[s++]=1;for(var a=n.byteLength.toString(),r=0;r<a.length;r++)o[s++]=parseInt(a[r]);o[s++]=255;for(var i=new Uint8Array(n),r=0;r<i.length;r++)o[s++]=i[r]}),e(o.buffer)}):e(new ArrayBuffer(0))},n.encodePayloadAsBlob=function(t,e){function i(t,e){n.encodePacket(t,!0,!0,function(t){var n=new Uint8Array(1);if(n[0]=1,"string"==typeof t){for(var i=new Uint8Array(t.length),o=0;o<t.length;o++)i[o]=t.charCodeAt(o);t=i.buffer,n[0]=0}for(var s=t instanceof ArrayBuffer?t.byteLength:t.size,r=s.toString(),a=new Uint8Array(r.length+1),o=0;o<r.length;o++)a[o]=parseInt(r[o]);if(a[r.length]=255,x){var l=new x([n.buffer,a.buffer,t]);e(null,l)}})}a(t,i,function(t,n){return e(new x(n))})},n.decodePayloadAsBinary=function(t,e,i){"function"==typeof e&&(i=e,e=null);for(var o=t,s=[],r=!1;o.byteLength>0;){for(var a=new Uint8Array(o),l=0===a[0],c="",u=1;255!=a[u];u++){if(c.length>310){r=!0;break}c+=a[u]}if(r)return i(b,0,1);o=h(o,2+c.length),c=parseInt(c);var p=h(o,0,c);if(l)try{p=String.fromCharCode.apply(null,new Uint8Array(p))}catch(d){var f=new Uint8Array(p);p="";for(var u=0;u<f.length;u++)p+=String.fromCharCode(f[u])}s.push(p),o=h(o,c)}var m=s.length;s.forEach(function(t,o){i(n.decodePacket(t,e,!0),o,m)})}}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./keys":26,after:27,"arraybuffer.slice":28,"base64-arraybuffer":29,blob:30,"has-binary":36,utf8:31}],26:[function(t,e,n){e.exports=Object.keys||function(t){var e=[],n=Object.prototype.hasOwnProperty;for(var i in t)n.call(t,i)&&e.push(i);return e}},{}],27:[function(t,e,n){function i(t,e,n){function i(t,o){if(i.count<=0)throw new Error("after called too many times");--i.count,t?(s=!0,e(t),e=n):0!==i.count||s||e(null,o)}var s=!1;return n=n||o,i.count=t,0===t?e():i}function o(){}e.exports=i},{}],28:[function(t,e,n){e.exports=function(t,e,n){var i=t.byteLength;if(e=e||0,n=n||i,t.slice)return t.slice(e,n);if(0>e&&(e+=i),0>n&&(n+=i),n>i&&(n=i),e>=i||e>=n||0===i)return new ArrayBuffer(0);for(var o=new Uint8Array(t),s=new Uint8Array(n-e),r=e,a=0;n>r;r++,a++)s[a]=o[r];return s.buffer}},{}],29:[function(t,e,n){!function(t){"use strict";n.encode=function(e){var n,i=new Uint8Array(e),o=i.length,s="";for(n=0;o>n;n+=3)s+=t[i[n]>>2],s+=t[(3&i[n])<<4|i[n+1]>>4],s+=t[(15&i[n+1])<<2|i[n+2]>>6],s+=t[63&i[n+2]];return o%3===2?s=s.substring(0,s.length-1)+"=":o%3===1&&(s=s.substring(0,s.length-2)+"=="),s},n.decode=function(e){var n,i,o,s,r,a=.75*e.length,l=e.length,c=0;"="===e[e.length-1]&&(a--,"="===e[e.length-2]&&a--);var h=new ArrayBuffer(a),u=new Uint8Array(h);for(n=0;l>n;n+=4)i=t.indexOf(e[n]),o=t.indexOf(e[n+1]),s=t.indexOf(e[n+2]),r=t.indexOf(e[n+3]),u[c++]=i<<2|o>>4,u[c++]=(15&o)<<4|s>>2,u[c++]=(3&s)<<6|63&r;return h}}("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")},{}],30:[function(t,e,n){(function(t){function n(t,e){e=e||{};for(var n=new i,o=0;o<t.length;o++)n.append(t[o]);return e.type?n.getBlob(e.type):n.getBlob()}var i=t.BlobBuilder||t.WebKitBlobBuilder||t.MSBlobBuilder||t.MozBlobBuilder,o=function(){try{var t=new Blob(["hi"]);return 2==t.size}catch(e){return!1}}(),s=i&&i.prototype.append&&i.prototype.getBlob;e.exports=function(){return o?t.Blob:s?n:void 0}()}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],31:[function(e,n,i){(function(e){!function(o){function s(t){for(var e,n,i=[],o=0,s=t.length;s>o;)e=t.charCodeAt(o++),e>=55296&&56319>=e&&s>o?(n=t.charCodeAt(o++),56320==(64512&n)?i.push(((1023&e)<<10)+(1023&n)+65536):(i.push(e),o--)):i.push(e);return i}function r(t){for(var e,n=t.length,i=-1,o="";++i<n;)e=t[i],e>65535&&(e-=65536,o+=b(e>>>10&1023|55296),e=56320|1023&e),o+=b(e);return o}function a(t,e){return b(t>>e&63|128)}function l(t){if(0==(4294967168&t))return b(t);var e="";return 0==(4294965248&t)?e=b(t>>6&31|192):0==(4294901760&t)?(e=b(t>>12&15|224),e+=a(t,6)):0==(4292870144&t)&&(e=b(t>>18&7|240),e+=a(t,12),e+=a(t,6)),e+=b(63&t|128)}function c(t){for(var e,n=s(t),i=n.length,o=-1,r="";++o<i;)e=n[o],r+=l(e);return r}function h(){if(y>=v)throw Error("Invalid byte index");var t=255&g[y];if(y++,128==(192&t))return 63&t;throw Error("Invalid continuation byte")}function u(){var t,e,n,i,o;if(y>v)throw Error("Invalid byte index");if(y==v)return!1;if(t=255&g[y],y++,0==(128&t))return t;if(192==(224&t)){var e=h();if(o=(31&t)<<6|e,o>=128)return o;throw Error("Invalid continuation byte")}if(224==(240&t)){if(e=h(),n=h(),o=(15&t)<<12|e<<6|n,o>=2048)return o;throw Error("Invalid continuation byte")}if(240==(248&t)&&(e=h(),n=h(),i=h(),o=(15&t)<<18|e<<12|n<<6|i,o>=65536&&1114111>=o))return o;throw Error("Invalid UTF-8 detected")}function p(t){g=s(t),v=g.length,y=0;for(var e,n=[];(e=u())!==!1;)n.push(e);return r(n)}var d="object"==typeof i&&i,f="object"==typeof n&&n&&n.exports==d&&n,m="object"==typeof e&&e;m.global!==m&&m.window!==m||(o=m);var g,v,y,b=String.fromCharCode,x={version:"2.0.0",encode:c,decode:p};if("function"==typeof t&&"object"==typeof t.amd&&t.amd)t(function(){return x});else if(d&&!d.nodeType)if(f)f.exports=x;else{var w={},C=w.hasOwnProperty;for(var k in x)C.call(x,k)&&(d[k]=x[k])}else o.utf8=x}(this)}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],32:[function(t,e,n){(function(t){var n=/^[\],:{}\s]*$/,i=/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,o=/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,s=/(?:^|:|,)(?:\s*\[)+/g,r=/^\s+/,a=/\s+$/;e.exports=function(e){return"string"==typeof e&&e?(e=e.replace(r,"").replace(a,""),t.JSON&&JSON.parse?JSON.parse(e):n.test(e.replace(i,"@").replace(o,"]").replace(s,""))?new Function("return "+e)():void 0):null}}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],33:[function(t,e,n){n.encode=function(t){var e="";for(var n in t)t.hasOwnProperty(n)&&(e.length&&(e+="&"),e+=encodeURIComponent(n)+"="+encodeURIComponent(t[n]));return e},n.decode=function(t){for(var e={},n=t.split("&"),i=0,o=n.length;o>i;i++){var s=n[i].split("=");e[decodeURIComponent(s[0])]=decodeURIComponent(s[1])}return e}},{}],34:[function(t,e,n){var i=/^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,o=["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"];e.exports=function(t){var e=t,n=t.indexOf("["),s=t.indexOf("]");-1!=n&&-1!=s&&(t=t.substring(0,n)+t.substring(n,s).replace(/:/g,";")+t.substring(s,t.length));for(var r=i.exec(t||""),a={},l=14;l--;)a[o[l]]=r[l]||"";return-1!=n&&-1!=s&&(a.source=e,a.host=a.host.substring(1,a.host.length-1).replace(/;/g,":"),a.authority=a.authority.replace("[","").replace("]","").replace(/;/g,":"),a.ipv6uri=!0),a}},{}],35:[function(t,e,n){function i(t,e,n){var i;return i=e?new s(t,e):new s(t)}var o=function(){return this}(),s=o.WebSocket||o.MozWebSocket;e.exports=s?i:null,s&&(i.prototype=s.prototype)},{}],36:[function(t,e,n){(function(n){function i(t){function e(t){if(!t)return!1;if(n.Buffer&&n.Buffer.isBuffer(t)||n.ArrayBuffer&&t instanceof ArrayBuffer||n.Blob&&t instanceof Blob||n.File&&t instanceof File)return!0;if(o(t)){for(var i=0;i<t.length;i++)if(e(t[i]))return!0}else if(t&&"object"==typeof t){t.toJSON&&(t=t.toJSON());for(var s in t)if(t.hasOwnProperty(s)&&e(t[s]))return!0}return!1}return e(t)}var o=t("isarray");e.exports=i}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{isarray:37}],37:[function(t,e,n){e.exports=Array.isArray||function(t){return"[object Array]"==Object.prototype.toString.call(t)}},{}],38:[function(t,e,n){var i=t("global");try{e.exports="XMLHttpRequest"in i&&"withCredentials"in new i.XMLHttpRequest}catch(o){e.exports=!1}},{global:39}],39:[function(t,e,n){e.exports=function(){return this}()},{}],40:[function(t,e,n){var i=[].indexOf;e.exports=function(t,e){if(i)return t.indexOf(e);for(var n=0;n<t.length;++n)if(t[n]===e)return n;return-1}},{}],41:[function(t,e,n){var i=Object.prototype.hasOwnProperty;n.keys=Object.keys||function(t){var e=[];for(var n in t)i.call(t,n)&&e.push(n);return e},n.values=function(t){var e=[];for(var n in t)i.call(t,n)&&e.push(t[n]);return e},n.merge=function(t,e){for(var n in e)i.call(e,n)&&(t[n]=e[n]);return t},n.length=function(t){return n.keys(t).length},n.isEmpty=function(t){return 0==n.length(t)}},{}],42:[function(t,e,n){var i=/^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,o=["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"];
-e.exports=function(t){for(var e=i.exec(t||""),n={},s=14;s--;)n[o[s]]=e[s]||"";return n}},{}],43:[function(t,e,n){(function(e){var i=t("isarray"),o=t("./is-buffer");n.deconstructPacket=function(t){function e(t){if(!t)return t;if(o(t)){var s={_placeholder:!0,num:n.length};return n.push(t),s}if(i(t)){for(var r=new Array(t.length),a=0;a<t.length;a++)r[a]=e(t[a]);return r}if("object"==typeof t&&!(t instanceof Date)){var r={};for(var l in t)r[l]=e(t[l]);return r}return t}var n=[],s=t.data,r=t;return r.data=e(s),r.attachments=n.length,{packet:r,buffers:n}},n.reconstructPacket=function(t,e){function n(t){if(t&&t._placeholder){var o=e[t.num];return o}if(i(t)){for(var s=0;s<t.length;s++)t[s]=n(t[s]);return t}if(t&&"object"==typeof t){for(var r in t)t[r]=n(t[r]);return t}return t}return t.data=n(t.data),t.attachments=void 0,t},n.removeBlobs=function(t,n){function s(t,l,c){if(!t)return t;if(e.Blob&&t instanceof Blob||e.File&&t instanceof File){r++;var h=new FileReader;h.onload=function(){c?c[l]=this.result:a=this.result,--r||n(a)},h.readAsArrayBuffer(t)}else if(i(t))for(var u=0;u<t.length;u++)s(t[u],u,t);else if(t&&"object"==typeof t&&!o(t))for(var p in t)s(t[p],p,t)}var r=0,a=t;s(a),r||n(a)}}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./is-buffer":45,isarray:46}],44:[function(t,e,n){function i(){}function o(t){var e="",i=!1;return e+=t.type,n.BINARY_EVENT!=t.type&&n.BINARY_ACK!=t.type||(e+=t.attachments,e+="-"),t.nsp&&"/"!=t.nsp&&(i=!0,e+=t.nsp),null!=t.id&&(i&&(e+=",",i=!1),e+=t.id),null!=t.data&&(i&&(e+=","),e+=u.stringify(t.data)),h("encoded %j as %s",t,e),e}function s(t,e){function n(t){var n=d.deconstructPacket(t),i=o(n.packet),s=n.buffers;s.unshift(i),e(s)}d.removeBlobs(t,n)}function r(){this.reconstructor=null}function a(t){var e={},i=0;if(e.type=Number(t.charAt(0)),null==n.types[e.type])return c();if(n.BINARY_EVENT==e.type||n.BINARY_ACK==e.type){for(e.attachments="";"-"!=t.charAt(++i);)e.attachments+=t.charAt(i);e.attachments=Number(e.attachments)}if("/"==t.charAt(i+1))for(e.nsp="";++i;){var o=t.charAt(i);if(","==o)break;if(e.nsp+=o,i+1==t.length)break}else e.nsp="/";var s=t.charAt(i+1);if(""!=s&&Number(s)==s){for(e.id="";++i;){var o=t.charAt(i);if(null==o||Number(o)!=o){--i;break}if(e.id+=t.charAt(i),i+1==t.length)break}e.id=Number(e.id)}if(t.charAt(++i))try{e.data=u.parse(t.substr(i))}catch(r){return c()}return h("decoded %s as %j",t,e),e}function l(t){this.reconPack=t,this.buffers=[]}function c(t){return{type:n.ERROR,data:"parser error"}}var h=t("debug")("socket.io-parser"),u=t("json3"),p=(t("isarray"),t("component-emitter")),d=t("./binary"),f=t("./is-buffer");n.protocol=4,n.types=["CONNECT","DISCONNECT","EVENT","BINARY_EVENT","ACK","BINARY_ACK","ERROR"],n.CONNECT=0,n.DISCONNECT=1,n.EVENT=2,n.ACK=3,n.ERROR=4,n.BINARY_EVENT=5,n.BINARY_ACK=6,n.Encoder=i,n.Decoder=r,i.prototype.encode=function(t,e){if(h("encoding packet %j",t),n.BINARY_EVENT==t.type||n.BINARY_ACK==t.type)s(t,e);else{var i=o(t);e([i])}},p(r.prototype),r.prototype.add=function(t){var e;if("string"==typeof t)e=a(t),n.BINARY_EVENT==e.type||n.BINARY_ACK==e.type?(this.reconstructor=new l(e),0==this.reconstructor.reconPack.attachments&&this.emit("decoded",e)):this.emit("decoded",e);else{if(!f(t)&&!t.base64)throw new Error("Unknown type: "+t);if(!this.reconstructor)throw new Error("got binary data when not reconstructing a packet");e=this.reconstructor.takeBinaryData(t),e&&(this.reconstructor=null,this.emit("decoded",e))}},r.prototype.destroy=function(){this.reconstructor&&this.reconstructor.finishedReconstruction()},l.prototype.takeBinaryData=function(t){if(this.buffers.push(t),this.buffers.length==this.reconPack.attachments){var e=d.reconstructPacket(this.reconPack,this.buffers);return this.finishedReconstruction(),e}return null},l.prototype.finishedReconstruction=function(){this.reconPack=null,this.buffers=[]}},{"./binary":43,"./is-buffer":45,"component-emitter":9,debug:10,isarray:46,json3:47}],45:[function(t,e,n){(function(t){function n(e){return t.Buffer&&t.Buffer.isBuffer(e)||t.ArrayBuffer&&e instanceof ArrayBuffer}e.exports=n}).call(this,"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],46:[function(t,e,n){e.exports=t(37)},{}],47:[function(e,n,i){!function(e){function n(t){if(n[t]!==r)return n[t];var e;if("bug-string-char-index"==t)e="a"!="a"[0];else if("json"==t)e=n("json-stringify")&&n("json-parse");else{var i,o='{"a":[1,true,false,null,"\\u0000\\b\\n\\f\\r\\t"]}';if("json-stringify"==t){var s=h.stringify,l="function"==typeof s&&u;if(l){(i=function(){return 1}).toJSON=i;try{l="0"===s(0)&&"0"===s(new Number)&&'""'==s(new String)&&s(a)===r&&s(r)===r&&s()===r&&"1"===s(i)&&"[1]"==s([i])&&"[null]"==s([r])&&"null"==s(null)&&"[null,null,null]"==s([r,a,null])&&s({a:[i,!0,!1,null,"\x00\b\n\f\r	"]})==o&&"1"===s(null,i)&&"[\n 1,\n 2\n]"==s([1,2],null,1)&&'"-271821-04-20T00:00:00.000Z"'==s(new Date(-864e13))&&'"+275760-09-13T00:00:00.000Z"'==s(new Date(864e13))&&'"-000001-01-01T00:00:00.000Z"'==s(new Date(-621987552e5))&&'"1969-12-31T23:59:59.999Z"'==s(new Date(-1))}catch(c){l=!1}}e=l}if("json-parse"==t){var p=h.parse;if("function"==typeof p)try{if(0===p("0")&&!p(!1)){i=p(o);var d=5==i.a.length&&1===i.a[0];if(d){try{d=!p('"	"')}catch(c){}if(d)try{d=1!==p("01")}catch(c){}if(d)try{d=1!==p("1.")}catch(c){}}}}catch(c){d=!1}e=d}}return n[t]=!!e}var o,s,r,a={}.toString,l="function"==typeof t&&t.amd,c="object"==typeof JSON&&JSON,h="object"==typeof i&&i&&!i.nodeType&&i;h&&c?(h.stringify=c.stringify,h.parse=c.parse):h=e.JSON=c||{};var u=new Date(-0xc782b5b800cec);try{u=-109252==u.getUTCFullYear()&&0===u.getUTCMonth()&&1===u.getUTCDate()&&10==u.getUTCHours()&&37==u.getUTCMinutes()&&6==u.getUTCSeconds()&&708==u.getUTCMilliseconds()}catch(p){}if(!n("json")){var d="[object Function]",f="[object Date]",m="[object Number]",g="[object String]",v="[object Array]",y="[object Boolean]",b=n("bug-string-char-index");if(!u)var x=Math.floor,w=[0,31,59,90,120,151,181,212,243,273,304,334],C=function(t,e){return w[e]+365*(t-1970)+x((t-1969+(e=+(e>1)))/4)-x((t-1901+e)/100)+x((t-1601+e)/400)};(o={}.hasOwnProperty)||(o=function(t){var e,n={};return(n.__proto__=null,n.__proto__={toString:1},n).toString!=a?o=function(t){var e=this.__proto__,n=t in(this.__proto__=null,this);return this.__proto__=e,n}:(e=n.constructor,o=function(t){var n=(this.constructor||e).prototype;return t in this&&!(t in n&&this[t]===n[t])}),n=null,o.call(this,t)});var k={"boolean":1,number:1,string:1,undefined:1},T=function(t,e){var n=typeof t[e];return"object"==n?!!t[e]:!k[n]};if(s=function(t,e){var n,i,r,l=0;(n=function(){this.valueOf=0}).prototype.valueOf=0,i=new n;for(r in i)o.call(i,r)&&l++;return n=i=null,l?s=2==l?function(t,e){var n,i={},s=a.call(t)==d;for(n in t)s&&"prototype"==n||o.call(i,n)||!(i[n]=1)||!o.call(t,n)||e(n)}:function(t,e){var n,i,s=a.call(t)==d;for(n in t)s&&"prototype"==n||!o.call(t,n)||(i="constructor"===n)||e(n);(i||o.call(t,n="constructor"))&&e(n)}:(i=["valueOf","toString","toLocaleString","propertyIsEnumerable","isPrototypeOf","hasOwnProperty","constructor"],s=function(t,e){var n,s,r=a.call(t)==d,l=!r&&"function"!=typeof t.constructor&&T(t,"hasOwnProperty")?t.hasOwnProperty:o;for(n in t)r&&"prototype"==n||!l.call(t,n)||e(n);for(s=i.length;n=i[--s];l.call(t,n)&&e(n));}),s(t,e)},!n("json-stringify")){var E={92:"\\\\",34:'\\"',8:"\\b",12:"\\f",10:"\\n",13:"\\r",9:"\\t"},$="000000",_=function(t,e){return($+(e||0)).slice(-t)},S="\\u00",A=function(t){var e,n='"',i=0,o=t.length,s=o>10&&b;for(s&&(e=t.split(""));o>i;i++){var r=t.charCodeAt(i);switch(r){case 8:case 9:case 10:case 12:case 13:case 34:case 92:n+=E[r];break;default:if(32>r){n+=S+_(2,r.toString(16));break}n+=s?e[i]:b?t.charAt(i):t[i]}}return n+'"'},N=function(t,e,n,i,l,c,h){var u,p,d,b,w,k,T,E,$,S,D,j,L,I,O,P;try{u=e[t]}catch(B){}if("object"==typeof u&&u)if(p=a.call(u),p!=f||o.call(u,"toJSON"))"function"==typeof u.toJSON&&(p!=m&&p!=g&&p!=v||o.call(u,"toJSON"))&&(u=u.toJSON(t));else if(u>-1/0&&1/0>u){if(C){for(w=x(u/864e5),d=x(w/365.2425)+1970-1;C(d+1,0)<=w;d++);for(b=x((w-C(d,0))/30.42);C(d,b+1)<=w;b++);w=1+w-C(d,b),k=(u%864e5+864e5)%864e5,T=x(k/36e5)%24,E=x(k/6e4)%60,$=x(k/1e3)%60,S=k%1e3}else d=u.getUTCFullYear(),b=u.getUTCMonth(),w=u.getUTCDate(),T=u.getUTCHours(),E=u.getUTCMinutes(),$=u.getUTCSeconds(),S=u.getUTCMilliseconds();u=(0>=d||d>=1e4?(0>d?"-":"+")+_(6,0>d?-d:d):_(4,d))+"-"+_(2,b+1)+"-"+_(2,w)+"T"+_(2,T)+":"+_(2,E)+":"+_(2,$)+"."+_(3,S)+"Z"}else u=null;if(n&&(u=n.call(e,t,u)),null===u)return"null";if(p=a.call(u),p==y)return""+u;if(p==m)return u>-1/0&&1/0>u?""+u:"null";if(p==g)return A(""+u);if("object"==typeof u){for(I=h.length;I--;)if(h[I]===u)throw TypeError();if(h.push(u),D=[],O=c,c+=l,p==v){for(L=0,I=u.length;I>L;L++)j=N(L,u,n,i,l,c,h),D.push(j===r?"null":j);P=D.length?l?"[\n"+c+D.join(",\n"+c)+"\n"+O+"]":"["+D.join(",")+"]":"[]"}else s(i||u,function(t){var e=N(t,u,n,i,l,c,h);e!==r&&D.push(A(t)+":"+(l?" ":"")+e)}),P=D.length?l?"{\n"+c+D.join(",\n"+c)+"\n"+O+"}":"{"+D.join(",")+"}":"{}";return h.pop(),P}};h.stringify=function(t,e,n){var i,o,s,r;if("function"==typeof e||"object"==typeof e&&e)if((r=a.call(e))==d)o=e;else if(r==v){s={};for(var l,c=0,h=e.length;h>c;l=e[c++],r=a.call(l),(r==g||r==m)&&(s[l]=1));}if(n)if((r=a.call(n))==m){if((n-=n%1)>0)for(i="",n>10&&(n=10);i.length<n;i+=" ");}else r==g&&(i=n.length<=10?n:n.slice(0,10));return N("",(l={},l[""]=t,l),o,s,i,"",[])}}if(!n("json-parse")){var D,j,L=String.fromCharCode,I={92:"\\",34:'"',47:"/",98:"\b",116:"	",110:"\n",102:"\f",114:"\r"},O=function(){throw D=j=null,SyntaxError()},P=function(){for(var t,e,n,i,o,s=j,r=s.length;r>D;)switch(o=s.charCodeAt(D)){case 9:case 10:case 13:case 32:D++;break;case 123:case 125:case 91:case 93:case 58:case 44:return t=b?s.charAt(D):s[D],D++,t;case 34:for(t="@",D++;r>D;)if(o=s.charCodeAt(D),32>o)O();else if(92==o)switch(o=s.charCodeAt(++D)){case 92:case 34:case 47:case 98:case 116:case 110:case 102:case 114:t+=I[o],D++;break;case 117:for(e=++D,n=D+4;n>D;D++)o=s.charCodeAt(D),o>=48&&57>=o||o>=97&&102>=o||o>=65&&70>=o||O();t+=L("0x"+s.slice(e,D));break;default:O()}else{if(34==o)break;for(o=s.charCodeAt(D),e=D;o>=32&&92!=o&&34!=o;)o=s.charCodeAt(++D);t+=s.slice(e,D)}if(34==s.charCodeAt(D))return D++,t;O();default:if(e=D,45==o&&(i=!0,o=s.charCodeAt(++D)),o>=48&&57>=o){for(48==o&&(o=s.charCodeAt(D+1),o>=48&&57>=o)&&O(),i=!1;r>D&&(o=s.charCodeAt(D),o>=48&&57>=o);D++);if(46==s.charCodeAt(D)){for(n=++D;r>n&&(o=s.charCodeAt(n),o>=48&&57>=o);n++);n==D&&O(),D=n}if(o=s.charCodeAt(D),101==o||69==o){for(o=s.charCodeAt(++D),43!=o&&45!=o||D++,n=D;r>n&&(o=s.charCodeAt(n),o>=48&&57>=o);n++);n==D&&O(),D=n}return+s.slice(e,D)}if(i&&O(),"true"==s.slice(D,D+4))return D+=4,!0;if("false"==s.slice(D,D+5))return D+=5,!1;if("null"==s.slice(D,D+4))return D+=4,null;O()}return"$"},B=function(t){var e,n;if("$"==t&&O(),"string"==typeof t){if("@"==(b?t.charAt(0):t[0]))return t.slice(1);if("["==t){for(e=[];t=P(),"]"!=t;n||(n=!0))n&&(","==t?(t=P(),"]"==t&&O()):O()),","==t&&O(),e.push(B(t));return e}if("{"==t){for(e={};t=P(),"}"!=t;n||(n=!0))n&&(","==t?(t=P(),"}"==t&&O()):O()),","!=t&&"string"==typeof t&&"@"==(b?t.charAt(0):t[0])&&":"==P()||O(),e[t.slice(1)]=B(P());return e}O()}return t},R=function(t,e,n){var i=q(t,e,n);i===r?delete t[e]:t[e]=i},q=function(t,e,n){var i,o=t[e];if("object"==typeof o&&o)if(a.call(o)==v)for(i=o.length;i--;)R(o,i,n);else s(o,function(t){R(o,t,n)});return n.call(t,e,o)};h.parse=function(t,e){var n,i;return D=0,j=""+t,n=B(P()),"$"!=P()&&O(),D=j=null,e&&a.call(e)==d?q((i={},i[""]=n,i),"",e):n}}}l&&t(function(){return h})}(this)},{}],48:[function(t,e,n){function i(t,e){var n=[];e=e||0;for(var i=e||0;i<t.length;i++)n[i-e]=t[i];return n}e.exports=i},{}]},{},[1])(1)});
+/*!
+ * jQuery JavaScript Library v2.2.0
+ * http://jquery.com/
+ *
+ * Includes Sizzle.js
+ * http://sizzlejs.com/
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license
+ * http://jquery.org/license
+ *
+ * Date: 2016-01-08T20:02Z
+ */
+
+(function( global, factory ) {
+
+	if ( typeof module === "object" && typeof module.exports === "object" ) {
+		// For CommonJS and CommonJS-like environments where a proper `window`
+		// is present, execute the factory and get jQuery.
+		// For environments that do not have a `window` with a `document`
+		// (such as Node.js), expose a factory as module.exports.
+		// This accentuates the need for the creation of a real `window`.
+		// e.g. var jQuery = require("jquery")(window);
+		// See ticket #14549 for more info.
+		module.exports = global.document ?
+			factory( global, true ) :
+			function( w ) {
+				if ( !w.document ) {
+					throw new Error( "jQuery requires a window with a document" );
+				}
+				return factory( w );
+			};
+	} else {
+		factory( global );
+	}
+
+// Pass this if window is not defined yet
+}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+
+// Support: Firefox 18+
+// Can't be in strict mode, several libs including ASP.NET trace
+// the stack via arguments.caller.callee and Firefox dies if
+// you try to trace through "use strict" call chains. (#13335)
+//"use strict";
+var arr = [];
+
+var document = window.document;
+
+var slice = arr.slice;
+
+var concat = arr.concat;
+
+var push = arr.push;
+
+var indexOf = arr.indexOf;
+
+var class2type = {};
+
+var toString = class2type.toString;
+
+var hasOwn = class2type.hasOwnProperty;
+
+var support = {};
+
+
+
+var
+	version = "2.2.0",
+
+	// Define a local copy of jQuery
+	jQuery = function( selector, context ) {
+
+		// The jQuery object is actually just the init constructor 'enhanced'
+		// Need init if jQuery is called (just allow error to be thrown if not included)
+		return new jQuery.fn.init( selector, context );
+	},
+
+	// Support: Android<4.1
+	// Make sure we trim BOM and NBSP
+	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
+
+	// Matches dashed string for camelizing
+	rmsPrefix = /^-ms-/,
+	rdashAlpha = /-([\da-z])/gi,
+
+	// Used by jQuery.camelCase as callback to replace()
+	fcamelCase = function( all, letter ) {
+		return letter.toUpperCase();
+	};
+
+jQuery.fn = jQuery.prototype = {
+
+	// The current version of jQuery being used
+	jquery: version,
+
+	constructor: jQuery,
+
+	// Start with an empty selector
+	selector: "",
+
+	// The default length of a jQuery object is 0
+	length: 0,
+
+	toArray: function() {
+		return slice.call( this );
+	},
+
+	// Get the Nth element in the matched element set OR
+	// Get the whole matched element set as a clean array
+	get: function( num ) {
+		return num != null ?
+
+			// Return just the one element from the set
+			( num < 0 ? this[ num + this.length ] : this[ num ] ) :
+
+			// Return all the elements in a clean array
+			slice.call( this );
+	},
+
+	// Take an array of elements and push it onto the stack
+	// (returning the new matched element set)
+	pushStack: function( elems ) {
+
+		// Build a new jQuery matched element set
+		var ret = jQuery.merge( this.constructor(), elems );
+
+		// Add the old object onto the stack (as a reference)
+		ret.prevObject = this;
+		ret.context = this.context;
+
+		// Return the newly-formed element set
+		return ret;
+	},
+
+	// Execute a callback for every element in the matched set.
+	each: function( callback ) {
+		return jQuery.each( this, callback );
+	},
+
+	map: function( callback ) {
+		return this.pushStack( jQuery.map( this, function( elem, i ) {
+			return callback.call( elem, i, elem );
+		} ) );
+	},
+
+	slice: function() {
+		return this.pushStack( slice.apply( this, arguments ) );
+	},
+
+	first: function() {
+		return this.eq( 0 );
+	},
+
+	last: function() {
+		return this.eq( -1 );
+	},
+
+	eq: function( i ) {
+		var len = this.length,
+			j = +i + ( i < 0 ? len : 0 );
+		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
+	},
+
+	end: function() {
+		return this.prevObject || this.constructor();
+	},
+
+	// For internal use only.
+	// Behaves like an Array's method, not like a jQuery method.
+	push: push,
+	sort: arr.sort,
+	splice: arr.splice
+};
+
+jQuery.extend = jQuery.fn.extend = function() {
+	var options, name, src, copy, copyIsArray, clone,
+		target = arguments[ 0 ] || {},
+		i = 1,
+		length = arguments.length,
+		deep = false;
+
+	// Handle a deep copy situation
+	if ( typeof target === "boolean" ) {
+		deep = target;
+
+		// Skip the boolean and the target
+		target = arguments[ i ] || {};
+		i++;
+	}
+
+	// Handle case when target is a string or something (possible in deep copy)
+	if ( typeof target !== "object" && !jQuery.isFunction( target ) ) {
+		target = {};
+	}
+
+	// Extend jQuery itself if only one argument is passed
+	if ( i === length ) {
+		target = this;
+		i--;
+	}
+
+	for ( ; i < length; i++ ) {
+
+		// Only deal with non-null/undefined values
+		if ( ( options = arguments[ i ] ) != null ) {
+
+			// Extend the base object
+			for ( name in options ) {
+				src = target[ name ];
+				copy = options[ name ];
+
+				// Prevent never-ending loop
+				if ( target === copy ) {
+					continue;
+				}
+
+				// Recurse if we're merging plain objects or arrays
+				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
+					( copyIsArray = jQuery.isArray( copy ) ) ) ) {
+
+					if ( copyIsArray ) {
+						copyIsArray = false;
+						clone = src && jQuery.isArray( src ) ? src : [];
+
+					} else {
+						clone = src && jQuery.isPlainObject( src ) ? src : {};
+					}
+
+					// Never move original objects, clone them
+					target[ name ] = jQuery.extend( deep, clone, copy );
+
+				// Don't bring in undefined values
+				} else if ( copy !== undefined ) {
+					target[ name ] = copy;
+				}
+			}
+		}
+	}
+
+	// Return the modified object
+	return target;
+};
+
+jQuery.extend( {
+
+	// Unique for each copy of jQuery on the page
+	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
+
+	// Assume jQuery is ready without the ready module
+	isReady: true,
+
+	error: function( msg ) {
+		throw new Error( msg );
+	},
+
+	noop: function() {},
+
+	isFunction: function( obj ) {
+		return jQuery.type( obj ) === "function";
+	},
+
+	isArray: Array.isArray,
+
+	isWindow: function( obj ) {
+		return obj != null && obj === obj.window;
+	},
+
+	isNumeric: function( obj ) {
+
+		// parseFloat NaNs numeric-cast false positives (null|true|false|"")
+		// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+		// subtraction forces infinities to NaN
+		// adding 1 corrects loss of precision from parseFloat (#15100)
+		var realStringObj = obj && obj.toString();
+		return !jQuery.isArray( obj ) && ( realStringObj - parseFloat( realStringObj ) + 1 ) >= 0;
+	},
+
+	isPlainObject: function( obj ) {
+
+		// Not plain objects:
+		// - Any object or value whose internal [[Class]] property is not "[object Object]"
+		// - DOM nodes
+		// - window
+		if ( jQuery.type( obj ) !== "object" || obj.nodeType || jQuery.isWindow( obj ) ) {
+			return false;
+		}
+
+		if ( obj.constructor &&
+				!hasOwn.call( obj.constructor.prototype, "isPrototypeOf" ) ) {
+			return false;
+		}
+
+		// If the function hasn't returned already, we're confident that
+		// |obj| is a plain object, created by {} or constructed with new Object
+		return true;
+	},
+
+	isEmptyObject: function( obj ) {
+		var name;
+		for ( name in obj ) {
+			return false;
+		}
+		return true;
+	},
+
+	type: function( obj ) {
+		if ( obj == null ) {
+			return obj + "";
+		}
+
+		// Support: Android<4.0, iOS<6 (functionish RegExp)
+		return typeof obj === "object" || typeof obj === "function" ?
+			class2type[ toString.call( obj ) ] || "object" :
+			typeof obj;
+	},
+
+	// Evaluates a script in a global context
+	globalEval: function( code ) {
+		var script,
+			indirect = eval;
+
+		code = jQuery.trim( code );
+
+		if ( code ) {
+
+			// If the code includes a valid, prologue position
+			// strict mode pragma, execute code by injecting a
+			// script tag into the document.
+			if ( code.indexOf( "use strict" ) === 1 ) {
+				script = document.createElement( "script" );
+				script.text = code;
+				document.head.appendChild( script ).parentNode.removeChild( script );
+			} else {
+
+				// Otherwise, avoid the DOM node creation, insertion
+				// and removal by using an indirect global eval
+
+				indirect( code );
+			}
+		}
+	},
+
+	// Convert dashed to camelCase; used by the css and data modules
+	// Support: IE9-11+
+	// Microsoft forgot to hump their vendor prefix (#9572)
+	camelCase: function( string ) {
+		return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
+	},
+
+	nodeName: function( elem, name ) {
+		return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+	},
+
+	each: function( obj, callback ) {
+		var length, i = 0;
+
+		if ( isArrayLike( obj ) ) {
+			length = obj.length;
+			for ( ; i < length; i++ ) {
+				if ( callback.call( obj[ i ], i, obj[ i ] ) === false ) {
+					break;
+				}
+			}
+		} else {
+			for ( i in obj ) {
+				if ( callback.call( obj[ i ], i, obj[ i ] ) === false ) {
+					break;
+				}
+			}
+		}
+
+		return obj;
+	},
+
+	// Support: Android<4.1
+	trim: function( text ) {
+		return text == null ?
+			"" :
+			( text + "" ).replace( rtrim, "" );
+	},
+
+	// results is for internal usage only
+	makeArray: function( arr, results ) {
+		var ret = results || [];
+
+		if ( arr != null ) {
+			if ( isArrayLike( Object( arr ) ) ) {
+				jQuery.merge( ret,
+					typeof arr === "string" ?
+					[ arr ] : arr
+				);
+			} else {
+				push.call( ret, arr );
+			}
+		}
+
+		return ret;
+	},
+
+	inArray: function( elem, arr, i ) {
+		return arr == null ? -1 : indexOf.call( arr, elem, i );
+	},
+
+	merge: function( first, second ) {
+		var len = +second.length,
+			j = 0,
+			i = first.length;
+
+		for ( ; j < len; j++ ) {
+			first[ i++ ] = second[ j ];
+		}
+
+		first.length = i;
+
+		return first;
+	},
+
+	grep: function( elems, callback, invert ) {
+		var callbackInverse,
+			matches = [],
+			i = 0,
+			length = elems.length,
+			callbackExpect = !invert;
+
+		// Go through the array, only saving the items
+		// that pass the validator function
+		for ( ; i < length; i++ ) {
+			callbackInverse = !callback( elems[ i ], i );
+			if ( callbackInverse !== callbackExpect ) {
+				matches.push( elems[ i ] );
+			}
+		}
+
+		return matches;
+	},
+
+	// arg is for internal usage only
+	map: function( elems, callback, arg ) {
+		var length, value,
+			i = 0,
+			ret = [];
+
+		// Go through the array, translating each of the items to their new values
+		if ( isArrayLike( elems ) ) {
+			length = elems.length;
+			for ( ; i < length; i++ ) {
+				value = callback( elems[ i ], i, arg );
+
+				if ( value != null ) {
+					ret.push( value );
+				}
+			}
+
+		// Go through every key on the object,
+		} else {
+			for ( i in elems ) {
+				value = callback( elems[ i ], i, arg );
+
+				if ( value != null ) {
+					ret.push( value );
+				}
+			}
+		}
+
+		// Flatten any nested arrays
+		return concat.apply( [], ret );
+	},
+
+	// A global GUID counter for objects
+	guid: 1,
+
+	// Bind a function to a context, optionally partially applying any
+	// arguments.
+	proxy: function( fn, context ) {
+		var tmp, args, proxy;
+
+		if ( typeof context === "string" ) {
+			tmp = fn[ context ];
+			context = fn;
+			fn = tmp;
+		}
+
+		// Quick check to determine if target is callable, in the spec
+		// this throws a TypeError, but we will just return undefined.
+		if ( !jQuery.isFunction( fn ) ) {
+			return undefined;
+		}
+
+		// Simulated bind
+		args = slice.call( arguments, 2 );
+		proxy = function() {
+			return fn.apply( context || this, args.concat( slice.call( arguments ) ) );
+		};
+
+		// Set the guid of unique handler to the same of original handler, so it can be removed
+		proxy.guid = fn.guid = fn.guid || jQuery.guid++;
+
+		return proxy;
+	},
+
+	now: Date.now,
+
+	// jQuery.support is not used in Core but other projects attach their
+	// properties to it so it needs to exist.
+	support: support
+} );
+
+// JSHint would error on this code due to the Symbol not being defined in ES5.
+// Defining this global in .jshintrc would create a danger of using the global
+// unguarded in another place, it seems safer to just disable JSHint for these
+// three lines.
+/* jshint ignore: start */
+if ( typeof Symbol === "function" ) {
+	jQuery.fn[ Symbol.iterator ] = arr[ Symbol.iterator ];
+}
+/* jshint ignore: end */
+
+// Populate the class2type map
+jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
+function( i, name ) {
+	class2type[ "[object " + name + "]" ] = name.toLowerCase();
+} );
+
+function isArrayLike( obj ) {
+
+	// Support: iOS 8.2 (not reproducible in simulator)
+	// `in` check used to prevent JIT error (gh-2145)
+	// hasOwn isn't used here due to false negatives
+	// regarding Nodelist length in IE
+	var length = !!obj && "length" in obj && obj.length,
+		type = jQuery.type( obj );
+
+	if ( type === "function" || jQuery.isWindow( obj ) ) {
+		return false;
+	}
+
+	return type === "array" || length === 0 ||
+		typeof length === "number" && length > 0 && ( length - 1 ) in obj;
+}
+var Sizzle =
+/*!
+ * Sizzle CSS Selector Engine v2.2.1
+ * http://sizzlejs.com/
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license
+ * http://jquery.org/license
+ *
+ * Date: 2015-10-17
+ */
+(function( window ) {
+
+var i,
+	support,
+	Expr,
+	getText,
+	isXML,
+	tokenize,
+	compile,
+	select,
+	outermostContext,
+	sortInput,
+	hasDuplicate,
+
+	// Local document vars
+	setDocument,
+	document,
+	docElem,
+	documentIsHTML,
+	rbuggyQSA,
+	rbuggyMatches,
+	matches,
+	contains,
+
+	// Instance-specific data
+	expando = "sizzle" + 1 * new Date(),
+	preferredDoc = window.document,
+	dirruns = 0,
+	done = 0,
+	classCache = createCache(),
+	tokenCache = createCache(),
+	compilerCache = createCache(),
+	sortOrder = function( a, b ) {
+		if ( a === b ) {
+			hasDuplicate = true;
+		}
+		return 0;
+	},
+
+	// General-purpose constants
+	MAX_NEGATIVE = 1 << 31,
+
+	// Instance methods
+	hasOwn = ({}).hasOwnProperty,
+	arr = [],
+	pop = arr.pop,
+	push_native = arr.push,
+	push = arr.push,
+	slice = arr.slice,
+	// Use a stripped-down indexOf as it's faster than native
+	// http://jsperf.com/thor-indexof-vs-for/5
+	indexOf = function( list, elem ) {
+		var i = 0,
+			len = list.length;
+		for ( ; i < len; i++ ) {
+			if ( list[i] === elem ) {
+				return i;
+			}
+		}
+		return -1;
+	},
+
+	booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
+
+	// Regular expressions
+
+	// http://www.w3.org/TR/css3-selectors/#whitespace
+	whitespace = "[\\x20\\t\\r\\n\\f]",
+
+	// http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
+	identifier = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
+
+	// Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
+	attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace +
+		// Operator (capture 2)
+		"*([*^$|!~]?=)" + whitespace +
+		// "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
+		"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + identifier + "))|)" + whitespace +
+		"*\\]",
+
+	pseudos = ":(" + identifier + ")(?:\\((" +
+		// To reduce the number of selectors needing tokenize in the preFilter, prefer arguments:
+		// 1. quoted (capture 3; capture 4 or capture 5)
+		"('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|" +
+		// 2. simple (capture 6)
+		"((?:\\\\.|[^\\\\()[\\]]|" + attributes + ")*)|" +
+		// 3. anything else (capture 2)
+		".*" +
+		")\\)|)",
+
+	// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
+	rwhitespace = new RegExp( whitespace + "+", "g" ),
+	rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
+
+	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
+	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
+
+	rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*?)" + whitespace + "*\\]", "g" ),
+
+	rpseudo = new RegExp( pseudos ),
+	ridentifier = new RegExp( "^" + identifier + "$" ),
+
+	matchExpr = {
+		"ID": new RegExp( "^#(" + identifier + ")" ),
+		"CLASS": new RegExp( "^\\.(" + identifier + ")" ),
+		"TAG": new RegExp( "^(" + identifier + "|[*])" ),
+		"ATTR": new RegExp( "^" + attributes ),
+		"PSEUDO": new RegExp( "^" + pseudos ),
+		"CHILD": new RegExp( "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace +
+			"*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace +
+			"*(\\d+)|))" + whitespace + "*\\)|)", "i" ),
+		"bool": new RegExp( "^(?:" + booleans + ")$", "i" ),
+		// For use in libraries implementing .is()
+		// We use this for POS matching in `select`
+		"needsContext": new RegExp( "^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" +
+			whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i" )
+	},
+
+	rinputs = /^(?:input|select|textarea|button)$/i,
+	rheader = /^h\d$/i,
+
+	rnative = /^[^{]+\{\s*\[native \w/,
+
+	// Easily-parseable/retrievable ID or TAG or CLASS selectors
+	rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
+
+	rsibling = /[+~]/,
+	rescape = /'|\\/g,
+
+	// CSS escapes http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
+	runescape = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig" ),
+	funescape = function( _, escaped, escapedWhitespace ) {
+		var high = "0x" + escaped - 0x10000;
+		// NaN means non-codepoint
+		// Support: Firefox<24
+		// Workaround erroneous numeric interpretation of +"0x"
+		return high !== high || escapedWhitespace ?
+			escaped :
+			high < 0 ?
+				// BMP codepoint
+				String.fromCharCode( high + 0x10000 ) :
+				// Supplemental Plane codepoint (surrogate pair)
+				String.fromCharCode( high >> 10 | 0xD800, high & 0x3FF | 0xDC00 );
+	},
+
+	// Used for iframes
+	// See setDocument()
+	// Removing the function wrapper causes a "Permission Denied"
+	// error in IE
+	unloadHandler = function() {
+		setDocument();
+	};
+
+// Optimize for push.apply( _, NodeList )
+try {
+	push.apply(
+		(arr = slice.call( preferredDoc.childNodes )),
+		preferredDoc.childNodes
+	);
+	// Support: Android<4.0
+	// Detect silently failing push.apply
+	arr[ preferredDoc.childNodes.length ].nodeType;
+} catch ( e ) {
+	push = { apply: arr.length ?
+
+		// Leverage slice if possible
+		function( target, els ) {
+			push_native.apply( target, slice.call(els) );
+		} :
+
+		// Support: IE<9
+		// Otherwise append directly
+		function( target, els ) {
+			var j = target.length,
+				i = 0;
+			// Can't trust NodeList.length
+			while ( (target[j++] = els[i++]) ) {}
+			target.length = j - 1;
+		}
+	};
+}
+
+function Sizzle( selector, context, results, seed ) {
+	var m, i, elem, nid, nidselect, match, groups, newSelector,
+		newContext = context && context.ownerDocument,
+
+		// nodeType defaults to 9, since context defaults to document
+		nodeType = context ? context.nodeType : 9;
+
+	results = results || [];
+
+	// Return early from calls with invalid selector or context
+	if ( typeof selector !== "string" || !selector ||
+		nodeType !== 1 && nodeType !== 9 && nodeType !== 11 ) {
+
+		return results;
+	}
+
+	// Try to shortcut find operations (as opposed to filters) in HTML documents
+	if ( !seed ) {
+
+		if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
+			setDocument( context );
+		}
+		context = context || document;
+
+		if ( documentIsHTML ) {
+
+			// If the selector is sufficiently simple, try using a "get*By*" DOM method
+			// (excepting DocumentFragment context, where the methods don't exist)
+			if ( nodeType !== 11 && (match = rquickExpr.exec( selector )) ) {
+
+				// ID selector
+				if ( (m = match[1]) ) {
+
+					// Document context
+					if ( nodeType === 9 ) {
+						if ( (elem = context.getElementById( m )) ) {
+
+							// Support: IE, Opera, Webkit
+							// TODO: identify versions
+							// getElementById can match elements by name instead of ID
+							if ( elem.id === m ) {
+								results.push( elem );
+								return results;
+							}
+						} else {
+							return results;
+						}
+
+					// Element context
+					} else {
+
+						// Support: IE, Opera, Webkit
+						// TODO: identify versions
+						// getElementById can match elements by name instead of ID
+						if ( newContext && (elem = newContext.getElementById( m )) &&
+							contains( context, elem ) &&
+							elem.id === m ) {
+
+							results.push( elem );
+							return results;
+						}
+					}
+
+				// Type selector
+				} else if ( match[2] ) {
+					push.apply( results, context.getElementsByTagName( selector ) );
+					return results;
+
+				// Class selector
+				} else if ( (m = match[3]) && support.getElementsByClassName &&
+					context.getElementsByClassName ) {
+
+					push.apply( results, context.getElementsByClassName( m ) );
+					return results;
+				}
+			}
+
+			// Take advantage of querySelectorAll
+			if ( support.qsa &&
+				!compilerCache[ selector + " " ] &&
+				(!rbuggyQSA || !rbuggyQSA.test( selector )) ) {
+
+				if ( nodeType !== 1 ) {
+					newContext = context;
+					newSelector = selector;
+
+				// qSA looks outside Element context, which is not what we want
+				// Thanks to Andrew Dupont for this workaround technique
+				// Support: IE <=8
+				// Exclude object elements
+				} else if ( context.nodeName.toLowerCase() !== "object" ) {
+
+					// Capture the context ID, setting it first if necessary
+					if ( (nid = context.getAttribute( "id" )) ) {
+						nid = nid.replace( rescape, "\\$&" );
+					} else {
+						context.setAttribute( "id", (nid = expando) );
+					}
+
+					// Prefix every selector in the list
+					groups = tokenize( selector );
+					i = groups.length;
+					nidselect = ridentifier.test( nid ) ? "#" + nid : "[id='" + nid + "']";
+					while ( i-- ) {
+						groups[i] = nidselect + " " + toSelector( groups[i] );
+					}
+					newSelector = groups.join( "," );
+
+					// Expand context for sibling selectors
+					newContext = rsibling.test( selector ) && testContext( context.parentNode ) ||
+						context;
+				}
+
+				if ( newSelector ) {
+					try {
+						push.apply( results,
+							newContext.querySelectorAll( newSelector )
+						);
+						return results;
+					} catch ( qsaError ) {
+					} finally {
+						if ( nid === expando ) {
+							context.removeAttribute( "id" );
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// All others
+	return select( selector.replace( rtrim, "$1" ), context, results, seed );
+}
+
+/**
+ * Create key-value caches of limited size
+ * @returns {function(string, object)} Returns the Object data after storing it on itself with
+ *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+ *	deleting the oldest entry
+ */
+function createCache() {
+	var keys = [];
+
+	function cache( key, value ) {
+		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+		if ( keys.push( key + " " ) > Expr.cacheLength ) {
+			// Only keep the most recent entries
+			delete cache[ keys.shift() ];
+		}
+		return (cache[ key + " " ] = value);
+	}
+	return cache;
+}
+
+/**
+ * Mark a function for special use by Sizzle
+ * @param {Function} fn The function to mark
+ */
+function markFunction( fn ) {
+	fn[ expando ] = true;
+	return fn;
+}
+
+/**
+ * Support testing using an element
+ * @param {Function} fn Passed the created div and expects a boolean result
+ */
+function assert( fn ) {
+	var div = document.createElement("div");
+
+	try {
+		return !!fn( div );
+	} catch (e) {
+		return false;
+	} finally {
+		// Remove from its parent by default
+		if ( div.parentNode ) {
+			div.parentNode.removeChild( div );
+		}
+		// release memory in IE
+		div = null;
+	}
+}
+
+/**
+ * Adds the same handler for all of the specified attrs
+ * @param {String} attrs Pipe-separated list of attributes
+ * @param {Function} handler The method that will be applied
+ */
+function addHandle( attrs, handler ) {
+	var arr = attrs.split("|"),
+		i = arr.length;
+
+	while ( i-- ) {
+		Expr.attrHandle[ arr[i] ] = handler;
+	}
+}
+
+/**
+ * Checks document order of two siblings
+ * @param {Element} a
+ * @param {Element} b
+ * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
+ */
+function siblingCheck( a, b ) {
+	var cur = b && a,
+		diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
+			( ~b.sourceIndex || MAX_NEGATIVE ) -
+			( ~a.sourceIndex || MAX_NEGATIVE );
+
+	// Use IE sourceIndex if available on both nodes
+	if ( diff ) {
+		return diff;
+	}
+
+	// Check if b follows a
+	if ( cur ) {
+		while ( (cur = cur.nextSibling) ) {
+			if ( cur === b ) {
+				return -1;
+			}
+		}
+	}
+
+	return a ? 1 : -1;
+}
+
+/**
+ * Returns a function to use in pseudos for input types
+ * @param {String} type
+ */
+function createInputPseudo( type ) {
+	return function( elem ) {
+		var name = elem.nodeName.toLowerCase();
+		return name === "input" && elem.type === type;
+	};
+}
+
+/**
+ * Returns a function to use in pseudos for buttons
+ * @param {String} type
+ */
+function createButtonPseudo( type ) {
+	return function( elem ) {
+		var name = elem.nodeName.toLowerCase();
+		return (name === "input" || name === "button") && elem.type === type;
+	};
+}
+
+/**
+ * Returns a function to use in pseudos for positionals
+ * @param {Function} fn
+ */
+function createPositionalPseudo( fn ) {
+	return markFunction(function( argument ) {
+		argument = +argument;
+		return markFunction(function( seed, matches ) {
+			var j,
+				matchIndexes = fn( [], seed.length, argument ),
+				i = matchIndexes.length;
+
+			// Match elements found at the specified indexes
+			while ( i-- ) {
+				if ( seed[ (j = matchIndexes[i]) ] ) {
+					seed[j] = !(matches[j] = seed[j]);
+				}
+			}
+		});
+	});
+}
+
+/**
+ * Checks a node for validity as a Sizzle context
+ * @param {Element|Object=} context
+ * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
+ */
+function testContext( context ) {
+	return context && typeof context.getElementsByTagName !== "undefined" && context;
+}
+
+// Expose support vars for convenience
+support = Sizzle.support = {};
+
+/**
+ * Detects XML nodes
+ * @param {Element|Object} elem An element or a document
+ * @returns {Boolean} True iff elem is a non-HTML XML node
+ */
+isXML = Sizzle.isXML = function( elem ) {
+	// documentElement is verified for cases where it doesn't yet exist
+	// (such as loading iframes in IE - #4833)
+	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
+	return documentElement ? documentElement.nodeName !== "HTML" : false;
+};
+
+/**
+ * Sets document-related variables once based on the current document
+ * @param {Element|Object} [doc] An element or document object to use to set the document
+ * @returns {Object} Returns the current document
+ */
+setDocument = Sizzle.setDocument = function( node ) {
+	var hasCompare, parent,
+		doc = node ? node.ownerDocument || node : preferredDoc;
+
+	// Return early if doc is invalid or already selected
+	if ( doc === document || doc.nodeType !== 9 || !doc.documentElement ) {
+		return document;
+	}
+
+	// Update global variables
+	document = doc;
+	docElem = document.documentElement;
+	documentIsHTML = !isXML( document );
+
+	// Support: IE 9-11, Edge
+	// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
+	if ( (parent = document.defaultView) && parent.top !== parent ) {
+		// Support: IE 11
+		if ( parent.addEventListener ) {
+			parent.addEventListener( "unload", unloadHandler, false );
+
+		// Support: IE 9 - 10 only
+		} else if ( parent.attachEvent ) {
+			parent.attachEvent( "onunload", unloadHandler );
+		}
+	}
+
+	/* Attributes
+	---------------------------------------------------------------------- */
+
+	// Support: IE<8
+	// Verify that getAttribute really returns attributes and not properties
+	// (excepting IE8 booleans)
+	support.attributes = assert(function( div ) {
+		div.className = "i";
+		return !div.getAttribute("className");
+	});
+
+	/* getElement(s)By*
+	---------------------------------------------------------------------- */
+
+	// Check if getElementsByTagName("*") returns only elements
+	support.getElementsByTagName = assert(function( div ) {
+		div.appendChild( document.createComment("") );
+		return !div.getElementsByTagName("*").length;
+	});
+
+	// Support: IE<9
+	support.getElementsByClassName = rnative.test( document.getElementsByClassName );
+
+	// Support: IE<10
+	// Check if getElementById returns elements by name
+	// The broken getElementById methods don't pick up programatically-set names,
+	// so use a roundabout getElementsByName test
+	support.getById = assert(function( div ) {
+		docElem.appendChild( div ).id = expando;
+		return !document.getElementsByName || !document.getElementsByName( expando ).length;
+	});
+
+	// ID find and filter
+	if ( support.getById ) {
+		Expr.find["ID"] = function( id, context ) {
+			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
+				var m = context.getElementById( id );
+				return m ? [ m ] : [];
+			}
+		};
+		Expr.filter["ID"] = function( id ) {
+			var attrId = id.replace( runescape, funescape );
+			return function( elem ) {
+				return elem.getAttribute("id") === attrId;
+			};
+		};
+	} else {
+		// Support: IE6/7
+		// getElementById is not reliable as a find shortcut
+		delete Expr.find["ID"];
+
+		Expr.filter["ID"] =  function( id ) {
+			var attrId = id.replace( runescape, funescape );
+			return function( elem ) {
+				var node = typeof elem.getAttributeNode !== "undefined" &&
+					elem.getAttributeNode("id");
+				return node && node.value === attrId;
+			};
+		};
+	}
+
+	// Tag
+	Expr.find["TAG"] = support.getElementsByTagName ?
+		function( tag, context ) {
+			if ( typeof context.getElementsByTagName !== "undefined" ) {
+				return context.getElementsByTagName( tag );
+
+			// DocumentFragment nodes don't have gEBTN
+			} else if ( support.qsa ) {
+				return context.querySelectorAll( tag );
+			}
+		} :
+
+		function( tag, context ) {
+			var elem,
+				tmp = [],
+				i = 0,
+				// By happy coincidence, a (broken) gEBTN appears on DocumentFragment nodes too
+				results = context.getElementsByTagName( tag );
+
+			// Filter out possible comments
+			if ( tag === "*" ) {
+				while ( (elem = results[i++]) ) {
+					if ( elem.nodeType === 1 ) {
+						tmp.push( elem );
+					}
+				}
+
+				return tmp;
+			}
+			return results;
+		};
+
+	// Class
+	Expr.find["CLASS"] = support.getElementsByClassName && function( className, context ) {
+		if ( typeof context.getElementsByClassName !== "undefined" && documentIsHTML ) {
+			return context.getElementsByClassName( className );
+		}
+	};
+
+	/* QSA/matchesSelector
+	---------------------------------------------------------------------- */
+
+	// QSA and matchesSelector support
+
+	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+	rbuggyMatches = [];
+
+	// qSa(:focus) reports false when true (Chrome 21)
+	// We allow this because of a bug in IE8/9 that throws an error
+	// whenever `document.activeElement` is accessed on an iframe
+	// So, we allow :focus to pass through QSA all the time to avoid the IE error
+	// See http://bugs.jquery.com/ticket/13378
+	rbuggyQSA = [];
+
+	if ( (support.qsa = rnative.test( document.querySelectorAll )) ) {
+		// Build QSA regex
+		// Regex strategy adopted from Diego Perini
+		assert(function( div ) {
+			// Select is set to empty string on purpose
+			// This is to test IE's treatment of not explicitly
+			// setting a boolean content attribute,
+			// since its presence should be enough
+			// http://bugs.jquery.com/ticket/12359
+			docElem.appendChild( div ).innerHTML = "<a id='" + expando + "'></a>" +
+				"<select id='" + expando + "-\r\\' msallowcapture=''>" +
+				"<option selected=''></option></select>";
+
+			// Support: IE8, Opera 11-12.16
+			// Nothing should be selected when empty strings follow ^= or $= or *=
+			// The test attribute must be unknown in Opera but "safe" for WinRT
+			// http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
+			if ( div.querySelectorAll("[msallowcapture^='']").length ) {
+				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
+			}
+
+			// Support: IE8
+			// Boolean attributes and "value" are not treated correctly
+			if ( !div.querySelectorAll("[selected]").length ) {
+				rbuggyQSA.push( "\\[" + whitespace + "*(?:value|" + booleans + ")" );
+			}
+
+			// Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
+			if ( !div.querySelectorAll( "[id~=" + expando + "-]" ).length ) {
+				rbuggyQSA.push("~=");
+			}
+
+			// Webkit/Opera - :checked should return selected option elements
+			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
+			// IE8 throws error here and will not see later tests
+			if ( !div.querySelectorAll(":checked").length ) {
+				rbuggyQSA.push(":checked");
+			}
+
+			// Support: Safari 8+, iOS 8+
+			// https://bugs.webkit.org/show_bug.cgi?id=136851
+			// In-page `selector#id sibing-combinator selector` fails
+			if ( !div.querySelectorAll( "a#" + expando + "+*" ).length ) {
+				rbuggyQSA.push(".#.+[+~]");
+			}
+		});
+
+		assert(function( div ) {
+			// Support: Windows 8 Native Apps
+			// The type and name attributes are restricted during .innerHTML assignment
+			var input = document.createElement("input");
+			input.setAttribute( "type", "hidden" );
+			div.appendChild( input ).setAttribute( "name", "D" );
+
+			// Support: IE8
+			// Enforce case-sensitivity of name attribute
+			if ( div.querySelectorAll("[name=d]").length ) {
+				rbuggyQSA.push( "name" + whitespace + "*[*^$|!~]?=" );
+			}
+
+			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
+			// IE8 throws error here and will not see later tests
+			if ( !div.querySelectorAll(":enabled").length ) {
+				rbuggyQSA.push( ":enabled", ":disabled" );
+			}
+
+			// Opera 10-11 does not throw on post-comma invalid pseudos
+			div.querySelectorAll("*,:x");
+			rbuggyQSA.push(",.*:");
+		});
+	}
+
+	if ( (support.matchesSelector = rnative.test( (matches = docElem.matches ||
+		docElem.webkitMatchesSelector ||
+		docElem.mozMatchesSelector ||
+		docElem.oMatchesSelector ||
+		docElem.msMatchesSelector) )) ) {
+
+		assert(function( div ) {
+			// Check to see if it's possible to do matchesSelector
+			// on a disconnected node (IE 9)
+			support.disconnectedMatch = matches.call( div, "div" );
+
+			// This should fail with an exception
+			// Gecko does not error, returns false instead
+			matches.call( div, "[s!='']:x" );
+			rbuggyMatches.push( "!=", pseudos );
+		});
+	}
+
+	rbuggyQSA = rbuggyQSA.length && new RegExp( rbuggyQSA.join("|") );
+	rbuggyMatches = rbuggyMatches.length && new RegExp( rbuggyMatches.join("|") );
+
+	/* Contains
+	---------------------------------------------------------------------- */
+	hasCompare = rnative.test( docElem.compareDocumentPosition );
+
+	// Element contains another
+	// Purposefully self-exclusive
+	// As in, an element does not contain itself
+	contains = hasCompare || rnative.test( docElem.contains ) ?
+		function( a, b ) {
+			var adown = a.nodeType === 9 ? a.documentElement : a,
+				bup = b && b.parentNode;
+			return a === bup || !!( bup && bup.nodeType === 1 && (
+				adown.contains ?
+					adown.contains( bup ) :
+					a.compareDocumentPosition && a.compareDocumentPosition( bup ) & 16
+			));
+		} :
+		function( a, b ) {
+			if ( b ) {
+				while ( (b = b.parentNode) ) {
+					if ( b === a ) {
+						return true;
+					}
+				}
+			}
+			return false;
+		};
+
+	/* Sorting
+	---------------------------------------------------------------------- */
+
+	// Document order sorting
+	sortOrder = hasCompare ?
+	function( a, b ) {
+
+		// Flag for duplicate removal
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+		}
+
+		// Sort on method existence if only one input has compareDocumentPosition
+		var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
+		if ( compare ) {
+			return compare;
+		}
+
+		// Calculate position if both inputs belong to the same document
+		compare = ( a.ownerDocument || a ) === ( b.ownerDocument || b ) ?
+			a.compareDocumentPosition( b ) :
+
+			// Otherwise we know they are disconnected
+			1;
+
+		// Disconnected nodes
+		if ( compare & 1 ||
+			(!support.sortDetached && b.compareDocumentPosition( a ) === compare) ) {
+
+			// Choose the first element that is related to our preferred document
+			if ( a === document || a.ownerDocument === preferredDoc && contains(preferredDoc, a) ) {
+				return -1;
+			}
+			if ( b === document || b.ownerDocument === preferredDoc && contains(preferredDoc, b) ) {
+				return 1;
+			}
+
+			// Maintain original order
+			return sortInput ?
+				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
+				0;
+		}
+
+		return compare & 4 ? -1 : 1;
+	} :
+	function( a, b ) {
+		// Exit early if the nodes are identical
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+		}
+
+		var cur,
+			i = 0,
+			aup = a.parentNode,
+			bup = b.parentNode,
+			ap = [ a ],
+			bp = [ b ];
+
+		// Parentless nodes are either documents or disconnected
+		if ( !aup || !bup ) {
+			return a === document ? -1 :
+				b === document ? 1 :
+				aup ? -1 :
+				bup ? 1 :
+				sortInput ?
+				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
+				0;
+
+		// If the nodes are siblings, we can do a quick check
+		} else if ( aup === bup ) {
+			return siblingCheck( a, b );
+		}
+
+		// Otherwise we need full lists of their ancestors for comparison
+		cur = a;
+		while ( (cur = cur.parentNode) ) {
+			ap.unshift( cur );
+		}
+		cur = b;
+		while ( (cur = cur.parentNode) ) {
+			bp.unshift( cur );
+		}
+
+		// Walk down the tree looking for a discrepancy
+		while ( ap[i] === bp[i] ) {
+			i++;
+		}
+
+		return i ?
+			// Do a sibling check if the nodes have a common ancestor
+			siblingCheck( ap[i], bp[i] ) :
+
+			// Otherwise nodes in our document sort first
+			ap[i] === preferredDoc ? -1 :
+			bp[i] === preferredDoc ? 1 :
+			0;
+	};
+
+	return document;
+};
+
+Sizzle.matches = function( expr, elements ) {
+	return Sizzle( expr, null, null, elements );
+};
+
+Sizzle.matchesSelector = function( elem, expr ) {
+	// Set document vars if needed
+	if ( ( elem.ownerDocument || elem ) !== document ) {
+		setDocument( elem );
+	}
+
+	// Make sure that attribute selectors are quoted
+	expr = expr.replace( rattributeQuotes, "='$1']" );
+
+	if ( support.matchesSelector && documentIsHTML &&
+		!compilerCache[ expr + " " ] &&
+		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
+		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
+
+		try {
+			var ret = matches.call( elem, expr );
+
+			// IE 9's matchesSelector returns false on disconnected nodes
+			if ( ret || support.disconnectedMatch ||
+					// As well, disconnected nodes are said to be in a document
+					// fragment in IE 9
+					elem.document && elem.document.nodeType !== 11 ) {
+				return ret;
+			}
+		} catch (e) {}
+	}
+
+	return Sizzle( expr, document, null, [ elem ] ).length > 0;
+};
+
+Sizzle.contains = function( context, elem ) {
+	// Set document vars if needed
+	if ( ( context.ownerDocument || context ) !== document ) {
+		setDocument( context );
+	}
+	return contains( context, elem );
+};
+
+Sizzle.attr = function( elem, name ) {
+	// Set document vars if needed
+	if ( ( elem.ownerDocument || elem ) !== document ) {
+		setDocument( elem );
+	}
+
+	var fn = Expr.attrHandle[ name.toLowerCase() ],
+		// Don't get fooled by Object.prototype properties (jQuery #13807)
+		val = fn && hasOwn.call( Expr.attrHandle, name.toLowerCase() ) ?
+			fn( elem, name, !documentIsHTML ) :
+			undefined;
+
+	return val !== undefined ?
+		val :
+		support.attributes || !documentIsHTML ?
+			elem.getAttribute( name ) :
+			(val = elem.getAttributeNode(name)) && val.specified ?
+				val.value :
+				null;
+};
+
+Sizzle.error = function( msg ) {
+	throw new Error( "Syntax error, unrecognized expression: " + msg );
+};
+
+/**
+ * Document sorting and removing duplicates
+ * @param {ArrayLike} results
+ */
+Sizzle.uniqueSort = function( results ) {
+	var elem,
+		duplicates = [],
+		j = 0,
+		i = 0;
+
+	// Unless we *know* we can detect duplicates, assume their presence
+	hasDuplicate = !support.detectDuplicates;
+	sortInput = !support.sortStable && results.slice( 0 );
+	results.sort( sortOrder );
+
+	if ( hasDuplicate ) {
+		while ( (elem = results[i++]) ) {
+			if ( elem === results[ i ] ) {
+				j = duplicates.push( i );
+			}
+		}
+		while ( j-- ) {
+			results.splice( duplicates[ j ], 1 );
+		}
+	}
+
+	// Clear input after sorting to release objects
+	// See https://github.com/jquery/sizzle/pull/225
+	sortInput = null;
+
+	return results;
+};
+
+/**
+ * Utility function for retrieving the text value of an array of DOM nodes
+ * @param {Array|Element} elem
+ */
+getText = Sizzle.getText = function( elem ) {
+	var node,
+		ret = "",
+		i = 0,
+		nodeType = elem.nodeType;
+
+	if ( !nodeType ) {
+		// If no nodeType, this is expected to be an array
+		while ( (node = elem[i++]) ) {
+			// Do not traverse comment nodes
+			ret += getText( node );
+		}
+	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+		// Use textContent for elements
+		// innerText usage removed for consistency of new lines (jQuery #11153)
+		if ( typeof elem.textContent === "string" ) {
+			return elem.textContent;
+		} else {
+			// Traverse its children
+			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+				ret += getText( elem );
+			}
+		}
+	} else if ( nodeType === 3 || nodeType === 4 ) {
+		return elem.nodeValue;
+	}
+	// Do not include comment or processing instruction nodes
+
+	return ret;
+};
+
+Expr = Sizzle.selectors = {
+
+	// Can be adjusted by the user
+	cacheLength: 50,
+
+	createPseudo: markFunction,
+
+	match: matchExpr,
+
+	attrHandle: {},
+
+	find: {},
+
+	relative: {
+		">": { dir: "parentNode", first: true },
+		" ": { dir: "parentNode" },
+		"+": { dir: "previousSibling", first: true },
+		"~": { dir: "previousSibling" }
+	},
+
+	preFilter: {
+		"ATTR": function( match ) {
+			match[1] = match[1].replace( runescape, funescape );
+
+			// Move the given value to match[3] whether quoted or unquoted
+			match[3] = ( match[3] || match[4] || match[5] || "" ).replace( runescape, funescape );
+
+			if ( match[2] === "~=" ) {
+				match[3] = " " + match[3] + " ";
+			}
+
+			return match.slice( 0, 4 );
+		},
+
+		"CHILD": function( match ) {
+			/* matches from matchExpr["CHILD"]
+				1 type (only|nth|...)
+				2 what (child|of-type)
+				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
+				4 xn-component of xn+y argument ([+-]?\d*n|)
+				5 sign of xn-component
+				6 x of xn-component
+				7 sign of y-component
+				8 y of y-component
+			*/
+			match[1] = match[1].toLowerCase();
+
+			if ( match[1].slice( 0, 3 ) === "nth" ) {
+				// nth-* requires argument
+				if ( !match[3] ) {
+					Sizzle.error( match[0] );
+				}
+
+				// numeric x and y parameters for Expr.filter.CHILD
+				// remember that false/true cast respectively to 0/1
+				match[4] = +( match[4] ? match[5] + (match[6] || 1) : 2 * ( match[3] === "even" || match[3] === "odd" ) );
+				match[5] = +( ( match[7] + match[8] ) || match[3] === "odd" );
+
+			// other types prohibit arguments
+			} else if ( match[3] ) {
+				Sizzle.error( match[0] );
+			}
+
+			return match;
+		},
+
+		"PSEUDO": function( match ) {
+			var excess,
+				unquoted = !match[6] && match[2];
+
+			if ( matchExpr["CHILD"].test( match[0] ) ) {
+				return null;
+			}
+
+			// Accept quoted arguments as-is
+			if ( match[3] ) {
+				match[2] = match[4] || match[5] || "";
+
+			// Strip excess characters from unquoted arguments
+			} else if ( unquoted && rpseudo.test( unquoted ) &&
+				// Get excess from tokenize (recursively)
+				(excess = tokenize( unquoted, true )) &&
+				// advance to the next closing parenthesis
+				(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
+
+				// excess is a negative index
+				match[0] = match[0].slice( 0, excess );
+				match[2] = unquoted.slice( 0, excess );
+			}
+
+			// Return only captures needed by the pseudo filter method (type and argument)
+			return match.slice( 0, 3 );
+		}
+	},
+
+	filter: {
+
+		"TAG": function( nodeNameSelector ) {
+			var nodeName = nodeNameSelector.replace( runescape, funescape ).toLowerCase();
+			return nodeNameSelector === "*" ?
+				function() { return true; } :
+				function( elem ) {
+					return elem.nodeName && elem.nodeName.toLowerCase() === nodeName;
+				};
+		},
+
+		"CLASS": function( className ) {
+			var pattern = classCache[ className + " " ];
+
+			return pattern ||
+				(pattern = new RegExp( "(^|" + whitespace + ")" + className + "(" + whitespace + "|$)" )) &&
+				classCache( className, function( elem ) {
+					return pattern.test( typeof elem.className === "string" && elem.className || typeof elem.getAttribute !== "undefined" && elem.getAttribute("class") || "" );
+				});
+		},
+
+		"ATTR": function( name, operator, check ) {
+			return function( elem ) {
+				var result = Sizzle.attr( elem, name );
+
+				if ( result == null ) {
+					return operator === "!=";
+				}
+				if ( !operator ) {
+					return true;
+				}
+
+				result += "";
+
+				return operator === "=" ? result === check :
+					operator === "!=" ? result !== check :
+					operator === "^=" ? check && result.indexOf( check ) === 0 :
+					operator === "*=" ? check && result.indexOf( check ) > -1 :
+					operator === "$=" ? check && result.slice( -check.length ) === check :
+					operator === "~=" ? ( " " + result.replace( rwhitespace, " " ) + " " ).indexOf( check ) > -1 :
+					operator === "|=" ? result === check || result.slice( 0, check.length + 1 ) === check + "-" :
+					false;
+			};
+		},
+
+		"CHILD": function( type, what, argument, first, last ) {
+			var simple = type.slice( 0, 3 ) !== "nth",
+				forward = type.slice( -4 ) !== "last",
+				ofType = what === "of-type";
+
+			return first === 1 && last === 0 ?
+
+				// Shortcut for :nth-*(n)
+				function( elem ) {
+					return !!elem.parentNode;
+				} :
+
+				function( elem, context, xml ) {
+					var cache, uniqueCache, outerCache, node, nodeIndex, start,
+						dir = simple !== forward ? "nextSibling" : "previousSibling",
+						parent = elem.parentNode,
+						name = ofType && elem.nodeName.toLowerCase(),
+						useCache = !xml && !ofType,
+						diff = false;
+
+					if ( parent ) {
+
+						// :(first|last|only)-(child|of-type)
+						if ( simple ) {
+							while ( dir ) {
+								node = elem;
+								while ( (node = node[ dir ]) ) {
+									if ( ofType ?
+										node.nodeName.toLowerCase() === name :
+										node.nodeType === 1 ) {
+
+										return false;
+									}
+								}
+								// Reverse direction for :only-* (if we haven't yet done so)
+								start = dir = type === "only" && !start && "nextSibling";
+							}
+							return true;
+						}
+
+						start = [ forward ? parent.firstChild : parent.lastChild ];
+
+						// non-xml :nth-child(...) stores cache data on `parent`
+						if ( forward && useCache ) {
+
+							// Seek `elem` from a previously-cached index
+
+							// ...in a gzip-friendly way
+							node = parent;
+							outerCache = node[ expando ] || (node[ expando ] = {});
+
+							// Support: IE <9 only
+							// Defend against cloned attroperties (jQuery gh-1709)
+							uniqueCache = outerCache[ node.uniqueID ] ||
+								(outerCache[ node.uniqueID ] = {});
+
+							cache = uniqueCache[ type ] || [];
+							nodeIndex = cache[ 0 ] === dirruns && cache[ 1 ];
+							diff = nodeIndex && cache[ 2 ];
+							node = nodeIndex && parent.childNodes[ nodeIndex ];
+
+							while ( (node = ++nodeIndex && node && node[ dir ] ||
+
+								// Fallback to seeking `elem` from the start
+								(diff = nodeIndex = 0) || start.pop()) ) {
+
+								// When found, cache indexes on `parent` and break
+								if ( node.nodeType === 1 && ++diff && node === elem ) {
+									uniqueCache[ type ] = [ dirruns, nodeIndex, diff ];
+									break;
+								}
+							}
+
+						} else {
+							// Use previously-cached element index if available
+							if ( useCache ) {
+								// ...in a gzip-friendly way
+								node = elem;
+								outerCache = node[ expando ] || (node[ expando ] = {});
+
+								// Support: IE <9 only
+								// Defend against cloned attroperties (jQuery gh-1709)
+								uniqueCache = outerCache[ node.uniqueID ] ||
+									(outerCache[ node.uniqueID ] = {});
+
+								cache = uniqueCache[ type ] || [];
+								nodeIndex = cache[ 0 ] === dirruns && cache[ 1 ];
+								diff = nodeIndex;
+							}
+
+							// xml :nth-child(...)
+							// or :nth-last-child(...) or :nth(-last)?-of-type(...)
+							if ( diff === false ) {
+								// Use the same loop as above to seek `elem` from the start
+								while ( (node = ++nodeIndex && node && node[ dir ] ||
+									(diff = nodeIndex = 0) || start.pop()) ) {
+
+									if ( ( ofType ?
+										node.nodeName.toLowerCase() === name :
+										node.nodeType === 1 ) &&
+										++diff ) {
+
+										// Cache the index of each encountered element
+										if ( useCache ) {
+											outerCache = node[ expando ] || (node[ expando ] = {});
+
+											// Support: IE <9 only
+											// Defend against cloned attroperties (jQuery gh-1709)
+											uniqueCache = outerCache[ node.uniqueID ] ||
+												(outerCache[ node.uniqueID ] = {});
+
+											uniqueCache[ type ] = [ dirruns, diff ];
+										}
+
+										if ( node === elem ) {
+											break;
+										}
+									}
+								}
+							}
+						}
+
+						// Incorporate the offset, then check against cycle size
+						diff -= last;
+						return diff === first || ( diff % first === 0 && diff / first >= 0 );
+					}
+				};
+		},
+
+		"PSEUDO": function( pseudo, argument ) {
+			// pseudo-class names are case-insensitive
+			// http://www.w3.org/TR/selectors/#pseudo-classes
+			// Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
+			// Remember that setFilters inherits from pseudos
+			var args,
+				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
+					Sizzle.error( "unsupported pseudo: " + pseudo );
+
+			// The user may use createPseudo to indicate that
+			// arguments are needed to create the filter function
+			// just as Sizzle does
+			if ( fn[ expando ] ) {
+				return fn( argument );
+			}
+
+			// But maintain support for old signatures
+			if ( fn.length > 1 ) {
+				args = [ pseudo, pseudo, "", argument ];
+				return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
+					markFunction(function( seed, matches ) {
+						var idx,
+							matched = fn( seed, argument ),
+							i = matched.length;
+						while ( i-- ) {
+							idx = indexOf( seed, matched[i] );
+							seed[ idx ] = !( matches[ idx ] = matched[i] );
+						}
+					}) :
+					function( elem ) {
+						return fn( elem, 0, args );
+					};
+			}
+
+			return fn;
+		}
+	},
+
+	pseudos: {
+		// Potentially complex pseudos
+		"not": markFunction(function( selector ) {
+			// Trim the selector passed to compile
+			// to avoid treating leading and trailing
+			// spaces as combinators
+			var input = [],
+				results = [],
+				matcher = compile( selector.replace( rtrim, "$1" ) );
+
+			return matcher[ expando ] ?
+				markFunction(function( seed, matches, context, xml ) {
+					var elem,
+						unmatched = matcher( seed, null, xml, [] ),
+						i = seed.length;
+
+					// Match elements unmatched by `matcher`
+					while ( i-- ) {
+						if ( (elem = unmatched[i]) ) {
+							seed[i] = !(matches[i] = elem);
+						}
+					}
+				}) :
+				function( elem, context, xml ) {
+					input[0] = elem;
+					matcher( input, null, xml, results );
+					// Don't keep the element (issue #299)
+					input[0] = null;
+					return !results.pop();
+				};
+		}),
+
+		"has": markFunction(function( selector ) {
+			return function( elem ) {
+				return Sizzle( selector, elem ).length > 0;
+			};
+		}),
+
+		"contains": markFunction(function( text ) {
+			text = text.replace( runescape, funescape );
+			return function( elem ) {
+				return ( elem.textContent || elem.innerText || getText( elem ) ).indexOf( text ) > -1;
+			};
+		}),
+
+		// "Whether an element is represented by a :lang() selector
+		// is based solely on the element's language value
+		// being equal to the identifier C,
+		// or beginning with the identifier C immediately followed by "-".
+		// The matching of C against the element's language value is performed case-insensitively.
+		// The identifier C does not have to be a valid language name."
+		// http://www.w3.org/TR/selectors/#lang-pseudo
+		"lang": markFunction( function( lang ) {
+			// lang value must be a valid identifier
+			if ( !ridentifier.test(lang || "") ) {
+				Sizzle.error( "unsupported lang: " + lang );
+			}
+			lang = lang.replace( runescape, funescape ).toLowerCase();
+			return function( elem ) {
+				var elemLang;
+				do {
+					if ( (elemLang = documentIsHTML ?
+						elem.lang :
+						elem.getAttribute("xml:lang") || elem.getAttribute("lang")) ) {
+
+						elemLang = elemLang.toLowerCase();
+						return elemLang === lang || elemLang.indexOf( lang + "-" ) === 0;
+					}
+				} while ( (elem = elem.parentNode) && elem.nodeType === 1 );
+				return false;
+			};
+		}),
+
+		// Miscellaneous
+		"target": function( elem ) {
+			var hash = window.location && window.location.hash;
+			return hash && hash.slice( 1 ) === elem.id;
+		},
+
+		"root": function( elem ) {
+			return elem === docElem;
+		},
+
+		"focus": function( elem ) {
+			return elem === document.activeElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
+		},
+
+		// Boolean properties
+		"enabled": function( elem ) {
+			return elem.disabled === false;
+		},
+
+		"disabled": function( elem ) {
+			return elem.disabled === true;
+		},
+
+		"checked": function( elem ) {
+			// In CSS3, :checked should return both checked and selected elements
+			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
+			var nodeName = elem.nodeName.toLowerCase();
+			return (nodeName === "input" && !!elem.checked) || (nodeName === "option" && !!elem.selected);
+		},
+
+		"selected": function( elem ) {
+			// Accessing this property makes selected-by-default
+			// options in Safari work properly
+			if ( elem.parentNode ) {
+				elem.parentNode.selectedIndex;
+			}
+
+			return elem.selected === true;
+		},
+
+		// Contents
+		"empty": function( elem ) {
+			// http://www.w3.org/TR/selectors/#empty-pseudo
+			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
+			//   but not by others (comment: 8; processing instruction: 7; etc.)
+			// nodeType < 6 works because attributes (2) do not appear as children
+			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+				if ( elem.nodeType < 6 ) {
+					return false;
+				}
+			}
+			return true;
+		},
+
+		"parent": function( elem ) {
+			return !Expr.pseudos["empty"]( elem );
+		},
+
+		// Element/input types
+		"header": function( elem ) {
+			return rheader.test( elem.nodeName );
+		},
+
+		"input": function( elem ) {
+			return rinputs.test( elem.nodeName );
+		},
+
+		"button": function( elem ) {
+			var name = elem.nodeName.toLowerCase();
+			return name === "input" && elem.type === "button" || name === "button";
+		},
+
+		"text": function( elem ) {
+			var attr;
+			return elem.nodeName.toLowerCase() === "input" &&
+				elem.type === "text" &&
+
+				// Support: IE<8
+				// New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
+				( (attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text" );
+		},
+
+		// Position-in-collection
+		"first": createPositionalPseudo(function() {
+			return [ 0 ];
+		}),
+
+		"last": createPositionalPseudo(function( matchIndexes, length ) {
+			return [ length - 1 ];
+		}),
+
+		"eq": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			return [ argument < 0 ? argument + length : argument ];
+		}),
+
+		"even": createPositionalPseudo(function( matchIndexes, length ) {
+			var i = 0;
+			for ( ; i < length; i += 2 ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"odd": createPositionalPseudo(function( matchIndexes, length ) {
+			var i = 1;
+			for ( ; i < length; i += 2 ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"lt": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			var i = argument < 0 ? argument + length : argument;
+			for ( ; --i >= 0; ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"gt": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			var i = argument < 0 ? argument + length : argument;
+			for ( ; ++i < length; ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		})
+	}
+};
+
+Expr.pseudos["nth"] = Expr.pseudos["eq"];
+
+// Add button/input type pseudos
+for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
+	Expr.pseudos[ i ] = createInputPseudo( i );
+}
+for ( i in { submit: true, reset: true } ) {
+	Expr.pseudos[ i ] = createButtonPseudo( i );
+}
+
+// Easy API for creating new setFilters
+function setFilters() {}
+setFilters.prototype = Expr.filters = Expr.pseudos;
+Expr.setFilters = new setFilters();
+
+tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
+	var matched, match, tokens, type,
+		soFar, groups, preFilters,
+		cached = tokenCache[ selector + " " ];
+
+	if ( cached ) {
+		return parseOnly ? 0 : cached.slice( 0 );
+	}
+
+	soFar = selector;
+	groups = [];
+	preFilters = Expr.preFilter;
+
+	while ( soFar ) {
+
+		// Comma and first run
+		if ( !matched || (match = rcomma.exec( soFar )) ) {
+			if ( match ) {
+				// Don't consume trailing commas as valid
+				soFar = soFar.slice( match[0].length ) || soFar;
+			}
+			groups.push( (tokens = []) );
+		}
+
+		matched = false;
+
+		// Combinators
+		if ( (match = rcombinators.exec( soFar )) ) {
+			matched = match.shift();
+			tokens.push({
+				value: matched,
+				// Cast descendant combinators to space
+				type: match[0].replace( rtrim, " " )
+			});
+			soFar = soFar.slice( matched.length );
+		}
+
+		// Filters
+		for ( type in Expr.filter ) {
+			if ( (match = matchExpr[ type ].exec( soFar )) && (!preFilters[ type ] ||
+				(match = preFilters[ type ]( match ))) ) {
+				matched = match.shift();
+				tokens.push({
+					value: matched,
+					type: type,
+					matches: match
+				});
+				soFar = soFar.slice( matched.length );
+			}
+		}
+
+		if ( !matched ) {
+			break;
+		}
+	}
+
+	// Return the length of the invalid excess
+	// if we're just parsing
+	// Otherwise, throw an error or return tokens
+	return parseOnly ?
+		soFar.length :
+		soFar ?
+			Sizzle.error( selector ) :
+			// Cache the tokens
+			tokenCache( selector, groups ).slice( 0 );
+};
+
+function toSelector( tokens ) {
+	var i = 0,
+		len = tokens.length,
+		selector = "";
+	for ( ; i < len; i++ ) {
+		selector += tokens[i].value;
+	}
+	return selector;
+}
+
+function addCombinator( matcher, combinator, base ) {
+	var dir = combinator.dir,
+		checkNonElements = base && dir === "parentNode",
+		doneName = done++;
+
+	return combinator.first ?
+		// Check against closest ancestor/preceding element
+		function( elem, context, xml ) {
+			while ( (elem = elem[ dir ]) ) {
+				if ( elem.nodeType === 1 || checkNonElements ) {
+					return matcher( elem, context, xml );
+				}
+			}
+		} :
+
+		// Check against all ancestor/preceding elements
+		function( elem, context, xml ) {
+			var oldCache, uniqueCache, outerCache,
+				newCache = [ dirruns, doneName ];
+
+			// We can't set arbitrary data on XML nodes, so they don't benefit from combinator caching
+			if ( xml ) {
+				while ( (elem = elem[ dir ]) ) {
+					if ( elem.nodeType === 1 || checkNonElements ) {
+						if ( matcher( elem, context, xml ) ) {
+							return true;
+						}
+					}
+				}
+			} else {
+				while ( (elem = elem[ dir ]) ) {
+					if ( elem.nodeType === 1 || checkNonElements ) {
+						outerCache = elem[ expando ] || (elem[ expando ] = {});
+
+						// Support: IE <9 only
+						// Defend against cloned attroperties (jQuery gh-1709)
+						uniqueCache = outerCache[ elem.uniqueID ] || (outerCache[ elem.uniqueID ] = {});
+
+						if ( (oldCache = uniqueCache[ dir ]) &&
+							oldCache[ 0 ] === dirruns && oldCache[ 1 ] === doneName ) {
+
+							// Assign to newCache so results back-propagate to previous elements
+							return (newCache[ 2 ] = oldCache[ 2 ]);
+						} else {
+							// Reuse newcache so results back-propagate to previous elements
+							uniqueCache[ dir ] = newCache;
+
+							// A match means we're done; a fail means we have to keep checking
+							if ( (newCache[ 2 ] = matcher( elem, context, xml )) ) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		};
+}
+
+function elementMatcher( matchers ) {
+	return matchers.length > 1 ?
+		function( elem, context, xml ) {
+			var i = matchers.length;
+			while ( i-- ) {
+				if ( !matchers[i]( elem, context, xml ) ) {
+					return false;
+				}
+			}
+			return true;
+		} :
+		matchers[0];
+}
+
+function multipleContexts( selector, contexts, results ) {
+	var i = 0,
+		len = contexts.length;
+	for ( ; i < len; i++ ) {
+		Sizzle( selector, contexts[i], results );
+	}
+	return results;
+}
+
+function condense( unmatched, map, filter, context, xml ) {
+	var elem,
+		newUnmatched = [],
+		i = 0,
+		len = unmatched.length,
+		mapped = map != null;
+
+	for ( ; i < len; i++ ) {
+		if ( (elem = unmatched[i]) ) {
+			if ( !filter || filter( elem, context, xml ) ) {
+				newUnmatched.push( elem );
+				if ( mapped ) {
+					map.push( i );
+				}
+			}
+		}
+	}
+
+	return newUnmatched;
+}
+
+function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postSelector ) {
+	if ( postFilter && !postFilter[ expando ] ) {
+		postFilter = setMatcher( postFilter );
+	}
+	if ( postFinder && !postFinder[ expando ] ) {
+		postFinder = setMatcher( postFinder, postSelector );
+	}
+	return markFunction(function( seed, results, context, xml ) {
+		var temp, i, elem,
+			preMap = [],
+			postMap = [],
+			preexisting = results.length,
+
+			// Get initial elements from seed or context
+			elems = seed || multipleContexts( selector || "*", context.nodeType ? [ context ] : context, [] ),
+
+			// Prefilter to get matcher input, preserving a map for seed-results synchronization
+			matcherIn = preFilter && ( seed || !selector ) ?
+				condense( elems, preMap, preFilter, context, xml ) :
+				elems,
+
+			matcherOut = matcher ?
+				// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
+				postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
+
+					// ...intermediate processing is necessary
+					[] :
+
+					// ...otherwise use results directly
+					results :
+				matcherIn;
+
+		// Find primary matches
+		if ( matcher ) {
+			matcher( matcherIn, matcherOut, context, xml );
+		}
+
+		// Apply postFilter
+		if ( postFilter ) {
+			temp = condense( matcherOut, postMap );
+			postFilter( temp, [], context, xml );
+
+			// Un-match failing elements by moving them back to matcherIn
+			i = temp.length;
+			while ( i-- ) {
+				if ( (elem = temp[i]) ) {
+					matcherOut[ postMap[i] ] = !(matcherIn[ postMap[i] ] = elem);
+				}
+			}
+		}
+
+		if ( seed ) {
+			if ( postFinder || preFilter ) {
+				if ( postFinder ) {
+					// Get the final matcherOut by condensing this intermediate into postFinder contexts
+					temp = [];
+					i = matcherOut.length;
+					while ( i-- ) {
+						if ( (elem = matcherOut[i]) ) {
+							// Restore matcherIn since elem is not yet a final match
+							temp.push( (matcherIn[i] = elem) );
+						}
+					}
+					postFinder( null, (matcherOut = []), temp, xml );
+				}
+
+				// Move matched elements from seed to results to keep them synchronized
+				i = matcherOut.length;
+				while ( i-- ) {
+					if ( (elem = matcherOut[i]) &&
+						(temp = postFinder ? indexOf( seed, elem ) : preMap[i]) > -1 ) {
+
+						seed[temp] = !(results[temp] = elem);
+					}
+				}
+			}
+
+		// Add elements to results, through postFinder if defined
+		} else {
+			matcherOut = condense(
+				matcherOut === results ?
+					matcherOut.splice( preexisting, matcherOut.length ) :
+					matcherOut
+			);
+			if ( postFinder ) {
+				postFinder( null, results, matcherOut, xml );
+			} else {
+				push.apply( results, matcherOut );
+			}
+		}
+	});
+}
+
+function matcherFromTokens( tokens ) {
+	var checkContext, matcher, j,
+		len = tokens.length,
+		leadingRelative = Expr.relative[ tokens[0].type ],
+		implicitRelative = leadingRelative || Expr.relative[" "],
+		i = leadingRelative ? 1 : 0,
+
+		// The foundational matcher ensures that elements are reachable from top-level context(s)
+		matchContext = addCombinator( function( elem ) {
+			return elem === checkContext;
+		}, implicitRelative, true ),
+		matchAnyContext = addCombinator( function( elem ) {
+			return indexOf( checkContext, elem ) > -1;
+		}, implicitRelative, true ),
+		matchers = [ function( elem, context, xml ) {
+			var ret = ( !leadingRelative && ( xml || context !== outermostContext ) ) || (
+				(checkContext = context).nodeType ?
+					matchContext( elem, context, xml ) :
+					matchAnyContext( elem, context, xml ) );
+			// Avoid hanging onto element (issue #299)
+			checkContext = null;
+			return ret;
+		} ];
+
+	for ( ; i < len; i++ ) {
+		if ( (matcher = Expr.relative[ tokens[i].type ]) ) {
+			matchers = [ addCombinator(elementMatcher( matchers ), matcher) ];
+		} else {
+			matcher = Expr.filter[ tokens[i].type ].apply( null, tokens[i].matches );
+
+			// Return special upon seeing a positional matcher
+			if ( matcher[ expando ] ) {
+				// Find the next relative operator (if any) for proper handling
+				j = ++i;
+				for ( ; j < len; j++ ) {
+					if ( Expr.relative[ tokens[j].type ] ) {
+						break;
+					}
+				}
+				return setMatcher(
+					i > 1 && elementMatcher( matchers ),
+					i > 1 && toSelector(
+						// If the preceding token was a descendant combinator, insert an implicit any-element `*`
+						tokens.slice( 0, i - 1 ).concat({ value: tokens[ i - 2 ].type === " " ? "*" : "" })
+					).replace( rtrim, "$1" ),
+					matcher,
+					i < j && matcherFromTokens( tokens.slice( i, j ) ),
+					j < len && matcherFromTokens( (tokens = tokens.slice( j )) ),
+					j < len && toSelector( tokens )
+				);
+			}
+			matchers.push( matcher );
+		}
+	}
+
+	return elementMatcher( matchers );
+}
+
+function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
+	var bySet = setMatchers.length > 0,
+		byElement = elementMatchers.length > 0,
+		superMatcher = function( seed, context, xml, results, outermost ) {
+			var elem, j, matcher,
+				matchedCount = 0,
+				i = "0",
+				unmatched = seed && [],
+				setMatched = [],
+				contextBackup = outermostContext,
+				// We must always have either seed elements or outermost context
+				elems = seed || byElement && Expr.find["TAG"]( "*", outermost ),
+				// Use integer dirruns iff this is the outermost matcher
+				dirrunsUnique = (dirruns += contextBackup == null ? 1 : Math.random() || 0.1),
+				len = elems.length;
+
+			if ( outermost ) {
+				outermostContext = context === document || context || outermost;
+			}
+
+			// Add elements passing elementMatchers directly to results
+			// Support: IE<9, Safari
+			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+			for ( ; i !== len && (elem = elems[i]) != null; i++ ) {
+				if ( byElement && elem ) {
+					j = 0;
+					if ( !context && elem.ownerDocument !== document ) {
+						setDocument( elem );
+						xml = !documentIsHTML;
+					}
+					while ( (matcher = elementMatchers[j++]) ) {
+						if ( matcher( elem, context || document, xml) ) {
+							results.push( elem );
+							break;
+						}
+					}
+					if ( outermost ) {
+						dirruns = dirrunsUnique;
+					}
+				}
+
+				// Track unmatched elements for set filters
+				if ( bySet ) {
+					// They will have gone through all possible matchers
+					if ( (elem = !matcher && elem) ) {
+						matchedCount--;
+					}
+
+					// Lengthen the array for every element, matched or not
+					if ( seed ) {
+						unmatched.push( elem );
+					}
+				}
+			}
+
+			// `i` is now the count of elements visited above, and adding it to `matchedCount`
+			// makes the latter nonnegative.
+			matchedCount += i;
+
+			// Apply set filters to unmatched elements
+			// NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
+			// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
+			// no element matchers and no seed.
+			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
+			// case, which will result in a "00" `matchedCount` that differs from `i` but is also
+			// numerically zero.
+			if ( bySet && i !== matchedCount ) {
+				j = 0;
+				while ( (matcher = setMatchers[j++]) ) {
+					matcher( unmatched, setMatched, context, xml );
+				}
+
+				if ( seed ) {
+					// Reintegrate element matches to eliminate the need for sorting
+					if ( matchedCount > 0 ) {
+						while ( i-- ) {
+							if ( !(unmatched[i] || setMatched[i]) ) {
+								setMatched[i] = pop.call( results );
+							}
+						}
+					}
+
+					// Discard index placeholder values to get only actual matches
+					setMatched = condense( setMatched );
+				}
+
+				// Add matches to results
+				push.apply( results, setMatched );
+
+				// Seedless set matches succeeding multiple successful matchers stipulate sorting
+				if ( outermost && !seed && setMatched.length > 0 &&
+					( matchedCount + setMatchers.length ) > 1 ) {
+
+					Sizzle.uniqueSort( results );
+				}
+			}
+
+			// Override manipulation of globals by nested matchers
+			if ( outermost ) {
+				dirruns = dirrunsUnique;
+				outermostContext = contextBackup;
+			}
+
+			return unmatched;
+		};
+
+	return bySet ?
+		markFunction( superMatcher ) :
+		superMatcher;
+}
+
+compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
+	var i,
+		setMatchers = [],
+		elementMatchers = [],
+		cached = compilerCache[ selector + " " ];
+
+	if ( !cached ) {
+		// Generate a function of recursive functions that can be used to check each element
+		if ( !match ) {
+			match = tokenize( selector );
+		}
+		i = match.length;
+		while ( i-- ) {
+			cached = matcherFromTokens( match[i] );
+			if ( cached[ expando ] ) {
+				setMatchers.push( cached );
+			} else {
+				elementMatchers.push( cached );
+			}
+		}
+
+		// Cache the compiled function
+		cached = compilerCache( selector, matcherFromGroupMatchers( elementMatchers, setMatchers ) );
+
+		// Save selector and tokenization
+		cached.selector = selector;
+	}
+	return cached;
+};
+
+/**
+ * A low-level selection function that works with Sizzle's compiled
+ *  selector functions
+ * @param {String|Function} selector A selector or a pre-compiled
+ *  selector function built with Sizzle.compile
+ * @param {Element} context
+ * @param {Array} [results]
+ * @param {Array} [seed] A set of elements to match against
+ */
+select = Sizzle.select = function( selector, context, results, seed ) {
+	var i, tokens, token, type, find,
+		compiled = typeof selector === "function" && selector,
+		match = !seed && tokenize( (selector = compiled.selector || selector) );
+
+	results = results || [];
+
+	// Try to minimize operations if there is only one selector in the list and no seed
+	// (the latter of which guarantees us context)
+	if ( match.length === 1 ) {
+
+		// Reduce context if the leading compound selector is an ID
+		tokens = match[0] = match[0].slice( 0 );
+		if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
+				support.getById && context.nodeType === 9 && documentIsHTML &&
+				Expr.relative[ tokens[1].type ] ) {
+
+			context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+			if ( !context ) {
+				return results;
+
+			// Precompiled matchers will still verify ancestry, so step up a level
+			} else if ( compiled ) {
+				context = context.parentNode;
+			}
+
+			selector = selector.slice( tokens.shift().value.length );
+		}
+
+		// Fetch a seed set for right-to-left matching
+		i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
+		while ( i-- ) {
+			token = tokens[i];
+
+			// Abort if we hit a combinator
+			if ( Expr.relative[ (type = token.type) ] ) {
+				break;
+			}
+			if ( (find = Expr.find[ type ]) ) {
+				// Search, expanding context for leading sibling combinators
+				if ( (seed = find(
+					token.matches[0].replace( runescape, funescape ),
+					rsibling.test( tokens[0].type ) && testContext( context.parentNode ) || context
+				)) ) {
+
+					// If seed is empty or no tokens remain, we can return early
+					tokens.splice( i, 1 );
+					selector = seed.length && toSelector( tokens );
+					if ( !selector ) {
+						push.apply( results, seed );
+						return results;
+					}
+
+					break;
+				}
+			}
+		}
+	}
+
+	// Compile and execute a filtering function if one is not provided
+	// Provide `match` to avoid retokenization if we modified the selector above
+	( compiled || compile( selector, match ) )(
+		seed,
+		context,
+		!documentIsHTML,
+		results,
+		!context || rsibling.test( selector ) && testContext( context.parentNode ) || context
+	);
+	return results;
+};
+
+// One-time assignments
+
+// Sort stability
+support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
+
+// Support: Chrome 14-35+
+// Always assume duplicates if they aren't passed to the comparison function
+support.detectDuplicates = !!hasDuplicate;
+
+// Initialize against the default document
+setDocument();
+
+// Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
+// Detached nodes confoundingly follow *each other*
+support.sortDetached = assert(function( div1 ) {
+	// Should return 1, but returns 4 (following)
+	return div1.compareDocumentPosition( document.createElement("div") ) & 1;
+});
+
+// Support: IE<8
+// Prevent attribute/property "interpolation"
+// http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
+if ( !assert(function( div ) {
+	div.innerHTML = "<a href='#'></a>";
+	return div.firstChild.getAttribute("href") === "#" ;
+}) ) {
+	addHandle( "type|href|height|width", function( elem, name, isXML ) {
+		if ( !isXML ) {
+			return elem.getAttribute( name, name.toLowerCase() === "type" ? 1 : 2 );
+		}
+	});
+}
+
+// Support: IE<9
+// Use defaultValue in place of getAttribute("value")
+if ( !support.attributes || !assert(function( div ) {
+	div.innerHTML = "<input/>";
+	div.firstChild.setAttribute( "value", "" );
+	return div.firstChild.getAttribute( "value" ) === "";
+}) ) {
+	addHandle( "value", function( elem, name, isXML ) {
+		if ( !isXML && elem.nodeName.toLowerCase() === "input" ) {
+			return elem.defaultValue;
+		}
+	});
+}
+
+// Support: IE<9
+// Use getAttributeNode to fetch booleans when getAttribute lies
+if ( !assert(function( div ) {
+	return div.getAttribute("disabled") == null;
+}) ) {
+	addHandle( booleans, function( elem, name, isXML ) {
+		var val;
+		if ( !isXML ) {
+			return elem[ name ] === true ? name.toLowerCase() :
+					(val = elem.getAttributeNode( name )) && val.specified ?
+					val.value :
+				null;
+		}
+	});
+}
+
+return Sizzle;
+
+})( window );
+
+
+
+jQuery.find = Sizzle;
+jQuery.expr = Sizzle.selectors;
+jQuery.expr[ ":" ] = jQuery.expr.pseudos;
+jQuery.uniqueSort = jQuery.unique = Sizzle.uniqueSort;
+jQuery.text = Sizzle.getText;
+jQuery.isXMLDoc = Sizzle.isXML;
+jQuery.contains = Sizzle.contains;
+
+
+
+var dir = function( elem, dir, until ) {
+	var matched = [],
+		truncate = until !== undefined;
+
+	while ( ( elem = elem[ dir ] ) && elem.nodeType !== 9 ) {
+		if ( elem.nodeType === 1 ) {
+			if ( truncate && jQuery( elem ).is( until ) ) {
+				break;
+			}
+			matched.push( elem );
+		}
+	}
+	return matched;
+};
+
+
+var siblings = function( n, elem ) {
+	var matched = [];
+
+	for ( ; n; n = n.nextSibling ) {
+		if ( n.nodeType === 1 && n !== elem ) {
+			matched.push( n );
+		}
+	}
+
+	return matched;
+};
+
+
+var rneedsContext = jQuery.expr.match.needsContext;
+
+var rsingleTag = ( /^<([\w-]+)\s*\/?>(?:<\/\1>|)$/ );
+
+
+
+var risSimple = /^.[^:#\[\.,]*$/;
+
+// Implement the identical functionality for filter and not
+function winnow( elements, qualifier, not ) {
+	if ( jQuery.isFunction( qualifier ) ) {
+		return jQuery.grep( elements, function( elem, i ) {
+			/* jshint -W018 */
+			return !!qualifier.call( elem, i, elem ) !== not;
+		} );
+
+	}
+
+	if ( qualifier.nodeType ) {
+		return jQuery.grep( elements, function( elem ) {
+			return ( elem === qualifier ) !== not;
+		} );
+
+	}
+
+	if ( typeof qualifier === "string" ) {
+		if ( risSimple.test( qualifier ) ) {
+			return jQuery.filter( qualifier, elements, not );
+		}
+
+		qualifier = jQuery.filter( qualifier, elements );
+	}
+
+	return jQuery.grep( elements, function( elem ) {
+		return ( indexOf.call( qualifier, elem ) > -1 ) !== not;
+	} );
+}
+
+jQuery.filter = function( expr, elems, not ) {
+	var elem = elems[ 0 ];
+
+	if ( not ) {
+		expr = ":not(" + expr + ")";
+	}
+
+	return elems.length === 1 && elem.nodeType === 1 ?
+		jQuery.find.matchesSelector( elem, expr ) ? [ elem ] : [] :
+		jQuery.find.matches( expr, jQuery.grep( elems, function( elem ) {
+			return elem.nodeType === 1;
+		} ) );
+};
+
+jQuery.fn.extend( {
+	find: function( selector ) {
+		var i,
+			len = this.length,
+			ret = [],
+			self = this;
+
+		if ( typeof selector !== "string" ) {
+			return this.pushStack( jQuery( selector ).filter( function() {
+				for ( i = 0; i < len; i++ ) {
+					if ( jQuery.contains( self[ i ], this ) ) {
+						return true;
+					}
+				}
+			} ) );
+		}
+
+		for ( i = 0; i < len; i++ ) {
+			jQuery.find( selector, self[ i ], ret );
+		}
+
+		// Needed because $( selector, context ) becomes $( context ).find( selector )
+		ret = this.pushStack( len > 1 ? jQuery.unique( ret ) : ret );
+		ret.selector = this.selector ? this.selector + " " + selector : selector;
+		return ret;
+	},
+	filter: function( selector ) {
+		return this.pushStack( winnow( this, selector || [], false ) );
+	},
+	not: function( selector ) {
+		return this.pushStack( winnow( this, selector || [], true ) );
+	},
+	is: function( selector ) {
+		return !!winnow(
+			this,
+
+			// If this is a positional/relative selector, check membership in the returned set
+			// so $("p:first").is("p:last") won't return true for a doc with two "p".
+			typeof selector === "string" && rneedsContext.test( selector ) ?
+				jQuery( selector ) :
+				selector || [],
+			false
+		).length;
+	}
+} );
+
+
+// Initialize a jQuery object
+
+
+// A central reference to the root jQuery(document)
+var rootjQuery,
+
+	// A simple way to check for HTML strings
+	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
+	// Strict HTML recognition (#11290: must start with <)
+	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,
+
+	init = jQuery.fn.init = function( selector, context, root ) {
+		var match, elem;
+
+		// HANDLE: $(""), $(null), $(undefined), $(false)
+		if ( !selector ) {
+			return this;
+		}
+
+		// Method init() accepts an alternate rootjQuery
+		// so migrate can support jQuery.sub (gh-2101)
+		root = root || rootjQuery;
+
+		// Handle HTML strings
+		if ( typeof selector === "string" ) {
+			if ( selector[ 0 ] === "<" &&
+				selector[ selector.length - 1 ] === ">" &&
+				selector.length >= 3 ) {
+
+				// Assume that strings that start and end with <> are HTML and skip the regex check
+				match = [ null, selector, null ];
+
+			} else {
+				match = rquickExpr.exec( selector );
+			}
+
+			// Match html or make sure no context is specified for #id
+			if ( match && ( match[ 1 ] || !context ) ) {
+
+				// HANDLE: $(html) -> $(array)
+				if ( match[ 1 ] ) {
+					context = context instanceof jQuery ? context[ 0 ] : context;
+
+					// Option to run scripts is true for back-compat
+					// Intentionally let the error be thrown if parseHTML is not present
+					jQuery.merge( this, jQuery.parseHTML(
+						match[ 1 ],
+						context && context.nodeType ? context.ownerDocument || context : document,
+						true
+					) );
+
+					// HANDLE: $(html, props)
+					if ( rsingleTag.test( match[ 1 ] ) && jQuery.isPlainObject( context ) ) {
+						for ( match in context ) {
+
+							// Properties of context are called as methods if possible
+							if ( jQuery.isFunction( this[ match ] ) ) {
+								this[ match ]( context[ match ] );
+
+							// ...and otherwise set as attributes
+							} else {
+								this.attr( match, context[ match ] );
+							}
+						}
+					}
+
+					return this;
+
+				// HANDLE: $(#id)
+				} else {
+					elem = document.getElementById( match[ 2 ] );
+
+					// Support: Blackberry 4.6
+					// gEBID returns nodes no longer in the document (#6963)
+					if ( elem && elem.parentNode ) {
+
+						// Inject the element directly into the jQuery object
+						this.length = 1;
+						this[ 0 ] = elem;
+					}
+
+					this.context = document;
+					this.selector = selector;
+					return this;
+				}
+
+			// HANDLE: $(expr, $(...))
+			} else if ( !context || context.jquery ) {
+				return ( context || root ).find( selector );
+
+			// HANDLE: $(expr, context)
+			// (which is just equivalent to: $(context).find(expr)
+			} else {
+				return this.constructor( context ).find( selector );
+			}
+
+		// HANDLE: $(DOMElement)
+		} else if ( selector.nodeType ) {
+			this.context = this[ 0 ] = selector;
+			this.length = 1;
+			return this;
+
+		// HANDLE: $(function)
+		// Shortcut for document ready
+		} else if ( jQuery.isFunction( selector ) ) {
+			return root.ready !== undefined ?
+				root.ready( selector ) :
+
+				// Execute immediately if ready is not present
+				selector( jQuery );
+		}
+
+		if ( selector.selector !== undefined ) {
+			this.selector = selector.selector;
+			this.context = selector.context;
+		}
+
+		return jQuery.makeArray( selector, this );
+	};
+
+// Give the init function the jQuery prototype for later instantiation
+init.prototype = jQuery.fn;
+
+// Initialize central reference
+rootjQuery = jQuery( document );
+
+
+var rparentsprev = /^(?:parents|prev(?:Until|All))/,
+
+	// Methods guaranteed to produce a unique set when starting from a unique set
+	guaranteedUnique = {
+		children: true,
+		contents: true,
+		next: true,
+		prev: true
+	};
+
+jQuery.fn.extend( {
+	has: function( target ) {
+		var targets = jQuery( target, this ),
+			l = targets.length;
+
+		return this.filter( function() {
+			var i = 0;
+			for ( ; i < l; i++ ) {
+				if ( jQuery.contains( this, targets[ i ] ) ) {
+					return true;
+				}
+			}
+		} );
+	},
+
+	closest: function( selectors, context ) {
+		var cur,
+			i = 0,
+			l = this.length,
+			matched = [],
+			pos = rneedsContext.test( selectors ) || typeof selectors !== "string" ?
+				jQuery( selectors, context || this.context ) :
+				0;
+
+		for ( ; i < l; i++ ) {
+			for ( cur = this[ i ]; cur && cur !== context; cur = cur.parentNode ) {
+
+				// Always skip document fragments
+				if ( cur.nodeType < 11 && ( pos ?
+					pos.index( cur ) > -1 :
+
+					// Don't pass non-elements to Sizzle
+					cur.nodeType === 1 &&
+						jQuery.find.matchesSelector( cur, selectors ) ) ) {
+
+					matched.push( cur );
+					break;
+				}
+			}
+		}
+
+		return this.pushStack( matched.length > 1 ? jQuery.uniqueSort( matched ) : matched );
+	},
+
+	// Determine the position of an element within the set
+	index: function( elem ) {
+
+		// No argument, return index in parent
+		if ( !elem ) {
+			return ( this[ 0 ] && this[ 0 ].parentNode ) ? this.first().prevAll().length : -1;
+		}
+
+		// Index in selector
+		if ( typeof elem === "string" ) {
+			return indexOf.call( jQuery( elem ), this[ 0 ] );
+		}
+
+		// Locate the position of the desired element
+		return indexOf.call( this,
+
+			// If it receives a jQuery object, the first element is used
+			elem.jquery ? elem[ 0 ] : elem
+		);
+	},
+
+	add: function( selector, context ) {
+		return this.pushStack(
+			jQuery.uniqueSort(
+				jQuery.merge( this.get(), jQuery( selector, context ) )
+			)
+		);
+	},
+
+	addBack: function( selector ) {
+		return this.add( selector == null ?
+			this.prevObject : this.prevObject.filter( selector )
+		);
+	}
+} );
+
+function sibling( cur, dir ) {
+	while ( ( cur = cur[ dir ] ) && cur.nodeType !== 1 ) {}
+	return cur;
+}
+
+jQuery.each( {
+	parent: function( elem ) {
+		var parent = elem.parentNode;
+		return parent && parent.nodeType !== 11 ? parent : null;
+	},
+	parents: function( elem ) {
+		return dir( elem, "parentNode" );
+	},
+	parentsUntil: function( elem, i, until ) {
+		return dir( elem, "parentNode", until );
+	},
+	next: function( elem ) {
+		return sibling( elem, "nextSibling" );
+	},
+	prev: function( elem ) {
+		return sibling( elem, "previousSibling" );
+	},
+	nextAll: function( elem ) {
+		return dir( elem, "nextSibling" );
+	},
+	prevAll: function( elem ) {
+		return dir( elem, "previousSibling" );
+	},
+	nextUntil: function( elem, i, until ) {
+		return dir( elem, "nextSibling", until );
+	},
+	prevUntil: function( elem, i, until ) {
+		return dir( elem, "previousSibling", until );
+	},
+	siblings: function( elem ) {
+		return siblings( ( elem.parentNode || {} ).firstChild, elem );
+	},
+	children: function( elem ) {
+		return siblings( elem.firstChild );
+	},
+	contents: function( elem ) {
+		return elem.contentDocument || jQuery.merge( [], elem.childNodes );
+	}
+}, function( name, fn ) {
+	jQuery.fn[ name ] = function( until, selector ) {
+		var matched = jQuery.map( this, fn, until );
+
+		if ( name.slice( -5 ) !== "Until" ) {
+			selector = until;
+		}
+
+		if ( selector && typeof selector === "string" ) {
+			matched = jQuery.filter( selector, matched );
+		}
+
+		if ( this.length > 1 ) {
+
+			// Remove duplicates
+			if ( !guaranteedUnique[ name ] ) {
+				jQuery.uniqueSort( matched );
+			}
+
+			// Reverse order for parents* and prev-derivatives
+			if ( rparentsprev.test( name ) ) {
+				matched.reverse();
+			}
+		}
+
+		return this.pushStack( matched );
+	};
+} );
+var rnotwhite = ( /\S+/g );
+
+
+
+// Convert String-formatted options into Object-formatted ones
+function createOptions( options ) {
+	var object = {};
+	jQuery.each( options.match( rnotwhite ) || [], function( _, flag ) {
+		object[ flag ] = true;
+	} );
+	return object;
+}
+
+/*
+ * Create a callback list using the following parameters:
+ *
+ *	options: an optional list of space-separated options that will change how
+ *			the callback list behaves or a more traditional option object
+ *
+ * By default a callback list will act like an event callback list and can be
+ * "fired" multiple times.
+ *
+ * Possible options:
+ *
+ *	once:			will ensure the callback list can only be fired once (like a Deferred)
+ *
+ *	memory:			will keep track of previous values and will call any callback added
+ *					after the list has been fired right away with the latest "memorized"
+ *					values (like a Deferred)
+ *
+ *	unique:			will ensure a callback can only be added once (no duplicate in the list)
+ *
+ *	stopOnFalse:	interrupt callings when a callback returns false
+ *
+ */
+jQuery.Callbacks = function( options ) {
+
+	// Convert options from String-formatted to Object-formatted if needed
+	// (we check in cache first)
+	options = typeof options === "string" ?
+		createOptions( options ) :
+		jQuery.extend( {}, options );
+
+	var // Flag to know if list is currently firing
+		firing,
+
+		// Last fire value for non-forgettable lists
+		memory,
+
+		// Flag to know if list was already fired
+		fired,
+
+		// Flag to prevent firing
+		locked,
+
+		// Actual callback list
+		list = [],
+
+		// Queue of execution data for repeatable lists
+		queue = [],
+
+		// Index of currently firing callback (modified by add/remove as needed)
+		firingIndex = -1,
+
+		// Fire callbacks
+		fire = function() {
+
+			// Enforce single-firing
+			locked = options.once;
+
+			// Execute callbacks for all pending executions,
+			// respecting firingIndex overrides and runtime changes
+			fired = firing = true;
+			for ( ; queue.length; firingIndex = -1 ) {
+				memory = queue.shift();
+				while ( ++firingIndex < list.length ) {
+
+					// Run callback and check for early termination
+					if ( list[ firingIndex ].apply( memory[ 0 ], memory[ 1 ] ) === false &&
+						options.stopOnFalse ) {
+
+						// Jump to end and forget the data so .add doesn't re-fire
+						firingIndex = list.length;
+						memory = false;
+					}
+				}
+			}
+
+			// Forget the data if we're done with it
+			if ( !options.memory ) {
+				memory = false;
+			}
+
+			firing = false;
+
+			// Clean up if we're done firing for good
+			if ( locked ) {
+
+				// Keep an empty list if we have data for future add calls
+				if ( memory ) {
+					list = [];
+
+				// Otherwise, this object is spent
+				} else {
+					list = "";
+				}
+			}
+		},
+
+		// Actual Callbacks object
+		self = {
+
+			// Add a callback or a collection of callbacks to the list
+			add: function() {
+				if ( list ) {
+
+					// If we have memory from a past run, we should fire after adding
+					if ( memory && !firing ) {
+						firingIndex = list.length - 1;
+						queue.push( memory );
+					}
+
+					( function add( args ) {
+						jQuery.each( args, function( _, arg ) {
+							if ( jQuery.isFunction( arg ) ) {
+								if ( !options.unique || !self.has( arg ) ) {
+									list.push( arg );
+								}
+							} else if ( arg && arg.length && jQuery.type( arg ) !== "string" ) {
+
+								// Inspect recursively
+								add( arg );
+							}
+						} );
+					} )( arguments );
+
+					if ( memory && !firing ) {
+						fire();
+					}
+				}
+				return this;
+			},
+
+			// Remove a callback from the list
+			remove: function() {
+				jQuery.each( arguments, function( _, arg ) {
+					var index;
+					while ( ( index = jQuery.inArray( arg, list, index ) ) > -1 ) {
+						list.splice( index, 1 );
+
+						// Handle firing indexes
+						if ( index <= firingIndex ) {
+							firingIndex--;
+						}
+					}
+				} );
+				return this;
+			},
+
+			// Check if a given callback is in the list.
+			// If no argument is given, return whether or not list has callbacks attached.
+			has: function( fn ) {
+				return fn ?
+					jQuery.inArray( fn, list ) > -1 :
+					list.length > 0;
+			},
+
+			// Remove all callbacks from the list
+			empty: function() {
+				if ( list ) {
+					list = [];
+				}
+				return this;
+			},
+
+			// Disable .fire and .add
+			// Abort any current/pending executions
+			// Clear all callbacks and values
+			disable: function() {
+				locked = queue = [];
+				list = memory = "";
+				return this;
+			},
+			disabled: function() {
+				return !list;
+			},
+
+			// Disable .fire
+			// Also disable .add unless we have memory (since it would have no effect)
+			// Abort any pending executions
+			lock: function() {
+				locked = queue = [];
+				if ( !memory ) {
+					list = memory = "";
+				}
+				return this;
+			},
+			locked: function() {
+				return !!locked;
+			},
+
+			// Call all callbacks with the given context and arguments
+			fireWith: function( context, args ) {
+				if ( !locked ) {
+					args = args || [];
+					args = [ context, args.slice ? args.slice() : args ];
+					queue.push( args );
+					if ( !firing ) {
+						fire();
+					}
+				}
+				return this;
+			},
+
+			// Call all the callbacks with the given arguments
+			fire: function() {
+				self.fireWith( this, arguments );
+				return this;
+			},
+
+			// To know if the callbacks have already been called at least once
+			fired: function() {
+				return !!fired;
+			}
+		};
+
+	return self;
+};
+
+
+jQuery.extend( {
+
+	Deferred: function( func ) {
+		var tuples = [
+
+				// action, add listener, listener list, final state
+				[ "resolve", "done", jQuery.Callbacks( "once memory" ), "resolved" ],
+				[ "reject", "fail", jQuery.Callbacks( "once memory" ), "rejected" ],
+				[ "notify", "progress", jQuery.Callbacks( "memory" ) ]
+			],
+			state = "pending",
+			promise = {
+				state: function() {
+					return state;
+				},
+				always: function() {
+					deferred.done( arguments ).fail( arguments );
+					return this;
+				},
+				then: function( /* fnDone, fnFail, fnProgress */ ) {
+					var fns = arguments;
+					return jQuery.Deferred( function( newDefer ) {
+						jQuery.each( tuples, function( i, tuple ) {
+							var fn = jQuery.isFunction( fns[ i ] ) && fns[ i ];
+
+							// deferred[ done | fail | progress ] for forwarding actions to newDefer
+							deferred[ tuple[ 1 ] ]( function() {
+								var returned = fn && fn.apply( this, arguments );
+								if ( returned && jQuery.isFunction( returned.promise ) ) {
+									returned.promise()
+										.progress( newDefer.notify )
+										.done( newDefer.resolve )
+										.fail( newDefer.reject );
+								} else {
+									newDefer[ tuple[ 0 ] + "With" ](
+										this === promise ? newDefer.promise() : this,
+										fn ? [ returned ] : arguments
+									);
+								}
+							} );
+						} );
+						fns = null;
+					} ).promise();
+				},
+
+				// Get a promise for this deferred
+				// If obj is provided, the promise aspect is added to the object
+				promise: function( obj ) {
+					return obj != null ? jQuery.extend( obj, promise ) : promise;
+				}
+			},
+			deferred = {};
+
+		// Keep pipe for back-compat
+		promise.pipe = promise.then;
+
+		// Add list-specific methods
+		jQuery.each( tuples, function( i, tuple ) {
+			var list = tuple[ 2 ],
+				stateString = tuple[ 3 ];
+
+			// promise[ done | fail | progress ] = list.add
+			promise[ tuple[ 1 ] ] = list.add;
+
+			// Handle state
+			if ( stateString ) {
+				list.add( function() {
+
+					// state = [ resolved | rejected ]
+					state = stateString;
+
+				// [ reject_list | resolve_list ].disable; progress_list.lock
+				}, tuples[ i ^ 1 ][ 2 ].disable, tuples[ 2 ][ 2 ].lock );
+			}
+
+			// deferred[ resolve | reject | notify ]
+			deferred[ tuple[ 0 ] ] = function() {
+				deferred[ tuple[ 0 ] + "With" ]( this === deferred ? promise : this, arguments );
+				return this;
+			};
+			deferred[ tuple[ 0 ] + "With" ] = list.fireWith;
+		} );
+
+		// Make the deferred a promise
+		promise.promise( deferred );
+
+		// Call given func if any
+		if ( func ) {
+			func.call( deferred, deferred );
+		}
+
+		// All done!
+		return deferred;
+	},
+
+	// Deferred helper
+	when: function( subordinate /* , ..., subordinateN */ ) {
+		var i = 0,
+			resolveValues = slice.call( arguments ),
+			length = resolveValues.length,
+
+			// the count of uncompleted subordinates
+			remaining = length !== 1 ||
+				( subordinate && jQuery.isFunction( subordinate.promise ) ) ? length : 0,
+
+			// the master Deferred.
+			// If resolveValues consist of only a single Deferred, just use that.
+			deferred = remaining === 1 ? subordinate : jQuery.Deferred(),
+
+			// Update function for both resolve and progress values
+			updateFunc = function( i, contexts, values ) {
+				return function( value ) {
+					contexts[ i ] = this;
+					values[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
+					if ( values === progressValues ) {
+						deferred.notifyWith( contexts, values );
+					} else if ( !( --remaining ) ) {
+						deferred.resolveWith( contexts, values );
+					}
+				};
+			},
+
+			progressValues, progressContexts, resolveContexts;
+
+		// Add listeners to Deferred subordinates; treat others as resolved
+		if ( length > 1 ) {
+			progressValues = new Array( length );
+			progressContexts = new Array( length );
+			resolveContexts = new Array( length );
+			for ( ; i < length; i++ ) {
+				if ( resolveValues[ i ] && jQuery.isFunction( resolveValues[ i ].promise ) ) {
+					resolveValues[ i ].promise()
+						.progress( updateFunc( i, progressContexts, progressValues ) )
+						.done( updateFunc( i, resolveContexts, resolveValues ) )
+						.fail( deferred.reject );
+				} else {
+					--remaining;
+				}
+			}
+		}
+
+		// If we're not waiting on anything, resolve the master
+		if ( !remaining ) {
+			deferred.resolveWith( resolveContexts, resolveValues );
+		}
+
+		return deferred.promise();
+	}
+} );
+
+
+// The deferred used on DOM ready
+var readyList;
+
+jQuery.fn.ready = function( fn ) {
+
+	// Add the callback
+	jQuery.ready.promise().done( fn );
+
+	return this;
+};
+
+jQuery.extend( {
+
+	// Is the DOM ready to be used? Set to true once it occurs.
+	isReady: false,
+
+	// A counter to track how many items to wait for before
+	// the ready event fires. See #6781
+	readyWait: 1,
+
+	// Hold (or release) the ready event
+	holdReady: function( hold ) {
+		if ( hold ) {
+			jQuery.readyWait++;
+		} else {
+			jQuery.ready( true );
+		}
+	},
+
+	// Handle when the DOM is ready
+	ready: function( wait ) {
+
+		// Abort if there are pending holds or we're already ready
+		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
+			return;
+		}
+
+		// Remember that the DOM is ready
+		jQuery.isReady = true;
+
+		// If a normal DOM Ready event fired, decrement, and wait if need be
+		if ( wait !== true && --jQuery.readyWait > 0 ) {
+			return;
+		}
+
+		// If there are functions bound, to execute
+		readyList.resolveWith( document, [ jQuery ] );
+
+		// Trigger any bound ready events
+		if ( jQuery.fn.triggerHandler ) {
+			jQuery( document ).triggerHandler( "ready" );
+			jQuery( document ).off( "ready" );
+		}
+	}
+} );
+
+/**
+ * The ready event handler and self cleanup method
+ */
+function completed() {
+	document.removeEventListener( "DOMContentLoaded", completed );
+	window.removeEventListener( "load", completed );
+	jQuery.ready();
+}
+
+jQuery.ready.promise = function( obj ) {
+	if ( !readyList ) {
+
+		readyList = jQuery.Deferred();
+
+		// Catch cases where $(document).ready() is called
+		// after the browser event has already occurred.
+		// Support: IE9-10 only
+		// Older IE sometimes signals "interactive" too soon
+		if ( document.readyState === "complete" ||
+			( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
+
+			// Handle it asynchronously to allow scripts the opportunity to delay ready
+			window.setTimeout( jQuery.ready );
+
+		} else {
+
+			// Use the handy event callback
+			document.addEventListener( "DOMContentLoaded", completed );
+
+			// A fallback to window.onload, that will always work
+			window.addEventListener( "load", completed );
+		}
+	}
+	return readyList.promise( obj );
+};
+
+// Kick off the DOM ready check even if the user does not
+jQuery.ready.promise();
+
+
+
+
+// Multifunctional method to get and set values of a collection
+// The value/s can optionally be executed if it's a function
+var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
+	var i = 0,
+		len = elems.length,
+		bulk = key == null;
+
+	// Sets many values
+	if ( jQuery.type( key ) === "object" ) {
+		chainable = true;
+		for ( i in key ) {
+			access( elems, fn, i, key[ i ], true, emptyGet, raw );
+		}
+
+	// Sets one value
+	} else if ( value !== undefined ) {
+		chainable = true;
+
+		if ( !jQuery.isFunction( value ) ) {
+			raw = true;
+		}
+
+		if ( bulk ) {
+
+			// Bulk operations run against the entire set
+			if ( raw ) {
+				fn.call( elems, value );
+				fn = null;
+
+			// ...except when executing function values
+			} else {
+				bulk = fn;
+				fn = function( elem, key, value ) {
+					return bulk.call( jQuery( elem ), value );
+				};
+			}
+		}
+
+		if ( fn ) {
+			for ( ; i < len; i++ ) {
+				fn(
+					elems[ i ], key, raw ?
+					value :
+					value.call( elems[ i ], i, fn( elems[ i ], key ) )
+				);
+			}
+		}
+	}
+
+	return chainable ?
+		elems :
+
+		// Gets
+		bulk ?
+			fn.call( elems ) :
+			len ? fn( elems[ 0 ], key ) : emptyGet;
+};
+var acceptData = function( owner ) {
+
+	// Accepts only:
+	//  - Node
+	//    - Node.ELEMENT_NODE
+	//    - Node.DOCUMENT_NODE
+	//  - Object
+	//    - Any
+	/* jshint -W018 */
+	return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
+};
+
+
+
+
+function Data() {
+	this.expando = jQuery.expando + Data.uid++;
+}
+
+Data.uid = 1;
+
+Data.prototype = {
+
+	register: function( owner, initial ) {
+		var value = initial || {};
+
+		// If it is a node unlikely to be stringify-ed or looped over
+		// use plain assignment
+		if ( owner.nodeType ) {
+			owner[ this.expando ] = value;
+
+		// Otherwise secure it in a non-enumerable, non-writable property
+		// configurability must be true to allow the property to be
+		// deleted with the delete operator
+		} else {
+			Object.defineProperty( owner, this.expando, {
+				value: value,
+				writable: true,
+				configurable: true
+			} );
+		}
+		return owner[ this.expando ];
+	},
+	cache: function( owner ) {
+
+		// We can accept data for non-element nodes in modern browsers,
+		// but we should not, see #8335.
+		// Always return an empty object.
+		if ( !acceptData( owner ) ) {
+			return {};
+		}
+
+		// Check if the owner object already has a cache
+		var value = owner[ this.expando ];
+
+		// If not, create one
+		if ( !value ) {
+			value = {};
+
+			// We can accept data for non-element nodes in modern browsers,
+			// but we should not, see #8335.
+			// Always return an empty object.
+			if ( acceptData( owner ) ) {
+
+				// If it is a node unlikely to be stringify-ed or looped over
+				// use plain assignment
+				if ( owner.nodeType ) {
+					owner[ this.expando ] = value;
+
+				// Otherwise secure it in a non-enumerable property
+				// configurable must be true to allow the property to be
+				// deleted when data is removed
+				} else {
+					Object.defineProperty( owner, this.expando, {
+						value: value,
+						configurable: true
+					} );
+				}
+			}
+		}
+
+		return value;
+	},
+	set: function( owner, data, value ) {
+		var prop,
+			cache = this.cache( owner );
+
+		// Handle: [ owner, key, value ] args
+		if ( typeof data === "string" ) {
+			cache[ data ] = value;
+
+		// Handle: [ owner, { properties } ] args
+		} else {
+
+			// Copy the properties one-by-one to the cache object
+			for ( prop in data ) {
+				cache[ prop ] = data[ prop ];
+			}
+		}
+		return cache;
+	},
+	get: function( owner, key ) {
+		return key === undefined ?
+			this.cache( owner ) :
+			owner[ this.expando ] && owner[ this.expando ][ key ];
+	},
+	access: function( owner, key, value ) {
+		var stored;
+
+		// In cases where either:
+		//
+		//   1. No key was specified
+		//   2. A string key was specified, but no value provided
+		//
+		// Take the "read" path and allow the get method to determine
+		// which value to return, respectively either:
+		//
+		//   1. The entire cache object
+		//   2. The data stored at the key
+		//
+		if ( key === undefined ||
+				( ( key && typeof key === "string" ) && value === undefined ) ) {
+
+			stored = this.get( owner, key );
+
+			return stored !== undefined ?
+				stored : this.get( owner, jQuery.camelCase( key ) );
+		}
+
+		// When the key is not a string, or both a key and value
+		// are specified, set or extend (existing objects) with either:
+		//
+		//   1. An object of properties
+		//   2. A key and value
+		//
+		this.set( owner, key, value );
+
+		// Since the "set" path can have two possible entry points
+		// return the expected data based on which path was taken[*]
+		return value !== undefined ? value : key;
+	},
+	remove: function( owner, key ) {
+		var i, name, camel,
+			cache = owner[ this.expando ];
+
+		if ( cache === undefined ) {
+			return;
+		}
+
+		if ( key === undefined ) {
+			this.register( owner );
+
+		} else {
+
+			// Support array or space separated string of keys
+			if ( jQuery.isArray( key ) ) {
+
+				// If "name" is an array of keys...
+				// When data is initially created, via ("key", "val") signature,
+				// keys will be converted to camelCase.
+				// Since there is no way to tell _how_ a key was added, remove
+				// both plain key and camelCase key. #12786
+				// This will only penalize the array argument path.
+				name = key.concat( key.map( jQuery.camelCase ) );
+			} else {
+				camel = jQuery.camelCase( key );
+
+				// Try the string as a key before any manipulation
+				if ( key in cache ) {
+					name = [ key, camel ];
+				} else {
+
+					// If a key with the spaces exists, use it.
+					// Otherwise, create an array by matching non-whitespace
+					name = camel;
+					name = name in cache ?
+						[ name ] : ( name.match( rnotwhite ) || [] );
+				}
+			}
+
+			i = name.length;
+
+			while ( i-- ) {
+				delete cache[ name[ i ] ];
+			}
+		}
+
+		// Remove the expando if there's no more data
+		if ( key === undefined || jQuery.isEmptyObject( cache ) ) {
+
+			// Support: Chrome <= 35-45+
+			// Webkit & Blink performance suffers when deleting properties
+			// from DOM nodes, so set to undefined instead
+			// https://code.google.com/p/chromium/issues/detail?id=378607
+			if ( owner.nodeType ) {
+				owner[ this.expando ] = undefined;
+			} else {
+				delete owner[ this.expando ];
+			}
+		}
+	},
+	hasData: function( owner ) {
+		var cache = owner[ this.expando ];
+		return cache !== undefined && !jQuery.isEmptyObject( cache );
+	}
+};
+var dataPriv = new Data();
+
+var dataUser = new Data();
+
+
+
+//	Implementation Summary
+//
+//	1. Enforce API surface and semantic compatibility with 1.9.x branch
+//	2. Improve the module's maintainability by reducing the storage
+//		paths to a single mechanism.
+//	3. Use the same single mechanism to support "private" and "user" data.
+//	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
+//	5. Avoid exposing implementation details on user objects (eg. expando properties)
+//	6. Provide a clear path for implementation upgrade to WeakMap in 2014
+
+var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
+	rmultiDash = /[A-Z]/g;
+
+function dataAttr( elem, key, data ) {
+	var name;
+
+	// If nothing was found internally, try to fetch any
+	// data from the HTML5 data-* attribute
+	if ( data === undefined && elem.nodeType === 1 ) {
+		name = "data-" + key.replace( rmultiDash, "-$&" ).toLowerCase();
+		data = elem.getAttribute( name );
+
+		if ( typeof data === "string" ) {
+			try {
+				data = data === "true" ? true :
+					data === "false" ? false :
+					data === "null" ? null :
+
+					// Only convert to a number if it doesn't change the string
+					+data + "" === data ? +data :
+					rbrace.test( data ) ? jQuery.parseJSON( data ) :
+					data;
+			} catch ( e ) {}
+
+			// Make sure we set the data so it isn't changed later
+			dataUser.set( elem, key, data );
+		} else {
+			data = undefined;
+		}
+	}
+	return data;
+}
+
+jQuery.extend( {
+	hasData: function( elem ) {
+		return dataUser.hasData( elem ) || dataPriv.hasData( elem );
+	},
+
+	data: function( elem, name, data ) {
+		return dataUser.access( elem, name, data );
+	},
+
+	removeData: function( elem, name ) {
+		dataUser.remove( elem, name );
+	},
+
+	// TODO: Now that all calls to _data and _removeData have been replaced
+	// with direct calls to dataPriv methods, these can be deprecated.
+	_data: function( elem, name, data ) {
+		return dataPriv.access( elem, name, data );
+	},
+
+	_removeData: function( elem, name ) {
+		dataPriv.remove( elem, name );
+	}
+} );
+
+jQuery.fn.extend( {
+	data: function( key, value ) {
+		var i, name, data,
+			elem = this[ 0 ],
+			attrs = elem && elem.attributes;
+
+		// Gets all values
+		if ( key === undefined ) {
+			if ( this.length ) {
+				data = dataUser.get( elem );
+
+				if ( elem.nodeType === 1 && !dataPriv.get( elem, "hasDataAttrs" ) ) {
+					i = attrs.length;
+					while ( i-- ) {
+
+						// Support: IE11+
+						// The attrs elements can be null (#14894)
+						if ( attrs[ i ] ) {
+							name = attrs[ i ].name;
+							if ( name.indexOf( "data-" ) === 0 ) {
+								name = jQuery.camelCase( name.slice( 5 ) );
+								dataAttr( elem, name, data[ name ] );
+							}
+						}
+					}
+					dataPriv.set( elem, "hasDataAttrs", true );
+				}
+			}
+
+			return data;
+		}
+
+		// Sets multiple values
+		if ( typeof key === "object" ) {
+			return this.each( function() {
+				dataUser.set( this, key );
+			} );
+		}
+
+		return access( this, function( value ) {
+			var data, camelKey;
+
+			// The calling jQuery object (element matches) is not empty
+			// (and therefore has an element appears at this[ 0 ]) and the
+			// `value` parameter was not undefined. An empty jQuery object
+			// will result in `undefined` for elem = this[ 0 ] which will
+			// throw an exception if an attempt to read a data cache is made.
+			if ( elem && value === undefined ) {
+
+				// Attempt to get data from the cache
+				// with the key as-is
+				data = dataUser.get( elem, key ) ||
+
+					// Try to find dashed key if it exists (gh-2779)
+					// This is for 2.2.x only
+					dataUser.get( elem, key.replace( rmultiDash, "-$&" ).toLowerCase() );
+
+				if ( data !== undefined ) {
+					return data;
+				}
+
+				camelKey = jQuery.camelCase( key );
+
+				// Attempt to get data from the cache
+				// with the key camelized
+				data = dataUser.get( elem, camelKey );
+				if ( data !== undefined ) {
+					return data;
+				}
+
+				// Attempt to "discover" the data in
+				// HTML5 custom data-* attrs
+				data = dataAttr( elem, camelKey, undefined );
+				if ( data !== undefined ) {
+					return data;
+				}
+
+				// We tried really hard, but the data doesn't exist.
+				return;
+			}
+
+			// Set the data...
+			camelKey = jQuery.camelCase( key );
+			this.each( function() {
+
+				// First, attempt to store a copy or reference of any
+				// data that might've been store with a camelCased key.
+				var data = dataUser.get( this, camelKey );
+
+				// For HTML5 data-* attribute interop, we have to
+				// store property names with dashes in a camelCase form.
+				// This might not apply to all properties...*
+				dataUser.set( this, camelKey, value );
+
+				// *... In the case of properties that might _actually_
+				// have dashes, we need to also store a copy of that
+				// unchanged property.
+				if ( key.indexOf( "-" ) > -1 && data !== undefined ) {
+					dataUser.set( this, key, value );
+				}
+			} );
+		}, null, value, arguments.length > 1, null, true );
+	},
+
+	removeData: function( key ) {
+		return this.each( function() {
+			dataUser.remove( this, key );
+		} );
+	}
+} );
+
+
+jQuery.extend( {
+	queue: function( elem, type, data ) {
+		var queue;
+
+		if ( elem ) {
+			type = ( type || "fx" ) + "queue";
+			queue = dataPriv.get( elem, type );
+
+			// Speed up dequeue by getting out quickly if this is just a lookup
+			if ( data ) {
+				if ( !queue || jQuery.isArray( data ) ) {
+					queue = dataPriv.access( elem, type, jQuery.makeArray( data ) );
+				} else {
+					queue.push( data );
+				}
+			}
+			return queue || [];
+		}
+	},
+
+	dequeue: function( elem, type ) {
+		type = type || "fx";
+
+		var queue = jQuery.queue( elem, type ),
+			startLength = queue.length,
+			fn = queue.shift(),
+			hooks = jQuery._queueHooks( elem, type ),
+			next = function() {
+				jQuery.dequeue( elem, type );
+			};
+
+		// If the fx queue is dequeued, always remove the progress sentinel
+		if ( fn === "inprogress" ) {
+			fn = queue.shift();
+			startLength--;
+		}
+
+		if ( fn ) {
+
+			// Add a progress sentinel to prevent the fx queue from being
+			// automatically dequeued
+			if ( type === "fx" ) {
+				queue.unshift( "inprogress" );
+			}
+
+			// Clear up the last queue stop function
+			delete hooks.stop;
+			fn.call( elem, next, hooks );
+		}
+
+		if ( !startLength && hooks ) {
+			hooks.empty.fire();
+		}
+	},
+
+	// Not public - generate a queueHooks object, or return the current one
+	_queueHooks: function( elem, type ) {
+		var key = type + "queueHooks";
+		return dataPriv.get( elem, key ) || dataPriv.access( elem, key, {
+			empty: jQuery.Callbacks( "once memory" ).add( function() {
+				dataPriv.remove( elem, [ type + "queue", key ] );
+			} )
+		} );
+	}
+} );
+
+jQuery.fn.extend( {
+	queue: function( type, data ) {
+		var setter = 2;
+
+		if ( typeof type !== "string" ) {
+			data = type;
+			type = "fx";
+			setter--;
+		}
+
+		if ( arguments.length < setter ) {
+			return jQuery.queue( this[ 0 ], type );
+		}
+
+		return data === undefined ?
+			this :
+			this.each( function() {
+				var queue = jQuery.queue( this, type, data );
+
+				// Ensure a hooks for this queue
+				jQuery._queueHooks( this, type );
+
+				if ( type === "fx" && queue[ 0 ] !== "inprogress" ) {
+					jQuery.dequeue( this, type );
+				}
+			} );
+	},
+	dequeue: function( type ) {
+		return this.each( function() {
+			jQuery.dequeue( this, type );
+		} );
+	},
+	clearQueue: function( type ) {
+		return this.queue( type || "fx", [] );
+	},
+
+	// Get a promise resolved when queues of a certain type
+	// are emptied (fx is the type by default)
+	promise: function( type, obj ) {
+		var tmp,
+			count = 1,
+			defer = jQuery.Deferred(),
+			elements = this,
+			i = this.length,
+			resolve = function() {
+				if ( !( --count ) ) {
+					defer.resolveWith( elements, [ elements ] );
+				}
+			};
+
+		if ( typeof type !== "string" ) {
+			obj = type;
+			type = undefined;
+		}
+		type = type || "fx";
+
+		while ( i-- ) {
+			tmp = dataPriv.get( elements[ i ], type + "queueHooks" );
+			if ( tmp && tmp.empty ) {
+				count++;
+				tmp.empty.add( resolve );
+			}
+		}
+		resolve();
+		return defer.promise( obj );
+	}
+} );
+var pnum = ( /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/ ).source;
+
+var rcssNum = new RegExp( "^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i" );
+
+
+var cssExpand = [ "Top", "Right", "Bottom", "Left" ];
+
+var isHidden = function( elem, el ) {
+
+		// isHidden might be called from jQuery#filter function;
+		// in that case, element will be second argument
+		elem = el || elem;
+		return jQuery.css( elem, "display" ) === "none" ||
+			!jQuery.contains( elem.ownerDocument, elem );
+	};
+
+
+
+function adjustCSS( elem, prop, valueParts, tween ) {
+	var adjusted,
+		scale = 1,
+		maxIterations = 20,
+		currentValue = tween ?
+			function() { return tween.cur(); } :
+			function() { return jQuery.css( elem, prop, "" ); },
+		initial = currentValue(),
+		unit = valueParts && valueParts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
+
+		// Starting value computation is required for potential unit mismatches
+		initialInUnit = ( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
+			rcssNum.exec( jQuery.css( elem, prop ) );
+
+	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
+
+		// Trust units reported by jQuery.css
+		unit = unit || initialInUnit[ 3 ];
+
+		// Make sure we update the tween properties later on
+		valueParts = valueParts || [];
+
+		// Iteratively approximate from a nonzero starting point
+		initialInUnit = +initial || 1;
+
+		do {
+
+			// If previous iteration zeroed out, double until we get *something*.
+			// Use string for doubling so we don't accidentally see scale as unchanged below
+			scale = scale || ".5";
+
+			// Adjust and apply
+			initialInUnit = initialInUnit / scale;
+			jQuery.style( elem, prop, initialInUnit + unit );
+
+		// Update scale, tolerating zero or NaN from tween.cur()
+		// Break the loop if scale is unchanged or perfect, or if we've just had enough.
+		} while (
+			scale !== ( scale = currentValue() / initial ) && scale !== 1 && --maxIterations
+		);
+	}
+
+	if ( valueParts ) {
+		initialInUnit = +initialInUnit || +initial || 0;
+
+		// Apply relative offset (+=/-=) if specified
+		adjusted = valueParts[ 1 ] ?
+			initialInUnit + ( valueParts[ 1 ] + 1 ) * valueParts[ 2 ] :
+			+valueParts[ 2 ];
+		if ( tween ) {
+			tween.unit = unit;
+			tween.start = initialInUnit;
+			tween.end = adjusted;
+		}
+	}
+	return adjusted;
+}
+var rcheckableType = ( /^(?:checkbox|radio)$/i );
+
+var rtagName = ( /<([\w:-]+)/ );
+
+var rscriptType = ( /^$|\/(?:java|ecma)script/i );
+
+
+
+// We have to close these tags to support XHTML (#13200)
+var wrapMap = {
+
+	// Support: IE9
+	option: [ 1, "<select multiple='multiple'>", "</select>" ],
+
+	// XHTML parsers do not magically insert elements in the
+	// same way that tag soup parsers do. So we cannot shorten
+	// this by omitting <tbody> or other required elements.
+	thead: [ 1, "<table>", "</table>" ],
+	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
+	tr: [ 2, "<table><tbody>", "</tbody></table>" ],
+	td: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
+
+	_default: [ 0, "", "" ]
+};
+
+// Support: IE9
+wrapMap.optgroup = wrapMap.option;
+
+wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
+wrapMap.th = wrapMap.td;
+
+
+function getAll( context, tag ) {
+
+	// Support: IE9-11+
+	// Use typeof to avoid zero-argument method invocation on host objects (#15151)
+	var ret = typeof context.getElementsByTagName !== "undefined" ?
+			context.getElementsByTagName( tag || "*" ) :
+			typeof context.querySelectorAll !== "undefined" ?
+				context.querySelectorAll( tag || "*" ) :
+			[];
+
+	return tag === undefined || tag && jQuery.nodeName( context, tag ) ?
+		jQuery.merge( [ context ], ret ) :
+		ret;
+}
+
+
+// Mark scripts as having already been evaluated
+function setGlobalEval( elems, refElements ) {
+	var i = 0,
+		l = elems.length;
+
+	for ( ; i < l; i++ ) {
+		dataPriv.set(
+			elems[ i ],
+			"globalEval",
+			!refElements || dataPriv.get( refElements[ i ], "globalEval" )
+		);
+	}
+}
+
+
+var rhtml = /<|&#?\w+;/;
+
+function buildFragment( elems, context, scripts, selection, ignored ) {
+	var elem, tmp, tag, wrap, contains, j,
+		fragment = context.createDocumentFragment(),
+		nodes = [],
+		i = 0,
+		l = elems.length;
+
+	for ( ; i < l; i++ ) {
+		elem = elems[ i ];
+
+		if ( elem || elem === 0 ) {
+
+			// Add nodes directly
+			if ( jQuery.type( elem ) === "object" ) {
+
+				// Support: Android<4.1, PhantomJS<2
+				// push.apply(_, arraylike) throws on ancient WebKit
+				jQuery.merge( nodes, elem.nodeType ? [ elem ] : elem );
+
+			// Convert non-html into a text node
+			} else if ( !rhtml.test( elem ) ) {
+				nodes.push( context.createTextNode( elem ) );
+
+			// Convert html into DOM nodes
+			} else {
+				tmp = tmp || fragment.appendChild( context.createElement( "div" ) );
+
+				// Deserialize a standard representation
+				tag = ( rtagName.exec( elem ) || [ "", "" ] )[ 1 ].toLowerCase();
+				wrap = wrapMap[ tag ] || wrapMap._default;
+				tmp.innerHTML = wrap[ 1 ] + jQuery.htmlPrefilter( elem ) + wrap[ 2 ];
+
+				// Descend through wrappers to the right content
+				j = wrap[ 0 ];
+				while ( j-- ) {
+					tmp = tmp.lastChild;
+				}
+
+				// Support: Android<4.1, PhantomJS<2
+				// push.apply(_, arraylike) throws on ancient WebKit
+				jQuery.merge( nodes, tmp.childNodes );
+
+				// Remember the top-level container
+				tmp = fragment.firstChild;
+
+				// Ensure the created nodes are orphaned (#12392)
+				tmp.textContent = "";
+			}
+		}
+	}
+
+	// Remove wrapper from fragment
+	fragment.textContent = "";
+
+	i = 0;
+	while ( ( elem = nodes[ i++ ] ) ) {
+
+		// Skip elements already in the context collection (trac-4087)
+		if ( selection && jQuery.inArray( elem, selection ) > -1 ) {
+			if ( ignored ) {
+				ignored.push( elem );
+			}
+			continue;
+		}
+
+		contains = jQuery.contains( elem.ownerDocument, elem );
+
+		// Append to fragment
+		tmp = getAll( fragment.appendChild( elem ), "script" );
+
+		// Preserve script evaluation history
+		if ( contains ) {
+			setGlobalEval( tmp );
+		}
+
+		// Capture executables
+		if ( scripts ) {
+			j = 0;
+			while ( ( elem = tmp[ j++ ] ) ) {
+				if ( rscriptType.test( elem.type || "" ) ) {
+					scripts.push( elem );
+				}
+			}
+		}
+	}
+
+	return fragment;
+}
+
+
+( function() {
+	var fragment = document.createDocumentFragment(),
+		div = fragment.appendChild( document.createElement( "div" ) ),
+		input = document.createElement( "input" );
+
+	// Support: Android 4.0-4.3, Safari<=5.1
+	// Check state lost if the name is set (#11217)
+	// Support: Windows Web Apps (WWA)
+	// `name` and `type` must use .setAttribute for WWA (#14901)
+	input.setAttribute( "type", "radio" );
+	input.setAttribute( "checked", "checked" );
+	input.setAttribute( "name", "t" );
+
+	div.appendChild( input );
+
+	// Support: Safari<=5.1, Android<4.2
+	// Older WebKit doesn't clone checked state correctly in fragments
+	support.checkClone = div.cloneNode( true ).cloneNode( true ).lastChild.checked;
+
+	// Support: IE<=11+
+	// Make sure textarea (and checkbox) defaultValue is properly cloned
+	div.innerHTML = "<textarea>x</textarea>";
+	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
+} )();
+
+
+var
+	rkeyEvent = /^key/,
+	rmouseEvent = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
+	rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
+
+function returnTrue() {
+	return true;
+}
+
+function returnFalse() {
+	return false;
+}
+
+// Support: IE9
+// See #13393 for more info
+function safeActiveElement() {
+	try {
+		return document.activeElement;
+	} catch ( err ) { }
+}
+
+function on( elem, types, selector, data, fn, one ) {
+	var origFn, type;
+
+	// Types can be a map of types/handlers
+	if ( typeof types === "object" ) {
+
+		// ( types-Object, selector, data )
+		if ( typeof selector !== "string" ) {
+
+			// ( types-Object, data )
+			data = data || selector;
+			selector = undefined;
+		}
+		for ( type in types ) {
+			on( elem, type, selector, data, types[ type ], one );
+		}
+		return elem;
+	}
+
+	if ( data == null && fn == null ) {
+
+		// ( types, fn )
+		fn = selector;
+		data = selector = undefined;
+	} else if ( fn == null ) {
+		if ( typeof selector === "string" ) {
+
+			// ( types, selector, fn )
+			fn = data;
+			data = undefined;
+		} else {
+
+			// ( types, data, fn )
+			fn = data;
+			data = selector;
+			selector = undefined;
+		}
+	}
+	if ( fn === false ) {
+		fn = returnFalse;
+	} else if ( !fn ) {
+		return this;
+	}
+
+	if ( one === 1 ) {
+		origFn = fn;
+		fn = function( event ) {
+
+			// Can use an empty set, since event contains the info
+			jQuery().off( event );
+			return origFn.apply( this, arguments );
+		};
+
+		// Use same guid so caller can remove using origFn
+		fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
+	}
+	return elem.each( function() {
+		jQuery.event.add( this, types, fn, data, selector );
+	} );
+}
+
+/*
+ * Helper functions for managing events -- not part of the public interface.
+ * Props to Dean Edwards' addEvent library for many of the ideas.
+ */
+jQuery.event = {
+
+	global: {},
+
+	add: function( elem, types, handler, data, selector ) {
+
+		var handleObjIn, eventHandle, tmp,
+			events, t, handleObj,
+			special, handlers, type, namespaces, origType,
+			elemData = dataPriv.get( elem );
+
+		// Don't attach events to noData or text/comment nodes (but allow plain objects)
+		if ( !elemData ) {
+			return;
+		}
+
+		// Caller can pass in an object of custom data in lieu of the handler
+		if ( handler.handler ) {
+			handleObjIn = handler;
+			handler = handleObjIn.handler;
+			selector = handleObjIn.selector;
+		}
+
+		// Make sure that the handler has a unique ID, used to find/remove it later
+		if ( !handler.guid ) {
+			handler.guid = jQuery.guid++;
+		}
+
+		// Init the element's event structure and main handler, if this is the first
+		if ( !( events = elemData.events ) ) {
+			events = elemData.events = {};
+		}
+		if ( !( eventHandle = elemData.handle ) ) {
+			eventHandle = elemData.handle = function( e ) {
+
+				// Discard the second event of a jQuery.event.trigger() and
+				// when an event is called after a page has unloaded
+				return typeof jQuery !== "undefined" && jQuery.event.triggered !== e.type ?
+					jQuery.event.dispatch.apply( elem, arguments ) : undefined;
+			};
+		}
+
+		// Handle multiple events separated by a space
+		types = ( types || "" ).match( rnotwhite ) || [ "" ];
+		t = types.length;
+		while ( t-- ) {
+			tmp = rtypenamespace.exec( types[ t ] ) || [];
+			type = origType = tmp[ 1 ];
+			namespaces = ( tmp[ 2 ] || "" ).split( "." ).sort();
+
+			// There *must* be a type, no attaching namespace-only handlers
+			if ( !type ) {
+				continue;
+			}
+
+			// If event changes its type, use the special event handlers for the changed type
+			special = jQuery.event.special[ type ] || {};
+
+			// If selector defined, determine special event api type, otherwise given type
+			type = ( selector ? special.delegateType : special.bindType ) || type;
+
+			// Update special based on newly reset type
+			special = jQuery.event.special[ type ] || {};
+
+			// handleObj is passed to all event handlers
+			handleObj = jQuery.extend( {
+				type: type,
+				origType: origType,
+				data: data,
+				handler: handler,
+				guid: handler.guid,
+				selector: selector,
+				needsContext: selector && jQuery.expr.match.needsContext.test( selector ),
+				namespace: namespaces.join( "." )
+			}, handleObjIn );
+
+			// Init the event handler queue if we're the first
+			if ( !( handlers = events[ type ] ) ) {
+				handlers = events[ type ] = [];
+				handlers.delegateCount = 0;
+
+				// Only use addEventListener if the special events handler returns false
+				if ( !special.setup ||
+					special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
+
+					if ( elem.addEventListener ) {
+						elem.addEventListener( type, eventHandle );
+					}
+				}
+			}
+
+			if ( special.add ) {
+				special.add.call( elem, handleObj );
+
+				if ( !handleObj.handler.guid ) {
+					handleObj.handler.guid = handler.guid;
+				}
+			}
+
+			// Add to the element's handler list, delegates in front
+			if ( selector ) {
+				handlers.splice( handlers.delegateCount++, 0, handleObj );
+			} else {
+				handlers.push( handleObj );
+			}
+
+			// Keep track of which events have ever been used, for event optimization
+			jQuery.event.global[ type ] = true;
+		}
+
+	},
+
+	// Detach an event or set of events from an element
+	remove: function( elem, types, handler, selector, mappedTypes ) {
+
+		var j, origCount, tmp,
+			events, t, handleObj,
+			special, handlers, type, namespaces, origType,
+			elemData = dataPriv.hasData( elem ) && dataPriv.get( elem );
+
+		if ( !elemData || !( events = elemData.events ) ) {
+			return;
+		}
+
+		// Once for each type.namespace in types; type may be omitted
+		types = ( types || "" ).match( rnotwhite ) || [ "" ];
+		t = types.length;
+		while ( t-- ) {
+			tmp = rtypenamespace.exec( types[ t ] ) || [];
+			type = origType = tmp[ 1 ];
+			namespaces = ( tmp[ 2 ] || "" ).split( "." ).sort();
+
+			// Unbind all events (on this namespace, if provided) for the element
+			if ( !type ) {
+				for ( type in events ) {
+					jQuery.event.remove( elem, type + types[ t ], handler, selector, true );
+				}
+				continue;
+			}
+
+			special = jQuery.event.special[ type ] || {};
+			type = ( selector ? special.delegateType : special.bindType ) || type;
+			handlers = events[ type ] || [];
+			tmp = tmp[ 2 ] &&
+				new RegExp( "(^|\\.)" + namespaces.join( "\\.(?:.*\\.|)" ) + "(\\.|$)" );
+
+			// Remove matching events
+			origCount = j = handlers.length;
+			while ( j-- ) {
+				handleObj = handlers[ j ];
+
+				if ( ( mappedTypes || origType === handleObj.origType ) &&
+					( !handler || handler.guid === handleObj.guid ) &&
+					( !tmp || tmp.test( handleObj.namespace ) ) &&
+					( !selector || selector === handleObj.selector ||
+						selector === "**" && handleObj.selector ) ) {
+					handlers.splice( j, 1 );
+
+					if ( handleObj.selector ) {
+						handlers.delegateCount--;
+					}
+					if ( special.remove ) {
+						special.remove.call( elem, handleObj );
+					}
+				}
+			}
+
+			// Remove generic event handler if we removed something and no more handlers exist
+			// (avoids potential for endless recursion during removal of special event handlers)
+			if ( origCount && !handlers.length ) {
+				if ( !special.teardown ||
+					special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
+
+					jQuery.removeEvent( elem, type, elemData.handle );
+				}
+
+				delete events[ type ];
+			}
+		}
+
+		// Remove data and the expando if it's no longer used
+		if ( jQuery.isEmptyObject( events ) ) {
+			dataPriv.remove( elem, "handle events" );
+		}
+	},
+
+	dispatch: function( event ) {
+
+		// Make a writable jQuery.Event from the native event object
+		event = jQuery.event.fix( event );
+
+		var i, j, ret, matched, handleObj,
+			handlerQueue = [],
+			args = slice.call( arguments ),
+			handlers = ( dataPriv.get( this, "events" ) || {} )[ event.type ] || [],
+			special = jQuery.event.special[ event.type ] || {};
+
+		// Use the fix-ed jQuery.Event rather than the (read-only) native event
+		args[ 0 ] = event;
+		event.delegateTarget = this;
+
+		// Call the preDispatch hook for the mapped type, and let it bail if desired
+		if ( special.preDispatch && special.preDispatch.call( this, event ) === false ) {
+			return;
+		}
+
+		// Determine handlers
+		handlerQueue = jQuery.event.handlers.call( this, event, handlers );
+
+		// Run delegates first; they may want to stop propagation beneath us
+		i = 0;
+		while ( ( matched = handlerQueue[ i++ ] ) && !event.isPropagationStopped() ) {
+			event.currentTarget = matched.elem;
+
+			j = 0;
+			while ( ( handleObj = matched.handlers[ j++ ] ) &&
+				!event.isImmediatePropagationStopped() ) {
+
+				// Triggered event must either 1) have no namespace, or 2) have namespace(s)
+				// a subset or equal to those in the bound event (both can have no namespace).
+				if ( !event.rnamespace || event.rnamespace.test( handleObj.namespace ) ) {
+
+					event.handleObj = handleObj;
+					event.data = handleObj.data;
+
+					ret = ( ( jQuery.event.special[ handleObj.origType ] || {} ).handle ||
+						handleObj.handler ).apply( matched.elem, args );
+
+					if ( ret !== undefined ) {
+						if ( ( event.result = ret ) === false ) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+					}
+				}
+			}
+		}
+
+		// Call the postDispatch hook for the mapped type
+		if ( special.postDispatch ) {
+			special.postDispatch.call( this, event );
+		}
+
+		return event.result;
+	},
+
+	handlers: function( event, handlers ) {
+		var i, matches, sel, handleObj,
+			handlerQueue = [],
+			delegateCount = handlers.delegateCount,
+			cur = event.target;
+
+		// Support (at least): Chrome, IE9
+		// Find delegate handlers
+		// Black-hole SVG <use> instance trees (#13180)
+		//
+		// Support: Firefox<=42+
+		// Avoid non-left-click in FF but don't block IE radio events (#3861, gh-2343)
+		if ( delegateCount && cur.nodeType &&
+			( event.type !== "click" || isNaN( event.button ) || event.button < 1 ) ) {
+
+			for ( ; cur !== this; cur = cur.parentNode || this ) {
+
+				// Don't check non-elements (#13208)
+				// Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
+				if ( cur.nodeType === 1 && ( cur.disabled !== true || event.type !== "click" ) ) {
+					matches = [];
+					for ( i = 0; i < delegateCount; i++ ) {
+						handleObj = handlers[ i ];
+
+						// Don't conflict with Object.prototype properties (#13203)
+						sel = handleObj.selector + " ";
+
+						if ( matches[ sel ] === undefined ) {
+							matches[ sel ] = handleObj.needsContext ?
+								jQuery( sel, this ).index( cur ) > -1 :
+								jQuery.find( sel, this, null, [ cur ] ).length;
+						}
+						if ( matches[ sel ] ) {
+							matches.push( handleObj );
+						}
+					}
+					if ( matches.length ) {
+						handlerQueue.push( { elem: cur, handlers: matches } );
+					}
+				}
+			}
+		}
+
+		// Add the remaining (directly-bound) handlers
+		if ( delegateCount < handlers.length ) {
+			handlerQueue.push( { elem: this, handlers: handlers.slice( delegateCount ) } );
+		}
+
+		return handlerQueue;
+	},
+
+	// Includes some event props shared by KeyEvent and MouseEvent
+	props: ( "altKey bubbles cancelable ctrlKey currentTarget detail eventPhase " +
+		"metaKey relatedTarget shiftKey target timeStamp view which" ).split( " " ),
+
+	fixHooks: {},
+
+	keyHooks: {
+		props: "char charCode key keyCode".split( " " ),
+		filter: function( event, original ) {
+
+			// Add which for key events
+			if ( event.which == null ) {
+				event.which = original.charCode != null ? original.charCode : original.keyCode;
+			}
+
+			return event;
+		}
+	},
+
+	mouseHooks: {
+		props: ( "button buttons clientX clientY offsetX offsetY pageX pageY " +
+			"screenX screenY toElement" ).split( " " ),
+		filter: function( event, original ) {
+			var eventDoc, doc, body,
+				button = original.button;
+
+			// Calculate pageX/Y if missing and clientX/Y available
+			if ( event.pageX == null && original.clientX != null ) {
+				eventDoc = event.target.ownerDocument || document;
+				doc = eventDoc.documentElement;
+				body = eventDoc.body;
+
+				event.pageX = original.clientX +
+					( doc && doc.scrollLeft || body && body.scrollLeft || 0 ) -
+					( doc && doc.clientLeft || body && body.clientLeft || 0 );
+				event.pageY = original.clientY +
+					( doc && doc.scrollTop  || body && body.scrollTop  || 0 ) -
+					( doc && doc.clientTop  || body && body.clientTop  || 0 );
+			}
+
+			// Add which for click: 1 === left; 2 === middle; 3 === right
+			// Note: button is not normalized, so don't use it
+			if ( !event.which && button !== undefined ) {
+				event.which = ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
+			}
+
+			return event;
+		}
+	},
+
+	fix: function( event ) {
+		if ( event[ jQuery.expando ] ) {
+			return event;
+		}
+
+		// Create a writable copy of the event object and normalize some properties
+		var i, prop, copy,
+			type = event.type,
+			originalEvent = event,
+			fixHook = this.fixHooks[ type ];
+
+		if ( !fixHook ) {
+			this.fixHooks[ type ] = fixHook =
+				rmouseEvent.test( type ) ? this.mouseHooks :
+				rkeyEvent.test( type ) ? this.keyHooks :
+				{};
+		}
+		copy = fixHook.props ? this.props.concat( fixHook.props ) : this.props;
+
+		event = new jQuery.Event( originalEvent );
+
+		i = copy.length;
+		while ( i-- ) {
+			prop = copy[ i ];
+			event[ prop ] = originalEvent[ prop ];
+		}
+
+		// Support: Cordova 2.5 (WebKit) (#13255)
+		// All events should have a target; Cordova deviceready doesn't
+		if ( !event.target ) {
+			event.target = document;
+		}
+
+		// Support: Safari 6.0+, Chrome<28
+		// Target should not be a text node (#504, #13143)
+		if ( event.target.nodeType === 3 ) {
+			event.target = event.target.parentNode;
+		}
+
+		return fixHook.filter ? fixHook.filter( event, originalEvent ) : event;
+	},
+
+	special: {
+		load: {
+
+			// Prevent triggered image.load events from bubbling to window.load
+			noBubble: true
+		},
+		focus: {
+
+			// Fire native event if possible so blur/focus sequence is correct
+			trigger: function() {
+				if ( this !== safeActiveElement() && this.focus ) {
+					this.focus();
+					return false;
+				}
+			},
+			delegateType: "focusin"
+		},
+		blur: {
+			trigger: function() {
+				if ( this === safeActiveElement() && this.blur ) {
+					this.blur();
+					return false;
+				}
+			},
+			delegateType: "focusout"
+		},
+		click: {
+
+			// For checkbox, fire native event so checked state will be right
+			trigger: function() {
+				if ( this.type === "checkbox" && this.click && jQuery.nodeName( this, "input" ) ) {
+					this.click();
+					return false;
+				}
+			},
+
+			// For cross-browser consistency, don't fire native .click() on links
+			_default: function( event ) {
+				return jQuery.nodeName( event.target, "a" );
+			}
+		},
+
+		beforeunload: {
+			postDispatch: function( event ) {
+
+				// Support: Firefox 20+
+				// Firefox doesn't alert if the returnValue field is not set.
+				if ( event.result !== undefined && event.originalEvent ) {
+					event.originalEvent.returnValue = event.result;
+				}
+			}
+		}
+	}
+};
+
+jQuery.removeEvent = function( elem, type, handle ) {
+
+	// This "if" is needed for plain objects
+	if ( elem.removeEventListener ) {
+		elem.removeEventListener( type, handle );
+	}
+};
+
+jQuery.Event = function( src, props ) {
+
+	// Allow instantiation without the 'new' keyword
+	if ( !( this instanceof jQuery.Event ) ) {
+		return new jQuery.Event( src, props );
+	}
+
+	// Event object
+	if ( src && src.type ) {
+		this.originalEvent = src;
+		this.type = src.type;
+
+		// Events bubbling up the document may have been marked as prevented
+		// by a handler lower down the tree; reflect the correct value.
+		this.isDefaultPrevented = src.defaultPrevented ||
+				src.defaultPrevented === undefined &&
+
+				// Support: Android<4.0
+				src.returnValue === false ?
+			returnTrue :
+			returnFalse;
+
+	// Event type
+	} else {
+		this.type = src;
+	}
+
+	// Put explicitly provided properties onto the event object
+	if ( props ) {
+		jQuery.extend( this, props );
+	}
+
+	// Create a timestamp if incoming event doesn't have one
+	this.timeStamp = src && src.timeStamp || jQuery.now();
+
+	// Mark it as fixed
+	this[ jQuery.expando ] = true;
+};
+
+// jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
+// http://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
+jQuery.Event.prototype = {
+	constructor: jQuery.Event,
+	isDefaultPrevented: returnFalse,
+	isPropagationStopped: returnFalse,
+	isImmediatePropagationStopped: returnFalse,
+
+	preventDefault: function() {
+		var e = this.originalEvent;
+
+		this.isDefaultPrevented = returnTrue;
+
+		if ( e ) {
+			e.preventDefault();
+		}
+	},
+	stopPropagation: function() {
+		var e = this.originalEvent;
+
+		this.isPropagationStopped = returnTrue;
+
+		if ( e ) {
+			e.stopPropagation();
+		}
+	},
+	stopImmediatePropagation: function() {
+		var e = this.originalEvent;
+
+		this.isImmediatePropagationStopped = returnTrue;
+
+		if ( e ) {
+			e.stopImmediatePropagation();
+		}
+
+		this.stopPropagation();
+	}
+};
+
+// Create mouseenter/leave events using mouseover/out and event-time checks
+// so that event delegation works in jQuery.
+// Do the same for pointerenter/pointerleave and pointerover/pointerout
+//
+// Support: Safari 7 only
+// Safari sends mouseenter too often; see:
+// https://code.google.com/p/chromium/issues/detail?id=470258
+// for the description of the bug (it existed in older Chrome versions as well).
+jQuery.each( {
+	mouseenter: "mouseover",
+	mouseleave: "mouseout",
+	pointerenter: "pointerover",
+	pointerleave: "pointerout"
+}, function( orig, fix ) {
+	jQuery.event.special[ orig ] = {
+		delegateType: fix,
+		bindType: fix,
+
+		handle: function( event ) {
+			var ret,
+				target = this,
+				related = event.relatedTarget,
+				handleObj = event.handleObj;
+
+			// For mouseenter/leave call the handler if related is outside the target.
+			// NB: No relatedTarget if the mouse left/entered the browser window
+			if ( !related || ( related !== target && !jQuery.contains( target, related ) ) ) {
+				event.type = handleObj.origType;
+				ret = handleObj.handler.apply( this, arguments );
+				event.type = fix;
+			}
+			return ret;
+		}
+	};
+} );
+
+jQuery.fn.extend( {
+	on: function( types, selector, data, fn ) {
+		return on( this, types, selector, data, fn );
+	},
+	one: function( types, selector, data, fn ) {
+		return on( this, types, selector, data, fn, 1 );
+	},
+	off: function( types, selector, fn ) {
+		var handleObj, type;
+		if ( types && types.preventDefault && types.handleObj ) {
+
+			// ( event )  dispatched jQuery.Event
+			handleObj = types.handleObj;
+			jQuery( types.delegateTarget ).off(
+				handleObj.namespace ?
+					handleObj.origType + "." + handleObj.namespace :
+					handleObj.origType,
+				handleObj.selector,
+				handleObj.handler
+			);
+			return this;
+		}
+		if ( typeof types === "object" ) {
+
+			// ( types-object [, selector] )
+			for ( type in types ) {
+				this.off( type, selector, types[ type ] );
+			}
+			return this;
+		}
+		if ( selector === false || typeof selector === "function" ) {
+
+			// ( types [, fn] )
+			fn = selector;
+			selector = undefined;
+		}
+		if ( fn === false ) {
+			fn = returnFalse;
+		}
+		return this.each( function() {
+			jQuery.event.remove( this, types, fn, selector );
+		} );
+	}
+} );
+
+
+var
+	rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:-]+)[^>]*)\/>/gi,
+
+	// Support: IE 10-11, Edge 10240+
+	// In IE/Edge using regex groups here causes severe slowdowns.
+	// See https://connect.microsoft.com/IE/feedback/details/1736512/
+	rnoInnerhtml = /<script|<style|<link/i,
+
+	// checked="checked" or checked
+	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
+	rscriptTypeMasked = /^true\/(.*)/,
+	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
+
+function manipulationTarget( elem, content ) {
+	if ( jQuery.nodeName( elem, "table" ) &&
+		jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
+
+		return elem.getElementsByTagName( "tbody" )[ 0 ] || elem;
+	}
+
+	return elem;
+}
+
+// Replace/restore the type attribute of script elements for safe DOM manipulation
+function disableScript( elem ) {
+	elem.type = ( elem.getAttribute( "type" ) !== null ) + "/" + elem.type;
+	return elem;
+}
+function restoreScript( elem ) {
+	var match = rscriptTypeMasked.exec( elem.type );
+
+	if ( match ) {
+		elem.type = match[ 1 ];
+	} else {
+		elem.removeAttribute( "type" );
+	}
+
+	return elem;
+}
+
+function cloneCopyEvent( src, dest ) {
+	var i, l, type, pdataOld, pdataCur, udataOld, udataCur, events;
+
+	if ( dest.nodeType !== 1 ) {
+		return;
+	}
+
+	// 1. Copy private data: events, handlers, etc.
+	if ( dataPriv.hasData( src ) ) {
+		pdataOld = dataPriv.access( src );
+		pdataCur = dataPriv.set( dest, pdataOld );
+		events = pdataOld.events;
+
+		if ( events ) {
+			delete pdataCur.handle;
+			pdataCur.events = {};
+
+			for ( type in events ) {
+				for ( i = 0, l = events[ type ].length; i < l; i++ ) {
+					jQuery.event.add( dest, type, events[ type ][ i ] );
+				}
+			}
+		}
+	}
+
+	// 2. Copy user data
+	if ( dataUser.hasData( src ) ) {
+		udataOld = dataUser.access( src );
+		udataCur = jQuery.extend( {}, udataOld );
+
+		dataUser.set( dest, udataCur );
+	}
+}
+
+// Fix IE bugs, see support tests
+function fixInput( src, dest ) {
+	var nodeName = dest.nodeName.toLowerCase();
+
+	// Fails to persist the checked state of a cloned checkbox or radio button.
+	if ( nodeName === "input" && rcheckableType.test( src.type ) ) {
+		dest.checked = src.checked;
+
+	// Fails to return the selected option to the default selected state when cloning options
+	} else if ( nodeName === "input" || nodeName === "textarea" ) {
+		dest.defaultValue = src.defaultValue;
+	}
+}
+
+function domManip( collection, args, callback, ignored ) {
+
+	// Flatten any nested arrays
+	args = concat.apply( [], args );
+
+	var fragment, first, scripts, hasScripts, node, doc,
+		i = 0,
+		l = collection.length,
+		iNoClone = l - 1,
+		value = args[ 0 ],
+		isFunction = jQuery.isFunction( value );
+
+	// We can't cloneNode fragments that contain checked, in WebKit
+	if ( isFunction ||
+			( l > 1 && typeof value === "string" &&
+				!support.checkClone && rchecked.test( value ) ) ) {
+		return collection.each( function( index ) {
+			var self = collection.eq( index );
+			if ( isFunction ) {
+				args[ 0 ] = value.call( this, index, self.html() );
+			}
+			domManip( self, args, callback, ignored );
+		} );
+	}
+
+	if ( l ) {
+		fragment = buildFragment( args, collection[ 0 ].ownerDocument, false, collection, ignored );
+		first = fragment.firstChild;
+
+		if ( fragment.childNodes.length === 1 ) {
+			fragment = first;
+		}
+
+		// Require either new content or an interest in ignored elements to invoke the callback
+		if ( first || ignored ) {
+			scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
+			hasScripts = scripts.length;
+
+			// Use the original fragment for the last item
+			// instead of the first because it can end up
+			// being emptied incorrectly in certain situations (#8070).
+			for ( ; i < l; i++ ) {
+				node = fragment;
+
+				if ( i !== iNoClone ) {
+					node = jQuery.clone( node, true, true );
+
+					// Keep references to cloned scripts for later restoration
+					if ( hasScripts ) {
+
+						// Support: Android<4.1, PhantomJS<2
+						// push.apply(_, arraylike) throws on ancient WebKit
+						jQuery.merge( scripts, getAll( node, "script" ) );
+					}
+				}
+
+				callback.call( collection[ i ], node, i );
+			}
+
+			if ( hasScripts ) {
+				doc = scripts[ scripts.length - 1 ].ownerDocument;
+
+				// Reenable scripts
+				jQuery.map( scripts, restoreScript );
+
+				// Evaluate executable scripts on first document insertion
+				for ( i = 0; i < hasScripts; i++ ) {
+					node = scripts[ i ];
+					if ( rscriptType.test( node.type || "" ) &&
+						!dataPriv.access( node, "globalEval" ) &&
+						jQuery.contains( doc, node ) ) {
+
+						if ( node.src ) {
+
+							// Optional AJAX dependency, but won't run scripts if not present
+							if ( jQuery._evalUrl ) {
+								jQuery._evalUrl( node.src );
+							}
+						} else {
+							jQuery.globalEval( node.textContent.replace( rcleanScript, "" ) );
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return collection;
+}
+
+function remove( elem, selector, keepData ) {
+	var node,
+		nodes = selector ? jQuery.filter( selector, elem ) : elem,
+		i = 0;
+
+	for ( ; ( node = nodes[ i ] ) != null; i++ ) {
+		if ( !keepData && node.nodeType === 1 ) {
+			jQuery.cleanData( getAll( node ) );
+		}
+
+		if ( node.parentNode ) {
+			if ( keepData && jQuery.contains( node.ownerDocument, node ) ) {
+				setGlobalEval( getAll( node, "script" ) );
+			}
+			node.parentNode.removeChild( node );
+		}
+	}
+
+	return elem;
+}
+
+jQuery.extend( {
+	htmlPrefilter: function( html ) {
+		return html.replace( rxhtmlTag, "<$1></$2>" );
+	},
+
+	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
+		var i, l, srcElements, destElements,
+			clone = elem.cloneNode( true ),
+			inPage = jQuery.contains( elem.ownerDocument, elem );
+
+		// Fix IE cloning issues
+		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
+				!jQuery.isXMLDoc( elem ) ) {
+
+			// We eschew Sizzle here for performance reasons: http://jsperf.com/getall-vs-sizzle/2
+			destElements = getAll( clone );
+			srcElements = getAll( elem );
+
+			for ( i = 0, l = srcElements.length; i < l; i++ ) {
+				fixInput( srcElements[ i ], destElements[ i ] );
+			}
+		}
+
+		// Copy the events from the original to the clone
+		if ( dataAndEvents ) {
+			if ( deepDataAndEvents ) {
+				srcElements = srcElements || getAll( elem );
+				destElements = destElements || getAll( clone );
+
+				for ( i = 0, l = srcElements.length; i < l; i++ ) {
+					cloneCopyEvent( srcElements[ i ], destElements[ i ] );
+				}
+			} else {
+				cloneCopyEvent( elem, clone );
+			}
+		}
+
+		// Preserve script evaluation history
+		destElements = getAll( clone, "script" );
+		if ( destElements.length > 0 ) {
+			setGlobalEval( destElements, !inPage && getAll( elem, "script" ) );
+		}
+
+		// Return the cloned set
+		return clone;
+	},
+
+	cleanData: function( elems ) {
+		var data, elem, type,
+			special = jQuery.event.special,
+			i = 0;
+
+		for ( ; ( elem = elems[ i ] ) !== undefined; i++ ) {
+			if ( acceptData( elem ) ) {
+				if ( ( data = elem[ dataPriv.expando ] ) ) {
+					if ( data.events ) {
+						for ( type in data.events ) {
+							if ( special[ type ] ) {
+								jQuery.event.remove( elem, type );
+
+							// This is a shortcut to avoid jQuery.event.remove's overhead
+							} else {
+								jQuery.removeEvent( elem, type, data.handle );
+							}
+						}
+					}
+
+					// Support: Chrome <= 35-45+
+					// Assign undefined instead of using delete, see Data#remove
+					elem[ dataPriv.expando ] = undefined;
+				}
+				if ( elem[ dataUser.expando ] ) {
+
+					// Support: Chrome <= 35-45+
+					// Assign undefined instead of using delete, see Data#remove
+					elem[ dataUser.expando ] = undefined;
+				}
+			}
+		}
+	}
+} );
+
+jQuery.fn.extend( {
+
+	// Keep domManip exposed until 3.0 (gh-2225)
+	domManip: domManip,
+
+	detach: function( selector ) {
+		return remove( this, selector, true );
+	},
+
+	remove: function( selector ) {
+		return remove( this, selector );
+	},
+
+	text: function( value ) {
+		return access( this, function( value ) {
+			return value === undefined ?
+				jQuery.text( this ) :
+				this.empty().each( function() {
+					if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+						this.textContent = value;
+					}
+				} );
+		}, null, value, arguments.length );
+	},
+
+	append: function() {
+		return domManip( this, arguments, function( elem ) {
+			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+				var target = manipulationTarget( this, elem );
+				target.appendChild( elem );
+			}
+		} );
+	},
+
+	prepend: function() {
+		return domManip( this, arguments, function( elem ) {
+			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+				var target = manipulationTarget( this, elem );
+				target.insertBefore( elem, target.firstChild );
+			}
+		} );
+	},
+
+	before: function() {
+		return domManip( this, arguments, function( elem ) {
+			if ( this.parentNode ) {
+				this.parentNode.insertBefore( elem, this );
+			}
+		} );
+	},
+
+	after: function() {
+		return domManip( this, arguments, function( elem ) {
+			if ( this.parentNode ) {
+				this.parentNode.insertBefore( elem, this.nextSibling );
+			}
+		} );
+	},
+
+	empty: function() {
+		var elem,
+			i = 0;
+
+		for ( ; ( elem = this[ i ] ) != null; i++ ) {
+			if ( elem.nodeType === 1 ) {
+
+				// Prevent memory leaks
+				jQuery.cleanData( getAll( elem, false ) );
+
+				// Remove any remaining nodes
+				elem.textContent = "";
+			}
+		}
+
+		return this;
+	},
+
+	clone: function( dataAndEvents, deepDataAndEvents ) {
+		dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
+		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
+
+		return this.map( function() {
+			return jQuery.clone( this, dataAndEvents, deepDataAndEvents );
+		} );
+	},
+
+	html: function( value ) {
+		return access( this, function( value ) {
+			var elem = this[ 0 ] || {},
+				i = 0,
+				l = this.length;
+
+			if ( value === undefined && elem.nodeType === 1 ) {
+				return elem.innerHTML;
+			}
+
+			// See if we can take a shortcut and just use innerHTML
+			if ( typeof value === "string" && !rnoInnerhtml.test( value ) &&
+				!wrapMap[ ( rtagName.exec( value ) || [ "", "" ] )[ 1 ].toLowerCase() ] ) {
+
+				value = jQuery.htmlPrefilter( value );
+
+				try {
+					for ( ; i < l; i++ ) {
+						elem = this[ i ] || {};
+
+						// Remove element nodes and prevent memory leaks
+						if ( elem.nodeType === 1 ) {
+							jQuery.cleanData( getAll( elem, false ) );
+							elem.innerHTML = value;
+						}
+					}
+
+					elem = 0;
+
+				// If using innerHTML throws an exception, use the fallback method
+				} catch ( e ) {}
+			}
+
+			if ( elem ) {
+				this.empty().append( value );
+			}
+		}, null, value, arguments.length );
+	},
+
+	replaceWith: function() {
+		var ignored = [];
+
+		// Make the changes, replacing each non-ignored context element with the new content
+		return domManip( this, arguments, function( elem ) {
+			var parent = this.parentNode;
+
+			if ( jQuery.inArray( this, ignored ) < 0 ) {
+				jQuery.cleanData( getAll( this ) );
+				if ( parent ) {
+					parent.replaceChild( elem, this );
+				}
+			}
+
+		// Force callback invocation
+		}, ignored );
+	}
+} );
+
+jQuery.each( {
+	appendTo: "append",
+	prependTo: "prepend",
+	insertBefore: "before",
+	insertAfter: "after",
+	replaceAll: "replaceWith"
+}, function( name, original ) {
+	jQuery.fn[ name ] = function( selector ) {
+		var elems,
+			ret = [],
+			insert = jQuery( selector ),
+			last = insert.length - 1,
+			i = 0;
+
+		for ( ; i <= last; i++ ) {
+			elems = i === last ? this : this.clone( true );
+			jQuery( insert[ i ] )[ original ]( elems );
+
+			// Support: QtWebKit
+			// .get() because push.apply(_, arraylike) throws
+			push.apply( ret, elems.get() );
+		}
+
+		return this.pushStack( ret );
+	};
+} );
+
+
+var iframe,
+	elemdisplay = {
+
+		// Support: Firefox
+		// We have to pre-define these values for FF (#10227)
+		HTML: "block",
+		BODY: "block"
+	};
+
+/**
+ * Retrieve the actual display of a element
+ * @param {String} name nodeName of the element
+ * @param {Object} doc Document object
+ */
+
+// Called only from within defaultDisplay
+function actualDisplay( name, doc ) {
+	var elem = jQuery( doc.createElement( name ) ).appendTo( doc.body ),
+
+		display = jQuery.css( elem[ 0 ], "display" );
+
+	// We don't have any data stored on the element,
+	// so use "detach" method as fast way to get rid of the element
+	elem.detach();
+
+	return display;
+}
+
+/**
+ * Try to determine the default display value of an element
+ * @param {String} nodeName
+ */
+function defaultDisplay( nodeName ) {
+	var doc = document,
+		display = elemdisplay[ nodeName ];
+
+	if ( !display ) {
+		display = actualDisplay( nodeName, doc );
+
+		// If the simple way fails, read from inside an iframe
+		if ( display === "none" || !display ) {
+
+			// Use the already-created iframe if possible
+			iframe = ( iframe || jQuery( "<iframe frameborder='0' width='0' height='0'/>" ) )
+				.appendTo( doc.documentElement );
+
+			// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
+			doc = iframe[ 0 ].contentDocument;
+
+			// Support: IE
+			doc.write();
+			doc.close();
+
+			display = actualDisplay( nodeName, doc );
+			iframe.detach();
+		}
+
+		// Store the correct default display
+		elemdisplay[ nodeName ] = display;
+	}
+
+	return display;
+}
+var rmargin = ( /^margin/ );
+
+var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
+
+var getStyles = function( elem ) {
+
+		// Support: IE<=11+, Firefox<=30+ (#15098, #14150)
+		// IE throws on elements created in popups
+		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
+		var view = elem.ownerDocument.defaultView;
+
+		if ( !view.opener ) {
+			view = window;
+		}
+
+		return view.getComputedStyle( elem );
+	};
+
+var swap = function( elem, options, callback, args ) {
+	var ret, name,
+		old = {};
+
+	// Remember the old values, and insert the new ones
+	for ( name in options ) {
+		old[ name ] = elem.style[ name ];
+		elem.style[ name ] = options[ name ];
+	}
+
+	ret = callback.apply( elem, args || [] );
+
+	// Revert the old values
+	for ( name in options ) {
+		elem.style[ name ] = old[ name ];
+	}
+
+	return ret;
+};
+
+
+var documentElement = document.documentElement;
+
+
+
+( function() {
+	var pixelPositionVal, boxSizingReliableVal, pixelMarginRightVal, reliableMarginLeftVal,
+		container = document.createElement( "div" ),
+		div = document.createElement( "div" );
+
+	// Finish early in limited (non-browser) environments
+	if ( !div.style ) {
+		return;
+	}
+
+	// Support: IE9-11+
+	// Style of cloned element affects source element cloned (#8908)
+	div.style.backgroundClip = "content-box";
+	div.cloneNode( true ).style.backgroundClip = "";
+	support.clearCloneStyle = div.style.backgroundClip === "content-box";
+
+	container.style.cssText = "border:0;width:8px;height:0;top:0;left:-9999px;" +
+		"padding:0;margin-top:1px;position:absolute";
+	container.appendChild( div );
+
+	// Executing both pixelPosition & boxSizingReliable tests require only one layout
+	// so they're executed at the same time to save the second computation.
+	function computeStyleTests() {
+		div.style.cssText =
+
+			// Support: Firefox<29, Android 2.3
+			// Vendor-prefix box-sizing
+			"-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;" +
+			"position:relative;display:block;" +
+			"margin:auto;border:1px;padding:1px;" +
+			"top:1%;width:50%";
+		div.innerHTML = "";
+		documentElement.appendChild( container );
+
+		var divStyle = window.getComputedStyle( div );
+		pixelPositionVal = divStyle.top !== "1%";
+		reliableMarginLeftVal = divStyle.marginLeft === "2px";
+		boxSizingReliableVal = divStyle.width === "4px";
+
+		// Support: Android 4.0 - 4.3 only
+		// Some styles come back with percentage values, even though they shouldn't
+		div.style.marginRight = "50%";
+		pixelMarginRightVal = divStyle.marginRight === "4px";
+
+		documentElement.removeChild( container );
+	}
+
+	jQuery.extend( support, {
+		pixelPosition: function() {
+
+			// This test is executed only once but we still do memoizing
+			// since we can use the boxSizingReliable pre-computing.
+			// No need to check if the test was already performed, though.
+			computeStyleTests();
+			return pixelPositionVal;
+		},
+		boxSizingReliable: function() {
+			if ( boxSizingReliableVal == null ) {
+				computeStyleTests();
+			}
+			return boxSizingReliableVal;
+		},
+		pixelMarginRight: function() {
+
+			// Support: Android 4.0-4.3
+			// We're checking for boxSizingReliableVal here instead of pixelMarginRightVal
+			// since that compresses better and they're computed together anyway.
+			if ( boxSizingReliableVal == null ) {
+				computeStyleTests();
+			}
+			return pixelMarginRightVal;
+		},
+		reliableMarginLeft: function() {
+
+			// Support: IE <=8 only, Android 4.0 - 4.3 only, Firefox <=3 - 37
+			if ( boxSizingReliableVal == null ) {
+				computeStyleTests();
+			}
+			return reliableMarginLeftVal;
+		},
+		reliableMarginRight: function() {
+
+			// Support: Android 2.3
+			// Check if div with explicit width and no margin-right incorrectly
+			// gets computed margin-right based on width of container. (#3333)
+			// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
+			// This support function is only executed once so no memoizing is needed.
+			var ret,
+				marginDiv = div.appendChild( document.createElement( "div" ) );
+
+			// Reset CSS: box-sizing; display; margin; border; padding
+			marginDiv.style.cssText = div.style.cssText =
+
+				// Support: Android 2.3
+				// Vendor-prefix box-sizing
+				"-webkit-box-sizing:content-box;box-sizing:content-box;" +
+				"display:block;margin:0;border:0;padding:0";
+			marginDiv.style.marginRight = marginDiv.style.width = "0";
+			div.style.width = "1px";
+			documentElement.appendChild( container );
+
+			ret = !parseFloat( window.getComputedStyle( marginDiv ).marginRight );
+
+			documentElement.removeChild( container );
+			div.removeChild( marginDiv );
+
+			return ret;
+		}
+	} );
+} )();
+
+
+function curCSS( elem, name, computed ) {
+	var width, minWidth, maxWidth, ret,
+		style = elem.style;
+
+	computed = computed || getStyles( elem );
+
+	// Support: IE9
+	// getPropertyValue is only needed for .css('filter') (#12537)
+	if ( computed ) {
+		ret = computed.getPropertyValue( name ) || computed[ name ];
+
+		if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
+			ret = jQuery.style( elem, name );
+		}
+
+		// A tribute to the "awesome hack by Dean Edwards"
+		// Android Browser returns percentage for some values,
+		// but width seems to be reliably pixels.
+		// This is against the CSSOM draft spec:
+		// http://dev.w3.org/csswg/cssom/#resolved-values
+		if ( !support.pixelMarginRight() && rnumnonpx.test( ret ) && rmargin.test( name ) ) {
+
+			// Remember the original values
+			width = style.width;
+			minWidth = style.minWidth;
+			maxWidth = style.maxWidth;
+
+			// Put in the new values to get a computed value out
+			style.minWidth = style.maxWidth = style.width = ret;
+			ret = computed.width;
+
+			// Revert the changed values
+			style.width = width;
+			style.minWidth = minWidth;
+			style.maxWidth = maxWidth;
+		}
+	}
+
+	return ret !== undefined ?
+
+		// Support: IE9-11+
+		// IE returns zIndex value as an integer.
+		ret + "" :
+		ret;
+}
+
+
+function addGetHookIf( conditionFn, hookFn ) {
+
+	// Define the hook, we'll check on the first run if it's really needed.
+	return {
+		get: function() {
+			if ( conditionFn() ) {
+
+				// Hook not needed (or it's not possible to use it due
+				// to missing dependency), remove it.
+				delete this.get;
+				return;
+			}
+
+			// Hook needed; redefine it so that the support test is not executed again.
+			return ( this.get = hookFn ).apply( this, arguments );
+		}
+	};
+}
+
+
+var
+
+	// Swappable if display is none or starts with table
+	// except "table", "table-cell", or "table-caption"
+	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+
+	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssNormalTransform = {
+		letterSpacing: "0",
+		fontWeight: "400"
+	},
+
+	cssPrefixes = [ "Webkit", "O", "Moz", "ms" ],
+	emptyStyle = document.createElement( "div" ).style;
+
+// Return a css property mapped to a potentially vendor prefixed property
+function vendorPropName( name ) {
+
+	// Shortcut for names that are not vendor prefixed
+	if ( name in emptyStyle ) {
+		return name;
+	}
+
+	// Check for vendor prefixed names
+	var capName = name[ 0 ].toUpperCase() + name.slice( 1 ),
+		i = cssPrefixes.length;
+
+	while ( i-- ) {
+		name = cssPrefixes[ i ] + capName;
+		if ( name in emptyStyle ) {
+			return name;
+		}
+	}
+}
+
+function setPositiveNumber( elem, value, subtract ) {
+
+	// Any relative (+/-) values have already been
+	// normalized at this point
+	var matches = rcssNum.exec( value );
+	return matches ?
+
+		// Guard against undefined "subtract", e.g., when used as in cssHooks
+		Math.max( 0, matches[ 2 ] - ( subtract || 0 ) ) + ( matches[ 3 ] || "px" ) :
+		value;
+}
+
+function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
+	var i = extra === ( isBorderBox ? "border" : "content" ) ?
+
+		// If we already have the right measurement, avoid augmentation
+		4 :
+
+		// Otherwise initialize for horizontal or vertical properties
+		name === "width" ? 1 : 0,
+
+		val = 0;
+
+	for ( ; i < 4; i += 2 ) {
+
+		// Both box models exclude margin, so add it if we want it
+		if ( extra === "margin" ) {
+			val += jQuery.css( elem, extra + cssExpand[ i ], true, styles );
+		}
+
+		if ( isBorderBox ) {
+
+			// border-box includes padding, so remove it if we want content
+			if ( extra === "content" ) {
+				val -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			}
+
+			// At this point, extra isn't border nor margin, so remove border
+			if ( extra !== "margin" ) {
+				val -= jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			}
+		} else {
+
+			// At this point, extra isn't content, so add padding
+			val += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+
+			// At this point, extra isn't content nor padding, so add border
+			if ( extra !== "padding" ) {
+				val += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			}
+		}
+	}
+
+	return val;
+}
+
+function getWidthOrHeight( elem, name, extra ) {
+
+	// Start with offset property, which is equivalent to the border-box value
+	var valueIsBorderBox = true,
+		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
+		styles = getStyles( elem ),
+		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
+
+	// Support: IE11 only
+	// In IE 11 fullscreen elements inside of an iframe have
+	// 100x too small dimensions (gh-1764).
+	if ( document.msFullscreenElement && window.top !== window ) {
+
+		// Support: IE11 only
+		// Running getBoundingClientRect on a disconnected node
+		// in IE throws an error.
+		if ( elem.getClientRects().length ) {
+			val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
+		}
+	}
+
+	// Some non-html elements return undefined for offsetWidth, so check for null/undefined
+	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
+	// MathML - https://bugzilla.mozilla.org/show_bug.cgi?id=491668
+	if ( val <= 0 || val == null ) {
+
+		// Fall back to computed then uncomputed css if necessary
+		val = curCSS( elem, name, styles );
+		if ( val < 0 || val == null ) {
+			val = elem.style[ name ];
+		}
+
+		// Computed unit is not pixels. Stop here and return.
+		if ( rnumnonpx.test( val ) ) {
+			return val;
+		}
+
+		// Check for style in case a browser which returns unreliable values
+		// for getComputedStyle silently falls back to the reliable elem.style
+		valueIsBorderBox = isBorderBox &&
+			( support.boxSizingReliable() || val === elem.style[ name ] );
+
+		// Normalize "", auto, and prepare for extra
+		val = parseFloat( val ) || 0;
+	}
+
+	// Use the active box-sizing model to add/subtract irrelevant styles
+	return ( val +
+		augmentWidthOrHeight(
+			elem,
+			name,
+			extra || ( isBorderBox ? "border" : "content" ),
+			valueIsBorderBox,
+			styles
+		)
+	) + "px";
+}
+
+function showHide( elements, show ) {
+	var display, elem, hidden,
+		values = [],
+		index = 0,
+		length = elements.length;
+
+	for ( ; index < length; index++ ) {
+		elem = elements[ index ];
+		if ( !elem.style ) {
+			continue;
+		}
+
+		values[ index ] = dataPriv.get( elem, "olddisplay" );
+		display = elem.style.display;
+		if ( show ) {
+
+			// Reset the inline display of this element to learn if it is
+			// being hidden by cascaded rules or not
+			if ( !values[ index ] && display === "none" ) {
+				elem.style.display = "";
+			}
+
+			// Set elements which have been overridden with display: none
+			// in a stylesheet to whatever the default browser style is
+			// for such an element
+			if ( elem.style.display === "" && isHidden( elem ) ) {
+				values[ index ] = dataPriv.access(
+					elem,
+					"olddisplay",
+					defaultDisplay( elem.nodeName )
+				);
+			}
+		} else {
+			hidden = isHidden( elem );
+
+			if ( display !== "none" || !hidden ) {
+				dataPriv.set(
+					elem,
+					"olddisplay",
+					hidden ? display : jQuery.css( elem, "display" )
+				);
+			}
+		}
+	}
+
+	// Set the display of most of the elements in a second loop
+	// to avoid the constant reflow
+	for ( index = 0; index < length; index++ ) {
+		elem = elements[ index ];
+		if ( !elem.style ) {
+			continue;
+		}
+		if ( !show || elem.style.display === "none" || elem.style.display === "" ) {
+			elem.style.display = show ? values[ index ] || "" : "none";
+		}
+	}
+
+	return elements;
+}
+
+jQuery.extend( {
+
+	// Add in style property hooks for overriding the default
+	// behavior of getting and setting a style property
+	cssHooks: {
+		opacity: {
+			get: function( elem, computed ) {
+				if ( computed ) {
+
+					// We should always get a number back from opacity
+					var ret = curCSS( elem, "opacity" );
+					return ret === "" ? "1" : ret;
+				}
+			}
+		}
+	},
+
+	// Don't automatically add "px" to these possibly-unitless properties
+	cssNumber: {
+		"animationIterationCount": true,
+		"columnCount": true,
+		"fillOpacity": true,
+		"flexGrow": true,
+		"flexShrink": true,
+		"fontWeight": true,
+		"lineHeight": true,
+		"opacity": true,
+		"order": true,
+		"orphans": true,
+		"widows": true,
+		"zIndex": true,
+		"zoom": true
+	},
+
+	// Add in properties whose names you wish to fix before
+	// setting or getting the value
+	cssProps: {
+		"float": "cssFloat"
+	},
+
+	// Get and set the style property on a DOM Node
+	style: function( elem, name, value, extra ) {
+
+		// Don't set styles on text and comment nodes
+		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
+			return;
+		}
+
+		// Make sure that we're working with the right name
+		var ret, type, hooks,
+			origName = jQuery.camelCase( name ),
+			style = elem.style;
+
+		name = jQuery.cssProps[ origName ] ||
+			( jQuery.cssProps[ origName ] = vendorPropName( origName ) || origName );
+
+		// Gets hook for the prefixed version, then unprefixed version
+		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
+
+		// Check if we're setting a value
+		if ( value !== undefined ) {
+			type = typeof value;
+
+			// Convert "+=" or "-=" to relative numbers (#7345)
+			if ( type === "string" && ( ret = rcssNum.exec( value ) ) && ret[ 1 ] ) {
+				value = adjustCSS( elem, name, ret );
+
+				// Fixes bug #9237
+				type = "number";
+			}
+
+			// Make sure that null and NaN values aren't set (#7116)
+			if ( value == null || value !== value ) {
+				return;
+			}
+
+			// If a number was passed in, add the unit (except for certain CSS properties)
+			if ( type === "number" ) {
+				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
+			}
+
+			// Support: IE9-11+
+			// background-* props affect original clone's values
+			if ( !support.clearCloneStyle && value === "" && name.indexOf( "background" ) === 0 ) {
+				style[ name ] = "inherit";
+			}
+
+			// If a hook was provided, use that value, otherwise just set the specified value
+			if ( !hooks || !( "set" in hooks ) ||
+				( value = hooks.set( elem, value, extra ) ) !== undefined ) {
+
+				style[ name ] = value;
+			}
+
+		} else {
+
+			// If a hook was provided get the non-computed value from there
+			if ( hooks && "get" in hooks &&
+				( ret = hooks.get( elem, false, extra ) ) !== undefined ) {
+
+				return ret;
+			}
+
+			// Otherwise just get the value from the style object
+			return style[ name ];
+		}
+	},
+
+	css: function( elem, name, extra, styles ) {
+		var val, num, hooks,
+			origName = jQuery.camelCase( name );
+
+		// Make sure that we're working with the right name
+		name = jQuery.cssProps[ origName ] ||
+			( jQuery.cssProps[ origName ] = vendorPropName( origName ) || origName );
+
+		// Try prefixed name followed by the unprefixed name
+		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
+
+		// If a hook was provided get the computed value from there
+		if ( hooks && "get" in hooks ) {
+			val = hooks.get( elem, true, extra );
+		}
+
+		// Otherwise, if a way to get the computed value exists, use that
+		if ( val === undefined ) {
+			val = curCSS( elem, name, styles );
+		}
+
+		// Convert "normal" to computed value
+		if ( val === "normal" && name in cssNormalTransform ) {
+			val = cssNormalTransform[ name ];
+		}
+
+		// Make numeric if forced or a qualifier was provided and val looks numeric
+		if ( extra === "" || extra ) {
+			num = parseFloat( val );
+			return extra === true || isFinite( num ) ? num || 0 : val;
+		}
+		return val;
+	}
+} );
+
+jQuery.each( [ "height", "width" ], function( i, name ) {
+	jQuery.cssHooks[ name ] = {
+		get: function( elem, computed, extra ) {
+			if ( computed ) {
+
+				// Certain elements can have dimension info if we invisibly show them
+				// but it must have a current display style that would benefit
+				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
+					elem.offsetWidth === 0 ?
+						swap( elem, cssShow, function() {
+							return getWidthOrHeight( elem, name, extra );
+						} ) :
+						getWidthOrHeight( elem, name, extra );
+			}
+		},
+
+		set: function( elem, value, extra ) {
+			var matches,
+				styles = extra && getStyles( elem ),
+				subtract = extra && augmentWidthOrHeight(
+					elem,
+					name,
+					extra,
+					jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+					styles
+				);
+
+			// Convert to pixels if value adjustment is needed
+			if ( subtract && ( matches = rcssNum.exec( value ) ) &&
+				( matches[ 3 ] || "px" ) !== "px" ) {
+
+				elem.style[ name ] = value;
+				value = jQuery.css( elem, name );
+			}
+
+			return setPositiveNumber( elem, value, subtract );
+		}
+	};
+} );
+
+jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
+	function( elem, computed ) {
+		if ( computed ) {
+			return ( parseFloat( curCSS( elem, "marginLeft" ) ) ||
+				elem.getBoundingClientRect().left -
+					swap( elem, { marginLeft: 0 }, function() {
+						return elem.getBoundingClientRect().left;
+					} )
+				) + "px";
+		}
+	}
+);
+
+// Support: Android 2.3
+jQuery.cssHooks.marginRight = addGetHookIf( support.reliableMarginRight,
+	function( elem, computed ) {
+		if ( computed ) {
+			return swap( elem, { "display": "inline-block" },
+				curCSS, [ elem, "marginRight" ] );
+		}
+	}
+);
+
+// These hooks are used by animate to expand properties
+jQuery.each( {
+	margin: "",
+	padding: "",
+	border: "Width"
+}, function( prefix, suffix ) {
+	jQuery.cssHooks[ prefix + suffix ] = {
+		expand: function( value ) {
+			var i = 0,
+				expanded = {},
+
+				// Assumes a single number if not a string
+				parts = typeof value === "string" ? value.split( " " ) : [ value ];
+
+			for ( ; i < 4; i++ ) {
+				expanded[ prefix + cssExpand[ i ] + suffix ] =
+					parts[ i ] || parts[ i - 2 ] || parts[ 0 ];
+			}
+
+			return expanded;
+		}
+	};
+
+	if ( !rmargin.test( prefix ) ) {
+		jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
+	}
+} );
+
+jQuery.fn.extend( {
+	css: function( name, value ) {
+		return access( this, function( elem, name, value ) {
+			var styles, len,
+				map = {},
+				i = 0;
+
+			if ( jQuery.isArray( name ) ) {
+				styles = getStyles( elem );
+				len = name.length;
+
+				for ( ; i < len; i++ ) {
+					map[ name[ i ] ] = jQuery.css( elem, name[ i ], false, styles );
+				}
+
+				return map;
+			}
+
+			return value !== undefined ?
+				jQuery.style( elem, name, value ) :
+				jQuery.css( elem, name );
+		}, name, value, arguments.length > 1 );
+	},
+	show: function() {
+		return showHide( this, true );
+	},
+	hide: function() {
+		return showHide( this );
+	},
+	toggle: function( state ) {
+		if ( typeof state === "boolean" ) {
+			return state ? this.show() : this.hide();
+		}
+
+		return this.each( function() {
+			if ( isHidden( this ) ) {
+				jQuery( this ).show();
+			} else {
+				jQuery( this ).hide();
+			}
+		} );
+	}
+} );
+
+
+function Tween( elem, options, prop, end, easing ) {
+	return new Tween.prototype.init( elem, options, prop, end, easing );
+}
+jQuery.Tween = Tween;
+
+Tween.prototype = {
+	constructor: Tween,
+	init: function( elem, options, prop, end, easing, unit ) {
+		this.elem = elem;
+		this.prop = prop;
+		this.easing = easing || jQuery.easing._default;
+		this.options = options;
+		this.start = this.now = this.cur();
+		this.end = end;
+		this.unit = unit || ( jQuery.cssNumber[ prop ] ? "" : "px" );
+	},
+	cur: function() {
+		var hooks = Tween.propHooks[ this.prop ];
+
+		return hooks && hooks.get ?
+			hooks.get( this ) :
+			Tween.propHooks._default.get( this );
+	},
+	run: function( percent ) {
+		var eased,
+			hooks = Tween.propHooks[ this.prop ];
+
+		if ( this.options.duration ) {
+			this.pos = eased = jQuery.easing[ this.easing ](
+				percent, this.options.duration * percent, 0, 1, this.options.duration
+			);
+		} else {
+			this.pos = eased = percent;
+		}
+		this.now = ( this.end - this.start ) * eased + this.start;
+
+		if ( this.options.step ) {
+			this.options.step.call( this.elem, this.now, this );
+		}
+
+		if ( hooks && hooks.set ) {
+			hooks.set( this );
+		} else {
+			Tween.propHooks._default.set( this );
+		}
+		return this;
+	}
+};
+
+Tween.prototype.init.prototype = Tween.prototype;
+
+Tween.propHooks = {
+	_default: {
+		get: function( tween ) {
+			var result;
+
+			// Use a property on the element directly when it is not a DOM element,
+			// or when there is no matching style property that exists.
+			if ( tween.elem.nodeType !== 1 ||
+				tween.elem[ tween.prop ] != null && tween.elem.style[ tween.prop ] == null ) {
+				return tween.elem[ tween.prop ];
+			}
+
+			// Passing an empty string as a 3rd parameter to .css will automatically
+			// attempt a parseFloat and fallback to a string if the parse fails.
+			// Simple values such as "10px" are parsed to Float;
+			// complex values such as "rotate(1rad)" are returned as-is.
+			result = jQuery.css( tween.elem, tween.prop, "" );
+
+			// Empty strings, null, undefined and "auto" are converted to 0.
+			return !result || result === "auto" ? 0 : result;
+		},
+		set: function( tween ) {
+
+			// Use step hook for back compat.
+			// Use cssHook if its there.
+			// Use .style if available and use plain properties where available.
+			if ( jQuery.fx.step[ tween.prop ] ) {
+				jQuery.fx.step[ tween.prop ]( tween );
+			} else if ( tween.elem.nodeType === 1 &&
+				( tween.elem.style[ jQuery.cssProps[ tween.prop ] ] != null ||
+					jQuery.cssHooks[ tween.prop ] ) ) {
+				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
+			} else {
+				tween.elem[ tween.prop ] = tween.now;
+			}
+		}
+	}
+};
+
+// Support: IE9
+// Panic based approach to setting things on disconnected nodes
+Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
+	set: function( tween ) {
+		if ( tween.elem.nodeType && tween.elem.parentNode ) {
+			tween.elem[ tween.prop ] = tween.now;
+		}
+	}
+};
+
+jQuery.easing = {
+	linear: function( p ) {
+		return p;
+	},
+	swing: function( p ) {
+		return 0.5 - Math.cos( p * Math.PI ) / 2;
+	},
+	_default: "swing"
+};
+
+jQuery.fx = Tween.prototype.init;
+
+// Back Compat <1.8 extension point
+jQuery.fx.step = {};
+
+
+
+
+var
+	fxNow, timerId,
+	rfxtypes = /^(?:toggle|show|hide)$/,
+	rrun = /queueHooks$/;
+
+// Animations created synchronously will run synchronously
+function createFxNow() {
+	window.setTimeout( function() {
+		fxNow = undefined;
+	} );
+	return ( fxNow = jQuery.now() );
+}
+
+// Generate parameters to create a standard animation
+function genFx( type, includeWidth ) {
+	var which,
+		i = 0,
+		attrs = { height: type };
+
+	// If we include width, step value is 1 to do all cssExpand values,
+	// otherwise step value is 2 to skip over Left and Right
+	includeWidth = includeWidth ? 1 : 0;
+	for ( ; i < 4 ; i += 2 - includeWidth ) {
+		which = cssExpand[ i ];
+		attrs[ "margin" + which ] = attrs[ "padding" + which ] = type;
+	}
+
+	if ( includeWidth ) {
+		attrs.opacity = attrs.width = type;
+	}
+
+	return attrs;
+}
+
+function createTween( value, prop, animation ) {
+	var tween,
+		collection = ( Animation.tweeners[ prop ] || [] ).concat( Animation.tweeners[ "*" ] ),
+		index = 0,
+		length = collection.length;
+	for ( ; index < length; index++ ) {
+		if ( ( tween = collection[ index ].call( animation, prop, value ) ) ) {
+
+			// We're done with this property
+			return tween;
+		}
+	}
+}
+
+function defaultPrefilter( elem, props, opts ) {
+	/* jshint validthis: true */
+	var prop, value, toggle, tween, hooks, oldfire, display, checkDisplay,
+		anim = this,
+		orig = {},
+		style = elem.style,
+		hidden = elem.nodeType && isHidden( elem ),
+		dataShow = dataPriv.get( elem, "fxshow" );
+
+	// Handle queue: false promises
+	if ( !opts.queue ) {
+		hooks = jQuery._queueHooks( elem, "fx" );
+		if ( hooks.unqueued == null ) {
+			hooks.unqueued = 0;
+			oldfire = hooks.empty.fire;
+			hooks.empty.fire = function() {
+				if ( !hooks.unqueued ) {
+					oldfire();
+				}
+			};
+		}
+		hooks.unqueued++;
+
+		anim.always( function() {
+
+			// Ensure the complete handler is called before this completes
+			anim.always( function() {
+				hooks.unqueued--;
+				if ( !jQuery.queue( elem, "fx" ).length ) {
+					hooks.empty.fire();
+				}
+			} );
+		} );
+	}
+
+	// Height/width overflow pass
+	if ( elem.nodeType === 1 && ( "height" in props || "width" in props ) ) {
+
+		// Make sure that nothing sneaks out
+		// Record all 3 overflow attributes because IE9-10 do not
+		// change the overflow attribute when overflowX and
+		// overflowY are set to the same value
+		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
+
+		// Set display property to inline-block for height/width
+		// animations on inline elements that are having width/height animated
+		display = jQuery.css( elem, "display" );
+
+		// Test default display if display is currently "none"
+		checkDisplay = display === "none" ?
+			dataPriv.get( elem, "olddisplay" ) || defaultDisplay( elem.nodeName ) : display;
+
+		if ( checkDisplay === "inline" && jQuery.css( elem, "float" ) === "none" ) {
+			style.display = "inline-block";
+		}
+	}
+
+	if ( opts.overflow ) {
+		style.overflow = "hidden";
+		anim.always( function() {
+			style.overflow = opts.overflow[ 0 ];
+			style.overflowX = opts.overflow[ 1 ];
+			style.overflowY = opts.overflow[ 2 ];
+		} );
+	}
+
+	// show/hide pass
+	for ( prop in props ) {
+		value = props[ prop ];
+		if ( rfxtypes.exec( value ) ) {
+			delete props[ prop ];
+			toggle = toggle || value === "toggle";
+			if ( value === ( hidden ? "hide" : "show" ) ) {
+
+				// If there is dataShow left over from a stopped hide or show
+				// and we are going to proceed with show, we should pretend to be hidden
+				if ( value === "show" && dataShow && dataShow[ prop ] !== undefined ) {
+					hidden = true;
+				} else {
+					continue;
+				}
+			}
+			orig[ prop ] = dataShow && dataShow[ prop ] || jQuery.style( elem, prop );
+
+		// Any non-fx value stops us from restoring the original display value
+		} else {
+			display = undefined;
+		}
+	}
+
+	if ( !jQuery.isEmptyObject( orig ) ) {
+		if ( dataShow ) {
+			if ( "hidden" in dataShow ) {
+				hidden = dataShow.hidden;
+			}
+		} else {
+			dataShow = dataPriv.access( elem, "fxshow", {} );
+		}
+
+		// Store state if its toggle - enables .stop().toggle() to "reverse"
+		if ( toggle ) {
+			dataShow.hidden = !hidden;
+		}
+		if ( hidden ) {
+			jQuery( elem ).show();
+		} else {
+			anim.done( function() {
+				jQuery( elem ).hide();
+			} );
+		}
+		anim.done( function() {
+			var prop;
+
+			dataPriv.remove( elem, "fxshow" );
+			for ( prop in orig ) {
+				jQuery.style( elem, prop, orig[ prop ] );
+			}
+		} );
+		for ( prop in orig ) {
+			tween = createTween( hidden ? dataShow[ prop ] : 0, prop, anim );
+
+			if ( !( prop in dataShow ) ) {
+				dataShow[ prop ] = tween.start;
+				if ( hidden ) {
+					tween.end = tween.start;
+					tween.start = prop === "width" || prop === "height" ? 1 : 0;
+				}
+			}
+		}
+
+	// If this is a noop like .hide().hide(), restore an overwritten display value
+	} else if ( ( display === "none" ? defaultDisplay( elem.nodeName ) : display ) === "inline" ) {
+		style.display = display;
+	}
+}
+
+function propFilter( props, specialEasing ) {
+	var index, name, easing, value, hooks;
+
+	// camelCase, specialEasing and expand cssHook pass
+	for ( index in props ) {
+		name = jQuery.camelCase( index );
+		easing = specialEasing[ name ];
+		value = props[ index ];
+		if ( jQuery.isArray( value ) ) {
+			easing = value[ 1 ];
+			value = props[ index ] = value[ 0 ];
+		}
+
+		if ( index !== name ) {
+			props[ name ] = value;
+			delete props[ index ];
+		}
+
+		hooks = jQuery.cssHooks[ name ];
+		if ( hooks && "expand" in hooks ) {
+			value = hooks.expand( value );
+			delete props[ name ];
+
+			// Not quite $.extend, this won't overwrite existing keys.
+			// Reusing 'index' because we have the correct "name"
+			for ( index in value ) {
+				if ( !( index in props ) ) {
+					props[ index ] = value[ index ];
+					specialEasing[ index ] = easing;
+				}
+			}
+		} else {
+			specialEasing[ name ] = easing;
+		}
+	}
+}
+
+function Animation( elem, properties, options ) {
+	var result,
+		stopped,
+		index = 0,
+		length = Animation.prefilters.length,
+		deferred = jQuery.Deferred().always( function() {
+
+			// Don't match elem in the :animated selector
+			delete tick.elem;
+		} ),
+		tick = function() {
+			if ( stopped ) {
+				return false;
+			}
+			var currentTime = fxNow || createFxNow(),
+				remaining = Math.max( 0, animation.startTime + animation.duration - currentTime ),
+
+				// Support: Android 2.3
+				// Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (#12497)
+				temp = remaining / animation.duration || 0,
+				percent = 1 - temp,
+				index = 0,
+				length = animation.tweens.length;
+
+			for ( ; index < length ; index++ ) {
+				animation.tweens[ index ].run( percent );
+			}
+
+			deferred.notifyWith( elem, [ animation, percent, remaining ] );
+
+			if ( percent < 1 && length ) {
+				return remaining;
+			} else {
+				deferred.resolveWith( elem, [ animation ] );
+				return false;
+			}
+		},
+		animation = deferred.promise( {
+			elem: elem,
+			props: jQuery.extend( {}, properties ),
+			opts: jQuery.extend( true, {
+				specialEasing: {},
+				easing: jQuery.easing._default
+			}, options ),
+			originalProperties: properties,
+			originalOptions: options,
+			startTime: fxNow || createFxNow(),
+			duration: options.duration,
+			tweens: [],
+			createTween: function( prop, end ) {
+				var tween = jQuery.Tween( elem, animation.opts, prop, end,
+						animation.opts.specialEasing[ prop ] || animation.opts.easing );
+				animation.tweens.push( tween );
+				return tween;
+			},
+			stop: function( gotoEnd ) {
+				var index = 0,
+
+					// If we are going to the end, we want to run all the tweens
+					// otherwise we skip this part
+					length = gotoEnd ? animation.tweens.length : 0;
+				if ( stopped ) {
+					return this;
+				}
+				stopped = true;
+				for ( ; index < length ; index++ ) {
+					animation.tweens[ index ].run( 1 );
+				}
+
+				// Resolve when we played the last frame; otherwise, reject
+				if ( gotoEnd ) {
+					deferred.notifyWith( elem, [ animation, 1, 0 ] );
+					deferred.resolveWith( elem, [ animation, gotoEnd ] );
+				} else {
+					deferred.rejectWith( elem, [ animation, gotoEnd ] );
+				}
+				return this;
+			}
+		} ),
+		props = animation.props;
+
+	propFilter( props, animation.opts.specialEasing );
+
+	for ( ; index < length ; index++ ) {
+		result = Animation.prefilters[ index ].call( animation, elem, props, animation.opts );
+		if ( result ) {
+			if ( jQuery.isFunction( result.stop ) ) {
+				jQuery._queueHooks( animation.elem, animation.opts.queue ).stop =
+					jQuery.proxy( result.stop, result );
+			}
+			return result;
+		}
+	}
+
+	jQuery.map( props, createTween, animation );
+
+	if ( jQuery.isFunction( animation.opts.start ) ) {
+		animation.opts.start.call( elem, animation );
+	}
+
+	jQuery.fx.timer(
+		jQuery.extend( tick, {
+			elem: elem,
+			anim: animation,
+			queue: animation.opts.queue
+		} )
+	);
+
+	// attach callbacks from options
+	return animation.progress( animation.opts.progress )
+		.done( animation.opts.done, animation.opts.complete )
+		.fail( animation.opts.fail )
+		.always( animation.opts.always );
+}
+
+jQuery.Animation = jQuery.extend( Animation, {
+	tweeners: {
+		"*": [ function( prop, value ) {
+			var tween = this.createTween( prop, value );
+			adjustCSS( tween.elem, prop, rcssNum.exec( value ), tween );
+			return tween;
+		} ]
+	},
+
+	tweener: function( props, callback ) {
+		if ( jQuery.isFunction( props ) ) {
+			callback = props;
+			props = [ "*" ];
+		} else {
+			props = props.match( rnotwhite );
+		}
+
+		var prop,
+			index = 0,
+			length = props.length;
+
+		for ( ; index < length ; index++ ) {
+			prop = props[ index ];
+			Animation.tweeners[ prop ] = Animation.tweeners[ prop ] || [];
+			Animation.tweeners[ prop ].unshift( callback );
+		}
+	},
+
+	prefilters: [ defaultPrefilter ],
+
+	prefilter: function( callback, prepend ) {
+		if ( prepend ) {
+			Animation.prefilters.unshift( callback );
+		} else {
+			Animation.prefilters.push( callback );
+		}
+	}
+} );
+
+jQuery.speed = function( speed, easing, fn ) {
+	var opt = speed && typeof speed === "object" ? jQuery.extend( {}, speed ) : {
+		complete: fn || !fn && easing ||
+			jQuery.isFunction( speed ) && speed,
+		duration: speed,
+		easing: fn && easing || easing && !jQuery.isFunction( easing ) && easing
+	};
+
+	opt.duration = jQuery.fx.off ? 0 : typeof opt.duration === "number" ?
+		opt.duration : opt.duration in jQuery.fx.speeds ?
+			jQuery.fx.speeds[ opt.duration ] : jQuery.fx.speeds._default;
+
+	// Normalize opt.queue - true/undefined/null -> "fx"
+	if ( opt.queue == null || opt.queue === true ) {
+		opt.queue = "fx";
+	}
+
+	// Queueing
+	opt.old = opt.complete;
+
+	opt.complete = function() {
+		if ( jQuery.isFunction( opt.old ) ) {
+			opt.old.call( this );
+		}
+
+		if ( opt.queue ) {
+			jQuery.dequeue( this, opt.queue );
+		}
+	};
+
+	return opt;
+};
+
+jQuery.fn.extend( {
+	fadeTo: function( speed, to, easing, callback ) {
+
+		// Show any hidden elements after setting opacity to 0
+		return this.filter( isHidden ).css( "opacity", 0 ).show()
+
+			// Animate to the value specified
+			.end().animate( { opacity: to }, speed, easing, callback );
+	},
+	animate: function( prop, speed, easing, callback ) {
+		var empty = jQuery.isEmptyObject( prop ),
+			optall = jQuery.speed( speed, easing, callback ),
+			doAnimation = function() {
+
+				// Operate on a copy of prop so per-property easing won't be lost
+				var anim = Animation( this, jQuery.extend( {}, prop ), optall );
+
+				// Empty animations, or finishing resolves immediately
+				if ( empty || dataPriv.get( this, "finish" ) ) {
+					anim.stop( true );
+				}
+			};
+			doAnimation.finish = doAnimation;
+
+		return empty || optall.queue === false ?
+			this.each( doAnimation ) :
+			this.queue( optall.queue, doAnimation );
+	},
+	stop: function( type, clearQueue, gotoEnd ) {
+		var stopQueue = function( hooks ) {
+			var stop = hooks.stop;
+			delete hooks.stop;
+			stop( gotoEnd );
+		};
+
+		if ( typeof type !== "string" ) {
+			gotoEnd = clearQueue;
+			clearQueue = type;
+			type = undefined;
+		}
+		if ( clearQueue && type !== false ) {
+			this.queue( type || "fx", [] );
+		}
+
+		return this.each( function() {
+			var dequeue = true,
+				index = type != null && type + "queueHooks",
+				timers = jQuery.timers,
+				data = dataPriv.get( this );
+
+			if ( index ) {
+				if ( data[ index ] && data[ index ].stop ) {
+					stopQueue( data[ index ] );
+				}
+			} else {
+				for ( index in data ) {
+					if ( data[ index ] && data[ index ].stop && rrun.test( index ) ) {
+						stopQueue( data[ index ] );
+					}
+				}
+			}
+
+			for ( index = timers.length; index--; ) {
+				if ( timers[ index ].elem === this &&
+					( type == null || timers[ index ].queue === type ) ) {
+
+					timers[ index ].anim.stop( gotoEnd );
+					dequeue = false;
+					timers.splice( index, 1 );
+				}
+			}
+
+			// Start the next in the queue if the last step wasn't forced.
+			// Timers currently will call their complete callbacks, which
+			// will dequeue but only if they were gotoEnd.
+			if ( dequeue || !gotoEnd ) {
+				jQuery.dequeue( this, type );
+			}
+		} );
+	},
+	finish: function( type ) {
+		if ( type !== false ) {
+			type = type || "fx";
+		}
+		return this.each( function() {
+			var index,
+				data = dataPriv.get( this ),
+				queue = data[ type + "queue" ],
+				hooks = data[ type + "queueHooks" ],
+				timers = jQuery.timers,
+				length = queue ? queue.length : 0;
+
+			// Enable finishing flag on private data
+			data.finish = true;
+
+			// Empty the queue first
+			jQuery.queue( this, type, [] );
+
+			if ( hooks && hooks.stop ) {
+				hooks.stop.call( this, true );
+			}
+
+			// Look for any active animations, and finish them
+			for ( index = timers.length; index--; ) {
+				if ( timers[ index ].elem === this && timers[ index ].queue === type ) {
+					timers[ index ].anim.stop( true );
+					timers.splice( index, 1 );
+				}
+			}
+
+			// Look for any animations in the old queue and finish them
+			for ( index = 0; index < length; index++ ) {
+				if ( queue[ index ] && queue[ index ].finish ) {
+					queue[ index ].finish.call( this );
+				}
+			}
+
+			// Turn off finishing flag
+			delete data.finish;
+		} );
+	}
+} );
+
+jQuery.each( [ "toggle", "show", "hide" ], function( i, name ) {
+	var cssFn = jQuery.fn[ name ];
+	jQuery.fn[ name ] = function( speed, easing, callback ) {
+		return speed == null || typeof speed === "boolean" ?
+			cssFn.apply( this, arguments ) :
+			this.animate( genFx( name, true ), speed, easing, callback );
+	};
+} );
+
+// Generate shortcuts for custom animations
+jQuery.each( {
+	slideDown: genFx( "show" ),
+	slideUp: genFx( "hide" ),
+	slideToggle: genFx( "toggle" ),
+	fadeIn: { opacity: "show" },
+	fadeOut: { opacity: "hide" },
+	fadeToggle: { opacity: "toggle" }
+}, function( name, props ) {
+	jQuery.fn[ name ] = function( speed, easing, callback ) {
+		return this.animate( props, speed, easing, callback );
+	};
+} );
+
+jQuery.timers = [];
+jQuery.fx.tick = function() {
+	var timer,
+		i = 0,
+		timers = jQuery.timers;
+
+	fxNow = jQuery.now();
+
+	for ( ; i < timers.length; i++ ) {
+		timer = timers[ i ];
+
+		// Checks the timer has not already been removed
+		if ( !timer() && timers[ i ] === timer ) {
+			timers.splice( i--, 1 );
+		}
+	}
+
+	if ( !timers.length ) {
+		jQuery.fx.stop();
+	}
+	fxNow = undefined;
+};
+
+jQuery.fx.timer = function( timer ) {
+	jQuery.timers.push( timer );
+	if ( timer() ) {
+		jQuery.fx.start();
+	} else {
+		jQuery.timers.pop();
+	}
+};
+
+jQuery.fx.interval = 13;
+jQuery.fx.start = function() {
+	if ( !timerId ) {
+		timerId = window.setInterval( jQuery.fx.tick, jQuery.fx.interval );
+	}
+};
+
+jQuery.fx.stop = function() {
+	window.clearInterval( timerId );
+
+	timerId = null;
+};
+
+jQuery.fx.speeds = {
+	slow: 600,
+	fast: 200,
+
+	// Default speed
+	_default: 400
+};
+
+
+// Based off of the plugin by Clint Helfers, with permission.
+// http://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/jquery-delay/
+jQuery.fn.delay = function( time, type ) {
+	time = jQuery.fx ? jQuery.fx.speeds[ time ] || time : time;
+	type = type || "fx";
+
+	return this.queue( type, function( next, hooks ) {
+		var timeout = window.setTimeout( next, time );
+		hooks.stop = function() {
+			window.clearTimeout( timeout );
+		};
+	} );
+};
+
+
+( function() {
+	var input = document.createElement( "input" ),
+		select = document.createElement( "select" ),
+		opt = select.appendChild( document.createElement( "option" ) );
+
+	input.type = "checkbox";
+
+	// Support: iOS<=5.1, Android<=4.2+
+	// Default value for a checkbox should be "on"
+	support.checkOn = input.value !== "";
+
+	// Support: IE<=11+
+	// Must access selectedIndex to make default options select
+	support.optSelected = opt.selected;
+
+	// Support: Android<=2.3
+	// Options inside disabled selects are incorrectly marked as disabled
+	select.disabled = true;
+	support.optDisabled = !opt.disabled;
+
+	// Support: IE<=11+
+	// An input loses its value after becoming a radio
+	input = document.createElement( "input" );
+	input.value = "t";
+	input.type = "radio";
+	support.radioValue = input.value === "t";
+} )();
+
+
+var boolHook,
+	attrHandle = jQuery.expr.attrHandle;
+
+jQuery.fn.extend( {
+	attr: function( name, value ) {
+		return access( this, jQuery.attr, name, value, arguments.length > 1 );
+	},
+
+	removeAttr: function( name ) {
+		return this.each( function() {
+			jQuery.removeAttr( this, name );
+		} );
+	}
+} );
+
+jQuery.extend( {
+	attr: function( elem, name, value ) {
+		var ret, hooks,
+			nType = elem.nodeType;
+
+		// Don't get/set attributes on text, comment and attribute nodes
+		if ( nType === 3 || nType === 8 || nType === 2 ) {
+			return;
+		}
+
+		// Fallback to prop when attributes are not supported
+		if ( typeof elem.getAttribute === "undefined" ) {
+			return jQuery.prop( elem, name, value );
+		}
+
+		// All attributes are lowercase
+		// Grab necessary hook if one is defined
+		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
+			name = name.toLowerCase();
+			hooks = jQuery.attrHooks[ name ] ||
+				( jQuery.expr.match.bool.test( name ) ? boolHook : undefined );
+		}
+
+		if ( value !== undefined ) {
+			if ( value === null ) {
+				jQuery.removeAttr( elem, name );
+				return;
+			}
+
+			if ( hooks && "set" in hooks &&
+				( ret = hooks.set( elem, value, name ) ) !== undefined ) {
+				return ret;
+			}
+
+			elem.setAttribute( name, value + "" );
+			return value;
+		}
+
+		if ( hooks && "get" in hooks && ( ret = hooks.get( elem, name ) ) !== null ) {
+			return ret;
+		}
+
+		ret = jQuery.find.attr( elem, name );
+
+		// Non-existent attributes return null, we normalize to undefined
+		return ret == null ? undefined : ret;
+	},
+
+	attrHooks: {
+		type: {
+			set: function( elem, value ) {
+				if ( !support.radioValue && value === "radio" &&
+					jQuery.nodeName( elem, "input" ) ) {
+					var val = elem.value;
+					elem.setAttribute( "type", value );
+					if ( val ) {
+						elem.value = val;
+					}
+					return value;
+				}
+			}
+		}
+	},
+
+	removeAttr: function( elem, value ) {
+		var name, propName,
+			i = 0,
+			attrNames = value && value.match( rnotwhite );
+
+		if ( attrNames && elem.nodeType === 1 ) {
+			while ( ( name = attrNames[ i++ ] ) ) {
+				propName = jQuery.propFix[ name ] || name;
+
+				// Boolean attributes get special treatment (#10870)
+				if ( jQuery.expr.match.bool.test( name ) ) {
+
+					// Set corresponding property to false
+					elem[ propName ] = false;
+				}
+
+				elem.removeAttribute( name );
+			}
+		}
+	}
+} );
+
+// Hooks for boolean attributes
+boolHook = {
+	set: function( elem, value, name ) {
+		if ( value === false ) {
+
+			// Remove boolean attributes when set to false
+			jQuery.removeAttr( elem, name );
+		} else {
+			elem.setAttribute( name, name );
+		}
+		return name;
+	}
+};
+jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) {
+	var getter = attrHandle[ name ] || jQuery.find.attr;
+
+	attrHandle[ name ] = function( elem, name, isXML ) {
+		var ret, handle;
+		if ( !isXML ) {
+
+			// Avoid an infinite loop by temporarily removing this function from the getter
+			handle = attrHandle[ name ];
+			attrHandle[ name ] = ret;
+			ret = getter( elem, name, isXML ) != null ?
+				name.toLowerCase() :
+				null;
+			attrHandle[ name ] = handle;
+		}
+		return ret;
+	};
+} );
+
+
+
+
+var rfocusable = /^(?:input|select|textarea|button)$/i,
+	rclickable = /^(?:a|area)$/i;
+
+jQuery.fn.extend( {
+	prop: function( name, value ) {
+		return access( this, jQuery.prop, name, value, arguments.length > 1 );
+	},
+
+	removeProp: function( name ) {
+		return this.each( function() {
+			delete this[ jQuery.propFix[ name ] || name ];
+		} );
+	}
+} );
+
+jQuery.extend( {
+	prop: function( elem, name, value ) {
+		var ret, hooks,
+			nType = elem.nodeType;
+
+		// Don't get/set properties on text, comment and attribute nodes
+		if ( nType === 3 || nType === 8 || nType === 2 ) {
+			return;
+		}
+
+		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
+
+			// Fix name and attach hooks
+			name = jQuery.propFix[ name ] || name;
+			hooks = jQuery.propHooks[ name ];
+		}
+
+		if ( value !== undefined ) {
+			if ( hooks && "set" in hooks &&
+				( ret = hooks.set( elem, value, name ) ) !== undefined ) {
+				return ret;
+			}
+
+			return ( elem[ name ] = value );
+		}
+
+		if ( hooks && "get" in hooks && ( ret = hooks.get( elem, name ) ) !== null ) {
+			return ret;
+		}
+
+		return elem[ name ];
+	},
+
+	propHooks: {
+		tabIndex: {
+			get: function( elem ) {
+
+				// elem.tabIndex doesn't always return the
+				// correct value when it hasn't been explicitly set
+				// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
+				// Use proper attribute retrieval(#12072)
+				var tabindex = jQuery.find.attr( elem, "tabindex" );
+
+				return tabindex ?
+					parseInt( tabindex, 10 ) :
+					rfocusable.test( elem.nodeName ) ||
+						rclickable.test( elem.nodeName ) && elem.href ?
+							0 :
+							-1;
+			}
+		}
+	},
+
+	propFix: {
+		"for": "htmlFor",
+		"class": "className"
+	}
+} );
+
+if ( !support.optSelected ) {
+	jQuery.propHooks.selected = {
+		get: function( elem ) {
+			var parent = elem.parentNode;
+			if ( parent && parent.parentNode ) {
+				parent.parentNode.selectedIndex;
+			}
+			return null;
+		}
+	};
+}
+
+jQuery.each( [
+	"tabIndex",
+	"readOnly",
+	"maxLength",
+	"cellSpacing",
+	"cellPadding",
+	"rowSpan",
+	"colSpan",
+	"useMap",
+	"frameBorder",
+	"contentEditable"
+], function() {
+	jQuery.propFix[ this.toLowerCase() ] = this;
+} );
+
+
+
+
+var rclass = /[\t\r\n\f]/g;
+
+function getClass( elem ) {
+	return elem.getAttribute && elem.getAttribute( "class" ) || "";
+}
+
+jQuery.fn.extend( {
+	addClass: function( value ) {
+		var classes, elem, cur, curValue, clazz, j, finalValue,
+			i = 0;
+
+		if ( jQuery.isFunction( value ) ) {
+			return this.each( function( j ) {
+				jQuery( this ).addClass( value.call( this, j, getClass( this ) ) );
+			} );
+		}
+
+		if ( typeof value === "string" && value ) {
+			classes = value.match( rnotwhite ) || [];
+
+			while ( ( elem = this[ i++ ] ) ) {
+				curValue = getClass( elem );
+				cur = elem.nodeType === 1 &&
+					( " " + curValue + " " ).replace( rclass, " " );
+
+				if ( cur ) {
+					j = 0;
+					while ( ( clazz = classes[ j++ ] ) ) {
+						if ( cur.indexOf( " " + clazz + " " ) < 0 ) {
+							cur += clazz + " ";
+						}
+					}
+
+					// Only assign if different to avoid unneeded rendering.
+					finalValue = jQuery.trim( cur );
+					if ( curValue !== finalValue ) {
+						elem.setAttribute( "class", finalValue );
+					}
+				}
+			}
+		}
+
+		return this;
+	},
+
+	removeClass: function( value ) {
+		var classes, elem, cur, curValue, clazz, j, finalValue,
+			i = 0;
+
+		if ( jQuery.isFunction( value ) ) {
+			return this.each( function( j ) {
+				jQuery( this ).removeClass( value.call( this, j, getClass( this ) ) );
+			} );
+		}
+
+		if ( !arguments.length ) {
+			return this.attr( "class", "" );
+		}
+
+		if ( typeof value === "string" && value ) {
+			classes = value.match( rnotwhite ) || [];
+
+			while ( ( elem = this[ i++ ] ) ) {
+				curValue = getClass( elem );
+
+				// This expression is here for better compressibility (see addClass)
+				cur = elem.nodeType === 1 &&
+					( " " + curValue + " " ).replace( rclass, " " );
+
+				if ( cur ) {
+					j = 0;
+					while ( ( clazz = classes[ j++ ] ) ) {
+
+						// Remove *all* instances
+						while ( cur.indexOf( " " + clazz + " " ) > -1 ) {
+							cur = cur.replace( " " + clazz + " ", " " );
+						}
+					}
+
+					// Only assign if different to avoid unneeded rendering.
+					finalValue = jQuery.trim( cur );
+					if ( curValue !== finalValue ) {
+						elem.setAttribute( "class", finalValue );
+					}
+				}
+			}
+		}
+
+		return this;
+	},
+
+	toggleClass: function( value, stateVal ) {
+		var type = typeof value;
+
+		if ( typeof stateVal === "boolean" && type === "string" ) {
+			return stateVal ? this.addClass( value ) : this.removeClass( value );
+		}
+
+		if ( jQuery.isFunction( value ) ) {
+			return this.each( function( i ) {
+				jQuery( this ).toggleClass(
+					value.call( this, i, getClass( this ), stateVal ),
+					stateVal
+				);
+			} );
+		}
+
+		return this.each( function() {
+			var className, i, self, classNames;
+
+			if ( type === "string" ) {
+
+				// Toggle individual class names
+				i = 0;
+				self = jQuery( this );
+				classNames = value.match( rnotwhite ) || [];
+
+				while ( ( className = classNames[ i++ ] ) ) {
+
+					// Check each className given, space separated list
+					if ( self.hasClass( className ) ) {
+						self.removeClass( className );
+					} else {
+						self.addClass( className );
+					}
+				}
+
+			// Toggle whole class name
+			} else if ( value === undefined || type === "boolean" ) {
+				className = getClass( this );
+				if ( className ) {
+
+					// Store className if set
+					dataPriv.set( this, "__className__", className );
+				}
+
+				// If the element has a class name or if we're passed `false`,
+				// then remove the whole classname (if there was one, the above saved it).
+				// Otherwise bring back whatever was previously saved (if anything),
+				// falling back to the empty string if nothing was stored.
+				if ( this.setAttribute ) {
+					this.setAttribute( "class",
+						className || value === false ?
+						"" :
+						dataPriv.get( this, "__className__" ) || ""
+					);
+				}
+			}
+		} );
+	},
+
+	hasClass: function( selector ) {
+		var className, elem,
+			i = 0;
+
+		className = " " + selector + " ";
+		while ( ( elem = this[ i++ ] ) ) {
+			if ( elem.nodeType === 1 &&
+				( " " + getClass( elem ) + " " ).replace( rclass, " " )
+					.indexOf( className ) > -1
+			) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+} );
+
+
+
+
+var rreturn = /\r/g;
+
+jQuery.fn.extend( {
+	val: function( value ) {
+		var hooks, ret, isFunction,
+			elem = this[ 0 ];
+
+		if ( !arguments.length ) {
+			if ( elem ) {
+				hooks = jQuery.valHooks[ elem.type ] ||
+					jQuery.valHooks[ elem.nodeName.toLowerCase() ];
+
+				if ( hooks &&
+					"get" in hooks &&
+					( ret = hooks.get( elem, "value" ) ) !== undefined
+				) {
+					return ret;
+				}
+
+				ret = elem.value;
+
+				return typeof ret === "string" ?
+
+					// Handle most common string cases
+					ret.replace( rreturn, "" ) :
+
+					// Handle cases where value is null/undef or number
+					ret == null ? "" : ret;
+			}
+
+			return;
+		}
+
+		isFunction = jQuery.isFunction( value );
+
+		return this.each( function( i ) {
+			var val;
+
+			if ( this.nodeType !== 1 ) {
+				return;
+			}
+
+			if ( isFunction ) {
+				val = value.call( this, i, jQuery( this ).val() );
+			} else {
+				val = value;
+			}
+
+			// Treat null/undefined as ""; convert numbers to string
+			if ( val == null ) {
+				val = "";
+
+			} else if ( typeof val === "number" ) {
+				val += "";
+
+			} else if ( jQuery.isArray( val ) ) {
+				val = jQuery.map( val, function( value ) {
+					return value == null ? "" : value + "";
+				} );
+			}
+
+			hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
+
+			// If set returns undefined, fall back to normal setting
+			if ( !hooks || !( "set" in hooks ) || hooks.set( this, val, "value" ) === undefined ) {
+				this.value = val;
+			}
+		} );
+	}
+} );
+
+jQuery.extend( {
+	valHooks: {
+		option: {
+			get: function( elem ) {
+
+				// Support: IE<11
+				// option.value not trimmed (#14858)
+				return jQuery.trim( elem.value );
+			}
+		},
+		select: {
+			get: function( elem ) {
+				var value, option,
+					options = elem.options,
+					index = elem.selectedIndex,
+					one = elem.type === "select-one" || index < 0,
+					values = one ? null : [],
+					max = one ? index + 1 : options.length,
+					i = index < 0 ?
+						max :
+						one ? index : 0;
+
+				// Loop through all the selected options
+				for ( ; i < max; i++ ) {
+					option = options[ i ];
+
+					// IE8-9 doesn't update selected after form reset (#2551)
+					if ( ( option.selected || i === index ) &&
+
+							// Don't return options that are disabled or in a disabled optgroup
+							( support.optDisabled ?
+								!option.disabled : option.getAttribute( "disabled" ) === null ) &&
+							( !option.parentNode.disabled ||
+								!jQuery.nodeName( option.parentNode, "optgroup" ) ) ) {
+
+						// Get the specific value for the option
+						value = jQuery( option ).val();
+
+						// We don't need an array for one selects
+						if ( one ) {
+							return value;
+						}
+
+						// Multi-Selects return an array
+						values.push( value );
+					}
+				}
+
+				return values;
+			},
+
+			set: function( elem, value ) {
+				var optionSet, option,
+					options = elem.options,
+					values = jQuery.makeArray( value ),
+					i = options.length;
+
+				while ( i-- ) {
+					option = options[ i ];
+					if ( option.selected =
+							jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
+					) {
+						optionSet = true;
+					}
+				}
+
+				// Force browsers to behave consistently when non-matching value is set
+				if ( !optionSet ) {
+					elem.selectedIndex = -1;
+				}
+				return values;
+			}
+		}
+	}
+} );
+
+// Radios and checkboxes getter/setter
+jQuery.each( [ "radio", "checkbox" ], function() {
+	jQuery.valHooks[ this ] = {
+		set: function( elem, value ) {
+			if ( jQuery.isArray( value ) ) {
+				return ( elem.checked = jQuery.inArray( jQuery( elem ).val(), value ) > -1 );
+			}
+		}
+	};
+	if ( !support.checkOn ) {
+		jQuery.valHooks[ this ].get = function( elem ) {
+			return elem.getAttribute( "value" ) === null ? "on" : elem.value;
+		};
+	}
+} );
+
+
+
+
+// Return jQuery for attributes-only inclusion
+
+
+var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/;
+
+jQuery.extend( jQuery.event, {
+
+	trigger: function( event, data, elem, onlyHandlers ) {
+
+		var i, cur, tmp, bubbleType, ontype, handle, special,
+			eventPath = [ elem || document ],
+			type = hasOwn.call( event, "type" ) ? event.type : event,
+			namespaces = hasOwn.call( event, "namespace" ) ? event.namespace.split( "." ) : [];
+
+		cur = tmp = elem = elem || document;
+
+		// Don't do events on text and comment nodes
+		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
+			return;
+		}
+
+		// focus/blur morphs to focusin/out; ensure we're not firing them right now
+		if ( rfocusMorph.test( type + jQuery.event.triggered ) ) {
+			return;
+		}
+
+		if ( type.indexOf( "." ) > -1 ) {
+
+			// Namespaced trigger; create a regexp to match event type in handle()
+			namespaces = type.split( "." );
+			type = namespaces.shift();
+			namespaces.sort();
+		}
+		ontype = type.indexOf( ":" ) < 0 && "on" + type;
+
+		// Caller can pass in a jQuery.Event object, Object, or just an event type string
+		event = event[ jQuery.expando ] ?
+			event :
+			new jQuery.Event( type, typeof event === "object" && event );
+
+		// Trigger bitmask: & 1 for native handlers; & 2 for jQuery (always true)
+		event.isTrigger = onlyHandlers ? 2 : 3;
+		event.namespace = namespaces.join( "." );
+		event.rnamespace = event.namespace ?
+			new RegExp( "(^|\\.)" + namespaces.join( "\\.(?:.*\\.|)" ) + "(\\.|$)" ) :
+			null;
+
+		// Clean up the event in case it is being reused
+		event.result = undefined;
+		if ( !event.target ) {
+			event.target = elem;
+		}
+
+		// Clone any incoming data and prepend the event, creating the handler arg list
+		data = data == null ?
+			[ event ] :
+			jQuery.makeArray( data, [ event ] );
+
+		// Allow special events to draw outside the lines
+		special = jQuery.event.special[ type ] || {};
+		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
+			return;
+		}
+
+		// Determine event propagation path in advance, per W3C events spec (#9951)
+		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
+
+			bubbleType = special.delegateType || type;
+			if ( !rfocusMorph.test( bubbleType + type ) ) {
+				cur = cur.parentNode;
+			}
+			for ( ; cur; cur = cur.parentNode ) {
+				eventPath.push( cur );
+				tmp = cur;
+			}
+
+			// Only add window if we got to document (e.g., not plain obj or detached DOM)
+			if ( tmp === ( elem.ownerDocument || document ) ) {
+				eventPath.push( tmp.defaultView || tmp.parentWindow || window );
+			}
+		}
+
+		// Fire handlers on the event path
+		i = 0;
+		while ( ( cur = eventPath[ i++ ] ) && !event.isPropagationStopped() ) {
+
+			event.type = i > 1 ?
+				bubbleType :
+				special.bindType || type;
+
+			// jQuery handler
+			handle = ( dataPriv.get( cur, "events" ) || {} )[ event.type ] &&
+				dataPriv.get( cur, "handle" );
+			if ( handle ) {
+				handle.apply( cur, data );
+			}
+
+			// Native handler
+			handle = ontype && cur[ ontype ];
+			if ( handle && handle.apply && acceptData( cur ) ) {
+				event.result = handle.apply( cur, data );
+				if ( event.result === false ) {
+					event.preventDefault();
+				}
+			}
+		}
+		event.type = type;
+
+		// If nobody prevented the default action, do it now
+		if ( !onlyHandlers && !event.isDefaultPrevented() ) {
+
+			if ( ( !special._default ||
+				special._default.apply( eventPath.pop(), data ) === false ) &&
+				acceptData( elem ) ) {
+
+				// Call a native DOM method on the target with the same name name as the event.
+				// Don't do default actions on window, that's where global variables be (#6170)
+				if ( ontype && jQuery.isFunction( elem[ type ] ) && !jQuery.isWindow( elem ) ) {
+
+					// Don't re-trigger an onFOO event when we call its FOO() method
+					tmp = elem[ ontype ];
+
+					if ( tmp ) {
+						elem[ ontype ] = null;
+					}
+
+					// Prevent re-triggering of the same event, since we already bubbled it above
+					jQuery.event.triggered = type;
+					elem[ type ]();
+					jQuery.event.triggered = undefined;
+
+					if ( tmp ) {
+						elem[ ontype ] = tmp;
+					}
+				}
+			}
+		}
+
+		return event.result;
+	},
+
+	// Piggyback on a donor event to simulate a different one
+	simulate: function( type, elem, event ) {
+		var e = jQuery.extend(
+			new jQuery.Event(),
+			event,
+			{
+				type: type,
+				isSimulated: true
+
+				// Previously, `originalEvent: {}` was set here, so stopPropagation call
+				// would not be triggered on donor event, since in our own
+				// jQuery.event.stopPropagation function we had a check for existence of
+				// originalEvent.stopPropagation method, so, consequently it would be a noop.
+				//
+				// But now, this "simulate" function is used only for events
+				// for which stopPropagation() is noop, so there is no need for that anymore.
+				//
+				// For the compat branch though, guard for "click" and "submit"
+				// events is still used, but was moved to jQuery.event.stopPropagation function
+				// because `originalEvent` should point to the original event for the constancy
+				// with other events and for more focused logic
+			}
+		);
+
+		jQuery.event.trigger( e, null, elem );
+
+		if ( e.isDefaultPrevented() ) {
+			event.preventDefault();
+		}
+	}
+
+} );
+
+jQuery.fn.extend( {
+
+	trigger: function( type, data ) {
+		return this.each( function() {
+			jQuery.event.trigger( type, data, this );
+		} );
+	},
+	triggerHandler: function( type, data ) {
+		var elem = this[ 0 ];
+		if ( elem ) {
+			return jQuery.event.trigger( type, data, elem, true );
+		}
+	}
+} );
+
+
+jQuery.each( ( "blur focus focusin focusout load resize scroll unload click dblclick " +
+	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+	"change select submit keydown keypress keyup error contextmenu" ).split( " " ),
+	function( i, name ) {
+
+	// Handle event binding
+	jQuery.fn[ name ] = function( data, fn ) {
+		return arguments.length > 0 ?
+			this.on( name, null, data, fn ) :
+			this.trigger( name );
+	};
+} );
+
+jQuery.fn.extend( {
+	hover: function( fnOver, fnOut ) {
+		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
+	}
+} );
+
+
+
+
+support.focusin = "onfocusin" in window;
+
+
+// Support: Firefox
+// Firefox doesn't have focus(in | out) events
+// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
+//
+// Support: Chrome, Safari
+// focus(in | out) events fire after focus & blur events,
+// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
+// Related ticket - https://code.google.com/p/chromium/issues/detail?id=449857
+if ( !support.focusin ) {
+	jQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
+
+		// Attach a single capturing handler on the document while someone wants focusin/focusout
+		var handler = function( event ) {
+			jQuery.event.simulate( fix, event.target, jQuery.event.fix( event ) );
+		};
+
+		jQuery.event.special[ fix ] = {
+			setup: function() {
+				var doc = this.ownerDocument || this,
+					attaches = dataPriv.access( doc, fix );
+
+				if ( !attaches ) {
+					doc.addEventListener( orig, handler, true );
+				}
+				dataPriv.access( doc, fix, ( attaches || 0 ) + 1 );
+			},
+			teardown: function() {
+				var doc = this.ownerDocument || this,
+					attaches = dataPriv.access( doc, fix ) - 1;
+
+				if ( !attaches ) {
+					doc.removeEventListener( orig, handler, true );
+					dataPriv.remove( doc, fix );
+
+				} else {
+					dataPriv.access( doc, fix, attaches );
+				}
+			}
+		};
+	} );
+}
+var location = window.location;
+
+var nonce = jQuery.now();
+
+var rquery = ( /\?/ );
+
+
+
+// Support: Android 2.3
+// Workaround failure to string-cast null input
+jQuery.parseJSON = function( data ) {
+	return JSON.parse( data + "" );
+};
+
+
+// Cross-browser xml parsing
+jQuery.parseXML = function( data ) {
+	var xml;
+	if ( !data || typeof data !== "string" ) {
+		return null;
+	}
+
+	// Support: IE9
+	try {
+		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
+	} catch ( e ) {
+		xml = undefined;
+	}
+
+	if ( !xml || xml.getElementsByTagName( "parsererror" ).length ) {
+		jQuery.error( "Invalid XML: " + data );
+	}
+	return xml;
+};
+
+
+var
+	rhash = /#.*$/,
+	rts = /([?&])_=[^&]*/,
+	rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
+
+	// #7653, #8125, #8152: local protocol detection
+	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
+	rnoContent = /^(?:GET|HEAD)$/,
+	rprotocol = /^\/\//,
+
+	/* Prefilters
+	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
+	 * 2) These are called:
+	 *    - BEFORE asking for a transport
+	 *    - AFTER param serialization (s.data is a string if s.processData is true)
+	 * 3) key is the dataType
+	 * 4) the catchall symbol "*" can be used
+	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 */
+	prefilters = {},
+
+	/* Transports bindings
+	 * 1) key is the dataType
+	 * 2) the catchall symbol "*" can be used
+	 * 3) selection will start with transport dataType and THEN go to "*" if needed
+	 */
+	transports = {},
+
+	// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
+	allTypes = "*/".concat( "*" ),
+
+	// Anchor tag for parsing the document origin
+	originAnchor = document.createElement( "a" );
+	originAnchor.href = location.href;
+
+// Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
+function addToPrefiltersOrTransports( structure ) {
+
+	// dataTypeExpression is optional and defaults to "*"
+	return function( dataTypeExpression, func ) {
+
+		if ( typeof dataTypeExpression !== "string" ) {
+			func = dataTypeExpression;
+			dataTypeExpression = "*";
+		}
+
+		var dataType,
+			i = 0,
+			dataTypes = dataTypeExpression.toLowerCase().match( rnotwhite ) || [];
+
+		if ( jQuery.isFunction( func ) ) {
+
+			// For each dataType in the dataTypeExpression
+			while ( ( dataType = dataTypes[ i++ ] ) ) {
+
+				// Prepend if requested
+				if ( dataType[ 0 ] === "+" ) {
+					dataType = dataType.slice( 1 ) || "*";
+					( structure[ dataType ] = structure[ dataType ] || [] ).unshift( func );
+
+				// Otherwise append
+				} else {
+					( structure[ dataType ] = structure[ dataType ] || [] ).push( func );
+				}
+			}
+		}
+	};
+}
+
+// Base inspection function for prefilters and transports
+function inspectPrefiltersOrTransports( structure, options, originalOptions, jqXHR ) {
+
+	var inspected = {},
+		seekingTransport = ( structure === transports );
+
+	function inspect( dataType ) {
+		var selected;
+		inspected[ dataType ] = true;
+		jQuery.each( structure[ dataType ] || [], function( _, prefilterOrFactory ) {
+			var dataTypeOrTransport = prefilterOrFactory( options, originalOptions, jqXHR );
+			if ( typeof dataTypeOrTransport === "string" &&
+				!seekingTransport && !inspected[ dataTypeOrTransport ] ) {
+
+				options.dataTypes.unshift( dataTypeOrTransport );
+				inspect( dataTypeOrTransport );
+				return false;
+			} else if ( seekingTransport ) {
+				return !( selected = dataTypeOrTransport );
+			}
+		} );
+		return selected;
+	}
+
+	return inspect( options.dataTypes[ 0 ] ) || !inspected[ "*" ] && inspect( "*" );
+}
+
+// A special extend for ajax options
+// that takes "flat" options (not to be deep extended)
+// Fixes #9887
+function ajaxExtend( target, src ) {
+	var key, deep,
+		flatOptions = jQuery.ajaxSettings.flatOptions || {};
+
+	for ( key in src ) {
+		if ( src[ key ] !== undefined ) {
+			( flatOptions[ key ] ? target : ( deep || ( deep = {} ) ) )[ key ] = src[ key ];
+		}
+	}
+	if ( deep ) {
+		jQuery.extend( true, target, deep );
+	}
+
+	return target;
+}
+
+/* Handles responses to an ajax request:
+ * - finds the right dataType (mediates between content-type and expected dataType)
+ * - returns the corresponding response
+ */
+function ajaxHandleResponses( s, jqXHR, responses ) {
+
+	var ct, type, finalDataType, firstDataType,
+		contents = s.contents,
+		dataTypes = s.dataTypes;
+
+	// Remove auto dataType and get content-type in the process
+	while ( dataTypes[ 0 ] === "*" ) {
+		dataTypes.shift();
+		if ( ct === undefined ) {
+			ct = s.mimeType || jqXHR.getResponseHeader( "Content-Type" );
+		}
+	}
+
+	// Check if we're dealing with a known content-type
+	if ( ct ) {
+		for ( type in contents ) {
+			if ( contents[ type ] && contents[ type ].test( ct ) ) {
+				dataTypes.unshift( type );
+				break;
+			}
+		}
+	}
+
+	// Check to see if we have a response for the expected dataType
+	if ( dataTypes[ 0 ] in responses ) {
+		finalDataType = dataTypes[ 0 ];
+	} else {
+
+		// Try convertible dataTypes
+		for ( type in responses ) {
+			if ( !dataTypes[ 0 ] || s.converters[ type + " " + dataTypes[ 0 ] ] ) {
+				finalDataType = type;
+				break;
+			}
+			if ( !firstDataType ) {
+				firstDataType = type;
+			}
+		}
+
+		// Or just use first one
+		finalDataType = finalDataType || firstDataType;
+	}
+
+	// If we found a dataType
+	// We add the dataType to the list if needed
+	// and return the corresponding response
+	if ( finalDataType ) {
+		if ( finalDataType !== dataTypes[ 0 ] ) {
+			dataTypes.unshift( finalDataType );
+		}
+		return responses[ finalDataType ];
+	}
+}
+
+/* Chain conversions given the request and the original response
+ * Also sets the responseXXX fields on the jqXHR instance
+ */
+function ajaxConvert( s, response, jqXHR, isSuccess ) {
+	var conv2, current, conv, tmp, prev,
+		converters = {},
+
+		// Work with a copy of dataTypes in case we need to modify it for conversion
+		dataTypes = s.dataTypes.slice();
+
+	// Create converters map with lowercased keys
+	if ( dataTypes[ 1 ] ) {
+		for ( conv in s.converters ) {
+			converters[ conv.toLowerCase() ] = s.converters[ conv ];
+		}
+	}
+
+	current = dataTypes.shift();
+
+	// Convert to each sequential dataType
+	while ( current ) {
+
+		if ( s.responseFields[ current ] ) {
+			jqXHR[ s.responseFields[ current ] ] = response;
+		}
+
+		// Apply the dataFilter if provided
+		if ( !prev && isSuccess && s.dataFilter ) {
+			response = s.dataFilter( response, s.dataType );
+		}
+
+		prev = current;
+		current = dataTypes.shift();
+
+		if ( current ) {
+
+		// There's only work to do if current dataType is non-auto
+			if ( current === "*" ) {
+
+				current = prev;
+
+			// Convert response if prev dataType is non-auto and differs from current
+			} else if ( prev !== "*" && prev !== current ) {
+
+				// Seek a direct converter
+				conv = converters[ prev + " " + current ] || converters[ "* " + current ];
+
+				// If none found, seek a pair
+				if ( !conv ) {
+					for ( conv2 in converters ) {
+
+						// If conv2 outputs current
+						tmp = conv2.split( " " );
+						if ( tmp[ 1 ] === current ) {
+
+							// If prev can be converted to accepted input
+							conv = converters[ prev + " " + tmp[ 0 ] ] ||
+								converters[ "* " + tmp[ 0 ] ];
+							if ( conv ) {
+
+								// Condense equivalence converters
+								if ( conv === true ) {
+									conv = converters[ conv2 ];
+
+								// Otherwise, insert the intermediate dataType
+								} else if ( converters[ conv2 ] !== true ) {
+									current = tmp[ 0 ];
+									dataTypes.unshift( tmp[ 1 ] );
+								}
+								break;
+							}
+						}
+					}
+				}
+
+				// Apply converter (if not an equivalence)
+				if ( conv !== true ) {
+
+					// Unless errors are allowed to bubble, catch and return them
+					if ( conv && s.throws ) {
+						response = conv( response );
+					} else {
+						try {
+							response = conv( response );
+						} catch ( e ) {
+							return {
+								state: "parsererror",
+								error: conv ? e : "No conversion from " + prev + " to " + current
+							};
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return { state: "success", data: response };
+}
+
+jQuery.extend( {
+
+	// Counter for holding the number of active queries
+	active: 0,
+
+	// Last-Modified header cache for next request
+	lastModified: {},
+	etag: {},
+
+	ajaxSettings: {
+		url: location.href,
+		type: "GET",
+		isLocal: rlocalProtocol.test( location.protocol ),
+		global: true,
+		processData: true,
+		async: true,
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		/*
+		timeout: 0,
+		data: null,
+		dataType: null,
+		username: null,
+		password: null,
+		cache: null,
+		throws: false,
+		traditional: false,
+		headers: {},
+		*/
+
+		accepts: {
+			"*": allTypes,
+			text: "text/plain",
+			html: "text/html",
+			xml: "application/xml, text/xml",
+			json: "application/json, text/javascript"
+		},
+
+		contents: {
+			xml: /\bxml\b/,
+			html: /\bhtml/,
+			json: /\bjson\b/
+		},
+
+		responseFields: {
+			xml: "responseXML",
+			text: "responseText",
+			json: "responseJSON"
+		},
+
+		// Data converters
+		// Keys separate source (or catchall "*") and destination types with a single space
+		converters: {
+
+			// Convert anything to text
+			"* text": String,
+
+			// Text to html (true = no transformation)
+			"text html": true,
+
+			// Evaluate text as a json expression
+			"text json": jQuery.parseJSON,
+
+			// Parse text as xml
+			"text xml": jQuery.parseXML
+		},
+
+		// For options that shouldn't be deep extended:
+		// you can add your own custom options here if
+		// and when you create one that shouldn't be
+		// deep extended (see ajaxExtend)
+		flatOptions: {
+			url: true,
+			context: true
+		}
+	},
+
+	// Creates a full fledged settings object into target
+	// with both ajaxSettings and settings fields.
+	// If target is omitted, writes into ajaxSettings.
+	ajaxSetup: function( target, settings ) {
+		return settings ?
+
+			// Building a settings object
+			ajaxExtend( ajaxExtend( target, jQuery.ajaxSettings ), settings ) :
+
+			// Extending ajaxSettings
+			ajaxExtend( jQuery.ajaxSettings, target );
+	},
+
+	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
+	ajaxTransport: addToPrefiltersOrTransports( transports ),
+
+	// Main method
+	ajax: function( url, options ) {
+
+		// If url is an object, simulate pre-1.5 signature
+		if ( typeof url === "object" ) {
+			options = url;
+			url = undefined;
+		}
+
+		// Force options to be an object
+		options = options || {};
+
+		var transport,
+
+			// URL without anti-cache param
+			cacheURL,
+
+			// Response headers
+			responseHeadersString,
+			responseHeaders,
+
+			// timeout handle
+			timeoutTimer,
+
+			// Url cleanup var
+			urlAnchor,
+
+			// To know if global events are to be dispatched
+			fireGlobals,
+
+			// Loop variable
+			i,
+
+			// Create the final options object
+			s = jQuery.ajaxSetup( {}, options ),
+
+			// Callbacks context
+			callbackContext = s.context || s,
+
+			// Context for global events is callbackContext if it is a DOM node or jQuery collection
+			globalEventContext = s.context &&
+				( callbackContext.nodeType || callbackContext.jquery ) ?
+					jQuery( callbackContext ) :
+					jQuery.event,
+
+			// Deferreds
+			deferred = jQuery.Deferred(),
+			completeDeferred = jQuery.Callbacks( "once memory" ),
+
+			// Status-dependent callbacks
+			statusCode = s.statusCode || {},
+
+			// Headers (they are sent all at once)
+			requestHeaders = {},
+			requestHeadersNames = {},
+
+			// The jqXHR state
+			state = 0,
+
+			// Default abort message
+			strAbort = "canceled",
+
+			// Fake xhr
+			jqXHR = {
+				readyState: 0,
+
+				// Builds headers hashtable if needed
+				getResponseHeader: function( key ) {
+					var match;
+					if ( state === 2 ) {
+						if ( !responseHeaders ) {
+							responseHeaders = {};
+							while ( ( match = rheaders.exec( responseHeadersString ) ) ) {
+								responseHeaders[ match[ 1 ].toLowerCase() ] = match[ 2 ];
+							}
+						}
+						match = responseHeaders[ key.toLowerCase() ];
+					}
+					return match == null ? null : match;
+				},
+
+				// Raw string
+				getAllResponseHeaders: function() {
+					return state === 2 ? responseHeadersString : null;
+				},
+
+				// Caches the header
+				setRequestHeader: function( name, value ) {
+					var lname = name.toLowerCase();
+					if ( !state ) {
+						name = requestHeadersNames[ lname ] = requestHeadersNames[ lname ] || name;
+						requestHeaders[ name ] = value;
+					}
+					return this;
+				},
+
+				// Overrides response content-type header
+				overrideMimeType: function( type ) {
+					if ( !state ) {
+						s.mimeType = type;
+					}
+					return this;
+				},
+
+				// Status-dependent callbacks
+				statusCode: function( map ) {
+					var code;
+					if ( map ) {
+						if ( state < 2 ) {
+							for ( code in map ) {
+
+								// Lazy-add the new callback in a way that preserves old ones
+								statusCode[ code ] = [ statusCode[ code ], map[ code ] ];
+							}
+						} else {
+
+							// Execute the appropriate callbacks
+							jqXHR.always( map[ jqXHR.status ] );
+						}
+					}
+					return this;
+				},
+
+				// Cancel the request
+				abort: function( statusText ) {
+					var finalText = statusText || strAbort;
+					if ( transport ) {
+						transport.abort( finalText );
+					}
+					done( 0, finalText );
+					return this;
+				}
+			};
+
+		// Attach deferreds
+		deferred.promise( jqXHR ).complete = completeDeferred.add;
+		jqXHR.success = jqXHR.done;
+		jqXHR.error = jqXHR.fail;
+
+		// Remove hash character (#7531: and string promotion)
+		// Add protocol if not provided (prefilters might expect it)
+		// Handle falsy url in the settings object (#10093: consistency with old signature)
+		// We also use the url parameter if available
+		s.url = ( ( url || s.url || location.href ) + "" ).replace( rhash, "" )
+			.replace( rprotocol, location.protocol + "//" );
+
+		// Alias method option to type as per ticket #12004
+		s.type = options.method || options.type || s.method || s.type;
+
+		// Extract dataTypes list
+		s.dataTypes = jQuery.trim( s.dataType || "*" ).toLowerCase().match( rnotwhite ) || [ "" ];
+
+		// A cross-domain request is in order when the origin doesn't match the current origin.
+		if ( s.crossDomain == null ) {
+			urlAnchor = document.createElement( "a" );
+
+			// Support: IE8-11+
+			// IE throws exception if url is malformed, e.g. http://example.com:80x/
+			try {
+				urlAnchor.href = s.url;
+
+				// Support: IE8-11+
+				// Anchor's host property isn't correctly set when s.url is relative
+				urlAnchor.href = urlAnchor.href;
+				s.crossDomain = originAnchor.protocol + "//" + originAnchor.host !==
+					urlAnchor.protocol + "//" + urlAnchor.host;
+			} catch ( e ) {
+
+				// If there is an error parsing the URL, assume it is crossDomain,
+				// it can be rejected by the transport if it is invalid
+				s.crossDomain = true;
+			}
+		}
+
+		// Convert data if not already a string
+		if ( s.data && s.processData && typeof s.data !== "string" ) {
+			s.data = jQuery.param( s.data, s.traditional );
+		}
+
+		// Apply prefilters
+		inspectPrefiltersOrTransports( prefilters, s, options, jqXHR );
+
+		// If request was aborted inside a prefilter, stop there
+		if ( state === 2 ) {
+			return jqXHR;
+		}
+
+		// We can fire global events as of now if asked to
+		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
+		fireGlobals = jQuery.event && s.global;
+
+		// Watch for a new set of requests
+		if ( fireGlobals && jQuery.active++ === 0 ) {
+			jQuery.event.trigger( "ajaxStart" );
+		}
+
+		// Uppercase the type
+		s.type = s.type.toUpperCase();
+
+		// Determine if request has content
+		s.hasContent = !rnoContent.test( s.type );
+
+		// Save the URL in case we're toying with the If-Modified-Since
+		// and/or If-None-Match header later on
+		cacheURL = s.url;
+
+		// More options handling for requests with no content
+		if ( !s.hasContent ) {
+
+			// If data is available, append data to url
+			if ( s.data ) {
+				cacheURL = ( s.url += ( rquery.test( cacheURL ) ? "&" : "?" ) + s.data );
+
+				// #9682: remove data so that it's not used in an eventual retry
+				delete s.data;
+			}
+
+			// Add anti-cache in url if needed
+			if ( s.cache === false ) {
+				s.url = rts.test( cacheURL ) ?
+
+					// If there is already a '_' parameter, set its value
+					cacheURL.replace( rts, "$1_=" + nonce++ ) :
+
+					// Otherwise add one to the end
+					cacheURL + ( rquery.test( cacheURL ) ? "&" : "?" ) + "_=" + nonce++;
+			}
+		}
+
+		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+		if ( s.ifModified ) {
+			if ( jQuery.lastModified[ cacheURL ] ) {
+				jqXHR.setRequestHeader( "If-Modified-Since", jQuery.lastModified[ cacheURL ] );
+			}
+			if ( jQuery.etag[ cacheURL ] ) {
+				jqXHR.setRequestHeader( "If-None-Match", jQuery.etag[ cacheURL ] );
+			}
+		}
+
+		// Set the correct header, if data is being sent
+		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
+			jqXHR.setRequestHeader( "Content-Type", s.contentType );
+		}
+
+		// Set the Accepts header for the server, depending on the dataType
+		jqXHR.setRequestHeader(
+			"Accept",
+			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[ 0 ] ] ?
+				s.accepts[ s.dataTypes[ 0 ] ] +
+					( s.dataTypes[ 0 ] !== "*" ? ", " + allTypes + "; q=0.01" : "" ) :
+				s.accepts[ "*" ]
+		);
+
+		// Check for headers option
+		for ( i in s.headers ) {
+			jqXHR.setRequestHeader( i, s.headers[ i ] );
+		}
+
+		// Allow custom headers/mimetypes and early abort
+		if ( s.beforeSend &&
+			( s.beforeSend.call( callbackContext, jqXHR, s ) === false || state === 2 ) ) {
+
+			// Abort if not done already and return
+			return jqXHR.abort();
+		}
+
+		// Aborting is no longer a cancellation
+		strAbort = "abort";
+
+		// Install callbacks on deferreds
+		for ( i in { success: 1, error: 1, complete: 1 } ) {
+			jqXHR[ i ]( s[ i ] );
+		}
+
+		// Get transport
+		transport = inspectPrefiltersOrTransports( transports, s, options, jqXHR );
+
+		// If no transport, we auto-abort
+		if ( !transport ) {
+			done( -1, "No Transport" );
+		} else {
+			jqXHR.readyState = 1;
+
+			// Send global event
+			if ( fireGlobals ) {
+				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
+			}
+
+			// If request was aborted inside ajaxSend, stop there
+			if ( state === 2 ) {
+				return jqXHR;
+			}
+
+			// Timeout
+			if ( s.async && s.timeout > 0 ) {
+				timeoutTimer = window.setTimeout( function() {
+					jqXHR.abort( "timeout" );
+				}, s.timeout );
+			}
+
+			try {
+				state = 1;
+				transport.send( requestHeaders, done );
+			} catch ( e ) {
+
+				// Propagate exception as error if not done
+				if ( state < 2 ) {
+					done( -1, e );
+
+				// Simply rethrow otherwise
+				} else {
+					throw e;
+				}
+			}
+		}
+
+		// Callback for when everything is done
+		function done( status, nativeStatusText, responses, headers ) {
+			var isSuccess, success, error, response, modified,
+				statusText = nativeStatusText;
+
+			// Called once
+			if ( state === 2 ) {
+				return;
+			}
+
+			// State is "done" now
+			state = 2;
+
+			// Clear timeout if it exists
+			if ( timeoutTimer ) {
+				window.clearTimeout( timeoutTimer );
+			}
+
+			// Dereference transport for early garbage collection
+			// (no matter how long the jqXHR object will be used)
+			transport = undefined;
+
+			// Cache response headers
+			responseHeadersString = headers || "";
+
+			// Set readyState
+			jqXHR.readyState = status > 0 ? 4 : 0;
+
+			// Determine if successful
+			isSuccess = status >= 200 && status < 300 || status === 304;
+
+			// Get response data
+			if ( responses ) {
+				response = ajaxHandleResponses( s, jqXHR, responses );
+			}
+
+			// Convert no matter what (that way responseXXX fields are always set)
+			response = ajaxConvert( s, response, jqXHR, isSuccess );
+
+			// If successful, handle type chaining
+			if ( isSuccess ) {
+
+				// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+				if ( s.ifModified ) {
+					modified = jqXHR.getResponseHeader( "Last-Modified" );
+					if ( modified ) {
+						jQuery.lastModified[ cacheURL ] = modified;
+					}
+					modified = jqXHR.getResponseHeader( "etag" );
+					if ( modified ) {
+						jQuery.etag[ cacheURL ] = modified;
+					}
+				}
+
+				// if no content
+				if ( status === 204 || s.type === "HEAD" ) {
+					statusText = "nocontent";
+
+				// if not modified
+				} else if ( status === 304 ) {
+					statusText = "notmodified";
+
+				// If we have data, let's convert it
+				} else {
+					statusText = response.state;
+					success = response.data;
+					error = response.error;
+					isSuccess = !error;
+				}
+			} else {
+
+				// Extract error from statusText and normalize for non-aborts
+				error = statusText;
+				if ( status || !statusText ) {
+					statusText = "error";
+					if ( status < 0 ) {
+						status = 0;
+					}
+				}
+			}
+
+			// Set data for the fake xhr object
+			jqXHR.status = status;
+			jqXHR.statusText = ( nativeStatusText || statusText ) + "";
+
+			// Success/Error
+			if ( isSuccess ) {
+				deferred.resolveWith( callbackContext, [ success, statusText, jqXHR ] );
+			} else {
+				deferred.rejectWith( callbackContext, [ jqXHR, statusText, error ] );
+			}
+
+			// Status-dependent callbacks
+			jqXHR.statusCode( statusCode );
+			statusCode = undefined;
+
+			if ( fireGlobals ) {
+				globalEventContext.trigger( isSuccess ? "ajaxSuccess" : "ajaxError",
+					[ jqXHR, s, isSuccess ? success : error ] );
+			}
+
+			// Complete
+			completeDeferred.fireWith( callbackContext, [ jqXHR, statusText ] );
+
+			if ( fireGlobals ) {
+				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
+
+				// Handle the global AJAX counter
+				if ( !( --jQuery.active ) ) {
+					jQuery.event.trigger( "ajaxStop" );
+				}
+			}
+		}
+
+		return jqXHR;
+	},
+
+	getJSON: function( url, data, callback ) {
+		return jQuery.get( url, data, callback, "json" );
+	},
+
+	getScript: function( url, callback ) {
+		return jQuery.get( url, undefined, callback, "script" );
+	}
+} );
+
+jQuery.each( [ "get", "post" ], function( i, method ) {
+	jQuery[ method ] = function( url, data, callback, type ) {
+
+		// Shift arguments if data argument was omitted
+		if ( jQuery.isFunction( data ) ) {
+			type = type || callback;
+			callback = data;
+			data = undefined;
+		}
+
+		// The url can be an options object (which then must have .url)
+		return jQuery.ajax( jQuery.extend( {
+			url: url,
+			type: method,
+			dataType: type,
+			data: data,
+			success: callback
+		}, jQuery.isPlainObject( url ) && url ) );
+	};
+} );
+
+
+jQuery._evalUrl = function( url ) {
+	return jQuery.ajax( {
+		url: url,
+
+		// Make this explicit, since user can override this through ajaxSetup (#11264)
+		type: "GET",
+		dataType: "script",
+		async: false,
+		global: false,
+		"throws": true
+	} );
+};
+
+
+jQuery.fn.extend( {
+	wrapAll: function( html ) {
+		var wrap;
+
+		if ( jQuery.isFunction( html ) ) {
+			return this.each( function( i ) {
+				jQuery( this ).wrapAll( html.call( this, i ) );
+			} );
+		}
+
+		if ( this[ 0 ] ) {
+
+			// The elements to wrap the target around
+			wrap = jQuery( html, this[ 0 ].ownerDocument ).eq( 0 ).clone( true );
+
+			if ( this[ 0 ].parentNode ) {
+				wrap.insertBefore( this[ 0 ] );
+			}
+
+			wrap.map( function() {
+				var elem = this;
+
+				while ( elem.firstElementChild ) {
+					elem = elem.firstElementChild;
+				}
+
+				return elem;
+			} ).append( this );
+		}
+
+		return this;
+	},
+
+	wrapInner: function( html ) {
+		if ( jQuery.isFunction( html ) ) {
+			return this.each( function( i ) {
+				jQuery( this ).wrapInner( html.call( this, i ) );
+			} );
+		}
+
+		return this.each( function() {
+			var self = jQuery( this ),
+				contents = self.contents();
+
+			if ( contents.length ) {
+				contents.wrapAll( html );
+
+			} else {
+				self.append( html );
+			}
+		} );
+	},
+
+	wrap: function( html ) {
+		var isFunction = jQuery.isFunction( html );
+
+		return this.each( function( i ) {
+			jQuery( this ).wrapAll( isFunction ? html.call( this, i ) : html );
+		} );
+	},
+
+	unwrap: function() {
+		return this.parent().each( function() {
+			if ( !jQuery.nodeName( this, "body" ) ) {
+				jQuery( this ).replaceWith( this.childNodes );
+			}
+		} ).end();
+	}
+} );
+
+
+jQuery.expr.filters.hidden = function( elem ) {
+	return !jQuery.expr.filters.visible( elem );
+};
+jQuery.expr.filters.visible = function( elem ) {
+
+	// Support: Opera <= 12.12
+	// Opera reports offsetWidths and offsetHeights less than zero on some elements
+	// Use OR instead of AND as the element is not visible if either is true
+	// See tickets #10406 and #13132
+	return elem.offsetWidth > 0 || elem.offsetHeight > 0 || elem.getClientRects().length > 0;
+};
+
+
+
+
+var r20 = /%20/g,
+	rbracket = /\[\]$/,
+	rCRLF = /\r?\n/g,
+	rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i,
+	rsubmittable = /^(?:input|select|textarea|keygen)/i;
+
+function buildParams( prefix, obj, traditional, add ) {
+	var name;
+
+	if ( jQuery.isArray( obj ) ) {
+
+		// Serialize array item.
+		jQuery.each( obj, function( i, v ) {
+			if ( traditional || rbracket.test( prefix ) ) {
+
+				// Treat each array item as a scalar.
+				add( prefix, v );
+
+			} else {
+
+				// Item is non-scalar (array or object), encode its numeric index.
+				buildParams(
+					prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
+					v,
+					traditional,
+					add
+				);
+			}
+		} );
+
+	} else if ( !traditional && jQuery.type( obj ) === "object" ) {
+
+		// Serialize object item.
+		for ( name in obj ) {
+			buildParams( prefix + "[" + name + "]", obj[ name ], traditional, add );
+		}
+
+	} else {
+
+		// Serialize scalar item.
+		add( prefix, obj );
+	}
+}
+
+// Serialize an array of form elements or a set of
+// key/values into a query string
+jQuery.param = function( a, traditional ) {
+	var prefix,
+		s = [],
+		add = function( key, value ) {
+
+			// If value is a function, invoke it and return its value
+			value = jQuery.isFunction( value ) ? value() : ( value == null ? "" : value );
+			s[ s.length ] = encodeURIComponent( key ) + "=" + encodeURIComponent( value );
+		};
+
+	// Set traditional to true for jQuery <= 1.3.2 behavior.
+	if ( traditional === undefined ) {
+		traditional = jQuery.ajaxSettings && jQuery.ajaxSettings.traditional;
+	}
+
+	// If an array was passed in, assume that it is an array of form elements.
+	if ( jQuery.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
+
+		// Serialize the form elements
+		jQuery.each( a, function() {
+			add( this.name, this.value );
+		} );
+
+	} else {
+
+		// If traditional, encode the "old" way (the way 1.3.2 or older
+		// did it), otherwise encode params recursively.
+		for ( prefix in a ) {
+			buildParams( prefix, a[ prefix ], traditional, add );
+		}
+	}
+
+	// Return the resulting serialization
+	return s.join( "&" ).replace( r20, "+" );
+};
+
+jQuery.fn.extend( {
+	serialize: function() {
+		return jQuery.param( this.serializeArray() );
+	},
+	serializeArray: function() {
+		return this.map( function() {
+
+			// Can add propHook for "elements" to filter or add form elements
+			var elements = jQuery.prop( this, "elements" );
+			return elements ? jQuery.makeArray( elements ) : this;
+		} )
+		.filter( function() {
+			var type = this.type;
+
+			// Use .is( ":disabled" ) so that fieldset[disabled] works
+			return this.name && !jQuery( this ).is( ":disabled" ) &&
+				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
+				( this.checked || !rcheckableType.test( type ) );
+		} )
+		.map( function( i, elem ) {
+			var val = jQuery( this ).val();
+
+			return val == null ?
+				null :
+				jQuery.isArray( val ) ?
+					jQuery.map( val, function( val ) {
+						return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+					} ) :
+					{ name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+		} ).get();
+	}
+} );
+
+
+jQuery.ajaxSettings.xhr = function() {
+	try {
+		return new window.XMLHttpRequest();
+	} catch ( e ) {}
+};
+
+var xhrSuccessStatus = {
+
+		// File protocol always yields status code 0, assume 200
+		0: 200,
+
+		// Support: IE9
+		// #1450: sometimes IE returns 1223 when it should be 204
+		1223: 204
+	},
+	xhrSupported = jQuery.ajaxSettings.xhr();
+
+support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported );
+support.ajax = xhrSupported = !!xhrSupported;
+
+jQuery.ajaxTransport( function( options ) {
+	var callback, errorCallback;
+
+	// Cross domain only allowed if supported through XMLHttpRequest
+	if ( support.cors || xhrSupported && !options.crossDomain ) {
+		return {
+			send: function( headers, complete ) {
+				var i,
+					xhr = options.xhr();
+
+				xhr.open(
+					options.type,
+					options.url,
+					options.async,
+					options.username,
+					options.password
+				);
+
+				// Apply custom fields if provided
+				if ( options.xhrFields ) {
+					for ( i in options.xhrFields ) {
+						xhr[ i ] = options.xhrFields[ i ];
+					}
+				}
+
+				// Override mime type if needed
+				if ( options.mimeType && xhr.overrideMimeType ) {
+					xhr.overrideMimeType( options.mimeType );
+				}
+
+				// X-Requested-With header
+				// For cross-domain requests, seeing as conditions for a preflight are
+				// akin to a jigsaw puzzle, we simply never set it to be sure.
+				// (it can always be set on a per-request basis or even using ajaxSetup)
+				// For same-domain requests, won't change header if already provided.
+				if ( !options.crossDomain && !headers[ "X-Requested-With" ] ) {
+					headers[ "X-Requested-With" ] = "XMLHttpRequest";
+				}
+
+				// Set headers
+				for ( i in headers ) {
+					xhr.setRequestHeader( i, headers[ i ] );
+				}
+
+				// Callback
+				callback = function( type ) {
+					return function() {
+						if ( callback ) {
+							callback = errorCallback = xhr.onload =
+								xhr.onerror = xhr.onabort = xhr.onreadystatechange = null;
+
+							if ( type === "abort" ) {
+								xhr.abort();
+							} else if ( type === "error" ) {
+
+								// Support: IE9
+								// On a manual native abort, IE9 throws
+								// errors on any property access that is not readyState
+								if ( typeof xhr.status !== "number" ) {
+									complete( 0, "error" );
+								} else {
+									complete(
+
+										// File: protocol always yields status 0; see #8605, #14207
+										xhr.status,
+										xhr.statusText
+									);
+								}
+							} else {
+								complete(
+									xhrSuccessStatus[ xhr.status ] || xhr.status,
+									xhr.statusText,
+
+									// Support: IE9 only
+									// IE9 has no XHR2 but throws on binary (trac-11426)
+									// For XHR2 non-text, let the caller handle it (gh-2498)
+									( xhr.responseType || "text" ) !== "text"  ||
+									typeof xhr.responseText !== "string" ?
+										{ binary: xhr.response } :
+										{ text: xhr.responseText },
+									xhr.getAllResponseHeaders()
+								);
+							}
+						}
+					};
+				};
+
+				// Listen to events
+				xhr.onload = callback();
+				errorCallback = xhr.onerror = callback( "error" );
+
+				// Support: IE9
+				// Use onreadystatechange to replace onabort
+				// to handle uncaught aborts
+				if ( xhr.onabort !== undefined ) {
+					xhr.onabort = errorCallback;
+				} else {
+					xhr.onreadystatechange = function() {
+
+						// Check readyState before timeout as it changes
+						if ( xhr.readyState === 4 ) {
+
+							// Allow onerror to be called first,
+							// but that will not handle a native abort
+							// Also, save errorCallback to a variable
+							// as xhr.onerror cannot be accessed
+							window.setTimeout( function() {
+								if ( callback ) {
+									errorCallback();
+								}
+							} );
+						}
+					};
+				}
+
+				// Create the abort callback
+				callback = callback( "abort" );
+
+				try {
+
+					// Do send the request (this may raise an exception)
+					xhr.send( options.hasContent && options.data || null );
+				} catch ( e ) {
+
+					// #14683: Only rethrow if this hasn't been notified as an error yet
+					if ( callback ) {
+						throw e;
+					}
+				}
+			},
+
+			abort: function() {
+				if ( callback ) {
+					callback();
+				}
+			}
+		};
+	}
+} );
+
+
+
+
+// Install script dataType
+jQuery.ajaxSetup( {
+	accepts: {
+		script: "text/javascript, application/javascript, " +
+			"application/ecmascript, application/x-ecmascript"
+	},
+	contents: {
+		script: /\b(?:java|ecma)script\b/
+	},
+	converters: {
+		"text script": function( text ) {
+			jQuery.globalEval( text );
+			return text;
+		}
+	}
+} );
+
+// Handle cache's special case and crossDomain
+jQuery.ajaxPrefilter( "script", function( s ) {
+	if ( s.cache === undefined ) {
+		s.cache = false;
+	}
+	if ( s.crossDomain ) {
+		s.type = "GET";
+	}
+} );
+
+// Bind script tag hack transport
+jQuery.ajaxTransport( "script", function( s ) {
+
+	// This transport only deals with cross domain requests
+	if ( s.crossDomain ) {
+		var script, callback;
+		return {
+			send: function( _, complete ) {
+				script = jQuery( "<script>" ).prop( {
+					charset: s.scriptCharset,
+					src: s.url
+				} ).on(
+					"load error",
+					callback = function( evt ) {
+						script.remove();
+						callback = null;
+						if ( evt ) {
+							complete( evt.type === "error" ? 404 : 200, evt.type );
+						}
+					}
+				);
+
+				// Use native DOM manipulation to avoid our domManip AJAX trickery
+				document.head.appendChild( script[ 0 ] );
+			},
+			abort: function() {
+				if ( callback ) {
+					callback();
+				}
+			}
+		};
+	}
+} );
+
+
+
+
+var oldCallbacks = [],
+	rjsonp = /(=)\?(?=&|$)|\?\?/;
+
+// Default jsonp settings
+jQuery.ajaxSetup( {
+	jsonp: "callback",
+	jsonpCallback: function() {
+		var callback = oldCallbacks.pop() || ( jQuery.expando + "_" + ( nonce++ ) );
+		this[ callback ] = true;
+		return callback;
+	}
+} );
+
+// Detect, normalize options and install callbacks for jsonp requests
+jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
+
+	var callbackName, overwritten, responseContainer,
+		jsonProp = s.jsonp !== false && ( rjsonp.test( s.url ) ?
+			"url" :
+			typeof s.data === "string" &&
+				( s.contentType || "" )
+					.indexOf( "application/x-www-form-urlencoded" ) === 0 &&
+				rjsonp.test( s.data ) && "data"
+		);
+
+	// Handle iff the expected data type is "jsonp" or we have a parameter to set
+	if ( jsonProp || s.dataTypes[ 0 ] === "jsonp" ) {
+
+		// Get callback name, remembering preexisting value associated with it
+		callbackName = s.jsonpCallback = jQuery.isFunction( s.jsonpCallback ) ?
+			s.jsonpCallback() :
+			s.jsonpCallback;
+
+		// Insert callback into url or form data
+		if ( jsonProp ) {
+			s[ jsonProp ] = s[ jsonProp ].replace( rjsonp, "$1" + callbackName );
+		} else if ( s.jsonp !== false ) {
+			s.url += ( rquery.test( s.url ) ? "&" : "?" ) + s.jsonp + "=" + callbackName;
+		}
+
+		// Use data converter to retrieve json after script execution
+		s.converters[ "script json" ] = function() {
+			if ( !responseContainer ) {
+				jQuery.error( callbackName + " was not called" );
+			}
+			return responseContainer[ 0 ];
+		};
+
+		// Force json dataType
+		s.dataTypes[ 0 ] = "json";
+
+		// Install callback
+		overwritten = window[ callbackName ];
+		window[ callbackName ] = function() {
+			responseContainer = arguments;
+		};
+
+		// Clean-up function (fires after converters)
+		jqXHR.always( function() {
+
+			// If previous value didn't exist - remove it
+			if ( overwritten === undefined ) {
+				jQuery( window ).removeProp( callbackName );
+
+			// Otherwise restore preexisting value
+			} else {
+				window[ callbackName ] = overwritten;
+			}
+
+			// Save back as free
+			if ( s[ callbackName ] ) {
+
+				// Make sure that re-using the options doesn't screw things around
+				s.jsonpCallback = originalSettings.jsonpCallback;
+
+				// Save the callback name for future use
+				oldCallbacks.push( callbackName );
+			}
+
+			// Call if it was a function and we have a response
+			if ( responseContainer && jQuery.isFunction( overwritten ) ) {
+				overwritten( responseContainer[ 0 ] );
+			}
+
+			responseContainer = overwritten = undefined;
+		} );
+
+		// Delegate to script
+		return "script";
+	}
+} );
+
+
+
+
+// Support: Safari 8+
+// In Safari 8 documents created via document.implementation.createHTMLDocument
+// collapse sibling forms: the second one becomes a child of the first one.
+// Because of that, this security measure has to be disabled in Safari 8.
+// https://bugs.webkit.org/show_bug.cgi?id=137337
+support.createHTMLDocument = ( function() {
+	var body = document.implementation.createHTMLDocument( "" ).body;
+	body.innerHTML = "<form></form><form></form>";
+	return body.childNodes.length === 2;
+} )();
+
+
+// Argument "data" should be string of html
+// context (optional): If specified, the fragment will be created in this context,
+// defaults to document
+// keepScripts (optional): If true, will include scripts passed in the html string
+jQuery.parseHTML = function( data, context, keepScripts ) {
+	if ( !data || typeof data !== "string" ) {
+		return null;
+	}
+	if ( typeof context === "boolean" ) {
+		keepScripts = context;
+		context = false;
+	}
+
+	// Stop scripts or inline event handlers from being executed immediately
+	// by using document.implementation
+	context = context || ( support.createHTMLDocument ?
+		document.implementation.createHTMLDocument( "" ) :
+		document );
+
+	var parsed = rsingleTag.exec( data ),
+		scripts = !keepScripts && [];
+
+	// Single tag
+	if ( parsed ) {
+		return [ context.createElement( parsed[ 1 ] ) ];
+	}
+
+	parsed = buildFragment( [ data ], context, scripts );
+
+	if ( scripts && scripts.length ) {
+		jQuery( scripts ).remove();
+	}
+
+	return jQuery.merge( [], parsed.childNodes );
+};
+
+
+// Keep a copy of the old load method
+var _load = jQuery.fn.load;
+
+/**
+ * Load a url into a page
+ */
+jQuery.fn.load = function( url, params, callback ) {
+	if ( typeof url !== "string" && _load ) {
+		return _load.apply( this, arguments );
+	}
+
+	var selector, type, response,
+		self = this,
+		off = url.indexOf( " " );
+
+	if ( off > -1 ) {
+		selector = jQuery.trim( url.slice( off ) );
+		url = url.slice( 0, off );
+	}
+
+	// If it's a function
+	if ( jQuery.isFunction( params ) ) {
+
+		// We assume that it's the callback
+		callback = params;
+		params = undefined;
+
+	// Otherwise, build a param string
+	} else if ( params && typeof params === "object" ) {
+		type = "POST";
+	}
+
+	// If we have elements to modify, make the request
+	if ( self.length > 0 ) {
+		jQuery.ajax( {
+			url: url,
+
+			// If "type" variable is undefined, then "GET" method will be used.
+			// Make value of this field explicit since
+			// user can override it through ajaxSetup method
+			type: type || "GET",
+			dataType: "html",
+			data: params
+		} ).done( function( responseText ) {
+
+			// Save response for use in complete callback
+			response = arguments;
+
+			self.html( selector ?
+
+				// If a selector was specified, locate the right elements in a dummy div
+				// Exclude scripts to avoid IE 'Permission Denied' errors
+				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
+
+				// Otherwise use the full result
+				responseText );
+
+		// If the request succeeds, this function gets "data", "status", "jqXHR"
+		// but they are ignored because response was set above.
+		// If it fails, this function gets "jqXHR", "status", "error"
+		} ).always( callback && function( jqXHR, status ) {
+			self.each( function() {
+				callback.apply( self, response || [ jqXHR.responseText, status, jqXHR ] );
+			} );
+		} );
+	}
+
+	return this;
+};
+
+
+
+
+// Attach a bunch of functions for handling common AJAX events
+jQuery.each( [
+	"ajaxStart",
+	"ajaxStop",
+	"ajaxComplete",
+	"ajaxError",
+	"ajaxSuccess",
+	"ajaxSend"
+], function( i, type ) {
+	jQuery.fn[ type ] = function( fn ) {
+		return this.on( type, fn );
+	};
+} );
+
+
+
+
+jQuery.expr.filters.animated = function( elem ) {
+	return jQuery.grep( jQuery.timers, function( fn ) {
+		return elem === fn.elem;
+	} ).length;
+};
+
+
+
+
+/**
+ * Gets a window from an element
+ */
+function getWindow( elem ) {
+	return jQuery.isWindow( elem ) ? elem : elem.nodeType === 9 && elem.defaultView;
+}
+
+jQuery.offset = {
+	setOffset: function( elem, options, i ) {
+		var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
+			position = jQuery.css( elem, "position" ),
+			curElem = jQuery( elem ),
+			props = {};
+
+		// Set position first, in-case top/left are set even on static elem
+		if ( position === "static" ) {
+			elem.style.position = "relative";
+		}
+
+		curOffset = curElem.offset();
+		curCSSTop = jQuery.css( elem, "top" );
+		curCSSLeft = jQuery.css( elem, "left" );
+		calculatePosition = ( position === "absolute" || position === "fixed" ) &&
+			( curCSSTop + curCSSLeft ).indexOf( "auto" ) > -1;
+
+		// Need to be able to calculate position if either
+		// top or left is auto and position is either absolute or fixed
+		if ( calculatePosition ) {
+			curPosition = curElem.position();
+			curTop = curPosition.top;
+			curLeft = curPosition.left;
+
+		} else {
+			curTop = parseFloat( curCSSTop ) || 0;
+			curLeft = parseFloat( curCSSLeft ) || 0;
+		}
+
+		if ( jQuery.isFunction( options ) ) {
+
+			// Use jQuery.extend here to allow modification of coordinates argument (gh-1848)
+			options = options.call( elem, i, jQuery.extend( {}, curOffset ) );
+		}
+
+		if ( options.top != null ) {
+			props.top = ( options.top - curOffset.top ) + curTop;
+		}
+		if ( options.left != null ) {
+			props.left = ( options.left - curOffset.left ) + curLeft;
+		}
+
+		if ( "using" in options ) {
+			options.using.call( elem, props );
+
+		} else {
+			curElem.css( props );
+		}
+	}
+};
+
+jQuery.fn.extend( {
+	offset: function( options ) {
+		if ( arguments.length ) {
+			return options === undefined ?
+				this :
+				this.each( function( i ) {
+					jQuery.offset.setOffset( this, options, i );
+				} );
+		}
+
+		var docElem, win,
+			elem = this[ 0 ],
+			box = { top: 0, left: 0 },
+			doc = elem && elem.ownerDocument;
+
+		if ( !doc ) {
+			return;
+		}
+
+		docElem = doc.documentElement;
+
+		// Make sure it's not a disconnected DOM node
+		if ( !jQuery.contains( docElem, elem ) ) {
+			return box;
+		}
+
+		box = elem.getBoundingClientRect();
+		win = getWindow( doc );
+		return {
+			top: box.top + win.pageYOffset - docElem.clientTop,
+			left: box.left + win.pageXOffset - docElem.clientLeft
+		};
+	},
+
+	position: function() {
+		if ( !this[ 0 ] ) {
+			return;
+		}
+
+		var offsetParent, offset,
+			elem = this[ 0 ],
+			parentOffset = { top: 0, left: 0 };
+
+		// Fixed elements are offset from window (parentOffset = {top:0, left: 0},
+		// because it is its only offset parent
+		if ( jQuery.css( elem, "position" ) === "fixed" ) {
+
+			// Assume getBoundingClientRect is there when computed position is fixed
+			offset = elem.getBoundingClientRect();
+
+		} else {
+
+			// Get *real* offsetParent
+			offsetParent = this.offsetParent();
+
+			// Get correct offsets
+			offset = this.offset();
+			if ( !jQuery.nodeName( offsetParent[ 0 ], "html" ) ) {
+				parentOffset = offsetParent.offset();
+			}
+
+			// Add offsetParent borders
+			// Subtract offsetParent scroll positions
+			parentOffset.top += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ) -
+				offsetParent.scrollTop();
+			parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true ) -
+				offsetParent.scrollLeft();
+		}
+
+		// Subtract parent offsets and element margins
+		return {
+			top: offset.top - parentOffset.top - jQuery.css( elem, "marginTop", true ),
+			left: offset.left - parentOffset.left - jQuery.css( elem, "marginLeft", true )
+		};
+	},
+
+	// This method will return documentElement in the following cases:
+	// 1) For the element inside the iframe without offsetParent, this method will return
+	//    documentElement of the parent window
+	// 2) For the hidden or detached element
+	// 3) For body or html element, i.e. in case of the html node - it will return itself
+	//
+	// but those exceptions were never presented as a real life use-cases
+	// and might be considered as more preferable results.
+	//
+	// This logic, however, is not guaranteed and can change at any point in the future
+	offsetParent: function() {
+		return this.map( function() {
+			var offsetParent = this.offsetParent;
+
+			while ( offsetParent && jQuery.css( offsetParent, "position" ) === "static" ) {
+				offsetParent = offsetParent.offsetParent;
+			}
+
+			return offsetParent || documentElement;
+		} );
+	}
+} );
+
+// Create scrollLeft and scrollTop methods
+jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( method, prop ) {
+	var top = "pageYOffset" === prop;
+
+	jQuery.fn[ method ] = function( val ) {
+		return access( this, function( elem, method, val ) {
+			var win = getWindow( elem );
+
+			if ( val === undefined ) {
+				return win ? win[ prop ] : elem[ method ];
+			}
+
+			if ( win ) {
+				win.scrollTo(
+					!top ? val : win.pageXOffset,
+					top ? val : win.pageYOffset
+				);
+
+			} else {
+				elem[ method ] = val;
+			}
+		}, method, val, arguments.length );
+	};
+} );
+
+// Support: Safari<7-8+, Chrome<37-44+
+// Add the top/left cssHooks using jQuery.fn.position
+// Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
+// Blink bug: https://code.google.com/p/chromium/issues/detail?id=229280
+// getComputedStyle returns percent when specified for top/left/bottom/right;
+// rather than make the css module depend on the offset module, just check for it here
+jQuery.each( [ "top", "left" ], function( i, prop ) {
+	jQuery.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
+		function( elem, computed ) {
+			if ( computed ) {
+				computed = curCSS( elem, prop );
+
+				// If curCSS returns percentage, fallback to offset
+				return rnumnonpx.test( computed ) ?
+					jQuery( elem ).position()[ prop ] + "px" :
+					computed;
+			}
+		}
+	);
+} );
+
+
+// Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
+jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
+	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
+		function( defaultExtra, funcName ) {
+
+		// Margin is only for outerHeight, outerWidth
+		jQuery.fn[ funcName ] = function( margin, value ) {
+			var chainable = arguments.length && ( defaultExtra || typeof margin !== "boolean" ),
+				extra = defaultExtra || ( margin === true || value === true ? "margin" : "border" );
+
+			return access( this, function( elem, type, value ) {
+				var doc;
+
+				if ( jQuery.isWindow( elem ) ) {
+
+					// As of 5/8/2012 this will yield incorrect results for Mobile Safari, but there
+					// isn't a whole lot we can do. See pull request at this URL for discussion:
+					// https://github.com/jquery/jquery/pull/764
+					return elem.document.documentElement[ "client" + name ];
+				}
+
+				// Get document width or height
+				if ( elem.nodeType === 9 ) {
+					doc = elem.documentElement;
+
+					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height],
+					// whichever is greatest
+					return Math.max(
+						elem.body[ "scroll" + name ], doc[ "scroll" + name ],
+						elem.body[ "offset" + name ], doc[ "offset" + name ],
+						doc[ "client" + name ]
+					);
+				}
+
+				return value === undefined ?
+
+					// Get width or height on the element, requesting but not forcing parseFloat
+					jQuery.css( elem, type, extra ) :
+
+					// Set width or height on the element
+					jQuery.style( elem, type, value, extra );
+			}, type, chainable ? margin : undefined, chainable, null );
+		};
+	} );
+} );
+
+
+jQuery.fn.extend( {
+
+	bind: function( types, data, fn ) {
+		return this.on( types, null, data, fn );
+	},
+	unbind: function( types, fn ) {
+		return this.off( types, null, fn );
+	},
+
+	delegate: function( selector, types, data, fn ) {
+		return this.on( types, selector, data, fn );
+	},
+	undelegate: function( selector, types, fn ) {
+
+		// ( namespace ) or ( selector, types [, fn] )
+		return arguments.length === 1 ?
+			this.off( selector, "**" ) :
+			this.off( types, selector || "**", fn );
+	},
+	size: function() {
+		return this.length;
+	}
+} );
+
+jQuery.fn.andSelf = jQuery.fn.addBack;
+
+
+
+
+// Register as a named AMD module, since jQuery can be concatenated with other
+// files that may use define, but not via a proper concatenation script that
+// understands anonymous AMD modules. A named AMD is safest and most robust
+// way to register. Lowercase jquery is used because AMD module names are
+// derived from file names, and jQuery is normally delivered in a lowercase
+// file name. Do this after creating the global so that if an AMD module wants
+// to call noConflict to hide this version of jQuery, it will work.
+
+// Note that for maximum portability, libraries that are not jQuery should
+// declare themselves as anonymous modules, and avoid setting a global if an
+// AMD loader is present. jQuery is a special case. For more information, see
+// https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
+
+if ( typeof define === "function" && define.amd ) {
+	define( "jquery", [], function() {
+		return jQuery;
+	} );
+}
+
+
+
+var
+
+	// Map over jQuery in case of overwrite
+	_jQuery = window.jQuery,
+
+	// Map over the $ in case of overwrite
+	_$ = window.$;
+
+jQuery.noConflict = function( deep ) {
+	if ( window.$ === jQuery ) {
+		window.$ = _$;
+	}
+
+	if ( deep && window.jQuery === jQuery ) {
+		window.jQuery = _jQuery;
+	}
+
+	return jQuery;
+};
+
+// Expose jQuery and $ identifiers, even in AMD
+// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
+// and CommonJS for browser emulators (#13566)
+if ( !noGlobal ) {
+	window.jQuery = window.$ = jQuery;
+}
+
+return jQuery;
+}));
+
+/*!
+ * jquery-confirm v2.5.1 (http://craftpip.github.io/jquery-confirm/)
+ * Author: Boniface Pereira
+ * Website: www.craftpip.com
+ * Contact: hey@craftpip.com
+ *
+ * Copyright 2013-2015 jquery-confirm
+ * Licensed under MIT (https://github.com/craftpip/jquery-confirm/blob/master/LICENSE)
+ */
+if(typeof jQuery==="undefined"){throw new Error("jquery-confirm requires jQuery");}var jconfirm,Jconfirm;(function($){$.fn.confirm=function(options,option2){if(typeof options==="undefined"){options={};}if(typeof options==="string"){options={content:options,title:(option2)?option2:false};}$(this).each(function(){var $this=$(this);$this.on("click",function(e){e.preventDefault();var jcOption=$.extend({},options);if($this.attr("data-title")){jcOption.title=$this.attr("data-title");}if($this.attr("data-content")){jcOption.content=$this.attr("data-content");}jcOption["$target"]=$this;if($this.attr("href")&&!options.confirm){jcOption.confirm=function(){location.href=$this.attr("href");};}$.confirm(jcOption);});});return $(this);};$.confirm=function(options,option2){if(typeof options==="undefined"){options={};}if(typeof options==="string"){options={content:options,title:(option2)?option2:false};}return jconfirm(options);};$.alert=function(options,option2){if(typeof options==="undefined"){options={};}if(typeof options==="string"){options={content:options,title:(option2)?option2:false};}options.cancelButton=false;return jconfirm(options);};$.dialog=function(options,option2){if(typeof options==="undefined"){options={};}if(typeof options==="string"){options={content:options,title:(option2)?option2:false};}options.cancelButton=false;options.confirmButton=false;options.confirmKeys=[13];return jconfirm(options);};jconfirm=function(options){if(typeof options==="undefined"){options={};}if(jconfirm.defaults){$.extend(jconfirm.pluginDefaults,jconfirm.defaults);}var options=$.extend({},jconfirm.pluginDefaults,options);return new Jconfirm(options);};Jconfirm=function(options){$.extend(this,options);this._init();};Jconfirm.prototype={_init:function(){var that=this;this._rand=Math.round(Math.random()*99999);this._buildHTML();this._bindEvents();setTimeout(function(){that.open();that._watchContent();},0);},_buildHTML:function(){var that=this;this.animation="anim-"+this.animation.toLowerCase();this.closeAnimation="anim-"+this.closeAnimation.toLowerCase();this.theme="jconfirm-"+this.theme.toLowerCase();if(this.animation=="anim-none"){this.animationSpeed=0;}this._lastFocused=$("body").find(":focus");this.$el=$(this.template).appendTo(this.container).addClass(this.theme);this.$el.find(".jconfirm-box-container").addClass(this.columnClass);this.$el.find(".jconfirm-bg").css(this._getCSS(this.animationSpeed,1));this.$el.find(".jconfirm-bg").css("opacity",this.opacity);this.$b=this.$el.find(".jconfirm-box").css(this._getCSS(this.animationSpeed,this.animationBounce)).addClass(this.animation);this.$body=this.$b;if(this.rtl){this.$el.addClass("rtl");}this._contentReady=$.Deferred();this._modalReady=$.Deferred();this.$title=this.$el.find(".title");this.contentDiv=this.$el.find("div.content");this.$content=this.contentDiv;this.$contentPane=this.$el.find(".content-pane");this.$icon=this.$el.find(".icon-c");this.$closeIcon=this.$el.find(".closeIcon");this.$contentPane.css(this._getCSS(this.animationSpeed,1));this.setTitle();this.setIcon();this._setButtons();if(this.closeIconClass){this.$closeIcon.html('<i class="'+this.closeIconClass+'"></i>');}that._contentHash=this._hash(that.$content.html());$.when(this._contentReady,this._modalReady).then(function(){that.setContent();that.setTitle();that.setIcon();});this._getContent();this._imagesLoaded();if(this.autoClose){this._startCountDown();}},_unwatchContent:function(){clearInterval(this._timer);},_hash:function(){return btoa((encodeURIComponent(this.$content.html())));},_watchContent:function(){var that=this;this._timer=setInterval(function(){var now=that._hash(that.$content.html());if(that._contentHash!=now){that._contentHash=now;that.setDialogCenter();that._imagesLoaded();}},this.watchInterval);},_bindEvents:function(){var that=this;var boxClicked=false;this.$el.find(".jconfirm-scrollpane").click(function(e){if(!boxClicked){if(that.backgroundDismiss){that.cancel();that.close();}else{that.$b.addClass("hilight");setTimeout(function(){that.$b.removeClass("hilight");},800);}}boxClicked=false;});this.$el.find(".jconfirm-box").click(function(e){boxClicked=true;});if(this.$confirmButton){this.$confirmButton.click(function(e){e.preventDefault();var r=that.confirm(that.$b);that._stopCountDown();that.onAction("confirm");if(typeof r==="undefined"||r){that.close();}});}if(this.$cancelButton){this.$cancelButton.click(function(e){e.preventDefault();var r=that.cancel(that.$b);that._stopCountDown();that.onAction("cancel");if(typeof r==="undefined"||r){that.close();}});}if(this.$closeButton){this.$closeButton.click(function(e){e.preventDefault();that._stopCountDown();that.cancel();that.onAction("close");that.close();});}if(this.keyboardEnabled){setTimeout(function(){$(window).on("keyup."+this._rand,function(e){that.reactOnKey(e);});},500);}$(window).on("resize."+this._rand,function(){that.setDialogCenter(true);});},_getCSS:function(speed,bounce){return{"-webkit-transition-duration":speed/1000+"s","transition-duration":speed/1000+"s","-webkit-transition-timing-function":"cubic-bezier(.36,1.1,.2, "+bounce+")","transition-timing-function":"cubic-bezier(.36,1.1,.2, "+bounce+")"};},_imagesLoaded:function(){var that=this;$.each(this.$content.find("img:not(.loaded)"),function(i,a){var interval=setInterval(function(){var h=$(a).css("height");if(h!=="0px"){$(a).addClass("loaded");that.setDialogCenter();clearInterval(interval);}},40);});},_setButtons:function(){this.$btnc=this.$el.find(".buttons");if(this.confirmButton&&$.trim(this.confirmButton)!==""){this.$confirmButton=$('<button type="button" class="btn">'+this.confirmButton+"</button>").appendTo(this.$btnc).addClass(this.confirmButtonClass);}if(this.cancelButton&&$.trim(this.cancelButton)!==""){this.$cancelButton=$('<button type="button" class="btn">'+this.cancelButton+"</button>").appendTo(this.$btnc).addClass(this.cancelButtonClass);}if(!this.confirmButton&&!this.cancelButton){this.$btnc.hide();}if(!this.confirmButton&&!this.cancelButton&&this.closeIcon===null){this.$closeButton=this.$b.find(".closeIcon").show();}if(this.closeIcon===true){this.$closeButton=this.$b.find(".closeIcon").show();}},setTitle:function(string){this.title=(typeof string!=="undefined")?string:this.title;this.$title.html(this.title||"");},setIcon:function(iconClass){this.title=(typeof string!=="undefined")?iconClass:this.title;this.$icon.html(this.icon?'<i class="'+this.icon+'"></i>':"");},setContent:function(string){var that=this;this.content=(typeof string=="undefined")?this.content:string;if(this.content==""){this.$content.html(this.content);this.$contentPane.hide();}else{this.$content.html(this.content);this.$contentPane.show();}if(this.$content.hasClass("loading")){this.$content.removeClass("loading");this.$btnc.find("button").prop("disabled",false);}},_getContent:function(string){var that=this;string=(string)?string:this.content;this._isAjax=false;if(!this.content){this.content="";this.setContent(this.content);this._contentReady.reject();}else{if(typeof this.content==="string"){if(this.content.substr(0,4).toLowerCase()==="url:"){this._isAjax=true;this.$content.addClass("loading");this.$btnc.find("button").prop("disabled",true);var url=this.content.substring(4,this.content.length);$.get(url).done(function(html){that.content=html;that._contentReady.resolve();}).always(function(data,status,xhr){if(typeof that.contentLoaded==="function"){that.contentLoaded(data,status,xhr);}});}else{this.setContent(this.content);this._contentReady.reject();}}else{if(typeof this.content==="function"){this.$content.addClass("loading");this.$btnc.find("button").attr("disabled","disabled");var promise=this.content(this);if(typeof promise!=="object"){console.error("The content function must return jquery promise.");}else{if(typeof promise.always!=="function"){console.error("The object returned is not a jquery promise.");}else{this._isAjax=true;promise.always(function(data,status){that._contentReady.resolve();});}}}else{console.error("Invalid option for property content, passed: "+typeof this.content);}}}this.setDialogCenter();},_stopCountDown:function(){clearInterval(this.timerInterval);if(this.$cd){this.$cd.remove();}},_startCountDown:function(){var opt=this.autoClose.split("|");if(/cancel/.test(opt[0])&&this.type==="alert"){return false;}else{if(/confirm|cancel/.test(opt[0])){this.$cd=$('<span class="countdown">').appendTo(this["$"+opt[0]+"Button"]);var that=this;that.$cd.parent().click();var time=opt[1]/1000;this.timerInterval=setInterval(function(){that.$cd.html(" ("+(time-=1)+")");if(time===0){that.$cd.html("");that.$cd.parent().trigger("click");clearInterval(that.timerInterval);}},1000);}else{console.error("Invalid option "+opt[0]+", must be confirm/cancel");}}},reactOnKey:function key(e){var a=$(".jconfirm");if(a.eq(a.length-1)[0]!==this.$el[0]){return false;}var key=e.which;if(this.contentDiv.find(":input").is(":focus")&&/13|32/.test(key)){return false;}if($.inArray(key,this.cancelKeys)!==-1){if(this.$cancelButton){this.$cancelButton.click();}else{this.close();}}if($.inArray(key,this.confirmKeys)!==-1){if(this.$confirmButton){this.$confirmButton.click();}}},setDialogCenter:function(){if(this.$contentPane.css("display")=="none"){var contentHeight=0;var paneHeight=0;}else{var contentHeight=this.$content.outerHeight();var paneHeight=this.$contentPane.height();if(paneHeight==0){paneHeight=contentHeight;}}var off=100;var w=this.$content.outerWidth();this.$content.css({clip:"rect(0px "+(off+w)+"px "+contentHeight+"px -"+off+"px)"});this.$contentPane.css({height:contentHeight});var windowHeight=$(window).height();var boxHeight=this.$b.outerHeight()-paneHeight+contentHeight;var topMargin=(windowHeight-boxHeight)/2;var minMargin=100;if(boxHeight>(windowHeight-minMargin)){var style={"margin-top":minMargin/2,"margin-bottom":minMargin/2};$("body").addClass("jconfirm-noscroll");}else{var style={"margin-top":topMargin};$("body").removeClass("jconfirm-noscroll");}this.$b.css(style);},close:function(){var that=this;if(this.isClosed()){return false;}if(typeof this.onClose==="function"){this.onClose();}this._unwatchContent();that._lastFocused.focus();$(window).unbind("resize."+this._rand);if(this.keyboardEnabled){$(window).unbind("keyup."+this._rand);}that.$el.find(".jconfirm-bg").removeClass("seen");$("body").removeClass("jconfirm-noscroll");this.$b.addClass(this.closeAnimation);var closeTimer=(this.closeAnimation=="anim-none")?0:this.animationSpeed;setTimeout(function(){that.$el.remove();},closeTimer*25/100);jconfirm.record.closed+=1;jconfirm.record.currentlyOpen-=1;return true;},open:function(){var that=this;if(this.isClosed()){return false;}that.$el.find(".jconfirm-bg").addClass("seen");this.$b.removeClass(this.animation);this.$b.find("input[autofocus]:visible:first").focus();jconfirm.record.opened+=1;jconfirm.record.currentlyOpen+=1;if(typeof this.onOpen==="function"){this.onOpen();}var jcr="jconfirm-box"+this._rand;this.$b.attr("aria-labelledby",jcr).attr("tabindex",-1).focus();if(this.$title){this.$title.attr("id",jcr);}else{if(this.$content){this.$content.attr("id",jcr);}}setTimeout(function(){that.$b.css({"transition-property":that.$b.css("transition-property")+", margin"});that._modalReady.resolve();},this.animationSpeed);return true;},isClosed:function(){return this.$el.css("display")==="";}};jconfirm.pluginDefaults={template:'<div class="jconfirm"><div class="jconfirm-bg"></div><div class="jconfirm-scrollpane"><div class="container"><div class="row"><div class="jconfirm-box-container"><div class="jconfirm-box" role="dialog" aria-labelledby="labelled" tabindex="-1"><div class="closeIcon">&times;</div><div class="title-c"><span class="icon-c"></span><span class="title"></span></div><div class="content-pane"><div class="content"></div></div><div class="buttons"></div><div class="jquery-clear"></div></div></div></div></div></div></div>',title:"Hello",content:"Are you sure to continue?",contentLoaded:function(){},icon:"",opacity:0.2,confirmButton:"Okay",cancelButton:"Close",confirmButtonClass:"btn-default",cancelButtonClass:"btn-default",theme:"white",animation:"zoom",closeAnimation:"scale",animationSpeed:500,animationBounce:1.2,keyboardEnabled:false,rtl:false,confirmKeys:[13],cancelKeys:[27],container:"body",confirm:function(){},cancel:function(){},backgroundDismiss:false,autoClose:false,closeIcon:null,closeIconClass:false,watchInterval:100,columnClass:"col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1",onOpen:function(){},onClose:function(){},onAction:function(){}};jconfirm.record={opened:0,closed:0,currentlyOpen:0};})(jQuery);
+/*!
+ * Bootstrap-select v1.10.0 (http://silviomoreto.github.io/bootstrap-select)
+ *
+ * Copyright 2013-2016 bootstrap-select
+ * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
+ */
+
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module unless amdModuleId is set
+    define(["jquery"], function (a0) {
+      return (factory(a0));
+    });
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory(require("jquery"));
+  } else {
+    factory(jQuery);
+  }
+}(this, function (jQuery) {
+
+(function ($) {
+  'use strict';
+
+  //<editor-fold desc="Shims">
+  if (!String.prototype.includes) {
+    (function () {
+      'use strict'; // needed to support `apply`/`call` with `undefined`/`null`
+      var toString = {}.toString;
+      var defineProperty = (function () {
+        // IE 8 only supports `Object.defineProperty` on DOM elements
+        try {
+          var object = {};
+          var $defineProperty = Object.defineProperty;
+          var result = $defineProperty(object, object, object) && $defineProperty;
+        } catch (error) {
+        }
+        return result;
+      }());
+      var indexOf = ''.indexOf;
+      var includes = function (search) {
+        if (this == null) {
+          throw new TypeError();
+        }
+        var string = String(this);
+        if (search && toString.call(search) == '[object RegExp]') {
+          throw new TypeError();
+        }
+        var stringLength = string.length;
+        var searchString = String(search);
+        var searchLength = searchString.length;
+        var position = arguments.length > 1 ? arguments[1] : undefined;
+        // `ToInteger`
+        var pos = position ? Number(position) : 0;
+        if (pos != pos) { // better `isNaN`
+          pos = 0;
+        }
+        var start = Math.min(Math.max(pos, 0), stringLength);
+        // Avoid the `indexOf` call if no match is possible
+        if (searchLength + start > stringLength) {
+          return false;
+        }
+        return indexOf.call(string, searchString, pos) != -1;
+      };
+      if (defineProperty) {
+        defineProperty(String.prototype, 'includes', {
+          'value': includes,
+          'configurable': true,
+          'writable': true
+        });
+      } else {
+        String.prototype.includes = includes;
+      }
+    }());
+  }
+
+  if (!String.prototype.startsWith) {
+    (function () {
+      'use strict'; // needed to support `apply`/`call` with `undefined`/`null`
+      var defineProperty = (function () {
+        // IE 8 only supports `Object.defineProperty` on DOM elements
+        try {
+          var object = {};
+          var $defineProperty = Object.defineProperty;
+          var result = $defineProperty(object, object, object) && $defineProperty;
+        } catch (error) {
+        }
+        return result;
+      }());
+      var toString = {}.toString;
+      var startsWith = function (search) {
+        if (this == null) {
+          throw new TypeError();
+        }
+        var string = String(this);
+        if (search && toString.call(search) == '[object RegExp]') {
+          throw new TypeError();
+        }
+        var stringLength = string.length;
+        var searchString = String(search);
+        var searchLength = searchString.length;
+        var position = arguments.length > 1 ? arguments[1] : undefined;
+        // `ToInteger`
+        var pos = position ? Number(position) : 0;
+        if (pos != pos) { // better `isNaN`
+          pos = 0;
+        }
+        var start = Math.min(Math.max(pos, 0), stringLength);
+        // Avoid the `indexOf` call if no match is possible
+        if (searchLength + start > stringLength) {
+          return false;
+        }
+        var index = -1;
+        while (++index < searchLength) {
+          if (string.charCodeAt(start + index) != searchString.charCodeAt(index)) {
+            return false;
+          }
+        }
+        return true;
+      };
+      if (defineProperty) {
+        defineProperty(String.prototype, 'startsWith', {
+          'value': startsWith,
+          'configurable': true,
+          'writable': true
+        });
+      } else {
+        String.prototype.startsWith = startsWith;
+      }
+    }());
+  }
+
+  if (!Object.keys) {
+    Object.keys = function (
+      o, // object
+      k, // key
+      r  // result array
+      ){
+      // initialize object and result
+      r=[];
+      // iterate over object keys
+      for (k in o)
+          // fill result array with non-prototypical keys
+        r.hasOwnProperty.call(o, k) && r.push(k);
+      // return result
+      return r;
+    };
+  }
+
+  $.fn.triggerNative = function (eventName) {
+    var el = this[0],
+        event;
+
+    if (el.dispatchEvent) {
+      if (typeof Event === 'function') {
+        // For modern browsers
+        event = new Event(eventName, {
+          bubbles: true
+        });
+      } else {
+        // For IE since it doesn't support Event constructor
+        event = document.createEvent('Event');
+        event.initEvent(eventName, true, false);
+      }
+
+      el.dispatchEvent(event);
+    } else {
+      if (el.fireEvent) {
+        event = document.createEventObject();
+        event.eventType = eventName;
+        el.fireEvent('on' + eventName, event);
+      }
+
+      this.trigger(eventName);
+    }
+  };
+  //</editor-fold>
+
+  // Case insensitive contains search
+  $.expr[':'].icontains = function (obj, index, meta) {
+    var $obj = $(obj);
+    var haystack = ($obj.data('tokens') || $obj.text()).toUpperCase();
+    return haystack.includes(meta[3].toUpperCase());
+  };
+
+  // Case insensitive begins search
+  $.expr[':'].ibegins = function (obj, index, meta) {
+    var $obj = $(obj);
+    var haystack = ($obj.data('tokens') || $obj.text()).toUpperCase();
+    return haystack.startsWith(meta[3].toUpperCase());
+  };
+
+  // Case and accent insensitive contains search
+  $.expr[':'].aicontains = function (obj, index, meta) {
+    var $obj = $(obj);
+    var haystack = ($obj.data('tokens') || $obj.data('normalizedText') || $obj.text()).toUpperCase();
+    return haystack.includes(meta[3].toUpperCase());
+  };
+
+  // Case and accent insensitive begins search
+  $.expr[':'].aibegins = function (obj, index, meta) {
+    var $obj = $(obj);
+    var haystack = ($obj.data('tokens') || $obj.data('normalizedText') || $obj.text()).toUpperCase();
+    return haystack.startsWith(meta[3].toUpperCase());
+  };
+
+  /**
+   * Remove all diatrics from the given text.
+   * @access private
+   * @param {String} text
+   * @returns {String}
+   */
+  function normalizeToBase(text) {
+    var rExps = [
+      {re: /[\xC0-\xC6]/g, ch: "A"},
+      {re: /[\xE0-\xE6]/g, ch: "a"},
+      {re: /[\xC8-\xCB]/g, ch: "E"},
+      {re: /[\xE8-\xEB]/g, ch: "e"},
+      {re: /[\xCC-\xCF]/g, ch: "I"},
+      {re: /[\xEC-\xEF]/g, ch: "i"},
+      {re: /[\xD2-\xD6]/g, ch: "O"},
+      {re: /[\xF2-\xF6]/g, ch: "o"},
+      {re: /[\xD9-\xDC]/g, ch: "U"},
+      {re: /[\xF9-\xFC]/g, ch: "u"},
+      {re: /[\xC7-\xE7]/g, ch: "c"},
+      {re: /[\xD1]/g, ch: "N"},
+      {re: /[\xF1]/g, ch: "n"}
+    ];
+    $.each(rExps, function () {
+      text = text.replace(this.re, this.ch);
+    });
+    return text;
+  }
+
+
+  function htmlEscape(html) {
+    var escapeMap = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      '`': '&#x60;'
+    };
+    var source = '(?:' + Object.keys(escapeMap).join('|') + ')',
+        testRegexp = new RegExp(source),
+        replaceRegexp = new RegExp(source, 'g'),
+        string = html == null ? '' : '' + html;
+    return testRegexp.test(string) ? string.replace(replaceRegexp, function (match) {
+      return escapeMap[match];
+    }) : string;
+  }
+
+  var Selectpicker = function (element, options, e) {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    this.$element = $(element);
+    this.$newElement = null;
+    this.$button = null;
+    this.$menu = null;
+    this.$lis = null;
+    this.options = options;
+
+    // If we have no title yet, try to pull it from the html title attribute (jQuery doesnt' pick it up as it's not a
+    // data-attribute)
+    if (this.options.title === null) {
+      this.options.title = this.$element.attr('title');
+    }
+
+    //Expose public methods
+    this.val = Selectpicker.prototype.val;
+    this.render = Selectpicker.prototype.render;
+    this.refresh = Selectpicker.prototype.refresh;
+    this.setStyle = Selectpicker.prototype.setStyle;
+    this.selectAll = Selectpicker.prototype.selectAll;
+    this.deselectAll = Selectpicker.prototype.deselectAll;
+    this.destroy = Selectpicker.prototype.destroy;
+    this.remove = Selectpicker.prototype.remove;
+    this.show = Selectpicker.prototype.show;
+    this.hide = Selectpicker.prototype.hide;
+
+    this.init();
+  };
+
+  Selectpicker.VERSION = '1.10.0';
+
+  // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
+  Selectpicker.DEFAULTS = {
+    noneSelectedText: 'Nothing selected',
+    noneResultsText: 'No results matched {0}',
+    countSelectedText: function (numSelected, numTotal) {
+      return (numSelected == 1) ? "{0} item selected" : "{0} items selected";
+    },
+    maxOptionsText: function (numAll, numGroup) {
+      return [
+        (numAll == 1) ? 'Limit reached ({n} item max)' : 'Limit reached ({n} items max)',
+        (numGroup == 1) ? 'Group limit reached ({n} item max)' : 'Group limit reached ({n} items max)'
+      ];
+    },
+    selectAllText: 'Select All',
+    deselectAllText: 'Deselect All',
+    doneButton: false,
+    doneButtonText: 'Close',
+    multipleSeparator: ', ',
+    styleBase: 'btn',
+    style: 'btn-default',
+    size: 'auto',
+    title: null,
+    selectedTextFormat: 'values',
+    width: false,
+    container: false,
+    hideDisabled: false,
+    showSubtext: false,
+    showIcon: true,
+    showContent: true,
+    dropupAuto: true,
+    header: false,
+    liveSearch: false,
+    liveSearchPlaceholder: null,
+    liveSearchNormalize: false,
+    liveSearchStyle: 'contains',
+    actionsBox: false,
+    iconBase: 'glyphicon',
+    tickIcon: 'glyphicon-ok',
+    showTick: false,
+    template: {
+      caret: '<span class="caret"></span>'
+    },
+    maxOptions: false,
+    mobile: false,
+    selectOnTab: false,
+    dropdownAlignRight: false
+  };
+
+  Selectpicker.prototype = {
+
+    constructor: Selectpicker,
+
+    init: function () {
+      var that = this,
+          id = this.$element.attr('id');
+
+      this.$element.addClass('bs-select-hidden');
+
+      // store originalIndex (key) and newIndex (value) in this.liObj for fast accessibility
+      // allows us to do this.$lis.eq(that.liObj[index]) instead of this.$lis.filter('[data-original-index="' + index + '"]')
+      this.liObj = {};
+      this.multiple = this.$element.prop('multiple');
+      this.autofocus = this.$element.prop('autofocus');
+      this.$newElement = this.createView();
+      this.$element
+        .after(this.$newElement)
+        .appendTo(this.$newElement);
+      this.$button = this.$newElement.children('button');
+      this.$menu = this.$newElement.children('.dropdown-menu');
+      this.$menuInner = this.$menu.children('.inner');
+      this.$searchbox = this.$menu.find('input');
+
+      this.$element.removeClass('bs-select-hidden');
+
+      if (this.options.dropdownAlignRight)
+        this.$menu.addClass('dropdown-menu-right');
+
+      if (typeof id !== 'undefined') {
+        this.$button.attr('data-id', id);
+        $('label[for="' + id + '"]').click(function (e) {
+          e.preventDefault();
+          that.$button.focus();
+        });
+      }
+
+      this.checkDisabled();
+      this.clickListener();
+      if (this.options.liveSearch) this.liveSearchListener();
+      this.render();
+      this.setStyle();
+      this.setWidth();
+      if (this.options.container) this.selectPosition();
+      this.$menu.data('this', this);
+      this.$newElement.data('this', this);
+      if (this.options.mobile) this.mobile();
+
+      this.$newElement.on({
+        'hide.bs.dropdown': function (e) {
+          that.$element.trigger('hide.bs.select', e);
+        },
+        'hidden.bs.dropdown': function (e) {
+          that.$element.trigger('hidden.bs.select', e);
+        },
+        'show.bs.dropdown': function (e) {
+          that.$element.trigger('show.bs.select', e);
+        },
+        'shown.bs.dropdown': function (e) {
+          that.$element.trigger('shown.bs.select', e);
+        }
+      });
+
+      if (that.$element[0].hasAttribute('required')) {
+        this.$element.on('invalid', function () {
+          that.$button
+            .addClass('bs-invalid')
+            .focus();
+          
+          that.$element.on({
+            'focus.bs.select': function () {
+              that.$button.focus();
+              that.$element.off('focus.bs.select');
+            },
+            'shown.bs.select': function () {
+              that.$element
+                .val(that.$element.val()) // set the value to hide the validation message in Chrome when menu is opened
+                .off('shown.bs.select');
+            },
+            'rendered.bs.select': function () {
+              // if select is no longer invalid, remove the bs-invalid class
+              if (this.validity.valid) that.$button.removeClass('bs-invalid');
+              that.$element.off('rendered.bs.select');
+            }
+          });
+          
+        });
+      }
+
+      setTimeout(function () {
+        that.$element.trigger('loaded.bs.select');
+      });
+    },
+
+    createDropdown: function () {
+      // Options
+      // If we are multiple or showTick option is set, then add the show-tick class
+      var showTick = (this.multiple || this.options.showTick) ? ' show-tick' : '',
+          inputGroup = this.$element.parent().hasClass('input-group') ? ' input-group-btn' : '',
+          autofocus = this.autofocus ? ' autofocus' : '';
+      // Elements
+      var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
+      var searchbox = this.options.liveSearch ?
+      '<div class="bs-searchbox">' +
+      '<input type="text" class="form-control" autocomplete="off"' +
+      (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + '>' +
+      '</div>'
+          : '';
+      var actionsbox = this.multiple && this.options.actionsBox ?
+      '<div class="bs-actionsbox">' +
+      '<div class="btn-group btn-group-sm btn-block">' +
+      '<button type="button" class="actions-btn bs-select-all btn btn-default">' +
+      this.options.selectAllText +
+      '</button>' +
+      '<button type="button" class="actions-btn bs-deselect-all btn btn-default">' +
+      this.options.deselectAllText +
+      '</button>' +
+      '</div>' +
+      '</div>'
+          : '';
+      var donebutton = this.multiple && this.options.doneButton ?
+      '<div class="bs-donebutton">' +
+      '<div class="btn-group btn-block">' +
+      '<button type="button" class="btn btn-sm btn-default">' +
+      this.options.doneButtonText +
+      '</button>' +
+      '</div>' +
+      '</div>'
+          : '';
+      var drop =
+          '<div class="btn-group bootstrap-select' + showTick + inputGroup + '">' +
+          '<button type="button" class="' + this.options.styleBase + ' dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
+          '<span class="filter-option pull-left"></span>&nbsp;' +
+          '<span class="bs-caret">' +
+          this.options.template.caret +
+          '</span>' +
+          '</button>' +
+          '<div class="dropdown-menu open">' +
+          header +
+          searchbox +
+          actionsbox +
+          '<ul class="dropdown-menu inner" role="menu">' +
+          '</ul>' +
+          donebutton +
+          '</div>' +
+          '</div>';
+
+      return $(drop);
+    },
+
+    createView: function () {
+      var $drop = this.createDropdown(),
+          li = this.createLi();
+
+      $drop.find('ul')[0].innerHTML = li;
+      return $drop;
+    },
+
+    reloadLi: function () {
+      //Remove all children.
+      this.destroyLi();
+      //Re build
+      var li = this.createLi();
+      this.$menuInner[0].innerHTML = li;
+    },
+
+    destroyLi: function () {
+      this.$menu.find('li').remove();
+    },
+
+    createLi: function () {
+      var that = this,
+          _li = [],
+          optID = 0,
+          titleOption = document.createElement('option'),
+          liIndex = -1; // increment liIndex whenever a new <li> element is created to ensure liObj is correct
+
+      // Helper functions
+      /**
+       * @param content
+       * @param [index]
+       * @param [classes]
+       * @param [optgroup]
+       * @returns {string}
+       */
+      var generateLI = function (content, index, classes, optgroup) {
+        return '<li' +
+            ((typeof classes !== 'undefined' & '' !== classes) ? ' class="' + classes + '"' : '') +
+            ((typeof index !== 'undefined' & null !== index) ? ' data-original-index="' + index + '"' : '') +
+            ((typeof optgroup !== 'undefined' & null !== optgroup) ? 'data-optgroup="' + optgroup + '"' : '') +
+            '>' + content + '</li>';
+      };
+
+      /**
+       * @param text
+       * @param [classes]
+       * @param [inline]
+       * @param [tokens]
+       * @returns {string}
+       */
+      var generateA = function (text, classes, inline, tokens) {
+        return '<a tabindex="0"' +
+            (typeof classes !== 'undefined' ? ' class="' + classes + '"' : '') +
+            (typeof inline !== 'undefined' ? ' style="' + inline + '"' : '') +
+            (that.options.liveSearchNormalize ? ' data-normalized-text="' + normalizeToBase(htmlEscape(text)) + '"' : '') +
+            (typeof tokens !== 'undefined' || tokens !== null ? ' data-tokens="' + tokens + '"' : '') +
+            '>' + text +
+            '<span class="' + that.options.iconBase + ' ' + that.options.tickIcon + ' check-mark"></span>' +
+            '</a>';
+      };
+
+      if (this.options.title && !this.multiple) {
+        // this option doesn't create a new <li> element, but does add a new option, so liIndex is decreased
+        // since liObj is recalculated on every refresh, liIndex needs to be decreased even if the titleOption is already appended
+        liIndex--;
+
+        if (!this.$element.find('.bs-title-option').length) {
+          // Use native JS to prepend option (faster)
+          var element = this.$element[0];
+          titleOption.className = 'bs-title-option';
+          titleOption.appendChild(document.createTextNode(this.options.title));
+          titleOption.value = '';
+          element.insertBefore(titleOption, element.firstChild);
+          // Check if selected attribute is already set on an option. If not, select the titleOption option.
+          if ($(element.options[element.selectedIndex]).attr('selected') === undefined) titleOption.selected = true;
+        }
+      }
+
+      this.$element.find('option').each(function (index) {
+        var $this = $(this);
+
+        liIndex++;
+
+        if ($this.hasClass('bs-title-option')) return;
+
+        // Get the class and text for the option
+        var optionClass = this.className || '',
+            inline = this.style.cssText,
+            text = $this.data('content') ? $this.data('content') : $this.html(),
+            tokens = $this.data('tokens') ? $this.data('tokens') : null,
+            subtext = typeof $this.data('subtext') !== 'undefined' ? '<small class="text-muted">' + $this.data('subtext') + '</small>' : '',
+            icon = typeof $this.data('icon') !== 'undefined' ? '<span class="' + that.options.iconBase + ' ' + $this.data('icon') + '"></span> ' : '',
+            isOptgroup = this.parentNode.tagName === 'OPTGROUP',
+            isDisabled = this.disabled || (isOptgroup && this.parentNode.disabled);
+
+        if (icon !== '' && isDisabled) {
+          icon = '<span>' + icon + '</span>';
+        }
+
+        if (that.options.hideDisabled && isDisabled && !isOptgroup) {
+          liIndex--;
+          return;
+        }
+
+        if (!$this.data('content')) {
+          // Prepend any icon and append any subtext to the main text.
+          text = icon + '<span class="text">' + text + subtext + '</span>';
+        }
+
+        if (isOptgroup && $this.data('divider') !== true) {
+          var optGroupClass = ' ' + this.parentNode.className || '';
+
+          if ($this.index() === 0) { // Is it the first option of the optgroup?
+            optID += 1;
+
+            // Get the opt group label
+            var label = this.parentNode.label,
+                labelSubtext = typeof $this.parent().data('subtext') !== 'undefined' ? '<small class="text-muted">' + $this.parent().data('subtext') + '</small>' : '',
+                labelIcon = $this.parent().data('icon') ? '<span class="' + that.options.iconBase + ' ' + $this.parent().data('icon') + '"></span> ' : '';
+
+            label = labelIcon + '<span class="text">' + label + labelSubtext + '</span>';
+
+            if (index !== 0 && _li.length > 0) { // Is it NOT the first option of the select && are there elements in the dropdown?
+              liIndex++;
+              _li.push(generateLI('', null, 'divider', optID + 'div'));
+            }
+            liIndex++;
+            _li.push(generateLI(label, null, 'dropdown-header' + optGroupClass, optID));
+          }
+
+          if (that.options.hideDisabled && isDisabled) {
+            liIndex--;
+            return;
+          }
+
+          _li.push(generateLI(generateA(text, 'opt ' + optionClass + optGroupClass, inline, tokens), index, '', optID));
+        } else if ($this.data('divider') === true) {
+          _li.push(generateLI('', index, 'divider'));
+        } else if ($this.data('hidden') === true) {
+          _li.push(generateLI(generateA(text, optionClass, inline, tokens), index, 'hidden is-hidden'));
+        } else {
+          if (this.previousElementSibling && this.previousElementSibling.tagName === 'OPTGROUP') {
+            liIndex++;
+            _li.push(generateLI('', null, 'divider', optID + 'div'));
+          }
+          _li.push(generateLI(generateA(text, optionClass, inline, tokens), index));
+        }
+
+        that.liObj[index] = liIndex;
+      });
+
+      //If we are not multiple, we don't have a selected item, and we don't have a title, select the first element so something is set in the button
+      if (!this.multiple && this.$element.find('option:selected').length === 0 && !this.options.title) {
+        this.$element.find('option').eq(0).prop('selected', true).attr('selected', 'selected');
+      }
+
+      return _li.join('');
+    },
+
+    findLis: function () {
+      if (this.$lis == null) this.$lis = this.$menu.find('li');
+      return this.$lis;
+    },
+
+    /**
+     * @param [updateLi] defaults to true
+     */
+    render: function (updateLi) {
+      var that = this,
+          notDisabled;
+
+      //Update the LI to match the SELECT
+      if (updateLi !== false) {
+        this.$element.find('option').each(function (index) {
+          var $lis = that.findLis().eq(that.liObj[index]);
+
+          that.setDisabled(index, this.disabled || this.parentNode.tagName === 'OPTGROUP' && this.parentNode.disabled, $lis);
+          that.setSelected(index, this.selected, $lis);
+        });
+      }
+
+      this.tabIndex();
+
+      var selectedItems = this.$element.find('option').map(function () {
+        if (this.selected) {
+          if (that.options.hideDisabled && (this.disabled || this.parentNode.tagName === 'OPTGROUP' && this.parentNode.disabled)) return;
+
+          var $this = $(this),
+              icon = $this.data('icon') && that.options.showIcon ? '<i class="' + that.options.iconBase + ' ' + $this.data('icon') + '"></i> ' : '',
+              subtext;
+
+          if (that.options.showSubtext && $this.data('subtext') && !that.multiple) {
+            subtext = ' <small class="text-muted">' + $this.data('subtext') + '</small>';
+          } else {
+            subtext = '';
+          }
+          if (typeof $this.attr('title') !== 'undefined') {
+            return $this.attr('title');
+          } else if ($this.data('content') && that.options.showContent) {
+            return $this.data('content');
+          } else {
+            return icon + $this.html() + subtext;
+          }
+        }
+      }).toArray();
+
+      //Fixes issue in IE10 occurring when no default option is selected and at least one option is disabled
+      //Convert all the values into a comma delimited string
+      var title = !this.multiple ? selectedItems[0] : selectedItems.join(this.options.multipleSeparator);
+
+      //If this is multi select, and the selectText type is count, the show 1 of 2 selected etc..
+      if (this.multiple && this.options.selectedTextFormat.indexOf('count') > -1) {
+        var max = this.options.selectedTextFormat.split('>');
+        if ((max.length > 1 && selectedItems.length > max[1]) || (max.length == 1 && selectedItems.length >= 2)) {
+          notDisabled = this.options.hideDisabled ? ', [disabled]' : '';
+          var totalCount = this.$element.find('option').not('[data-divider="true"], [data-hidden="true"]' + notDisabled).length,
+              tr8nText = (typeof this.options.countSelectedText === 'function') ? this.options.countSelectedText(selectedItems.length, totalCount) : this.options.countSelectedText;
+          title = tr8nText.replace('{0}', selectedItems.length.toString()).replace('{1}', totalCount.toString());
+        }
+      }
+
+      if (this.options.title == undefined) {
+        this.options.title = this.$element.attr('title');
+      }
+
+      if (this.options.selectedTextFormat == 'static') {
+        title = this.options.title;
+      }
+
+      //If we dont have a title, then use the default, or if nothing is set at all, use the not selected text
+      if (!title) {
+        title = typeof this.options.title !== 'undefined' ? this.options.title : this.options.noneSelectedText;
+      }
+
+      //strip all html-tags and trim the result
+      this.$button.attr('title', $.trim(title.replace(/<[^>]*>?/g, '')));
+      this.$button.children('.filter-option').html(title);
+
+      this.$element.trigger('rendered.bs.select');
+    },
+
+    /**
+     * @param [style]
+     * @param [status]
+     */
+    setStyle: function (style, status) {
+      if (this.$element.attr('class')) {
+        this.$newElement.addClass(this.$element.attr('class').replace(/selectpicker|mobile-device|bs-select-hidden|validate\[.*\]/gi, ''));
+      }
+
+      var buttonClass = style ? style : this.options.style;
+
+      if (status == 'add') {
+        this.$button.addClass(buttonClass);
+      } else if (status == 'remove') {
+        this.$button.removeClass(buttonClass);
+      } else {
+        this.$button.removeClass(this.options.style);
+        this.$button.addClass(buttonClass);
+      }
+    },
+
+    liHeight: function (refresh) {
+      if (!refresh && (this.options.size === false || this.sizeInfo)) return;
+
+      var newElement = document.createElement('div'),
+          menu = document.createElement('div'),
+          menuInner = document.createElement('ul'),
+          divider = document.createElement('li'),
+          li = document.createElement('li'),
+          a = document.createElement('a'),
+          text = document.createElement('span'),
+          header = this.options.header && this.$menu.find('.popover-title').length > 0 ? this.$menu.find('.popover-title')[0].cloneNode(true) : null,
+          search = this.options.liveSearch ? document.createElement('div') : null,
+          actions = this.options.actionsBox && this.multiple && this.$menu.find('.bs-actionsbox').length > 0 ? this.$menu.find('.bs-actionsbox')[0].cloneNode(true) : null,
+          doneButton = this.options.doneButton && this.multiple && this.$menu.find('.bs-donebutton').length > 0 ? this.$menu.find('.bs-donebutton')[0].cloneNode(true) : null;
+
+      text.className = 'text';
+      newElement.className = this.$menu[0].parentNode.className + ' open';
+      menu.className = 'dropdown-menu open';
+      menuInner.className = 'dropdown-menu inner';
+      divider.className = 'divider';
+
+      text.appendChild(document.createTextNode('Inner text'));
+      a.appendChild(text);
+      li.appendChild(a);
+      menuInner.appendChild(li);
+      menuInner.appendChild(divider);
+      if (header) menu.appendChild(header);
+      if (search) {
+        // create a span instead of input as creating an input element is slower
+        var input = document.createElement('span');
+        search.className = 'bs-searchbox';
+        input.className = 'form-control';
+        search.appendChild(input);
+        menu.appendChild(search);
+      }
+      if (actions) menu.appendChild(actions);
+      menu.appendChild(menuInner);
+      if (doneButton) menu.appendChild(doneButton);
+      newElement.appendChild(menu);
+
+      document.body.appendChild(newElement);
+
+      var liHeight = a.offsetHeight,
+          headerHeight = header ? header.offsetHeight : 0,
+          searchHeight = search ? search.offsetHeight : 0,
+          actionsHeight = actions ? actions.offsetHeight : 0,
+          doneButtonHeight = doneButton ? doneButton.offsetHeight : 0,
+          dividerHeight = $(divider).outerHeight(true),
+          // fall back to jQuery if getComputedStyle is not supported
+          menuStyle = typeof getComputedStyle === 'function' ? getComputedStyle(menu) : false,
+          $menu = menuStyle ? null : $(menu),
+          menuPadding = parseInt(menuStyle ? menuStyle.paddingTop : $menu.css('paddingTop')) +
+                        parseInt(menuStyle ? menuStyle.paddingBottom : $menu.css('paddingBottom')) +
+                        parseInt(menuStyle ? menuStyle.borderTopWidth : $menu.css('borderTopWidth')) +
+                        parseInt(menuStyle ? menuStyle.borderBottomWidth : $menu.css('borderBottomWidth')),
+          menuExtras =  menuPadding +
+                        parseInt(menuStyle ? menuStyle.marginTop : $menu.css('marginTop')) +
+                        parseInt(menuStyle ? menuStyle.marginBottom : $menu.css('marginBottom')) + 2;
+
+      document.body.removeChild(newElement);
+
+      this.sizeInfo = {
+        liHeight: liHeight,
+        headerHeight: headerHeight,
+        searchHeight: searchHeight,
+        actionsHeight: actionsHeight,
+        doneButtonHeight: doneButtonHeight,
+        dividerHeight: dividerHeight,
+        menuPadding: menuPadding,
+        menuExtras: menuExtras
+      };
+    },
+
+    setSize: function () {
+      this.findLis();
+      this.liHeight();
+
+      if (this.options.header) this.$menu.css('padding-top', 0);
+      if (this.options.size === false) return;
+
+      var that = this,
+          $menu = this.$menu,
+          $menuInner = this.$menuInner,
+          $window = $(window),
+          selectHeight = this.$newElement[0].offsetHeight,
+          liHeight = this.sizeInfo['liHeight'],
+          headerHeight = this.sizeInfo['headerHeight'],
+          searchHeight = this.sizeInfo['searchHeight'],
+          actionsHeight = this.sizeInfo['actionsHeight'],
+          doneButtonHeight = this.sizeInfo['doneButtonHeight'],
+          divHeight = this.sizeInfo['dividerHeight'],
+          menuPadding = this.sizeInfo['menuPadding'],
+          menuExtras = this.sizeInfo['menuExtras'],
+          notDisabled = this.options.hideDisabled ? '.disabled' : '',
+          menuHeight,
+          getHeight,
+          selectOffsetTop,
+          selectOffsetBot,
+          posVert = function () {
+            selectOffsetTop = that.$newElement.offset().top - $window.scrollTop();
+            selectOffsetBot = $window.height() - selectOffsetTop - selectHeight;
+          };
+
+      posVert();
+
+      if (this.options.size === 'auto') {
+        var getSize = function () {
+          var minHeight,
+              hasClass = function (className, include) {
+                return function (element) {
+                    if (include) {
+                        return (element.classList ? element.classList.contains(className) : $(element).hasClass(className));
+                    } else {
+                        return !(element.classList ? element.classList.contains(className) : $(element).hasClass(className));
+                    }
+                };
+              },
+              lis = that.$menuInner[0].getElementsByTagName('li'),
+              lisVisible = Array.prototype.filter ? Array.prototype.filter.call(lis, hasClass('hidden', false)) : that.$lis.not('.hidden'),
+              optGroup = Array.prototype.filter ? Array.prototype.filter.call(lisVisible, hasClass('dropdown-header', true)) : lisVisible.filter('.dropdown-header');
+
+          posVert();
+          menuHeight = selectOffsetBot - menuExtras;
+
+          if (that.options.container) {
+            if (!$menu.data('height')) $menu.data('height', $menu.height());
+            getHeight = $menu.data('height');
+          } else {
+            getHeight = $menu.height();
+          }
+
+          if (that.options.dropupAuto) {
+            that.$newElement.toggleClass('dropup', selectOffsetTop > selectOffsetBot && (menuHeight - menuExtras) < getHeight);
+          }
+          if (that.$newElement.hasClass('dropup')) {
+            menuHeight = selectOffsetTop - menuExtras;
+          }
+
+          if ((lisVisible.length + optGroup.length) > 3) {
+            minHeight = liHeight * 3 + menuExtras - 2;
+          } else {
+            minHeight = 0;
+          }
+
+          $menu.css({
+            'max-height': menuHeight + 'px',
+            'overflow': 'hidden',
+            'min-height': minHeight + headerHeight + searchHeight + actionsHeight + doneButtonHeight + 'px'
+          });
+          $menuInner.css({
+            'max-height': menuHeight - headerHeight - searchHeight - actionsHeight - doneButtonHeight - menuPadding + 'px',
+            'overflow-y': 'auto',
+            'min-height': Math.max(minHeight - menuPadding, 0) + 'px'
+          });
+        };
+        getSize();
+        this.$searchbox.off('input.getSize propertychange.getSize').on('input.getSize propertychange.getSize', getSize);
+        $window.off('resize.getSize scroll.getSize').on('resize.getSize scroll.getSize', getSize);
+      } else if (this.options.size && this.options.size != 'auto' && this.$lis.not(notDisabled).length > this.options.size) {
+        var optIndex = this.$lis.not('.divider').not(notDisabled).children().slice(0, this.options.size).last().parent().index(),
+            divLength = this.$lis.slice(0, optIndex + 1).filter('.divider').length;
+        menuHeight = liHeight * this.options.size + divLength * divHeight + menuPadding;
+
+        if (that.options.container) {
+          if (!$menu.data('height')) $menu.data('height', $menu.height());
+          getHeight = $menu.data('height');
+        } else {
+          getHeight = $menu.height();
+        }
+
+        if (that.options.dropupAuto) {
+          //noinspection JSUnusedAssignment
+          this.$newElement.toggleClass('dropup', selectOffsetTop > selectOffsetBot && (menuHeight - menuExtras) < getHeight);
+        }
+        $menu.css({
+          'max-height': menuHeight + headerHeight + searchHeight + actionsHeight + doneButtonHeight + 'px',
+          'overflow': 'hidden',
+          'min-height': ''
+        });
+        $menuInner.css({
+          'max-height': menuHeight - menuPadding + 'px',
+          'overflow-y': 'auto',
+          'min-height': ''
+        });
+      }
+    },
+
+    setWidth: function () {
+      if (this.options.width === 'auto') {
+        this.$menu.css('min-width', '0');
+
+        // Get correct width if element is hidden
+        var $selectClone = this.$menu.parent().clone().appendTo('body'),
+            $selectClone2 = this.options.container ? this.$newElement.clone().appendTo('body') : $selectClone,
+            ulWidth = $selectClone.children('.dropdown-menu').outerWidth(),
+            btnWidth = $selectClone2.css('width', 'auto').children('button').outerWidth();
+
+        $selectClone.remove();
+        $selectClone2.remove();
+
+        // Set width to whatever's larger, button title or longest option
+        this.$newElement.css('width', Math.max(ulWidth, btnWidth) + 'px');
+      } else if (this.options.width === 'fit') {
+        // Remove inline min-width so width can be changed from 'auto'
+        this.$menu.css('min-width', '');
+        this.$newElement.css('width', '').addClass('fit-width');
+      } else if (this.options.width) {
+        // Remove inline min-width so width can be changed from 'auto'
+        this.$menu.css('min-width', '');
+        this.$newElement.css('width', this.options.width);
+      } else {
+        // Remove inline min-width/width so width can be changed
+        this.$menu.css('min-width', '');
+        this.$newElement.css('width', '');
+      }
+      // Remove fit-width class if width is changed programmatically
+      if (this.$newElement.hasClass('fit-width') && this.options.width !== 'fit') {
+        this.$newElement.removeClass('fit-width');
+      }
+    },
+
+    selectPosition: function () {
+      this.$bsContainer = $('<div class="bs-container" />');
+
+      var that = this,
+          pos,
+          actualHeight,
+          getPlacement = function ($element) {
+            that.$bsContainer.addClass($element.attr('class').replace(/form-control|fit-width/gi, '')).toggleClass('dropup', $element.hasClass('dropup'));
+            pos = $element.offset();
+            actualHeight = $element.hasClass('dropup') ? 0 : $element[0].offsetHeight;
+            that.$bsContainer.css({
+              'top': pos.top + actualHeight,
+              'left': pos.left,
+              'width': $element[0].offsetWidth
+            });
+          };
+
+      this.$button.on('click', function () {
+        var $this = $(this);
+
+        if (that.isDisabled()) {
+          return;
+        }
+
+        getPlacement(that.$newElement);
+
+        that.$bsContainer
+          .appendTo(that.options.container)
+          .toggleClass('open', !$this.hasClass('open'))
+          .append(that.$menu);
+      });
+
+      $(window).on('resize scroll', function () {
+        getPlacement(that.$newElement);
+      });
+
+      this.$element.on('hide.bs.select', function () {
+        that.$menu.data('height', that.$menu.height());
+        that.$bsContainer.detach();
+      });
+    },
+
+    setSelected: function (index, selected, $lis) {
+      if (!$lis) {
+        $lis = this.findLis().eq(this.liObj[index]);
+      }
+
+      $lis.toggleClass('selected', selected);
+    },
+
+    setDisabled: function (index, disabled, $lis) {
+      if (!$lis) {
+        $lis = this.findLis().eq(this.liObj[index]);
+      }
+
+      if (disabled) {
+        $lis.addClass('disabled').children('a').attr('href', '#').attr('tabindex', -1);
+      } else {
+        $lis.removeClass('disabled').children('a').removeAttr('href').attr('tabindex', 0);
+      }
+    },
+
+    isDisabled: function () {
+      return this.$element[0].disabled;
+    },
+
+    checkDisabled: function () {
+      var that = this;
+
+      if (this.isDisabled()) {
+        this.$newElement.addClass('disabled');
+        this.$button.addClass('disabled').attr('tabindex', -1);
+      } else {
+        if (this.$button.hasClass('disabled')) {
+          this.$newElement.removeClass('disabled');
+          this.$button.removeClass('disabled');
+        }
+
+        if (this.$button.attr('tabindex') == -1 && !this.$element.data('tabindex')) {
+          this.$button.removeAttr('tabindex');
+        }
+      }
+
+      this.$button.click(function () {
+        return !that.isDisabled();
+      });
+    },
+
+    tabIndex: function () {
+      if (this.$element.data('tabindex') !== this.$element.attr('tabindex') && 
+        (this.$element.attr('tabindex') !== -98 && this.$element.attr('tabindex') !== '-98')) {
+        this.$element.data('tabindex', this.$element.attr('tabindex'));
+        this.$button.attr('tabindex', this.$element.data('tabindex'));
+      }
+      
+      this.$element.attr('tabindex', -98);
+    },
+
+    clickListener: function () {
+      var that = this,
+          $document = $(document);
+
+      this.$newElement.on('touchstart.dropdown', '.dropdown-menu', function (e) {
+        e.stopPropagation();
+      });
+
+      $document.data('spaceSelect', false);
+
+      this.$button.on('keyup', function (e) {
+        if (/(32)/.test(e.keyCode.toString(10)) && $document.data('spaceSelect')) {
+            e.preventDefault();
+            $document.data('spaceSelect', false);
+        }
+      });
+
+      this.$button.on('click', function () {
+        that.setSize();
+      });
+
+      this.$element.on('shown.bs.select', function () {
+        if (!that.options.liveSearch && !that.multiple) {
+          that.$menuInner.find('.selected a').focus();
+        } else if (!that.multiple) {
+          var selectedIndex = that.liObj[that.$element[0].selectedIndex];
+
+          if (typeof selectedIndex !== 'number' || that.options.size === false) return;
+
+          // scroll to selected option
+          var offset = that.$lis.eq(selectedIndex)[0].offsetTop - that.$menuInner[0].offsetTop;
+          offset = offset - that.$menuInner[0].offsetHeight/2 + that.sizeInfo.liHeight/2;
+          that.$menuInner[0].scrollTop = offset;
+        }
+      });
+
+      this.$menuInner.on('click', 'li a', function (e) {
+        var $this = $(this),
+            clickedIndex = $this.parent().data('originalIndex'),
+            prevValue = that.$element.val(),
+            prevIndex = that.$element.prop('selectedIndex');
+
+        // Don't close on multi choice menu
+        if (that.multiple) {
+          e.stopPropagation();
+        }
+
+        e.preventDefault();
+
+        //Don't run if we have been disabled
+        if (!that.isDisabled() && !$this.parent().hasClass('disabled')) {
+          var $options = that.$element.find('option'),
+              $option = $options.eq(clickedIndex),
+              state = $option.prop('selected'),
+              $optgroup = $option.parent('optgroup'),
+              maxOptions = that.options.maxOptions,
+              maxOptionsGrp = $optgroup.data('maxOptions') || false;
+
+          if (!that.multiple) { // Deselect all others if not multi select box
+            $options.prop('selected', false);
+            $option.prop('selected', true);
+            that.$menuInner.find('.selected').removeClass('selected');
+            that.setSelected(clickedIndex, true);
+          } else { // Toggle the one we have chosen if we are multi select.
+            $option.prop('selected', !state);
+            that.setSelected(clickedIndex, !state);
+            $this.blur();
+
+            if (maxOptions !== false || maxOptionsGrp !== false) {
+              var maxReached = maxOptions < $options.filter(':selected').length,
+                  maxReachedGrp = maxOptionsGrp < $optgroup.find('option:selected').length;
+
+              if ((maxOptions && maxReached) || (maxOptionsGrp && maxReachedGrp)) {
+                if (maxOptions && maxOptions == 1) {
+                  $options.prop('selected', false);
+                  $option.prop('selected', true);
+                  that.$menuInner.find('.selected').removeClass('selected');
+                  that.setSelected(clickedIndex, true);
+                } else if (maxOptionsGrp && maxOptionsGrp == 1) {
+                  $optgroup.find('option:selected').prop('selected', false);
+                  $option.prop('selected', true);
+                  var optgroupID = $this.parent().data('optgroup');
+                  that.$menuInner.find('[data-optgroup="' + optgroupID + '"]').removeClass('selected');
+                  that.setSelected(clickedIndex, true);
+                } else {
+                  var maxOptionsArr = (typeof that.options.maxOptionsText === 'function') ?
+                          that.options.maxOptionsText(maxOptions, maxOptionsGrp) : that.options.maxOptionsText,
+                      maxTxt = maxOptionsArr[0].replace('{n}', maxOptions),
+                      maxTxtGrp = maxOptionsArr[1].replace('{n}', maxOptionsGrp),
+                      $notify = $('<div class="notify"></div>');
+                  // If {var} is set in array, replace it
+                  /** @deprecated */
+                  if (maxOptionsArr[2]) {
+                    maxTxt = maxTxt.replace('{var}', maxOptionsArr[2][maxOptions > 1 ? 0 : 1]);
+                    maxTxtGrp = maxTxtGrp.replace('{var}', maxOptionsArr[2][maxOptionsGrp > 1 ? 0 : 1]);
+                  }
+
+                  $option.prop('selected', false);
+
+                  that.$menu.append($notify);
+
+                  if (maxOptions && maxReached) {
+                    $notify.append($('<div>' + maxTxt + '</div>'));
+                    that.$element.trigger('maxReached.bs.select');
+                  }
+
+                  if (maxOptionsGrp && maxReachedGrp) {
+                    $notify.append($('<div>' + maxTxtGrp + '</div>'));
+                    that.$element.trigger('maxReachedGrp.bs.select');
+                  }
+
+                  setTimeout(function () {
+                    that.setSelected(clickedIndex, false);
+                  }, 10);
+
+                  $notify.delay(750).fadeOut(300, function () {
+                    $(this).remove();
+                  });
+                }
+              }
+            }
+          }
+
+          if (!that.multiple) {
+            that.$button.focus();
+          } else if (that.options.liveSearch) {
+            that.$searchbox.focus();
+          }
+
+          // Trigger select 'change'
+          if ((prevValue != that.$element.val() && that.multiple) || (prevIndex != that.$element.prop('selectedIndex') && !that.multiple)) {
+            // $option.prop('selected') is current option state (selected/unselected). state is previous option state.
+            that.$element
+              .trigger('changed.bs.select', [clickedIndex, $option.prop('selected'), state])
+              .triggerNative('change');
+          }
+        }
+      });
+
+      this.$menu.on('click', 'li.disabled a, .popover-title, .popover-title :not(.close)', function (e) {
+        if (e.currentTarget == this) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (that.options.liveSearch && !$(e.target).hasClass('close')) {
+            that.$searchbox.focus();
+          } else {
+            that.$button.focus();
+          }
+        }
+      });
+
+      this.$menuInner.on('click', '.divider, .dropdown-header', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (that.options.liveSearch) {
+          that.$searchbox.focus();
+        } else {
+          that.$button.focus();
+        }
+      });
+
+      this.$menu.on('click', '.popover-title .close', function () {
+        that.$button.click();
+      });
+
+      this.$searchbox.on('click', function (e) {
+        e.stopPropagation();
+      });
+
+      this.$menu.on('click', '.actions-btn', function (e) {
+        if (that.options.liveSearch) {
+          that.$searchbox.focus();
+        } else {
+          that.$button.focus();
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        if ($(this).hasClass('bs-select-all')) {
+          that.selectAll();
+        } else {
+          that.deselectAll();
+        }
+      });
+
+      this.$element.change(function () {
+        that.render(false);
+      });
+    },
+
+    liveSearchListener: function () {
+      var that = this,
+          $no_results = $('<li class="no-results"></li>');
+
+      this.$button.on('click.dropdown.data-api touchstart.dropdown.data-api', function () {
+        that.$menuInner.find('.active').removeClass('active');
+        if (!!that.$searchbox.val()) {
+          that.$searchbox.val('');
+          that.$lis.not('.is-hidden').removeClass('hidden');
+          if (!!$no_results.parent().length) $no_results.remove();
+        }
+        if (!that.multiple) that.$menuInner.find('.selected').addClass('active');
+        setTimeout(function () {
+          that.$searchbox.focus();
+        }, 10);
+      });
+
+      this.$searchbox.on('click.dropdown.data-api focus.dropdown.data-api touchend.dropdown.data-api', function (e) {
+        e.stopPropagation();
+      });
+
+      this.$searchbox.on('input propertychange', function () {
+        if (that.$searchbox.val()) {
+          var $searchBase = that.$lis.not('.is-hidden').removeClass('hidden').children('a');
+          if (that.options.liveSearchNormalize) {
+            $searchBase = $searchBase.not(':a' + that._searchStyle() + '("' + normalizeToBase(that.$searchbox.val()) + '")');
+          } else {
+            $searchBase = $searchBase.not(':' + that._searchStyle() + '("' + that.$searchbox.val() + '")');
+          }
+          $searchBase.parent().addClass('hidden');
+
+          that.$lis.filter('.dropdown-header').each(function () {
+            var $this = $(this),
+                optgroup = $this.data('optgroup');
+
+            if (that.$lis.filter('[data-optgroup=' + optgroup + ']').not($this).not('.hidden').length === 0) {
+              $this.addClass('hidden');
+              that.$lis.filter('[data-optgroup=' + optgroup + 'div]').addClass('hidden');
+            }
+          });
+
+          var $lisVisible = that.$lis.not('.hidden');
+
+          // hide divider if first or last visible, or if followed by another divider
+          $lisVisible.each(function (index) {
+            var $this = $(this);
+
+            if ($this.hasClass('divider') && (
+              $this.index() === $lisVisible.first().index() ||
+              $this.index() === $lisVisible.last().index() ||
+              $lisVisible.eq(index + 1).hasClass('divider'))) {
+              $this.addClass('hidden');
+            }
+          });
+
+          if (!that.$lis.not('.hidden, .no-results').length) {
+            if (!!$no_results.parent().length) {
+              $no_results.remove();
+            }
+            $no_results.html(that.options.noneResultsText.replace('{0}', '"' + htmlEscape(that.$searchbox.val()) + '"')).show();
+            that.$menuInner.append($no_results);
+          } else if (!!$no_results.parent().length) {
+            $no_results.remove();
+          }
+        } else {
+          that.$lis.not('.is-hidden').removeClass('hidden');
+          if (!!$no_results.parent().length) {
+            $no_results.remove();
+          }
+        }
+
+        that.$lis.filter('.active').removeClass('active');
+        if (that.$searchbox.val()) that.$lis.not('.hidden, .divider, .dropdown-header').eq(0).addClass('active').children('a').focus();
+        $(this).focus();
+      });
+    },
+
+    _searchStyle: function () {
+      var styles = {
+        begins: 'ibegins',
+        startsWith: 'ibegins'
+      };
+
+      return styles[this.options.liveSearchStyle] || 'icontains';
+    },
+
+    val: function (value) {
+      if (typeof value !== 'undefined') {
+        this.$element.val(value);
+        this.render();
+
+        return this.$element;
+      } else {
+        return this.$element.val();
+      }
+    },
+
+    changeAll: function (status) {
+      if (typeof status === 'undefined') status = true;
+
+      this.findLis();
+
+      var $options = this.$element.find('option'),
+          $lisVisible = this.$lis.not('.divider, .dropdown-header, .disabled, .hidden').toggleClass('selected', status),
+          lisVisLen = $lisVisible.length,
+          selectedOptions = [];
+
+      for (var i = 0; i < lisVisLen; i++) {
+        var origIndex = $lisVisible[i].getAttribute('data-original-index');
+        selectedOptions[selectedOptions.length] = $options.eq(origIndex)[0];
+      }
+
+      $(selectedOptions).prop('selected', status);
+
+      this.render(false);
+
+      this.$element
+        .trigger('changed.bs.select')
+        .triggerNative('change');
+    },
+
+    selectAll: function () {
+      return this.changeAll(true);
+    },
+
+    deselectAll: function () {
+      return this.changeAll(false);
+    },
+
+    toggle: function (e) {
+      e = e || window.event;
+      
+      if (e) e.stopPropagation();
+
+      this.$button.trigger('click');
+    },
+
+    keydown: function (e) {
+      var $this = $(this),
+          $parent = $this.is('input') ? $this.parent().parent() : $this.parent(),
+          $items,
+          that = $parent.data('this'),
+          index,
+          next,
+          first,
+          last,
+          prev,
+          nextPrev,
+          prevIndex,
+          isActive,
+          selector = ':not(.disabled, .hidden, .dropdown-header, .divider)',
+          keyCodeMap = {
+            32: ' ',
+            48: '0',
+            49: '1',
+            50: '2',
+            51: '3',
+            52: '4',
+            53: '5',
+            54: '6',
+            55: '7',
+            56: '8',
+            57: '9',
+            59: ';',
+            65: 'a',
+            66: 'b',
+            67: 'c',
+            68: 'd',
+            69: 'e',
+            70: 'f',
+            71: 'g',
+            72: 'h',
+            73: 'i',
+            74: 'j',
+            75: 'k',
+            76: 'l',
+            77: 'm',
+            78: 'n',
+            79: 'o',
+            80: 'p',
+            81: 'q',
+            82: 'r',
+            83: 's',
+            84: 't',
+            85: 'u',
+            86: 'v',
+            87: 'w',
+            88: 'x',
+            89: 'y',
+            90: 'z',
+            96: '0',
+            97: '1',
+            98: '2',
+            99: '3',
+            100: '4',
+            101: '5',
+            102: '6',
+            103: '7',
+            104: '8',
+            105: '9'
+          };
+
+      if (that.options.liveSearch) $parent = $this.parent().parent();
+
+      if (that.options.container) $parent = that.$menu;
+
+      $items = $('[role=menu] li', $parent);
+
+      isActive = that.$newElement.hasClass('open');
+
+      if (!isActive && (e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode >= 96 && e.keyCode <= 105 || e.keyCode >= 65 && e.keyCode <= 90)) {
+        if (!that.options.container) {
+          that.setSize();
+          that.$menu.parent().addClass('open');
+          isActive = true;
+        } else {
+          that.$button.trigger('click');
+        }
+        that.$searchbox.focus();
+      }
+
+      if (that.options.liveSearch) {
+        if (/(^9$|27)/.test(e.keyCode.toString(10)) && isActive && that.$menu.find('.active').length === 0) {
+          e.preventDefault();
+          that.$menu.parent().removeClass('open');
+          if (that.options.container) that.$newElement.removeClass('open');
+          that.$button.focus();
+        }
+        // $items contains li elements when liveSearch is enabled
+        $items = $('[role=menu] li' + selector, $parent);
+        if (!$this.val() && !/(38|40)/.test(e.keyCode.toString(10))) {
+          if ($items.filter('.active').length === 0) {
+            $items = that.$menuInner.find('li');
+            if (that.options.liveSearchNormalize) {
+              $items = $items.filter(':a' + that._searchStyle() + '(' + normalizeToBase(keyCodeMap[e.keyCode]) + ')');
+            } else {
+              $items = $items.filter(':' + that._searchStyle() + '(' + keyCodeMap[e.keyCode] + ')');
+            }
+          }
+        }
+      }
+
+      if (!$items.length) return;
+
+      if (/(38|40)/.test(e.keyCode.toString(10))) {
+        index = $items.index($items.find('a').filter(':focus').parent());
+        first = $items.filter(selector).first().index();
+        last = $items.filter(selector).last().index();
+        next = $items.eq(index).nextAll(selector).eq(0).index();
+        prev = $items.eq(index).prevAll(selector).eq(0).index();
+        nextPrev = $items.eq(next).prevAll(selector).eq(0).index();
+
+        if (that.options.liveSearch) {
+          $items.each(function (i) {
+            if (!$(this).hasClass('disabled')) {
+              $(this).data('index', i);
+            }
+          });
+          index = $items.index($items.filter('.active'));
+          first = $items.first().data('index');
+          last = $items.last().data('index');
+          next = $items.eq(index).nextAll().eq(0).data('index');
+          prev = $items.eq(index).prevAll().eq(0).data('index');
+          nextPrev = $items.eq(next).prevAll().eq(0).data('index');
+        }
+
+        prevIndex = $this.data('prevIndex');
+
+        if (e.keyCode == 38) {
+          if (that.options.liveSearch) index--;
+          if (index != nextPrev && index > prev) index = prev;
+          if (index < first) index = first;
+          if (index == prevIndex) index = last;
+        } else if (e.keyCode == 40) {
+          if (that.options.liveSearch) index++;
+          if (index == -1) index = 0;
+          if (index != nextPrev && index < next) index = next;
+          if (index > last) index = last;
+          if (index == prevIndex) index = first;
+        }
+
+        $this.data('prevIndex', index);
+
+        if (!that.options.liveSearch) {
+          $items.eq(index).children('a').focus();
+        } else {
+          e.preventDefault();
+          if (!$this.hasClass('dropdown-toggle')) {
+            $items.removeClass('active').eq(index).addClass('active').children('a').focus();
+            $this.focus();
+          }
+        }
+
+      } else if (!$this.is('input')) {
+        var keyIndex = [],
+            count,
+            prevKey;
+
+        $items.each(function () {
+          if (!$(this).hasClass('disabled')) {
+            if ($.trim($(this).children('a').text().toLowerCase()).substring(0, 1) == keyCodeMap[e.keyCode]) {
+              keyIndex.push($(this).index());
+            }
+          }
+        });
+
+        count = $(document).data('keycount');
+        count++;
+        $(document).data('keycount', count);
+
+        prevKey = $.trim($(':focus').text().toLowerCase()).substring(0, 1);
+
+        if (prevKey != keyCodeMap[e.keyCode]) {
+          count = 1;
+          $(document).data('keycount', count);
+        } else if (count >= keyIndex.length) {
+          $(document).data('keycount', 0);
+          if (count > keyIndex.length) count = 1;
+        }
+
+        $items.eq(keyIndex[count - 1]).children('a').focus();
+      }
+
+      // Select focused option if "Enter", "Spacebar" or "Tab" (when selectOnTab is true) are pressed inside the menu.
+      if ((/(13|32)/.test(e.keyCode.toString(10)) || (/(^9$)/.test(e.keyCode.toString(10)) && that.options.selectOnTab)) && isActive) {
+        if (!/(32)/.test(e.keyCode.toString(10))) e.preventDefault();
+        if (!that.options.liveSearch) {
+          var elem = $(':focus');
+          elem.click();
+          // Bring back focus for multiselects
+          elem.focus();
+          // Prevent screen from scrolling if the user hit the spacebar
+          e.preventDefault();
+          // Fixes spacebar selection of dropdown items in FF & IE
+          $(document).data('spaceSelect', true);
+        } else if (!/(32)/.test(e.keyCode.toString(10))) {
+          that.$menuInner.find('.active a').click();
+          $this.focus();
+        }
+        $(document).data('keycount', 0);
+      }
+
+      if ((/(^9$|27)/.test(e.keyCode.toString(10)) && isActive && (that.multiple || that.options.liveSearch)) || (/(27)/.test(e.keyCode.toString(10)) && !isActive)) {
+        that.$menu.parent().removeClass('open');
+        if (that.options.container) that.$newElement.removeClass('open');
+        that.$button.focus();
+      }
+    },
+
+    mobile: function () {
+      this.$element.addClass('mobile-device');
+    },
+
+    refresh: function () {
+      this.$lis = null;
+      this.liObj = {};
+      this.reloadLi();
+      this.render();
+      this.checkDisabled();
+      this.liHeight(true);
+      this.setStyle();
+      this.setWidth();
+      if (this.$lis) this.$searchbox.trigger('propertychange');
+
+      this.$element.trigger('refreshed.bs.select');
+    },
+
+    hide: function () {
+      this.$newElement.hide();
+    },
+
+    show: function () {
+      this.$newElement.show();
+    },
+
+    remove: function () {
+      this.$newElement.remove();
+      this.$element.remove();
+    },
+
+    destroy: function () {
+        this.$newElement.before(this.$element).remove();
+
+        if (this.$bsContainer) {
+            this.$bsContainer.remove();
+        } else {
+            this.$menu.remove();
+        }
+
+        this.$element
+          .off('.bs.select')
+          .removeData('selectpicker')
+          .removeClass('bs-select-hidden selectpicker');
+    }
+  };
+
+  // SELECTPICKER PLUGIN DEFINITION
+  // ==============================
+  function Plugin(option, event) {
+    // get the args of the outer function..
+    var args = arguments;
+    // The arguments of the function are explicitly re-defined from the argument list, because the shift causes them
+    // to get lost/corrupted in android 2.3 and IE9 #715 #775
+    var _option = option,
+        _event = event;
+    [].shift.apply(args);
+
+    var value;
+    var chain = this.each(function () {
+      var $this = $(this);
+      if ($this.is('select')) {
+        var data = $this.data('selectpicker'),
+            options = typeof _option == 'object' && _option;
+
+        if (!data) {
+          var config = $.extend({}, Selectpicker.DEFAULTS, $.fn.selectpicker.defaults || {}, $this.data(), options);
+          config.template = $.extend({}, Selectpicker.DEFAULTS.template, ($.fn.selectpicker.defaults ? $.fn.selectpicker.defaults.template : {}), $this.data().template, options.template);
+          $this.data('selectpicker', (data = new Selectpicker(this, config, _event)));
+        } else if (options) {
+          for (var i in options) {
+            if (options.hasOwnProperty(i)) {
+              data.options[i] = options[i];
+            }
+          }
+        }
+
+        if (typeof _option == 'string') {
+          if (data[_option] instanceof Function) {
+            value = data[_option].apply(data, args);
+          } else {
+            value = data.options[_option];
+          }
+        }
+      }
+    });
+
+    if (typeof value !== 'undefined') {
+      //noinspection JSUnusedAssignment
+      return value;
+    } else {
+      return chain;
+    }
+  }
+
+  var old = $.fn.selectpicker;
+  $.fn.selectpicker = Plugin;
+  $.fn.selectpicker.Constructor = Selectpicker;
+
+  // SELECTPICKER NO CONFLICT
+  // ========================
+  $.fn.selectpicker.noConflict = function () {
+    $.fn.selectpicker = old;
+    return this;
+  };
+
+  $(document)
+      .data('keycount', 0)
+      .on('keydown.bs.select', '.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="menu"], .bs-searchbox input', Selectpicker.prototype.keydown)
+      .on('focusin.modal', '.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="menu"], .bs-searchbox input', function (e) {
+        e.stopPropagation();
+      });
+
+  // SELECTPICKER DATA-API
+  // =====================
+  $(window).on('load.bs.select.data-api', function () {
+    $('.selectpicker').each(function () {
+      var $selectpicker = $(this);
+      Plugin.call($selectpicker, $selectpicker.data());
+    })
+  });
+})(jQuery);
+
+
+}));
+
+/*! =======================================================
+                      VERSION  6.0.17
+========================================================= */
+"use strict";
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+/*! =========================================================
+ * bootstrap-slider.js
+ *
+ * Maintainers:
+ *		Kyle Kemp
+ *			- Twitter: @seiyria
+ *			- Github:  seiyria
+ *		Rohit Kalkur
+ *			- Twitter: @Rovolutionary
+ *			- Github:  rovolution
+ *
+ * =========================================================
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================= */
+
+/**
+ * Bridget makes jQuery widgets
+ * v1.0.1
+ * MIT license
+ */
+
+(function (factory) {
+	if (typeof define === "function" && define.amd) {
+		define(["jquery"], factory);
+	} else if ((typeof module === "undefined" ? "undefined" : _typeof(module)) === "object" && module.exports) {
+		var jQuery;
+		try {
+			jQuery = require("jquery");
+		} catch (err) {
+			jQuery = null;
+		}
+		module.exports = factory(jQuery);
+	} else if (window) {
+		window.Slider = factory(window.jQuery);
+	}
+})(function ($) {
+	// Reference to Slider constructor
+	var Slider;
+
+	(function ($) {
+
+		'use strict';
+
+		// -------------------------- utils -------------------------- //
+
+		var slice = Array.prototype.slice;
+
+		function noop() {}
+
+		// -------------------------- definition -------------------------- //
+
+		function defineBridget($) {
+
+			// bail if no jQuery
+			if (!$) {
+				return;
+			}
+
+			// -------------------------- addOptionMethod -------------------------- //
+
+			/**
+    * adds option method -> $().plugin('option', {...})
+    * @param {Function} PluginClass - constructor class
+    */
+			function addOptionMethod(PluginClass) {
+				// don't overwrite original option method
+				if (PluginClass.prototype.option) {
+					return;
+				}
+
+				// option setter
+				PluginClass.prototype.option = function (opts) {
+					// bail out if not an object
+					if (!$.isPlainObject(opts)) {
+						return;
+					}
+					this.options = $.extend(true, this.options, opts);
+				};
+			}
+
+			// -------------------------- plugin bridge -------------------------- //
+
+			// helper function for logging errors
+			// $.error breaks jQuery chaining
+			var logError = typeof console === 'undefined' ? noop : function (message) {
+				console.error(message);
+			};
+
+			/**
+    * jQuery plugin bridge, access methods like $elem.plugin('method')
+    * @param {String} namespace - plugin name
+    * @param {Function} PluginClass - constructor class
+    */
+			function bridge(namespace, PluginClass) {
+				// add to jQuery fn namespace
+				$.fn[namespace] = function (options) {
+					if (typeof options === 'string') {
+						// call plugin method when first argument is a string
+						// get arguments for method
+						var args = slice.call(arguments, 1);
+
+						for (var i = 0, len = this.length; i < len; i++) {
+							var elem = this[i];
+							var instance = $.data(elem, namespace);
+							if (!instance) {
+								logError("cannot call methods on " + namespace + " prior to initialization; " + "attempted to call '" + options + "'");
+								continue;
+							}
+							if (!$.isFunction(instance[options]) || options.charAt(0) === '_') {
+								logError("no such method '" + options + "' for " + namespace + " instance");
+								continue;
+							}
+
+							// trigger method with arguments
+							var returnValue = instance[options].apply(instance, args);
+
+							// break look and return first value if provided
+							if (returnValue !== undefined && returnValue !== instance) {
+								return returnValue;
+							}
+						}
+						// return this if no return value
+						return this;
+					} else {
+						var objects = this.map(function () {
+							var instance = $.data(this, namespace);
+							if (instance) {
+								// apply options & init
+								instance.option(options);
+								instance._init();
+							} else {
+								// initialize new instance
+								instance = new PluginClass(this, options);
+								$.data(this, namespace, instance);
+							}
+							return $(this);
+						});
+
+						if (!objects || objects.length > 1) {
+							return objects;
+						} else {
+							return objects[0];
+						}
+					}
+				};
+			}
+
+			// -------------------------- bridget -------------------------- //
+
+			/**
+    * converts a Prototypical class into a proper jQuery plugin
+    *   the class must have a ._init method
+    * @param {String} namespace - plugin name, used in $().pluginName
+    * @param {Function} PluginClass - constructor class
+    */
+			$.bridget = function (namespace, PluginClass) {
+				addOptionMethod(PluginClass);
+				bridge(namespace, PluginClass);
+			};
+
+			return $.bridget;
+		}
+
+		// get jquery from browser global
+		defineBridget($);
+	})($);
+
+	/*************************************************
+ 			BOOTSTRAP-SLIDER SOURCE CODE
+ 	**************************************************/
+
+	(function ($) {
+
+		var ErrorMsgs = {
+			formatInvalidInputErrorMsg: function formatInvalidInputErrorMsg(input) {
+				return "Invalid input value '" + input + "' passed in";
+			},
+			callingContextNotSliderInstance: "Calling context element does not have instance of Slider bound to it. Check your code to make sure the JQuery object returned from the call to the slider() initializer is calling the method"
+		};
+
+		var SliderScale = {
+			linear: {
+				toValue: function toValue(percentage) {
+					var rawValue = percentage / 100 * (this.options.max - this.options.min);
+					var shouldAdjustWithBase = true;
+					if (this.options.ticks_positions.length > 0) {
+						var minv,
+						    maxv,
+						    minp,
+						    maxp = 0;
+						for (var i = 1; i < this.options.ticks_positions.length; i++) {
+							if (percentage <= this.options.ticks_positions[i]) {
+								minv = this.options.ticks[i - 1];
+								minp = this.options.ticks_positions[i - 1];
+								maxv = this.options.ticks[i];
+								maxp = this.options.ticks_positions[i];
+
+								break;
+							}
+						}
+						var partialPercentage = (percentage - minp) / (maxp - minp);
+						rawValue = minv + partialPercentage * (maxv - minv);
+						shouldAdjustWithBase = false;
+					}
+
+					var adjustment = shouldAdjustWithBase ? this.options.min : 0;
+					var value = adjustment + Math.round(rawValue / this.options.step) * this.options.step;
+					if (value < this.options.min) {
+						return this.options.min;
+					} else if (value > this.options.max) {
+						return this.options.max;
+					} else {
+						return value;
+					}
+				},
+				toPercentage: function toPercentage(value) {
+					if (this.options.max === this.options.min) {
+						return 0;
+					}
+
+					if (this.options.ticks_positions.length > 0) {
+						var minv,
+						    maxv,
+						    minp,
+						    maxp = 0;
+						for (var i = 0; i < this.options.ticks.length; i++) {
+							if (value <= this.options.ticks[i]) {
+								minv = i > 0 ? this.options.ticks[i - 1] : 0;
+								minp = i > 0 ? this.options.ticks_positions[i - 1] : 0;
+								maxv = this.options.ticks[i];
+								maxp = this.options.ticks_positions[i];
+
+								break;
+							}
+						}
+						if (i > 0) {
+							var partialPercentage = (value - minv) / (maxv - minv);
+							return minp + partialPercentage * (maxp - minp);
+						}
+					}
+
+					return 100 * (value - this.options.min) / (this.options.max - this.options.min);
+				}
+			},
+
+			logarithmic: {
+				/* Based on http://stackoverflow.com/questions/846221/logarithmic-slider */
+				toValue: function toValue(percentage) {
+					var min = this.options.min === 0 ? 0 : Math.log(this.options.min);
+					var max = Math.log(this.options.max);
+					var value = Math.exp(min + (max - min) * percentage / 100);
+					value = this.options.min + Math.round((value - this.options.min) / this.options.step) * this.options.step;
+					/* Rounding to the nearest step could exceed the min or
+      * max, so clip to those values. */
+					if (value < this.options.min) {
+						return this.options.min;
+					} else if (value > this.options.max) {
+						return this.options.max;
+					} else {
+						return value;
+					}
+				},
+				toPercentage: function toPercentage(value) {
+					if (this.options.max === this.options.min) {
+						return 0;
+					} else {
+						var max = Math.log(this.options.max);
+						var min = this.options.min === 0 ? 0 : Math.log(this.options.min);
+						var v = value === 0 ? 0 : Math.log(value);
+						return 100 * (v - min) / (max - min);
+					}
+				}
+			}
+		};
+
+		/*************************************************
+  						CONSTRUCTOR
+  	**************************************************/
+		Slider = function (element, options) {
+			createNewSlider.call(this, element, options);
+			return this;
+		};
+
+		function createNewSlider(element, options) {
+
+			/*
+   	The internal state object is used to store data about the current 'state' of slider.
+   		This includes values such as the `value`, `enabled`, etc...
+   */
+			this._state = {
+				value: null,
+				enabled: null,
+				offset: null,
+				size: null,
+				percentage: null,
+				inDrag: false,
+				over: false
+			};
+
+			if (typeof element === "string") {
+				this.element = document.querySelector(element);
+			} else if (element instanceof HTMLElement) {
+				this.element = element;
+			}
+
+			/*************************************************
+   					Process Options
+   	**************************************************/
+			options = options ? options : {};
+			var optionTypes = Object.keys(this.defaultOptions);
+
+			for (var i = 0; i < optionTypes.length; i++) {
+				var optName = optionTypes[i];
+
+				// First check if an option was passed in via the constructor
+				var val = options[optName];
+				// If no data attrib, then check data atrributes
+				val = typeof val !== 'undefined' ? val : getDataAttrib(this.element, optName);
+				// Finally, if nothing was specified, use the defaults
+				val = val !== null ? val : this.defaultOptions[optName];
+
+				// Set all options on the instance of the Slider
+				if (!this.options) {
+					this.options = {};
+				}
+				this.options[optName] = val;
+			}
+
+			/*
+   	Validate `tooltip_position` against 'orientation`
+   	- if `tooltip_position` is incompatible with orientation, swith it to a default compatible with specified `orientation`
+   		-- default for "vertical" -> "right"
+   		-- default for "horizontal" -> "left"
+   */
+			if (this.options.orientation === "vertical" && (this.options.tooltip_position === "top" || this.options.tooltip_position === "bottom")) {
+
+				this.options.tooltip_position = "right";
+			} else if (this.options.orientation === "horizontal" && (this.options.tooltip_position === "left" || this.options.tooltip_position === "right")) {
+
+				this.options.tooltip_position = "top";
+			}
+
+			function getDataAttrib(element, optName) {
+				var dataName = "data-slider-" + optName.replace(/_/g, '-');
+				var dataValString = element.getAttribute(dataName);
+
+				try {
+					return JSON.parse(dataValString);
+				} catch (err) {
+					return dataValString;
+				}
+			}
+
+			/*************************************************
+   					Create Markup
+   	**************************************************/
+
+			var origWidth = this.element.style.width;
+			var updateSlider = false;
+			var parent = this.element.parentNode;
+			var sliderTrackSelection;
+			var sliderTrackLow, sliderTrackHigh;
+			var sliderMinHandle;
+			var sliderMaxHandle;
+
+			if (this.sliderElem) {
+				updateSlider = true;
+			} else {
+				/* Create elements needed for slider */
+				this.sliderElem = document.createElement("div");
+				this.sliderElem.className = "slider";
+
+				/* Create slider track elements */
+				var sliderTrack = document.createElement("div");
+				sliderTrack.className = "slider-track";
+
+				sliderTrackLow = document.createElement("div");
+				sliderTrackLow.className = "slider-track-low";
+
+				sliderTrackSelection = document.createElement("div");
+				sliderTrackSelection.className = "slider-selection";
+
+				sliderTrackHigh = document.createElement("div");
+				sliderTrackHigh.className = "slider-track-high";
+
+				sliderMinHandle = document.createElement("div");
+				sliderMinHandle.className = "slider-handle min-slider-handle";
+				sliderMinHandle.setAttribute('role', 'slider');
+				sliderMinHandle.setAttribute('aria-valuemin', this.options.min);
+				sliderMinHandle.setAttribute('aria-valuemax', this.options.max);
+
+				sliderMaxHandle = document.createElement("div");
+				sliderMaxHandle.className = "slider-handle max-slider-handle";
+				sliderMaxHandle.setAttribute('role', 'slider');
+				sliderMaxHandle.setAttribute('aria-valuemin', this.options.min);
+				sliderMaxHandle.setAttribute('aria-valuemax', this.options.max);
+
+				sliderTrack.appendChild(sliderTrackLow);
+				sliderTrack.appendChild(sliderTrackSelection);
+				sliderTrack.appendChild(sliderTrackHigh);
+
+				/* Add aria-labelledby to handle's */
+				var isLabelledbyArray = Array.isArray(this.options.labelledby);
+				if (isLabelledbyArray && this.options.labelledby[0]) {
+					sliderMinHandle.setAttribute('aria-labelledby', this.options.labelledby[0]);
+				}
+				if (isLabelledbyArray && this.options.labelledby[1]) {
+					sliderMaxHandle.setAttribute('aria-labelledby', this.options.labelledby[1]);
+				}
+				if (!isLabelledbyArray && this.options.labelledby) {
+					sliderMinHandle.setAttribute('aria-labelledby', this.options.labelledby);
+					sliderMaxHandle.setAttribute('aria-labelledby', this.options.labelledby);
+				}
+
+				/* Create ticks */
+				this.ticks = [];
+				if (Array.isArray(this.options.ticks) && this.options.ticks.length > 0) {
+					for (i = 0; i < this.options.ticks.length; i++) {
+						var tick = document.createElement('div');
+						tick.className = 'slider-tick';
+
+						this.ticks.push(tick);
+						sliderTrack.appendChild(tick);
+					}
+
+					sliderTrackSelection.className += " tick-slider-selection";
+				}
+
+				sliderTrack.appendChild(sliderMinHandle);
+				sliderTrack.appendChild(sliderMaxHandle);
+
+				this.tickLabels = [];
+				if (Array.isArray(this.options.ticks_labels) && this.options.ticks_labels.length > 0) {
+					this.tickLabelContainer = document.createElement('div');
+					this.tickLabelContainer.className = 'slider-tick-label-container';
+
+					for (i = 0; i < this.options.ticks_labels.length; i++) {
+						var label = document.createElement('div');
+						var noTickPositionsSpecified = this.options.ticks_positions.length === 0;
+						var tickLabelsIndex = this.options.reversed && noTickPositionsSpecified ? this.options.ticks_labels.length - (i + 1) : i;
+						label.className = 'slider-tick-label';
+						label.innerHTML = this.options.ticks_labels[tickLabelsIndex];
+
+						this.tickLabels.push(label);
+						this.tickLabelContainer.appendChild(label);
+					}
+				}
+
+				var createAndAppendTooltipSubElements = function createAndAppendTooltipSubElements(tooltipElem) {
+					var arrow = document.createElement("div");
+					arrow.className = "tooltip-arrow";
+
+					var inner = document.createElement("div");
+					inner.className = "tooltip-inner";
+
+					tooltipElem.appendChild(arrow);
+					tooltipElem.appendChild(inner);
+				};
+
+				/* Create tooltip elements */
+				var sliderTooltip = document.createElement("div");
+				sliderTooltip.className = "tooltip tooltip-main";
+				sliderTooltip.setAttribute('role', 'presentation');
+				createAndAppendTooltipSubElements(sliderTooltip);
+
+				var sliderTooltipMin = document.createElement("div");
+				sliderTooltipMin.className = "tooltip tooltip-min";
+				sliderTooltipMin.setAttribute('role', 'presentation');
+				createAndAppendTooltipSubElements(sliderTooltipMin);
+
+				var sliderTooltipMax = document.createElement("div");
+				sliderTooltipMax.className = "tooltip tooltip-max";
+				sliderTooltipMax.setAttribute('role', 'presentation');
+				createAndAppendTooltipSubElements(sliderTooltipMax);
+
+				/* Append components to sliderElem */
+				this.sliderElem.appendChild(sliderTrack);
+				this.sliderElem.appendChild(sliderTooltip);
+				this.sliderElem.appendChild(sliderTooltipMin);
+				this.sliderElem.appendChild(sliderTooltipMax);
+
+				if (this.tickLabelContainer) {
+					this.sliderElem.appendChild(this.tickLabelContainer);
+				}
+
+				/* Append slider element to parent container, right before the original <input> element */
+				parent.insertBefore(this.sliderElem, this.element);
+
+				/* Hide original <input> element */
+				this.element.style.display = "none";
+			}
+			/* If JQuery exists, cache JQ references */
+			if ($) {
+				this.$element = $(this.element);
+				this.$sliderElem = $(this.sliderElem);
+			}
+
+			/*************************************************
+   						Setup
+   	**************************************************/
+			this.eventToCallbackMap = {};
+			this.sliderElem.id = this.options.id;
+
+			this.touchCapable = 'ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch;
+
+			this.tooltip = this.sliderElem.querySelector('.tooltip-main');
+			this.tooltipInner = this.tooltip.querySelector('.tooltip-inner');
+
+			this.tooltip_min = this.sliderElem.querySelector('.tooltip-min');
+			this.tooltipInner_min = this.tooltip_min.querySelector('.tooltip-inner');
+
+			this.tooltip_max = this.sliderElem.querySelector('.tooltip-max');
+			this.tooltipInner_max = this.tooltip_max.querySelector('.tooltip-inner');
+
+			if (SliderScale[this.options.scale]) {
+				this.options.scale = SliderScale[this.options.scale];
+			}
+
+			if (updateSlider === true) {
+				// Reset classes
+				this._removeClass(this.sliderElem, 'slider-horizontal');
+				this._removeClass(this.sliderElem, 'slider-vertical');
+				this._removeClass(this.tooltip, 'hide');
+				this._removeClass(this.tooltip_min, 'hide');
+				this._removeClass(this.tooltip_max, 'hide');
+
+				// Undo existing inline styles for track
+				["left", "top", "width", "height"].forEach(function (prop) {
+					this._removeProperty(this.trackLow, prop);
+					this._removeProperty(this.trackSelection, prop);
+					this._removeProperty(this.trackHigh, prop);
+				}, this);
+
+				// Undo inline styles on handles
+				[this.handle1, this.handle2].forEach(function (handle) {
+					this._removeProperty(handle, 'left');
+					this._removeProperty(handle, 'top');
+				}, this);
+
+				// Undo inline styles and classes on tooltips
+				[this.tooltip, this.tooltip_min, this.tooltip_max].forEach(function (tooltip) {
+					this._removeProperty(tooltip, 'left');
+					this._removeProperty(tooltip, 'top');
+					this._removeProperty(tooltip, 'margin-left');
+					this._removeProperty(tooltip, 'margin-top');
+
+					this._removeClass(tooltip, 'right');
+					this._removeClass(tooltip, 'top');
+				}, this);
+			}
+
+			if (this.options.orientation === 'vertical') {
+				this._addClass(this.sliderElem, 'slider-vertical');
+				this.stylePos = 'top';
+				this.mousePos = 'pageY';
+				this.sizePos = 'offsetHeight';
+			} else {
+				this._addClass(this.sliderElem, 'slider-horizontal');
+				this.sliderElem.style.width = origWidth;
+				this.options.orientation = 'horizontal';
+				this.stylePos = 'left';
+				this.mousePos = 'pageX';
+				this.sizePos = 'offsetWidth';
+			}
+			this._setTooltipPosition();
+			/* In case ticks are specified, overwrite the min and max bounds */
+			if (Array.isArray(this.options.ticks) && this.options.ticks.length > 0) {
+				this.options.max = Math.max.apply(Math, this.options.ticks);
+				this.options.min = Math.min.apply(Math, this.options.ticks);
+			}
+
+			if (Array.isArray(this.options.value)) {
+				this.options.range = true;
+				this._state.value = this.options.value;
+			} else if (this.options.range) {
+				// User wants a range, but value is not an array
+				this._state.value = [this.options.value, this.options.max];
+			} else {
+				this._state.value = this.options.value;
+			}
+
+			this.trackLow = sliderTrackLow || this.trackLow;
+			this.trackSelection = sliderTrackSelection || this.trackSelection;
+			this.trackHigh = sliderTrackHigh || this.trackHigh;
+
+			if (this.options.selection === 'none') {
+				this._addClass(this.trackLow, 'hide');
+				this._addClass(this.trackSelection, 'hide');
+				this._addClass(this.trackHigh, 'hide');
+			}
+
+			this.handle1 = sliderMinHandle || this.handle1;
+			this.handle2 = sliderMaxHandle || this.handle2;
+
+			if (updateSlider === true) {
+				// Reset classes
+				this._removeClass(this.handle1, 'round triangle');
+				this._removeClass(this.handle2, 'round triangle hide');
+
+				for (i = 0; i < this.ticks.length; i++) {
+					this._removeClass(this.ticks[i], 'round triangle hide');
+				}
+			}
+
+			var availableHandleModifiers = ['round', 'triangle', 'custom'];
+			var isValidHandleType = availableHandleModifiers.indexOf(this.options.handle) !== -1;
+			if (isValidHandleType) {
+				this._addClass(this.handle1, this.options.handle);
+				this._addClass(this.handle2, this.options.handle);
+
+				for (i = 0; i < this.ticks.length; i++) {
+					this._addClass(this.ticks[i], this.options.handle);
+				}
+			}
+
+			this._state.offset = this._offset(this.sliderElem);
+			this._state.size = this.sliderElem[this.sizePos];
+			this.setValue(this._state.value);
+
+			/******************************************
+   				Bind Event Listeners
+   	******************************************/
+
+			// Bind keyboard handlers
+			this.handle1Keydown = this._keydown.bind(this, 0);
+			this.handle1.addEventListener("keydown", this.handle1Keydown, false);
+
+			this.handle2Keydown = this._keydown.bind(this, 1);
+			this.handle2.addEventListener("keydown", this.handle2Keydown, false);
+
+			this.mousedown = this._mousedown.bind(this);
+			if (this.touchCapable) {
+				// Bind touch handlers
+				this.sliderElem.addEventListener("touchstart", this.mousedown, false);
+			}
+			this.sliderElem.addEventListener("mousedown", this.mousedown, false);
+
+			// Bind window handlers
+			this.resize = this._resize.bind(this);
+			window.addEventListener("resize", this.resize, false);
+
+			// Bind tooltip-related handlers
+			if (this.options.tooltip === 'hide') {
+				this._addClass(this.tooltip, 'hide');
+				this._addClass(this.tooltip_min, 'hide');
+				this._addClass(this.tooltip_max, 'hide');
+			} else if (this.options.tooltip === 'always') {
+				this._showTooltip();
+				this._alwaysShowTooltip = true;
+			} else {
+				this.showTooltip = this._showTooltip.bind(this);
+				this.hideTooltip = this._hideTooltip.bind(this);
+
+				this.sliderElem.addEventListener("mouseenter", this.showTooltip, false);
+				this.sliderElem.addEventListener("mouseleave", this.hideTooltip, false);
+
+				this.handle1.addEventListener("focus", this.showTooltip, false);
+				this.handle1.addEventListener("blur", this.hideTooltip, false);
+
+				this.handle2.addEventListener("focus", this.showTooltip, false);
+				this.handle2.addEventListener("blur", this.hideTooltip, false);
+			}
+
+			if (this.options.enabled) {
+				this.enable();
+			} else {
+				this.disable();
+			}
+		}
+
+		/*************************************************
+  				INSTANCE PROPERTIES/METHODS
+  	- Any methods bound to the prototype are considered
+  part of the plugin's `public` interface
+  	**************************************************/
+		Slider.prototype = {
+			_init: function _init() {}, // NOTE: Must exist to support bridget
+
+			constructor: Slider,
+
+			defaultOptions: {
+				id: "",
+				min: 0,
+				max: 10,
+				step: 1,
+				precision: 0,
+				orientation: 'horizontal',
+				value: 5,
+				range: false,
+				selection: 'before',
+				tooltip: 'show',
+				tooltip_split: false,
+				handle: 'round',
+				reversed: false,
+				enabled: true,
+				formatter: function formatter(val) {
+					if (Array.isArray(val)) {
+						return val[0] + " : " + val[1];
+					} else {
+						return val;
+					}
+				},
+				natural_arrow_keys: false,
+				ticks: [],
+				ticks_positions: [],
+				ticks_labels: [],
+				ticks_snap_bounds: 0,
+				scale: 'linear',
+				focus: false,
+				tooltip_position: null,
+				labelledby: null
+			},
+
+			getElement: function getElement() {
+				return this.sliderElem;
+			},
+
+			getValue: function getValue() {
+				if (this.options.range) {
+					return this._state.value;
+				} else {
+					return this._state.value[0];
+				}
+			},
+
+			setValue: function setValue(val, triggerSlideEvent, triggerChangeEvent) {
+				if (!val) {
+					val = 0;
+				}
+				var oldValue = this.getValue();
+				this._state.value = this._validateInputValue(val);
+				var applyPrecision = this._applyPrecision.bind(this);
+
+				if (this.options.range) {
+					this._state.value[0] = applyPrecision(this._state.value[0]);
+					this._state.value[1] = applyPrecision(this._state.value[1]);
+
+					this._state.value[0] = Math.max(this.options.min, Math.min(this.options.max, this._state.value[0]));
+					this._state.value[1] = Math.max(this.options.min, Math.min(this.options.max, this._state.value[1]));
+				} else {
+					this._state.value = applyPrecision(this._state.value);
+					this._state.value = [Math.max(this.options.min, Math.min(this.options.max, this._state.value))];
+					this._addClass(this.handle2, 'hide');
+					if (this.options.selection === 'after') {
+						this._state.value[1] = this.options.max;
+					} else {
+						this._state.value[1] = this.options.min;
+					}
+				}
+
+				if (this.options.max > this.options.min) {
+					this._state.percentage = [this._toPercentage(this._state.value[0]), this._toPercentage(this._state.value[1]), this.options.step * 100 / (this.options.max - this.options.min)];
+				} else {
+					this._state.percentage = [0, 0, 100];
+				}
+
+				this._layout();
+				var newValue = this.options.range ? this._state.value : this._state.value[0];
+
+				this._setDataVal(newValue);
+				if (triggerSlideEvent === true) {
+					this._trigger('slide', newValue);
+				}
+				if (oldValue !== newValue && triggerChangeEvent === true) {
+					this._trigger('change', {
+						oldValue: oldValue,
+						newValue: newValue
+					});
+				}
+
+				return this;
+			},
+
+			destroy: function destroy() {
+				// Remove event handlers on slider elements
+				this._removeSliderEventHandlers();
+
+				// Remove the slider from the DOM
+				this.sliderElem.parentNode.removeChild(this.sliderElem);
+				/* Show original <input> element */
+				this.element.style.display = "";
+
+				// Clear out custom event bindings
+				this._cleanUpEventCallbacksMap();
+
+				// Remove data values
+				this.element.removeAttribute("data");
+
+				// Remove JQuery handlers/data
+				if ($) {
+					this._unbindJQueryEventHandlers();
+					this.$element.removeData('slider');
+				}
+			},
+
+			disable: function disable() {
+				this._state.enabled = false;
+				this.handle1.removeAttribute("tabindex");
+				this.handle2.removeAttribute("tabindex");
+				this._addClass(this.sliderElem, 'slider-disabled');
+				this._trigger('slideDisabled');
+
+				return this;
+			},
+
+			enable: function enable() {
+				this._state.enabled = true;
+				this.handle1.setAttribute("tabindex", 0);
+				this.handle2.setAttribute("tabindex", 0);
+				this._removeClass(this.sliderElem, 'slider-disabled');
+				this._trigger('slideEnabled');
+
+				return this;
+			},
+
+			toggle: function toggle() {
+				if (this._state.enabled) {
+					this.disable();
+				} else {
+					this.enable();
+				}
+				return this;
+			},
+
+			isEnabled: function isEnabled() {
+				return this._state.enabled;
+			},
+
+			on: function on(evt, callback) {
+				this._bindNonQueryEventHandler(evt, callback);
+				return this;
+			},
+
+			off: function off(evt, callback) {
+				if ($) {
+					this.$element.off(evt, callback);
+					this.$sliderElem.off(evt, callback);
+				} else {
+					this._unbindNonQueryEventHandler(evt, callback);
+				}
+			},
+
+			getAttribute: function getAttribute(attribute) {
+				if (attribute) {
+					return this.options[attribute];
+				} else {
+					return this.options;
+				}
+			},
+
+			setAttribute: function setAttribute(attribute, value) {
+				this.options[attribute] = value;
+				return this;
+			},
+
+			refresh: function refresh() {
+				this._removeSliderEventHandlers();
+				createNewSlider.call(this, this.element, this.options);
+				if ($) {
+					// Bind new instance of slider to the element
+					$.data(this.element, 'slider', this);
+				}
+				return this;
+			},
+
+			relayout: function relayout() {
+				this._layout();
+				return this;
+			},
+
+			/******************************+
+   				HELPERS
+   	- Any method that is not part of the public interface.
+   - Place it underneath this comment block and write its signature like so:
+   	  					_fnName : function() {...}
+   	********************************/
+			_removeSliderEventHandlers: function _removeSliderEventHandlers() {
+				// Remove keydown event listeners
+				this.handle1.removeEventListener("keydown", this.handle1Keydown, false);
+				this.handle2.removeEventListener("keydown", this.handle2Keydown, false);
+
+				if (this.showTooltip) {
+					this.handle1.removeEventListener("focus", this.showTooltip, false);
+					this.handle2.removeEventListener("focus", this.showTooltip, false);
+				}
+				if (this.hideTooltip) {
+					this.handle1.removeEventListener("blur", this.hideTooltip, false);
+					this.handle2.removeEventListener("blur", this.hideTooltip, false);
+				}
+
+				// Remove event listeners from sliderElem
+				if (this.showTooltip) {
+					this.sliderElem.removeEventListener("mouseenter", this.showTooltip, false);
+				}
+				if (this.hideTooltip) {
+					this.sliderElem.removeEventListener("mouseleave", this.hideTooltip, false);
+				}
+				this.sliderElem.removeEventListener("touchstart", this.mousedown, false);
+				this.sliderElem.removeEventListener("mousedown", this.mousedown, false);
+
+				// Remove window event listener
+				window.removeEventListener("resize", this.resize, false);
+			},
+			_bindNonQueryEventHandler: function _bindNonQueryEventHandler(evt, callback) {
+				if (this.eventToCallbackMap[evt] === undefined) {
+					this.eventToCallbackMap[evt] = [];
+				}
+				this.eventToCallbackMap[evt].push(callback);
+			},
+			_unbindNonQueryEventHandler: function _unbindNonQueryEventHandler(evt, callback) {
+				var callbacks = this.eventToCallbackMap[evt];
+				if (callbacks !== undefined) {
+					for (var i = 0; i < callbacks.length; i++) {
+						if (callbacks[i] === callback) {
+							callbacks.splice(i, 1);
+							break;
+						}
+					}
+				}
+			},
+			_cleanUpEventCallbacksMap: function _cleanUpEventCallbacksMap() {
+				var eventNames = Object.keys(this.eventToCallbackMap);
+				for (var i = 0; i < eventNames.length; i++) {
+					var eventName = eventNames[i];
+					this.eventToCallbackMap[eventName] = null;
+				}
+			},
+			_showTooltip: function _showTooltip() {
+				if (this.options.tooltip_split === false) {
+					this._addClass(this.tooltip, 'in');
+					this.tooltip_min.style.display = 'none';
+					this.tooltip_max.style.display = 'none';
+				} else {
+					this._addClass(this.tooltip_min, 'in');
+					this._addClass(this.tooltip_max, 'in');
+					this.tooltip.style.display = 'none';
+				}
+				this._state.over = true;
+			},
+			_hideTooltip: function _hideTooltip() {
+				if (this._state.inDrag === false && this.alwaysShowTooltip !== true) {
+					this._removeClass(this.tooltip, 'in');
+					this._removeClass(this.tooltip_min, 'in');
+					this._removeClass(this.tooltip_max, 'in');
+				}
+				this._state.over = false;
+			},
+			_layout: function _layout() {
+				var positionPercentages;
+
+				if (this.options.reversed) {
+					positionPercentages = [100 - this._state.percentage[0], this.options.range ? 100 - this._state.percentage[1] : this._state.percentage[1]];
+				} else {
+					positionPercentages = [this._state.percentage[0], this._state.percentage[1]];
+				}
+
+				this.handle1.style[this.stylePos] = positionPercentages[0] + '%';
+				this.handle1.setAttribute('aria-valuenow', this._state.value[0]);
+
+				this.handle2.style[this.stylePos] = positionPercentages[1] + '%';
+				this.handle2.setAttribute('aria-valuenow', this._state.value[1]);
+
+				/* Position ticks and labels */
+				if (Array.isArray(this.options.ticks) && this.options.ticks.length > 0) {
+
+					var styleSize = this.options.orientation === 'vertical' ? 'height' : 'width';
+					var styleMargin = this.options.orientation === 'vertical' ? 'marginTop' : 'marginLeft';
+					var labelSize = this._state.size / (this.options.ticks.length - 1);
+
+					if (this.tickLabelContainer) {
+						var extraMargin = 0;
+						if (this.options.ticks_positions.length === 0) {
+							if (this.options.orientation !== 'vertical') {
+								this.tickLabelContainer.style[styleMargin] = -labelSize / 2 + 'px';
+							}
+
+							extraMargin = this.tickLabelContainer.offsetHeight;
+						} else {
+							/* Chidren are position absolute, calculate height by finding the max offsetHeight of a child */
+							for (i = 0; i < this.tickLabelContainer.childNodes.length; i++) {
+								if (this.tickLabelContainer.childNodes[i].offsetHeight > extraMargin) {
+									extraMargin = this.tickLabelContainer.childNodes[i].offsetHeight;
+								}
+							}
+						}
+						if (this.options.orientation === 'horizontal') {
+							this.sliderElem.style.marginBottom = extraMargin + 'px';
+						}
+					}
+					for (var i = 0; i < this.options.ticks.length; i++) {
+
+						var percentage = this.options.ticks_positions[i] || this._toPercentage(this.options.ticks[i]);
+
+						if (this.options.reversed) {
+							percentage = 100 - percentage;
+						}
+
+						this.ticks[i].style[this.stylePos] = percentage + '%';
+
+						/* Set class labels to denote whether ticks are in the selection */
+						this._removeClass(this.ticks[i], 'in-selection');
+						if (!this.options.range) {
+							if (this.options.selection === 'after' && percentage >= positionPercentages[0]) {
+								this._addClass(this.ticks[i], 'in-selection');
+							} else if (this.options.selection === 'before' && percentage <= positionPercentages[0]) {
+								this._addClass(this.ticks[i], 'in-selection');
+							}
+						} else if (percentage >= positionPercentages[0] && percentage <= positionPercentages[1]) {
+							this._addClass(this.ticks[i], 'in-selection');
+						}
+
+						if (this.tickLabels[i]) {
+							this.tickLabels[i].style[styleSize] = labelSize + 'px';
+
+							if (this.options.orientation !== 'vertical' && this.options.ticks_positions[i] !== undefined) {
+								this.tickLabels[i].style.position = 'absolute';
+								this.tickLabels[i].style[this.stylePos] = percentage + '%';
+								this.tickLabels[i].style[styleMargin] = -labelSize / 2 + 'px';
+							} else if (this.options.orientation === 'vertical') {
+								this.tickLabels[i].style['marginLeft'] = this.sliderElem.offsetWidth + 'px';
+								this.tickLabelContainer.style['marginTop'] = this.sliderElem.offsetWidth / 2 * -1 + 'px';
+							}
+						}
+					}
+				}
+
+				var formattedTooltipVal;
+
+				if (this.options.range) {
+					formattedTooltipVal = this.options.formatter(this._state.value);
+					this._setText(this.tooltipInner, formattedTooltipVal);
+					this.tooltip.style[this.stylePos] = (positionPercentages[1] + positionPercentages[0]) / 2 + '%';
+
+					if (this.options.orientation === 'vertical') {
+						this._css(this.tooltip, 'margin-top', -this.tooltip.offsetHeight / 2 + 'px');
+					} else {
+						this._css(this.tooltip, 'margin-left', -this.tooltip.offsetWidth / 2 + 'px');
+					}
+
+					if (this.options.orientation === 'vertical') {
+						this._css(this.tooltip, 'margin-top', -this.tooltip.offsetHeight / 2 + 'px');
+					} else {
+						this._css(this.tooltip, 'margin-left', -this.tooltip.offsetWidth / 2 + 'px');
+					}
+
+					var innerTooltipMinText = this.options.formatter(this._state.value[0]);
+					this._setText(this.tooltipInner_min, innerTooltipMinText);
+
+					var innerTooltipMaxText = this.options.formatter(this._state.value[1]);
+					this._setText(this.tooltipInner_max, innerTooltipMaxText);
+
+					this.tooltip_min.style[this.stylePos] = positionPercentages[0] + '%';
+
+					if (this.options.orientation === 'vertical') {
+						this._css(this.tooltip_min, 'margin-top', -this.tooltip_min.offsetHeight / 2 + 'px');
+					} else {
+						this._css(this.tooltip_min, 'margin-left', -this.tooltip_min.offsetWidth / 2 + 'px');
+					}
+
+					this.tooltip_max.style[this.stylePos] = positionPercentages[1] + '%';
+
+					if (this.options.orientation === 'vertical') {
+						this._css(this.tooltip_max, 'margin-top', -this.tooltip_max.offsetHeight / 2 + 'px');
+					} else {
+						this._css(this.tooltip_max, 'margin-left', -this.tooltip_max.offsetWidth / 2 + 'px');
+					}
+				} else {
+					formattedTooltipVal = this.options.formatter(this._state.value[0]);
+					this._setText(this.tooltipInner, formattedTooltipVal);
+
+					this.tooltip.style[this.stylePos] = positionPercentages[0] + '%';
+					if (this.options.orientation === 'vertical') {
+						this._css(this.tooltip, 'margin-top', -this.tooltip.offsetHeight / 2 + 'px');
+					} else {
+						this._css(this.tooltip, 'margin-left', -this.tooltip.offsetWidth / 2 + 'px');
+					}
+				}
+
+				if (this.options.orientation === 'vertical') {
+					this.trackLow.style.top = '0';
+					this.trackLow.style.height = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+
+					this.trackSelection.style.top = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+					this.trackSelection.style.height = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+
+					this.trackHigh.style.bottom = '0';
+					this.trackHigh.style.height = 100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+				} else {
+					this.trackLow.style.left = '0';
+					this.trackLow.style.width = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+
+					this.trackSelection.style.left = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+					this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+
+					this.trackHigh.style.right = '0';
+					this.trackHigh.style.width = 100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+
+					var offset_min = this.tooltip_min.getBoundingClientRect();
+					var offset_max = this.tooltip_max.getBoundingClientRect();
+
+					if (this.options.tooltip_position === 'bottom') {
+						if (offset_min.right > offset_max.left) {
+							this._removeClass(this.tooltip_max, 'bottom');
+							this._addClass(this.tooltip_max, 'top');
+							this.tooltip_max.style.top = '';
+							this.tooltip_max.style.bottom = 22 + 'px';
+						} else {
+							this._removeClass(this.tooltip_max, 'top');
+							this._addClass(this.tooltip_max, 'bottom');
+							this.tooltip_max.style.top = this.tooltip_min.style.top;
+							this.tooltip_max.style.bottom = '';
+						}
+					} else {
+						if (offset_min.right > offset_max.left) {
+							this._removeClass(this.tooltip_max, 'top');
+							this._addClass(this.tooltip_max, 'bottom');
+							this.tooltip_max.style.top = 18 + 'px';
+						} else {
+							this._removeClass(this.tooltip_max, 'bottom');
+							this._addClass(this.tooltip_max, 'top');
+							this.tooltip_max.style.top = this.tooltip_min.style.top;
+						}
+					}
+				}
+			},
+			_resize: function _resize(ev) {
+				/*jshint unused:false*/
+				this._state.offset = this._offset(this.sliderElem);
+				this._state.size = this.sliderElem[this.sizePos];
+				this._layout();
+			},
+			_removeProperty: function _removeProperty(element, prop) {
+				if (element.style.removeProperty) {
+					element.style.removeProperty(prop);
+				} else {
+					element.style.removeAttribute(prop);
+				}
+			},
+			_mousedown: function _mousedown(ev) {
+				if (!this._state.enabled) {
+					return false;
+				}
+
+				this._state.offset = this._offset(this.sliderElem);
+				this._state.size = this.sliderElem[this.sizePos];
+
+				var percentage = this._getPercentage(ev);
+
+				if (this.options.range) {
+					var diff1 = Math.abs(this._state.percentage[0] - percentage);
+					var diff2 = Math.abs(this._state.percentage[1] - percentage);
+					this._state.dragged = diff1 < diff2 ? 0 : 1;
+				} else {
+					this._state.dragged = 0;
+				}
+
+				this._state.percentage[this._state.dragged] = percentage;
+				this._layout();
+
+				if (this.touchCapable) {
+					document.removeEventListener("touchmove", this.mousemove, false);
+					document.removeEventListener("touchend", this.mouseup, false);
+				}
+
+				if (this.mousemove) {
+					document.removeEventListener("mousemove", this.mousemove, false);
+				}
+				if (this.mouseup) {
+					document.removeEventListener("mouseup", this.mouseup, false);
+				}
+
+				this.mousemove = this._mousemove.bind(this);
+				this.mouseup = this._mouseup.bind(this);
+
+				if (this.touchCapable) {
+					// Touch: Bind touch events:
+					document.addEventListener("touchmove", this.mousemove, false);
+					document.addEventListener("touchend", this.mouseup, false);
+				}
+				// Bind mouse events:
+				document.addEventListener("mousemove", this.mousemove, false);
+				document.addEventListener("mouseup", this.mouseup, false);
+
+				this._state.inDrag = true;
+				var newValue = this._calculateValue();
+
+				this._trigger('slideStart', newValue);
+
+				this._setDataVal(newValue);
+				this.setValue(newValue, false, true);
+
+				this._pauseEvent(ev);
+
+				if (this.options.focus) {
+					this._triggerFocusOnHandle(this._state.dragged);
+				}
+
+				return true;
+			},
+			_triggerFocusOnHandle: function _triggerFocusOnHandle(handleIdx) {
+				if (handleIdx === 0) {
+					this.handle1.focus();
+				}
+				if (handleIdx === 1) {
+					this.handle2.focus();
+				}
+			},
+			_keydown: function _keydown(handleIdx, ev) {
+				if (!this._state.enabled) {
+					return false;
+				}
+
+				var dir;
+				switch (ev.keyCode) {
+					case 37: // left
+					case 40:
+						// down
+						dir = -1;
+						break;
+					case 39: // right
+					case 38:
+						// up
+						dir = 1;
+						break;
+				}
+				if (!dir) {
+					return;
+				}
+
+				// use natural arrow keys instead of from min to max
+				if (this.options.natural_arrow_keys) {
+					var ifVerticalAndNotReversed = this.options.orientation === 'vertical' && !this.options.reversed;
+					var ifHorizontalAndReversed = this.options.orientation === 'horizontal' && this.options.reversed;
+
+					if (ifVerticalAndNotReversed || ifHorizontalAndReversed) {
+						dir = -dir;
+					}
+				}
+
+				var val = this._state.value[handleIdx] + dir * this.options.step;
+				if (this.options.range) {
+					val = [!handleIdx ? val : this._state.value[0], handleIdx ? val : this._state.value[1]];
+				}
+
+				this._trigger('slideStart', val);
+				this._setDataVal(val);
+				this.setValue(val, true, true);
+
+				this._setDataVal(val);
+				this._trigger('slideStop', val);
+				this._layout();
+
+				this._pauseEvent(ev);
+
+				return false;
+			},
+			_pauseEvent: function _pauseEvent(ev) {
+				if (ev.stopPropagation) {
+					ev.stopPropagation();
+				}
+				if (ev.preventDefault) {
+					ev.preventDefault();
+				}
+				ev.cancelBubble = true;
+				ev.returnValue = false;
+			},
+			_mousemove: function _mousemove(ev) {
+				if (!this._state.enabled) {
+					return false;
+				}
+
+				var percentage = this._getPercentage(ev);
+				this._adjustPercentageForRangeSliders(percentage);
+				this._state.percentage[this._state.dragged] = percentage;
+				this._layout();
+
+				var val = this._calculateValue(true);
+				this.setValue(val, true, true);
+
+				return false;
+			},
+			_adjustPercentageForRangeSliders: function _adjustPercentageForRangeSliders(percentage) {
+				if (this.options.range) {
+					var precision = this._getNumDigitsAfterDecimalPlace(percentage);
+					precision = precision ? precision - 1 : 0;
+					var percentageWithAdjustedPrecision = this._applyToFixedAndParseFloat(percentage, precision);
+					if (this._state.dragged === 0 && this._applyToFixedAndParseFloat(this._state.percentage[1], precision) < percentageWithAdjustedPrecision) {
+						this._state.percentage[0] = this._state.percentage[1];
+						this._state.dragged = 1;
+					} else if (this._state.dragged === 1 && this._applyToFixedAndParseFloat(this._state.percentage[0], precision) > percentageWithAdjustedPrecision) {
+						this._state.percentage[1] = this._state.percentage[0];
+						this._state.dragged = 0;
+					}
+				}
+			},
+			_mouseup: function _mouseup() {
+				if (!this._state.enabled) {
+					return false;
+				}
+				if (this.touchCapable) {
+					// Touch: Unbind touch event handlers:
+					document.removeEventListener("touchmove", this.mousemove, false);
+					document.removeEventListener("touchend", this.mouseup, false);
+				}
+				// Unbind mouse event handlers:
+				document.removeEventListener("mousemove", this.mousemove, false);
+				document.removeEventListener("mouseup", this.mouseup, false);
+
+				this._state.inDrag = false;
+				if (this._state.over === false) {
+					this._hideTooltip();
+				}
+				var val = this._calculateValue(true);
+
+				this._layout();
+				this._setDataVal(val);
+				this._trigger('slideStop', val);
+
+				return false;
+			},
+			_calculateValue: function _calculateValue(snapToClosestTick) {
+				var val;
+				if (this.options.range) {
+					val = [this.options.min, this.options.max];
+					if (this._state.percentage[0] !== 0) {
+						val[0] = this._toValue(this._state.percentage[0]);
+						val[0] = this._applyPrecision(val[0]);
+					}
+					if (this._state.percentage[1] !== 100) {
+						val[1] = this._toValue(this._state.percentage[1]);
+						val[1] = this._applyPrecision(val[1]);
+					}
+				} else {
+					val = this._toValue(this._state.percentage[0]);
+					val = parseFloat(val);
+					val = this._applyPrecision(val);
+				}
+
+				if (snapToClosestTick) {
+					var min = [val, Infinity];
+					for (var i = 0; i < this.options.ticks.length; i++) {
+						var diff = Math.abs(this.options.ticks[i] - val);
+						if (diff <= min[1]) {
+							min = [this.options.ticks[i], diff];
+						}
+					}
+					if (min[1] <= this.options.ticks_snap_bounds) {
+						return min[0];
+					}
+				}
+
+				return val;
+			},
+			_applyPrecision: function _applyPrecision(val) {
+				var precision = this.options.precision || this._getNumDigitsAfterDecimalPlace(this.options.step);
+				return this._applyToFixedAndParseFloat(val, precision);
+			},
+			_getNumDigitsAfterDecimalPlace: function _getNumDigitsAfterDecimalPlace(num) {
+				var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+				if (!match) {
+					return 0;
+				}
+				return Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
+			},
+			_applyToFixedAndParseFloat: function _applyToFixedAndParseFloat(num, toFixedInput) {
+				var truncatedNum = num.toFixed(toFixedInput);
+				return parseFloat(truncatedNum);
+			},
+			/*
+   	Credits to Mike Samuel for the following method!
+   	Source: http://stackoverflow.com/questions/10454518/javascript-how-to-retrieve-the-number-of-decimals-of-a-string-number
+   */
+			_getPercentage: function _getPercentage(ev) {
+				if (this.touchCapable && (ev.type === 'touchstart' || ev.type === 'touchmove')) {
+					ev = ev.touches[0];
+				}
+
+				var eventPosition = ev[this.mousePos];
+				var sliderOffset = this._state.offset[this.stylePos];
+				var distanceToSlide = eventPosition - sliderOffset;
+				// Calculate what percent of the length the slider handle has slid
+				var percentage = distanceToSlide / this._state.size * 100;
+				percentage = Math.round(percentage / this._state.percentage[2]) * this._state.percentage[2];
+				if (this.options.reversed) {
+					percentage = 100 - percentage;
+				}
+
+				// Make sure the percent is within the bounds of the slider.
+				// 0% corresponds to the 'min' value of the slide
+				// 100% corresponds to the 'max' value of the slide
+				return Math.max(0, Math.min(100, percentage));
+			},
+			_validateInputValue: function _validateInputValue(val) {
+				if (typeof val === 'number') {
+					return val;
+				} else if (Array.isArray(val)) {
+					this._validateArray(val);
+					return val;
+				} else {
+					throw new Error(ErrorMsgs.formatInvalidInputErrorMsg(val));
+				}
+			},
+			_validateArray: function _validateArray(val) {
+				for (var i = 0; i < val.length; i++) {
+					var input = val[i];
+					if (typeof input !== 'number') {
+						throw new Error(ErrorMsgs.formatInvalidInputErrorMsg(input));
+					}
+				}
+			},
+			_setDataVal: function _setDataVal(val) {
+				this.element.setAttribute('data-value', val);
+				this.element.setAttribute('value', val);
+				this.element.value = val;
+			},
+			_trigger: function _trigger(evt, val) {
+				val = val || val === 0 ? val : undefined;
+
+				var callbackFnArray = this.eventToCallbackMap[evt];
+				if (callbackFnArray && callbackFnArray.length) {
+					for (var i = 0; i < callbackFnArray.length; i++) {
+						var callbackFn = callbackFnArray[i];
+						callbackFn(val);
+					}
+				}
+
+				/* If JQuery exists, trigger JQuery events */
+				if ($) {
+					this._triggerJQueryEvent(evt, val);
+				}
+			},
+			_triggerJQueryEvent: function _triggerJQueryEvent(evt, val) {
+				var eventData = {
+					type: evt,
+					value: val
+				};
+				this.$element.trigger(eventData);
+				this.$sliderElem.trigger(eventData);
+			},
+			_unbindJQueryEventHandlers: function _unbindJQueryEventHandlers() {
+				this.$element.off();
+				this.$sliderElem.off();
+			},
+			_setText: function _setText(element, text) {
+				if (typeof element.textContent !== "undefined") {
+					element.textContent = text;
+				} else if (typeof element.innerText !== "undefined") {
+					element.innerText = text;
+				}
+			},
+			_removeClass: function _removeClass(element, classString) {
+				var classes = classString.split(" ");
+				var newClasses = element.className;
+
+				for (var i = 0; i < classes.length; i++) {
+					var classTag = classes[i];
+					var regex = new RegExp("(?:\\s|^)" + classTag + "(?:\\s|$)");
+					newClasses = newClasses.replace(regex, " ");
+				}
+
+				element.className = newClasses.trim();
+			},
+			_addClass: function _addClass(element, classString) {
+				var classes = classString.split(" ");
+				var newClasses = element.className;
+
+				for (var i = 0; i < classes.length; i++) {
+					var classTag = classes[i];
+					var regex = new RegExp("(?:\\s|^)" + classTag + "(?:\\s|$)");
+					var ifClassExists = regex.test(newClasses);
+
+					if (!ifClassExists) {
+						newClasses += " " + classTag;
+					}
+				}
+
+				element.className = newClasses.trim();
+			},
+			_offsetLeft: function _offsetLeft(obj) {
+				return obj.getBoundingClientRect().left;
+			},
+			_offsetTop: function _offsetTop(obj) {
+				var offsetTop = obj.offsetTop;
+				while ((obj = obj.offsetParent) && !isNaN(obj.offsetTop)) {
+					offsetTop += obj.offsetTop;
+					if (obj.tagName !== 'BODY') {
+						offsetTop -= obj.scrollTop;
+					}
+				}
+				return offsetTop;
+			},
+			_offset: function _offset(obj) {
+				return {
+					left: this._offsetLeft(obj),
+					top: this._offsetTop(obj)
+				};
+			},
+			_css: function _css(elementRef, styleName, value) {
+				if ($) {
+					$.style(elementRef, styleName, value);
+				} else {
+					var style = styleName.replace(/^-ms-/, "ms-").replace(/-([\da-z])/gi, function (all, letter) {
+						return letter.toUpperCase();
+					});
+					elementRef.style[style] = value;
+				}
+			},
+			_toValue: function _toValue(percentage) {
+				return this.options.scale.toValue.apply(this, [percentage]);
+			},
+			_toPercentage: function _toPercentage(value) {
+				return this.options.scale.toPercentage.apply(this, [value]);
+			},
+			_setTooltipPosition: function _setTooltipPosition() {
+				var tooltips = [this.tooltip, this.tooltip_min, this.tooltip_max];
+				if (this.options.orientation === 'vertical') {
+					var tooltipPos = this.options.tooltip_position || 'right';
+					var oppositeSide = tooltipPos === 'left' ? 'right' : 'left';
+					tooltips.forEach((function (tooltip) {
+						this._addClass(tooltip, tooltipPos);
+						tooltip.style[oppositeSide] = '100%';
+					}).bind(this));
+				} else if (this.options.tooltip_position === 'bottom') {
+					tooltips.forEach((function (tooltip) {
+						this._addClass(tooltip, 'bottom');
+						tooltip.style.top = 22 + 'px';
+					}).bind(this));
+				} else {
+					tooltips.forEach((function (tooltip) {
+						this._addClass(tooltip, 'top');
+						tooltip.style.top = -this.tooltip.outerHeight - 14 + 'px';
+					}).bind(this));
+				}
+			}
+		};
+
+		/*********************************
+  		Attach to global namespace
+  	*********************************/
+		if ($) {
+			var namespace = $.fn.slider ? 'bootstrapSlider' : 'slider';
+			$.bridget(namespace, Slider);
+		}
+	})($);
+
+	return Slider;
+});
+
+/*!
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under the MIT license
+ */
+
+if (typeof jQuery === 'undefined') {
+  throw new Error('Bootstrap\'s JavaScript requires jQuery')
+}
+
++function ($) {
+  'use strict';
+  var version = $.fn.jquery.split(' ')[0].split('.')
+  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) || (version[0] > 2)) {
+    throw new Error('Bootstrap\'s JavaScript requires jQuery version 1.9.1 or higher, but lower than version 3')
+  }
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.6
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: alert.js v3.3.6
+ * http://getbootstrap.com/javascript/#alerts
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // ALERT CLASS DEFINITION
+  // ======================
+
+  var dismiss = '[data-dismiss="alert"]'
+  var Alert   = function (el) {
+    $(el).on('click', dismiss, this.close)
+  }
+
+  Alert.VERSION = '3.3.6'
+
+  Alert.TRANSITION_DURATION = 150
+
+  Alert.prototype.close = function (e) {
+    var $this    = $(this)
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = $(selector)
+
+    if (e) e.preventDefault()
+
+    if (!$parent.length) {
+      $parent = $this.closest('.alert')
+    }
+
+    $parent.trigger(e = $.Event('close.bs.alert'))
+
+    if (e.isDefaultPrevented()) return
+
+    $parent.removeClass('in')
+
+    function removeElement() {
+      // detach from parent, fire event then clean up data
+      $parent.detach().trigger('closed.bs.alert').remove()
+    }
+
+    $.support.transition && $parent.hasClass('fade') ?
+      $parent
+        .one('bsTransitionEnd', removeElement)
+        .emulateTransitionEnd(Alert.TRANSITION_DURATION) :
+      removeElement()
+  }
+
+
+  // ALERT PLUGIN DEFINITION
+  // =======================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.alert')
+
+      if (!data) $this.data('bs.alert', (data = new Alert(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.alert
+
+  $.fn.alert             = Plugin
+  $.fn.alert.Constructor = Alert
+
+
+  // ALERT NO CONFLICT
+  // =================
+
+  $.fn.alert.noConflict = function () {
+    $.fn.alert = old
+    return this
+  }
+
+
+  // ALERT DATA-API
+  // ==============
+
+  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: button.js v3.3.6
+ * http://getbootstrap.com/javascript/#buttons
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // BUTTON PUBLIC CLASS DEFINITION
+  // ==============================
+
+  var Button = function (element, options) {
+    this.$element  = $(element)
+    this.options   = $.extend({}, Button.DEFAULTS, options)
+    this.isLoading = false
+  }
+
+  Button.VERSION  = '3.3.6'
+
+  Button.DEFAULTS = {
+    loadingText: 'loading...'
+  }
+
+  Button.prototype.setState = function (state) {
+    var d    = 'disabled'
+    var $el  = this.$element
+    var val  = $el.is('input') ? 'val' : 'html'
+    var data = $el.data()
+
+    state += 'Text'
+
+    if (data.resetText == null) $el.data('resetText', $el[val]())
+
+    // push to event loop to allow forms to submit
+    setTimeout($.proxy(function () {
+      $el[val](data[state] == null ? this.options[state] : data[state])
+
+      if (state == 'loadingText') {
+        this.isLoading = true
+        $el.addClass(d).attr(d, d)
+      } else if (this.isLoading) {
+        this.isLoading = false
+        $el.removeClass(d).removeAttr(d)
+      }
+    }, this), 0)
+  }
+
+  Button.prototype.toggle = function () {
+    var changed = true
+    var $parent = this.$element.closest('[data-toggle="buttons"]')
+
+    if ($parent.length) {
+      var $input = this.$element.find('input')
+      if ($input.prop('type') == 'radio') {
+        if ($input.prop('checked')) changed = false
+        $parent.find('.active').removeClass('active')
+        this.$element.addClass('active')
+      } else if ($input.prop('type') == 'checkbox') {
+        if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false
+        this.$element.toggleClass('active')
+      }
+      $input.prop('checked', this.$element.hasClass('active'))
+      if (changed) $input.trigger('change')
+    } else {
+      this.$element.attr('aria-pressed', !this.$element.hasClass('active'))
+      this.$element.toggleClass('active')
+    }
+  }
+
+
+  // BUTTON PLUGIN DEFINITION
+  // ========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.button')
+      var options = typeof option == 'object' && option
+
+      if (!data) $this.data('bs.button', (data = new Button(this, options)))
+
+      if (option == 'toggle') data.toggle()
+      else if (option) data.setState(option)
+    })
+  }
+
+  var old = $.fn.button
+
+  $.fn.button             = Plugin
+  $.fn.button.Constructor = Button
+
+
+  // BUTTON NO CONFLICT
+  // ==================
+
+  $.fn.button.noConflict = function () {
+    $.fn.button = old
+    return this
+  }
+
+
+  // BUTTON DATA-API
+  // ===============
+
+  $(document)
+    .on('click.bs.button.data-api', '[data-toggle^="button"]', function (e) {
+      var $btn = $(e.target)
+      if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
+      Plugin.call($btn, 'toggle')
+      if (!($(e.target).is('input[type="radio"]') || $(e.target).is('input[type="checkbox"]'))) e.preventDefault()
+    })
+    .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
+      $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
+    })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: carousel.js v3.3.6
+ * http://getbootstrap.com/javascript/#carousel
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CAROUSEL CLASS DEFINITION
+  // =========================
+
+  var Carousel = function (element, options) {
+    this.$element    = $(element)
+    this.$indicators = this.$element.find('.carousel-indicators')
+    this.options     = options
+    this.paused      = null
+    this.sliding     = null
+    this.interval    = null
+    this.$active     = null
+    this.$items      = null
+
+    this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
+
+    this.options.pause == 'hover' && !('ontouchstart' in document.documentElement) && this.$element
+      .on('mouseenter.bs.carousel', $.proxy(this.pause, this))
+      .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
+  }
+
+  Carousel.VERSION  = '3.3.6'
+
+  Carousel.TRANSITION_DURATION = 600
+
+  Carousel.DEFAULTS = {
+    interval: 5000,
+    pause: 'hover',
+    wrap: true,
+    keyboard: true
+  }
+
+  Carousel.prototype.keydown = function (e) {
+    if (/input|textarea/i.test(e.target.tagName)) return
+    switch (e.which) {
+      case 37: this.prev(); break
+      case 39: this.next(); break
+      default: return
+    }
+
+    e.preventDefault()
+  }
+
+  Carousel.prototype.cycle = function (e) {
+    e || (this.paused = false)
+
+    this.interval && clearInterval(this.interval)
+
+    this.options.interval
+      && !this.paused
+      && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
+
+    return this
+  }
+
+  Carousel.prototype.getItemIndex = function (item) {
+    this.$items = item.parent().children('.item')
+    return this.$items.index(item || this.$active)
+  }
+
+  Carousel.prototype.getItemForDirection = function (direction, active) {
+    var activeIndex = this.getItemIndex(active)
+    var willWrap = (direction == 'prev' && activeIndex === 0)
+                || (direction == 'next' && activeIndex == (this.$items.length - 1))
+    if (willWrap && !this.options.wrap) return active
+    var delta = direction == 'prev' ? -1 : 1
+    var itemIndex = (activeIndex + delta) % this.$items.length
+    return this.$items.eq(itemIndex)
+  }
+
+  Carousel.prototype.to = function (pos) {
+    var that        = this
+    var activeIndex = this.getItemIndex(this.$active = this.$element.find('.item.active'))
+
+    if (pos > (this.$items.length - 1) || pos < 0) return
+
+    if (this.sliding)       return this.$element.one('slid.bs.carousel', function () { that.to(pos) }) // yes, "slid"
+    if (activeIndex == pos) return this.pause().cycle()
+
+    return this.slide(pos > activeIndex ? 'next' : 'prev', this.$items.eq(pos))
+  }
+
+  Carousel.prototype.pause = function (e) {
+    e || (this.paused = true)
+
+    if (this.$element.find('.next, .prev').length && $.support.transition) {
+      this.$element.trigger($.support.transition.end)
+      this.cycle(true)
+    }
+
+    this.interval = clearInterval(this.interval)
+
+    return this
+  }
+
+  Carousel.prototype.next = function () {
+    if (this.sliding) return
+    return this.slide('next')
+  }
+
+  Carousel.prototype.prev = function () {
+    if (this.sliding) return
+    return this.slide('prev')
+  }
+
+  Carousel.prototype.slide = function (type, next) {
+    var $active   = this.$element.find('.item.active')
+    var $next     = next || this.getItemForDirection(type, $active)
+    var isCycling = this.interval
+    var direction = type == 'next' ? 'left' : 'right'
+    var that      = this
+
+    if ($next.hasClass('active')) return (this.sliding = false)
+
+    var relatedTarget = $next[0]
+    var slideEvent = $.Event('slide.bs.carousel', {
+      relatedTarget: relatedTarget,
+      direction: direction
+    })
+    this.$element.trigger(slideEvent)
+    if (slideEvent.isDefaultPrevented()) return
+
+    this.sliding = true
+
+    isCycling && this.pause()
+
+    if (this.$indicators.length) {
+      this.$indicators.find('.active').removeClass('active')
+      var $nextIndicator = $(this.$indicators.children()[this.getItemIndex($next)])
+      $nextIndicator && $nextIndicator.addClass('active')
+    }
+
+    var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
+    if ($.support.transition && this.$element.hasClass('slide')) {
+      $next.addClass(type)
+      $next[0].offsetWidth // force reflow
+      $active.addClass(direction)
+      $next.addClass(direction)
+      $active
+        .one('bsTransitionEnd', function () {
+          $next.removeClass([type, direction].join(' ')).addClass('active')
+          $active.removeClass(['active', direction].join(' '))
+          that.sliding = false
+          setTimeout(function () {
+            that.$element.trigger(slidEvent)
+          }, 0)
+        })
+        .emulateTransitionEnd(Carousel.TRANSITION_DURATION)
+    } else {
+      $active.removeClass('active')
+      $next.addClass('active')
+      this.sliding = false
+      this.$element.trigger(slidEvent)
+    }
+
+    isCycling && this.cycle()
+
+    return this
+  }
+
+
+  // CAROUSEL PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.carousel')
+      var options = $.extend({}, Carousel.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var action  = typeof option == 'string' ? option : options.slide
+
+      if (!data) $this.data('bs.carousel', (data = new Carousel(this, options)))
+      if (typeof option == 'number') data.to(option)
+      else if (action) data[action]()
+      else if (options.interval) data.pause().cycle()
+    })
+  }
+
+  var old = $.fn.carousel
+
+  $.fn.carousel             = Plugin
+  $.fn.carousel.Constructor = Carousel
+
+
+  // CAROUSEL NO CONFLICT
+  // ====================
+
+  $.fn.carousel.noConflict = function () {
+    $.fn.carousel = old
+    return this
+  }
+
+
+  // CAROUSEL DATA-API
+  // =================
+
+  var clickHandler = function (e) {
+    var href
+    var $this   = $(this)
+    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
+    if (!$target.hasClass('carousel')) return
+    var options = $.extend({}, $target.data(), $this.data())
+    var slideIndex = $this.attr('data-slide-to')
+    if (slideIndex) options.interval = false
+
+    Plugin.call($target, options)
+
+    if (slideIndex) {
+      $target.data('bs.carousel').to(slideIndex)
+    }
+
+    e.preventDefault()
+  }
+
+  $(document)
+    .on('click.bs.carousel.data-api', '[data-slide]', clickHandler)
+    .on('click.bs.carousel.data-api', '[data-slide-to]', clickHandler)
+
+  $(window).on('load', function () {
+    $('[data-ride="carousel"]').each(function () {
+      var $carousel = $(this)
+      Plugin.call($carousel, $carousel.data())
+    })
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.6
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.6'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.6
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.6'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: modal.js v3.3.6
+ * http://getbootstrap.com/javascript/#modals
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // MODAL CLASS DEFINITION
+  // ======================
+
+  var Modal = function (element, options) {
+    this.options             = options
+    this.$body               = $(document.body)
+    this.$element            = $(element)
+    this.$dialog             = this.$element.find('.modal-dialog')
+    this.$backdrop           = null
+    this.isShown             = null
+    this.originalBodyPad     = null
+    this.scrollbarWidth      = 0
+    this.ignoreBackdropClick = false
+
+    if (this.options.remote) {
+      this.$element
+        .find('.modal-content')
+        .load(this.options.remote, $.proxy(function () {
+          this.$element.trigger('loaded.bs.modal')
+        }, this))
+    }
+  }
+
+  Modal.VERSION  = '3.3.6'
+
+  Modal.TRANSITION_DURATION = 300
+  Modal.BACKDROP_TRANSITION_DURATION = 150
+
+  Modal.DEFAULTS = {
+    backdrop: true,
+    keyboard: true,
+    show: true
+  }
+
+  Modal.prototype.toggle = function (_relatedTarget) {
+    return this.isShown ? this.hide() : this.show(_relatedTarget)
+  }
+
+  Modal.prototype.show = function (_relatedTarget) {
+    var that = this
+    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
+
+    this.$element.trigger(e)
+
+    if (this.isShown || e.isDefaultPrevented()) return
+
+    this.isShown = true
+
+    this.checkScrollbar()
+    this.setScrollbar()
+    this.$body.addClass('modal-open')
+
+    this.escape()
+    this.resize()
+
+    this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
+
+    this.$dialog.on('mousedown.dismiss.bs.modal', function () {
+      that.$element.one('mouseup.dismiss.bs.modal', function (e) {
+        if ($(e.target).is(that.$element)) that.ignoreBackdropClick = true
+      })
+    })
+
+    this.backdrop(function () {
+      var transition = $.support.transition && that.$element.hasClass('fade')
+
+      if (!that.$element.parent().length) {
+        that.$element.appendTo(that.$body) // don't move modals dom position
+      }
+
+      that.$element
+        .show()
+        .scrollTop(0)
+
+      that.adjustDialog()
+
+      if (transition) {
+        that.$element[0].offsetWidth // force reflow
+      }
+
+      that.$element.addClass('in')
+
+      that.enforceFocus()
+
+      var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
+
+      transition ?
+        that.$dialog // wait for modal to slide in
+          .one('bsTransitionEnd', function () {
+            that.$element.trigger('focus').trigger(e)
+          })
+          .emulateTransitionEnd(Modal.TRANSITION_DURATION) :
+        that.$element.trigger('focus').trigger(e)
+    })
+  }
+
+  Modal.prototype.hide = function (e) {
+    if (e) e.preventDefault()
+
+    e = $.Event('hide.bs.modal')
+
+    this.$element.trigger(e)
+
+    if (!this.isShown || e.isDefaultPrevented()) return
+
+    this.isShown = false
+
+    this.escape()
+    this.resize()
+
+    $(document).off('focusin.bs.modal')
+
+    this.$element
+      .removeClass('in')
+      .off('click.dismiss.bs.modal')
+      .off('mouseup.dismiss.bs.modal')
+
+    this.$dialog.off('mousedown.dismiss.bs.modal')
+
+    $.support.transition && this.$element.hasClass('fade') ?
+      this.$element
+        .one('bsTransitionEnd', $.proxy(this.hideModal, this))
+        .emulateTransitionEnd(Modal.TRANSITION_DURATION) :
+      this.hideModal()
+  }
+
+  Modal.prototype.enforceFocus = function () {
+    $(document)
+      .off('focusin.bs.modal') // guard against infinite focus loop
+      .on('focusin.bs.modal', $.proxy(function (e) {
+        if (this.$element[0] !== e.target && !this.$element.has(e.target).length) {
+          this.$element.trigger('focus')
+        }
+      }, this))
+  }
+
+  Modal.prototype.escape = function () {
+    if (this.isShown && this.options.keyboard) {
+      this.$element.on('keydown.dismiss.bs.modal', $.proxy(function (e) {
+        e.which == 27 && this.hide()
+      }, this))
+    } else if (!this.isShown) {
+      this.$element.off('keydown.dismiss.bs.modal')
+    }
+  }
+
+  Modal.prototype.resize = function () {
+    if (this.isShown) {
+      $(window).on('resize.bs.modal', $.proxy(this.handleUpdate, this))
+    } else {
+      $(window).off('resize.bs.modal')
+    }
+  }
+
+  Modal.prototype.hideModal = function () {
+    var that = this
+    this.$element.hide()
+    this.backdrop(function () {
+      that.$body.removeClass('modal-open')
+      that.resetAdjustments()
+      that.resetScrollbar()
+      that.$element.trigger('hidden.bs.modal')
+    })
+  }
+
+  Modal.prototype.removeBackdrop = function () {
+    this.$backdrop && this.$backdrop.remove()
+    this.$backdrop = null
+  }
+
+  Modal.prototype.backdrop = function (callback) {
+    var that = this
+    var animate = this.$element.hasClass('fade') ? 'fade' : ''
+
+    if (this.isShown && this.options.backdrop) {
+      var doAnimate = $.support.transition && animate
+
+      this.$backdrop = $(document.createElement('div'))
+        .addClass('modal-backdrop ' + animate)
+        .appendTo(this.$body)
+
+      this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
+        if (this.ignoreBackdropClick) {
+          this.ignoreBackdropClick = false
+          return
+        }
+        if (e.target !== e.currentTarget) return
+        this.options.backdrop == 'static'
+          ? this.$element[0].focus()
+          : this.hide()
+      }, this))
+
+      if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
+
+      this.$backdrop.addClass('in')
+
+      if (!callback) return
+
+      doAnimate ?
+        this.$backdrop
+          .one('bsTransitionEnd', callback)
+          .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
+        callback()
+
+    } else if (!this.isShown && this.$backdrop) {
+      this.$backdrop.removeClass('in')
+
+      var callbackRemove = function () {
+        that.removeBackdrop()
+        callback && callback()
+      }
+      $.support.transition && this.$element.hasClass('fade') ?
+        this.$backdrop
+          .one('bsTransitionEnd', callbackRemove)
+          .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
+        callbackRemove()
+
+    } else if (callback) {
+      callback()
+    }
+  }
+
+  // these following methods are used to handle overflowing modals
+
+  Modal.prototype.handleUpdate = function () {
+    this.adjustDialog()
+  }
+
+  Modal.prototype.adjustDialog = function () {
+    var modalIsOverflowing = this.$element[0].scrollHeight > document.documentElement.clientHeight
+
+    this.$element.css({
+      paddingLeft:  !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
+      paddingRight: this.bodyIsOverflowing && !modalIsOverflowing ? this.scrollbarWidth : ''
+    })
+  }
+
+  Modal.prototype.resetAdjustments = function () {
+    this.$element.css({
+      paddingLeft: '',
+      paddingRight: ''
+    })
+  }
+
+  Modal.prototype.checkScrollbar = function () {
+    var fullWindowWidth = window.innerWidth
+    if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
+      var documentElementRect = document.documentElement.getBoundingClientRect()
+      fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)
+    }
+    this.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth
+    this.scrollbarWidth = this.measureScrollbar()
+  }
+
+  Modal.prototype.setScrollbar = function () {
+    var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
+    this.originalBodyPad = document.body.style.paddingRight || ''
+    if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
+  }
+
+  Modal.prototype.resetScrollbar = function () {
+    this.$body.css('padding-right', this.originalBodyPad)
+  }
+
+  Modal.prototype.measureScrollbar = function () { // thx walsh
+    var scrollDiv = document.createElement('div')
+    scrollDiv.className = 'modal-scrollbar-measure'
+    this.$body.append(scrollDiv)
+    var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth
+    this.$body[0].removeChild(scrollDiv)
+    return scrollbarWidth
+  }
+
+
+  // MODAL PLUGIN DEFINITION
+  // =======================
+
+  function Plugin(option, _relatedTarget) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.modal')
+      var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
+      if (typeof option == 'string') data[option](_relatedTarget)
+      else if (options.show) data.show(_relatedTarget)
+    })
+  }
+
+  var old = $.fn.modal
+
+  $.fn.modal             = Plugin
+  $.fn.modal.Constructor = Modal
+
+
+  // MODAL NO CONFLICT
+  // =================
+
+  $.fn.modal.noConflict = function () {
+    $.fn.modal = old
+    return this
+  }
+
+
+  // MODAL DATA-API
+  // ==============
+
+  $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
+    var $this   = $(this)
+    var href    = $this.attr('href')
+    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
+    var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+
+    if ($this.is('a')) e.preventDefault()
+
+    $target.one('show.bs.modal', function (showEvent) {
+      if (showEvent.isDefaultPrevented()) return // only register focus restorer if modal will actually get shown
+      $target.one('hidden.bs.modal', function () {
+        $this.is(':visible') && $this.trigger('focus')
+      })
+    })
+    Plugin.call($target, option, this)
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: tooltip.js v3.3.6
+ * http://getbootstrap.com/javascript/#tooltip
+ * Inspired by the original jQuery.tipsy by Jason Frame
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // TOOLTIP PUBLIC CLASS DEFINITION
+  // ===============================
+
+  var Tooltip = function (element, options) {
+    this.type       = null
+    this.options    = null
+    this.enabled    = null
+    this.timeout    = null
+    this.hoverState = null
+    this.$element   = null
+    this.inState    = null
+
+    this.init('tooltip', element, options)
+  }
+
+  Tooltip.VERSION  = '3.3.6'
+
+  Tooltip.TRANSITION_DURATION = 150
+
+  Tooltip.DEFAULTS = {
+    animation: true,
+    placement: 'top',
+    selector: false,
+    template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+    trigger: 'hover focus',
+    title: '',
+    delay: 0,
+    html: false,
+    container: false,
+    viewport: {
+      selector: 'body',
+      padding: 0
+    }
+  }
+
+  Tooltip.prototype.init = function (type, element, options) {
+    this.enabled   = true
+    this.type      = type
+    this.$element  = $(element)
+    this.options   = this.getOptions(options)
+    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    this.inState   = { click: false, hover: false, focus: false }
+
+    if (this.$element[0] instanceof document.constructor && !this.options.selector) {
+      throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
+    }
+
+    var triggers = this.options.trigger.split(' ')
+
+    for (var i = triggers.length; i--;) {
+      var trigger = triggers[i]
+
+      if (trigger == 'click') {
+        this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
+      } else if (trigger != 'manual') {
+        var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin'
+        var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout'
+
+        this.$element.on(eventIn  + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
+        this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
+      }
+    }
+
+    this.options.selector ?
+      (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+      this.fixTitle()
+  }
+
+  Tooltip.prototype.getDefaults = function () {
+    return Tooltip.DEFAULTS
+  }
+
+  Tooltip.prototype.getOptions = function (options) {
+    options = $.extend({}, this.getDefaults(), this.$element.data(), options)
+
+    if (options.delay && typeof options.delay == 'number') {
+      options.delay = {
+        show: options.delay,
+        hide: options.delay
+      }
+    }
+
+    return options
+  }
+
+  Tooltip.prototype.getDelegateOptions = function () {
+    var options  = {}
+    var defaults = this.getDefaults()
+
+    this._options && $.each(this._options, function (key, value) {
+      if (defaults[key] != value) options[key] = value
+    })
+
+    return options
+  }
+
+  Tooltip.prototype.enter = function (obj) {
+    var self = obj instanceof this.constructor ?
+      obj : $(obj.currentTarget).data('bs.' + this.type)
+
+    if (!self) {
+      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
+      $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
+    }
+
+    if (self.tip().hasClass('in') || self.hoverState == 'in') {
+      self.hoverState = 'in'
+      return
+    }
+
+    clearTimeout(self.timeout)
+
+    self.hoverState = 'in'
+
+    if (!self.options.delay || !self.options.delay.show) return self.show()
+
+    self.timeout = setTimeout(function () {
+      if (self.hoverState == 'in') self.show()
+    }, self.options.delay.show)
+  }
+
+  Tooltip.prototype.isInStateTrue = function () {
+    for (var key in this.inState) {
+      if (this.inState[key]) return true
+    }
+
+    return false
+  }
+
+  Tooltip.prototype.leave = function (obj) {
+    var self = obj instanceof this.constructor ?
+      obj : $(obj.currentTarget).data('bs.' + this.type)
+
+    if (!self) {
+      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
+      $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
+    }
+
+    if (self.isInStateTrue()) return
+
+    clearTimeout(self.timeout)
+
+    self.hoverState = 'out'
+
+    if (!self.options.delay || !self.options.delay.hide) return self.hide()
+
+    self.timeout = setTimeout(function () {
+      if (self.hoverState == 'out') self.hide()
+    }, self.options.delay.hide)
+  }
+
+  Tooltip.prototype.show = function () {
+    var e = $.Event('show.bs.' + this.type)
+
+    if (this.hasContent() && this.enabled) {
+      this.$element.trigger(e)
+
+      var inDom = $.contains(this.$element[0].ownerDocument.documentElement, this.$element[0])
+      if (e.isDefaultPrevented() || !inDom) return
+      var that = this
+
+      var $tip = this.tip()
+
+      var tipId = this.getUID(this.type)
+
+      this.setContent()
+      $tip.attr('id', tipId)
+      this.$element.attr('aria-describedby', tipId)
+
+      if (this.options.animation) $tip.addClass('fade')
+
+      var placement = typeof this.options.placement == 'function' ?
+        this.options.placement.call(this, $tip[0], this.$element[0]) :
+        this.options.placement
+
+      var autoToken = /\s?auto?\s?/i
+      var autoPlace = autoToken.test(placement)
+      if (autoPlace) placement = placement.replace(autoToken, '') || 'top'
+
+      $tip
+        .detach()
+        .css({ top: 0, left: 0, display: 'block' })
+        .addClass(placement)
+        .data('bs.' + this.type, this)
+
+      this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+      this.$element.trigger('inserted.bs.' + this.type)
+
+      var pos          = this.getPosition()
+      var actualWidth  = $tip[0].offsetWidth
+      var actualHeight = $tip[0].offsetHeight
+
+      if (autoPlace) {
+        var orgPlacement = placement
+        var viewportDim = this.getPosition(this.$viewport)
+
+        placement = placement == 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
+                    placement == 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
+                    placement == 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
+                    placement == 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
+                    placement
+
+        $tip
+          .removeClass(orgPlacement)
+          .addClass(placement)
+      }
+
+      var calculatedOffset = this.getCalculatedOffset(placement, pos, actualWidth, actualHeight)
+
+      this.applyPlacement(calculatedOffset, placement)
+
+      var complete = function () {
+        var prevHoverState = that.hoverState
+        that.$element.trigger('shown.bs.' + that.type)
+        that.hoverState = null
+
+        if (prevHoverState == 'out') that.leave(that)
+      }
+
+      $.support.transition && this.$tip.hasClass('fade') ?
+        $tip
+          .one('bsTransitionEnd', complete)
+          .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
+        complete()
+    }
+  }
+
+  Tooltip.prototype.applyPlacement = function (offset, placement) {
+    var $tip   = this.tip()
+    var width  = $tip[0].offsetWidth
+    var height = $tip[0].offsetHeight
+
+    // manually read margins because getBoundingClientRect includes difference
+    var marginTop = parseInt($tip.css('margin-top'), 10)
+    var marginLeft = parseInt($tip.css('margin-left'), 10)
+
+    // we must check for NaN for ie 8/9
+    if (isNaN(marginTop))  marginTop  = 0
+    if (isNaN(marginLeft)) marginLeft = 0
+
+    offset.top  += marginTop
+    offset.left += marginLeft
+
+    // $.fn.offset doesn't round pixel values
+    // so we use setOffset directly with our own function B-0
+    $.offset.setOffset($tip[0], $.extend({
+      using: function (props) {
+        $tip.css({
+          top: Math.round(props.top),
+          left: Math.round(props.left)
+        })
+      }
+    }, offset), 0)
+
+    $tip.addClass('in')
+
+    // check to see if placing tip in new offset caused the tip to resize itself
+    var actualWidth  = $tip[0].offsetWidth
+    var actualHeight = $tip[0].offsetHeight
+
+    if (placement == 'top' && actualHeight != height) {
+      offset.top = offset.top + height - actualHeight
+    }
+
+    var delta = this.getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
+
+    if (delta.left) offset.left += delta.left
+    else offset.top += delta.top
+
+    var isVertical          = /top|bottom/.test(placement)
+    var arrowDelta          = isVertical ? delta.left * 2 - width + actualWidth : delta.top * 2 - height + actualHeight
+    var arrowOffsetPosition = isVertical ? 'offsetWidth' : 'offsetHeight'
+
+    $tip.offset(offset)
+    this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
+  }
+
+  Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
+    this.arrow()
+      .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
+      .css(isVertical ? 'top' : 'left', '')
+  }
+
+  Tooltip.prototype.setContent = function () {
+    var $tip  = this.tip()
+    var title = this.getTitle()
+
+    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
+    $tip.removeClass('fade in top bottom left right')
+  }
+
+  Tooltip.prototype.hide = function (callback) {
+    var that = this
+    var $tip = $(this.$tip)
+    var e    = $.Event('hide.bs.' + this.type)
+
+    function complete() {
+      if (that.hoverState != 'in') $tip.detach()
+      that.$element
+        .removeAttr('aria-describedby')
+        .trigger('hidden.bs.' + that.type)
+      callback && callback()
+    }
+
+    this.$element.trigger(e)
+
+    if (e.isDefaultPrevented()) return
+
+    $tip.removeClass('in')
+
+    $.support.transition && $tip.hasClass('fade') ?
+      $tip
+        .one('bsTransitionEnd', complete)
+        .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
+      complete()
+
+    this.hoverState = null
+
+    return this
+  }
+
+  Tooltip.prototype.fixTitle = function () {
+    var $e = this.$element
+    if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
+      $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
+    }
+  }
+
+  Tooltip.prototype.hasContent = function () {
+    return this.getTitle()
+  }
+
+  Tooltip.prototype.getPosition = function ($element) {
+    $element   = $element || this.$element
+
+    var el     = $element[0]
+    var isBody = el.tagName == 'BODY'
+
+    var elRect    = el.getBoundingClientRect()
+    if (elRect.width == null) {
+      // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093
+      elRect = $.extend({}, elRect, { width: elRect.right - elRect.left, height: elRect.bottom - elRect.top })
+    }
+    var elOffset  = isBody ? { top: 0, left: 0 } : $element.offset()
+    var scroll    = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() }
+    var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : null
+
+    return $.extend({}, elRect, scroll, outerDims, elOffset)
+  }
+
+  Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
+    return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2 } :
+           placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 } :
+           placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
+        /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width }
+
+  }
+
+  Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
+    var delta = { top: 0, left: 0 }
+    if (!this.$viewport) return delta
+
+    var viewportPadding = this.options.viewport && this.options.viewport.padding || 0
+    var viewportDimensions = this.getPosition(this.$viewport)
+
+    if (/right|left/.test(placement)) {
+      var topEdgeOffset    = pos.top - viewportPadding - viewportDimensions.scroll
+      var bottomEdgeOffset = pos.top + viewportPadding - viewportDimensions.scroll + actualHeight
+      if (topEdgeOffset < viewportDimensions.top) { // top overflow
+        delta.top = viewportDimensions.top - topEdgeOffset
+      } else if (bottomEdgeOffset > viewportDimensions.top + viewportDimensions.height) { // bottom overflow
+        delta.top = viewportDimensions.top + viewportDimensions.height - bottomEdgeOffset
+      }
+    } else {
+      var leftEdgeOffset  = pos.left - viewportPadding
+      var rightEdgeOffset = pos.left + viewportPadding + actualWidth
+      if (leftEdgeOffset < viewportDimensions.left) { // left overflow
+        delta.left = viewportDimensions.left - leftEdgeOffset
+      } else if (rightEdgeOffset > viewportDimensions.right) { // right overflow
+        delta.left = viewportDimensions.left + viewportDimensions.width - rightEdgeOffset
+      }
+    }
+
+    return delta
+  }
+
+  Tooltip.prototype.getTitle = function () {
+    var title
+    var $e = this.$element
+    var o  = this.options
+
+    title = $e.attr('data-original-title')
+      || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
+
+    return title
+  }
+
+  Tooltip.prototype.getUID = function (prefix) {
+    do prefix += ~~(Math.random() * 1000000)
+    while (document.getElementById(prefix))
+    return prefix
+  }
+
+  Tooltip.prototype.tip = function () {
+    if (!this.$tip) {
+      this.$tip = $(this.options.template)
+      if (this.$tip.length != 1) {
+        throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
+      }
+    }
+    return this.$tip
+  }
+
+  Tooltip.prototype.arrow = function () {
+    return (this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow'))
+  }
+
+  Tooltip.prototype.enable = function () {
+    this.enabled = true
+  }
+
+  Tooltip.prototype.disable = function () {
+    this.enabled = false
+  }
+
+  Tooltip.prototype.toggleEnabled = function () {
+    this.enabled = !this.enabled
+  }
+
+  Tooltip.prototype.toggle = function (e) {
+    var self = this
+    if (e) {
+      self = $(e.currentTarget).data('bs.' + this.type)
+      if (!self) {
+        self = new this.constructor(e.currentTarget, this.getDelegateOptions())
+        $(e.currentTarget).data('bs.' + this.type, self)
+      }
+    }
+
+    if (e) {
+      self.inState.click = !self.inState.click
+      if (self.isInStateTrue()) self.enter(self)
+      else self.leave(self)
+    } else {
+      self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+    }
+  }
+
+  Tooltip.prototype.destroy = function () {
+    var that = this
+    clearTimeout(this.timeout)
+    this.hide(function () {
+      that.$element.off('.' + that.type).removeData('bs.' + that.type)
+      if (that.$tip) {
+        that.$tip.detach()
+      }
+      that.$tip = null
+      that.$arrow = null
+      that.$viewport = null
+    })
+  }
+
+
+  // TOOLTIP PLUGIN DEFINITION
+  // =========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.tooltip')
+      var options = typeof option == 'object' && option
+
+      if (!data && /destroy|hide/.test(option)) return
+      if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.tooltip
+
+  $.fn.tooltip             = Plugin
+  $.fn.tooltip.Constructor = Tooltip
+
+
+  // TOOLTIP NO CONFLICT
+  // ===================
+
+  $.fn.tooltip.noConflict = function () {
+    $.fn.tooltip = old
+    return this
+  }
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: popover.js v3.3.6
+ * http://getbootstrap.com/javascript/#popovers
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // POPOVER PUBLIC CLASS DEFINITION
+  // ===============================
+
+  var Popover = function (element, options) {
+    this.init('popover', element, options)
+  }
+
+  if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
+
+  Popover.VERSION  = '3.3.6'
+
+  Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
+    placement: 'right',
+    trigger: 'click',
+    content: '',
+    template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+  })
+
+
+  // NOTE: POPOVER EXTENDS tooltip.js
+  // ================================
+
+  Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
+
+  Popover.prototype.constructor = Popover
+
+  Popover.prototype.getDefaults = function () {
+    return Popover.DEFAULTS
+  }
+
+  Popover.prototype.setContent = function () {
+    var $tip    = this.tip()
+    var title   = this.getTitle()
+    var content = this.getContent()
+
+    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
+    $tip.find('.popover-content').children().detach().end()[ // we use append for html objects to maintain js events
+      this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
+    ](content)
+
+    $tip.removeClass('fade top bottom left right in')
+
+    // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have to do
+    // this manually by checking the contents.
+    if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
+  }
+
+  Popover.prototype.hasContent = function () {
+    return this.getTitle() || this.getContent()
+  }
+
+  Popover.prototype.getContent = function () {
+    var $e = this.$element
+    var o  = this.options
+
+    return $e.attr('data-content')
+      || (typeof o.content == 'function' ?
+            o.content.call($e[0]) :
+            o.content)
+  }
+
+  Popover.prototype.arrow = function () {
+    return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
+  }
+
+
+  // POPOVER PLUGIN DEFINITION
+  // =========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.popover')
+      var options = typeof option == 'object' && option
+
+      if (!data && /destroy|hide/.test(option)) return
+      if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.popover
+
+  $.fn.popover             = Plugin
+  $.fn.popover.Constructor = Popover
+
+
+  // POPOVER NO CONFLICT
+  // ===================
+
+  $.fn.popover.noConflict = function () {
+    $.fn.popover = old
+    return this
+  }
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: scrollspy.js v3.3.6
+ * http://getbootstrap.com/javascript/#scrollspy
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // SCROLLSPY CLASS DEFINITION
+  // ==========================
+
+  function ScrollSpy(element, options) {
+    this.$body          = $(document.body)
+    this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+    this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+    this.selector       = (this.options.target || '') + ' .nav li > a'
+    this.offsets        = []
+    this.targets        = []
+    this.activeTarget   = null
+    this.scrollHeight   = 0
+
+    this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+    this.refresh()
+    this.process()
+  }
+
+  ScrollSpy.VERSION  = '3.3.6'
+
+  ScrollSpy.DEFAULTS = {
+    offset: 10
+  }
+
+  ScrollSpy.prototype.getScrollHeight = function () {
+    return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+  }
+
+  ScrollSpy.prototype.refresh = function () {
+    var that          = this
+    var offsetMethod  = 'offset'
+    var offsetBase    = 0
+
+    this.offsets      = []
+    this.targets      = []
+    this.scrollHeight = this.getScrollHeight()
+
+    if (!$.isWindow(this.$scrollElement[0])) {
+      offsetMethod = 'position'
+      offsetBase   = this.$scrollElement.scrollTop()
+    }
+
+    this.$body
+      .find(this.selector)
+      .map(function () {
+        var $el   = $(this)
+        var href  = $el.data('target') || $el.attr('href')
+        var $href = /^#./.test(href) && $(href)
+
+        return ($href
+          && $href.length
+          && $href.is(':visible')
+          && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+      })
+      .sort(function (a, b) { return a[0] - b[0] })
+      .each(function () {
+        that.offsets.push(this[0])
+        that.targets.push(this[1])
+      })
+  }
+
+  ScrollSpy.prototype.process = function () {
+    var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+    var scrollHeight = this.getScrollHeight()
+    var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+    var offsets      = this.offsets
+    var targets      = this.targets
+    var activeTarget = this.activeTarget
+    var i
+
+    if (this.scrollHeight != scrollHeight) {
+      this.refresh()
+    }
+
+    if (scrollTop >= maxScroll) {
+      return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+    }
+
+    if (activeTarget && scrollTop < offsets[0]) {
+      this.activeTarget = null
+      return this.clear()
+    }
+
+    for (i = offsets.length; i--;) {
+      activeTarget != targets[i]
+        && scrollTop >= offsets[i]
+        && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
+        && this.activate(targets[i])
+    }
+  }
+
+  ScrollSpy.prototype.activate = function (target) {
+    this.activeTarget = target
+
+    this.clear()
+
+    var selector = this.selector +
+      '[data-target="' + target + '"],' +
+      this.selector + '[href="' + target + '"]'
+
+    var active = $(selector)
+      .parents('li')
+      .addClass('active')
+
+    if (active.parent('.dropdown-menu').length) {
+      active = active
+        .closest('li.dropdown')
+        .addClass('active')
+    }
+
+    active.trigger('activate.bs.scrollspy')
+  }
+
+  ScrollSpy.prototype.clear = function () {
+    $(this.selector)
+      .parentsUntil(this.options.target, '.active')
+      .removeClass('active')
+  }
+
+
+  // SCROLLSPY PLUGIN DEFINITION
+  // ===========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.scrollspy')
+      var options = typeof option == 'object' && option
+
+      if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.scrollspy
+
+  $.fn.scrollspy             = Plugin
+  $.fn.scrollspy.Constructor = ScrollSpy
+
+
+  // SCROLLSPY NO CONFLICT
+  // =====================
+
+  $.fn.scrollspy.noConflict = function () {
+    $.fn.scrollspy = old
+    return this
+  }
+
+
+  // SCROLLSPY DATA-API
+  // ==================
+
+  $(window).on('load.bs.scrollspy.data-api', function () {
+    $('[data-spy="scroll"]').each(function () {
+      var $spy = $(this)
+      Plugin.call($spy, $spy.data())
+    })
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: tab.js v3.3.6
+ * http://getbootstrap.com/javascript/#tabs
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // TAB CLASS DEFINITION
+  // ====================
+
+  var Tab = function (element) {
+    // jscs:disable requireDollarBeforejQueryAssignment
+    this.element = $(element)
+    // jscs:enable requireDollarBeforejQueryAssignment
+  }
+
+  Tab.VERSION = '3.3.6'
+
+  Tab.TRANSITION_DURATION = 150
+
+  Tab.prototype.show = function () {
+    var $this    = this.element
+    var $ul      = $this.closest('ul:not(.dropdown-menu)')
+    var selector = $this.data('target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    if ($this.parent('li').hasClass('active')) return
+
+    var $previous = $ul.find('.active:last a')
+    var hideEvent = $.Event('hide.bs.tab', {
+      relatedTarget: $this[0]
+    })
+    var showEvent = $.Event('show.bs.tab', {
+      relatedTarget: $previous[0]
+    })
+
+    $previous.trigger(hideEvent)
+    $this.trigger(showEvent)
+
+    if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
+
+    var $target = $(selector)
+
+    this.activate($this.closest('li'), $ul)
+    this.activate($target, $target.parent(), function () {
+      $previous.trigger({
+        type: 'hidden.bs.tab',
+        relatedTarget: $this[0]
+      })
+      $this.trigger({
+        type: 'shown.bs.tab',
+        relatedTarget: $previous[0]
+      })
+    })
+  }
+
+  Tab.prototype.activate = function (element, container, callback) {
+    var $active    = container.find('> .active')
+    var transition = callback
+      && $.support.transition
+      && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
+
+    function next() {
+      $active
+        .removeClass('active')
+        .find('> .dropdown-menu > .active')
+          .removeClass('active')
+        .end()
+        .find('[data-toggle="tab"]')
+          .attr('aria-expanded', false)
+
+      element
+        .addClass('active')
+        .find('[data-toggle="tab"]')
+          .attr('aria-expanded', true)
+
+      if (transition) {
+        element[0].offsetWidth // reflow for transition
+        element.addClass('in')
+      } else {
+        element.removeClass('fade')
+      }
+
+      if (element.parent('.dropdown-menu').length) {
+        element
+          .closest('li.dropdown')
+            .addClass('active')
+          .end()
+          .find('[data-toggle="tab"]')
+            .attr('aria-expanded', true)
+      }
+
+      callback && callback()
+    }
+
+    $active.length && transition ?
+      $active
+        .one('bsTransitionEnd', next)
+        .emulateTransitionEnd(Tab.TRANSITION_DURATION) :
+      next()
+
+    $active.removeClass('in')
+  }
+
+
+  // TAB PLUGIN DEFINITION
+  // =====================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.tab')
+
+      if (!data) $this.data('bs.tab', (data = new Tab(this)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.tab
+
+  $.fn.tab             = Plugin
+  $.fn.tab.Constructor = Tab
+
+
+  // TAB NO CONFLICT
+  // ===============
+
+  $.fn.tab.noConflict = function () {
+    $.fn.tab = old
+    return this
+  }
+
+
+  // TAB DATA-API
+  // ============
+
+  var clickHandler = function (e) {
+    e.preventDefault()
+    Plugin.call($(this), 'show')
+  }
+
+  $(document)
+    .on('click.bs.tab.data-api', '[data-toggle="tab"]', clickHandler)
+    .on('click.bs.tab.data-api', '[data-toggle="pill"]', clickHandler)
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: affix.js v3.3.6
+ * http://getbootstrap.com/javascript/#affix
+ * ========================================================================
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // AFFIX CLASS DEFINITION
+  // ======================
+
+  var Affix = function (element, options) {
+    this.options = $.extend({}, Affix.DEFAULTS, options)
+
+    this.$target = $(this.options.target)
+      .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
+      .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
+
+    this.$element     = $(element)
+    this.affixed      = null
+    this.unpin        = null
+    this.pinnedOffset = null
+
+    this.checkPosition()
+  }
+
+  Affix.VERSION  = '3.3.6'
+
+  Affix.RESET    = 'affix affix-top affix-bottom'
+
+  Affix.DEFAULTS = {
+    offset: 0,
+    target: window
+  }
+
+  Affix.prototype.getState = function (scrollHeight, height, offsetTop, offsetBottom) {
+    var scrollTop    = this.$target.scrollTop()
+    var position     = this.$element.offset()
+    var targetHeight = this.$target.height()
+
+    if (offsetTop != null && this.affixed == 'top') return scrollTop < offsetTop ? 'top' : false
+
+    if (this.affixed == 'bottom') {
+      if (offsetTop != null) return (scrollTop + this.unpin <= position.top) ? false : 'bottom'
+      return (scrollTop + targetHeight <= scrollHeight - offsetBottom) ? false : 'bottom'
+    }
+
+    var initializing   = this.affixed == null
+    var colliderTop    = initializing ? scrollTop : position.top
+    var colliderHeight = initializing ? targetHeight : height
+
+    if (offsetTop != null && scrollTop <= offsetTop) return 'top'
+    if (offsetBottom != null && (colliderTop + colliderHeight >= scrollHeight - offsetBottom)) return 'bottom'
+
+    return false
+  }
+
+  Affix.prototype.getPinnedOffset = function () {
+    if (this.pinnedOffset) return this.pinnedOffset
+    this.$element.removeClass(Affix.RESET).addClass('affix')
+    var scrollTop = this.$target.scrollTop()
+    var position  = this.$element.offset()
+    return (this.pinnedOffset = position.top - scrollTop)
+  }
+
+  Affix.prototype.checkPositionWithEventLoop = function () {
+    setTimeout($.proxy(this.checkPosition, this), 1)
+  }
+
+  Affix.prototype.checkPosition = function () {
+    if (!this.$element.is(':visible')) return
+
+    var height       = this.$element.height()
+    var offset       = this.options.offset
+    var offsetTop    = offset.top
+    var offsetBottom = offset.bottom
+    var scrollHeight = Math.max($(document).height(), $(document.body).height())
+
+    if (typeof offset != 'object')         offsetBottom = offsetTop = offset
+    if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
+    if (typeof offsetBottom == 'function') offsetBottom = offset.bottom(this.$element)
+
+    var affix = this.getState(scrollHeight, height, offsetTop, offsetBottom)
+
+    if (this.affixed != affix) {
+      if (this.unpin != null) this.$element.css('top', '')
+
+      var affixType = 'affix' + (affix ? '-' + affix : '')
+      var e         = $.Event(affixType + '.bs.affix')
+
+      this.$element.trigger(e)
+
+      if (e.isDefaultPrevented()) return
+
+      this.affixed = affix
+      this.unpin = affix == 'bottom' ? this.getPinnedOffset() : null
+
+      this.$element
+        .removeClass(Affix.RESET)
+        .addClass(affixType)
+        .trigger(affixType.replace('affix', 'affixed') + '.bs.affix')
+    }
+
+    if (affix == 'bottom') {
+      this.$element.offset({
+        top: scrollHeight - height - offsetBottom
+      })
+    }
+  }
+
+
+  // AFFIX PLUGIN DEFINITION
+  // =======================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.affix')
+      var options = typeof option == 'object' && option
+
+      if (!data) $this.data('bs.affix', (data = new Affix(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.affix
+
+  $.fn.affix             = Plugin
+  $.fn.affix.Constructor = Affix
+
+
+  // AFFIX NO CONFLICT
+  // =================
+
+  $.fn.affix.noConflict = function () {
+    $.fn.affix = old
+    return this
+  }
+
+
+  // AFFIX DATA-API
+  // ==============
+
+  $(window).on('load', function () {
+    $('[data-spy="affix"]').each(function () {
+      var $spy = $(this)
+      var data = $spy.data()
+
+      data.offset = data.offset || {}
+
+      if (data.offsetBottom != null) data.offset.bottom = data.offsetBottom
+      if (data.offsetTop    != null) data.offset.top    = data.offsetTop
+
+      Plugin.call($spy, data)
+    })
+  })
+
+}(jQuery);
+
+/*
+ HTML5 Shiv v3.6.2 | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
+*/
+(function(l,f){function m(){var a=e.elements;return"string"==typeof a?a.split(" "):a}function i(a){var b=n[a[o]];b||(b={},h++,a[o]=h,n[h]=b);return b}function p(a,b,c){b||(b=f);if(g)return b.createElement(a);c||(c=i(b));b=c.cache[a]?c.cache[a].cloneNode():r.test(a)?(c.cache[a]=c.createElem(a)).cloneNode():c.createElem(a);return b.canHaveChildren&&!s.test(a)?c.frag.appendChild(b):b}function t(a,b){if(!b.cache)b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag();
+a.createElement=function(c){return!e.shivMethods?b.createElem(c):p(c,a,b)};a.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+m().join().replace(/\w+/g,function(a){b.createElem(a);b.frag.createElement(a);return'c("'+a+'")'})+");return n}")(e,b.frag)}function q(a){a||(a=f);var b=i(a);if(e.shivCSS&&!j&&!b.hasCSS){var c,d=a;c=d.createElement("p");d=d.getElementsByTagName("head")[0]||d.documentElement;c.innerHTML="x<style>article,aside,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}</style>";
+c=d.insertBefore(c.lastChild,d.firstChild);b.hasCSS=!!c}g||t(a,b);return a}var k=l.html5||{},s=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,r=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,j,o="_html5shiv",h=0,n={},g;(function(){try{var a=f.createElement("a");a.innerHTML="<xyz></xyz>";j="hidden"in a;var b;if(!(b=1==a.childNodes.length)){f.createElement("a");var c=f.createDocumentFragment();b="undefined"==typeof c.cloneNode||
+"undefined"==typeof c.createDocumentFragment||"undefined"==typeof c.createElement}g=b}catch(d){g=j=!0}})();var e={elements:k.elements||"abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup main mark meter nav output progress section summary time video",version:"3.6.2",shivCSS:!1!==k.shivCSS,supportsUnknownElements:g,shivMethods:!1!==k.shivMethods,type:"default",shivDocument:q,createElement:p,createDocumentFragment:function(a,b){a||(a=f);if(g)return a.createDocumentFragment();
+for(var b=b||i(a),c=b.frag.cloneNode(),d=0,e=m(),h=e.length;d<h;d++)c.createElement(e[d]);return c}};l.html5=e;q(f)})(this,document);
+
+/*!
+ * JavaScript Cookie v2.1.0
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+(function (factory) {
+	if (typeof define === 'function' && define.amd) {
+		define(factory);
+	} else if (typeof exports === 'object') {
+		module.exports = factory();
+	} else {
+		var _OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = _OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				return (document.cookie = [
+					key, '=', value,
+					attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+					attributes.path    && '; path=' + attributes.path,
+					attributes.domain  && '; domain=' + attributes.domain,
+					attributes.secure ? '; secure' : ''
+				].join(''));
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var name = parts[0].replace(rdecode, decodeURIComponent);
+				var cookie = parts.slice(1).join('=');
+
+				if (cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.get = api.set = api;
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
+/*! Respond.js v1.4.2: min/max-width media query polyfill
+ * Copyright 2014 Scott Jehl
+ * Licensed under MIT
+ * http://j.mp/respondjs */
+
+!function(a){"use strict";a.matchMedia=a.matchMedia||function(a){var b,c=a.documentElement,d=c.firstElementChild||c.firstChild,e=a.createElement("body"),f=a.createElement("div");return f.id="mq-test-1",f.style.cssText="position:absolute;top:-100em",e.style.background="none",e.appendChild(f),function(a){return f.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',c.insertBefore(e,d),b=42===f.offsetWidth,c.removeChild(e),{matches:b,media:a}}}(a.document)}(this),function(a){"use strict";function b(){v(!0)}var c={};a.respond=c,c.update=function(){};var d=[],e=function(){var b=!1;try{b=new a.XMLHttpRequest}catch(c){b=new a.ActiveXObject("Microsoft.XMLHTTP")}return function(){return b}}(),f=function(a,b){var c=e();c&&(c.open("GET",a,!0),c.onreadystatechange=function(){4!==c.readyState||200!==c.status&&304!==c.status||b(c.responseText)},4!==c.readyState&&c.send(null))},g=function(a){return a.replace(c.regex.minmaxwh,"").match(c.regex.other)};if(c.ajax=f,c.queue=d,c.unsupportedmq=g,c.regex={media:/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi,keyframes:/@(?:\-(?:o|moz|webkit)\-)?keyframes[^\{]+\{(?:[^\{\}]*\{[^\}\{]*\})+[^\}]*\}/gi,comments:/\/\*[^*]*\*+([^/][^*]*\*+)*\//gi,urls:/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,findStyles:/@media *([^\{]+)\{([\S\s]+?)$/,only:/(only\s+)?([a-zA-Z]+)\s?/,minw:/\(\s*min\-width\s*:\s*(\s*[0-9\.]+)(px|em)\s*\)/,maxw:/\(\s*max\-width\s*:\s*(\s*[0-9\.]+)(px|em)\s*\)/,minmaxwh:/\(\s*m(in|ax)\-(height|width)\s*:\s*(\s*[0-9\.]+)(px|em)\s*\)/gi,other:/\([^\)]*\)/g},c.mediaQueriesSupported=a.matchMedia&&null!==a.matchMedia("only all")&&a.matchMedia("only all").matches,!c.mediaQueriesSupported){var h,i,j,k=a.document,l=k.documentElement,m=[],n=[],o=[],p={},q=30,r=k.getElementsByTagName("head")[0]||l,s=k.getElementsByTagName("base")[0],t=r.getElementsByTagName("link"),u=function(){var a,b=k.createElement("div"),c=k.body,d=l.style.fontSize,e=c&&c.style.fontSize,f=!1;return b.style.cssText="position:absolute;font-size:1em;width:1em",c||(c=f=k.createElement("body"),c.style.background="none"),l.style.fontSize="100%",c.style.fontSize="100%",c.appendChild(b),f&&l.insertBefore(c,l.firstChild),a=b.offsetWidth,f?l.removeChild(c):c.removeChild(b),l.style.fontSize=d,e&&(c.style.fontSize=e),a=j=parseFloat(a)},v=function(b){var c="clientWidth",d=l[c],e="CSS1Compat"===k.compatMode&&d||k.body[c]||d,f={},g=t[t.length-1],p=(new Date).getTime();if(b&&h&&q>p-h)return a.clearTimeout(i),i=a.setTimeout(v,q),void 0;h=p;for(var s in m)if(m.hasOwnProperty(s)){var w=m[s],x=w.minw,y=w.maxw,z=null===x,A=null===y,B="em";x&&(x=parseFloat(x)*(x.indexOf(B)>-1?j||u():1)),y&&(y=parseFloat(y)*(y.indexOf(B)>-1?j||u():1)),w.hasquery&&(z&&A||!(z||e>=x)||!(A||y>=e))||(f[w.media]||(f[w.media]=[]),f[w.media].push(n[w.rules]))}for(var C in o)o.hasOwnProperty(C)&&o[C]&&o[C].parentNode===r&&r.removeChild(o[C]);o.length=0;for(var D in f)if(f.hasOwnProperty(D)){var E=k.createElement("style"),F=f[D].join("\n");E.type="text/css",E.media=D,r.insertBefore(E,g.nextSibling),E.styleSheet?E.styleSheet.cssText=F:E.appendChild(k.createTextNode(F)),o.push(E)}},w=function(a,b,d){var e=a.replace(c.regex.comments,"").replace(c.regex.keyframes,"").match(c.regex.media),f=e&&e.length||0;b=b.substring(0,b.lastIndexOf("/"));var h=function(a){return a.replace(c.regex.urls,"$1"+b+"$2$3")},i=!f&&d;b.length&&(b+="/"),i&&(f=1);for(var j=0;f>j;j++){var k,l,o,p;i?(k=d,n.push(h(a))):(k=e[j].match(c.regex.findStyles)&&RegExp.$1,n.push(RegExp.$2&&h(RegExp.$2))),o=k.split(","),p=o.length;for(var q=0;p>q;q++)l=o[q],g(l)||m.push({media:l.split("(")[0].match(c.regex.only)&&RegExp.$2||"all",rules:n.length-1,hasquery:l.indexOf("(")>-1,minw:l.match(c.regex.minw)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:l.match(c.regex.maxw)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}v()},x=function(){if(d.length){var b=d.shift();f(b.href,function(c){w(c,b.href,b.media),p[b.href]=!0,a.setTimeout(function(){x()},0)})}},y=function(){for(var b=0;b<t.length;b++){var c=t[b],e=c.href,f=c.media,g=c.rel&&"stylesheet"===c.rel.toLowerCase();e&&g&&!p[e]&&(c.styleSheet&&c.styleSheet.rawCssText?(w(c.styleSheet.rawCssText,e,f),p[e]=!0):(!/^([a-zA-Z:]*\/\/)/.test(e)&&!s||e.replace(RegExp.$1,"").split("/")[0]===a.location.host)&&("//"===e.substring(0,2)&&(e=a.location.protocol+e),d.push({href:e,media:f})))}x()};y(),c.update=y,c.getEmValue=u,a.addEventListener?a.addEventListener("resize",b,!1):a.attachEvent&&a.attachEvent("onresize",b)}}(this);
+/*!
+ * screenfull
+ * v3.0.0 - 2015-11-24
+ * (c) Sindre Sorhus; MIT License
+ */
+(function () {
+    'use strict';
+
+    var isCommonjs = typeof module !== 'undefined' && module.exports;
+    var keyboardAllowed = typeof Element !== 'undefined' && 'ALLOW_KEYBOARD_INPUT' in Element;
+
+    var fn = (function () {
+        var val;
+        var valLength;
+
+        var fnMap = [
+            [
+                'requestFullscreen',
+                'exitFullscreen',
+                'fullscreenElement',
+                'fullscreenEnabled',
+                'fullscreenchange',
+                'fullscreenerror'
+            ],
+            // new WebKit
+            [
+                'webkitRequestFullscreen',
+                'webkitExitFullscreen',
+                'webkitFullscreenElement',
+                'webkitFullscreenEnabled',
+                'webkitfullscreenchange',
+                'webkitfullscreenerror'
+
+            ],
+            // old WebKit (Safari 5.1)
+            [
+                'webkitRequestFullScreen',
+                'webkitCancelFullScreen',
+                'webkitCurrentFullScreenElement',
+                'webkitCancelFullScreen',
+                'webkitfullscreenchange',
+                'webkitfullscreenerror'
+
+            ],
+            [
+                'mozRequestFullScreen',
+                'mozCancelFullScreen',
+                'mozFullScreenElement',
+                'mozFullScreenEnabled',
+                'mozfullscreenchange',
+                'mozfullscreenerror'
+            ],
+            [
+                'msRequestFullscreen',
+                'msExitFullscreen',
+                'msFullscreenElement',
+                'msFullscreenEnabled',
+                'MSFullscreenChange',
+                'MSFullscreenError'
+            ]
+        ];
+
+        var i = 0;
+        var l = fnMap.length;
+        var ret = {};
+
+        for (; i < l; i++) {
+            val = fnMap[i];
+            if (val && val[1] in document) {
+                for (i = 0, valLength = val.length; i < valLength; i++) {
+                    ret[fnMap[0][i]] = val[i];
+                }
+                return ret;
+            }
+        }
+
+        return false;
+    })();
+
+    var screenfull = {
+        request: function (elem) {
+            var request = fn.requestFullscreen;
+
+            elem = elem || document.documentElement;
+
+            // Work around Safari 5.1 bug: reports support for
+            // keyboard in fullscreen even though it doesn't.
+            // Browser sniffing, since the alternative with
+            // setTimeout is even worse.
+            if (/5\.1[\.\d]* Safari/.test(navigator.userAgent)) {
+                elem[request]();
+            } else {
+                elem[request](keyboardAllowed && Element.ALLOW_KEYBOARD_INPUT);
+            }
+        },
+        exit: function () {
+            document[fn.exitFullscreen]();
+        },
+        toggle: function (elem) {
+            if (this.isFullscreen) {
+                this.exit();
+            } else {
+                this.request(elem);
+            }
+        },
+        raw: fn
+    };
+
+    if (!fn) {
+        if (isCommonjs) {
+            module.exports = false;
+        } else {
+            window.screenfull = false;
+        }
+
+        return;
+    }
+
+    Object.defineProperties(screenfull, {
+        isFullscreen: {
+            get: function () {
+                return Boolean(document[fn.fullscreenElement]);
+            }
+        },
+        element: {
+            enumerable: true,
+            get: function () {
+                return document[fn.fullscreenElement];
+            }
+        },
+        enabled: {
+            enumerable: true,
+            get: function () {
+                // Coerce to boolean in case of old WebKit
+                return Boolean(document[fn.fullscreenEnabled]);
+            }
+        }
+    });
+
+    if (isCommonjs) {
+        module.exports = screenfull;
+    } else {
+        window.screenfull = screenfull;
+    }
+})();
+
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.io=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+
+module.exports = _dereq_('./lib/');
+
+},{"./lib/":2}],2:[function(_dereq_,module,exports){
+
+/**
+ * Module dependencies.
+ */
+
+var url = _dereq_('./url');
+var parser = _dereq_('socket.io-parser');
+var Manager = _dereq_('./manager');
+var debug = _dereq_('debug')('socket.io-client');
+
+/**
+ * Module exports.
+ */
+
+module.exports = exports = lookup;
+
+/**
+ * Managers cache.
+ */
+
+var cache = exports.managers = {};
+
+/**
+ * Looks up an existing `Manager` for multiplexing.
+ * If the user summons:
+ *
+ *   `io('http://localhost/a');`
+ *   `io('http://localhost/b');`
+ *
+ * We reuse the existing instance based on same scheme/port/host,
+ * and we initialize sockets for each namespace.
+ *
+ * @api public
+ */
+
+function lookup(uri, opts) {
+  if (typeof uri == 'object') {
+    opts = uri;
+    uri = undefined;
+  }
+
+  opts = opts || {};
+
+  var parsed = url(uri);
+  var source = parsed.source;
+  var id = parsed.id;
+  var path = parsed.path;
+  var sameNamespace = (cache[id] && cache[id].nsps[path] &&
+                       path == cache[id].nsps[path].nsp);
+  var newConnection = opts.forceNew || opts['force new connection'] ||
+                      false === opts.multiplex || sameNamespace;
+
+  var io;
+
+  if (newConnection) {
+    debug('ignoring socket cache for %s', source);
+    io = Manager(source, opts);
+  } else {
+    if (!cache[id]) {
+      debug('new io instance for %s', source);
+      cache[id] = Manager(source, opts);
+    }
+    io = cache[id];
+  }
+
+  return io.socket(parsed.path);
+}
+
+/**
+ * Protocol version.
+ *
+ * @api public
+ */
+
+exports.protocol = parser.protocol;
+
+/**
+ * `connect`.
+ *
+ * @param {String} uri
+ * @api public
+ */
+
+exports.connect = lookup;
+
+/**
+ * Expose constructors for standalone build.
+ *
+ * @api public
+ */
+
+exports.Manager = _dereq_('./manager');
+exports.Socket = _dereq_('./socket');
+
+},{"./manager":3,"./socket":5,"./url":6,"debug":10,"socket.io-parser":44}],3:[function(_dereq_,module,exports){
+
+/**
+ * Module dependencies.
+ */
+
+var url = _dereq_('./url');
+var eio = _dereq_('engine.io-client');
+var Socket = _dereq_('./socket');
+var Emitter = _dereq_('component-emitter');
+var parser = _dereq_('socket.io-parser');
+var on = _dereq_('./on');
+var bind = _dereq_('component-bind');
+var object = _dereq_('object-component');
+var debug = _dereq_('debug')('socket.io-client:manager');
+var indexOf = _dereq_('indexof');
+var Backoff = _dereq_('backo2');
+
+/**
+ * Module exports
+ */
+
+module.exports = Manager;
+
+/**
+ * `Manager` constructor.
+ *
+ * @param {String} engine instance or engine uri/opts
+ * @param {Object} options
+ * @api public
+ */
+
+function Manager(uri, opts){
+  if (!(this instanceof Manager)) return new Manager(uri, opts);
+  if (uri && ('object' == typeof uri)) {
+    opts = uri;
+    uri = undefined;
+  }
+  opts = opts || {};
+
+  opts.path = opts.path || '/socket.io';
+  this.nsps = {};
+  this.subs = [];
+  this.opts = opts;
+  this.reconnection(opts.reconnection !== false);
+  this.reconnectionAttempts(opts.reconnectionAttempts || Infinity);
+  this.reconnectionDelay(opts.reconnectionDelay || 1000);
+  this.reconnectionDelayMax(opts.reconnectionDelayMax || 5000);
+  this.randomizationFactor(opts.randomizationFactor || 0.5);
+  this.backoff = new Backoff({
+    min: this.reconnectionDelay(),
+    max: this.reconnectionDelayMax(),
+    jitter: this.randomizationFactor()
+  });
+  this.timeout(null == opts.timeout ? 20000 : opts.timeout);
+  this.readyState = 'closed';
+  this.uri = uri;
+  this.connected = [];
+  this.encoding = false;
+  this.packetBuffer = [];
+  this.encoder = new parser.Encoder();
+  this.decoder = new parser.Decoder();
+  this.autoConnect = opts.autoConnect !== false;
+  if (this.autoConnect) this.open();
+}
+
+/**
+ * Propagate given event to sockets and emit on `this`
+ *
+ * @api private
+ */
+
+Manager.prototype.emitAll = function() {
+  this.emit.apply(this, arguments);
+  for (var nsp in this.nsps) {
+    this.nsps[nsp].emit.apply(this.nsps[nsp], arguments);
+  }
+};
+
+/**
+ * Update `socket.id` of all sockets
+ *
+ * @api private
+ */
+
+Manager.prototype.updateSocketIds = function(){
+  for (var nsp in this.nsps) {
+    this.nsps[nsp].id = this.engine.id;
+  }
+};
+
+/**
+ * Mix in `Emitter`.
+ */
+
+Emitter(Manager.prototype);
+
+/**
+ * Sets the `reconnection` config.
+ *
+ * @param {Boolean} true/false if it should automatically reconnect
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.reconnection = function(v){
+  if (!arguments.length) return this._reconnection;
+  this._reconnection = !!v;
+  return this;
+};
+
+/**
+ * Sets the reconnection attempts config.
+ *
+ * @param {Number} max reconnection attempts before giving up
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.reconnectionAttempts = function(v){
+  if (!arguments.length) return this._reconnectionAttempts;
+  this._reconnectionAttempts = v;
+  return this;
+};
+
+/**
+ * Sets the delay between reconnections.
+ *
+ * @param {Number} delay
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.reconnectionDelay = function(v){
+  if (!arguments.length) return this._reconnectionDelay;
+  this._reconnectionDelay = v;
+  this.backoff && this.backoff.setMin(v);
+  return this;
+};
+
+Manager.prototype.randomizationFactor = function(v){
+  if (!arguments.length) return this._randomizationFactor;
+  this._randomizationFactor = v;
+  this.backoff && this.backoff.setJitter(v);
+  return this;
+};
+
+/**
+ * Sets the maximum delay between reconnections.
+ *
+ * @param {Number} delay
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.reconnectionDelayMax = function(v){
+  if (!arguments.length) return this._reconnectionDelayMax;
+  this._reconnectionDelayMax = v;
+  this.backoff && this.backoff.setMax(v);
+  return this;
+};
+
+/**
+ * Sets the connection timeout. `false` to disable
+ *
+ * @return {Manager} self or value
+ * @api public
+ */
+
+Manager.prototype.timeout = function(v){
+  if (!arguments.length) return this._timeout;
+  this._timeout = v;
+  return this;
+};
+
+/**
+ * Starts trying to reconnect if reconnection is enabled and we have not
+ * started reconnecting yet
+ *
+ * @api private
+ */
+
+Manager.prototype.maybeReconnectOnOpen = function() {
+  // Only try to reconnect if it's the first time we're connecting
+  if (!this.reconnecting && this._reconnection && this.backoff.attempts === 0) {
+    // keeps reconnection from firing twice for the same reconnection loop
+    this.reconnect();
+  }
+};
+
+
+/**
+ * Sets the current transport `socket`.
+ *
+ * @param {Function} optional, callback
+ * @return {Manager} self
+ * @api public
+ */
+
+Manager.prototype.open =
+Manager.prototype.connect = function(fn){
+  debug('readyState %s', this.readyState);
+  if (~this.readyState.indexOf('open')) return this;
+
+  debug('opening %s', this.uri);
+  this.engine = eio(this.uri, this.opts);
+  var socket = this.engine;
+  var self = this;
+  this.readyState = 'opening';
+  this.skipReconnect = false;
+
+  // emit `open`
+  var openSub = on(socket, 'open', function() {
+    self.onopen();
+    fn && fn();
+  });
+
+  // emit `connect_error`
+  var errorSub = on(socket, 'error', function(data){
+    debug('connect_error');
+    self.cleanup();
+    self.readyState = 'closed';
+    self.emitAll('connect_error', data);
+    if (fn) {
+      var err = new Error('Connection error');
+      err.data = data;
+      fn(err);
+    } else {
+      // Only do this if there is no fn to handle the error
+      self.maybeReconnectOnOpen();
+    }
+  });
+
+  // emit `connect_timeout`
+  if (false !== this._timeout) {
+    var timeout = this._timeout;
+    debug('connect attempt will timeout after %d', timeout);
+
+    // set timer
+    var timer = setTimeout(function(){
+      debug('connect attempt timed out after %d', timeout);
+      openSub.destroy();
+      socket.close();
+      socket.emit('error', 'timeout');
+      self.emitAll('connect_timeout', timeout);
+    }, timeout);
+
+    this.subs.push({
+      destroy: function(){
+        clearTimeout(timer);
+      }
+    });
+  }
+
+  this.subs.push(openSub);
+  this.subs.push(errorSub);
+
+  return this;
+};
+
+/**
+ * Called upon transport open.
+ *
+ * @api private
+ */
+
+Manager.prototype.onopen = function(){
+  debug('open');
+
+  // clear old subs
+  this.cleanup();
+
+  // mark as open
+  this.readyState = 'open';
+  this.emit('open');
+
+  // add new subs
+  var socket = this.engine;
+  this.subs.push(on(socket, 'data', bind(this, 'ondata')));
+  this.subs.push(on(this.decoder, 'decoded', bind(this, 'ondecoded')));
+  this.subs.push(on(socket, 'error', bind(this, 'onerror')));
+  this.subs.push(on(socket, 'close', bind(this, 'onclose')));
+};
+
+/**
+ * Called with data.
+ *
+ * @api private
+ */
+
+Manager.prototype.ondata = function(data){
+  this.decoder.add(data);
+};
+
+/**
+ * Called when parser fully decodes a packet.
+ *
+ * @api private
+ */
+
+Manager.prototype.ondecoded = function(packet) {
+  this.emit('packet', packet);
+};
+
+/**
+ * Called upon socket error.
+ *
+ * @api private
+ */
+
+Manager.prototype.onerror = function(err){
+  debug('error', err);
+  this.emitAll('error', err);
+};
+
+/**
+ * Creates a new socket for the given `nsp`.
+ *
+ * @return {Socket}
+ * @api public
+ */
+
+Manager.prototype.socket = function(nsp){
+  var socket = this.nsps[nsp];
+  if (!socket) {
+    socket = new Socket(this, nsp);
+    this.nsps[nsp] = socket;
+    var self = this;
+    socket.on('connect', function(){
+      socket.id = self.engine.id;
+      if (!~indexOf(self.connected, socket)) {
+        self.connected.push(socket);
+      }
+    });
+  }
+  return socket;
+};
+
+/**
+ * Called upon a socket close.
+ *
+ * @param {Socket} socket
+ */
+
+Manager.prototype.destroy = function(socket){
+  var index = indexOf(this.connected, socket);
+  if (~index) this.connected.splice(index, 1);
+  if (this.connected.length) return;
+
+  this.close();
+};
+
+/**
+ * Writes a packet.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Manager.prototype.packet = function(packet){
+  debug('writing packet %j', packet);
+  var self = this;
+
+  if (!self.encoding) {
+    // encode, then write to engine with result
+    self.encoding = true;
+    this.encoder.encode(packet, function(encodedPackets) {
+      for (var i = 0; i < encodedPackets.length; i++) {
+        self.engine.write(encodedPackets[i]);
+      }
+      self.encoding = false;
+      self.processPacketQueue();
+    });
+  } else { // add packet to the queue
+    self.packetBuffer.push(packet);
+  }
+};
+
+/**
+ * If packet buffer is non-empty, begins encoding the
+ * next packet in line.
+ *
+ * @api private
+ */
+
+Manager.prototype.processPacketQueue = function() {
+  if (this.packetBuffer.length > 0 && !this.encoding) {
+    var pack = this.packetBuffer.shift();
+    this.packet(pack);
+  }
+};
+
+/**
+ * Clean up transport subscriptions and packet buffer.
+ *
+ * @api private
+ */
+
+Manager.prototype.cleanup = function(){
+  var sub;
+  while (sub = this.subs.shift()) sub.destroy();
+
+  this.packetBuffer = [];
+  this.encoding = false;
+
+  this.decoder.destroy();
+};
+
+/**
+ * Close the current socket.
+ *
+ * @api private
+ */
+
+Manager.prototype.close =
+Manager.prototype.disconnect = function(){
+  this.skipReconnect = true;
+  this.backoff.reset();
+  this.readyState = 'closed';
+  this.engine && this.engine.close();
+};
+
+/**
+ * Called upon engine close.
+ *
+ * @api private
+ */
+
+Manager.prototype.onclose = function(reason){
+  debug('close');
+  this.cleanup();
+  this.backoff.reset();
+  this.readyState = 'closed';
+  this.emit('close', reason);
+  if (this._reconnection && !this.skipReconnect) {
+    this.reconnect();
+  }
+};
+
+/**
+ * Attempt a reconnection.
+ *
+ * @api private
+ */
+
+Manager.prototype.reconnect = function(){
+  if (this.reconnecting || this.skipReconnect) return this;
+
+  var self = this;
+
+  if (this.backoff.attempts >= this._reconnectionAttempts) {
+    debug('reconnect failed');
+    this.backoff.reset();
+    this.emitAll('reconnect_failed');
+    this.reconnecting = false;
+  } else {
+    var delay = this.backoff.duration();
+    debug('will wait %dms before reconnect attempt', delay);
+
+    this.reconnecting = true;
+    var timer = setTimeout(function(){
+      if (self.skipReconnect) return;
+
+      debug('attempting reconnect');
+      self.emitAll('reconnect_attempt', self.backoff.attempts);
+      self.emitAll('reconnecting', self.backoff.attempts);
+
+      // check again for the case socket closed in above events
+      if (self.skipReconnect) return;
+
+      self.open(function(err){
+        if (err) {
+          debug('reconnect attempt error');
+          self.reconnecting = false;
+          self.reconnect();
+          self.emitAll('reconnect_error', err.data);
+        } else {
+          debug('reconnect success');
+          self.onreconnect();
+        }
+      });
+    }, delay);
+
+    this.subs.push({
+      destroy: function(){
+        clearTimeout(timer);
+      }
+    });
+  }
+};
+
+/**
+ * Called upon successful reconnect.
+ *
+ * @api private
+ */
+
+Manager.prototype.onreconnect = function(){
+  var attempt = this.backoff.attempts;
+  this.reconnecting = false;
+  this.backoff.reset();
+  this.updateSocketIds();
+  this.emitAll('reconnect', attempt);
+};
+
+},{"./on":4,"./socket":5,"./url":6,"backo2":7,"component-bind":8,"component-emitter":9,"debug":10,"engine.io-client":11,"indexof":40,"object-component":41,"socket.io-parser":44}],4:[function(_dereq_,module,exports){
+
+/**
+ * Module exports.
+ */
+
+module.exports = on;
+
+/**
+ * Helper for subscriptions.
+ *
+ * @param {Object|EventEmitter} obj with `Emitter` mixin or `EventEmitter`
+ * @param {String} event name
+ * @param {Function} callback
+ * @api public
+ */
+
+function on(obj, ev, fn) {
+  obj.on(ev, fn);
+  return {
+    destroy: function(){
+      obj.removeListener(ev, fn);
+    }
+  };
+}
+
+},{}],5:[function(_dereq_,module,exports){
+
+/**
+ * Module dependencies.
+ */
+
+var parser = _dereq_('socket.io-parser');
+var Emitter = _dereq_('component-emitter');
+var toArray = _dereq_('to-array');
+var on = _dereq_('./on');
+var bind = _dereq_('component-bind');
+var debug = _dereq_('debug')('socket.io-client:socket');
+var hasBin = _dereq_('has-binary');
+
+/**
+ * Module exports.
+ */
+
+module.exports = exports = Socket;
+
+/**
+ * Internal events (blacklisted).
+ * These events can't be emitted by the user.
+ *
+ * @api private
+ */
+
+var events = {
+  connect: 1,
+  connect_error: 1,
+  connect_timeout: 1,
+  disconnect: 1,
+  error: 1,
+  reconnect: 1,
+  reconnect_attempt: 1,
+  reconnect_failed: 1,
+  reconnect_error: 1,
+  reconnecting: 1
+};
+
+/**
+ * Shortcut to `Emitter#emit`.
+ */
+
+var emit = Emitter.prototype.emit;
+
+/**
+ * `Socket` constructor.
+ *
+ * @api public
+ */
+
+function Socket(io, nsp){
+  this.io = io;
+  this.nsp = nsp;
+  this.json = this; // compat
+  this.ids = 0;
+  this.acks = {};
+  if (this.io.autoConnect) this.open();
+  this.receiveBuffer = [];
+  this.sendBuffer = [];
+  this.connected = false;
+  this.disconnected = true;
+}
+
+/**
+ * Mix in `Emitter`.
+ */
+
+Emitter(Socket.prototype);
+
+/**
+ * Subscribe to open, close and packet events
+ *
+ * @api private
+ */
+
+Socket.prototype.subEvents = function() {
+  if (this.subs) return;
+
+  var io = this.io;
+  this.subs = [
+    on(io, 'open', bind(this, 'onopen')),
+    on(io, 'packet', bind(this, 'onpacket')),
+    on(io, 'close', bind(this, 'onclose'))
+  ];
+};
+
+/**
+ * "Opens" the socket.
+ *
+ * @api public
+ */
+
+Socket.prototype.open =
+Socket.prototype.connect = function(){
+  if (this.connected) return this;
+
+  this.subEvents();
+  this.io.open(); // ensure open
+  if ('open' == this.io.readyState) this.onopen();
+  return this;
+};
+
+/**
+ * Sends a `message` event.
+ *
+ * @return {Socket} self
+ * @api public
+ */
+
+Socket.prototype.send = function(){
+  var args = toArray(arguments);
+  args.unshift('message');
+  this.emit.apply(this, args);
+  return this;
+};
+
+/**
+ * Override `emit`.
+ * If the event is in `events`, it's emitted normally.
+ *
+ * @param {String} event name
+ * @return {Socket} self
+ * @api public
+ */
+
+Socket.prototype.emit = function(ev){
+  if (events.hasOwnProperty(ev)) {
+    emit.apply(this, arguments);
+    return this;
+  }
+
+  var args = toArray(arguments);
+  var parserType = parser.EVENT; // default
+  if (hasBin(args)) { parserType = parser.BINARY_EVENT; } // binary
+  var packet = { type: parserType, data: args };
+
+  // event ack callback
+  if ('function' == typeof args[args.length - 1]) {
+    debug('emitting packet with ack id %d', this.ids);
+    this.acks[this.ids] = args.pop();
+    packet.id = this.ids++;
+  }
+
+  if (this.connected) {
+    this.packet(packet);
+  } else {
+    this.sendBuffer.push(packet);
+  }
+
+  return this;
+};
+
+/**
+ * Sends a packet.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Socket.prototype.packet = function(packet){
+  packet.nsp = this.nsp;
+  this.io.packet(packet);
+};
+
+/**
+ * Called upon engine `open`.
+ *
+ * @api private
+ */
+
+Socket.prototype.onopen = function(){
+  debug('transport is open - connecting');
+
+  // write connect packet if necessary
+  if ('/' != this.nsp) {
+    this.packet({ type: parser.CONNECT });
+  }
+};
+
+/**
+ * Called upon engine `close`.
+ *
+ * @param {String} reason
+ * @api private
+ */
+
+Socket.prototype.onclose = function(reason){
+  debug('close (%s)', reason);
+  this.connected = false;
+  this.disconnected = true;
+  delete this.id;
+  this.emit('disconnect', reason);
+};
+
+/**
+ * Called with socket packet.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Socket.prototype.onpacket = function(packet){
+  if (packet.nsp != this.nsp) return;
+
+  switch (packet.type) {
+    case parser.CONNECT:
+      this.onconnect();
+      break;
+
+    case parser.EVENT:
+      this.onevent(packet);
+      break;
+
+    case parser.BINARY_EVENT:
+      this.onevent(packet);
+      break;
+
+    case parser.ACK:
+      this.onack(packet);
+      break;
+
+    case parser.BINARY_ACK:
+      this.onack(packet);
+      break;
+
+    case parser.DISCONNECT:
+      this.ondisconnect();
+      break;
+
+    case parser.ERROR:
+      this.emit('error', packet.data);
+      break;
+  }
+};
+
+/**
+ * Called upon a server event.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Socket.prototype.onevent = function(packet){
+  var args = packet.data || [];
+  debug('emitting event %j', args);
+
+  if (null != packet.id) {
+    debug('attaching ack callback to event');
+    args.push(this.ack(packet.id));
+  }
+
+  if (this.connected) {
+    emit.apply(this, args);
+  } else {
+    this.receiveBuffer.push(args);
+  }
+};
+
+/**
+ * Produces an ack callback to emit with an event.
+ *
+ * @api private
+ */
+
+Socket.prototype.ack = function(id){
+  var self = this;
+  var sent = false;
+  return function(){
+    // prevent double callbacks
+    if (sent) return;
+    sent = true;
+    var args = toArray(arguments);
+    debug('sending ack %j', args);
+
+    var type = hasBin(args) ? parser.BINARY_ACK : parser.ACK;
+    self.packet({
+      type: type,
+      id: id,
+      data: args
+    });
+  };
+};
+
+/**
+ * Called upon a server acknowlegement.
+ *
+ * @param {Object} packet
+ * @api private
+ */
+
+Socket.prototype.onack = function(packet){
+  debug('calling ack %s with %j', packet.id, packet.data);
+  var fn = this.acks[packet.id];
+  fn.apply(this, packet.data);
+  delete this.acks[packet.id];
+};
+
+/**
+ * Called upon server connect.
+ *
+ * @api private
+ */
+
+Socket.prototype.onconnect = function(){
+  this.connected = true;
+  this.disconnected = false;
+  this.emit('connect');
+  this.emitBuffered();
+};
+
+/**
+ * Emit buffered events (received and emitted).
+ *
+ * @api private
+ */
+
+Socket.prototype.emitBuffered = function(){
+  var i;
+  for (i = 0; i < this.receiveBuffer.length; i++) {
+    emit.apply(this, this.receiveBuffer[i]);
+  }
+  this.receiveBuffer = [];
+
+  for (i = 0; i < this.sendBuffer.length; i++) {
+    this.packet(this.sendBuffer[i]);
+  }
+  this.sendBuffer = [];
+};
+
+/**
+ * Called upon server disconnect.
+ *
+ * @api private
+ */
+
+Socket.prototype.ondisconnect = function(){
+  debug('server disconnect (%s)', this.nsp);
+  this.destroy();
+  this.onclose('io server disconnect');
+};
+
+/**
+ * Called upon forced client/server side disconnections,
+ * this method ensures the manager stops tracking us and
+ * that reconnections don't get triggered for this.
+ *
+ * @api private.
+ */
+
+Socket.prototype.destroy = function(){
+  if (this.subs) {
+    // clean subscriptions to avoid reconnections
+    for (var i = 0; i < this.subs.length; i++) {
+      this.subs[i].destroy();
+    }
+    this.subs = null;
+  }
+
+  this.io.destroy(this);
+};
+
+/**
+ * Disconnects the socket manually.
+ *
+ * @return {Socket} self
+ * @api public
+ */
+
+Socket.prototype.close =
+Socket.prototype.disconnect = function(){
+  if (this.connected) {
+    debug('performing disconnect (%s)', this.nsp);
+    this.packet({ type: parser.DISCONNECT });
+  }
+
+  // remove socket from pool
+  this.destroy();
+
+  if (this.connected) {
+    // fire events
+    this.onclose('io client disconnect');
+  }
+  return this;
+};
+
+},{"./on":4,"component-bind":8,"component-emitter":9,"debug":10,"has-binary":36,"socket.io-parser":44,"to-array":48}],6:[function(_dereq_,module,exports){
+(function (global){
+
+/**
+ * Module dependencies.
+ */
+
+var parseuri = _dereq_('parseuri');
+var debug = _dereq_('debug')('socket.io-client:url');
+
+/**
+ * Module exports.
+ */
+
+module.exports = url;
+
+/**
+ * URL parser.
+ *
+ * @param {String} url
+ * @param {Object} An object meant to mimic window.location.
+ *                 Defaults to window.location.
+ * @api public
+ */
+
+function url(uri, loc){
+  var obj = uri;
+
+  // default to window.location
+  var loc = loc || global.location;
+  if (null == uri) uri = loc.protocol + '//' + loc.host;
+
+  // relative path support
+  if ('string' == typeof uri) {
+    if ('/' == uri.charAt(0)) {
+      if ('/' == uri.charAt(1)) {
+        uri = loc.protocol + uri;
+      } else {
+        uri = loc.hostname + uri;
+      }
+    }
+
+    if (!/^(https?|wss?):\/\//.test(uri)) {
+      debug('protocol-less url %s', uri);
+      if ('undefined' != typeof loc) {
+        uri = loc.protocol + '//' + uri;
+      } else {
+        uri = 'https://' + uri;
+      }
+    }
+
+    // parse
+    debug('parse %s', uri);
+    obj = parseuri(uri);
+  }
+
+  // make sure we treat `localhost:80` and `localhost` equally
+  if (!obj.port) {
+    if (/^(http|ws)$/.test(obj.protocol)) {
+      obj.port = '80';
+    }
+    else if (/^(http|ws)s$/.test(obj.protocol)) {
+      obj.port = '443';
+    }
+  }
+
+  obj.path = obj.path || '/';
+
+  // define unique id
+  obj.id = obj.protocol + '://' + obj.host + ':' + obj.port;
+  // define href
+  obj.href = obj.protocol + '://' + obj.host + (loc && loc.port == obj.port ? '' : (':' + obj.port));
+
+  return obj;
+}
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"debug":10,"parseuri":42}],7:[function(_dereq_,module,exports){
+
+/**
+ * Expose `Backoff`.
+ */
+
+module.exports = Backoff;
+
+/**
+ * Initialize backoff timer with `opts`.
+ *
+ * - `min` initial timeout in milliseconds [100]
+ * - `max` max timeout [10000]
+ * - `jitter` [0]
+ * - `factor` [2]
+ *
+ * @param {Object} opts
+ * @api public
+ */
+
+function Backoff(opts) {
+  opts = opts || {};
+  this.ms = opts.min || 100;
+  this.max = opts.max || 10000;
+  this.factor = opts.factor || 2;
+  this.jitter = opts.jitter > 0 && opts.jitter <= 1 ? opts.jitter : 0;
+  this.attempts = 0;
+}
+
+/**
+ * Return the backoff duration.
+ *
+ * @return {Number}
+ * @api public
+ */
+
+Backoff.prototype.duration = function(){
+  var ms = this.ms * Math.pow(this.factor, this.attempts++);
+  if (this.jitter) {
+    var rand =  Math.random();
+    var deviation = Math.floor(rand * this.jitter * ms);
+    ms = (Math.floor(rand * 10) & 1) == 0  ? ms - deviation : ms + deviation;
+  }
+  return Math.min(ms, this.max) | 0;
+};
+
+/**
+ * Reset the number of attempts.
+ *
+ * @api public
+ */
+
+Backoff.prototype.reset = function(){
+  this.attempts = 0;
+};
+
+/**
+ * Set the minimum duration
+ *
+ * @api public
+ */
+
+Backoff.prototype.setMin = function(min){
+  this.ms = min;
+};
+
+/**
+ * Set the maximum duration
+ *
+ * @api public
+ */
+
+Backoff.prototype.setMax = function(max){
+  this.max = max;
+};
+
+/**
+ * Set the jitter
+ *
+ * @api public
+ */
+
+Backoff.prototype.setJitter = function(jitter){
+  this.jitter = jitter;
+};
+
+
+},{}],8:[function(_dereq_,module,exports){
+/**
+ * Slice reference.
+ */
+
+var slice = [].slice;
+
+/**
+ * Bind `obj` to `fn`.
+ *
+ * @param {Object} obj
+ * @param {Function|String} fn or string
+ * @return {Function}
+ * @api public
+ */
+
+module.exports = function(obj, fn){
+  if ('string' == typeof fn) fn = obj[fn];
+  if ('function' != typeof fn) throw new Error('bind() requires a function');
+  var args = slice.call(arguments, 2);
+  return function(){
+    return fn.apply(obj, args.concat(slice.call(arguments)));
+  }
+};
+
+},{}],9:[function(_dereq_,module,exports){
+
+/**
+ * Expose `Emitter`.
+ */
+
+module.exports = Emitter;
+
+/**
+ * Initialize a new `Emitter`.
+ *
+ * @api public
+ */
+
+function Emitter(obj) {
+  if (obj) return mixin(obj);
+};
+
+/**
+ * Mixin the emitter properties.
+ *
+ * @param {Object} obj
+ * @return {Object}
+ * @api private
+ */
+
+function mixin(obj) {
+  for (var key in Emitter.prototype) {
+    obj[key] = Emitter.prototype[key];
+  }
+  return obj;
+}
+
+/**
+ * Listen on the given `event` with `fn`.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.on =
+Emitter.prototype.addEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+  (this._callbacks[event] = this._callbacks[event] || [])
+    .push(fn);
+  return this;
+};
+
+/**
+ * Adds an `event` listener that will be invoked a single
+ * time then automatically removed.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.once = function(event, fn){
+  var self = this;
+  this._callbacks = this._callbacks || {};
+
+  function on() {
+    self.off(event, on);
+    fn.apply(this, arguments);
+  }
+
+  on.fn = fn;
+  this.on(event, on);
+  return this;
+};
+
+/**
+ * Remove the given callback for `event` or all
+ * registered callbacks.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.off =
+Emitter.prototype.removeListener =
+Emitter.prototype.removeAllListeners =
+Emitter.prototype.removeEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+
+  // all
+  if (0 == arguments.length) {
+    this._callbacks = {};
+    return this;
+  }
+
+  // specific event
+  var callbacks = this._callbacks[event];
+  if (!callbacks) return this;
+
+  // remove all handlers
+  if (1 == arguments.length) {
+    delete this._callbacks[event];
+    return this;
+  }
+
+  // remove specific handler
+  var cb;
+  for (var i = 0; i < callbacks.length; i++) {
+    cb = callbacks[i];
+    if (cb === fn || cb.fn === fn) {
+      callbacks.splice(i, 1);
+      break;
+    }
+  }
+  return this;
+};
+
+/**
+ * Emit `event` with the given args.
+ *
+ * @param {String} event
+ * @param {Mixed} ...
+ * @return {Emitter}
+ */
+
+Emitter.prototype.emit = function(event){
+  this._callbacks = this._callbacks || {};
+  var args = [].slice.call(arguments, 1)
+    , callbacks = this._callbacks[event];
+
+  if (callbacks) {
+    callbacks = callbacks.slice(0);
+    for (var i = 0, len = callbacks.length; i < len; ++i) {
+      callbacks[i].apply(this, args);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return array of callbacks for `event`.
+ *
+ * @param {String} event
+ * @return {Array}
+ * @api public
+ */
+
+Emitter.prototype.listeners = function(event){
+  this._callbacks = this._callbacks || {};
+  return this._callbacks[event] || [];
+};
+
+/**
+ * Check if this emitter has `event` handlers.
+ *
+ * @param {String} event
+ * @return {Boolean}
+ * @api public
+ */
+
+Emitter.prototype.hasListeners = function(event){
+  return !! this.listeners(event).length;
+};
+
+},{}],10:[function(_dereq_,module,exports){
+
+/**
+ * Expose `debug()` as the module.
+ */
+
+module.exports = debug;
+
+/**
+ * Create a debugger with the given `name`.
+ *
+ * @param {String} name
+ * @return {Type}
+ * @api public
+ */
+
+function debug(name) {
+  if (!debug.enabled(name)) return function(){};
+
+  return function(fmt){
+    fmt = coerce(fmt);
+
+    var curr = new Date;
+    var ms = curr - (debug[name] || curr);
+    debug[name] = curr;
+
+    fmt = name
+      + ' '
+      + fmt
+      + ' +' + debug.humanize(ms);
+
+    // This hackery is required for IE8
+    // where `console.log` doesn't have 'apply'
+    window.console
+      && console.log
+      && Function.prototype.apply.call(console.log, console, arguments);
+  }
+}
+
+/**
+ * The currently active debug mode names.
+ */
+
+debug.names = [];
+debug.skips = [];
+
+/**
+ * Enables a debug mode by name. This can include modes
+ * separated by a colon and wildcards.
+ *
+ * @param {String} name
+ * @api public
+ */
+
+debug.enable = function(name) {
+  try {
+    localStorage.debug = name;
+  } catch(e){}
+
+  var split = (name || '').split(/[\s,]+/)
+    , len = split.length;
+
+  for (var i = 0; i < len; i++) {
+    name = split[i].replace('*', '.*?');
+    if (name[0] === '-') {
+      debug.skips.push(new RegExp('^' + name.substr(1) + '$'));
+    }
+    else {
+      debug.names.push(new RegExp('^' + name + '$'));
+    }
+  }
+};
+
+/**
+ * Disable debug output.
+ *
+ * @api public
+ */
+
+debug.disable = function(){
+  debug.enable('');
+};
+
+/**
+ * Humanize the given `ms`.
+ *
+ * @param {Number} m
+ * @return {String}
+ * @api private
+ */
+
+debug.humanize = function(ms) {
+  var sec = 1000
+    , min = 60 * 1000
+    , hour = 60 * min;
+
+  if (ms >= hour) return (ms / hour).toFixed(1) + 'h';
+  if (ms >= min) return (ms / min).toFixed(1) + 'm';
+  if (ms >= sec) return (ms / sec | 0) + 's';
+  return ms + 'ms';
+};
+
+/**
+ * Returns true if the given mode name is enabled, false otherwise.
+ *
+ * @param {String} name
+ * @return {Boolean}
+ * @api public
+ */
+
+debug.enabled = function(name) {
+  for (var i = 0, len = debug.skips.length; i < len; i++) {
+    if (debug.skips[i].test(name)) {
+      return false;
+    }
+  }
+  for (var i = 0, len = debug.names.length; i < len; i++) {
+    if (debug.names[i].test(name)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+/**
+ * Coerce `val`.
+ */
+
+function coerce(val) {
+  if (val instanceof Error) return val.stack || val.message;
+  return val;
+}
+
+// persist
+
+try {
+  if (window.localStorage) debug.enable(localStorage.debug);
+} catch(e){}
+
+},{}],11:[function(_dereq_,module,exports){
+
+module.exports =  _dereq_('./lib/');
+
+},{"./lib/":12}],12:[function(_dereq_,module,exports){
+
+module.exports = _dereq_('./socket');
+
+/**
+ * Exports parser
+ *
+ * @api public
+ *
+ */
+module.exports.parser = _dereq_('engine.io-parser');
+
+},{"./socket":13,"engine.io-parser":25}],13:[function(_dereq_,module,exports){
+(function (global){
+/**
+ * Module dependencies.
+ */
+
+var transports = _dereq_('./transports');
+var Emitter = _dereq_('component-emitter');
+var debug = _dereq_('debug')('engine.io-client:socket');
+var index = _dereq_('indexof');
+var parser = _dereq_('engine.io-parser');
+var parseuri = _dereq_('parseuri');
+var parsejson = _dereq_('parsejson');
+var parseqs = _dereq_('parseqs');
+
+/**
+ * Module exports.
+ */
+
+module.exports = Socket;
+
+/**
+ * Noop function.
+ *
+ * @api private
+ */
+
+function noop(){}
+
+/**
+ * Socket constructor.
+ *
+ * @param {String|Object} uri or options
+ * @param {Object} options
+ * @api public
+ */
+
+function Socket(uri, opts){
+  if (!(this instanceof Socket)) return new Socket(uri, opts);
+
+  opts = opts || {};
+
+  if (uri && 'object' == typeof uri) {
+    opts = uri;
+    uri = null;
+  }
+
+  if (uri) {
+    uri = parseuri(uri);
+    opts.host = uri.host;
+    opts.secure = uri.protocol == 'https' || uri.protocol == 'wss';
+    opts.port = uri.port;
+    if (uri.query) opts.query = uri.query;
+  }
+
+  this.secure = null != opts.secure ? opts.secure :
+    (global.location && 'https:' == location.protocol);
+
+  if (opts.host) {
+    var pieces = opts.host.split(':');
+    opts.hostname = pieces.shift();
+    if (pieces.length) {
+      opts.port = pieces.pop();
+    } else if (!opts.port) {
+      // if no port is specified manually, use the protocol default
+      opts.port = this.secure ? '443' : '80';
+    }
+  }
+
+  this.agent = opts.agent || false;
+  this.hostname = opts.hostname ||
+    (global.location ? location.hostname : 'localhost');
+  this.port = opts.port || (global.location && location.port ?
+       location.port :
+       (this.secure ? 443 : 80));
+  this.query = opts.query || {};
+  if ('string' == typeof this.query) this.query = parseqs.decode(this.query);
+  this.upgrade = false !== opts.upgrade;
+  this.path = (opts.path || '/engine.io').replace(/\/$/, '') + '/';
+  this.forceJSONP = !!opts.forceJSONP;
+  this.jsonp = false !== opts.jsonp;
+  this.forceBase64 = !!opts.forceBase64;
+  this.enablesXDR = !!opts.enablesXDR;
+  this.timestampParam = opts.timestampParam || 't';
+  this.timestampRequests = opts.timestampRequests;
+  this.transports = opts.transports || ['polling', 'websocket'];
+  this.readyState = '';
+  this.writeBuffer = [];
+  this.callbackBuffer = [];
+  this.policyPort = opts.policyPort || 843;
+  this.rememberUpgrade = opts.rememberUpgrade || false;
+  this.binaryType = null;
+  this.onlyBinaryUpgrades = opts.onlyBinaryUpgrades;
+
+  // SSL options for Node.js client
+  this.pfx = opts.pfx || null;
+  this.key = opts.key || null;
+  this.passphrase = opts.passphrase || null;
+  this.cert = opts.cert || null;
+  this.ca = opts.ca || null;
+  this.ciphers = opts.ciphers || null;
+  this.rejectUnauthorized = opts.rejectUnauthorized || null;
+
+  this.open();
+}
+
+Socket.priorWebsocketSuccess = false;
+
+/**
+ * Mix in `Emitter`.
+ */
+
+Emitter(Socket.prototype);
+
+/**
+ * Protocol version.
+ *
+ * @api public
+ */
+
+Socket.protocol = parser.protocol; // this is an int
+
+/**
+ * Expose deps for legacy compatibility
+ * and standalone browser access.
+ */
+
+Socket.Socket = Socket;
+Socket.Transport = _dereq_('./transport');
+Socket.transports = _dereq_('./transports');
+Socket.parser = _dereq_('engine.io-parser');
+
+/**
+ * Creates transport of the given type.
+ *
+ * @param {String} transport name
+ * @return {Transport}
+ * @api private
+ */
+
+Socket.prototype.createTransport = function (name) {
+  debug('creating transport "%s"', name);
+  var query = clone(this.query);
+
+  // append engine.io protocol identifier
+  query.EIO = parser.protocol;
+
+  // transport name
+  query.transport = name;
+
+  // session id if we already have one
+  if (this.id) query.sid = this.id;
+
+  var transport = new transports[name]({
+    agent: this.agent,
+    hostname: this.hostname,
+    port: this.port,
+    secure: this.secure,
+    path: this.path,
+    query: query,
+    forceJSONP: this.forceJSONP,
+    jsonp: this.jsonp,
+    forceBase64: this.forceBase64,
+    enablesXDR: this.enablesXDR,
+    timestampRequests: this.timestampRequests,
+    timestampParam: this.timestampParam,
+    policyPort: this.policyPort,
+    socket: this,
+    pfx: this.pfx,
+    key: this.key,
+    passphrase: this.passphrase,
+    cert: this.cert,
+    ca: this.ca,
+    ciphers: this.ciphers,
+    rejectUnauthorized: this.rejectUnauthorized
+  });
+
+  return transport;
+};
+
+function clone (obj) {
+  var o = {};
+  for (var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+      o[i] = obj[i];
+    }
+  }
+  return o;
+}
+
+/**
+ * Initializes transport to use and starts probe.
+ *
+ * @api private
+ */
+Socket.prototype.open = function () {
+  var transport;
+  if (this.rememberUpgrade && Socket.priorWebsocketSuccess && this.transports.indexOf('websocket') != -1) {
+    transport = 'websocket';
+  } else if (0 == this.transports.length) {
+    // Emit error on next tick so it can be listened to
+    var self = this;
+    setTimeout(function() {
+      self.emit('error', 'No transports available');
+    }, 0);
+    return;
+  } else {
+    transport = this.transports[0];
+  }
+  this.readyState = 'opening';
+
+  // Retry with the next transport if the transport is disabled (jsonp: false)
+  var transport;
+  try {
+    transport = this.createTransport(transport);
+  } catch (e) {
+    this.transports.shift();
+    this.open();
+    return;
+  }
+
+  transport.open();
+  this.setTransport(transport);
+};
+
+/**
+ * Sets the current transport. Disables the existing one (if any).
+ *
+ * @api private
+ */
+
+Socket.prototype.setTransport = function(transport){
+  debug('setting transport %s', transport.name);
+  var self = this;
+
+  if (this.transport) {
+    debug('clearing existing transport %s', this.transport.name);
+    this.transport.removeAllListeners();
+  }
+
+  // set up transport
+  this.transport = transport;
+
+  // set up transport listeners
+  transport
+  .on('drain', function(){
+    self.onDrain();
+  })
+  .on('packet', function(packet){
+    self.onPacket(packet);
+  })
+  .on('error', function(e){
+    self.onError(e);
+  })
+  .on('close', function(){
+    self.onClose('transport close');
+  });
+};
+
+/**
+ * Probes a transport.
+ *
+ * @param {String} transport name
+ * @api private
+ */
+
+Socket.prototype.probe = function (name) {
+  debug('probing transport "%s"', name);
+  var transport = this.createTransport(name, { probe: 1 })
+    , failed = false
+    , self = this;
+
+  Socket.priorWebsocketSuccess = false;
+
+  function onTransportOpen(){
+    if (self.onlyBinaryUpgrades) {
+      var upgradeLosesBinary = !this.supportsBinary && self.transport.supportsBinary;
+      failed = failed || upgradeLosesBinary;
+    }
+    if (failed) return;
+
+    debug('probe transport "%s" opened', name);
+    transport.send([{ type: 'ping', data: 'probe' }]);
+    transport.once('packet', function (msg) {
+      if (failed) return;
+      if ('pong' == msg.type && 'probe' == msg.data) {
+        debug('probe transport "%s" pong', name);
+        self.upgrading = true;
+        self.emit('upgrading', transport);
+        if (!transport) return;
+        Socket.priorWebsocketSuccess = 'websocket' == transport.name;
+
+        debug('pausing current transport "%s"', self.transport.name);
+        self.transport.pause(function () {
+          if (failed) return;
+          if ('closed' == self.readyState) return;
+          debug('changing transport and sending upgrade packet');
+
+          cleanup();
+
+          self.setTransport(transport);
+          transport.send([{ type: 'upgrade' }]);
+          self.emit('upgrade', transport);
+          transport = null;
+          self.upgrading = false;
+          self.flush();
+        });
+      } else {
+        debug('probe transport "%s" failed', name);
+        var err = new Error('probe error');
+        err.transport = transport.name;
+        self.emit('upgradeError', err);
+      }
+    });
+  }
+
+  function freezeTransport() {
+    if (failed) return;
+
+    // Any callback called by transport should be ignored since now
+    failed = true;
+
+    cleanup();
+
+    transport.close();
+    transport = null;
+  }
+
+  //Handle any error that happens while probing
+  function onerror(err) {
+    var error = new Error('probe error: ' + err);
+    error.transport = transport.name;
+
+    freezeTransport();
+
+    debug('probe transport "%s" failed because of error: %s', name, err);
+
+    self.emit('upgradeError', error);
+  }
+
+  function onTransportClose(){
+    onerror("transport closed");
+  }
+
+  //When the socket is closed while we're probing
+  function onclose(){
+    onerror("socket closed");
+  }
+
+  //When the socket is upgraded while we're probing
+  function onupgrade(to){
+    if (transport && to.name != transport.name) {
+      debug('"%s" works - aborting "%s"', to.name, transport.name);
+      freezeTransport();
+    }
+  }
+
+  //Remove all listeners on the transport and on self
+  function cleanup(){
+    transport.removeListener('open', onTransportOpen);
+    transport.removeListener('error', onerror);
+    transport.removeListener('close', onTransportClose);
+    self.removeListener('close', onclose);
+    self.removeListener('upgrading', onupgrade);
+  }
+
+  transport.once('open', onTransportOpen);
+  transport.once('error', onerror);
+  transport.once('close', onTransportClose);
+
+  this.once('close', onclose);
+  this.once('upgrading', onupgrade);
+
+  transport.open();
+
+};
+
+/**
+ * Called when connection is deemed open.
+ *
+ * @api public
+ */
+
+Socket.prototype.onOpen = function () {
+  debug('socket open');
+  this.readyState = 'open';
+  Socket.priorWebsocketSuccess = 'websocket' == this.transport.name;
+  this.emit('open');
+  this.flush();
+
+  // we check for `readyState` in case an `open`
+  // listener already closed the socket
+  if ('open' == this.readyState && this.upgrade && this.transport.pause) {
+    debug('starting upgrade probes');
+    for (var i = 0, l = this.upgrades.length; i < l; i++) {
+      this.probe(this.upgrades[i]);
+    }
+  }
+};
+
+/**
+ * Handles a packet.
+ *
+ * @api private
+ */
+
+Socket.prototype.onPacket = function (packet) {
+  if ('opening' == this.readyState || 'open' == this.readyState) {
+    debug('socket receive: type "%s", data "%s"', packet.type, packet.data);
+
+    this.emit('packet', packet);
+
+    // Socket is live - any packet counts
+    this.emit('heartbeat');
+
+    switch (packet.type) {
+      case 'open':
+        this.onHandshake(parsejson(packet.data));
+        break;
+
+      case 'pong':
+        this.setPing();
+        break;
+
+      case 'error':
+        var err = new Error('server error');
+        err.code = packet.data;
+        this.emit('error', err);
+        break;
+
+      case 'message':
+        this.emit('data', packet.data);
+        this.emit('message', packet.data);
+        break;
+    }
+  } else {
+    debug('packet received with socket readyState "%s"', this.readyState);
+  }
+};
+
+/**
+ * Called upon handshake completion.
+ *
+ * @param {Object} handshake obj
+ * @api private
+ */
+
+Socket.prototype.onHandshake = function (data) {
+  this.emit('handshake', data);
+  this.id = data.sid;
+  this.transport.query.sid = data.sid;
+  this.upgrades = this.filterUpgrades(data.upgrades);
+  this.pingInterval = data.pingInterval;
+  this.pingTimeout = data.pingTimeout;
+  this.onOpen();
+  // In case open handler closes socket
+  if  ('closed' == this.readyState) return;
+  this.setPing();
+
+  // Prolong liveness of socket on heartbeat
+  this.removeListener('heartbeat', this.onHeartbeat);
+  this.on('heartbeat', this.onHeartbeat);
+};
+
+/**
+ * Resets ping timeout.
+ *
+ * @api private
+ */
+
+Socket.prototype.onHeartbeat = function (timeout) {
+  clearTimeout(this.pingTimeoutTimer);
+  var self = this;
+  self.pingTimeoutTimer = setTimeout(function () {
+    if ('closed' == self.readyState) return;
+    self.onClose('ping timeout');
+  }, timeout || (self.pingInterval + self.pingTimeout));
+};
+
+/**
+ * Pings server every `this.pingInterval` and expects response
+ * within `this.pingTimeout` or closes connection.
+ *
+ * @api private
+ */
+
+Socket.prototype.setPing = function () {
+  var self = this;
+  clearTimeout(self.pingIntervalTimer);
+  self.pingIntervalTimer = setTimeout(function () {
+    debug('writing ping packet - expecting pong within %sms', self.pingTimeout);
+    self.ping();
+    self.onHeartbeat(self.pingTimeout);
+  }, self.pingInterval);
+};
+
+/**
+* Sends a ping packet.
+*
+* @api public
+*/
+
+Socket.prototype.ping = function () {
+  this.sendPacket('ping');
+};
+
+/**
+ * Called on `drain` event
+ *
+ * @api private
+ */
+
+Socket.prototype.onDrain = function() {
+  for (var i = 0; i < this.prevBufferLen; i++) {
+    if (this.callbackBuffer[i]) {
+      this.callbackBuffer[i]();
+    }
+  }
+
+  this.writeBuffer.splice(0, this.prevBufferLen);
+  this.callbackBuffer.splice(0, this.prevBufferLen);
+
+  // setting prevBufferLen = 0 is very important
+  // for example, when upgrading, upgrade packet is sent over,
+  // and a nonzero prevBufferLen could cause problems on `drain`
+  this.prevBufferLen = 0;
+
+  if (this.writeBuffer.length == 0) {
+    this.emit('drain');
+  } else {
+    this.flush();
+  }
+};
+
+/**
+ * Flush write buffers.
+ *
+ * @api private
+ */
+
+Socket.prototype.flush = function () {
+  // console.log(new Date().getTime(), this.readyState, this.transport.writable, this.upgrading, this.writeBuffer.length)
+  // if (!this.transport.writable && this.writeBuffer.length){
+  //   console.log(11);
+  // }
+  if ('closed' != this.readyState && this.transport.writable &&
+    !this.upgrading && this.writeBuffer.length) {
+    // console.log(new Date().getTime(), 'flushing %d packets in socket', this.writeBuffer.length);
+    this.transport.send(this.writeBuffer);
+    // keep track of current length of writeBuffer
+    // splice writeBuffer and callbackBuffer on `drain`
+    this.prevBufferLen = this.writeBuffer.length;
+    this.emit('flush');
+  }
+};
+
+/**
+ * Sends a message.
+ *
+ * @param {String} message.
+ * @param {Function} callback function.
+ * @return {Socket} for chaining.
+ * @api public
+ */
+
+Socket.prototype.write =
+Socket.prototype.send = function (msg, fn) {
+  this.sendPacket('message', msg, fn);
+  return this;
+};
+
+/**
+ * Sends a packet.
+ *
+ * @param {String} packet type.
+ * @param {String} data.
+ * @param {Function} callback function.
+ * @api private
+ */
+
+Socket.prototype.sendPacket = function (type, data, fn) {
+  // console.log(new Date().getTime(), 'Socket.prototype.sendPacket');
+  if ('closing' == this.readyState || 'closed' == this.readyState) {
+    return;
+  }
+
+  var packet = { type: type, data: data };
+  this.emit('packetCreate', packet);
+  this.writeBuffer.push(packet);
+  this.callbackBuffer.push(fn);
+  this.flush();
+};
+
+/**
+ * Closes the connection.
+ *
+ * @api private
+ */
+
+Socket.prototype.close = function () {
+  if ('opening' == this.readyState || 'open' == this.readyState) {
+    this.readyState = 'closing';
+
+    var self = this;
+
+    function close() {
+      self.onClose('forced close');
+      debug('socket closing - telling transport to close');
+      self.transport.close();
+    }
+
+    function cleanupAndClose() {
+      self.removeListener('upgrade', cleanupAndClose);
+      self.removeListener('upgradeError', cleanupAndClose);
+      close();
+    }
+
+    function waitForUpgrade() {
+      // wait for upgrade to finish since we can't send packets while pausing a transport
+      self.once('upgrade', cleanupAndClose);
+      self.once('upgradeError', cleanupAndClose);
+    }
+
+    if (this.writeBuffer.length) {
+      this.once('drain', function() {
+        if (this.upgrading) {
+          waitForUpgrade();
+        } else {
+          close();
+        }
+      });
+    } else if (this.upgrading) {
+      waitForUpgrade();
+    } else {
+      close();
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Called upon transport error
+ *
+ * @api private
+ */
+
+Socket.prototype.onError = function (err) {
+  debug('socket error %j', err);
+  Socket.priorWebsocketSuccess = false;
+  this.emit('error', err);
+  this.onClose('transport error', err);
+};
+
+/**
+ * Called upon transport close.
+ *
+ * @api private
+ */
+
+Socket.prototype.onClose = function (reason, desc) {
+  if ('opening' == this.readyState || 'open' == this.readyState || 'closing' == this.readyState) {
+    debug('socket close with reason: "%s"', reason);
+    var self = this;
+
+    // clear timers
+    clearTimeout(this.pingIntervalTimer);
+    clearTimeout(this.pingTimeoutTimer);
+
+    // clean buffers in next tick, so developers can still
+    // grab the buffers on `close` event
+    setTimeout(function() {
+      self.writeBuffer = [];
+      self.callbackBuffer = [];
+      self.prevBufferLen = 0;
+    }, 0);
+
+    // stop event from firing again for transport
+    this.transport.removeAllListeners('close');
+
+    // ensure transport won't stay open
+    this.transport.close();
+
+    // ignore further transport communication
+    this.transport.removeAllListeners();
+
+    // set ready state
+    this.readyState = 'closed';
+
+    // clear session id
+    this.id = null;
+
+    // emit close event
+    this.emit('close', reason, desc);
+  }
+};
+
+/**
+ * Filters upgrades, returning only those matching client transports.
+ *
+ * @param {Array} server upgrades
+ * @api private
+ *
+ */
+
+Socket.prototype.filterUpgrades = function (upgrades) {
+  var filteredUpgrades = [];
+  for (var i = 0, j = upgrades.length; i<j; i++) {
+    if (~index(this.transports, upgrades[i])) filteredUpgrades.push(upgrades[i]);
+  }
+  return filteredUpgrades;
+};
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./transport":14,"./transports":15,"component-emitter":9,"debug":22,"engine.io-parser":25,"indexof":40,"parsejson":32,"parseqs":33,"parseuri":34}],14:[function(_dereq_,module,exports){
+/**
+ * Module dependencies.
+ */
+
+var parser = _dereq_('engine.io-parser');
+var Emitter = _dereq_('component-emitter');
+
+/**
+ * Module exports.
+ */
+
+module.exports = Transport;
+
+/**
+ * Transport abstract constructor.
+ *
+ * @param {Object} options.
+ * @api private
+ */
+
+function Transport (opts) {
+  this.path = opts.path;
+  this.hostname = opts.hostname;
+  this.port = opts.port;
+  this.secure = opts.secure;
+  this.query = opts.query;
+  this.timestampParam = opts.timestampParam;
+  this.timestampRequests = opts.timestampRequests;
+  this.readyState = '';
+  this.agent = opts.agent || false;
+  this.socket = opts.socket;
+  this.enablesXDR = opts.enablesXDR;
+
+  // SSL options for Node.js client
+  this.pfx = opts.pfx;
+  this.key = opts.key;
+  this.passphrase = opts.passphrase;
+  this.cert = opts.cert;
+  this.ca = opts.ca;
+  this.ciphers = opts.ciphers;
+  this.rejectUnauthorized = opts.rejectUnauthorized;
+}
+
+/**
+ * Mix in `Emitter`.
+ */
+
+Emitter(Transport.prototype);
+
+/**
+ * A counter used to prevent collisions in the timestamps used
+ * for cache busting.
+ */
+
+Transport.timestamps = 0;
+
+/**
+ * Emits an error.
+ *
+ * @param {String} str
+ * @return {Transport} for chaining
+ * @api public
+ */
+
+Transport.prototype.onError = function (msg, desc) {
+  var err = new Error(msg);
+  err.type = 'TransportError';
+  err.description = desc;
+  this.emit('error', err);
+  return this;
+};
+
+/**
+ * Opens the transport.
+ *
+ * @api public
+ */
+
+Transport.prototype.open = function () {
+  if ('closed' == this.readyState || '' == this.readyState) {
+    this.readyState = 'opening';
+    this.doOpen();
+  }
+
+  return this;
+};
+
+/**
+ * Closes the transport.
+ *
+ * @api private
+ */
+
+Transport.prototype.close = function () {
+  if ('opening' == this.readyState || 'open' == this.readyState) {
+    this.doClose();
+    this.onClose();
+  }
+
+  return this;
+};
+
+/**
+ * Sends multiple packets.
+ *
+ * @param {Array} packets
+ * @api private
+ */
+
+Transport.prototype.send = function(packets){
+  if ('open' == this.readyState) {
+    this.write(packets);
+  } else {
+    throw new Error('Transport not open');
+  }
+};
+
+/**
+ * Called upon open
+ *
+ * @api private
+ */
+
+Transport.prototype.onOpen = function () {
+  this.readyState = 'open';
+  this.writable = true;
+  this.emit('open');
+};
+
+/**
+ * Called with data.
+ *
+ * @param {String} data
+ * @api private
+ */
+
+Transport.prototype.onData = function(data){
+  var packet = parser.decodePacket(data, this.socket.binaryType);
+  this.onPacket(packet);
+};
+
+/**
+ * Called with a decoded packet.
+ */
+
+Transport.prototype.onPacket = function (packet) {
+  this.emit('packet', packet);
+};
+
+/**
+ * Called upon close.
+ *
+ * @api private
+ */
+
+Transport.prototype.onClose = function () {
+  this.readyState = 'closed';
+  this.emit('close');
+};
+
+},{"component-emitter":9,"engine.io-parser":25}],15:[function(_dereq_,module,exports){
+(function (global){
+/**
+ * Module dependencies
+ */
+
+var XMLHttpRequest = _dereq_('xmlhttprequest');
+var XHR = _dereq_('./polling-xhr');
+var JSONP = _dereq_('./polling-jsonp');
+var websocket = _dereq_('./websocket');
+
+/**
+ * Export transports.
+ */
+
+exports.polling = polling;
+exports.websocket = websocket;
+
+/**
+ * Polling transport polymorphic constructor.
+ * Decides on xhr vs jsonp based on feature detection.
+ *
+ * @api private
+ */
+
+function polling(opts){
+  var xhr;
+  var xd = false;
+  var xs = false;
+  var jsonp = false !== opts.jsonp;
+
+  if (global.location) {
+    var isSSL = 'https:' == location.protocol;
+    var port = location.port;
+
+    // some user agents have empty `location.port`
+    if (!port) {
+      port = isSSL ? 443 : 80;
+    }
+
+    xd = opts.hostname != location.hostname || port != opts.port;
+    xs = opts.secure != isSSL;
+  }
+
+  opts.xdomain = xd;
+  opts.xscheme = xs;
+  xhr = new XMLHttpRequest(opts);
+
+  if ('open' in xhr && !opts.forceJSONP) {
+    return new XHR(opts);
+  } else {
+    if (!jsonp) throw new Error('JSONP disabled');
+    return new JSONP(opts);
+  }
+}
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./polling-jsonp":16,"./polling-xhr":17,"./websocket":19,"xmlhttprequest":20}],16:[function(_dereq_,module,exports){
+(function (global){
+
+/**
+ * Module requirements.
+ */
+
+var Polling = _dereq_('./polling');
+var inherit = _dereq_('component-inherit');
+
+/**
+ * Module exports.
+ */
+
+module.exports = JSONPPolling;
+
+/**
+ * Cached regular expressions.
+ */
+
+var rNewline = /\n/g;
+var rEscapedNewline = /\\n/g;
+
+/**
+ * Global JSONP callbacks.
+ */
+
+var callbacks;
+
+/**
+ * Callbacks count.
+ */
+
+var index = 0;
+
+/**
+ * Noop.
+ */
+
+function empty () { }
+
+/**
+ * JSONP Polling constructor.
+ *
+ * @param {Object} opts.
+ * @api public
+ */
+
+function JSONPPolling (opts) {
+  Polling.call(this, opts);
+
+  this.query = this.query || {};
+
+  // define global callbacks array if not present
+  // we do this here (lazily) to avoid unneeded global pollution
+  if (!callbacks) {
+    // we need to consider multiple engines in the same page
+    if (!global.___eio) global.___eio = [];
+    callbacks = global.___eio;
+  }
+
+  // callback identifier
+  this.index = callbacks.length;
+
+  // add callback to jsonp global
+  var self = this;
+  callbacks.push(function (msg) {
+    self.onData(msg);
+  });
+
+  // append to query string
+  this.query.j = this.index;
+
+  // prevent spurious errors from being emitted when the window is unloaded
+  if (global.document && global.addEventListener) {
+    global.addEventListener('beforeunload', function () {
+      if (self.script) self.script.onerror = empty;
+    }, false);
+  }
+}
+
+/**
+ * Inherits from Polling.
+ */
+
+inherit(JSONPPolling, Polling);
+
+/*
+ * JSONP only supports binary as base64 encoded strings
+ */
+
+JSONPPolling.prototype.supportsBinary = false;
+
+/**
+ * Closes the socket.
+ *
+ * @api private
+ */
+
+JSONPPolling.prototype.doClose = function () {
+  if (this.script) {
+    this.script.parentNode.removeChild(this.script);
+    this.script = null;
+  }
+
+  if (this.form) {
+    this.form.parentNode.removeChild(this.form);
+    this.form = null;
+    this.iframe = null;
+  }
+
+  Polling.prototype.doClose.call(this);
+};
+
+/**
+ * Starts a poll cycle.
+ *
+ * @api private
+ */
+
+JSONPPolling.prototype.doPoll = function () {
+  var self = this;
+  var script = document.createElement('script');
+
+  if (this.script) {
+    this.script.parentNode.removeChild(this.script);
+    this.script = null;
+  }
+
+  script.async = true;
+  script.src = this.uri();
+  script.onerror = function(e){
+    self.onError('jsonp poll error',e);
+  };
+
+  var insertAt = document.getElementsByTagName('script')[0];
+  insertAt.parentNode.insertBefore(script, insertAt);
+  this.script = script;
+
+  var isUAgecko = 'undefined' != typeof navigator && /gecko/i.test(navigator.userAgent);
+  
+  if (isUAgecko) {
+    setTimeout(function () {
+      var iframe = document.createElement('iframe');
+      document.body.appendChild(iframe);
+      document.body.removeChild(iframe);
+    }, 100);
+  }
+};
+
+/**
+ * Writes with a hidden iframe.
+ *
+ * @param {String} data to send
+ * @param {Function} called upon flush.
+ * @api private
+ */
+
+JSONPPolling.prototype.doWrite = function (data, fn) {
+  var self = this;
+
+  if (!this.form) {
+    var form = document.createElement('form');
+    var area = document.createElement('textarea');
+    var id = this.iframeId = 'eio_iframe_' + this.index;
+    var iframe;
+
+    form.className = 'socketio';
+    form.style.position = 'absolute';
+    form.style.top = '-1000px';
+    form.style.left = '-1000px';
+    form.target = id;
+    form.method = 'POST';
+    form.setAttribute('accept-charset', 'utf-8');
+    area.name = 'd';
+    form.appendChild(area);
+    document.body.appendChild(form);
+
+    this.form = form;
+    this.area = area;
+  }
+
+  this.form.action = this.uri();
+
+  function complete () {
+    initIframe();
+    fn();
+  }
+
+  function initIframe () {
+    if (self.iframe) {
+      try {
+        self.form.removeChild(self.iframe);
+      } catch (e) {
+        self.onError('jsonp polling iframe removal error', e);
+      }
+    }
+
+    try {
+      // ie6 dynamic iframes with target="" support (thanks Chris Lambacher)
+      var html = '<iframe src="javascript:0" name="'+ self.iframeId +'">';
+      iframe = document.createElement(html);
+    } catch (e) {
+      iframe = document.createElement('iframe');
+      iframe.name = self.iframeId;
+      iframe.src = 'javascript:0';
+    }
+
+    iframe.id = self.iframeId;
+
+    self.form.appendChild(iframe);
+    self.iframe = iframe;
+  }
+
+  initIframe();
+
+  // escape \n to prevent it from being converted into \r\n by some UAs
+  // double escaping is required for escaped new lines because unescaping of new lines can be done safely on server-side
+  data = data.replace(rEscapedNewline, '\\\n');
+  this.area.value = data.replace(rNewline, '\\n');
+
+  try {
+    this.form.submit();
+  } catch(e) {}
+
+  if (this.iframe.attachEvent) {
+    this.iframe.onreadystatechange = function(){
+      if (self.iframe.readyState == 'complete') {
+        complete();
+      }
+    };
+  } else {
+    this.iframe.onload = complete;
+  }
+};
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./polling":18,"component-inherit":21}],17:[function(_dereq_,module,exports){
+(function (global){
+/**
+ * Module requirements.
+ */
+
+var XMLHttpRequest = _dereq_('xmlhttprequest');
+var Polling = _dereq_('./polling');
+var Emitter = _dereq_('component-emitter');
+var inherit = _dereq_('component-inherit');
+var debug = _dereq_('debug')('engine.io-client:polling-xhr');
+
+/**
+ * Module exports.
+ */
+
+module.exports = XHR;
+module.exports.Request = Request;
+
+/**
+ * Empty function
+ */
+
+function empty(){}
+
+/**
+ * XHR Polling constructor.
+ *
+ * @param {Object} opts
+ * @api public
+ */
+
+function XHR(opts){
+  Polling.call(this, opts);
+
+  if (global.location) {
+    var isSSL = 'https:' == location.protocol;
+    var port = location.port;
+
+    // some user agents have empty `location.port`
+    if (!port) {
+      port = isSSL ? 443 : 80;
+    }
+
+    this.xd = opts.hostname != global.location.hostname ||
+      port != opts.port;
+    this.xs = opts.secure != isSSL;
+  }
+}
+
+/**
+ * Inherits from Polling.
+ */
+
+inherit(XHR, Polling);
+
+/**
+ * XHR supports binary
+ */
+
+XHR.prototype.supportsBinary = true;
+
+/**
+ * Creates a request.
+ *
+ * @param {String} method
+ * @api private
+ */
+
+XHR.prototype.request = function(opts){
+  opts = opts || {};
+  opts.uri = this.uri();
+  opts.xd = this.xd;
+  opts.xs = this.xs;
+  opts.agent = this.agent || false;
+  opts.supportsBinary = this.supportsBinary;
+  opts.enablesXDR = this.enablesXDR;
+
+  // SSL options for Node.js client
+  opts.pfx = this.pfx;
+  opts.key = this.key;
+  opts.passphrase = this.passphrase;
+  opts.cert = this.cert;
+  opts.ca = this.ca;
+  opts.ciphers = this.ciphers;
+  opts.rejectUnauthorized = this.rejectUnauthorized;
+
+  return new Request(opts);
+};
+
+/**
+ * Sends data.
+ *
+ * @param {String} data to send.
+ * @param {Function} called upon flush.
+ * @api private
+ */
+
+XHR.prototype.doWrite = function(data, fn){
+  var isBinary = typeof data !== 'string' && data !== undefined;
+  var req = this.request({ method: 'POST', data: data, isBinary: isBinary });
+  var self = this;
+  req.on('success', fn);
+  req.on('error', function(err){
+    self.onError('xhr post error', err);
+  });
+  this.sendXhr = req;
+};
+
+/**
+ * Starts a poll cycle.
+ *
+ * @api private
+ */
+
+XHR.prototype.doPoll = function(){
+  debug('xhr poll');
+  var req = this.request();
+  var self = this;
+  req.on('data', function(data){
+    self.onData(data);
+  });
+  req.on('error', function(err){
+    self.onError('xhr poll error', err);
+  });
+  this.pollXhr = req;
+};
+
+/**
+ * Request constructor
+ *
+ * @param {Object} options
+ * @api public
+ */
+
+function Request(opts){
+  this.method = opts.method || 'GET';
+  this.uri = opts.uri;
+  this.xd = !!opts.xd;
+  this.xs = !!opts.xs;
+  this.async = false !== opts.async;
+  this.data = undefined != opts.data ? opts.data : null;
+  this.agent = opts.agent;
+  this.isBinary = opts.isBinary;
+  this.supportsBinary = opts.supportsBinary;
+  this.enablesXDR = opts.enablesXDR;
+
+  // SSL options for Node.js client
+  this.pfx = opts.pfx;
+  this.key = opts.key;
+  this.passphrase = opts.passphrase;
+  this.cert = opts.cert;
+  this.ca = opts.ca;
+  this.ciphers = opts.ciphers;
+  this.rejectUnauthorized = opts.rejectUnauthorized;
+
+  this.create();
+}
+
+/**
+ * Mix in `Emitter`.
+ */
+
+Emitter(Request.prototype);
+
+/**
+ * Creates the XHR object and sends the request.
+ *
+ * @api private
+ */
+
+Request.prototype.create = function(){
+  var opts = { agent: this.agent, xdomain: this.xd, xscheme: this.xs, enablesXDR: this.enablesXDR };
+
+  // SSL options for Node.js client
+  opts.pfx = this.pfx;
+  opts.key = this.key;
+  opts.passphrase = this.passphrase;
+  opts.cert = this.cert;
+  opts.ca = this.ca;
+  opts.ciphers = this.ciphers;
+  opts.rejectUnauthorized = this.rejectUnauthorized;
+
+  var xhr = this.xhr = new XMLHttpRequest(opts);
+  var self = this;
+
+  try {
+    debug('xhr open %s: %s', this.method, this.uri);
+    xhr.open(this.method, this.uri, this.async);
+    if (this.supportsBinary) {
+      // This has to be done after open because Firefox is stupid
+      // http://stackoverflow.com/questions/13216903/get-binary-data-with-xmlhttprequest-in-a-firefox-extension
+      xhr.responseType = 'arraybuffer';
+    }
+
+    if ('POST' == this.method) {
+      try {
+        if (this.isBinary) {
+          xhr.setRequestHeader('Content-type', 'application/octet-stream');
+        } else {
+          xhr.setRequestHeader('Content-type', 'text/plain;charset=UTF-8');
+        }
+      } catch (e) {}
+    }
+
+    // ie6 check
+    if ('withCredentials' in xhr) {
+      xhr.withCredentials = true;
+    }
+
+    if (this.hasXDR()) {
+      xhr.onload = function(){
+        self.onLoad();
+      };
+      xhr.onerror = function(){
+        self.onError(xhr.responseText);
+      };
+    } else {
+      xhr.onreadystatechange = function(){
+        if (4 != xhr.readyState) return;
+        if (200 == xhr.status || 1223 == xhr.status) {
+          self.onLoad();
+        } else {
+          // make sure the `error` event handler that's user-set
+          // does not throw in the same tick and gets caught here
+          setTimeout(function(){
+            self.onError(xhr.status);
+          }, 0);
+        }
+      };
+    }
+
+    debug('xhr data %s', this.data);
+    xhr.send(this.data);
+  } catch (e) {
+    // Need to defer since .create() is called directly fhrom the constructor
+    // and thus the 'error' event can only be only bound *after* this exception
+    // occurs.  Therefore, also, we cannot throw here at all.
+    setTimeout(function() {
+      self.onError(e);
+    }, 0);
+    return;
+  }
+
+  if (global.document) {
+    this.index = Request.requestsCount++;
+    Request.requests[this.index] = this;
+  }
+};
+
+/**
+ * Called upon successful response.
+ *
+ * @api private
+ */
+
+Request.prototype.onSuccess = function(){
+  this.emit('success');
+  this.cleanup();
+};
+
+/**
+ * Called if we have data.
+ *
+ * @api private
+ */
+
+Request.prototype.onData = function(data){
+  this.emit('data', data);
+  this.onSuccess();
+};
+
+/**
+ * Called upon error.
+ *
+ * @api private
+ */
+
+Request.prototype.onError = function(err){
+  this.emit('error', err);
+  this.cleanup(true);
+};
+
+/**
+ * Cleans up house.
+ *
+ * @api private
+ */
+
+Request.prototype.cleanup = function(fromError){
+  if ('undefined' == typeof this.xhr || null === this.xhr) {
+    return;
+  }
+  // xmlhttprequest
+  if (this.hasXDR()) {
+    this.xhr.onload = this.xhr.onerror = empty;
+  } else {
+    this.xhr.onreadystatechange = empty;
+  }
+
+  if (fromError) {
+    try {
+      this.xhr.abort();
+    } catch(e) {}
+  }
+
+  if (global.document) {
+    delete Request.requests[this.index];
+  }
+
+  this.xhr = null;
+};
+
+/**
+ * Called upon load.
+ *
+ * @api private
+ */
+
+Request.prototype.onLoad = function(){
+  var data;
+  try {
+    var contentType;
+    try {
+      contentType = this.xhr.getResponseHeader('Content-Type').split(';')[0];
+    } catch (e) {}
+    if (contentType === 'application/octet-stream') {
+      data = this.xhr.response;
+    } else {
+      if (!this.supportsBinary) {
+        data = this.xhr.responseText;
+      } else {
+        data = 'ok';
+      }
+    }
+  } catch (e) {
+    this.onError(e);
+  }
+  if (null != data) {
+    this.onData(data);
+  }
+};
+
+/**
+ * Check if it has XDomainRequest.
+ *
+ * @api private
+ */
+
+Request.prototype.hasXDR = function(){
+  return 'undefined' !== typeof global.XDomainRequest && !this.xs && this.enablesXDR;
+};
+
+/**
+ * Aborts the request.
+ *
+ * @api public
+ */
+
+Request.prototype.abort = function(){
+  this.cleanup();
+};
+
+/**
+ * Aborts pending requests when unloading the window. This is needed to prevent
+ * memory leaks (e.g. when using IE) and to ensure that no spurious error is
+ * emitted.
+ */
+
+if (global.document) {
+  Request.requestsCount = 0;
+  Request.requests = {};
+  if (global.attachEvent) {
+    global.attachEvent('onunload', unloadHandler);
+  } else if (global.addEventListener) {
+    global.addEventListener('beforeunload', unloadHandler, false);
+  }
+}
+
+function unloadHandler() {
+  for (var i in Request.requests) {
+    if (Request.requests.hasOwnProperty(i)) {
+      Request.requests[i].abort();
+    }
+  }
+}
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./polling":18,"component-emitter":9,"component-inherit":21,"debug":22,"xmlhttprequest":20}],18:[function(_dereq_,module,exports){
+/**
+ * Module dependencies.
+ */
+
+var Transport = _dereq_('../transport');
+var parseqs = _dereq_('parseqs');
+var parser = _dereq_('engine.io-parser');
+var inherit = _dereq_('component-inherit');
+var debug = _dereq_('debug')('engine.io-client:polling');
+
+/**
+ * Module exports.
+ */
+
+module.exports = Polling;
+
+/**
+ * Is XHR2 supported?
+ */
+
+var hasXHR2 = (function() {
+  var XMLHttpRequest = _dereq_('xmlhttprequest');
+  var xhr = new XMLHttpRequest({ xdomain: false });
+  return null != xhr.responseType;
+})();
+
+/**
+ * Polling interface.
+ *
+ * @param {Object} opts
+ * @api private
+ */
+
+function Polling(opts){
+  var forceBase64 = (opts && opts.forceBase64);
+  if (!hasXHR2 || forceBase64) {
+    this.supportsBinary = false;
+  }
+  Transport.call(this, opts);
+}
+
+/**
+ * Inherits from Transport.
+ */
+
+inherit(Polling, Transport);
+
+/**
+ * Transport name.
+ */
+
+Polling.prototype.name = 'polling';
+
+/**
+ * Opens the socket (triggers polling). We write a PING message to determine
+ * when the transport is open.
+ *
+ * @api private
+ */
+
+Polling.prototype.doOpen = function(){
+  this.poll();
+};
+
+/**
+ * Pauses polling.
+ *
+ * @param {Function} callback upon buffers are flushed and transport is paused
+ * @api private
+ */
+
+Polling.prototype.pause = function(onPause){
+  var pending = 0;
+  var self = this;
+
+  this.readyState = 'pausing';
+
+  function pause(){
+    debug('paused');
+    self.readyState = 'paused';
+    onPause();
+  }
+
+  if (this.polling || !this.writable) {
+    var total = 0;
+
+    if (this.polling) {
+      debug('we are currently polling - waiting to pause');
+      total++;
+      this.once('pollComplete', function(){
+        debug('pre-pause polling complete');
+        --total || pause();
+      });
+    }
+
+    if (!this.writable) {
+      debug('we are currently writing - waiting to pause');
+      total++;
+      this.once('drain', function(){
+        debug('pre-pause writing complete');
+        --total || pause();
+      });
+    }
+  } else {
+    pause();
+  }
+};
+
+/**
+ * Starts polling cycle.
+ *
+ * @api public
+ */
+
+Polling.prototype.poll = function(){
+  debug('polling');
+  this.polling = true;
+  this.doPoll();
+  this.emit('poll');
+};
+
+/**
+ * Overloads onData to detect payloads.
+ *
+ * @api private
+ */
+
+Polling.prototype.onData = function(data){
+  var self = this;
+  debug('polling got data %s', data);
+  var callback = function(packet, index, total) {
+    // if its the first message we consider the transport open
+    if ('opening' == self.readyState) {
+      self.onOpen();
+    }
+
+    // if its a close packet, we close the ongoing requests
+    if ('close' == packet.type) {
+      self.onClose();
+      return false;
+    }
+
+    // otherwise bypass onData and handle the message
+    self.onPacket(packet);
+  };
+
+  // decode payload
+  parser.decodePayload(data, this.socket.binaryType, callback);
+
+  // if an event did not trigger closing
+  if ('closed' != this.readyState) {
+    // if we got data we're not polling
+    this.polling = false;
+    this.emit('pollComplete');
+
+    if ('open' == this.readyState) {
+      this.poll();
+    } else {
+      debug('ignoring poll - transport state "%s"', this.readyState);
+    }
+  }
+};
+
+/**
+ * For polling, send a close packet.
+ *
+ * @api private
+ */
+
+Polling.prototype.doClose = function(){
+  var self = this;
+
+  function close(){
+    debug('writing close packet');
+    self.write([{ type: 'close' }]);
+  }
+
+  if ('open' == this.readyState) {
+    debug('transport open - closing');
+    close();
+  } else {
+    // in case we're trying to close while
+    // handshaking is in progress (GH-164)
+    debug('transport not open - deferring close');
+    this.once('open', close);
+  }
+};
+
+/**
+ * Writes a packets payload.
+ *
+ * @param {Array} data packets
+ * @param {Function} drain callback
+ * @api private
+ */
+
+Polling.prototype.write = function(packets){
+  var self = this;
+  this.writable = false;
+  var callbackfn = function() {
+    self.writable = true;
+    self.emit('drain');
+  };
+
+  var self = this;
+  parser.encodePayload(packets, this.supportsBinary, function(data) {
+    self.doWrite(data, callbackfn);
+  });
+};
+
+/**
+ * Generates uri for connection.
+ *
+ * @api private
+ */
+
+Polling.prototype.uri = function(){
+  var query = this.query || {};
+  var schema = this.secure ? 'https' : 'http';
+  var port = '';
+
+  // cache busting is forced
+  if (false !== this.timestampRequests) {
+    query[this.timestampParam] = +new Date + '-' + Transport.timestamps++;
+  }
+
+  if (!this.supportsBinary && !query.sid) {
+    query.b64 = 1;
+  }
+
+  query = parseqs.encode(query);
+
+  // avoid port if default for schema
+  if (this.port && (('https' == schema && this.port != 443) ||
+     ('http' == schema && this.port != 80))) {
+    port = ':' + this.port;
+  }
+
+  // prepend ? to query
+  if (query.length) {
+    query = '?' + query;
+  }
+
+  return schema + '://' + this.hostname + port + this.path + query;
+};
+
+},{"../transport":14,"component-inherit":21,"debug":22,"engine.io-parser":25,"parseqs":33,"xmlhttprequest":20}],19:[function(_dereq_,module,exports){
+/**
+ * Module dependencies.
+ */
+
+var Transport = _dereq_('../transport');
+var parser = _dereq_('engine.io-parser');
+var parseqs = _dereq_('parseqs');
+var inherit = _dereq_('component-inherit');
+var debug = _dereq_('debug')('engine.io-client:websocket');
+
+/**
+ * `ws` exposes a WebSocket-compatible interface in
+ * Node, or the `WebSocket` or `MozWebSocket` globals
+ * in the browser.
+ */
+
+var WebSocket = _dereq_('ws');
+
+/**
+ * Module exports.
+ */
+
+module.exports = WS;
+
+/**
+ * WebSocket transport constructor.
+ *
+ * @api {Object} connection options
+ * @api public
+ */
+
+function WS(opts){
+  var forceBase64 = (opts && opts.forceBase64);
+  if (forceBase64) {
+    this.supportsBinary = false;
+  }
+  Transport.call(this, opts);
+}
+
+/**
+ * Inherits from Transport.
+ */
+
+inherit(WS, Transport);
+
+/**
+ * Transport name.
+ *
+ * @api public
+ */
+
+WS.prototype.name = 'websocket';
+
+/*
+ * WebSockets support binary
+ */
+
+WS.prototype.supportsBinary = true;
+
+/**
+ * Opens socket.
+ *
+ * @api private
+ */
+
+WS.prototype.doOpen = function(){
+  if (!this.check()) {
+    // let probe timeout
+    return;
+  }
+
+  var self = this;
+  var uri = this.uri();
+  var protocols = void(0);
+  var opts = { agent: this.agent };
+
+  // SSL options for Node.js client
+  opts.pfx = this.pfx;
+  opts.key = this.key;
+  opts.passphrase = this.passphrase;
+  opts.cert = this.cert;
+  opts.ca = this.ca;
+  opts.ciphers = this.ciphers;
+  opts.rejectUnauthorized = this.rejectUnauthorized;
+
+  this.ws = new WebSocket(uri, protocols, opts);
+
+  if (this.ws.binaryType === undefined) {
+    this.supportsBinary = false;
+  }
+
+  this.ws.binaryType = 'arraybuffer';
+  this.addEventListeners();
+};
+
+/**
+ * Adds event listeners to the socket
+ *
+ * @api private
+ */
+
+WS.prototype.addEventListeners = function(){
+  var self = this;
+
+  this.ws.onopen = function(){
+    self.onOpen();
+  };
+  this.ws.onclose = function(){
+    self.onClose();
+  };
+  this.ws.onmessage = function(ev){
+    self.onData(ev.data);
+  };
+  this.ws.onerror = function(e){
+    self.onError('websocket error', e);
+  };
+};
+
+/**
+ * Override `onData` to use a timer on iOS.
+ * See: https://gist.github.com/mloughran/2052006
+ *
+ * @api private
+ */
+
+if ('undefined' != typeof navigator
+  && /iPad|iPhone|iPod/i.test(navigator.userAgent)) {
+  WS.prototype.onData = function(data){
+    var self = this;
+    setTimeout(function(){
+      Transport.prototype.onData.call(self, data);
+    }, 0);
+  };
+}
+
+/**
+ * Writes data to socket.
+ *
+ * @param {Array} array of packets.
+ * @api private
+ */
+
+WS.prototype.write = function(packets){
+  var self = this;
+  // console.log(new Date().getTime(), "WS.prototype.write");
+  this.writable = false;
+  // encodePacket efficient as it uses WS framing
+  // no need for encodePayload
+  for (var i = 0, l = packets.length; i < l; i++) {
+    parser.encodePacket(packets[i], this.supportsBinary, function(data) {
+      //Sometimes the websocket has already been closed but the browser didn't
+      //have a chance of informing us about it yet, in that case send will
+      //throw an error
+      try {
+        // console.log(new Date().getTime(), "ws.send", data);
+        self.ws.send(data);
+      } catch (e){
+        debug('websocket closed before onclose event');
+      }
+    });
+  }
+
+  function ondrain() {
+    // console.log(new Date().getTime(), "emit('drain')");
+    self.writable = true;
+    self.emit('drain');
+  }
+  // fake drain
+  // defer to next tick to allow Socket to clear writeBuffer
+  // console.log(new Date().getTime(), "setTimeout(ondrain, 0)");
+  setTimeout(ondrain, 1);
+  // ondrain();
+};
+
+/**
+ * Called upon close
+ *
+ * @api private
+ */
+
+WS.prototype.onClose = function(){
+  Transport.prototype.onClose.call(this);
+};
+
+/**
+ * Closes socket.
+ *
+ * @api private
+ */
+
+WS.prototype.doClose = function(){
+  if (typeof this.ws !== 'undefined') {
+    this.ws.close();
+  }
+};
+
+/**
+ * Generates uri for connection.
+ *
+ * @api private
+ */
+
+WS.prototype.uri = function(){
+  var query = this.query || {};
+  var schema = this.secure ? 'wss' : 'ws';
+  var port = '';
+
+  // avoid port if default for schema
+  if (this.port && (('wss' == schema && this.port != 443)
+    || ('ws' == schema && this.port != 80))) {
+    port = ':' + this.port;
+  }
+
+  // append timestamp to URI
+  if (this.timestampRequests) {
+    query[this.timestampParam] = +new Date;
+  }
+
+  // communicate binary support capabilities
+  if (!this.supportsBinary) {
+    query.b64 = 1;
+  }
+
+  query = parseqs.encode(query);
+
+  // prepend ? to query
+  if (query.length) {
+    query = '?' + query;
+  }
+
+  return schema + '://' + this.hostname + port + this.path + query;
+};
+
+/**
+ * Feature detection for WebSocket.
+ *
+ * @return {Boolean} whether this transport is available.
+ * @api public
+ */
+
+WS.prototype.check = function(){
+  return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
+};
+
+},{"../transport":14,"component-inherit":21,"debug":22,"engine.io-parser":25,"parseqs":33,"ws":35}],20:[function(_dereq_,module,exports){
+// browser shim for xmlhttprequest module
+var hasCORS = _dereq_('has-cors');
+
+module.exports = function(opts) {
+  var xdomain = opts.xdomain;
+
+  // scheme must be same when usign XDomainRequest
+  // http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx
+  var xscheme = opts.xscheme;
+
+  // XDomainRequest has a flow of not sending cookie, therefore it should be disabled as a default.
+  // https://github.com/Automattic/engine.io-client/pull/217
+  var enablesXDR = opts.enablesXDR;
+
+  // XMLHttpRequest can be disabled on IE
+  try {
+    if ('undefined' != typeof XMLHttpRequest && (!xdomain || hasCORS)) {
+      return new XMLHttpRequest();
+    }
+  } catch (e) { }
+
+  // Use XDomainRequest for IE8 if enablesXDR is true
+  // because loading bar keeps flashing when using jsonp-polling
+  // https://github.com/yujiosaka/socke.io-ie8-loading-example
+  try {
+    if ('undefined' != typeof XDomainRequest && !xscheme && enablesXDR) {
+      return new XDomainRequest();
+    }
+  } catch (e) { }
+
+  if (!xdomain) {
+    try {
+      return new ActiveXObject('Microsoft.XMLHTTP');
+    } catch(e) { }
+  }
+}
+
+},{"has-cors":38}],21:[function(_dereq_,module,exports){
+
+module.exports = function(a, b){
+  var fn = function(){};
+  fn.prototype = b.prototype;
+  a.prototype = new fn;
+  a.prototype.constructor = a;
+};
+},{}],22:[function(_dereq_,module,exports){
+
+/**
+ * This is the web browser implementation of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = _dereq_('./debug');
+exports.log = log;
+exports.formatArgs = formatArgs;
+exports.save = save;
+exports.load = load;
+exports.useColors = useColors;
+
+/**
+ * Colors.
+ */
+
+exports.colors = [
+  'lightseagreen',
+  'forestgreen',
+  'goldenrod',
+  'dodgerblue',
+  'darkorchid',
+  'crimson'
+];
+
+/**
+ * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+ * and the Firebug extension (any Firefox version) are known
+ * to support "%c" CSS customizations.
+ *
+ * TODO: add a `localStorage` variable to explicitly enable/disable colors
+ */
+
+function useColors() {
+  // is webkit? http://stackoverflow.com/a/16459606/376773
+  return ('WebkitAppearance' in document.documentElement.style) ||
+    // is firebug? http://stackoverflow.com/a/398120/376773
+    (window.console && (console.firebug || (console.exception && console.table))) ||
+    // is firefox >= v31?
+    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
+}
+
+/**
+ * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+ */
+
+exports.formatters.j = function(v) {
+  return JSON.stringify(v);
+};
+
+
+/**
+ * Colorize log arguments if enabled.
+ *
+ * @api public
+ */
+
+function formatArgs() {
+  var args = arguments;
+  var useColors = this.useColors;
+
+  args[0] = (useColors ? '%c' : '')
+    + this.namespace
+    + (useColors ? ' %c' : ' ')
+    + args[0]
+    + (useColors ? '%c ' : ' ')
+    + '+' + exports.humanize(this.diff);
+
+  if (!useColors) return args;
+
+  var c = 'color: ' + this.color;
+  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+
+  // the final "%c" is somewhat tricky, because there could be other
+  // arguments passed either before or after the %c, so we need to
+  // figure out the correct index to insert the CSS into
+  var index = 0;
+  var lastC = 0;
+  args[0].replace(/%[a-z%]/g, function(match) {
+    if ('%' === match) return;
+    index++;
+    if ('%c' === match) {
+      // we only are interested in the *last* %c
+      // (the user may have provided their own)
+      lastC = index;
+    }
+  });
+
+  args.splice(lastC, 0, c);
+  return args;
+}
+
+/**
+ * Invokes `console.log()` when available.
+ * No-op when `console.log` is not a "function".
+ *
+ * @api public
+ */
+
+function log() {
+  // This hackery is required for IE8,
+  // where the `console.log` function doesn't have 'apply'
+  return 'object' == typeof console
+    && 'function' == typeof console.log
+    && Function.prototype.apply.call(console.log, console, arguments);
+}
+
+/**
+ * Save `namespaces`.
+ *
+ * @param {String} namespaces
+ * @api private
+ */
+
+function save(namespaces) {
+  try {
+    if (null == namespaces) {
+      localStorage.removeItem('debug');
+    } else {
+      localStorage.debug = namespaces;
+    }
+  } catch(e) {}
+}
+
+/**
+ * Load `namespaces`.
+ *
+ * @return {String} returns the previously persisted debug modes
+ * @api private
+ */
+
+function load() {
+  var r;
+  try {
+    r = localStorage.debug;
+  } catch(e) {}
+  return r;
+}
+
+/**
+ * Enable namespaces listed in `localStorage.debug` initially.
+ */
+
+exports.enable(load());
+
+},{"./debug":23}],23:[function(_dereq_,module,exports){
+
+/**
+ * This is the common logic for both the Node.js and web browser
+ * implementations of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = debug;
+exports.coerce = coerce;
+exports.disable = disable;
+exports.enable = enable;
+exports.enabled = enabled;
+exports.humanize = _dereq_('ms');
+
+/**
+ * The currently active debug mode names, and names to skip.
+ */
+
+exports.names = [];
+exports.skips = [];
+
+/**
+ * Map of special "%n" handling functions, for the debug "format" argument.
+ *
+ * Valid key names are a single, lowercased letter, i.e. "n".
+ */
+
+exports.formatters = {};
+
+/**
+ * Previously assigned color.
+ */
+
+var prevColor = 0;
+
+/**
+ * Previous log timestamp.
+ */
+
+var prevTime;
+
+/**
+ * Select a color.
+ *
+ * @return {Number}
+ * @api private
+ */
+
+function selectColor() {
+  return exports.colors[prevColor++ % exports.colors.length];
+}
+
+/**
+ * Create a debugger with the given `namespace`.
+ *
+ * @param {String} namespace
+ * @return {Function}
+ * @api public
+ */
+
+function debug(namespace) {
+
+  // define the `disabled` version
+  function disabled() {
+  }
+  disabled.enabled = false;
+
+  // define the `enabled` version
+  function enabled() {
+
+    var self = enabled;
+
+    // set `diff` timestamp
+    var curr = +new Date();
+    var ms = curr - (prevTime || curr);
+    self.diff = ms;
+    self.prev = prevTime;
+    self.curr = curr;
+    prevTime = curr;
+
+    // add the `color` if not set
+    if (null == self.useColors) self.useColors = exports.useColors();
+    if (null == self.color && self.useColors) self.color = selectColor();
+
+    var args = Array.prototype.slice.call(arguments);
+
+    args[0] = exports.coerce(args[0]);
+
+    if ('string' !== typeof args[0]) {
+      // anything else let's inspect with %o
+      args = ['%o'].concat(args);
+    }
+
+    // apply any `formatters` transformations
+    var index = 0;
+    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
+      // if we encounter an escaped % then don't increase the array index
+      if (match === '%') return match;
+      index++;
+      var formatter = exports.formatters[format];
+      if ('function' === typeof formatter) {
+        var val = args[index];
+        match = formatter.call(self, val);
+
+        // now we need to remove `args[index]` since it's inlined in the `format`
+        args.splice(index, 1);
+        index--;
+      }
+      return match;
+    });
+
+    if ('function' === typeof exports.formatArgs) {
+      args = exports.formatArgs.apply(self, args);
+    }
+    var logFn = enabled.log || exports.log || console.log.bind(console);
+    logFn.apply(self, args);
+  }
+  enabled.enabled = true;
+
+  var fn = exports.enabled(namespace) ? enabled : disabled;
+
+  fn.namespace = namespace;
+
+  return fn;
+}
+
+/**
+ * Enables a debug mode by namespaces. This can include modes
+ * separated by a colon and wildcards.
+ *
+ * @param {String} namespaces
+ * @api public
+ */
+
+function enable(namespaces) {
+  exports.save(namespaces);
+
+  var split = (namespaces || '').split(/[\s,]+/);
+  var len = split.length;
+
+  for (var i = 0; i < len; i++) {
+    if (!split[i]) continue; // ignore empty strings
+    namespaces = split[i].replace(/\*/g, '.*?');
+    if (namespaces[0] === '-') {
+      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+    } else {
+      exports.names.push(new RegExp('^' + namespaces + '$'));
+    }
+  }
+}
+
+/**
+ * Disable debug output.
+ *
+ * @api public
+ */
+
+function disable() {
+  exports.enable('');
+}
+
+/**
+ * Returns true if the given mode name is enabled, false otherwise.
+ *
+ * @param {String} name
+ * @return {Boolean}
+ * @api public
+ */
+
+function enabled(name) {
+  var i, len;
+  for (i = 0, len = exports.skips.length; i < len; i++) {
+    if (exports.skips[i].test(name)) {
+      return false;
+    }
+  }
+  for (i = 0, len = exports.names.length; i < len; i++) {
+    if (exports.names[i].test(name)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Coerce `val`.
+ *
+ * @param {Mixed} val
+ * @return {Mixed}
+ * @api private
+ */
+
+function coerce(val) {
+  if (val instanceof Error) return val.stack || val.message;
+  return val;
+}
+
+},{"ms":24}],24:[function(_dereq_,module,exports){
+/**
+ * Helpers.
+ */
+
+var s = 1000;
+var m = s * 60;
+var h = m * 60;
+var d = h * 24;
+var y = d * 365.25;
+
+/**
+ * Parse or format the given `val`.
+ *
+ * Options:
+ *
+ *  - `long` verbose formatting [false]
+ *
+ * @param {String|Number} val
+ * @param {Object} options
+ * @return {String|Number}
+ * @api public
+ */
+
+module.exports = function(val, options){
+  options = options || {};
+  if ('string' == typeof val) return parse(val);
+  return options.long
+    ? long(val)
+    : short(val);
+};
+
+/**
+ * Parse the given `str` and return milliseconds.
+ *
+ * @param {String} str
+ * @return {Number}
+ * @api private
+ */
+
+function parse(str) {
+  var match = /^((?:\d+)?\.?\d+) *(ms|seconds?|s|minutes?|m|hours?|h|days?|d|years?|y)?$/i.exec(str);
+  if (!match) return;
+  var n = parseFloat(match[1]);
+  var type = (match[2] || 'ms').toLowerCase();
+  switch (type) {
+    case 'years':
+    case 'year':
+    case 'y':
+      return n * y;
+    case 'days':
+    case 'day':
+    case 'd':
+      return n * d;
+    case 'hours':
+    case 'hour':
+    case 'h':
+      return n * h;
+    case 'minutes':
+    case 'minute':
+    case 'm':
+      return n * m;
+    case 'seconds':
+    case 'second':
+    case 's':
+      return n * s;
+    case 'ms':
+      return n;
+  }
+}
+
+/**
+ * Short format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function short(ms) {
+  if (ms >= d) return Math.round(ms / d) + 'd';
+  if (ms >= h) return Math.round(ms / h) + 'h';
+  if (ms >= m) return Math.round(ms / m) + 'm';
+  if (ms >= s) return Math.round(ms / s) + 's';
+  return ms + 'ms';
+}
+
+/**
+ * Long format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function long(ms) {
+  return plural(ms, d, 'day')
+    || plural(ms, h, 'hour')
+    || plural(ms, m, 'minute')
+    || plural(ms, s, 'second')
+    || ms + ' ms';
+}
+
+/**
+ * Pluralization helper.
+ */
+
+function plural(ms, n, name) {
+  if (ms < n) return;
+  if (ms < n * 1.5) return Math.floor(ms / n) + ' ' + name;
+  return Math.ceil(ms / n) + ' ' + name + 's';
+}
+
+},{}],25:[function(_dereq_,module,exports){
+(function (global){
+/**
+ * Module dependencies.
+ */
+
+var keys = _dereq_('./keys');
+var hasBinary = _dereq_('has-binary');
+var sliceBuffer = _dereq_('arraybuffer.slice');
+var base64encoder = _dereq_('base64-arraybuffer');
+var after = _dereq_('after');
+var utf8 = _dereq_('utf8');
+
+/**
+ * Check if we are running an android browser. That requires us to use
+ * ArrayBuffer with polling transports...
+ *
+ * http://ghinda.net/jpeg-blob-ajax-android/
+ */
+
+var isAndroid = navigator.userAgent.match(/Android/i);
+
+/**
+ * Check if we are running in PhantomJS.
+ * Uploading a Blob with PhantomJS does not work correctly, as reported here:
+ * https://github.com/ariya/phantomjs/issues/11395
+ * @type boolean
+ */
+var isPhantomJS = /PhantomJS/i.test(navigator.userAgent);
+
+/**
+ * When true, avoids using Blobs to encode payloads.
+ * @type boolean
+ */
+var dontSendBlobs = isAndroid || isPhantomJS;
+
+/**
+ * Current protocol version.
+ */
+
+exports.protocol = 3;
+
+/**
+ * Packet types.
+ */
+
+var packets = exports.packets = {
+    open:     0    // non-ws
+  , close:    1    // non-ws
+  , ping:     2
+  , pong:     3
+  , message:  4
+  , upgrade:  5
+  , noop:     6
+};
+
+var packetslist = keys(packets);
+
+/**
+ * Premade error packet.
+ */
+
+var err = { type: 'error', data: 'parser error' };
+
+/**
+ * Create a blob api even for blob builder when vendor prefixes exist
+ */
+
+var Blob = _dereq_('blob');
+
+/**
+ * Encodes a packet.
+ *
+ *     <packet type id> [ <data> ]
+ *
+ * Example:
+ *
+ *     5hello world
+ *     3
+ *     4
+ *
+ * Binary is encoded in an identical principle
+ *
+ * @api private
+ */
+
+exports.encodePacket = function (packet, supportsBinary, utf8encode, callback) {
+  if ('function' == typeof supportsBinary) {
+    callback = supportsBinary;
+    supportsBinary = false;
+  }
+
+  if ('function' == typeof utf8encode) {
+    callback = utf8encode;
+    utf8encode = null;
+  }
+
+  var data = (packet.data === undefined)
+    ? undefined
+    : packet.data.buffer || packet.data;
+
+  if (global.ArrayBuffer && data instanceof ArrayBuffer) {
+    return encodeArrayBuffer(packet, supportsBinary, callback);
+  } else if (Blob && data instanceof global.Blob) {
+    return encodeBlob(packet, supportsBinary, callback);
+  }
+
+  // might be an object with { base64: true, data: dataAsBase64String }
+  if (data && data.base64) {
+    return encodeBase64Object(packet, callback);
+  }
+
+  // Sending data as a utf-8 string
+  var encoded = packets[packet.type];
+
+  // data fragment is optional
+  if (undefined !== packet.data) {
+    encoded += utf8encode ? utf8.encode(String(packet.data)) : String(packet.data);
+  }
+
+  return callback('' + encoded);
+
+};
+
+function encodeBase64Object(packet, callback) {
+  // packet data is an object { base64: true, data: dataAsBase64String }
+  var message = 'b' + exports.packets[packet.type] + packet.data.data;
+  return callback(message);
+}
+
+/**
+ * Encode packet helpers for binary types
+ */
+
+function encodeArrayBuffer(packet, supportsBinary, callback) {
+  if (!supportsBinary) {
+    return exports.encodeBase64Packet(packet, callback);
+  }
+
+  var data = packet.data;
+  var contentArray = new Uint8Array(data);
+  var resultBuffer = new Uint8Array(1 + data.byteLength);
+
+  resultBuffer[0] = packets[packet.type];
+  for (var i = 0; i < contentArray.length; i++) {
+    resultBuffer[i+1] = contentArray[i];
+  }
+
+  return callback(resultBuffer.buffer);
+}
+
+function encodeBlobAsArrayBuffer(packet, supportsBinary, callback) {
+  if (!supportsBinary) {
+    return exports.encodeBase64Packet(packet, callback);
+  }
+
+  var fr = new FileReader();
+  fr.onload = function() {
+    packet.data = fr.result;
+    exports.encodePacket(packet, supportsBinary, true, callback);
+  };
+  return fr.readAsArrayBuffer(packet.data);
+}
+
+function encodeBlob(packet, supportsBinary, callback) {
+  if (!supportsBinary) {
+    return exports.encodeBase64Packet(packet, callback);
+  }
+
+  if (dontSendBlobs) {
+    return encodeBlobAsArrayBuffer(packet, supportsBinary, callback);
+  }
+
+  var length = new Uint8Array(1);
+  length[0] = packets[packet.type];
+  var blob = new Blob([length.buffer, packet.data]);
+
+  return callback(blob);
+}
+
+/**
+ * Encodes a packet with binary data in a base64 string
+ *
+ * @param {Object} packet, has `type` and `data`
+ * @return {String} base64 encoded message
+ */
+
+exports.encodeBase64Packet = function(packet, callback) {
+  var message = 'b' + exports.packets[packet.type];
+  if (Blob && packet.data instanceof Blob) {
+    var fr = new FileReader();
+    fr.onload = function() {
+      var b64 = fr.result.split(',')[1];
+      callback(message + b64);
+    };
+    return fr.readAsDataURL(packet.data);
+  }
+
+  var b64data;
+  try {
+    b64data = String.fromCharCode.apply(null, new Uint8Array(packet.data));
+  } catch (e) {
+    // iPhone Safari doesn't let you apply with typed arrays
+    var typed = new Uint8Array(packet.data);
+    var basic = new Array(typed.length);
+    for (var i = 0; i < typed.length; i++) {
+      basic[i] = typed[i];
+    }
+    b64data = String.fromCharCode.apply(null, basic);
+  }
+  message += global.btoa(b64data);
+  return callback(message);
+};
+
+/**
+ * Decodes a packet. Changes format to Blob if requested.
+ *
+ * @return {Object} with `type` and `data` (if any)
+ * @api private
+ */
+
+exports.decodePacket = function (data, binaryType, utf8decode) {
+  // String data
+  if (typeof data == 'string' || data === undefined) {
+    if (data.charAt(0) == 'b') {
+      return exports.decodeBase64Packet(data.substr(1), binaryType);
+    }
+
+    if (utf8decode) {
+      try {
+        data = utf8.decode(data);
+      } catch (e) {
+        return err;
+      }
+    }
+    var type = data.charAt(0);
+
+    if (Number(type) != type || !packetslist[type]) {
+      return err;
+    }
+
+    if (data.length > 1) {
+      return { type: packetslist[type], data: data.substring(1) };
+    } else {
+      return { type: packetslist[type] };
+    }
+  }
+
+  var asArray = new Uint8Array(data);
+  var type = asArray[0];
+  var rest = sliceBuffer(data, 1);
+  if (Blob && binaryType === 'blob') {
+    rest = new Blob([rest]);
+  }
+  return { type: packetslist[type], data: rest };
+};
+
+/**
+ * Decodes a packet encoded in a base64 string
+ *
+ * @param {String} base64 encoded message
+ * @return {Object} with `type` and `data` (if any)
+ */
+
+exports.decodeBase64Packet = function(msg, binaryType) {
+  var type = packetslist[msg.charAt(0)];
+  if (!global.ArrayBuffer) {
+    return { type: type, data: { base64: true, data: msg.substr(1) } };
+  }
+
+  var data = base64encoder.decode(msg.substr(1));
+
+  if (binaryType === 'blob' && Blob) {
+    data = new Blob([data]);
+  }
+
+  return { type: type, data: data };
+};
+
+/**
+ * Encodes multiple messages (payload).
+ *
+ *     <length>:data
+ *
+ * Example:
+ *
+ *     11:hello world2:hi
+ *
+ * If any contents are binary, they will be encoded as base64 strings. Base64
+ * encoded strings are marked with a b before the length specifier
+ *
+ * @param {Array} packets
+ * @api private
+ */
+
+exports.encodePayload = function (packets, supportsBinary, callback) {
+  if (typeof supportsBinary == 'function') {
+    callback = supportsBinary;
+    supportsBinary = null;
+  }
+
+  var isBinary = hasBinary(packets);
+
+  if (supportsBinary && isBinary) {
+    if (Blob && !dontSendBlobs) {
+      return exports.encodePayloadAsBlob(packets, callback);
+    }
+
+    return exports.encodePayloadAsArrayBuffer(packets, callback);
+  }
+
+  if (!packets.length) {
+    return callback('0:');
+  }
+
+  function setLengthHeader(message) {
+    return message.length + ':' + message;
+  }
+
+  function encodeOne(packet, doneCallback) {
+    exports.encodePacket(packet, !isBinary ? false : supportsBinary, true, function(message) {
+      doneCallback(null, setLengthHeader(message));
+    });
+  }
+
+  map(packets, encodeOne, function(err, results) {
+    return callback(results.join(''));
+  });
+};
+
+/**
+ * Async array map using after
+ */
+
+function map(ary, each, done) {
+  var result = new Array(ary.length);
+  var next = after(ary.length, done);
+
+  var eachWithIndex = function(i, el, cb) {
+    each(el, function(error, msg) {
+      result[i] = msg;
+      cb(error, result);
+    });
+  };
+
+  for (var i = 0; i < ary.length; i++) {
+    eachWithIndex(i, ary[i], next);
+  }
+}
+
+/*
+ * Decodes data when a payload is maybe expected. Possible binary contents are
+ * decoded from their base64 representation
+ *
+ * @param {String} data, callback method
+ * @api public
+ */
+
+exports.decodePayload = function (data, binaryType, callback) {
+  if (typeof data != 'string') {
+    return exports.decodePayloadAsBinary(data, binaryType, callback);
+  }
+
+  if (typeof binaryType === 'function') {
+    callback = binaryType;
+    binaryType = null;
+  }
+
+  var packet;
+  if (data == '') {
+    // parser error - ignoring payload
+    return callback(err, 0, 1);
+  }
+
+  var length = ''
+    , n, msg;
+
+  for (var i = 0, l = data.length; i < l; i++) {
+    var chr = data.charAt(i);
+
+    if (':' != chr) {
+      length += chr;
+    } else {
+      if ('' == length || (length != (n = Number(length)))) {
+        // parser error - ignoring payload
+        return callback(err, 0, 1);
+      }
+
+      msg = data.substr(i + 1, n);
+
+      if (length != msg.length) {
+        // parser error - ignoring payload
+        return callback(err, 0, 1);
+      }
+
+      if (msg.length) {
+        packet = exports.decodePacket(msg, binaryType, true);
+
+        if (err.type == packet.type && err.data == packet.data) {
+          // parser error in individual packet - ignoring payload
+          return callback(err, 0, 1);
+        }
+
+        var ret = callback(packet, i + n, l);
+        if (false === ret) return;
+      }
+
+      // advance cursor
+      i += n;
+      length = '';
+    }
+  }
+
+  if (length != '') {
+    // parser error - ignoring payload
+    return callback(err, 0, 1);
+  }
+
+};
+
+/**
+ * Encodes multiple messages (payload) as binary.
+ *
+ * <1 = binary, 0 = string><number from 0-9><number from 0-9>[...]<number
+ * 255><data>
+ *
+ * Example:
+ * 1 3 255 1 2 3, if the binary contents are interpreted as 8 bit integers
+ *
+ * @param {Array} packets
+ * @return {ArrayBuffer} encoded payload
+ * @api private
+ */
+
+exports.encodePayloadAsArrayBuffer = function(packets, callback) {
+  if (!packets.length) {
+    return callback(new ArrayBuffer(0));
+  }
+
+  function encodeOne(packet, doneCallback) {
+    exports.encodePacket(packet, true, true, function(data) {
+      return doneCallback(null, data);
+    });
+  }
+
+  map(packets, encodeOne, function(err, encodedPackets) {
+    var totalLength = encodedPackets.reduce(function(acc, p) {
+      var len;
+      if (typeof p === 'string'){
+        len = p.length;
+      } else {
+        len = p.byteLength;
+      }
+      return acc + len.toString().length + len + 2; // string/binary identifier + separator = 2
+    }, 0);
+
+    var resultArray = new Uint8Array(totalLength);
+
+    var bufferIndex = 0;
+    encodedPackets.forEach(function(p) {
+      var isString = typeof p === 'string';
+      var ab = p;
+      if (isString) {
+        var view = new Uint8Array(p.length);
+        for (var i = 0; i < p.length; i++) {
+          view[i] = p.charCodeAt(i);
+        }
+        ab = view.buffer;
+      }
+
+      if (isString) { // not true binary
+        resultArray[bufferIndex++] = 0;
+      } else { // true binary
+        resultArray[bufferIndex++] = 1;
+      }
+
+      var lenStr = ab.byteLength.toString();
+      for (var i = 0; i < lenStr.length; i++) {
+        resultArray[bufferIndex++] = parseInt(lenStr[i]);
+      }
+      resultArray[bufferIndex++] = 255;
+
+      var view = new Uint8Array(ab);
+      for (var i = 0; i < view.length; i++) {
+        resultArray[bufferIndex++] = view[i];
+      }
+    });
+
+    return callback(resultArray.buffer);
+  });
+};
+
+/**
+ * Encode as Blob
+ */
+
+exports.encodePayloadAsBlob = function(packets, callback) {
+  function encodeOne(packet, doneCallback) {
+    exports.encodePacket(packet, true, true, function(encoded) {
+      var binaryIdentifier = new Uint8Array(1);
+      binaryIdentifier[0] = 1;
+      if (typeof encoded === 'string') {
+        var view = new Uint8Array(encoded.length);
+        for (var i = 0; i < encoded.length; i++) {
+          view[i] = encoded.charCodeAt(i);
+        }
+        encoded = view.buffer;
+        binaryIdentifier[0] = 0;
+      }
+
+      var len = (encoded instanceof ArrayBuffer)
+        ? encoded.byteLength
+        : encoded.size;
+
+      var lenStr = len.toString();
+      var lengthAry = new Uint8Array(lenStr.length + 1);
+      for (var i = 0; i < lenStr.length; i++) {
+        lengthAry[i] = parseInt(lenStr[i]);
+      }
+      lengthAry[lenStr.length] = 255;
+
+      if (Blob) {
+        var blob = new Blob([binaryIdentifier.buffer, lengthAry.buffer, encoded]);
+        doneCallback(null, blob);
+      }
+    });
+  }
+
+  map(packets, encodeOne, function(err, results) {
+    return callback(new Blob(results));
+  });
+};
+
+/*
+ * Decodes data when a payload is maybe expected. Strings are decoded by
+ * interpreting each byte as a key code for entries marked to start with 0. See
+ * description of encodePayloadAsBinary
+ *
+ * @param {ArrayBuffer} data, callback method
+ * @api public
+ */
+
+exports.decodePayloadAsBinary = function (data, binaryType, callback) {
+  if (typeof binaryType === 'function') {
+    callback = binaryType;
+    binaryType = null;
+  }
+
+  var bufferTail = data;
+  var buffers = [];
+
+  var numberTooLong = false;
+  while (bufferTail.byteLength > 0) {
+    var tailArray = new Uint8Array(bufferTail);
+    var isString = tailArray[0] === 0;
+    var msgLength = '';
+
+    for (var i = 1; ; i++) {
+      if (tailArray[i] == 255) break;
+
+      if (msgLength.length > 310) {
+        numberTooLong = true;
+        break;
+      }
+
+      msgLength += tailArray[i];
+    }
+
+    if(numberTooLong) return callback(err, 0, 1);
+
+    bufferTail = sliceBuffer(bufferTail, 2 + msgLength.length);
+    msgLength = parseInt(msgLength);
+
+    var msg = sliceBuffer(bufferTail, 0, msgLength);
+    if (isString) {
+      try {
+        msg = String.fromCharCode.apply(null, new Uint8Array(msg));
+      } catch (e) {
+        // iPhone Safari doesn't let you apply to typed arrays
+        var typed = new Uint8Array(msg);
+        msg = '';
+        for (var i = 0; i < typed.length; i++) {
+          msg += String.fromCharCode(typed[i]);
+        }
+      }
+    }
+
+    buffers.push(msg);
+    bufferTail = sliceBuffer(bufferTail, msgLength);
+  }
+
+  var total = buffers.length;
+  buffers.forEach(function(buffer, i) {
+    callback(exports.decodePacket(buffer, binaryType, true), i, total);
+  });
+};
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./keys":26,"after":27,"arraybuffer.slice":28,"base64-arraybuffer":29,"blob":30,"has-binary":36,"utf8":31}],26:[function(_dereq_,module,exports){
+
+/**
+ * Gets the keys for an object.
+ *
+ * @return {Array} keys
+ * @api private
+ */
+
+module.exports = Object.keys || function keys (obj){
+  var arr = [];
+  var has = Object.prototype.hasOwnProperty;
+
+  for (var i in obj) {
+    if (has.call(obj, i)) {
+      arr.push(i);
+    }
+  }
+  return arr;
+};
+
+},{}],27:[function(_dereq_,module,exports){
+module.exports = after
+
+function after(count, callback, err_cb) {
+    var bail = false
+    err_cb = err_cb || noop
+    proxy.count = count
+
+    return (count === 0) ? callback() : proxy
+
+    function proxy(err, result) {
+        if (proxy.count <= 0) {
+            throw new Error('after called too many times')
+        }
+        --proxy.count
+
+        // after first error, rest are passed to err_cb
+        if (err) {
+            bail = true
+            callback(err)
+            // future error callbacks will go to error handler
+            callback = err_cb
+        } else if (proxy.count === 0 && !bail) {
+            callback(null, result)
+        }
+    }
+}
+
+function noop() {}
+
+},{}],28:[function(_dereq_,module,exports){
+/**
+ * An abstraction for slicing an arraybuffer even when
+ * ArrayBuffer.prototype.slice is not supported
+ *
+ * @api public
+ */
+
+module.exports = function(arraybuffer, start, end) {
+  var bytes = arraybuffer.byteLength;
+  start = start || 0;
+  end = end || bytes;
+
+  if (arraybuffer.slice) { return arraybuffer.slice(start, end); }
+
+  if (start < 0) { start += bytes; }
+  if (end < 0) { end += bytes; }
+  if (end > bytes) { end = bytes; }
+
+  if (start >= bytes || start >= end || bytes === 0) {
+    return new ArrayBuffer(0);
+  }
+
+  var abv = new Uint8Array(arraybuffer);
+  var result = new Uint8Array(end - start);
+  for (var i = start, ii = 0; i < end; i++, ii++) {
+    result[ii] = abv[i];
+  }
+  return result.buffer;
+};
+
+},{}],29:[function(_dereq_,module,exports){
+/*
+ * base64-arraybuffer
+ * https://github.com/niklasvh/base64-arraybuffer
+ *
+ * Copyright (c) 2012 Niklas von Hertzen
+ * Licensed under the MIT license.
+ */
+(function(chars){
+  "use strict";
+
+  exports.encode = function(arraybuffer) {
+    var bytes = new Uint8Array(arraybuffer),
+    i, len = bytes.length, base64 = "";
+
+    for (i = 0; i < len; i+=3) {
+      base64 += chars[bytes[i] >> 2];
+      base64 += chars[((bytes[i] & 3) << 4) | (bytes[i + 1] >> 4)];
+      base64 += chars[((bytes[i + 1] & 15) << 2) | (bytes[i + 2] >> 6)];
+      base64 += chars[bytes[i + 2] & 63];
+    }
+
+    if ((len % 3) === 2) {
+      base64 = base64.substring(0, base64.length - 1) + "=";
+    } else if (len % 3 === 1) {
+      base64 = base64.substring(0, base64.length - 2) + "==";
+    }
+
+    return base64;
+  };
+
+  exports.decode =  function(base64) {
+    var bufferLength = base64.length * 0.75,
+    len = base64.length, i, p = 0,
+    encoded1, encoded2, encoded3, encoded4;
+
+    if (base64[base64.length - 1] === "=") {
+      bufferLength--;
+      if (base64[base64.length - 2] === "=") {
+        bufferLength--;
+      }
+    }
+
+    var arraybuffer = new ArrayBuffer(bufferLength),
+    bytes = new Uint8Array(arraybuffer);
+
+    for (i = 0; i < len; i+=4) {
+      encoded1 = chars.indexOf(base64[i]);
+      encoded2 = chars.indexOf(base64[i+1]);
+      encoded3 = chars.indexOf(base64[i+2]);
+      encoded4 = chars.indexOf(base64[i+3]);
+
+      bytes[p++] = (encoded1 << 2) | (encoded2 >> 4);
+      bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2);
+      bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
+    }
+
+    return arraybuffer;
+  };
+})("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
+
+},{}],30:[function(_dereq_,module,exports){
+(function (global){
+/**
+ * Create a blob builder even when vendor prefixes exist
+ */
+
+var BlobBuilder = global.BlobBuilder
+  || global.WebKitBlobBuilder
+  || global.MSBlobBuilder
+  || global.MozBlobBuilder;
+
+/**
+ * Check if Blob constructor is supported
+ */
+
+var blobSupported = (function() {
+  try {
+    var b = new Blob(['hi']);
+    return b.size == 2;
+  } catch(e) {
+    return false;
+  }
+})();
+
+/**
+ * Check if BlobBuilder is supported
+ */
+
+var blobBuilderSupported = BlobBuilder
+  && BlobBuilder.prototype.append
+  && BlobBuilder.prototype.getBlob;
+
+function BlobBuilderConstructor(ary, options) {
+  options = options || {};
+
+  var bb = new BlobBuilder();
+  for (var i = 0; i < ary.length; i++) {
+    bb.append(ary[i]);
+  }
+  return (options.type) ? bb.getBlob(options.type) : bb.getBlob();
+};
+
+module.exports = (function() {
+  if (blobSupported) {
+    return global.Blob;
+  } else if (blobBuilderSupported) {
+    return BlobBuilderConstructor;
+  } else {
+    return undefined;
+  }
+})();
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],31:[function(_dereq_,module,exports){
+(function (global){
+/*! http://mths.be/utf8js v2.0.0 by @mathias */
+;(function(root) {
+
+	// Detect free variables `exports`
+	var freeExports = typeof exports == 'object' && exports;
+
+	// Detect free variable `module`
+	var freeModule = typeof module == 'object' && module &&
+		module.exports == freeExports && module;
+
+	// Detect free variable `global`, from Node.js or Browserified code,
+	// and use it as `root`
+	var freeGlobal = typeof global == 'object' && global;
+	if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
+		root = freeGlobal;
+	}
+
+	/*--------------------------------------------------------------------------*/
+
+	var stringFromCharCode = String.fromCharCode;
+
+	// Taken from http://mths.be/punycode
+	function ucs2decode(string) {
+		var output = [];
+		var counter = 0;
+		var length = string.length;
+		var value;
+		var extra;
+		while (counter < length) {
+			value = string.charCodeAt(counter++);
+			if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
+				// high surrogate, and there is a next character
+				extra = string.charCodeAt(counter++);
+				if ((extra & 0xFC00) == 0xDC00) { // low surrogate
+					output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
+				} else {
+					// unmatched surrogate; only append this code unit, in case the next
+					// code unit is the high surrogate of a surrogate pair
+					output.push(value);
+					counter--;
+				}
+			} else {
+				output.push(value);
+			}
+		}
+		return output;
+	}
+
+	// Taken from http://mths.be/punycode
+	function ucs2encode(array) {
+		var length = array.length;
+		var index = -1;
+		var value;
+		var output = '';
+		while (++index < length) {
+			value = array[index];
+			if (value > 0xFFFF) {
+				value -= 0x10000;
+				output += stringFromCharCode(value >>> 10 & 0x3FF | 0xD800);
+				value = 0xDC00 | value & 0x3FF;
+			}
+			output += stringFromCharCode(value);
+		}
+		return output;
+	}
+
+	/*--------------------------------------------------------------------------*/
+
+	function createByte(codePoint, shift) {
+		return stringFromCharCode(((codePoint >> shift) & 0x3F) | 0x80);
+	}
+
+	function encodeCodePoint(codePoint) {
+		if ((codePoint & 0xFFFFFF80) == 0) { // 1-byte sequence
+			return stringFromCharCode(codePoint);
+		}
+		var symbol = '';
+		if ((codePoint & 0xFFFFF800) == 0) { // 2-byte sequence
+			symbol = stringFromCharCode(((codePoint >> 6) & 0x1F) | 0xC0);
+		}
+		else if ((codePoint & 0xFFFF0000) == 0) { // 3-byte sequence
+			symbol = stringFromCharCode(((codePoint >> 12) & 0x0F) | 0xE0);
+			symbol += createByte(codePoint, 6);
+		}
+		else if ((codePoint & 0xFFE00000) == 0) { // 4-byte sequence
+			symbol = stringFromCharCode(((codePoint >> 18) & 0x07) | 0xF0);
+			symbol += createByte(codePoint, 12);
+			symbol += createByte(codePoint, 6);
+		}
+		symbol += stringFromCharCode((codePoint & 0x3F) | 0x80);
+		return symbol;
+	}
+
+	function utf8encode(string) {
+		var codePoints = ucs2decode(string);
+
+		// console.log(JSON.stringify(codePoints.map(function(x) {
+		// 	return 'U+' + x.toString(16).toUpperCase();
+		// })));
+
+		var length = codePoints.length;
+		var index = -1;
+		var codePoint;
+		var byteString = '';
+		while (++index < length) {
+			codePoint = codePoints[index];
+			byteString += encodeCodePoint(codePoint);
+		}
+		return byteString;
+	}
+
+	/*--------------------------------------------------------------------------*/
+
+	function readContinuationByte() {
+		if (byteIndex >= byteCount) {
+			throw Error('Invalid byte index');
+		}
+
+		var continuationByte = byteArray[byteIndex] & 0xFF;
+		byteIndex++;
+
+		if ((continuationByte & 0xC0) == 0x80) {
+			return continuationByte & 0x3F;
+		}
+
+		// If we end up here, it’s not a continuation byte
+		throw Error('Invalid continuation byte');
+	}
+
+	function decodeSymbol() {
+		var byte1;
+		var byte2;
+		var byte3;
+		var byte4;
+		var codePoint;
+
+		if (byteIndex > byteCount) {
+			throw Error('Invalid byte index');
+		}
+
+		if (byteIndex == byteCount) {
+			return false;
+		}
+
+		// Read first byte
+		byte1 = byteArray[byteIndex] & 0xFF;
+		byteIndex++;
+
+		// 1-byte sequence (no continuation bytes)
+		if ((byte1 & 0x80) == 0) {
+			return byte1;
+		}
+
+		// 2-byte sequence
+		if ((byte1 & 0xE0) == 0xC0) {
+			var byte2 = readContinuationByte();
+			codePoint = ((byte1 & 0x1F) << 6) | byte2;
+			if (codePoint >= 0x80) {
+				return codePoint;
+			} else {
+				throw Error('Invalid continuation byte');
+			}
+		}
+
+		// 3-byte sequence (may include unpaired surrogates)
+		if ((byte1 & 0xF0) == 0xE0) {
+			byte2 = readContinuationByte();
+			byte3 = readContinuationByte();
+			codePoint = ((byte1 & 0x0F) << 12) | (byte2 << 6) | byte3;
+			if (codePoint >= 0x0800) {
+				return codePoint;
+			} else {
+				throw Error('Invalid continuation byte');
+			}
+		}
+
+		// 4-byte sequence
+		if ((byte1 & 0xF8) == 0xF0) {
+			byte2 = readContinuationByte();
+			byte3 = readContinuationByte();
+			byte4 = readContinuationByte();
+			codePoint = ((byte1 & 0x0F) << 0x12) | (byte2 << 0x0C) |
+				(byte3 << 0x06) | byte4;
+			if (codePoint >= 0x010000 && codePoint <= 0x10FFFF) {
+				return codePoint;
+			}
+		}
+
+		throw Error('Invalid UTF-8 detected');
+	}
+
+	var byteArray;
+	var byteCount;
+	var byteIndex;
+	function utf8decode(byteString) {
+		byteArray = ucs2decode(byteString);
+		byteCount = byteArray.length;
+		byteIndex = 0;
+		var codePoints = [];
+		var tmp;
+		while ((tmp = decodeSymbol()) !== false) {
+			codePoints.push(tmp);
+		}
+		return ucs2encode(codePoints);
+	}
+
+	/*--------------------------------------------------------------------------*/
+
+	var utf8 = {
+		'version': '2.0.0',
+		'encode': utf8encode,
+		'decode': utf8decode
+	};
+
+	// Some AMD build optimizers, like r.js, check for specific condition patterns
+	// like the following:
+	if (
+		typeof define == 'function' &&
+		typeof define.amd == 'object' &&
+		define.amd
+	) {
+		define(function() {
+			return utf8;
+		});
+	}	else if (freeExports && !freeExports.nodeType) {
+		if (freeModule) { // in Node.js or RingoJS v0.8.0+
+			freeModule.exports = utf8;
+		} else { // in Narwhal or RingoJS v0.7.0-
+			var object = {};
+			var hasOwnProperty = object.hasOwnProperty;
+			for (var key in utf8) {
+				hasOwnProperty.call(utf8, key) && (freeExports[key] = utf8[key]);
+			}
+		}
+	} else { // in Rhino or a web browser
+		root.utf8 = utf8;
+	}
+
+}(this));
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],32:[function(_dereq_,module,exports){
+(function (global){
+/**
+ * JSON parse.
+ *
+ * @see Based on jQuery#parseJSON (MIT) and JSON2
+ * @api private
+ */
+
+var rvalidchars = /^[\],:{}\s]*$/;
+var rvalidescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g;
+var rvalidtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;
+var rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g;
+var rtrimLeft = /^\s+/;
+var rtrimRight = /\s+$/;
+
+module.exports = function parsejson(data) {
+  if ('string' != typeof data || !data) {
+    return null;
+  }
+
+  data = data.replace(rtrimLeft, '').replace(rtrimRight, '');
+
+  // Attempt to parse using the native JSON parser first
+  if (global.JSON && JSON.parse) {
+    return JSON.parse(data);
+  }
+
+  if (rvalidchars.test(data.replace(rvalidescape, '@')
+      .replace(rvalidtokens, ']')
+      .replace(rvalidbraces, ''))) {
+    return (new Function('return ' + data))();
+  }
+};
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],33:[function(_dereq_,module,exports){
+/**
+ * Compiles a querystring
+ * Returns string representation of the object
+ *
+ * @param {Object}
+ * @api private
+ */
+
+exports.encode = function (obj) {
+  var str = '';
+
+  for (var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+      if (str.length) str += '&';
+      str += encodeURIComponent(i) + '=' + encodeURIComponent(obj[i]);
+    }
+  }
+
+  return str;
+};
+
+/**
+ * Parses a simple querystring into an object
+ *
+ * @param {String} qs
+ * @api private
+ */
+
+exports.decode = function(qs){
+  var qry = {};
+  var pairs = qs.split('&');
+  for (var i = 0, l = pairs.length; i < l; i++) {
+    var pair = pairs[i].split('=');
+    qry[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+  }
+  return qry;
+};
+
+},{}],34:[function(_dereq_,module,exports){
+/**
+ * Parses an URI
+ *
+ * @author Steven Levithan <stevenlevithan.com> (MIT license)
+ * @api private
+ */
+
+var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+
+var parts = [
+    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
+];
+
+module.exports = function parseuri(str) {
+    var src = str,
+        b = str.indexOf('['),
+        e = str.indexOf(']');
+
+    if (b != -1 && e != -1) {
+        str = str.substring(0, b) + str.substring(b, e).replace(/:/g, ';') + str.substring(e, str.length);
+    }
+
+    var m = re.exec(str || ''),
+        uri = {},
+        i = 14;
+
+    while (i--) {
+        uri[parts[i]] = m[i] || '';
+    }
+
+    if (b != -1 && e != -1) {
+        uri.source = src;
+        uri.host = uri.host.substring(1, uri.host.length - 1).replace(/;/g, ':');
+        uri.authority = uri.authority.replace('[', '').replace(']', '').replace(/;/g, ':');
+        uri.ipv6uri = true;
+    }
+
+    return uri;
+};
+
+},{}],35:[function(_dereq_,module,exports){
+
+/**
+ * Module dependencies.
+ */
+
+var global = (function() { return this; })();
+
+/**
+ * WebSocket constructor.
+ */
+
+var WebSocket = global.WebSocket || global.MozWebSocket;
+
+/**
+ * Module exports.
+ */
+
+module.exports = WebSocket ? ws : null;
+
+/**
+ * WebSocket constructor.
+ *
+ * The third `opts` options object gets ignored in web browsers, since it's
+ * non-standard, and throws a TypeError if passed to the constructor.
+ * See: https://github.com/einaros/ws/issues/227
+ *
+ * @param {String} uri
+ * @param {Array} protocols (optional)
+ * @param {Object) opts (optional)
+ * @api public
+ */
+
+function ws(uri, protocols, opts) {
+  var instance;
+  if (protocols) {
+    instance = new WebSocket(uri, protocols);
+  } else {
+    instance = new WebSocket(uri);
+  }
+  return instance;
+}
+
+if (WebSocket) ws.prototype = WebSocket.prototype;
+
+},{}],36:[function(_dereq_,module,exports){
+(function (global){
+
+/*
+ * Module requirements.
+ */
+
+var isArray = _dereq_('isarray');
+
+/**
+ * Module exports.
+ */
+
+module.exports = hasBinary;
+
+/**
+ * Checks for binary data.
+ *
+ * Right now only Buffer and ArrayBuffer are supported..
+ *
+ * @param {Object} anything
+ * @api public
+ */
+
+function hasBinary(data) {
+
+  function _hasBinary(obj) {
+    if (!obj) return false;
+
+    if ( (global.Buffer && global.Buffer.isBuffer(obj)) ||
+         (global.ArrayBuffer && obj instanceof ArrayBuffer) ||
+         (global.Blob && obj instanceof Blob) ||
+         (global.File && obj instanceof File)
+        ) {
+      return true;
+    }
+
+    if (isArray(obj)) {
+      for (var i = 0; i < obj.length; i++) {
+          if (_hasBinary(obj[i])) {
+              return true;
+          }
+      }
+    } else if (obj && 'object' == typeof obj) {
+      if (obj.toJSON) {
+        obj = obj.toJSON();
+      }
+
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key) && _hasBinary(obj[key])) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  return _hasBinary(data);
+}
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"isarray":37}],37:[function(_dereq_,module,exports){
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+},{}],38:[function(_dereq_,module,exports){
+
+/**
+ * Module dependencies.
+ */
+
+var global = _dereq_('global');
+
+/**
+ * Module exports.
+ *
+ * Logic borrowed from Modernizr:
+ *
+ *   - https://github.com/Modernizr/Modernizr/blob/master/feature-detects/cors.js
+ */
+
+try {
+  module.exports = 'XMLHttpRequest' in global &&
+    'withCredentials' in new global.XMLHttpRequest();
+} catch (err) {
+  // if XMLHttp support is disabled in IE then it will throw
+  // when trying to create
+  module.exports = false;
+}
+
+},{"global":39}],39:[function(_dereq_,module,exports){
+
+/**
+ * Returns `this`. Execute this without a "context" (i.e. without it being
+ * attached to an object of the left-hand side), and `this` points to the
+ * "global" scope of the current JS execution.
+ */
+
+module.exports = (function () { return this; })();
+
+},{}],40:[function(_dereq_,module,exports){
+
+var indexOf = [].indexOf;
+
+module.exports = function(arr, obj){
+  if (indexOf) return arr.indexOf(obj);
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] === obj) return i;
+  }
+  return -1;
+};
+},{}],41:[function(_dereq_,module,exports){
+
+/**
+ * HOP ref.
+ */
+
+var has = Object.prototype.hasOwnProperty;
+
+/**
+ * Return own keys in `obj`.
+ *
+ * @param {Object} obj
+ * @return {Array}
+ * @api public
+ */
+
+exports.keys = Object.keys || function(obj){
+  var keys = [];
+  for (var key in obj) {
+    if (has.call(obj, key)) {
+      keys.push(key);
+    }
+  }
+  return keys;
+};
+
+/**
+ * Return own values in `obj`.
+ *
+ * @param {Object} obj
+ * @return {Array}
+ * @api public
+ */
+
+exports.values = function(obj){
+  var vals = [];
+  for (var key in obj) {
+    if (has.call(obj, key)) {
+      vals.push(obj[key]);
+    }
+  }
+  return vals;
+};
+
+/**
+ * Merge `b` into `a`.
+ *
+ * @param {Object} a
+ * @param {Object} b
+ * @return {Object} a
+ * @api public
+ */
+
+exports.merge = function(a, b){
+  for (var key in b) {
+    if (has.call(b, key)) {
+      a[key] = b[key];
+    }
+  }
+  return a;
+};
+
+/**
+ * Return length of `obj`.
+ *
+ * @param {Object} obj
+ * @return {Number}
+ * @api public
+ */
+
+exports.length = function(obj){
+  return exports.keys(obj).length;
+};
+
+/**
+ * Check if `obj` is empty.
+ *
+ * @param {Object} obj
+ * @return {Boolean}
+ * @api public
+ */
+
+exports.isEmpty = function(obj){
+  return 0 == exports.length(obj);
+};
+},{}],42:[function(_dereq_,module,exports){
+/**
+ * Parses an URI
+ *
+ * @author Steven Levithan <stevenlevithan.com> (MIT license)
+ * @api private
+ */
+
+var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+
+var parts = [
+    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host'
+  , 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
+];
+
+module.exports = function parseuri(str) {
+  var m = re.exec(str || '')
+    , uri = {}
+    , i = 14;
+
+  while (i--) {
+    uri[parts[i]] = m[i] || '';
+  }
+
+  return uri;
+};
+
+},{}],43:[function(_dereq_,module,exports){
+(function (global){
+/*global Blob,File*/
+
+/**
+ * Module requirements
+ */
+
+var isArray = _dereq_('isarray');
+var isBuf = _dereq_('./is-buffer');
+
+/**
+ * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
+ * Anything with blobs or files should be fed through removeBlobs before coming
+ * here.
+ *
+ * @param {Object} packet - socket.io event packet
+ * @return {Object} with deconstructed packet and list of buffers
+ * @api public
+ */
+
+exports.deconstructPacket = function(packet){
+  var buffers = [];
+  var packetData = packet.data;
+
+  function _deconstructPacket(data) {
+    if (!data) return data;
+
+    if (isBuf(data)) {
+      var placeholder = { _placeholder: true, num: buffers.length };
+      buffers.push(data);
+      return placeholder;
+    } else if (isArray(data)) {
+      var newData = new Array(data.length);
+      for (var i = 0; i < data.length; i++) {
+        newData[i] = _deconstructPacket(data[i]);
+      }
+      return newData;
+    } else if ('object' == typeof data && !(data instanceof Date)) {
+      var newData = {};
+      for (var key in data) {
+        newData[key] = _deconstructPacket(data[key]);
+      }
+      return newData;
+    }
+    return data;
+  }
+
+  var pack = packet;
+  pack.data = _deconstructPacket(packetData);
+  pack.attachments = buffers.length; // number of binary 'attachments'
+  return {packet: pack, buffers: buffers};
+};
+
+/**
+ * Reconstructs a binary packet from its placeholder packet and buffers
+ *
+ * @param {Object} packet - event packet with placeholders
+ * @param {Array} buffers - binary buffers to put in placeholder positions
+ * @return {Object} reconstructed packet
+ * @api public
+ */
+
+exports.reconstructPacket = function(packet, buffers) {
+  var curPlaceHolder = 0;
+
+  function _reconstructPacket(data) {
+    if (data && data._placeholder) {
+      var buf = buffers[data.num]; // appropriate buffer (should be natural order anyway)
+      return buf;
+    } else if (isArray(data)) {
+      for (var i = 0; i < data.length; i++) {
+        data[i] = _reconstructPacket(data[i]);
+      }
+      return data;
+    } else if (data && 'object' == typeof data) {
+      for (var key in data) {
+        data[key] = _reconstructPacket(data[key]);
+      }
+      return data;
+    }
+    return data;
+  }
+
+  packet.data = _reconstructPacket(packet.data);
+  packet.attachments = undefined; // no longer useful
+  return packet;
+};
+
+/**
+ * Asynchronously removes Blobs or Files from data via
+ * FileReader's readAsArrayBuffer method. Used before encoding
+ * data as msgpack. Calls callback with the blobless data.
+ *
+ * @param {Object} data
+ * @param {Function} callback
+ * @api private
+ */
+
+exports.removeBlobs = function(data, callback) {
+  function _removeBlobs(obj, curKey, containingObject) {
+    if (!obj) return obj;
+
+    // convert any blob
+    if ((global.Blob && obj instanceof Blob) ||
+        (global.File && obj instanceof File)) {
+      pendingBlobs++;
+
+      // async filereader
+      var fileReader = new FileReader();
+      fileReader.onload = function() { // this.result == arraybuffer
+        if (containingObject) {
+          containingObject[curKey] = this.result;
+        }
+        else {
+          bloblessData = this.result;
+        }
+
+        // if nothing pending its callback time
+        if(! --pendingBlobs) {
+          callback(bloblessData);
+        }
+      };
+
+      fileReader.readAsArrayBuffer(obj); // blob -> arraybuffer
+    } else if (isArray(obj)) { // handle array
+      for (var i = 0; i < obj.length; i++) {
+        _removeBlobs(obj[i], i, obj);
+      }
+    } else if (obj && 'object' == typeof obj && !isBuf(obj)) { // and object
+      for (var key in obj) {
+        _removeBlobs(obj[key], key, obj);
+      }
+    }
+  }
+
+  var pendingBlobs = 0;
+  var bloblessData = data;
+  _removeBlobs(bloblessData);
+  if (!pendingBlobs) {
+    callback(bloblessData);
+  }
+};
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./is-buffer":45,"isarray":46}],44:[function(_dereq_,module,exports){
+
+/**
+ * Module dependencies.
+ */
+
+var debug = _dereq_('debug')('socket.io-parser');
+var json = _dereq_('json3');
+var isArray = _dereq_('isarray');
+var Emitter = _dereq_('component-emitter');
+var binary = _dereq_('./binary');
+var isBuf = _dereq_('./is-buffer');
+
+/**
+ * Protocol version.
+ *
+ * @api public
+ */
+
+exports.protocol = 4;
+
+/**
+ * Packet types.
+ *
+ * @api public
+ */
+
+exports.types = [
+  'CONNECT',
+  'DISCONNECT',
+  'EVENT',
+  'BINARY_EVENT',
+  'ACK',
+  'BINARY_ACK',
+  'ERROR'
+];
+
+/**
+ * Packet type `connect`.
+ *
+ * @api public
+ */
+
+exports.CONNECT = 0;
+
+/**
+ * Packet type `disconnect`.
+ *
+ * @api public
+ */
+
+exports.DISCONNECT = 1;
+
+/**
+ * Packet type `event`.
+ *
+ * @api public
+ */
+
+exports.EVENT = 2;
+
+/**
+ * Packet type `ack`.
+ *
+ * @api public
+ */
+
+exports.ACK = 3;
+
+/**
+ * Packet type `error`.
+ *
+ * @api public
+ */
+
+exports.ERROR = 4;
+
+/**
+ * Packet type 'binary event'
+ *
+ * @api public
+ */
+
+exports.BINARY_EVENT = 5;
+
+/**
+ * Packet type `binary ack`. For acks with binary arguments.
+ *
+ * @api public
+ */
+
+exports.BINARY_ACK = 6;
+
+/**
+ * Encoder constructor.
+ *
+ * @api public
+ */
+
+exports.Encoder = Encoder;
+
+/**
+ * Decoder constructor.
+ *
+ * @api public
+ */
+
+exports.Decoder = Decoder;
+
+/**
+ * A socket.io Encoder instance
+ *
+ * @api public
+ */
+
+function Encoder() {}
+
+/**
+ * Encode a packet as a single string if non-binary, or as a
+ * buffer sequence, depending on packet type.
+ *
+ * @param {Object} obj - packet object
+ * @param {Function} callback - function to handle encodings (likely engine.write)
+ * @return Calls callback with Array of encodings
+ * @api public
+ */
+
+Encoder.prototype.encode = function(obj, callback){
+  debug('encoding packet %j', obj);
+
+  if (exports.BINARY_EVENT == obj.type || exports.BINARY_ACK == obj.type) {
+    encodeAsBinary(obj, callback);
+  }
+  else {
+    var encoding = encodeAsString(obj);
+    callback([encoding]);
+  }
+};
+
+/**
+ * Encode packet as string.
+ *
+ * @param {Object} packet
+ * @return {String} encoded
+ * @api private
+ */
+
+function encodeAsString(obj) {
+  var str = '';
+  var nsp = false;
+
+  // first is type
+  str += obj.type;
+
+  // attachments if we have them
+  if (exports.BINARY_EVENT == obj.type || exports.BINARY_ACK == obj.type) {
+    str += obj.attachments;
+    str += '-';
+  }
+
+  // if we have a namespace other than `/`
+  // we append it followed by a comma `,`
+  if (obj.nsp && '/' != obj.nsp) {
+    nsp = true;
+    str += obj.nsp;
+  }
+
+  // immediately followed by the id
+  if (null != obj.id) {
+    if (nsp) {
+      str += ',';
+      nsp = false;
+    }
+    str += obj.id;
+  }
+
+  // json data
+  if (null != obj.data) {
+    if (nsp) str += ',';
+    str += json.stringify(obj.data);
+  }
+
+  debug('encoded %j as %s', obj, str);
+  return str;
+}
+
+/**
+ * Encode packet as 'buffer sequence' by removing blobs, and
+ * deconstructing packet into object with placeholders and
+ * a list of buffers.
+ *
+ * @param {Object} packet
+ * @return {Buffer} encoded
+ * @api private
+ */
+
+function encodeAsBinary(obj, callback) {
+
+  function writeEncoding(bloblessData) {
+    var deconstruction = binary.deconstructPacket(bloblessData);
+    var pack = encodeAsString(deconstruction.packet);
+    var buffers = deconstruction.buffers;
+
+    buffers.unshift(pack); // add packet info to beginning of data list
+    callback(buffers); // write all the buffers
+  }
+
+  binary.removeBlobs(obj, writeEncoding);
+}
+
+/**
+ * A socket.io Decoder instance
+ *
+ * @return {Object} decoder
+ * @api public
+ */
+
+function Decoder() {
+  this.reconstructor = null;
+}
+
+/**
+ * Mix in `Emitter` with Decoder.
+ */
+
+Emitter(Decoder.prototype);
+
+/**
+ * Decodes an ecoded packet string into packet JSON.
+ *
+ * @param {String} obj - encoded packet
+ * @return {Object} packet
+ * @api public
+ */
+
+Decoder.prototype.add = function(obj) {
+  var packet;
+  if ('string' == typeof obj) {
+    packet = decodeString(obj);
+    if (exports.BINARY_EVENT == packet.type || exports.BINARY_ACK == packet.type) { // binary packet's json
+      this.reconstructor = new BinaryReconstructor(packet);
+
+      // no attachments, labeled binary but no binary data to follow
+      if (this.reconstructor.reconPack.attachments == 0) {
+        this.emit('decoded', packet);
+      }
+    } else { // non-binary full packet
+      this.emit('decoded', packet);
+    }
+  }
+  else if (isBuf(obj) || obj.base64) { // raw binary data
+    if (!this.reconstructor) {
+      throw new Error('got binary data when not reconstructing a packet');
+    } else {
+      packet = this.reconstructor.takeBinaryData(obj);
+      if (packet) { // received final buffer
+        this.reconstructor = null;
+        this.emit('decoded', packet);
+      }
+    }
+  }
+  else {
+    throw new Error('Unknown type: ' + obj);
+  }
+};
+
+/**
+ * Decode a packet String (JSON data)
+ *
+ * @param {String} str
+ * @return {Object} packet
+ * @api private
+ */
+
+function decodeString(str) {
+  var p = {};
+  var i = 0;
+
+  // look up type
+  p.type = Number(str.charAt(0));
+  if (null == exports.types[p.type]) return error();
+
+  // look up attachments if type binary
+  if (exports.BINARY_EVENT == p.type || exports.BINARY_ACK == p.type) {
+    p.attachments = '';
+    while (str.charAt(++i) != '-') {
+      p.attachments += str.charAt(i);
+    }
+    p.attachments = Number(p.attachments);
+  }
+
+  // look up namespace (if any)
+  if ('/' == str.charAt(i + 1)) {
+    p.nsp = '';
+    while (++i) {
+      var c = str.charAt(i);
+      if (',' == c) break;
+      p.nsp += c;
+      if (i + 1 == str.length) break;
+    }
+  } else {
+    p.nsp = '/';
+  }
+
+  // look up id
+  var next = str.charAt(i + 1);
+  if ('' != next && Number(next) == next) {
+    p.id = '';
+    while (++i) {
+      var c = str.charAt(i);
+      if (null == c || Number(c) != c) {
+        --i;
+        break;
+      }
+      p.id += str.charAt(i);
+      if (i + 1 == str.length) break;
+    }
+    p.id = Number(p.id);
+  }
+
+  // look up json data
+  if (str.charAt(++i)) {
+    try {
+      p.data = json.parse(str.substr(i));
+    } catch(e){
+      return error();
+    }
+  }
+
+  debug('decoded %s as %j', str, p);
+  return p;
+}
+
+/**
+ * Deallocates a parser's resources
+ *
+ * @api public
+ */
+
+Decoder.prototype.destroy = function() {
+  if (this.reconstructor) {
+    this.reconstructor.finishedReconstruction();
+  }
+};
+
+/**
+ * A manager of a binary event's 'buffer sequence'. Should
+ * be constructed whenever a packet of type BINARY_EVENT is
+ * decoded.
+ *
+ * @param {Object} packet
+ * @return {BinaryReconstructor} initialized reconstructor
+ * @api private
+ */
+
+function BinaryReconstructor(packet) {
+  this.reconPack = packet;
+  this.buffers = [];
+}
+
+/**
+ * Method to be called when binary data received from connection
+ * after a BINARY_EVENT packet.
+ *
+ * @param {Buffer | ArrayBuffer} binData - the raw binary data received
+ * @return {null | Object} returns null if more binary data is expected or
+ *   a reconstructed packet object if all buffers have been received.
+ * @api private
+ */
+
+BinaryReconstructor.prototype.takeBinaryData = function(binData) {
+  this.buffers.push(binData);
+  if (this.buffers.length == this.reconPack.attachments) { // done with buffer list
+    var packet = binary.reconstructPacket(this.reconPack, this.buffers);
+    this.finishedReconstruction();
+    return packet;
+  }
+  return null;
+};
+
+/**
+ * Cleans up binary packet reconstruction variables.
+ *
+ * @api private
+ */
+
+BinaryReconstructor.prototype.finishedReconstruction = function() {
+  this.reconPack = null;
+  this.buffers = [];
+};
+
+function error(data){
+  return {
+    type: exports.ERROR,
+    data: 'parser error'
+  };
+}
+
+},{"./binary":43,"./is-buffer":45,"component-emitter":9,"debug":10,"isarray":46,"json3":47}],45:[function(_dereq_,module,exports){
+(function (global){
+
+module.exports = isBuf;
+
+/**
+ * Returns true if obj is a buffer or an arraybuffer.
+ *
+ * @api private
+ */
+
+function isBuf(obj) {
+  return (global.Buffer && global.Buffer.isBuffer(obj)) ||
+         (global.ArrayBuffer && obj instanceof ArrayBuffer);
+}
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],46:[function(_dereq_,module,exports){
+module.exports=_dereq_(37)
+},{}],47:[function(_dereq_,module,exports){
+/*! JSON v3.2.6 | http://bestiejs.github.io/json3 | Copyright 2012-2013, Kit Cambridge | http://kit.mit-license.org */
+;(function (window) {
+  // Convenience aliases.
+  var getClass = {}.toString, isProperty, forEach, undef;
+
+  // Detect the `define` function exposed by asynchronous module loaders. The
+  // strict `define` check is necessary for compatibility with `r.js`.
+  var isLoader = typeof define === "function" && define.amd;
+
+  // Detect native implementations.
+  var nativeJSON = typeof JSON == "object" && JSON;
+
+  // Set up the JSON 3 namespace, preferring the CommonJS `exports` object if
+  // available.
+  var JSON3 = typeof exports == "object" && exports && !exports.nodeType && exports;
+
+  if (JSON3 && nativeJSON) {
+    // Explicitly delegate to the native `stringify` and `parse`
+    // implementations in CommonJS environments.
+    JSON3.stringify = nativeJSON.stringify;
+    JSON3.parse = nativeJSON.parse;
+  } else {
+    // Export for web browsers, JavaScript engines, and asynchronous module
+    // loaders, using the global `JSON` object if available.
+    JSON3 = window.JSON = nativeJSON || {};
+  }
+
+  // Test the `Date#getUTC*` methods. Based on work by @Yaffle.
+  var isExtended = new Date(-3509827334573292);
+  try {
+    // The `getUTCFullYear`, `Month`, and `Date` methods return nonsensical
+    // results for certain dates in Opera >= 10.53.
+    isExtended = isExtended.getUTCFullYear() == -109252 && isExtended.getUTCMonth() === 0 && isExtended.getUTCDate() === 1 &&
+      // Safari < 2.0.2 stores the internal millisecond time value correctly,
+      // but clips the values returned by the date methods to the range of
+      // signed 32-bit integers ([-2 ** 31, 2 ** 31 - 1]).
+      isExtended.getUTCHours() == 10 && isExtended.getUTCMinutes() == 37 && isExtended.getUTCSeconds() == 6 && isExtended.getUTCMilliseconds() == 708;
+  } catch (exception) {}
+
+  // Internal: Determines whether the native `JSON.stringify` and `parse`
+  // implementations are spec-compliant. Based on work by Ken Snyder.
+  function has(name) {
+    if (has[name] !== undef) {
+      // Return cached feature test result.
+      return has[name];
+    }
+
+    var isSupported;
+    if (name == "bug-string-char-index") {
+      // IE <= 7 doesn't support accessing string characters using square
+      // bracket notation. IE 8 only supports this for primitives.
+      isSupported = "a"[0] != "a";
+    } else if (name == "json") {
+      // Indicates whether both `JSON.stringify` and `JSON.parse` are
+      // supported.
+      isSupported = has("json-stringify") && has("json-parse");
+    } else {
+      var value, serialized = '{"a":[1,true,false,null,"\\u0000\\b\\n\\f\\r\\t"]}';
+      // Test `JSON.stringify`.
+      if (name == "json-stringify") {
+        var stringify = JSON3.stringify, stringifySupported = typeof stringify == "function" && isExtended;
+        if (stringifySupported) {
+          // A test function object with a custom `toJSON` method.
+          (value = function () {
+            return 1;
+          }).toJSON = value;
+          try {
+            stringifySupported =
+              // Firefox 3.1b1 and b2 serialize string, number, and boolean
+              // primitives as object literals.
+              stringify(0) === "0" &&
+              // FF 3.1b1, b2, and JSON 2 serialize wrapped primitives as object
+              // literals.
+              stringify(new Number()) === "0" &&
+              stringify(new String()) == '""' &&
+              // FF 3.1b1, 2 throw an error if the value is `null`, `undefined`, or
+              // does not define a canonical JSON representation (this applies to
+              // objects with `toJSON` properties as well, *unless* they are nested
+              // within an object or array).
+              stringify(getClass) === undef &&
+              // IE 8 serializes `undefined` as `"undefined"`. Safari <= 5.1.7 and
+              // FF 3.1b3 pass this test.
+              stringify(undef) === undef &&
+              // Safari <= 5.1.7 and FF 3.1b3 throw `Error`s and `TypeError`s,
+              // respectively, if the value is omitted entirely.
+              stringify() === undef &&
+              // FF 3.1b1, 2 throw an error if the given value is not a number,
+              // string, array, object, Boolean, or `null` literal. This applies to
+              // objects with custom `toJSON` methods as well, unless they are nested
+              // inside object or array literals. YUI 3.0.0b1 ignores custom `toJSON`
+              // methods entirely.
+              stringify(value) === "1" &&
+              stringify([value]) == "[1]" &&
+              // Prototype <= 1.6.1 serializes `[undefined]` as `"[]"` instead of
+              // `"[null]"`.
+              stringify([undef]) == "[null]" &&
+              // YUI 3.0.0b1 fails to serialize `null` literals.
+              stringify(null) == "null" &&
+              // FF 3.1b1, 2 halts serialization if an array contains a function:
+              // `[1, true, getClass, 1]` serializes as "[1,true,],". FF 3.1b3
+              // elides non-JSON values from objects and arrays, unless they
+              // define custom `toJSON` methods.
+              stringify([undef, getClass, null]) == "[null,null,null]" &&
+              // Simple serialization test. FF 3.1b1 uses Unicode escape sequences
+              // where character escape codes are expected (e.g., `\b` => `\u0008`).
+              stringify({ "a": [value, true, false, null, "\x00\b\n\f\r\t"] }) == serialized &&
+              // FF 3.1b1 and b2 ignore the `filter` and `width` arguments.
+              stringify(null, value) === "1" &&
+              stringify([1, 2], null, 1) == "[\n 1,\n 2\n]" &&
+              // JSON 2, Prototype <= 1.7, and older WebKit builds incorrectly
+              // serialize extended years.
+              stringify(new Date(-8.64e15)) == '"-271821-04-20T00:00:00.000Z"' &&
+              // The milliseconds are optional in ES 5, but required in 5.1.
+              stringify(new Date(8.64e15)) == '"+275760-09-13T00:00:00.000Z"' &&
+              // Firefox <= 11.0 incorrectly serializes years prior to 0 as negative
+              // four-digit years instead of six-digit years. Credits: @Yaffle.
+              stringify(new Date(-621987552e5)) == '"-000001-01-01T00:00:00.000Z"' &&
+              // Safari <= 5.1.5 and Opera >= 10.53 incorrectly serialize millisecond
+              // values less than 1000. Credits: @Yaffle.
+              stringify(new Date(-1)) == '"1969-12-31T23:59:59.999Z"';
+          } catch (exception) {
+            stringifySupported = false;
+          }
+        }
+        isSupported = stringifySupported;
+      }
+      // Test `JSON.parse`.
+      if (name == "json-parse") {
+        var parse = JSON3.parse;
+        if (typeof parse == "function") {
+          try {
+            // FF 3.1b1, b2 will throw an exception if a bare literal is provided.
+            // Conforming implementations should also coerce the initial argument to
+            // a string prior to parsing.
+            if (parse("0") === 0 && !parse(false)) {
+              // Simple parsing test.
+              value = parse(serialized);
+              var parseSupported = value["a"].length == 5 && value["a"][0] === 1;
+              if (parseSupported) {
+                try {
+                  // Safari <= 5.1.2 and FF 3.1b1 allow unescaped tabs in strings.
+                  parseSupported = !parse('"\t"');
+                } catch (exception) {}
+                if (parseSupported) {
+                  try {
+                    // FF 4.0 and 4.0.1 allow leading `+` signs and leading
+                    // decimal points. FF 4.0, 4.0.1, and IE 9-10 also allow
+                    // certain octal literals.
+                    parseSupported = parse("01") !== 1;
+                  } catch (exception) {}
+                }
+                if (parseSupported) {
+                  try {
+                    // FF 4.0, 4.0.1, and Rhino 1.7R3-R4 allow trailing decimal
+                    // points. These environments, along with FF 3.1b1 and 2,
+                    // also allow trailing commas in JSON objects and arrays.
+                    parseSupported = parse("1.") !== 1;
+                  } catch (exception) {}
+                }
+              }
+            }
+          } catch (exception) {
+            parseSupported = false;
+          }
+        }
+        isSupported = parseSupported;
+      }
+    }
+    return has[name] = !!isSupported;
+  }
+
+  if (!has("json")) {
+    // Common `[[Class]]` name aliases.
+    var functionClass = "[object Function]";
+    var dateClass = "[object Date]";
+    var numberClass = "[object Number]";
+    var stringClass = "[object String]";
+    var arrayClass = "[object Array]";
+    var booleanClass = "[object Boolean]";
+
+    // Detect incomplete support for accessing string characters by index.
+    var charIndexBuggy = has("bug-string-char-index");
+
+    // Define additional utility methods if the `Date` methods are buggy.
+    if (!isExtended) {
+      var floor = Math.floor;
+      // A mapping between the months of the year and the number of days between
+      // January 1st and the first of the respective month.
+      var Months = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+      // Internal: Calculates the number of days between the Unix epoch and the
+      // first day of the given month.
+      var getDay = function (year, month) {
+        return Months[month] + 365 * (year - 1970) + floor((year - 1969 + (month = +(month > 1))) / 4) - floor((year - 1901 + month) / 100) + floor((year - 1601 + month) / 400);
+      };
+    }
+
+    // Internal: Determines if a property is a direct property of the given
+    // object. Delegates to the native `Object#hasOwnProperty` method.
+    if (!(isProperty = {}.hasOwnProperty)) {
+      isProperty = function (property) {
+        var members = {}, constructor;
+        if ((members.__proto__ = null, members.__proto__ = {
+          // The *proto* property cannot be set multiple times in recent
+          // versions of Firefox and SeaMonkey.
+          "toString": 1
+        }, members).toString != getClass) {
+          // Safari <= 2.0.3 doesn't implement `Object#hasOwnProperty`, but
+          // supports the mutable *proto* property.
+          isProperty = function (property) {
+            // Capture and break the object's prototype chain (see section 8.6.2
+            // of the ES 5.1 spec). The parenthesized expression prevents an
+            // unsafe transformation by the Closure Compiler.
+            var original = this.__proto__, result = property in (this.__proto__ = null, this);
+            // Restore the original prototype chain.
+            this.__proto__ = original;
+            return result;
+          };
+        } else {
+          // Capture a reference to the top-level `Object` constructor.
+          constructor = members.constructor;
+          // Use the `constructor` property to simulate `Object#hasOwnProperty` in
+          // other environments.
+          isProperty = function (property) {
+            var parent = (this.constructor || constructor).prototype;
+            return property in this && !(property in parent && this[property] === parent[property]);
+          };
+        }
+        members = null;
+        return isProperty.call(this, property);
+      };
+    }
+
+    // Internal: A set of primitive types used by `isHostType`.
+    var PrimitiveTypes = {
+      'boolean': 1,
+      'number': 1,
+      'string': 1,
+      'undefined': 1
+    };
+
+    // Internal: Determines if the given object `property` value is a
+    // non-primitive.
+    var isHostType = function (object, property) {
+      var type = typeof object[property];
+      return type == 'object' ? !!object[property] : !PrimitiveTypes[type];
+    };
+
+    // Internal: Normalizes the `for...in` iteration algorithm across
+    // environments. Each enumerated key is yielded to a `callback` function.
+    forEach = function (object, callback) {
+      var size = 0, Properties, members, property;
+
+      // Tests for bugs in the current environment's `for...in` algorithm. The
+      // `valueOf` property inherits the non-enumerable flag from
+      // `Object.prototype` in older versions of IE, Netscape, and Mozilla.
+      (Properties = function () {
+        this.valueOf = 0;
+      }).prototype.valueOf = 0;
+
+      // Iterate over a new instance of the `Properties` class.
+      members = new Properties();
+      for (property in members) {
+        // Ignore all properties inherited from `Object.prototype`.
+        if (isProperty.call(members, property)) {
+          size++;
+        }
+      }
+      Properties = members = null;
+
+      // Normalize the iteration algorithm.
+      if (!size) {
+        // A list of non-enumerable properties inherited from `Object.prototype`.
+        members = ["valueOf", "toString", "toLocaleString", "propertyIsEnumerable", "isPrototypeOf", "hasOwnProperty", "constructor"];
+        // IE <= 8, Mozilla 1.0, and Netscape 6.2 ignore shadowed non-enumerable
+        // properties.
+        forEach = function (object, callback) {
+          var isFunction = getClass.call(object) == functionClass, property, length;
+          var hasProperty = !isFunction && typeof object.constructor != 'function' && isHostType(object, 'hasOwnProperty') ? object.hasOwnProperty : isProperty;
+          for (property in object) {
+            // Gecko <= 1.0 enumerates the `prototype` property of functions under
+            // certain conditions; IE does not.
+            if (!(isFunction && property == "prototype") && hasProperty.call(object, property)) {
+              callback(property);
+            }
+          }
+          // Manually invoke the callback for each non-enumerable property.
+          for (length = members.length; property = members[--length]; hasProperty.call(object, property) && callback(property));
+        };
+      } else if (size == 2) {
+        // Safari <= 2.0.4 enumerates shadowed properties twice.
+        forEach = function (object, callback) {
+          // Create a set of iterated properties.
+          var members = {}, isFunction = getClass.call(object) == functionClass, property;
+          for (property in object) {
+            // Store each property name to prevent double enumeration. The
+            // `prototype` property of functions is not enumerated due to cross-
+            // environment inconsistencies.
+            if (!(isFunction && property == "prototype") && !isProperty.call(members, property) && (members[property] = 1) && isProperty.call(object, property)) {
+              callback(property);
+            }
+          }
+        };
+      } else {
+        // No bugs detected; use the standard `for...in` algorithm.
+        forEach = function (object, callback) {
+          var isFunction = getClass.call(object) == functionClass, property, isConstructor;
+          for (property in object) {
+            if (!(isFunction && property == "prototype") && isProperty.call(object, property) && !(isConstructor = property === "constructor")) {
+              callback(property);
+            }
+          }
+          // Manually invoke the callback for the `constructor` property due to
+          // cross-environment inconsistencies.
+          if (isConstructor || isProperty.call(object, (property = "constructor"))) {
+            callback(property);
+          }
+        };
+      }
+      return forEach(object, callback);
+    };
+
+    // Public: Serializes a JavaScript `value` as a JSON string. The optional
+    // `filter` argument may specify either a function that alters how object and
+    // array members are serialized, or an array of strings and numbers that
+    // indicates which properties should be serialized. The optional `width`
+    // argument may be either a string or number that specifies the indentation
+    // level of the output.
+    if (!has("json-stringify")) {
+      // Internal: A map of control characters and their escaped equivalents.
+      var Escapes = {
+        92: "\\\\",
+        34: '\\"',
+        8: "\\b",
+        12: "\\f",
+        10: "\\n",
+        13: "\\r",
+        9: "\\t"
+      };
+
+      // Internal: Converts `value` into a zero-padded string such that its
+      // length is at least equal to `width`. The `width` must be <= 6.
+      var leadingZeroes = "000000";
+      var toPaddedString = function (width, value) {
+        // The `|| 0` expression is necessary to work around a bug in
+        // Opera <= 7.54u2 where `0 == -0`, but `String(-0) !== "0"`.
+        return (leadingZeroes + (value || 0)).slice(-width);
+      };
+
+      // Internal: Double-quotes a string `value`, replacing all ASCII control
+      // characters (characters with code unit values between 0 and 31) with
+      // their escaped equivalents. This is an implementation of the
+      // `Quote(value)` operation defined in ES 5.1 section 15.12.3.
+      var unicodePrefix = "\\u00";
+      var quote = function (value) {
+        var result = '"', index = 0, length = value.length, isLarge = length > 10 && charIndexBuggy, symbols;
+        if (isLarge) {
+          symbols = value.split("");
+        }
+        for (; index < length; index++) {
+          var charCode = value.charCodeAt(index);
+          // If the character is a control character, append its Unicode or
+          // shorthand escape sequence; otherwise, append the character as-is.
+          switch (charCode) {
+            case 8: case 9: case 10: case 12: case 13: case 34: case 92:
+              result += Escapes[charCode];
+              break;
+            default:
+              if (charCode < 32) {
+                result += unicodePrefix + toPaddedString(2, charCode.toString(16));
+                break;
+              }
+              result += isLarge ? symbols[index] : charIndexBuggy ? value.charAt(index) : value[index];
+          }
+        }
+        return result + '"';
+      };
+
+      // Internal: Recursively serializes an object. Implements the
+      // `Str(key, holder)`, `JO(value)`, and `JA(value)` operations.
+      var serialize = function (property, object, callback, properties, whitespace, indentation, stack) {
+        var value, className, year, month, date, time, hours, minutes, seconds, milliseconds, results, element, index, length, prefix, result;
+        try {
+          // Necessary for host object support.
+          value = object[property];
+        } catch (exception) {}
+        if (typeof value == "object" && value) {
+          className = getClass.call(value);
+          if (className == dateClass && !isProperty.call(value, "toJSON")) {
+            if (value > -1 / 0 && value < 1 / 0) {
+              // Dates are serialized according to the `Date#toJSON` method
+              // specified in ES 5.1 section 15.9.5.44. See section 15.9.1.15
+              // for the ISO 8601 date time string format.
+              if (getDay) {
+                // Manually compute the year, month, date, hours, minutes,
+                // seconds, and milliseconds if the `getUTC*` methods are
+                // buggy. Adapted from @Yaffle's `date-shim` project.
+                date = floor(value / 864e5);
+                for (year = floor(date / 365.2425) + 1970 - 1; getDay(year + 1, 0) <= date; year++);
+                for (month = floor((date - getDay(year, 0)) / 30.42); getDay(year, month + 1) <= date; month++);
+                date = 1 + date - getDay(year, month);
+                // The `time` value specifies the time within the day (see ES
+                // 5.1 section 15.9.1.2). The formula `(A % B + B) % B` is used
+                // to compute `A modulo B`, as the `%` operator does not
+                // correspond to the `modulo` operation for negative numbers.
+                time = (value % 864e5 + 864e5) % 864e5;
+                // The hours, minutes, seconds, and milliseconds are obtained by
+                // decomposing the time within the day. See section 15.9.1.10.
+                hours = floor(time / 36e5) % 24;
+                minutes = floor(time / 6e4) % 60;
+                seconds = floor(time / 1e3) % 60;
+                milliseconds = time % 1e3;
+              } else {
+                year = value.getUTCFullYear();
+                month = value.getUTCMonth();
+                date = value.getUTCDate();
+                hours = value.getUTCHours();
+                minutes = value.getUTCMinutes();
+                seconds = value.getUTCSeconds();
+                milliseconds = value.getUTCMilliseconds();
+              }
+              // Serialize extended years correctly.
+              value = (year <= 0 || year >= 1e4 ? (year < 0 ? "-" : "+") + toPaddedString(6, year < 0 ? -year : year) : toPaddedString(4, year)) +
+                "-" + toPaddedString(2, month + 1) + "-" + toPaddedString(2, date) +
+                // Months, dates, hours, minutes, and seconds should have two
+                // digits; milliseconds should have three.
+                "T" + toPaddedString(2, hours) + ":" + toPaddedString(2, minutes) + ":" + toPaddedString(2, seconds) +
+                // Milliseconds are optional in ES 5.0, but required in 5.1.
+                "." + toPaddedString(3, milliseconds) + "Z";
+            } else {
+              value = null;
+            }
+          } else if (typeof value.toJSON == "function" && ((className != numberClass && className != stringClass && className != arrayClass) || isProperty.call(value, "toJSON"))) {
+            // Prototype <= 1.6.1 adds non-standard `toJSON` methods to the
+            // `Number`, `String`, `Date`, and `Array` prototypes. JSON 3
+            // ignores all `toJSON` methods on these objects unless they are
+            // defined directly on an instance.
+            value = value.toJSON(property);
+          }
+        }
+        if (callback) {
+          // If a replacement function was provided, call it to obtain the value
+          // for serialization.
+          value = callback.call(object, property, value);
+        }
+        if (value === null) {
+          return "null";
+        }
+        className = getClass.call(value);
+        if (className == booleanClass) {
+          // Booleans are represented literally.
+          return "" + value;
+        } else if (className == numberClass) {
+          // JSON numbers must be finite. `Infinity` and `NaN` are serialized as
+          // `"null"`.
+          return value > -1 / 0 && value < 1 / 0 ? "" + value : "null";
+        } else if (className == stringClass) {
+          // Strings are double-quoted and escaped.
+          return quote("" + value);
+        }
+        // Recursively serialize objects and arrays.
+        if (typeof value == "object") {
+          // Check for cyclic structures. This is a linear search; performance
+          // is inversely proportional to the number of unique nested objects.
+          for (length = stack.length; length--;) {
+            if (stack[length] === value) {
+              // Cyclic structures cannot be serialized by `JSON.stringify`.
+              throw TypeError();
+            }
+          }
+          // Add the object to the stack of traversed objects.
+          stack.push(value);
+          results = [];
+          // Save the current indentation level and indent one additional level.
+          prefix = indentation;
+          indentation += whitespace;
+          if (className == arrayClass) {
+            // Recursively serialize array elements.
+            for (index = 0, length = value.length; index < length; index++) {
+              element = serialize(index, value, callback, properties, whitespace, indentation, stack);
+              results.push(element === undef ? "null" : element);
+            }
+            result = results.length ? (whitespace ? "[\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "]" : ("[" + results.join(",") + "]")) : "[]";
+          } else {
+            // Recursively serialize object members. Members are selected from
+            // either a user-specified list of property names, or the object
+            // itself.
+            forEach(properties || value, function (property) {
+              var element = serialize(property, value, callback, properties, whitespace, indentation, stack);
+              if (element !== undef) {
+                // According to ES 5.1 section 15.12.3: "If `gap` {whitespace}
+                // is not the empty string, let `member` {quote(property) + ":"}
+                // be the concatenation of `member` and the `space` character."
+                // The "`space` character" refers to the literal space
+                // character, not the `space` {width} argument provided to
+                // `JSON.stringify`.
+                results.push(quote(property) + ":" + (whitespace ? " " : "") + element);
+              }
+            });
+            result = results.length ? (whitespace ? "{\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "}" : ("{" + results.join(",") + "}")) : "{}";
+          }
+          // Remove the object from the traversed object stack.
+          stack.pop();
+          return result;
+        }
+      };
+
+      // Public: `JSON.stringify`. See ES 5.1 section 15.12.3.
+      JSON3.stringify = function (source, filter, width) {
+        var whitespace, callback, properties, className;
+        if (typeof filter == "function" || typeof filter == "object" && filter) {
+          if ((className = getClass.call(filter)) == functionClass) {
+            callback = filter;
+          } else if (className == arrayClass) {
+            // Convert the property names array into a makeshift set.
+            properties = {};
+            for (var index = 0, length = filter.length, value; index < length; value = filter[index++], ((className = getClass.call(value)), className == stringClass || className == numberClass) && (properties[value] = 1));
+          }
+        }
+        if (width) {
+          if ((className = getClass.call(width)) == numberClass) {
+            // Convert the `width` to an integer and create a string containing
+            // `width` number of space characters.
+            if ((width -= width % 1) > 0) {
+              for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ");
+            }
+          } else if (className == stringClass) {
+            whitespace = width.length <= 10 ? width : width.slice(0, 10);
+          }
+        }
+        // Opera <= 7.54u2 discards the values associated with empty string keys
+        // (`""`) only if they are used directly within an object member list
+        // (e.g., `!("" in { "": 1})`).
+        return serialize("", (value = {}, value[""] = source, value), callback, properties, whitespace, "", []);
+      };
+    }
+
+    // Public: Parses a JSON source string.
+    if (!has("json-parse")) {
+      var fromCharCode = String.fromCharCode;
+
+      // Internal: A map of escaped control characters and their unescaped
+      // equivalents.
+      var Unescapes = {
+        92: "\\",
+        34: '"',
+        47: "/",
+        98: "\b",
+        116: "\t",
+        110: "\n",
+        102: "\f",
+        114: "\r"
+      };
+
+      // Internal: Stores the parser state.
+      var Index, Source;
+
+      // Internal: Resets the parser state and throws a `SyntaxError`.
+      var abort = function() {
+        Index = Source = null;
+        throw SyntaxError();
+      };
+
+      // Internal: Returns the next token, or `"$"` if the parser has reached
+      // the end of the source string. A token may be a string, number, `null`
+      // literal, or Boolean literal.
+      var lex = function () {
+        var source = Source, length = source.length, value, begin, position, isSigned, charCode;
+        while (Index < length) {
+          charCode = source.charCodeAt(Index);
+          switch (charCode) {
+            case 9: case 10: case 13: case 32:
+              // Skip whitespace tokens, including tabs, carriage returns, line
+              // feeds, and space characters.
+              Index++;
+              break;
+            case 123: case 125: case 91: case 93: case 58: case 44:
+              // Parse a punctuator token (`{`, `}`, `[`, `]`, `:`, or `,`) at
+              // the current position.
+              value = charIndexBuggy ? source.charAt(Index) : source[Index];
+              Index++;
+              return value;
+            case 34:
+              // `"` delimits a JSON string; advance to the next character and
+              // begin parsing the string. String tokens are prefixed with the
+              // sentinel `@` character to distinguish them from punctuators and
+              // end-of-string tokens.
+              for (value = "@", Index++; Index < length;) {
+                charCode = source.charCodeAt(Index);
+                if (charCode < 32) {
+                  // Unescaped ASCII control characters (those with a code unit
+                  // less than the space character) are not permitted.
+                  abort();
+                } else if (charCode == 92) {
+                  // A reverse solidus (`\`) marks the beginning of an escaped
+                  // control character (including `"`, `\`, and `/`) or Unicode
+                  // escape sequence.
+                  charCode = source.charCodeAt(++Index);
+                  switch (charCode) {
+                    case 92: case 34: case 47: case 98: case 116: case 110: case 102: case 114:
+                      // Revive escaped control characters.
+                      value += Unescapes[charCode];
+                      Index++;
+                      break;
+                    case 117:
+                      // `\u` marks the beginning of a Unicode escape sequence.
+                      // Advance to the first character and validate the
+                      // four-digit code point.
+                      begin = ++Index;
+                      for (position = Index + 4; Index < position; Index++) {
+                        charCode = source.charCodeAt(Index);
+                        // A valid sequence comprises four hexdigits (case-
+                        // insensitive) that form a single hexadecimal value.
+                        if (!(charCode >= 48 && charCode <= 57 || charCode >= 97 && charCode <= 102 || charCode >= 65 && charCode <= 70)) {
+                          // Invalid Unicode escape sequence.
+                          abort();
+                        }
+                      }
+                      // Revive the escaped character.
+                      value += fromCharCode("0x" + source.slice(begin, Index));
+                      break;
+                    default:
+                      // Invalid escape sequence.
+                      abort();
+                  }
+                } else {
+                  if (charCode == 34) {
+                    // An unescaped double-quote character marks the end of the
+                    // string.
+                    break;
+                  }
+                  charCode = source.charCodeAt(Index);
+                  begin = Index;
+                  // Optimize for the common case where a string is valid.
+                  while (charCode >= 32 && charCode != 92 && charCode != 34) {
+                    charCode = source.charCodeAt(++Index);
+                  }
+                  // Append the string as-is.
+                  value += source.slice(begin, Index);
+                }
+              }
+              if (source.charCodeAt(Index) == 34) {
+                // Advance to the next character and return the revived string.
+                Index++;
+                return value;
+              }
+              // Unterminated string.
+              abort();
+            default:
+              // Parse numbers and literals.
+              begin = Index;
+              // Advance past the negative sign, if one is specified.
+              if (charCode == 45) {
+                isSigned = true;
+                charCode = source.charCodeAt(++Index);
+              }
+              // Parse an integer or floating-point value.
+              if (charCode >= 48 && charCode <= 57) {
+                // Leading zeroes are interpreted as octal literals.
+                if (charCode == 48 && ((charCode = source.charCodeAt(Index + 1)), charCode >= 48 && charCode <= 57)) {
+                  // Illegal octal literal.
+                  abort();
+                }
+                isSigned = false;
+                // Parse the integer component.
+                for (; Index < length && ((charCode = source.charCodeAt(Index)), charCode >= 48 && charCode <= 57); Index++);
+                // Floats cannot contain a leading decimal point; however, this
+                // case is already accounted for by the parser.
+                if (source.charCodeAt(Index) == 46) {
+                  position = ++Index;
+                  // Parse the decimal component.
+                  for (; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
+                  if (position == Index) {
+                    // Illegal trailing decimal.
+                    abort();
+                  }
+                  Index = position;
+                }
+                // Parse exponents. The `e` denoting the exponent is
+                // case-insensitive.
+                charCode = source.charCodeAt(Index);
+                if (charCode == 101 || charCode == 69) {
+                  charCode = source.charCodeAt(++Index);
+                  // Skip past the sign following the exponent, if one is
+                  // specified.
+                  if (charCode == 43 || charCode == 45) {
+                    Index++;
+                  }
+                  // Parse the exponential component.
+                  for (position = Index; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
+                  if (position == Index) {
+                    // Illegal empty exponent.
+                    abort();
+                  }
+                  Index = position;
+                }
+                // Coerce the parsed value to a JavaScript number.
+                return +source.slice(begin, Index);
+              }
+              // A negative sign may only precede numbers.
+              if (isSigned) {
+                abort();
+              }
+              // `true`, `false`, and `null` literals.
+              if (source.slice(Index, Index + 4) == "true") {
+                Index += 4;
+                return true;
+              } else if (source.slice(Index, Index + 5) == "false") {
+                Index += 5;
+                return false;
+              } else if (source.slice(Index, Index + 4) == "null") {
+                Index += 4;
+                return null;
+              }
+              // Unrecognized token.
+              abort();
+          }
+        }
+        // Return the sentinel `$` character if the parser has reached the end
+        // of the source string.
+        return "$";
+      };
+
+      // Internal: Parses a JSON `value` token.
+      var get = function (value) {
+        var results, hasMembers;
+        if (value == "$") {
+          // Unexpected end of input.
+          abort();
+        }
+        if (typeof value == "string") {
+          if ((charIndexBuggy ? value.charAt(0) : value[0]) == "@") {
+            // Remove the sentinel `@` character.
+            return value.slice(1);
+          }
+          // Parse object and array literals.
+          if (value == "[") {
+            // Parses a JSON array, returning a new JavaScript array.
+            results = [];
+            for (;; hasMembers || (hasMembers = true)) {
+              value = lex();
+              // A closing square bracket marks the end of the array literal.
+              if (value == "]") {
+                break;
+              }
+              // If the array literal contains elements, the current token
+              // should be a comma separating the previous element from the
+              // next.
+              if (hasMembers) {
+                if (value == ",") {
+                  value = lex();
+                  if (value == "]") {
+                    // Unexpected trailing `,` in array literal.
+                    abort();
+                  }
+                } else {
+                  // A `,` must separate each array element.
+                  abort();
+                }
+              }
+              // Elisions and leading commas are not permitted.
+              if (value == ",") {
+                abort();
+              }
+              results.push(get(value));
+            }
+            return results;
+          } else if (value == "{") {
+            // Parses a JSON object, returning a new JavaScript object.
+            results = {};
+            for (;; hasMembers || (hasMembers = true)) {
+              value = lex();
+              // A closing curly brace marks the end of the object literal.
+              if (value == "}") {
+                break;
+              }
+              // If the object literal contains members, the current token
+              // should be a comma separator.
+              if (hasMembers) {
+                if (value == ",") {
+                  value = lex();
+                  if (value == "}") {
+                    // Unexpected trailing `,` in object literal.
+                    abort();
+                  }
+                } else {
+                  // A `,` must separate each object member.
+                  abort();
+                }
+              }
+              // Leading commas are not permitted, object property names must be
+              // double-quoted strings, and a `:` must separate each property
+              // name and value.
+              if (value == "," || typeof value != "string" || (charIndexBuggy ? value.charAt(0) : value[0]) != "@" || lex() != ":") {
+                abort();
+              }
+              results[value.slice(1)] = get(lex());
+            }
+            return results;
+          }
+          // Unexpected token encountered.
+          abort();
+        }
+        return value;
+      };
+
+      // Internal: Updates a traversed object member.
+      var update = function(source, property, callback) {
+        var element = walk(source, property, callback);
+        if (element === undef) {
+          delete source[property];
+        } else {
+          source[property] = element;
+        }
+      };
+
+      // Internal: Recursively traverses a parsed JSON object, invoking the
+      // `callback` function for each value. This is an implementation of the
+      // `Walk(holder, name)` operation defined in ES 5.1 section 15.12.2.
+      var walk = function (source, property, callback) {
+        var value = source[property], length;
+        if (typeof value == "object" && value) {
+          // `forEach` can't be used to traverse an array in Opera <= 8.54
+          // because its `Object#hasOwnProperty` implementation returns `false`
+          // for array indices (e.g., `![1, 2, 3].hasOwnProperty("0")`).
+          if (getClass.call(value) == arrayClass) {
+            for (length = value.length; length--;) {
+              update(value, length, callback);
+            }
+          } else {
+            forEach(value, function (property) {
+              update(value, property, callback);
+            });
+          }
+        }
+        return callback.call(source, property, value);
+      };
+
+      // Public: `JSON.parse`. See ES 5.1 section 15.12.2.
+      JSON3.parse = function (source, callback) {
+        var result, value;
+        Index = 0;
+        Source = "" + source;
+        result = get(lex());
+        // If a JSON string contains multiple tokens, it is invalid.
+        if (lex() != "$") {
+          abort();
+        }
+        // Reset the parser state.
+        Index = Source = null;
+        return callback && getClass.call(callback) == functionClass ? walk((value = {}, value[""] = result, value), "", callback) : result;
+      };
+    }
+  }
+
+  // Export for asynchronous module loaders.
+  if (isLoader) {
+    define(function () {
+      return JSON3;
+    });
+  }
+}(this));
+
+},{}],48:[function(_dereq_,module,exports){
+module.exports = toArray
+
+function toArray(list, index) {
+    var array = []
+
+    index = index || 0
+
+    for (var i = index || 0; i < list.length; i++) {
+        array[i - index] = list[i]
+    }
+
+    return array
+}
+
+},{}]},{},[1])
+(1)
+});

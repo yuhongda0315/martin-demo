@@ -12,10 +12,17 @@
             //Cookies.set("maxBitRate", maxBitRate);
         });
 
+        Cookies.remove('secretKey');
+        Cookies.remove('mode');
+        Cookies.remove('encryptionType');
+
         $("#join-meeting").click(function(e) {
             e.preventDefault();
             var roomName = $("#room-name").val(),
-                vendorKey = $("#vendor-key").val();
+                secret = $.trim($("#secretKey").val()),
+                vendorKey = $("#vendor-key").val(),
+                type = $('#js_encryptionType').val(),
+                mode = $('#js_select_mode').val();
 
             if (!vendorKey) {
                 $("#vendor-key").addClass("required-field");
@@ -25,10 +32,16 @@
                 $("#room-name").addClass("required-field");
             }
 
+            if (secret != '') {
+                Cookies.set("secretKey", secret);
+            }
+
             if (roomName && vendorKey) {
                 Cookies.set("roomName", roomName);
                 Cookies.set("vendorKey", vendorKey);
-                window.location.href="meeting.html";
+                Cookies.set("encryptionType", type);
+                Cookies.set("mode", mode);
+                window.location.href = "meeting.html";
             }
         });
 
@@ -62,10 +75,10 @@
 
             // by default, we expect 720p bit rate range
             slider = $("#choose-max-rate").slider({
-                min: range[0],
-                max: range[1]
-            })
-            .slider('setValue', bitRate);
+                    min: range[0],
+                    max: range[1]
+                })
+                .slider('setValue', bitRate);
 
             return slider;
         }
