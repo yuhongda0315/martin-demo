@@ -1,13 +1,18 @@
 var ParRandom = (function() {
 
     var copy = function(from, to, callback, force) {
+        
+        callback = callback || function(k, v, t){
+            t[k] = v;
+        };
+
         for (var key in from) {
-            var keyExist = (key in to);
-            if (keyExist && !force) {
-                continue;
-            }
             var value = from[key];
-            callback ? callback(key, value, to) : (to[key] = value);
+            if (to.hasOwnProperty(key)) {
+                force && callback(key, value, to);
+            }else{
+                callback(key, value, to);
+            }
         }
         return to;
     };

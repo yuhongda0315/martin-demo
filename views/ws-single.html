@@ -4,7 +4,8 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>WS-Demo</title>
-<script src="https://cdn.ronghub.com/RongIMLib-dev-1.0.2.js"></script>
+<script src="RongIMLib-2.2.5-check.js"></script>
+<!-- <script src="RongIMLib-1.4.0.js"></script> -->
   <style type="text/css">
     body {
       font-size: 13px;
@@ -88,11 +89,11 @@
       // cocal : orCwsCHs9pYHfLLCfAVpDKOd4p1PG0cvD2kpyDJu+i0jPUkxyWc0Y2Mo2zek2KQV5A+1kLLNWGDRSBg61koz6w==
       // wahaha : 8xnBCDp5UtbhxTJOgI39Po7LpJ9aWJrhdeMrxM9/KQbacbFcYXrkp4rEhVIyH+82R4xQJkHod8E1C8UtjSx2qQ==
 
-      // RongIMClient.init("8luwapkvucoil");
-      // var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
+      RongIMClient.init("8luwapkvucoil");
+      var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
 
-      RongIMClient.init("c9kqb3rdkkn8j");
-      var token = "7QCKObcKBM5j6jCYkYy73MmZCygxvEIJlvPHz5ojxys1wlaw6fUkBzjWBYc46IZ2MqRtHNpgb7ldK8SUo27PQA==";
+      // RongIMClient.init("c9kqb3rdkkn8j");
+      // var token = "7QCKObcKBM5j6jCYkYy73MmZCygxvEIJlvPHz5ojxys1wlaw6fUkBzjWBYc46IZ2MqRtHNpgb7ldK8SUo27PQA==";
       
       // RongIMClient.init("e0x9wycfx7flq", null, {navi:'119.254.111.49:9100'});
       // var token = "vCHlXyIFR6W3/xbBY5yLtF+Shv2KV+zuCWxUpBep0x+L94PUAFjqGP243FChNg+Zoroy6R3trk7Uncrwg4vvug==";
@@ -133,7 +134,7 @@
       RongIMClient.setOnReceiveMessageListener({
         onReceived: function(message) {
             consoleInfo('>>>>>>>');
-            consoleInfo(JSON.stringify(message));
+            consoleInfo(message.content.content);
         }
       });
       RongIMClient.connect(token, {

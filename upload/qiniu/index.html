@@ -101,7 +101,7 @@
 			// domain: 'http://upload.qiniu.com',
 			domain: 'https://up.qbox.me',
 			getToken: function(callback){
-				var token = "CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:kdo_1m48diLRLqaZLQmLk2-jpwM=:eyJzY29wZSI6InJvbmdjbG91ZC1maWxlIiwicmV0dXJuQm9keSI6IntcIm5hbWVcIjogJChmbmFtZSksXCJzaXplXCI6ICQoZnNpemUpLFwid1wiOiAkKGltYWdlSW5mby53aWR0aCksXCJoXCI6ICQoaW1hZ2VJbmZvLmhlaWdodCksXCJoYXNoXCI6ICQoZXRhZyl9IiwiZGVhZGxpbmUiOjE0ODQ3MzMyMTl9"
+				var token = "32YDa_nCreeT0m5qolM29grLgwKB5HBtvYQXtFOR:6oo-GFkOhl_0exnAOpo8n4uT6Mc=:eyJzY29wZSI6ImZpbGUiLCJyZXR1cm5Cb2R5Ijoie1wibmFtZVwiOiAkKGZuYW1lKSxcInNpemVcIjogJChmc2l6ZSksXCJ3XCI6ICQoaW1hZ2VJbmZvLndpZHRoKSxcImhcIjogJChpbWFnZUluZm8uaGVpZ2h0KSxcImhhc2hcIjogJChldGFnKX0iLCJkZWFkbGluZSI6MTQ4ODE5NTU2M30=";
 				callback(token);
 			}
 		 };
@@ -139,7 +139,8 @@
 
 	var image = document.getElementById('image-Id');
 	var imgConfig = {
-				domain: 'http://upload.qiniu.com/putb64/-1',
+				// domain: 'http://upload.qiniu.com/putb64/-1',
+				domain: 'http://app.sggf.com.cn:8802/base64.php',
 			 	data: UploadClient.dataType.data,
 				getToken: function(callback){
 					var token = "livk5rb3__JZjCtEiMxX";
@@ -152,7 +153,7 @@
 				uploadFile.upload(base64, callback);
 			});
 		};
-	var base64 = "iVBORw0KGgoAAAANSUhEUgAAAGQAAADwCAYAAAD";
+	var base64 = "";
 
 </script>
 

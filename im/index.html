@@ -286,7 +286,12 @@ html,body{
 <script>
 
 var currentConversationType, currentTargetId;
-var _instance = RongDataModel.init({appkey:"8luwapkvucoil"});
+var _instance = RongDataModel.init({appkey:"8luwapkvucoil",dm:{data:['Group','Friend']}});
+// var _instance = RongDataModel.init({
+// 			appkey:"e0x9wycfx7flq",
+// 			sdk:{navi:'119.254.101.226'},
+// 			dm:{server_path:'http://api.hitalk.im/', data:['Group','Friend']}
+// 		});
 _instance.Status.watch = function(status){
 	switch(status){
         case RongIMLib.ConnectionStatus.CONNECTING:
@@ -294,11 +299,11 @@ _instance.Status.watch = function(status){
             break;
 	 	case RongIMLib.ConnectionStatus.CONNECTED:
             console.log('链接成功');
-	 		_instance.Conversation.get(function(conversationList){
-	 			showConversation(conversationList);
-	 		});
-	 		showFriendShip(_instance.Friend.get());
-	 		showGroups(_instance.Group.get());
+	 		// _instance.Conversation.get(function(conversationList){
+	 		// 	showConversation(conversationList);
+	 		// });
+	 		// showFriendShip(_instance.Friend.get());
+	 		// showGroups(_instance.Group.get());
             break;
         case RongIMLib.ConnectionStatus.DISCONNECTED:
             console.log('断开连接');
@@ -307,7 +312,8 @@ _instance.Status.watch = function(status){
             console.log(status);
 	}
 };
-_instance.Status.connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
+// _instance.Status.connect("vCHlXyIFR6W3/xbBY5yLtF+Shv2KV+zuCWxUpBep0x+L94PUAFjqGP243FChNg+Zoroy6R3trk7Uncrwg4vvug==");
+	_instance.Status.connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
 
 var msgs = new Vue({
 	el : "#seal-panel-conversation",
@@ -397,6 +403,9 @@ function showGroups(groups){
 			}
 		}
 	});
+	_instance.Group.watch = function(list){
+		group.$set(group.$data,"list",list);
+	};
 }
 
 var groupMember = new Vue({

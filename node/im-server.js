@@ -72,5 +72,9 @@ app.get('/user/all', function(req, res, next){
   next();
 });
 
+app.post('/user/login', function(req, res, next){
+  res.send({code:200});
+  next();
+});
 app.listen(3587);
 console.log('listener port : 3587');
