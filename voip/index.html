@@ -1,131 +1,227 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Agora Video Call</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="css/bundle.css?v=1.8.1">
-    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="bookmark" href="images/favicon.ico">
-</head>
+    <meta charset="UTF-8">
+    <title> Super </title>
+    <style>
+        .input{
+            margin-left: 30px;
+        }
+        .video-main{
+            width: 50%;
+            height: 500px;
+            border: 1px solid gray;
+            float: left;
+        }
+        .video-main video{
+            height: inherit;
+        }
 
-<body class="is-loading">
-    <!-- Wrapper -->
-    <div id="wrapper">
-        <!-- Main -->
-        <section id="main">
-            <header><img id="logo" src="images/logo.png" alt="Logo">
-                <p class="head-text">Agora Video Call<span class="version">v1.8.1 </span></p>
-                <p class="head-text-bottom">Powering Real-Time Communications</p>
-            </header>
-            <main id="main-content">
-                <p class="enter-prompt">Enter a conference room name</p>
-                <p class="main-description-text">If you are the first person to specify this name, the room will be created and you will be placed in it. If it has already been created you will join the conference in progress.</p>
-                <div id="form-content">
-                    <form action="meeting.html" method="GET">
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5">
-                                <input id="vendor-key" type="text" class="form-control" placeholder="Enter App ID Here">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5">
-                                <input id="room-name" type="text" class="form-control" placeholder="Enter room name here">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5">
-                                <input id="secretKey" type="text" class="form-control input-encrypt" placeholder="Input key here if use encryption">
-                                <select class="selectpicker form-control select-encrypt-type" id="js_encryptionType">
-                                    <option value="aes-128-xts">AES-128-XTS</option>
-                                    <option value="aes-128-xts">AES-256-XTS</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div style="height:56px" class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5">
-                                <select class="selectpicker form-control" id="js_select_mode">
-                                    <option value="communication">Communication</option>
-                                    <option value="live-broadcasting">Live Broadcasting</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5">
-                                <button class="btn btn-warning join-button" id="join-meeting"><span class="fa fa-sign-in">&nbsp;&nbsp;Join</span></button>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5">
-                                <button id="options-button" type="button" class="btn btn-default" data-toggle="modal" data-target="#videoOptionsModal"><span class="fa fa-gear">&nbsp; Video Options</span></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </main>
-        </section>
-        <!-- Footer -->
-        <footer id="footer">
-            <ul class="copyright">
-                <li><a>Agora.io</a></li>
-                <li>&copy; Copyright Agora.io 沪ICP备14053584号</li>
-            </ul>
-        </footer>
+        .video-box{
+            width: 40%;
+            height: 500px;
+            float: right;
+            overflow-y: auto;
+            border: 1px solid gray;
+        }
+        .voide-child{
+            float:left;
+            margin-left: 30px;
+            margin-top: 5px;
+            width: 200px;
+            height: 150px;
+            border: 2px solid gray;
+        }
+
+        .video-bar{
+            float: right;
+            margin-right: 10px;
+            height: 20px;
+            width: 20px;
+        }
+
+        .tool-bar{
+            clear: both;
+            padding: 20px;
+        }
+        .voide-child video{
+            height: 125px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="video-main"> </div>
+
+    <div class="video-box"> </div>
+
+    <div class="tool-bar">
+        <input type="button" value="call" onclick="call()">
+        <input type="button" value="hungup" onclick="hungup()">
+
+        <input type="button" value="accept" onclick="acceptCall()">
+
+        <input type="button" value="mute" onclick="mute()">
+        <input type="button" value="unmute" onclick="unmute()">
+
+        <input type="button" value="videoToAudio" onclick="videoToAudio()">
+        <input type="button" value="audioToVideo" onclick="audioToVideo()">
+
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="videoOptionsModal" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form role="form" action="#">
-                        <div class="form-group">
-                            <label for="resolution">Resolution</label>
-                            <select class="selectpicker form-control" id="resolution">
-                                <option value="120p">160x120</option>
-                                <option value="240p">320x240</option>
-                                <!--<option value="360p">640x360</option>-->
-                                <option value="480p" selected="selected">640x480</option>
-                                <option value="720p">1280x720</option>
-                                <option value="1080p">1920x1080 (Test Only)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="maxFrameRate">Max Frame Rate</label>
-                            <select class="selectpicker form-control" id="maxFrameRate">
-                                <option value="15" selected="selected">15</option>
-                                <!--<option value="24">24</option>-->
-                                <option value="30">30</option>
-                            </select>
-                        </div>
-                        <div class="form-group" style="display:none">
-                            <label>Max Rate</label>
-                            <div id="choose-max-rate" class="form-control" data-slider-id="maxRateSlider"></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Scripts -->
-    <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
-    <script src="js/vendor-bundle.js?v=1.8.1"></script>
-    <script src="js/index.js?v=1.8.1"></script>
-    <script>
-    if ('addEventListener' in window) {
-        window.addEventListener('load', function() {
-            document.body.className = document.body.className.replace(/\bis-loading\b/, '');
-        });
-        document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
-    }
-    </script>
+
 </body>
 
-</html>
+    <script src="http://cdn.ronghub.com/RongIMLib-2.2.5.js"></script>
+    <script src="init.js"></script>
+
+    <script src="jquery-3.1.1.js"></script>
+    
+    <script src="./adapter.js"></script>
+    <script src="./kurento-utils.js"></script>
+    <script src="./kurento-jsonrpc.js"></script>
+    <script src="./EventEmitter.js"></script>
+    <script src="./KurentoRoom.js"></script>
+
+    <script src="RongCallLib-webRTC.js"></script>
+    <script src="rong-adapter.js"></script>
+
+    <script>
+       var users = [ {
+                userid:"1001",
+                token:"hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ=="
+            }, {
+                userid:"1002",
+                token:"UAFlOdMThtHnc18558yPhcSkAMimzaj6nB20cRPaYWRyLGGbEPHrt12ut6s/G81HNXcegD4ILRb/EnGJdxts4Q=="
+            }];
+
+        var userId = users[0].userid;
+        var inviteUserIds = [users[1].userid];
+        var token = users[0].token;
+        var targetId = users[1].userid;
+
+        if(location.search.indexOf("user") > -1){
+            userId = users[1].userid;
+            inviteUserIds = [users[0].userid];
+            token = users[1].token;
+            targetId = users[0].userid;
+        }
+
+        function onInitcomplete(error, callLib){
+            console.log(callLib);
+        }
+
+        var sendMessage = function(params, callback){
+            var conversationType = params.conversationType;
+            var targetId = params.targetId;
+            var msg = params.msg;
+
+            var im = RongIMLib.RongIMClient.getInstance();
+
+            im.sendMessage(conversationType, targetId, msg, {
+                onSuccess: function(message) {
+                    callback(null, message);
+                },
+                onError: function(code) {
+                    callback(code);
+                }
+            });
+        };
+
+        var messageType = {
+            AcceptMessage: RongIMLib.AcceptMessage,
+            RingingMessage: RongIMLib.RingingMessage,
+            SummaryMessage: RongIMLib.SummaryMessage,
+            HungupMessage: RongIMLib.HungupMessage,
+            InviteMessage: RongIMLib.InviteMessage,
+            MediaModifyMessage: RongIMLib.MediaModifyMessage,
+            MemberModifyMessage: RongIMLib.MemberModifyMessage
+        };
+        var message = {
+            send: sendMessage,
+            messageTypes: messageType
+        };
+        RongCallLib.message(message);
+
+        var element = $('.video-main')[0];
+
+        var config = {
+            userId: userId,
+            timeoutMillis: 30000,
+            element: element,
+            url: 'wss://111.200.55.12:8443/room',
+            getElmentNode: function(){
+                return {
+                    parent: $('.video-box')[0],
+                    child: $('<div class="voide-child"><div class="video-bar">x</div></div>')[0]
+                };
+            }
+        };
+        RongCallLib.config(config);  
+
+        var callbacks = {
+            getInstance : function(instance){
+                // 连接成功后调用
+                console.log(RongCallLib);
+            },
+            getCurrentUser : function(userInfo){
+                console.log(userInfo.userId);
+            },
+            receiveNewMessage : function(message){
+                console.log(message);
+            }
+        };
+
+        var params = {
+            appKey : '8luwapkvucoil',
+            token : token
+        };
+        
+        var mediaType = RongIMLib.MediaType;
+
+        init(params,callbacks);   
+
+        function call(){
+            var params = {
+                conversationType: 1,
+                targetId: targetId,
+                inviteUserIds: inviteUserIds
+            };
+
+            RongCallLib.call(params, function(error, result){
+                console.log(error);
+            });
+        }
+
+        function hungup(){
+            var params = { };
+            RongCallLib.hungup(params);
+        }
+
+        function acceptCall(){
+            var params = {
+                mediaType: mediaType.VIDEO
+            };
+            RongCallLib.accept(params);
+        }
+
+        function mute(){
+            var params = {};
+            RongCallLib.mute(params);
+        }
+
+        function unmute(){
+            var params = {};
+            RongCallLib.unmute(params);
+        }
+
+        function videoToAudio(){
+            RongCallLib.videoToAudio(params);
+        }
+
+        function audioToVideo(){
+            RongCallLib.audioToVideo(params);
+        }
+
+    </script>
+</html> 
