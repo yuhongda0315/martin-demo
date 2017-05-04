@@ -49,7 +49,7 @@
         },
         each: function(arr, callback){
             for(var i = 0, len = arr.length; i < len; i++){
-                callback(arr[i]);
+                callback(arr[i], index);
             }
         },
         noop: function() {
@@ -175,9 +175,9 @@
         add: function(stream){
 
             var element = _util.config.element;
-            var getElmentNode = _util.config.getElmentNode;
+            var getElement = _util.config.getElement;
 
-            var node = getElmentNode();
+            var node = getElement();
 
             var child = node.child;
             var parent = node.parent;
@@ -355,69 +355,6 @@
         timer.pauseTimer();
     };
 
-    var _messageHandler = {
-
-        InviteMessage: function(message){
-            cache.set('session', message);
-
-            var callId = message.content.callId;
-
-            var params = {
-                content: { callId: callId},
-                messageType: 'RingingMessage',
-                conversationType: message.conversationType,
-                targetId: message.targetId
-            };
-            _sendMessage(params);
-
-        },
-
-        RingingMessage: function(message){
-            // Ringing
-        },
-
-        AcceptMessage: function(message){
-            _pauseTimer();
-
-            var session = cache.get('session');
-            var content = session.content;
-
-            var channelId = content.channelInfo.Id;
-            var userId = _util.config.userId;
-            var mediaType = message.content.mediaType;
-
-            var params = {
-                channelId: channelId,
-                userId: userId,
-                mediaType: mediaType
-            };
-            roomTools.init(params);
-        },
-
-        HungupMessage: function(message){
-            _pauseTimer();
-            roomTools.reset();
-        },
-
-        MediaModifyMessage: function(message){
-
-        },
-
-        MemberModifyMessage: function(message){
-
-        },
-
-        SummaryMessage: function(message){
-
-        }
-
-    };
-
-    var onReceived = function(message) {
-        var handler = _messageHandler[message.messageType];
-        handler && handler(message);
-    };
-
     var getChannelId = function(params){
         var info = [params.conversationType, params.targetId];
         return info.join('_');
@@ -425,6 +362,19 @@
     
     var _clearSession = function(){
         cache.remove('session');
+    };
+
+    // params.info
+    // params.position
+    var _errorHandler = function(params){
+        var info = params.info;
+        throw new Error(info);
+    };
+
+    var _checkSession = function(params){
+        if (!params.session) {
+            _errorHandler(params);
+        }
     };
     /*
         params.conversationType
@@ -484,8 +434,15 @@
         Participant && Participant.removeAll();
     };
     
-    var _sendHungup = function(){
+    var _sendHungup = function(from){
         var session = cache.get('session');
+
+        var info = from + ': Not call yet';
+        _checkSession({
+            session: session,
+            info: info
+        });
+
         var channel = session.content.channelInfo;
 
         var content = { callId: channel.Id, reason: Reason.REMOTE_HANGUP };
@@ -503,16 +460,25 @@
 
     var hungup = function() {
         _disconnect();
-        _sendHungup();   
+        var from = 'hungup';
+        _sendHungup(from);   
     };
 
     var reject = function(){
-        _sendHungup();
+         var from = 'reject';
+        _sendHungup(from); 
     };
 
     var _sendAccept = function(params){
 
         var session = cache.get('session');
+
+        var info = params.from + ': Not received InviteMessage yet';
+        _checkSession({
+            session: session,
+            info: info
+        });
+
         var message = session.content;
 
         var mediaType = params.mediaType;
@@ -537,52 +503,155 @@
         params.mediaType
     */
     var accept = function(params){
+        params.from = 'accept';
         _sendAccept(params);
     };
 
     /*
         params.mediaType
      */   
-    var join = function(params, callback) {
-        _sendAccept(params, callback);
+    var join = function(params) {
+        params.from = 'join';
+        _sendAccept(params);
     };
 
     var quit = function(){
         _disconnect();
-        _sendHungup();
+        var from = 'quit';
+        _sendHungup(from); 
     };
 
-    var _getRtcPeer = function(){
+    var _getRtcPeer = function(params){
+
+        if (!localStream) {
+            var info = params.info || 'Not call yet, please call first.';
+            info = params.from + ': ' + info;
+            _errorHandler({ info: info});
+        }
+        
         return localStream.getWebRtcPeer();
     };
 
     var mute = function() {
-        _getRtcPeer().audioEnabled = false;
+        var params = {
+            from: 'mute'
+        };
+        _getRtcPeer(params).audioEnabled = false;
     };
 
     var unmute = function() {
-        _getRtcPeer().audioEnabled = true;
+        var params = {
+            from: 'unmute'
+        };
+        _getRtcPeer(params).audioEnabled = true;
     };
 
     var videoToAudio = function() {
-        _getRtcPeer().videoEnabled = false;
+        var params = {
+            from: 'videoToAudio'
+        };
+        _getRtcPeer(params).videoEnabled = false;
     };
 
     var audioToVideo = function() {
-        _getRtcPeer().videoEnabled = true;
+        var params = {
+            from: 'audioToVideo'
+        };
+        _getRtcPeer(params).videoEnabled = true;
     };
 
-    var config = function(cfg){
-        _util.merge(cfg, _util.config);
+    var _messageHandler = {
+
+        InviteMessage: function(message){
+            cache.set('session', message);
+
+            var callId = message.content.callId;
+
+            var params = {
+                content: { callId: callId},
+                messageType: 'RingingMessage',
+                conversationType: message.conversationType,
+                targetId: message.targetId
+            };
+            _sendMessage(params);
+
+        },
+
+        RingingMessage: function(message){
+            // Ringing
+        },
+
+        AcceptMessage: function(message){
+            _pauseTimer();
+
+            var session = cache.get('session');
+            var content = session.content;
+
+            var channelId = content.channelInfo.Id;
+            var userId = _util.config.userId;
+            var mediaType = message.content.mediaType;
+
+            var params = {
+                channelId: channelId,
+                userId: userId,
+                mediaType: mediaType
+            };
+            roomTools.init(params);
+        },
+
+        HungupMessage: function(message){
+            _pauseTimer();
+            roomTools.reset();
+        },
+
+        MediaModifyMessage: function(message){
+            
+        },
+
+        MemberModifyMessage: function(message){
+
+        },
+
+        SummaryMessage: function(message){
+
+        }
+
     };
 
-    var message = function(opt){
+    var onMsgWatch = function(message) {
+        var handler = _messageHandler[message.messageType];
+        handler && handler(message);
+    };
+
+    var setConfig = function(cfg){
+        var config = _util.config;
+        _util.merge(cfg, config);
+        config.msgWatch && config.msgWatch(onMsgWatch);
+    };
+
+    var setDirective = function(opt){
         _util.merge(opt, _util.config);
+    };
+    // TODO  SummaryMessage 广播
+    var watcher = {
+        watchers: [],
+        add: function(listener){
+            watchers.push(listener);
+        },
+        notify: function(val){
+            _util.each(this.watchers, function(event){
+                event(val);
+            });
+        }
+    };
+
+    var watch = function(listener){
+        watcher.add(listener);
     };
 
     return {
-        config: config,
-        message: message,
+        setConfig: setConfig,
+        setDirective: setDirective,
         call: call,
         hungup: hungup,
         reject: reject,
@@ -593,7 +662,7 @@
         unmute: unmute,
         videoToAudio: videoToAudio,
         audioToVideo: audioToVideo,
-        onReceived: onReceived
+        watch: watch
     };
 
 }, 'RongCallLib');

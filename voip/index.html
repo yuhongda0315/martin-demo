@@ -61,7 +61,8 @@
         <input type="button" value="hungup" onclick="hungup()">
 
         <input type="button" value="accept" onclick="acceptCall()">
-
+        <input type="button" value="reject" onclick="reject()">
+        
         <input type="button" value="mute" onclick="mute()">
         <input type="button" value="unmute" onclick="unmute()">
 
@@ -84,7 +85,6 @@
     <script src="./KurentoRoom.js"></script>
 
     <script src="RongCallLib-webRTC.js"></script>
-    <script src="rong-adapter.js"></script>
 
     <script>
        var users = [ {
@@ -111,6 +111,30 @@
             console.log(callLib);
         }
 
+        var callbacks = {
+            getInstance : function(instance){
+                // 连接成功后调用
+                console.log(RongCallLib);
+            },
+            getCurrentUser : function(userInfo){
+                console.log(userInfo.userId);
+            }
+        };
+
+        var params = {
+            appKey : '8luwapkvucoil',
+            token : token
+        };
+        
+        var mediaType = RongIMLib.MediaType;
+
+        QuickRongIM.watch(function(message){
+            console.log(message);
+        });
+
+        QuickRongIM.init(params,callbacks);
+
+/************************ WebRTC **************************************/
         var sendMessage = function(params, callback){
             var conversationType = params.conversationType;
             var targetId = params.targetId;
@@ -137,49 +161,32 @@
             MediaModifyMessage: RongIMLib.MediaModifyMessage,
             MemberModifyMessage: RongIMLib.MemberModifyMessage
         };
-        var message = {
-            send: sendMessage,
-            messageTypes: messageType
-        };
-        RongCallLib.message(message);
 
+        var getElement = function(){
+            return {
+                parent: $('.video-box')[0],
+                child: $('<div class="voide-child"><div class="video-bar">x</div></div>')[0]
+            };
+        };
+
+        var directive = {
+            send: sendMessage,
+            messageTypes: messageType,
+            msgWatch: QuickRongIM.watch,
+            getElement: getElement
+        };
+        RongCallLib.setDirective(directive);
+
+        // 大视频窗口
         var element = $('.video-main')[0];
 
         var config = {
             userId: userId,
             timeoutMillis: 30000,
             element: element,
-            url: 'wss://111.200.55.12:8443/room',
-            getElmentNode: function(){
-                return {
-                    parent: $('.video-box')[0],
-                    child: $('<div class="voide-child"><div class="video-bar">x</div></div>')[0]
-                };
-            }
+            url: 'wss://111.200.55.12:8443/room'
         };
-        RongCallLib.config(config);  
-
-        var callbacks = {
-            getInstance : function(instance){
-                // 连接成功后调用
-                console.log(RongCallLib);
-            },
-            getCurrentUser : function(userInfo){
-                console.log(userInfo.userId);
-            },
-            receiveNewMessage : function(message){
-                console.log(message);
-            }
-        };
-
-        var params = {
-            appKey : '8luwapkvucoil',
-            token : token
-        };
-        
-        var mediaType = RongIMLib.MediaType;
-
-        init(params,callbacks);   
+        RongCallLib.setConfig(config);  
 
         function call(){
             var params = {
@@ -194,8 +201,7 @@
         }
 
         function hungup(){
-            var params = { };
-            RongCallLib.hungup(params);
+            RongCallLib.hungup();
         }
 
         function acceptCall(){
@@ -205,22 +211,31 @@
             RongCallLib.accept(params);
         }
 
+        function reject(){
+            RongCallLib.reject();
+        }
+
+        function join(){
+            var params = {
+                mediaType: mediaType.VIDEO
+            };
+            RongCallLib.join(params);
+        }
+
         function mute(){
-            var params = {};
-            RongCallLib.mute(params);
+            RongCallLib.mute();
         }
 
         function unmute(){
-            var params = {};
-            RongCallLib.unmute(params);
+            RongCallLib.unmute();
         }
 
         function videoToAudio(){
-            RongCallLib.videoToAudio(params);
+            RongCallLib.videoToAudio();
         }
 
         function audioToVideo(){
-            RongCallLib.audioToVideo(params);
+            RongCallLib.audioToVideo();
         }
 
     </script>
