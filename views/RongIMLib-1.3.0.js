@@ -3347,8 +3347,8 @@ var RongIMLib;
             this.fire("disconnect", status);
             return this;
         };
-        Socket.prototype.reconnect = function () {
-            if (this.currentURL) {
+        Socket.prototype.reconnect = function () {            
+            if (this.currentURL && RongIMLib.RongIMClient._storageProvider.getItem("rongSDK")) {
                 return this.connect(this.currentURL, null);
             }
             else {
@@ -5493,6 +5493,7 @@ var RongIMLib;
                 }
             };
             self.socket.onerror = function (ev) {
+                RongIMLib.RongIMClient._storageProvider.setItem("rongSDK", "");
                 self.onError(ev);
             };
             self.socket.onclose = function (ev) {
