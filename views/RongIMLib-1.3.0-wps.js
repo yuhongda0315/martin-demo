@@ -5495,8 +5495,9 @@ var RongIMLib;
                 }
             };
             self.socket.onerror = function (ev) {
-                this.reconnectCount++;
-                if (this.reconnectCount) {
+                // 处理脏数据
+                self.reconnectCount++;
+                if (self.reconnectCount > 3) {
                     RongIMLib.RongIMClient._storageProvider.setItem("rongSDK", "");
                 }
                 self.onError(ev);
