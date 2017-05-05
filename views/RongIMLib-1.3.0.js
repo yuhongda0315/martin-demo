@@ -4310,9 +4310,9 @@ var RongIMLib;
                 //把导航返回的server字段赋值给CookieHelper._host，因为flash widget需要使用 decodeURIComponent
                 RongIMLib.RongIMClient._storageProvider._host = Navigation.Endpoint.host = x["server"];
 				var isHttps = location.protocol == 'https:';
-				// if(isHttps){
-				// 	x["backupServer"] = x["server"];
-				// } 
+				if(isHttps){
+					x["backupServer"] = x["server"];
+				} 
                 RongIMLib.RongIMClient._storageProvider.setItem("RongBackupServer", x["backupServer"] + "," + (x.userId || ""));
                 //设置当前用户 Id 只有 comet 使用。
                 Navigation.Endpoint.userId = x["userId"];
