@@ -1792,7 +1792,8 @@ var RongIMLib;
                 connectAckTime: 0,
                 voipStategy: 0,
                 isFirstPingMsg: true,
-                depend: opts
+                depend: opts,
+                reconnectCount: 0
             };
             if (dataAccessProvider && Object.prototype.toString.call(dataAccessProvider) == "[object Object]") {
                 // RongIMClient._memoryStore.isUseWebSQLProvider = true;  处理不同存储方案
@@ -5400,7 +5401,6 @@ var RongIMLib;
             this.queue = [];
             this.empty = new Function;
             this._socket = _socket;
-            this.reconnectCount = 0;
             return this;
         }
         /**
@@ -5496,9 +5496,11 @@ var RongIMLib;
             };
             self.socket.onerror = function (ev) {
                 // 处理脏数据
-                self.reconnectCount++;
-                if (self.reconnectCount > 3) {
+                var store = RongIMClient._memoryStore;
+                store.reconnectCount++;
+                if (store.reconnectCount > 5) {
                     RongIMLib.RongIMClient._storageProvider.setItem("rongSDK", "");
+                    store.reconnectCount = 0;
                 }
                 self.onError(ev);
             };
