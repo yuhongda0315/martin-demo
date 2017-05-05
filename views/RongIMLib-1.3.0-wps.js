@@ -3350,9 +3350,10 @@ var RongIMLib;
         Socket.prototype.reconnect = function () {            
             if (this.currentURL && RongIMLib.RongIMClient._storageProvider.getItem("rongSDK")) {
                 return this.connect(this.currentURL, null);
-            }
-            else {
-                throw new Error("reconnect:no have URL");
+            }else {
+                var strore = RongIMLib.RongIMClient._memoryStore;
+                var imClient = RongIMLib.RongIMClient;
+                imClient.connect(strore.token, strore.callback);
             }
         };
         /**
@@ -5399,6 +5400,7 @@ var RongIMLib;
             this.queue = [];
             this.empty = new Function;
             this._socket = _socket;
+            this.reconnectCount = 0;
             return this;
         }
         /**
@@ -5493,7 +5495,10 @@ var RongIMLib;
                 }
             };
             self.socket.onerror = function (ev) {
-                RongIMLib.RongIMClient._storageProvider.setItem("rongSDK", "");
+                this.reconnectCount++;
+                if (this.reconnectCount) {
+                    RongIMLib.RongIMClient._storageProvider.setItem("rongSDK", "");
+                }
                 self.onError(ev);
             };
             self.socket.onclose = function (ev) {
