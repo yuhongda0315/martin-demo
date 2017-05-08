@@ -352,8 +352,7 @@
                     },
                     frameRate: {
                         ideal: 15 || config.rate
-                    },
-                    mandatory: {chromeMediaSource: 'screen'}
+                    }
                 }
             };
 
