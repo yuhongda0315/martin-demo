@@ -35,7 +35,7 @@
     global: window,
     KurentoRoom: KurentoRoom
 }, function() {
-    var _util = {
+    var util = {
         merge: function(source, target) {
             for (var key in source) {
                 target[key] = source[key];
@@ -49,17 +49,20 @@
         },
         each: function(arr, callback){
             for(var i = 0, len = arr.length; i < len; i++){
-                callback(arr[i], index);
+                callback(arr[i], i);
             }
+        },
+        calc: function(a, b){
+            return a & b;
         },
         noop: function() {
 
         },
+        isNumberic: function(obj){
+            var type = typeof obj;
+            return ( type === "number" || type === "string" ) && !isNaN( obj - parseFloat( obj ) );
+        },
         config: {
-            localWindow: null,
-            getRemoteWindow: function() {
-
-            },
             messageTypes: {},
             send: null,
             userId: ''
@@ -76,84 +79,126 @@
                 delete this.store[key];
             }
         },
-        timeoutMillis: 15000,
-        timer: {
-            timeout: 0,
-            resumeTimer: function(callback, second){
+        // 毫秒
+        timeout: 1500000
+    };
+
+    function Timer(){
+        this.timout = 0;
+        this.startTime = 0;
+        this.start = function(callback, second){
+            second = second || 0;
+            
+            if (callback) {
                 this.timeout = setTimeout(function(){
                     callback();
                 }, second);
-            },
-            pauseTimer: function(){
-                clearTimeout(this.timeout);
             }
-        }
-    };
+            
+           this.startTime = +new Date;
+        };
+        
+        this.stop = function(callback){
+            
+            clearTimeout(this.timeout);
 
-    var Reason = {
-        CANCEL: {
-            code: 1,
-            info: '己方取消已发出的通话请求'
-        },
-        REJECT: {
-            code: 2,
-            info: '己方拒绝收到的通话请求'
-        },
-        HANGUP: {
-            code: 3,
-            info: '己方挂断'
-        },
-        BUSYLINE: {
-            code: 4,
-            info: '己方忙碌'
-        },
-        NO_RESPONSE: {
-            code: 5,
-            info: '己方未接听'
-        },
-        ENGINE_UN_SUPPORTED: {
-            code: 6,
-            info: '己方不支持当前引擎'
-        },
-        NETWORK_ERROR: {
-            code: 7,
-            info: '己方网络出错'
-        },
-        REMOTE_CANCEL: {
-            code: 11,
-            info: '对方取消已发出的通话请求'
-        },
-        REMOTE_REJECT: {
-            code: 12,
-            info: '对方拒绝收到的通话请求'
-        },
-        REMOTE_HANGUP: {
-            code: 13,
-            info: '通话过程对方挂断'
-        },
-        REMOTE_BUSYLINE: {
-            code: 14,
-            info: '对方忙碌'
-        },
-        REMOTE_NO_RESPONSE: {
-            code: 15,
-            info: '对方未接听'
-        },
-        REMOTE_ENGINE_UN_SUPPORTED:{
-            code: 16,
-            info: '对方不支持当前引擎'
-        },
-        REMOTE_NETWORK_ERROR: {
-            code: 17,
-            info: '对方网络错误'
-        },
-        VOIP_NOT_AVALIABLE: {
-            code: 18,
-            info: 'VoIP 不可以用'
-        }
-    };
+            var endTime = +new Date;
+            var startTime = this.startTime;
+            var duration = endTime - startTime;
 
-    var _getThubnailId = function(stream){
+           return {
+                start: startTime,
+                end: endTime,
+                duration: duration
+           };
+        };
+    }
+
+    var Reason = (function(){
+        // key ：用描述和错误码组成，方便通过错错误码或者描述获取
+        var result = {
+            CANCEL1: {
+                code: 1,
+                info: '己方取消已发出的通话请求'
+            },
+            REJECT2: {
+                code: 2,
+                info: '己方拒绝收到的通话请求'
+            },
+            HANGUP3: {
+                code: 3,
+                info: '己方挂断'
+            },
+            BUSYLINE4: {
+                code: 4,
+                info: '己方忙碌'
+            },
+            NO_RESPONSE5: {
+                code: 5,
+                info: '己方未接听'
+            },
+            ENGINE_UN_SUPPORTED6: {
+                code: 6,
+                info: '己方不支持当前引擎'
+            },
+            NETWORK_ERROR7: {
+                code: 7,
+                info: '己方网络出错'
+            },
+            REMOTE_CANCEL11: {
+                code: 11,
+                info: '对方取消已发出的通话请求'
+            },
+            REMOTE_REJECT12: {
+                code: 12,
+                info: '对方拒绝收到的通话请求'
+            },
+            REMOTE_HANGUP13: {
+                code: 13,
+                info: '通话过程对方挂断'
+            },
+            REMOTE_BUSYLINE14: {
+                code: 14,
+                info: '对方忙碌'
+            },
+            REMOTE_NO_RESPONSE15: {
+                code: 15,
+                info: '对方未接听'
+            },
+            REMOTE_ENGINE_UN_SUPPORTED16:{
+                code: 16,
+                info: '对方不支持当前引擎'
+            },
+            REMOTE_NETWORK_ERROR17: {
+                code: 17,
+                info: '对方网络错误'
+            },
+            VOIP_NOT_AVALIABLE18: {
+                code: 18,
+                info: 'VoIP 不可以用'
+            }
+        };
+
+        var getKey = function(key){
+            if (util.isNumberic(key)) {
+                util.forEach(result, function(reasonKey){
+                    reasonKey.indexOf(key) > -1 && (key = reasonKey);
+                });
+            }
+            return key;
+        };
+
+        var get = function(key){
+            key = getKey(key);
+            return result[key];
+        };
+
+        return {
+            get: get   
+        };
+    })();
+    // 前缀标识
+    var getThubnailId = function(stream){
         return 'video-' + stream.getGlobalID();
     };
 
@@ -164,9 +209,9 @@
         thubnailId:'',
         setMain: function(stream){
             
-            var element = _util.config.element;
+            var element = util.config.element;
             
-            var thubnailId = _getThubnailId(stream);
+            var thubnailId = getThubnailId(stream);
             
             element.id = element.id || thubnailId;
 
@@ -174,15 +219,15 @@
         },
         add: function(stream){
 
-            var element = _util.config.element;
-            var getElement = _util.config.getElement;
+            var element = util.config.element;
+            var getElement = util.config.getElement;
 
             var node = getElement();
 
             var child = node.child;
             var parent = node.parent;
 
-            var thubnailId = _getThubnailId(stream);
+            var thubnailId = getThubnailId(stream);
 
             child.id = thubnailId;
             parent.append(child);
@@ -195,30 +240,30 @@
         removeAll: function(){
             var that = this;
             
-            _util.forEach(that.children, function(childId, child){
+            util.forEach(that.children, function(childId, child){
                 delete that.children[childId];
                 that.parent.removeChild(child);
             });
 
-            var element = _util.config.element;
+            var element = util.config.element;
             // 主窗体的 Id 必须置空。
             element.id = '';
         },
         remove: function(stream){
-            var thubnailId = _getThubnailId(stream);
+            var thubnailId = getThubnailId(stream);
             var child = this.children[thubnailId];
-            this.parent.removeChild(child);
+            child && this.parent.removeChild(child);
             delete this.children[thubnailId];
         }
     };
 
-    var kurento, localStream;
+    var videoRoom, localStream;
 
-    var _initRoom = function(params){
+    var initRoom = function(params){
 
-        var url =  _util.config.url;
-
-        kurento = KurentoRoom(url, function (error, kurento) {
+        var url =  util.config.url;
+        // TODO 命名
+        videoRoom = KurentoRoom(url, function (error, kurento) {
 
             if (error)
                 return console.log(error);
@@ -244,7 +289,7 @@
                 'room-connected': function (roomEvent) {
                     localStream.publish();
                     var streams = roomEvent.streams;
-                    _util.each(streams, function(stream){
+                    util.each(streams, function(stream){
                          Participant.add(stream);
                     });
                 },
@@ -286,7 +331,7 @@
 
             localStream.addEventListener("access-accepted", function () {
                 
-                _util.forEach(eventFactory, function(eventName, event){
+                util.forEach(eventFactory, function(eventName, event){
                      room.addEventListener(eventName, event);
                 });
 
@@ -297,17 +342,37 @@
 
             });
 
-            localStream.init();
+            var config = util.config;
+
+            var videoItem = {
+                1: false, 
+                2: {
+                    width: {
+                        ideal: 1280 || config.width
+                    },
+                    frameRate: {
+                        ideal: 15 || config.rate
+                    },
+                    mandatory: {chromeMediaSource: 'screen'}
+                }
+            };
+
+            var video = videoItem[params.mediaType];
+            var constraints = {
+                audio: true,
+                video: video
+            };
+            localStream.init(constraints);
         });
     };
 
-    var roomTools = {
+    var roomClient = {
         isActive: false,
         init : function(params){
             if (this.isActive) {
                 return;
             }
-            _initRoom(params);
+            initRoom(params);
             this.isActive = true;
         },
         reset: function(){
@@ -315,7 +380,7 @@
         }
     };
 
-    var cache = _util.cache;
+    var cache = util.cache;
 
     /*
         根据 MessageType 返回 message 对象
@@ -323,25 +388,25 @@
             messageType:'TextMessage',
             content: { content: 'hello'}    // 消息体
         };
-        var textMsg = _messageFactory(params);
+        var textMsg = messageFactory(params);
 
     */
-    var _messageFactory = function(params) {
+    var messageFactory = function(params) {
         var content = params.content;
-        var messageTypes = _util.config.messageTypes;
+        var messageTypes = util.config.messageTypes;
 
-        var message = messageTypes[params.messageType] || _util.noop;
+        var message = messageTypes[params.messageType] || util.noop;
         return new message(content);
     };
 
-    var _sendMessage = function(params, callback){
-        callback = callback || _util.noop;
+    var sendMessage = function(params, callback){
+        callback = callback || util.noop;
 
-        var send = _util.config.send;
+        var send = util.config.send;
         
-        var session = cache.get('session');
+        var session = cache.get('session') || params;
 
-        var msg = _messageFactory(params);
+        var msg = messageFactory(params);
         params = {
             msg: msg,
             conversationType: session.conversationType,
@@ -350,9 +415,10 @@
         send(params, callback);
     };
 
-    var _pauseTimer = function(){
-        var timer = _util.timer;
-        timer.pauseTimer();
+    var callTimer = new Timer();
+
+    var stopCallTimer = function(){
+        callTimer.stop();
     };
 
     var getChannelId = function(params){
@@ -360,20 +426,20 @@
         return info.join('_');
     };
     
-    var _clearSession = function(){
+    var clearSession = function(){
         cache.remove('session');
     };
 
     // params.info
     // params.position
-    var _errorHandler = function(params){
+    var errorHandler = function(params){
         var info = params.info;
         throw new Error(info);
     };
 
-    var _checkSession = function(params){
+    var checkSession = function(params){
         if (!params.session) {
-            _errorHandler(params);
+            errorHandler(params);
         }
     };
     /*
@@ -390,7 +456,8 @@
         var session = cache.get('session');
 
         if (session) {
-            callback(Reason.BUSYLINE)
+            var reasonKey = 'BUSYLINE4';
+            callback(Reason.get(reasonKey))
             return;
         }
 
@@ -400,81 +467,110 @@
             Key: '',           
             Id: channelId      
         };
-        var userId = _util.config.userId;
+        var callId = channelId;
         params.content = {
             engineType: params.engineType,
-            callId: userId,
+            callId: callId,
             channelInfo: channel,
-            inviteUserIds: params.inviteUserIds
+            inviteUserIds: params.inviteUserIds,
+            mediaType: params.mediaType
         };
 
-        cache.set('session', params);
-        var timer = _util.timer;
+        var timer = util.timer;
 
         var showResult = function(reason){
-             _clearSession();
+             clearSession();
              callback(reason);
         };
 
-        _sendMessage(params, function(error, result){
+        sendMessage(params, function(error, result){
             if (error) {
                 showResult(error);
                 return;
             }
-            var timeoutMillis = _util.timeoutMillis;
-            timer.resumeTimer(function(){
-                showResult(Reason.REMOTE_NO_RESPONSE);
-            }, timeoutMillis);
+            cache.set('session', result);
+            var timeout = util.timeout;
+            callTimer.start(function(){
+                var reasonKey = 'REMOTE_NO_RESPONSE15';
+                showResult(Reason.get(reasonKey));
+            }, timeout);
 
         });
     };
 
-    var _disconnect = function(){
-        kurento && kurento.close();
+    var disconnect = function(){
+        videoRoom && videoRoom.close();
         Participant && Participant.removeAll();
     };
     
-    var _sendHungup = function(from){
+    var sendHungup = function(from){
         var session = cache.get('session');
 
         var info = from + ': Not call yet';
-        _checkSession({
+        checkSession({
             session: session,
             info: info
         });
 
         var channel = session.content.channelInfo;
 
-        var content = { callId: channel.Id, reason: Reason.REMOTE_HANGUP };
+        var reasonKey = 'REMOTE_HANGUP13'
+        var reason = Reason.get(reasonKey);
+
+        var content = { callId: channel.Id, reason: reason.code };
 
         var params = {
             content: content,
             messageType: 'HungupMessage'
         };
 
-        _sendMessage(params, function(){
-            _clearSession();
-            roomTools.reset();
+        sendMessage(params, function(){
+            clearSession();
+            roomClient.reset();
+
+            var caller = session.senderUserId;
+            var inviter = session.senderUserId;
+            var mediaType = session.content.mediaType;
+            var reason = Reason.get('HANGUP3');
+            var inviteUserIds = session.content.inviteUserIds;
+
+            var params = {
+                content: {
+                    caller: caller,
+                    inviter: inviter,
+                    mediaType: mediaType,
+                    startTime: +new Date,
+                    duration: 0,
+                    status: reason,
+                    memberIdList: inviteUserIds
+                },
+                messageType: 'SummaryMessage'
+            };
+
+            var summaryMessage = messageFactory(params);
+            watcher.notify(summaryMessage);
         });
     };
 
     var hungup = function() {
-        _disconnect();
+        disconnect();
         var from = 'hungup';
-        _sendHungup(from);   
+        sendHungup(from);   
     };
 
     var reject = function(){
          var from = 'reject';
-        _sendHungup(from); 
+        sendHungup(from); 
     };
 
-    var _sendAccept = function(params){
+    var summayTimer = new Timer();
+
+    var sendAccept = function(params){
 
         var session = cache.get('session');
 
         var info = params.from + ': Not received InviteMessage yet';
-        _checkSession({
+        checkSession({
             session: session,
             info: info
         });
@@ -488,23 +584,26 @@
             messageType: 'AcceptMessage'
         };
 
-        _sendMessage(params);
-        
-        var channelId = message.channelInfo.Id;
-        var userId = _util.config.userId;
-        params = {
-            channelId: channelId,
-            userId: userId,
-            mediaType: mediaType
-        };
-        roomTools.init(params);
+        sendMessage(params, function(error, result){
+            var channelId = message.channelInfo.Id;
+            var userId = util.calc(result.sentTime, 0x7fffffff);
+            params = {
+                channelId: channelId,
+                userId: userId,
+                mediaType: mediaType
+            };
+
+            roomClient.init(params);
+            
+            summayTimer.start();
+        });
     };
     /*
         params.mediaType
     */
     var accept = function(params){
         params.from = 'accept';
-        _sendAccept(params);
+        sendAccept(params);
     };
 
     /*
@@ -512,21 +611,21 @@
      */   
     var join = function(params) {
         params.from = 'join';
-        _sendAccept(params);
+        sendAccept(params);
     };
 
     var quit = function(){
-        _disconnect();
+        disconnect();
         var from = 'quit';
-        _sendHungup(from); 
+        sendHungup(from); 
     };
 
-    var _getRtcPeer = function(params){
+    var getRtcPeer = function(params){
 
         if (!localStream) {
             var info = params.info || 'Not call yet, please call first.';
             info = params.from + ': ' + info;
-            _errorHandler({ info: info});
+            errorHandler({ info: info});
         }
         
         return localStream.getWebRtcPeer();
@@ -536,31 +635,56 @@
         var params = {
             from: 'mute'
         };
-        _getRtcPeer(params).audioEnabled = false;
+        getRtcPeer(params).audioEnabled = false;
     };
 
     var unmute = function() {
         var params = {
             from: 'unmute'
         };
-        _getRtcPeer(params).audioEnabled = true;
+        getRtcPeer(params).audioEnabled = true;
     };
 
     var videoToAudio = function() {
         var params = {
             from: 'videoToAudio'
         };
-        _getRtcPeer(params).videoEnabled = false;
+        getRtcPeer(params).videoEnabled = false;
     };
 
     var audioToVideo = function() {
         var params = {
             from: 'audioToVideo'
         };
-        _getRtcPeer(params).videoEnabled = true;
+        getRtcPeer(params).videoEnabled = true; 
     };
 
-    var _messageHandler = {
+    var watcher = {
+        watchers: [],
+        add: function(listener){
+            this.watchers.push(listener);
+        },
+        notify: function(val){
+            util.each(this.watchers, function(event){
+                event(val);
+            });
+        }
+    };
+
+    var watch = function(listener){
+        watcher.add(listener);
+    };
+
+    var movieItem = {
+        1: function(message){
+            videoToAudio();
+        },
+        2: function(message){
+            audioToVideo();
+        }
+    };
+
+    var messageHandler = {
 
         InviteMessage: function(message){
             cache.set('session', message);
@@ -573,22 +697,22 @@
                 conversationType: message.conversationType,
                 targetId: message.targetId
             };
-            _sendMessage(params);
+            sendMessage(params);
 
         },
 
         RingingMessage: function(message){
-            // Ringing
+            
         },
 
         AcceptMessage: function(message){
-            _pauseTimer();
+            stopCallTimer();
 
             var session = cache.get('session');
             var content = session.content;
 
             var channelId = content.channelInfo.Id;
-            var userId = _util.config.userId;
+            var userId = util.calc(session.sentTime, 0x7fffffff);
             var mediaType = message.content.mediaType;
 
             var params = {
@@ -596,57 +720,70 @@
                 userId: userId,
                 mediaType: mediaType
             };
-            roomTools.init(params);
+            roomClient.init(params);
+            summayTimer.start();
         },
 
         HungupMessage: function(message){
-            _pauseTimer();
-            roomTools.reset();
+            stopCallTimer();
+            roomClient.reset();
+            var summerTime = summayTimer.stop();
+
+            var session = cache.get('session');
+
+            if (session) {
+                return;
+            }
+
+            var content = session.content;
+            var mediaType = content.mediaType;
+            var memberIdList = content.inviteUserIds;
+
+            var caller = session.senderUserId;
+            var duration = Math.floor(summerTime.duration / 1000);
+            var reason = message.content.reason;
+
+            var params = {
+                content: {
+                    caller: caller,
+                    inviter: message.targetId,
+                    mediaType: mediaType,
+                    startTime: summerTime.start,
+                    duration: duration,
+                    status: Reason.get(reason),
+                    memberIdList: memberIdList
+                },
+                messageType: 'SummaryMessage'
+            };
+
+            var summaryMessage = messageFactory(params);
+            watcher.notify(summaryMessage);
         },
 
         MediaModifyMessage: function(message){
-            
+            var mediaType = message.content.mediaType;
+            movieItem[mediaType](message);
         },
 
         MemberModifyMessage: function(message){
-
-        },
-
-        SummaryMessage: function(message){
 
         }
 
     };
 
     var onMsgWatch = function(message) {
-        var handler = _messageHandler[message.messageType];
+        var handler = messageHandler[message.messageType];
         handler && handler(message);
     };
 
     var setConfig = function(cfg){
-        var config = _util.config;
-        _util.merge(cfg, config);
+        var config = util.config;
+        util.merge(cfg, config);
         config.msgWatch && config.msgWatch(onMsgWatch);
     };
 
     var setDirective = function(opt){
-        _util.merge(opt, _util.config);
-    };
-    // TODO  SummaryMessage 广播
-    var watcher = {
-        watchers: [],
-        add: function(listener){
-            watchers.push(listener);
-        },
-        notify: function(val){
-            _util.each(this.watchers, function(event){
-                event(val);
-            });
-        }
-    };
-
-    var watch = function(listener){
-        watcher.add(listener);
+        util.merge(opt, util.config);
     };
 
     return {

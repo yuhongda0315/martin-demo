@@ -71,9 +71,9 @@
 
     </div>
 
+    <script src="//cdn.ronghub.com/RongIMLib-2.2.5.js"></script>
 </body>
 
-    <script src="//cdn.ronghub.com/RongIMLib-2.2.5.js"></script>
     <script src="init.js"></script>
 
     <script src="jquery-3.1.1.js"></script>
@@ -87,13 +87,23 @@
     <script src="RongCallLib-webRTC.js"></script>
 
     <script>
-       var users = [ {
-                userid:"1001",
-                token:"hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ=="
-            }, {
-                userid:"1002",
-                token:"UAFlOdMThtHnc18558yPhcSkAMimzaj6nB20cRPaYWRyLGGbEPHrt12ut6s/G81HNXcegD4ILRb/EnGJdxts4Q=="
-            }];
+       // var users = [ {
+       //          userid:"1001",
+       //          token:"hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ=="
+       //      }, {
+       //          userid:"1002",
+       //          token:"UAFlOdMThtHnc18558yPhcSkAMimzaj6nB20cRPaYWRyLGGbEPHrt12ut6s/G81HNXcegD4ILRb/EnGJdxts4Q=="
+       //      }];
+
+        var users = [ {
+            userid:"xiaoqiao9901",
+            token:"lkjMJKTLnHN4x2bHmpktSLywMGBz8rrOEvvIt6wnoWtS/djzTfE65mnnYm6hzGxOfWXuti0epkOS1BFuAUwiECvbaor53a5U"
+        }, {
+            // userid:"xiaoqiao9902",
+            // userid:"52dzNbLBZ",
+            userid:"AUj8X32w1",
+            token:"hZ/FYFCN0MRB/zUkNoG3j8Lg1HgVe6BNpEIHZDy7fhI1VRF7zfE/Qv7aE2aMdLAzhhkwCwiGcAwLZ2dp77Kizg=="
+        }];
 
         var userId = users[0].userid;
         var inviteUserIds = [users[1].userid];
@@ -122,7 +132,9 @@
         };
 
         var params = {
-            appKey : '8luwapkvucoil',
+            // appKey : '8luwapkvucoil',
+            appKey : 'e0x9wycfx7flq',
+            navi: '119.254.111.49:9100',
             token : token
         };
         
@@ -177,6 +189,10 @@
         };
         RongCallLib.setDirective(directive);
 
+        RongCallLib.watch(function(summaryMessage){
+            console.log(summaryMessage);
+        });
+
         // 大视频窗口
         var element = $('.video-main')[0];
 
@@ -184,15 +200,17 @@
             userId: userId,
             timeoutMillis: 30000,
             element: element,
-            url: 'wss://111.200.55.12:8443/room'
+            url: 'wss://119.254.101.80:38443/room'
         };
         RongCallLib.setConfig(config);  
 
+        var CallType = RongIMLib.VoIPMediaType;
         function call(){
             var params = {
                 conversationType: 1,
                 targetId: targetId,
-                inviteUserIds: inviteUserIds
+                inviteUserIds: inviteUserIds,
+                mediaType: CallType.MEDIA_VEDIO
             };
 
             RongCallLib.call(params, function(error, result){
@@ -206,7 +224,7 @@
 
         function acceptCall(){
             var params = {
-                mediaType: mediaType.VIDEO
+                mediaType: CallType.MEDIA_VEDIO
             };
             RongCallLib.accept(params);
         }
@@ -217,7 +235,7 @@
 
         function join(){
             var params = {
-                mediaType: mediaType.VIDEO
+                mediaType: CallType.MEDIA_VEDIO
             };
             RongCallLib.join(params);
         }

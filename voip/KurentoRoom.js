@@ -633,22 +633,10 @@ function Stream(kurento, local, room, options) {
         }
     }
 
-    this.init = function () {
+    this.init = function (params) {
         participant.addStream(that);
-
-        var constraints = {
-            audio: true,
-            video: {
-                width: {
-                    ideal: 1280
-                },
-                frameRate: {
-                    ideal: 15
-                }
-            }
-        };
-
-        getUserMedia(constraints, function (userStream) {
+        
+        getUserMedia(params, function (userStream) {
             wrStream = userStream;
             ee.emitEvent('access-accepted', null);
         }, function (error) {

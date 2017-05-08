@@ -127,7 +127,7 @@
 				//console.log('token无效');
 			},
 			onError:function(errorCode){
-			  console.log(info);
+			  console.log(errorCode);
 			}
 		});
 	}
