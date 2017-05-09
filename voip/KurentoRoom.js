@@ -205,7 +205,7 @@ function Room(kurento, options) {
         var message = msg.message;
 
         if (user !== undefined) {
-            ee.emitEvent('newMessage', [{
+            ee.emitEvent('new-message', [{
                 room: room,
                 user: user,
                 message: message
@@ -549,13 +549,6 @@ function Stream(kurento, local, room, options) {
         ee.addListener(eventName, listener);
     }
 
-    function showSpinner(spinnerParentId) {
-        var progress = document.createElement('div');
-        progress.id = 'progress-' + that.getGlobalID();
-        // progress.style.background = "center transparent url('img/spinner.gif') no-repeat";
-        document.getElementById(spinnerParentId).appendChild(progress);
-    }
-
     function hideSpinner(spinnerId) {
         spinnerId = (typeof spinnerId === 'undefined') ? that.getGlobalID() : spinnerId;
         $(jq('progress-' + spinnerId)).remove();
@@ -592,29 +585,8 @@ function Stream(kurento, local, room, options) {
         return video;
     }
 
-    this.playThumbnail = function (thumbnailId) {
-
-        var container = document.createElement('div');
-        container.className = "participant";
-        container.id = that.getGlobalID();
-        document.getElementById(thumbnailId).appendChild(container);
-
-        elements.push(container);
-
-        var name = document.createElement('div');
-        container.appendChild(name);
-        var userName = that.getGlobalID().replace('_webcam', '');
-        if (userName.length >= 16) {
-        	userName = userName.substring(0, 16) + "...";
-        }
-        name.appendChild(document.createTextNode(userName));
-        name.id = "name-" + that.getGlobalID();
-        name.className = "name";
-        name.title = that.getGlobalID();
-
-        showSpinner(thumbnailId);
-
-        return that.playOnlyVideo(container, thumbnailId);
+    this.playThumbnail = function (child) {
+        return that.playOnlyVideo(child, child.id);
     }
 
     this.getID = function () {

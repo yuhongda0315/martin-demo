@@ -58,9 +58,16 @@
         noop: function() {
 
         },
+        // TODO 扩展
+        isExist: function(key, obj){
+            return key in obj;
+        },
         isNumberic: function(obj){
             var type = typeof obj;
             return ( type === "number" || type === "string" ) && !isNaN( obj - parseFloat( obj ) );
+        },
+        getPrototype: function(obj){
+            return Object.prototype.toString.call(obj);
         },
         config: {
             messageTypes: {},
@@ -206,16 +213,47 @@
         parent: null,
         // 存放所有视频节点 {domId: video}
         children: { },
+        streams: { },
         thubnailId:'',
         setMain: function(stream){
-            
-            var element = util.config.element;
-            
+            var that = this;
+            var getStream = function(stream){
+                
+                var streams = that.streams;
+                
+                var element = util.config.element;
+
+                var streamItem = {
+                    node: function(node){
+                        var thubnailId = node.id;
+                        
+                        var isExist = util.isExist(thubnailId, streams);
+
+                        if (isExist) {
+                            element.innerHTML = '';
+                            return streams[thubnailId];
+                        }else{
+                            throw new Error('element is not exist.');
+                        }
+
+                    },
+                    stream: function(stream){
+                        return stream;
+                    }
+                };
+
+                var method = util.getPrototype(stream) == '[object HTMLDivElement]' ? 'node' : 'stream';
+
+                return streamItem[method](stream);
+            };
+
+            stream = getStream(stream);
+
             var thubnailId = getThubnailId(stream);
             
             element.id = element.id || thubnailId;
 
-            stream.playOnlyVideo(element.id, thubnailId);
+            stream.playOnlyVideo(element, thubnailId);
         },
         add: function(stream){
 
@@ -229,31 +267,39 @@
 
             var thubnailId = getThubnailId(stream);
 
+            this.streams[thubnailId] = stream;
+
             child.id = thubnailId;
             parent.append(child);
 
-            stream.playThumbnail(thubnailId);
+            stream.playThumbnail(child);
 
             this.children[thubnailId] = child;
             this.parent = parent;
         },
+        _clear: function(key){
+            delete this.children[key];
+            delete this.streams[key];
+        },
+        // 根据 Dom 节点删除所有视频
         removeAll: function(){
             var that = this;
             
             util.forEach(that.children, function(childId, child){
-                delete that.children[childId];
                 that.parent.removeChild(child);
+                that._clear(childId);
             });
 
             var element = util.config.element;
             // 主窗体的 Id 必须置空。
             element.id = '';
         },
+        // 根据 stream 删除视频
         remove: function(stream){
             var thubnailId = getThubnailId(stream);
             var child = this.children[thubnailId];
             child && this.parent.removeChild(child);
-            delete this.children[thubnailId];
+            this._clear(thubnailId);
         }
     };
 
@@ -262,7 +308,6 @@
     var initRoom = function(params){
 
         var url =  util.config.url;
-        // TODO 命名
         videoRoom = KurentoRoom(url, function (error, kurento) {
 
             if (error)
@@ -290,11 +335,11 @@
                     localStream.publish();
                     var streams = roomEvent.streams;
                     util.each(streams, function(stream){
-                         Participant.add(stream);
+                        Participant.add(stream);
                     });
                 },
                 'stream-published': function(streamEvent){
-                    Participant.add(localStream);
+                    // Participant.add(localStream);
                     Participant.setMain(localStream);
                 },
                 'stream-added': function(streamEvent){
@@ -303,7 +348,7 @@
                 'stream-removed': function(streamEvent){
                     Participant.remove(streamEvent.stream);
                 },
-                'newMessage': function(msg){
+                'new-message': function(msg){
 
                 },
                 'error-room': function(error){
@@ -683,9 +728,24 @@
         }
     };
 
-    var messageHandler = {
+    var inviteItem = {
+        busy: function(message){
+            var reasonKey = 'REMOTE_BUSYLINE14'
+            var reason = Reason.get(reasonKey);
+            var channel = message.content.channelInfo;
 
-        InviteMessage: function(message){
+            var content = { callId: channel.Id, reason: reason.code };
+
+            var params = {
+                content: content,
+                messageType: 'HungupMessage',
+                conversationType: message.conversationType,
+                targetId: message.targetId
+            };
+            sendMessage(params);
+        },
+        free: function(message){
+
             cache.set('session', message);
 
             var callId = message.content.callId;
@@ -697,7 +757,18 @@
                 targetId: message.targetId
             };
             sendMessage(params);
+        }
+    };
 
+    var messageHandler = {
+
+        InviteMessage: function(message){
+
+            var session = cache.get('session');
+
+            var method = session ? 'busy' : 'free';
+
+            inviteItem[method](message);
         },
 
         RingingMessage: function(message){
@@ -785,9 +856,11 @@
         util.merge(opt, util.config);
     };
 
+    var setMainWindow = function(node){
+        Participant.setMain(node);
+    };
+    
     return {
-        setConfig: setConfig,
-        setDirective: setDirective,
         call: call,
         hungup: hungup,
         reject: reject,
@@ -798,6 +871,10 @@
         unmute: unmute,
         videoToAudio: videoToAudio,
         audioToVideo: audioToVideo,
+
+        setConfig: setConfig,
+        setDirective: setDirective,
+        setMainWindow: setMainWindow,
         watch: watch
     };
 
