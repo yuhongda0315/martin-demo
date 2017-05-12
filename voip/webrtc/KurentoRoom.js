@@ -554,6 +554,34 @@ function Stream(kurento, local, room, options) {
         $(jq('progress-' + spinnerId)).remove();
     }
 
+    this.getVideoPlayer = function(){
+        video = document.createElement('video');
+
+        var id = 'native-video-' + that.getGlobalID();
+        var thumbnailId = id;
+
+        video.id = id;
+        video.autoplay = true;
+        video.controls = false;
+        
+        if (wrStream) {
+            video.src = URL.createObjectURL(wrStream);
+        }else{
+            console.log("No wrStream yet for", that.getGlobalID());
+        }
+           
+        videoElements.push({
+            thumb: thumbnailId,
+            video: video
+        });
+
+        if (local) {
+            video.muted = true;
+        }
+
+        return video;
+    };
+
     this.playOnlyVideo = function (parentElement, thumbnailId) {
         video = document.createElement('video');
 

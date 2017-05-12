@@ -1,11 +1,7 @@
-
 "use strict";
-
-;(function(dependencies){
-
-	var global = dependencies.global;
-	var RongIMLib = dependencies.RongIMLib;
-	var RongIMClient = RongIMLib.RongIMClient;
+(function(dependencies) {
+    var util = dependencies.util;
+    var global = dependencies.global;
 
     function ObserverList() {
 
@@ -35,7 +31,7 @@
         };
 
         this.remove = function(observer) {
-            if(!observer) {
+            if (!observer) {
                 this.observerList.length = 0;
                 return;
             }
@@ -48,7 +44,7 @@
             }
         };
 
-        this.notify = function(val){
+        this.notify = function(val) {
             for (var i = 0, len = this.observerList.length; i < len; i++) {
                 this.observerList[i](val);
             }
@@ -67,70 +63,38 @@
         };
     }
 
-    var msgObserverList = new ObserverList();
+    var cache = function(){
+        var session = {};
 
-	var init = function(params,callbacks){	
-		var appKey = params.appKey;
-		var token = params.token;
-		var navi = params.navi || "";
+        var set = function(key, value){
+            session[key] = value;
+        };
 
-		if(navi !== ""){
-			//私有云
-			var config = {
-				navi : navi
-			}
-			RongIMLib.RongIMClient.init(appKey,null,config);
-		}else{
-			//公有云
-			RongIMLib.RongIMClient.init(appKey);
-		}
+        var get = function(key){
+            return session[key];
+        };
 
-		var instance = RongIMClient.getInstance();
+        var remove = function(key){
+            delete session[key];
+        };
 
-		// 连接状态监听器
-		RongIMClient.setConnectionStatusListener({
-			onChanged: function (status) {
-			    switch (status) {
-			        case RongIMLib.ConnectionStatus.CONNECTED:
-			            callbacks.getInstance && callbacks.getInstance(instance);
-			            break;
-			        }
-			}
-		});
+        var update = function(key, value){
+            set(key, value);
+        };
+        return {
+            set: set,
+            get: get,
+            update: update,
+            remove: remove
+        };
+    };
 
+    global.RongCallUtil = {
+        ObserverList: ObserverList,
+        cache: cache
+    };
 
-		RongIMClient.setOnReceiveMessageListener({
-			// 接收到的消息
-			onReceived: function (message) {
-			    // 判断消息类型
-	            msgObserverList.notify(message);
-			}
-		});
-
-		//开始链接
-		RongIMClient.connect(token, {
-			onSuccess: function(userId) {
-				callbacks.getCurrentUser && callbacks.getCurrentUser({userId:userId});
-				console.log("链接成功");
-			},
-			onTokenIncorrect: function() {
-				//console.log('token无效');
-			},
-			onError:function(errorCode){
-			  console.log(errorCode);
-			}
-		});
-	}
-
-	var watch = function(watcher){
-		msgObserverList.add(watcher);
-	};
-
-	global.QuickRongIM = {
-		init: init,
-		watch: watch
-	};
 })({
-	global: window,
-	RongIMLib: RongIMLib
+    global: window,
+    util: _
 });
