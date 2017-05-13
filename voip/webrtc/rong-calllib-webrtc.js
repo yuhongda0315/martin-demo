@@ -4,6 +4,8 @@
     var global = dependencies.win;
     var util = global._;
 
+    var config = { };
+    
     var videoRoom, localStream;
 
     /*
@@ -179,7 +181,12 @@
         getRtcPeer().videoEnabled = params.isEnabled;
     };
 
+    var setConfig = function(cfg) {
+        util.extend(config, cfg);
+    };
+
     global.RongVoIP = {
+        setConfig: setConfig,
         joinRoom: joinRoom,
         quitRoom: quitRoom,
         enableAudio: enableAudio,

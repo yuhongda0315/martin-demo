@@ -80,15 +80,12 @@
     <script src="../jquery-3.1.1.js"></script>
     
     <script src="./adapter.js"></script>
-    <script src="./kurento-utils.js"></script>
-    <script src="./kurento-jsonrpc.js"></script>
-    <script src="./EventEmitter.js"></script>
-    <script src="./KurentoRoom.js"></script>
+    <script src="./blinkEngine.js"></script>
 
     <script src="../underscore-1.8.3.js"></script>
 
     <script src="../rong-calllib-util.js"></script>
-    <script src="./rong-calllib-adapter-webrtc.js"></script>
+    <script src="./rong-calllib-blink.js"></script>
 
     <script src="../rong-calllib-sendmsg.js"></script>
 
@@ -171,6 +168,9 @@
                 var videoEl = $('#' + videoElId)[0];
                 var parentEl = videoEl.parentNode;
                 videoBox.removeChild(parentEl);
+            },
+            leave: function(){
+                videoBox.innerHTML = "";
             }
         };
         // 注册视频节点监听
@@ -219,7 +219,11 @@
         }
 
         function reject(){
-            RongCallLib.reject();
+            var params = {
+                conversationType: conversationType,
+                targetId: targetId,   
+            };
+            RongCallLib.reject(params);
         }
 
         function join(){

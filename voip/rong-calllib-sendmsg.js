@@ -99,11 +99,41 @@
         memberModify: function(params, callback) {
             params.messageType = 'MediaModifyMessage';
             sendMessage(params, callback);
+        },
+        getToken: function(params, callback){
+            // var im = RongIMClient.getInstance();
+            // var engineType = 3;
+            // var channelId = params.channelId;
+            // im.getAgoraDynamicKey(engineType, channelId, {
+            //     onSuccess: function(data) {
+            //         var error = null;
+            //         callback(error, data.dynamicKey);
+            //     },
+            //     onError: function(error) {
+            //         callback(error);
+            //     }
+            // });
+
+            var uid = params.userId & 0x7fffffff;
+            var url = 'https://api.blinktalk.online:8800/token';
+            $.ajax({
+                url : url,
+                type : "POST",
+                data : 'uid=' + uid + '&appid=1234567890abcdefg',
+                async : true,
+                success : function(data) {
+                    var error = null;
+                    callback(error, data);
+                },
+                error : function(error) {
+                    callback(error);
+                }
+            });
         }
     };
     /*
         var params = {
-            command: 'invite' | 'ringing' | 'accept' | 'hungup' | 'mediaModify' | 'memberModify',
+            command: 'invite' | 'ringing' | 'accept' | 'hungup' | 'mediaModify' | 'memberModify' | 'getToken',
             data: {
                 conversationType: 1,
                 targetId: '',

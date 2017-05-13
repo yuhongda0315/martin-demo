@@ -96,11 +96,19 @@
     };
 
     var initRoom = function(params){
-        room.init(params, function(error, result){
+        getToken(params, function(error, token){
             if (error) {
                 throw new Error(error);
             }
-            videoWatcher.notify(result);
+
+            params.token = token;
+
+            room.init(params, function(error, result){
+                if (error) {
+                    throw new Error(error);
+                }
+                videoWatcher.notify(result);
+            });
         });
     };
 
@@ -191,6 +199,17 @@
             get: get
         };
     })();
+
+    var getToken = function(params, callback){
+        var userId = params.userId;
+        params = {
+            command: 'getToken',
+            data: {
+                userId: userId
+            }
+        };
+        sendCommand(params, callback);
+    };
 
     var inviteItem = {
         busy: function(message) {
@@ -444,7 +463,9 @@
             callback(error, summary);
         });
 
-        quitRoom();
+        quitRoom({
+            roomId: callId
+        });
     };
 
     var hungup = function(params, callback){
@@ -488,6 +509,7 @@
     };
 
     var setConfig = function(cfg) {
+        
         util.extend(config, cfg);
     };
 
