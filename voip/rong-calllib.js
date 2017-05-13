@@ -81,7 +81,7 @@
 
     var room = {
         isActive: false,
-        init : function(params, callback){
+        init: function(params, callback) {
             if (this.isActive) {
                 return;
             }
@@ -89,21 +89,21 @@
             joinRoom(params, callback);
             this.isActive = true;
         },
-        reset: function(){
+        reset: function() {
             this.isActive = false;
             cache.remove('session');
         }
     };
 
-    var initRoom = function(params){
-        getToken(params, function(error, token){
+    var initRoom = function(params) {
+        getToken(params, function(error, token) {
             if (error) {
                 throw new Error(error);
             }
 
             params.token = token;
 
-            room.init(params, function(error, result){
+            room.init(params, function(error, result) {
                 if (error) {
                     throw new Error(error);
                 }
@@ -113,7 +113,8 @@
     };
 
     var config = {
-        url: ''
+        url: '',
+        timeout: 30000,
     };
 
     var Reason = (function() {
@@ -200,12 +201,12 @@
         };
     })();
 
-    var getToken = function(params, callback){
-        var userId = params.userId;
+    var getToken = function(params, callback) {
+        var channelId = params.channelId;
         params = {
             command: 'getToken',
             data: {
-                userId: userId
+                channelId: channelId
             }
         };
         sendCommand(params, callback);
@@ -259,7 +260,7 @@
         }
     };
 
-    var callTimer = new Timer();
+    var summayTimer = new Timer();
 
     var messageHandler = {
         InviteMessage: function(message) {
@@ -271,23 +272,42 @@
         },
         AcceptMessage: function(message) {
 
+            callTimer.stop();
+
             var session = cache.get('session');
+
+            var already = session.already;
+
+            if (already) {
+                return;
+            }
+
             var channel = session.content.channelInfo;
             var channelId = channel.Id;
+
+            // 过滤其他端的发送消息
+            var callInfo = session.callInfo || {};
+            if (!callInfo[channelId]) {
+                return;
+            }
+
+            session.already = true;
 
             var mediaType = message.content.mediaType;
 
             //主叫方 userId 为 inviterMessage.sentTime
             //被叫方 userId 为 AcceptMessage.sentTime
-            var userId = session.sentTime;
+            var sentTime = session.sentTime;
+            var userId = session.senderUserId;
 
             var params = {
                 channelId: channelId,
                 userId: userId,
+                sentTime: sentTime,
                 mediaType: mediaType
             };
             initRoom(params);
-            callTimer.start();
+            summayTimer.start();
         },
         HungupMessage: function(message) {
             // quitRoom();
@@ -308,9 +328,12 @@
     });
 
     var getRoomId = function(params) {
-        var info = [params.conversationType, params.targetId];
+        var random = Math.floor(Math.random()*1000);
+        var info = [params.conversationType, params.targetId, random];
         return info.join('_');
     };
+
+    var callTimer = new Timer();
 
     var call = function(params, callback) {
 
@@ -342,7 +365,7 @@
             conversationType: conversationType,
             targetId: targetId,
             content: {
-                engineType: 2,
+                engineType: 3,
                 inviteUserIds: inviteUserIds,
                 mediaType: mediaType,
                 callId: callId,
@@ -356,18 +379,56 @@
         };
 
         sendCommand(params, function(error, result) {
+            var callInfo = { };
+                callInfo[callId] = true;
+
+            result.callInfo = callInfo;
+
             cache.update(cacheKey, result);
-            callback(error, result);
+
+            var errorInfo = {
+                code: error
+            };
+            callback(errorInfo, result);
+
+            var timeout = config.timeout;
+            callTimer.start(function(){
+                var key = 'REMOTE_NO_RESPONSE15';
+                var reason = Reason.get(key);
+                callback(reason);
+            }, timeout);
+
         });
     };
 
-    var sendAccept = function(params){
+    // params.info
+    // params.position
+    var errorHandler = function(params){
+        var info = params.info;
+        throw new Error(info);
+    };
+
+    var checkSession = function(params){
+        if (!params.session) {
+            errorHandler(params);
+        }
+    };
+
+    var sendAccept = function(params) {
         var conversationType = params.conversationType;
         var targetId = params.targetId;
 
         var mediaType = params.mediaType;
 
         var session = cache.get('session');
+
+        var from = params.from;
+        var info = from + ': Not call yet';
+        checkSession({
+            session: session,
+            info: info
+        });
+
         var content = session.content;
         var callId = content.callId;
 
@@ -383,17 +444,19 @@
             }
         };
 
-        sendCommand(params, function(error, command){
-            var userId = command.sentTime;
-            var channelId = content.channelInfo.Id;
+        sendCommand(params, function(error, command) {
+            var sentTime = command.sentTime;
+            var channelId = content.callId;
+            var userId = command.senderUserId;
 
             var params = {
                 channelId: channelId,
                 userId: userId,
+                sentTime: sentTime,
                 mediaType: mediaType
             };
             initRoom(params);
-            callTimer.start();
+            summayTimer.start();
         });
     };
 
@@ -402,15 +465,22 @@
         sendAccept(params);
     };
 
-    var join = function(params){
+    var join = function(params) {
         params.form = 'join';
         sendAccept(params);
     };
 
-    var sendHungup = function(params, callback){
+    var sendHungup = function(params, callback) {
         callback = callback || util.noop;
 
         var session = cache.get('session');
+
+        var from = params.from;
+        var info = from + ': Not call yet';
+        checkSession({
+            session: session,
+            info: info
+        });
 
         var callId = session.content.callId;
         var callId = callId;
@@ -422,31 +492,31 @@
         var targetId = params.targetId;
 
         params = {
-           command: 'hungup',
-           data: {
+            command: 'hungup',
+            data: {
                 conversationType: params.conversationType,
                 targetId: params.targetId,
                 content: {
-                    callId: callId, 
+                    callId: callId,
                     reason: reason.code
                 }
-           }
+            }
         };
 
-        sendCommand(params, function(){
+        sendCommand(params, function() {
             room.reset();
 
-            var timer = callTimer.stop();
+            var timer = summayTimer.stop();
 
             var caller = session.senderUserId;
-            
+
             var inviter = session.senderUserId;
 
             var content = session.content;
             var mediaType = content.mediaType;
 
             var reason = Reason.get('HANGUP3');
-            
+
             var inviteUserIds = content.inviteUserIds;
 
             var summary = {
@@ -468,40 +538,42 @@
         });
     };
 
-    var hungup = function(params, callback){
+    var hungup = function(params, callback) {
+        params.from = 'hungup';
         sendHungup(params, callback);
     };
 
-    var reject = function(params){
+    var reject = function(params) {
+        params.from = 'reject';
         sendHungup(params);
     };
 
-    var quit = function(params, callback){
+    var quit = function(params, callback) {
         sendHungup(params, callback);
     };
 
-    var mute = function(){
+    var mute = function() {
         var params = {
             isEnabled: false
         };
         enableAudio(params);
     };
 
-    var unmute = function(){
+    var unmute = function() {
         var params = {
             isEnabled: true
         };
         enableAudio(params);
     };
 
-    var videoToAudio = function(){
+    var videoToAudio = function() {
         var params = {
             isEnabled: false
         };
         enableVideo(params);
     };
 
-    var audioToVideo = function(){
+    var audioToVideo = function() {
         var params = {
             isEnabled: true
         };
@@ -509,11 +581,10 @@
     };
 
     var setConfig = function(cfg) {
-        
         util.extend(config, cfg);
     };
 
-    var vodeioWatch = function(watcher) {
+    var videoWatch = function(watcher) {
         videoWatcher.add(watcher);
     };
 
@@ -523,7 +594,7 @@
 
     global.RongCallLib = {
         setConfig: setConfig,
-        vodeioWatch: vodeioWatch,
+        videoWatch: videoWatch,
         commandWatch: commandWatch,
 
         call: call,

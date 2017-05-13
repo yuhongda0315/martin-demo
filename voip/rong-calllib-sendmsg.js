@@ -101,34 +101,34 @@
             sendMessage(params, callback);
         },
         getToken: function(params, callback){
-            // var im = RongIMClient.getInstance();
-            // var engineType = 3;
-            // var channelId = params.channelId;
-            // im.getAgoraDynamicKey(engineType, channelId, {
-            //     onSuccess: function(data) {
-            //         var error = null;
-            //         callback(error, data.dynamicKey);
-            //     },
-            //     onError: function(error) {
-            //         callback(error);
-            //     }
-            // });
-
-            var uid = params.userId & 0x7fffffff;
-            var url = 'https://api.blinktalk.online:8800/token';
-            $.ajax({
-                url : url,
-                type : "POST",
-                data : 'uid=' + uid + '&appid=1234567890abcdefg',
-                async : true,
-                success : function(data) {
+            var im = RongIMClient.getInstance();
+            var engineType = 3;
+            var channelId = params.channelId;
+            im.getAgoraDynamicKey(engineType, channelId, {
+                onSuccess: function(data) {
                     var error = null;
-                    callback(error, data);
+                    callback(error, data.dynamicKey);
                 },
-                error : function(error) {
+                onError: function(error) {
                     callback(error);
                 }
             });
+
+            // var uid = params.userId & 0x7fffffff;
+            // var url = 'https://api.blinktalk.site:8800/token';
+            // $.ajax({
+            //     url : url,
+            //     type : "POST",
+            //     data : 'uid=' + uid + '&appid=1234567890abcdefg',
+            //     async : true,
+            //     success : function(data) {
+            //         var error = null;
+            //         callback(error, data);
+            //     },
+            //     error : function(error) {
+            //         callback(error);
+            //     }
+            // });
         }
     };
     /*

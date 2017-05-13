@@ -3,7 +3,7 @@
 //var BlinkEngine = (function() {
 /** ----- 参数定义 ----- */
 /** 定义环境，0为私有云环境，1为生产环境，2为演示环境，3为测试环境，4为本地环境，5为开发环境1，52为开发环境2 */
-var envType = '3';
+var envType = '2';
 /** ----- 参数定义 ----- */
 /** ----- 常量定义 ----- */
 /** 常量 */
@@ -364,6 +364,21 @@ BlinkEngine.prototype.muteMicrophone = function(isMute) {
 	console.log("Microphone mute=" + isMute);
 	this.microphoneEnable = !isMute;
 }
+/**
+ * 停止视频流
+ * 
+ */
+BlinkEngine.prototype.closeLocalStream = function() {
+	if (this.localStream.getTracks()
+			&& this.localStream.getTracks().length === 0) {
+		console.log("No local track available.");
+		return;
+	}
+	for (i = 0; i < this.localStream.getTracks().length; i++) {
+		this.localStream.getTracks()[i].stop();
+	}
+}
+
 /**
  * 关闭/打开本地摄像头 true, 关闭 false, 打开
  * 

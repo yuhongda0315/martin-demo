@@ -11,11 +11,7 @@
         height: 480,
         maxRate: 600,
         minRate: 450,
-        frameRate: 15,
-        getToken: function(callback) {
-            var token = 'fake token';
-            callback(token);
-        }
+        frameRate: 15
     };
 
     var createVideo = function(src, id) {
@@ -30,6 +26,7 @@
     };
 
     var getId = function(id) {
+        id = id || 'local';
         var prefix = 'native-';
         return prefix + id;
     };
@@ -105,6 +102,7 @@
                 var leftItem = {
                     success: function() {
                         participant.leave();
+                        videoRoom.closeLocalStream();
                     },
                     error: function() {
                         callback('leave error.');
@@ -144,7 +142,6 @@
 
         var roomId = params.channelId;
         var userId = params.userId;
-        userId = userId & 0x7fffffff;
 
         var constraints = {
             width: config.width,

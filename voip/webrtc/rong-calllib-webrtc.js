@@ -28,7 +28,7 @@
             var config = params.config;
 
             var roomId = params.channelId;
-            var userId = params.userId;
+            var userId = params.sentTime;
                 userId = userId & 0x7fffffff;
                 
             var room = kurento.Room({
