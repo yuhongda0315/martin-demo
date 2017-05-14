@@ -310,8 +310,7 @@
             summayTimer.start();
         },
         HungupMessage: function(message) {
-            // quitRoom();
-            // TODO 区分多人单人
+    
         },
         MediaModifyMessage: function(message) {
             console.log(message);

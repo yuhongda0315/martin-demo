@@ -1,5 +1,26 @@
 ### Rong CallLib API 说明
 
+### Demo
+
+使用下面的 URL 可体验 VoIP，App 登录使用手机号登录，可以进行多端互通。
+
+#### 一对一
+
+|用户   | UserId    | App                  |Web   
+|:----- |:----------|:-------------------- |:-------------------------------------------------
+|A      | JFTfwU5Zc | 13810123257/123456   | http://localhost:8000/voip/blink/private.html
+|B      | ljgMZJKas | 13811316661/123456   | http://localhost:8000/voip/blink/private.html?peer
+
+#### 多人
+
+|用户   | UserId    | App                  |Web   
+|:----- |:----------|:-------------------- |:-------------------------------------------------
+|A      | JFTfwU5Zc | 13810123257/123456   | http://localhost:8000/voip/blink/group.html
+|B      | xNlpDTUmw | 13269772769/123456   | http://localhost:8000/voip/blink/group.html?peer1
+|C      | ljgMZJKas | 13811316661/123456   | http://localhost:8000/voip/blink/group.html?peer2
+
+### API
+
 #### setConfig
 
 方法： `RongCallLib.setConfig(confg);` 。

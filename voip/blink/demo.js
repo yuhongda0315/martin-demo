@@ -44,8 +44,10 @@ var videoItem = {
     removed: function(result) {
         var videoElId = result.data;
         var videoEl = $('#' + videoElId)[0];
-        var parentEl = videoEl.parentNode;
-        videoBox.removeChild(parentEl);
+        if (videoEl) {
+            var parentEl = videoEl.parentNode;
+            videoBox.removeChild(parentEl);
+        }
     },
     leave: function() {
         clearChild();
