@@ -8,16 +8,16 @@
 
 |用户   | UserId    | App                  |Web   
 |:----- |:----------|:-------------------- |:-------------------------------------------------
-|A      | JFTfwU5Zc | 13810123257/123456   | http://localhost:8000/voip/blink/private.html
-|B      | ljgMZJKas | 13811316661/123456   | http://localhost:8000/voip/blink/private.html?peer
+|A      | JFTfwU5Zc | 13810123257/123456   | https://yuhongda0315.github.io/martin-demo/voip/blink/private.html
+|B      | ljgMZJKas | 13811316661/123456   | https://yuhongda0315.github.io/martin-demo/voip/blink/private.html?peer
 
 #### 多人
 
 |用户   | UserId    | App                  |Web   
 |:----- |:----------|:-------------------- |:-------------------------------------------------
-|A      | JFTfwU5Zc | 13810123257/123456   | http://localhost:8000/voip/blink/group.html
-|B      | xNlpDTUmw | 13269772769/123456   | http://localhost:8000/voip/blink/group.html?peer1
-|C      | ljgMZJKas | 13811316661/123456   | http://localhost:8000/voip/blink/group.html?peer2
+|A      | JFTfwU5Zc | 13810123257/123456   | https://yuhongda0315.github.io/martin-demo/voip/blink/group.html
+|B      | xNlpDTUmw | 13269772769/123456   | https://yuhongda0315.github.io/martin-demo/voip/blink/group.html?peer1
+|C      | ljgMZJKas | 13811316661/123456   | https://yuhongda0315.github.io/martin-demo/voip/blink/group.html?peer2
 
 ### API
 
