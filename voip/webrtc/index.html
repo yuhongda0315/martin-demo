@@ -149,7 +149,7 @@
         
         var mediaType = RongIMLib.MediaType;
 
-        QuickRongIM.init(params,callbacks);
+        QuickInit.init(params,callbacks);
 
 /************************ WebRTC **************************************/
         // 大视频窗口
@@ -174,7 +174,7 @@
             }
         };
         // 注册视频节点监听
-        RongCallLib.vodeioWatch(function(result){
+        RongCallLib.videoWatch(function(result){
             videoItem[result.type](result.data);
         });
 

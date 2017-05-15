@@ -126,7 +126,7 @@
 		msgObserverList.add(watcher);
 	};
 
-	global.QuickRongIM = {
+	global.QuickInit = {
 		init: init,
 		watch: watch
 	};
