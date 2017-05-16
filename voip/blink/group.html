@@ -93,34 +93,58 @@
 
     <script>
         var users = [ {
-            userid:"JFTfwU5Zc",
-            token:"ft8/LHieXILRRNZBNp8iHDVgZOtrWuESz8LGXFTVIuFcJZApQcPoPZqOh0pjHpHmSZEC9Cx8dxUlfulz0k/xGQ=="
+            userid:"YGYXWCvQ6",
+            token:"otuF2Jf+F1LsVwl45ru43TVgZOtrWuESz8LGXFTVIuFwBdLHjemfRIzZXpUReATx+E59CCqgN88xWVV3sIaf3Q=="
         }, {
-            userid:"xNlpDTUmw",
-            token:"htqthJKH19O8IJAFpnXiCMXZO74SCBcJ+lQ6rhLFlLvHvRhXS9LdQ05/Lafc99fS67AQVOCKuFcRA5MmG3vI+qARbCoc5lmW"
+            userid:"icqLhTaPX",
+            token:"YjvxfirLkSA2CYy64F2gCHYNDAey+CFwhZPcG3x/Kb69AQzuRlokmmOg0Toz2Mx9tQVv0gFKQ1/BODsrhEyzdawoBepBsGIt"
         }, {
-            userid:"ljgMZJKas",
-            token:"zaZEtQWfsPXocFceD1UQj8XZO74SCBcJ+lQ6rhLFlLvHvRhXS9LdQxqV635meqlhkvrPn22sYtmZIV0rVan1dqARbCoc5lmW"
+            userid:"8LNK7JOeR",
+            token:"8MKhdwnvSHwmGwflGD3QEMXZO74SCBcJ+lQ6rhLFlLuSVF0A/jNXMXodwH9aur+X4irZgNTEC9Q5XU3itFgFrqARbCoc5lmW"
+        }, {
+            userid:"6py5Mistc",
+            token:"osh6mXQCpQ/XGjpNvMa6F8XZO74SCBcJ+lQ6rhLFlLvHvRhXS9LdQ/1TrpDNiAZFFTDLNFapopWnXS5ElXeGGaARbCoc5lmW"
+        }, {
+            userid:"XLeGsyNV3",
+            token:"EiFGNTHsjHoqFIGMw0i+fTVgZOtrWuESz8LGXFTVIuFwBdLHjemfRLzTJV3cATKarp3q8R5dDnSak2GABioMEw=="
         }];
 
-        var userId = users[0].userid;
-        var inviteUserIds = [users[1].userid, users[2].userid];
+        var user0 = users[0].userid;
+        var user1 = users[1].userid;
+        var user2 = users[2].userid;
+        var user3 = users[3].userid;
+        var user4 = users[4].userid;
+
+        var userId = user0;
+        var inviteUserIds = [user1, user2, user3, user4];
         var token = users[0].token;
 
         if(location.search.indexOf("peer1") > -1){
-            userId = users[1].userid;
-            inviteUserIds = [users[0].userid, users[2].userid];
+            userId = user1;
+            inviteUserIds = [user0, user2, user3, user4];
             token = users[1].token;
         }
 
         if(location.search.indexOf("peer2") > -1){
-            userId = users[2].userid;
-            inviteUserIds = [users[0].userid, users[1].userid];
+            userId = user2;
+            inviteUserIds = [user1, user0, user3, user4];
             token = users[2].token;
         }
 
+        if(location.search.indexOf("peer3") > -1){
+            userId = user3;
+            inviteUserIds = [user1, user0, user2, user4];
+            token = users[3].token;
+        }
+
+        if(location.search.indexOf("peer4") > -1){
+            userId = user4;
+            inviteUserIds = [user1, user0, user3, user2];
+            token = users[4].token;
+        }
+
         var conversationType = 3;
-        var targetId = 'Pw51mKYJq';
+        var targetId = 'cmQRdfU5E';
 
         function onInitcomplete(error, callLib){
             console.log(callLib);
@@ -146,7 +170,7 @@
         
         var mediaType = RongIMLib.MediaType;
 
-        QuickRongIM.init(params,callbacks);
+        QuickInit.init(params,callbacks);
     </script>
     <script src="./demo.js"></script>
 </html> 
