@@ -103,10 +103,23 @@
 
             params.token = token;
 
+            var videoItem = {
+                added: function(result){
+                    var stream = result.data;
+                    var userId = stream.getAttribute('userid');
+                    var session = cache.get('session');
+                    userId = session[userId] || userId;
+                    stream.setAttribute('userId', userId);
+                }
+            };
             room.init(params, function(error, result) {
                 if (error) {
                     throw new Error(error);
                 }
+                var type = result.type;
+                var handler = videoItem[type];
+                handler && handler(result);
+
                 videoWatcher.notify(result);
             });
         });
@@ -242,6 +255,13 @@
 
             cache.set('session', message);
 
+            var sentTime = message.sentTime;
+            var senderUserId = message.senderUserId;
+            addUserRelation({
+                sentTime: sentTime,
+                senderUserId: senderUserId
+            });
+
             var callId = message.content.callId;
 
             var data = {
@@ -258,6 +278,17 @@
 
             sendCommand(params);
         }
+    };
+
+    var addUserRelation = function(params){
+        var sentTime = params.sentTime;
+        var senderUserId = params.senderUserId;
+        var session = cache.get('session');
+        var userId = sentTime & 0x7fffffff;
+
+        session[senderUserId] = senderUserId;
+        session[userId] = senderUserId;
+
     };
 
     var summayTimer = new Timer();
@@ -278,6 +309,14 @@
 
             var already = session.already;
 
+            var senderUserId = message.senderUserId;
+            // 存储用户信息标识
+            var sentTime = message.sentTime;
+            addUserRelation({
+                sentTime: sentTime,
+                senderUserId: senderUserId
+            });
+
             if (already) {
                 return;
             }
@@ -297,14 +336,17 @@
 
             //主叫方 userId 为 inviterMessage.sentTime
             //被叫方 userId 为 AcceptMessage.sentTime
-            var sentTime = session.sentTime;
             var userId = session.senderUserId;
+            var sentTime = session.sentTime;
+
+            var isSharing = session.isSharing;
 
             var params = {
                 channelId: channelId,
                 userId: userId,
                 sentTime: sentTime,
-                mediaType: mediaType
+                mediaType: mediaType,
+                isSharing: isSharing
             };
             initRoom(params);
             summayTimer.start();
@@ -353,7 +395,8 @@
         var targetId = params.targetId;
         var inviteUserIds = params.inviteUserIds;
         var mediaType = params.mediaType;
-
+        var isSharing = params.isSharing;
+        
         var callId = getRoomId(params);
         var channel = {
             Key: '',
@@ -382,8 +425,17 @@
                 callInfo[callId] = true;
 
             result.callInfo = callInfo;
+            result.isSharing = isSharing;
 
+            var sentTime = result.sentTime;
+            var senderUserId = result.senderUserId;
+            
             cache.update(cacheKey, result);
+            
+            addUserRelation({
+                sentTime: sentTime,
+                senderUserId: senderUserId
+            });
 
             var errorInfo = {
                 code: error
@@ -418,6 +470,7 @@
         var targetId = params.targetId;
 
         var mediaType = params.mediaType;
+        var isSharing = params.isSharing;
 
         var session = cache.get('session');
 
@@ -448,11 +501,17 @@
             var channelId = content.callId;
             var userId = command.senderUserId;
 
+            addUserRelation({
+                sentTime: sentTime,
+                senderUserId: userId
+            });
+
             var params = {
                 channelId: channelId,
                 userId: userId,
                 sentTime: sentTime,
-                mediaType: mediaType
+                mediaType: mediaType,
+                isSharing: isSharing
             };
             initRoom(params);
             summayTimer.start();

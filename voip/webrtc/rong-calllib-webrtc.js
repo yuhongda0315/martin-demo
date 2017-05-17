@@ -49,6 +49,11 @@
 
                     var video = stream.getVideoPlayer();
 
+                    var user = stream.getParticipant();
+                    var userId = user.getID();
+
+                    video.setAttribute('userid', userId);
+
                     var result = {
                         type: 'added',
                         data: video,
@@ -139,23 +144,43 @@
 
             });
 
-            var videoItem = {
-                1: false,
-                2: {
-                    width: {
-                        ideal: 1280 || config.width
-                    },
-                    frameRate: {
-                        ideal: 15 || config.rate
+            var mediaType = params.mediaType;
+                mediaType = params.isSharing ? 3 : mediaType;
+            
+            var constraintItem = {
+                1: {
+                    audio: true,
+                    video: false
+                },
+                2:{
+                    audio: true,
+                    video: {
+                        width: {
+                            ideal: 1280 || config.width
+                        },
+                        frameRate: {
+                            ideal: 15 || config.rate
+                        }
+                    }
+                },
+                3: {
+                    audio: false,
+                    video: {
+                        mandatory: {
+                            chromeMediaSource: 'screen',
+                            maxWidth: 1920,
+                            maxHeight: 1080
+                        },
+                        optional: [{ 
+                            googTemporalLayeredScreencast: true
+                        }, {
+                            googLeakyBucket: true
+                        }]
                     }
                 }
             };
 
-            var video = videoItem[params.mediaType];
-            var constraints = {
-                audio: true,
-                video: video
-            };
+            var constraints = constraintItem[mediaType];
             localStream.init(constraints);
         });
     };

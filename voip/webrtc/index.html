@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Super </title>
+    <link rel="shortcut icon" href="http://7xogjk.com1.z0.glb.clouddn.com/IuDkFprSQ1493563384017406982"/>
+    <title id='pageTitle'> Super </title>
     <style>
         .input{
             margin-left: 30px;
@@ -70,6 +71,8 @@
         <input type="button" value="videoToAudio" onclick="videoToAudio()">
         <input type="button" value="audioToVideo" onclick="audioToVideo()">
 
+        <input type="button" value="startScreen" onclick="startScreen()">
+        <input type="button" value="acceptScreen" onclick="acceptScreen()">
     </div>
 
     <script src="//cdn.ronghub.com/RongIMLib-2.2.5.js"></script>
@@ -96,11 +99,11 @@
 
     <script>
        var users = [ {
-                userid:"1001",
-                token:"hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ=="
+                userid:"1003",
+                token:"gZJPeSu/8FmfBTKw/dWGpMSkAMimzaj6nB20cRPaYWRyLGGbEPHrt1VKGG3VLZ+uNXcegD4ILRafVHKjO9aQ+w=="
             }, {
-                userid:"1002",
-                token:"UAFlOdMThtHnc18558yPhcSkAMimzaj6nB20cRPaYWRyLGGbEPHrt12ut6s/G81HNXcegD4ILRb/EnGJdxts4Q=="
+                userid:"1004",
+                token:"5VuP3k6VSr/1mYXt8hUgr8SkAMimzaj6nB20cRPaYWRyLGGbEPHrt4slHZKtOseTWwLDR3D1VJj7TpVa0HshoQ=="
             }];
 
         // var users = [ {
@@ -161,13 +164,46 @@
         };
         RongCallLib.setConfig(config);  
 
+        var clearChild = function() {
+            videoBox.innerHTML = "";
+            element.innerHTML = "";
+        };
+
+        var createVideo = function(id, src) {
+            var video = document.createElement('video');
+            video.id = 'main-' + id;
+            video.autoplay = true;
+            video.controls = false;
+            video.src = src;
+            return video;
+        };
+
+        var setMain = function(node) {
+            var id = node.id;
+            var src = node.src;
+            var video = createVideo(id, src);
+            element.innerHTML = "";
+            element.appendChild(video);
+        };
+
         var videoItem = {
-            added: function(node){
+            added: function(result){
+                var node = result.data;
+
                 var videoEl = $('<div class="voide-child"><div class="video-bar">x</div></div>')[0];
                 videoEl.appendChild(node);
                 videoBox.appendChild(videoEl);
+
+                videoEl.onclick = function(){
+                    setMain(node);
+                };
+
+                if (result.isLocal) {
+                    setMain(node);
+                }
             },
-            removed: function(videoElId){
+            removed: function(result){
+                var videoElId = result.data;
                 var videoEl = $('#' + videoElId)[0];
                 var parentEl = videoEl.parentNode;
                 videoBox.removeChild(parentEl);
@@ -175,7 +211,7 @@
         };
         // 注册视频节点监听
         RongCallLib.videoWatch(function(result){
-            videoItem[result.type](result.data);
+            videoItem[result.type](result);
         });
 
         // 注册命令监听
@@ -199,7 +235,7 @@
         }
 
         function hungup(){
-            videoBox.innerHTML = '';
+            clearChild();
             var params = {
                 conversationType: conversationType,
                 targetId: targetId,   
@@ -217,6 +253,26 @@
             };
             RongCallLib.accept(params);
         }
+
+        function acceptScreen(){
+            var params = {
+                conversationType: conversationType,
+                targetId: targetId,
+                isSharing: true,
+                mediaType: CallType.MEDIA_VEDIO
+            };
+            RongCallLib.accept(params);
+        };
+
+        function startScreen(){
+            var params = {
+                conversationType: conversationType,
+                targetId: targetId,
+                isSharing: true,
+                mediaType: CallType.MEDIA_VEDIO
+            };
+            RongCallLib.call(params);
+        };
 
         function reject(){
             RongCallLib.reject();

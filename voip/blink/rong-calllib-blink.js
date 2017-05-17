@@ -13,7 +13,7 @@
         minRate: 450,
         frameRate: 15
     };
-
+ 
     var createVideo = function(src, id) {
         var video = document.createElement('video');
 
@@ -50,10 +50,14 @@
             add: function(data) {
 
                 var stream = data.data;
-                var userId = getId(data.userId);
+                
+                var userId = data.userId;
+                var videoId = getId(data.userId);
 
-                var video = createVideo(stream, userId);
+                var video = createVideo(stream, videoId);
 
+                video.setAttribute('userid', userId);
+                
                 var result = {
                     type: 'added',
                     data: video,
