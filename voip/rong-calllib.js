@@ -331,24 +331,6 @@
             }
 
             session.already = true;
-
-            var mediaType = message.content.mediaType;
-
-            //主叫方 userId 为 inviterMessage.sentTime
-            //被叫方 userId 为 AcceptMessage.sentTime
-            var userId = session.senderUserId;
-            var sentTime = session.sentTime;
-
-            var isSharing = session.isSharing;
-
-            var params = {
-                channelId: channelId,
-                userId: userId,
-                sentTime: sentTime,
-                mediaType: mediaType,
-                isSharing: isSharing
-            };
-            initRoom(params);
             summayTimer.start();
         },
         HungupMessage: function(message) {
@@ -427,6 +409,8 @@
             result.callInfo = callInfo;
             result.isSharing = isSharing;
 
+            //主叫方 userId 为 inviterMessage.sentTime
+            //被叫方 userId 为 AcceptMessage.sentTime
             var sentTime = result.sentTime;
             var senderUserId = result.senderUserId;
             
@@ -440,6 +424,16 @@
             var errorInfo = {
                 code: error
             };
+
+            var params = {
+                channelId: callId,
+                userId: senderUserId,
+                sentTime: sentTime,
+                mediaType: mediaType,
+                isSharing: isSharing
+            };
+            initRoom(params);
+
             callback(errorInfo, result);
 
             var timeout = config.timeout;
@@ -448,7 +442,6 @@
                 var reason = Reason.get(key);
                 callback(reason);
             }, timeout);
-
         });
     };
 

@@ -41,7 +41,8 @@
     var joinRoom = function(params, callback) {
         callback = callback || util.noop;
 
-        videoRoom = new BlinkEngine();
+        var url = params.url || '';
+        videoRoom = new BlinkEngine(url);
         var roomHandler = new BlinkEngineEventHandle();
 
         var errorInfo = null;
@@ -153,12 +154,22 @@
             frameRate: config.frameRate
         };
 
+        var closeVideoItem = {
+            1: function(){
+                return true;
+            },
+            2: function(){
+                return false;
+            }
+        };
+
+        var mediaType = params.mediaType;
         videoRoom.setVideoParameters({
             VIDEO_PROFILE : constraints,
             VIDEO_MAX_RATE : config.maxRate,
             VIDEO_MIN_RATE : config.minRate,
             USER_TYPE : 1,
-            IS_CLOSE_VIDEO : false
+            IS_CLOSE_VIDEO : closeVideoItem[mediaType]()
         });
 
         var token = params.token;
