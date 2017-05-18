@@ -47,8 +47,7 @@ function trace(text) {
 }
 
 if (typeof window === 'object') {
-  if (window.HTMLMediaElement &&
-    !('srcObject' in window.HTMLMediaElement.prototype)) {
+  if (window.HTMLMediaElement) {
     // Shim the srcObject property, once, when HTMLMediaElement is found.
     Object.defineProperty(window.HTMLMediaElement.prototype, 'srcObject', {
       get: function() {
@@ -69,7 +68,7 @@ if (typeof window === 'object') {
     });
   }
   // Proxy existing globals
-  getUserMedia = window.navigator && window.navigator.getUserMedia;
+  // getUserMedia = window.navigator && window.navigator.getUserMedia;
 }
 
 // Attach a media stream to an element.
@@ -223,7 +222,7 @@ if (typeof window === 'undefined' || !window.navigator) {
       });
     };
   }
-} else if (navigator.webkitGetUserMedia && !!window.chrome) {
+} else if (navigator.webkitGetUserMedia) {
   webrtcUtils.log('This appears to be Chrome');
 
   webrtcDetectedBrowser = 'chrome';
