@@ -1,0 +1,233 @@
+body {
+    background: url(./images/share.jpg) no-repeat center;
+    padding: 50px;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #2095ff;
+}
+/* *************************** binner ******************************** */
+.banner {
+    height: 60px;
+    border-bottom: 1px solid #eee;
+}
+
+.banner .logo img {
+    padding: 10px;
+    width: 300px;
+    height: 37px;
+}
+
+.banner .user-toolbar-box {
+    float: right;
+}
+
+.banner .user-toolbar-box img {
+    position: relative;
+    top: -54px;
+    right: 10px;
+    height: 50px;
+    width: 50px;
+    -moz-border-radius: 23px;
+    -webkit-border-radius: 23px;
+    border-radius: 23px;
+}
+
+.banner .user-btn {
+    display: none;
+    width: 100px;
+    border: 1px solid #eee;
+    background-color: #FFF;
+    padding: 10px 0;
+    position: absolute;
+    top: 70px;
+    right: 75px;
+}
+
+.banner .user-btn a {
+    display: block;
+    color: #2E4059;
+    padding: 0px 10px;
+}
+
+.banner .user-btn a i {
+    margin-right: 10px;
+}
+
+.banner .user-btn a:hover {
+    background-color: #f9f9f9;
+}
+
+.chat-message {
+    height: calc(80vh - 61px);
+    background-color: #FFF;
+}
+
+.chat-message .video-box {
+    border-right: 1px solid #eee;
+    height: inherit;
+    width: 60%;
+    float: left;
+}
+
+.chat-message .message-box {
+    height: inherit;
+    width: calc(40% - 1px);
+    float: right;
+    position: relative;
+    top: -54px;
+}
+/* *************************** Tab ******************************** */
+.message-menu {
+    background-color: #dde7f0;
+    width: 100%;
+}
+
+.message-menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+.message-menu ul li {
+    position: relative;
+    float: left;
+    text-decoration: none;
+    display: block;
+    width: 50%;
+    line-height: 40px;
+    text-align: center;
+}
+
+.message-menu ul li:hover{
+    cursor: pointer;
+    background-color: #ebf2f7;
+}
+
+.message-menu .active {
+    border-bottom: 2px solid #FF9933;
+    background-color: #dde7f0;
+}
+/* *************************** 会话页面 ******************************** */
+.conversation{
+    clear: both;
+    height: calc(100% - 118px);
+    background-color: #FFF;
+    overflow-y: auto;    
+}
+.conversation .message{
+    height: 47px;
+    margin-top: 10px;
+}
+
+.message .avater{
+    position: relative;
+    top: 5px;
+    float: left;
+    height: 50px;
+}
+
+.message .avater img{
+    height: 40px;
+    width: 40px;
+    -moz-border-radius: 23px;
+    -webkit-border-radius: 23px;
+    border-radius: 23px;
+}
+
+.message .info{
+    height: 20px;
+    margin-left: 20px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    top:10px;
+}
+
+.message .info .sent-info{
+    position: relative;
+    font-size: 10px;
+    color: blue;
+}
+
+.message .info .content{
+    word-wrap: break-word;
+    left: 10px;
+}
+
+.input-box{
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    top: calc(80vh - 131px);
+}
+
+.input-toolbar{
+    height: 30px;
+    width: 100%;
+    border-top: 1px solid #eee;
+}
+
+.input-toolbar i{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.input-toolbar .icon-rocket{
+    background: url(./images/rocket.png) no-repeat;
+}
+
+.input-content{
+    overflow: hidden;
+    height: 39px;
+    width: 100%;
+}
+
+.input-content:focus{
+     outline: none; 
+}
+
+/* *************************** 查看用户 ******************************** */
+.userinfo{
+    clear: both;
+    height: calc(100% - 42px);
+    background-color: #FFF;
+    overflow-y: auto;    
+}
+
+.userinfo .avater{
+    height: 45px;
+    float: left;
+    margin: 10px;
+}
+
+.userinfo .avater img{
+    height: 40px;
+    width: 40px;
+    -moz-border-radius: 18px;
+    -webkit-border-radius: 18px;
+    border-radius: 18px;
+}
+.userinfo .avater span{
+    position: relative;
+    left: -38px;
+    top: 17px;
+    font-size: 10px;
+}
