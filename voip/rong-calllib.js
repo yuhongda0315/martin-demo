@@ -41,7 +41,6 @@
 
     MessageCtrl.watch(function(message) {
         msgWatcher.notify(message);
-        commandWatcher.notify(message);
     });
 
     var watch = function(listener) {
@@ -227,7 +226,7 @@
 
     var inviteItem = {
         busy: function(message) {
-            var reasonKey = 'REMOTE_BUSYLINE14'
+            var reasonKey = 'BUSYLINE14'
             var reason = Reason.get(reasonKey);
             var callId = message.content.callId;
 
@@ -293,6 +292,11 @@
 
     var summayTimer = new Timer();
 
+    var MessgeDirection = {
+        SENT: 1,
+        RECEIVED: 2
+    };
+
     var messageHandler = {
         InviteMessage: function(message) {
             var session = cache.get('session');
@@ -300,6 +304,8 @@
             var method = session ? 'busy' : 'free';
 
             inviteItem[method](message);
+
+            commandWatcher.notify(message);
         },
         AcceptMessage: function(message) {
 
@@ -332,15 +338,42 @@
 
             session.already = true;
             summayTimer.start();
+
+            commandWatcher.notify(message);
         },
         HungupMessage: function(message) {
-    
+
+            var isSent = (message.messageDirection == MessgeDirection.RECEIVED);
+            
+            if (isSent) {
+                var content = message.content;
+                var reasonCode = content.reason;
+                
+                var getReason = {
+                    2: function(){
+                        return Reason.get('REMOTE_REJECT12');
+                    },
+                    3: function(){
+                        return Reason.get('REMOTE_HANGUP13');
+                    },
+                    14: function(){
+                        return Reason.get('BUSYLINE4');
+                    },
+                    15: function(){
+                        return Reason.get('NO_RESPONSE15');
+                    }
+                };
+
+                var reason = getReason[reasonCode]();
+                content.reason = reason.code;
+            }
+            commandWatcher.notify(message);
         },
         MediaModifyMessage: function(message) {
-            console.log(message);
+            commandWatcher.notify(message);
         },
         MemberModifyMessage: function(message) {
-            console.log(message);
+            commandWatcher.notify(message);
         }
     };
 
@@ -441,6 +474,15 @@
                 var key = 'REMOTE_NO_RESPONSE15';
                 var reason = Reason.get(key);
                 callback(reason);
+
+                var params = {
+                    conversationType: conversationType,
+                    targetId: targetId,
+                    from: 'call-timeout',
+                    reasonKey: key
+                };
+                sendHungup(params);
+
             }, timeout);
         });
     };
@@ -536,7 +578,7 @@
         var callId = session.content.callId;
         var callId = callId;
 
-        var reasonKey = 'REMOTE_HANGUP13'
+        var reasonKey = params.reasonKey;
         var reason = Reason.get(reasonKey);
 
         var conversationType = params.conversationType;
@@ -545,8 +587,8 @@
         params = {
             command: 'hungup',
             data: {
-                conversationType: params.conversationType,
-                targetId: params.targetId,
+                conversationType: conversationType,
+                targetId: targetId,
                 content: {
                     callId: callId,
                     reason: reason.code
@@ -587,19 +629,24 @@
         quitRoom({
             roomId: callId
         });
+
+        callTimer.stop();
     };
 
     var hungup = function(params, callback) {
         params.from = 'hungup';
+        params.reasonKey = 'HANGUP3';
         sendHungup(params, callback);
     };
 
     var reject = function(params) {
         params.from = 'reject';
+        params.reasonKey = 'REJECT2';
         sendHungup(params);
     };
 
     var quit = function(params, callback) {
+        params.reasonKey = 'HANGUP3';
         sendHungup(params, callback);
     };
 
@@ -617,11 +664,37 @@
         enableAudio(params);
     };
 
+    var sendMediaModifyMessage = function(mediaType){
+        var session = cache.get('session');
+        var content = session.content;
+        var callId = content.callId;
+        var mediaType = mediaType;
+        var conversationType = session.conversationType;
+        var targetId = session.targetId;
+
+        params = {
+            command: 'mediaModify',
+            data: {
+                conversationType: conversationType,
+                targetId: targetId,
+                content: {
+                    callId: callId,
+                    mediaType: mediaType
+                }
+            }
+        };
+
+        sendCommand(params);
+    };
+
     var videoToAudio = function() {
         var params = {
             isEnabled: false
         };
         enableVideo(params);
+        // TODO
+        var mediaType = 1;
+        sendMediaModifyMessage(mediaType);
     };
 
     var audioToVideo = function() {
@@ -629,6 +702,9 @@
             isEnabled: true
         };
         enableVideo(params);
+        // TODO
+        var mediaType = 2;
+        sendMediaModifyMessage(mediaType);
     };
 
     var setConfig = function(cfg) {

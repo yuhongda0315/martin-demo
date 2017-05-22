@@ -43,6 +43,11 @@
         var targetId = params.targetId;
 
         var im = RongIMClient.getInstance();
+
+        var isMentioned = false;
+        var pushText = params.pushText || '';
+        var appData = params.appData || '';
+
         im.sendMessage(conversationType, targetId, msg, {
             onSuccess: function(message) {
                 var error = null;
@@ -51,7 +56,7 @@
             onError: function(code) {
                 callback(code);
             }
-        });
+        }, isMentioned, pushText, appData);
     };
 
     var commandItem = {
@@ -62,6 +67,25 @@
          */
         invite: function(params, callback) {
             params.messageType = 'InviteMessage';
+            
+            var content = params.content;
+            
+            var mediaType = content.mediaType;
+            var inviteUserIds = content.inviteUserIds;
+            var callId = content.callId;
+
+            var appData = {
+                mediaType: mediaType,
+                userIdList: inviteUserIds,
+                callId: callId
+            };
+
+            var pushItem = {
+                1: '您有一条音频通话',
+                2: '您有一条视频通话'
+            };
+            params.pushText = pushItem[mediaType];
+            params.appData = JSON.stringify(appData);
             sendMessage(params, callback);
         },
         ringing: function(params, callback){
@@ -101,21 +125,21 @@
             sendMessage(params, callback);
         },
         getToken: function(params, callback){
-            // var error = null;
-            // var token = '';
-            // callback(error, token);
-            var im = RongIMClient.getInstance();
-            var engineType = 3;
-            var channelId = params.channelId;
-            im.getAgoraDynamicKey(engineType, channelId, {
-                onSuccess: function(data) {
-                    var error = null;
-                    callback(error, data.dynamicKey);
-                },
-                onError: function(error) {
-                    callback(error);
-                }
-            });
+            var error = null;
+            var token = '';
+            callback(error, token);
+            // var im = RongIMClient.getInstance();
+            // var engineType = 3;
+            // var channelId = params.channelId;
+            // im.getAgoraDynamicKey(engineType, channelId, {
+            //     onSuccess: function(data) {
+            //         var error = null;
+            //         callback(error, data.dynamicKey);
+            //     },
+            //     onError: function(error) {
+            //         callback(error);
+            //     }
+            // });
         }
     };
     /*
