@@ -125,21 +125,21 @@
             sendMessage(params, callback);
         },
         getToken: function(params, callback){
-            var error = null;
-            var token = '';
-            callback(error, token);
-            // var im = RongIMClient.getInstance();
-            // var engineType = 3;
-            // var channelId = params.channelId;
-            // im.getAgoraDynamicKey(engineType, channelId, {
-            //     onSuccess: function(data) {
-            //         var error = null;
-            //         callback(error, data.dynamicKey);
-            //     },
-            //     onError: function(error) {
-            //         callback(error);
-            //     }
-            // });
+            // var error = null;
+            // var token = '';
+            // callback(error, token);
+            var im = RongIMClient.getInstance();
+            var engineType = 3;
+            var channelId = params.channelId;
+            im.getAgoraDynamicKey(engineType, channelId, {
+                onSuccess: function(data) {
+                    var error = null;
+                    callback(error, data.dynamicKey);
+                },
+                onError: function(error) {
+                    callback(error);
+                }
+            });
         }
     };
     /*
