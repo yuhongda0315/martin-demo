@@ -60,6 +60,7 @@
 
     <div class="tool-bar">
         <input type="button" value="call" onclick="call()">
+        <input type="button" value="invite" onclick="invite()">
         <input type="button" value="hungup" onclick="hungup()">
 
         <input type="button" value="accept" onclick="acceptCall()">
@@ -104,6 +105,9 @@
             }, {
                 userid:"1006",
                 token:"BIG85AHHpMAXYvnD2DSgnLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U07yY3a+mzGazeB0RzEl9Y46MnCyDLVMAw=="
+            }, {
+                userid:"1001",
+                token:"hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ=="
             }];
 
         // var users = [ {
@@ -127,6 +131,13 @@
             userId = users[1].userid;
             inviteUserIds = [users[0].userid];
             token = users[1].token;
+            targetId = users[0].userid;
+        }
+
+         if(location.search.indexOf("user1") > -1){
+            userId = users[2].userid;
+            inviteUserIds = [users[0].userid];
+            token = users[2].token;
             targetId = users[0].userid;
         }
 
@@ -230,6 +241,19 @@
                 mediaType: CallType.MEDIA_VEDIO
             };
             RongCallLib.call(params, function(error){
+                console.log(error);
+            });
+        }
+
+        function invite(){
+            var targetId = '1001';
+            var params = {
+                conversationType: conversationType,
+                targetId: targetId,
+                inviteUserIds: [targetId],
+                mediaType: CallType.MEDIA_VEDIO
+            };
+            RongCallLib.invite(params, function(error){
                 console.log(error);
             });
         }

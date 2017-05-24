@@ -365,7 +365,7 @@
                 };
 
                 var reason = getReason[reasonCode]();
-                content.reason = reason.code;
+                content.reason = reason && reason.code;
             }
             commandWatcher.notify(message);
         },
@@ -390,6 +390,68 @@
     };
 
     var callTimer = new Timer();
+
+    var sendInvite = function(data, callback){
+        var content = data.content;
+        var callId = content.callId;
+        var mediaType = content.mediaType;
+        var isSharing = data.isSharing;
+
+        params = {
+            command: 'invite',
+            data: data
+        };
+
+        sendCommand(params, function(error, result) {
+            var callInfo = { };
+                callInfo[callId] = true;
+
+            result.callInfo = callInfo;
+            result.isSharing = isSharing;
+
+            //主叫方 userId 为 inviterMessage.sentTime
+            //被叫方 userId 为 AcceptMessage.sentTime
+            var sentTime = result.sentTime;
+            var senderUserId = result.senderUserId;
+            
+            cache.update('session', result);
+            
+            addUserRelation({
+                sentTime: sentTime,
+                senderUserId: senderUserId
+            });
+
+            var errorInfo = {
+                code: error
+            };
+
+            result.params = {
+                channelId: callId,
+                userId: senderUserId,
+                sentTime: sentTime,
+                mediaType: mediaType,
+                isSharing: isSharing
+            };
+
+            callback(errorInfo, result);
+
+            var timeout = config.timeout;
+            callTimer.start(function(){
+                var key = 'REMOTE_NO_RESPONSE15';
+                var reason = Reason.get(key);
+                callback(reason);
+
+                var params = {
+                    conversationType: conversationType,
+                    targetId: targetId,
+                    from: 'call-timeout',
+                    reasonKey: key
+                };
+                sendHungup(params);
+
+            }, timeout);
+        });
+    };
 
     var call = function(params, callback) {
 
@@ -419,6 +481,7 @@
         };
 
         var data = {
+            isSharing: isSharing,
             conversationType: conversationType,
             targetId: targetId,
             content: {
@@ -430,63 +493,60 @@
             }
         };
 
-        params = {
-            command: 'invite',
-            data: data
-        };
-
-        sendCommand(params, function(error, result) {
-            var callInfo = { };
-                callInfo[callId] = true;
-
-            result.callInfo = callInfo;
-            result.isSharing = isSharing;
-
-            //主叫方 userId 为 inviterMessage.sentTime
-            //被叫方 userId 为 AcceptMessage.sentTime
-            var sentTime = result.sentTime;
-            var senderUserId = result.senderUserId;
-            
-            cache.update(cacheKey, result);
-            
-            addUserRelation({
-                sentTime: sentTime,
-                senderUserId: senderUserId
-            });
-
-            var errorInfo = {
-                code: error
-            };
-
-            var params = {
-                channelId: callId,
-                userId: senderUserId,
-                sentTime: sentTime,
-                mediaType: mediaType,
-                isSharing: isSharing
-            };
+        sendInvite(data, function(error, result){
+            if (error.code) {
+                callback(error); 
+                return;
+            }
+            var params = result.params;
             initRoom(params);
-
-            callback(errorInfo, result);
-
-            var timeout = config.timeout;
-            callTimer.start(function(){
-                var key = 'REMOTE_NO_RESPONSE15';
-                var reason = Reason.get(key);
-                callback(reason);
-
-                var params = {
-                    conversationType: conversationType,
-                    targetId: targetId,
-                    from: 'call-timeout',
-                    reasonKey: key
-                };
-                sendHungup(params);
-
-            }, timeout);
         });
     };
 
+
+    var invite = function(params, callback){
+        var cacheKey = 'session';
+
+        var session = cache.get(cacheKey);
+        if (!session) {
+            
+        }
+
+        var info = 'Invite: Not call yet';
+        checkSession({
+            session: session,
+            info: info
+        });
+
+        callback = callback || util.noop;
+
+        var conversationType = params.conversationType;
+        var targetId = params.targetId;
+        var inviteUserIds = params.inviteUserIds;
+        var mediaType = params.mediaType;
+        var isSharing = params.isSharing;
+        
+        var content = session.content;
+        var callId = content.callId;
+        var channel = {
+            Key: '',
+            Id: callId
+        };
+
+        var data = {
+            conversationType: conversationType,
+            targetId: targetId,
+            content: {
+                engineType: 3,
+                inviteUserIds: inviteUserIds,
+                mediaType: mediaType,
+                callId: callId,
+                channelInfo: channel
+            }
+        };
+
+        sendInvite(data, callback);
+    };
     // params.info
     // params.position
     var errorHandler = function(params){
@@ -725,6 +785,7 @@
         commandWatch: commandWatch,
 
         call: call,
+        invite: invite,
         hungup: hungup,
         reject: reject,
         join: join,
