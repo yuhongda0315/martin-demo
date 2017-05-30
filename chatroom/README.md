@@ -1,8 +1,8 @@
 ### 聊天室 Demo
 
-1、主播访问地址： http://localhost:8000/chatroom/index.html#/message/0
+1、主播访问地址： https://yuhongda0315.github.io/martin-demo/chatroom/index.html#/message/0
 
-2、观众访问地址：http://localhost:8000/chatroom/index.html#/message/1
+2、观众访问地址：https://yuhongda0315.github.io/martin-demo/chatroom/index.html#/message/1
 
 ### 注意事项
 
