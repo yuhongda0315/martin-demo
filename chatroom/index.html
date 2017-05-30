@@ -5,11 +5,35 @@
     <meta charset="UTF-8">
     <title>ChatRoom</title>
     <link rel="stylesheet" href="./style.css">
+
+    <script src="https://cdn.ronghub.com/RongIMLib-2.2.5.js"></script>
     <script src="./lib/jquery-3.1.1.js"></script>
+    <script src="./lib/underscore-1.8.3.js"></script>
+
+    <script src="./lib/vue-2.1.4.js"></script>
+    <script src="./lib/vue-router-2.1.1.js"></script>
+    
+    <script src="./lib/blink/adapter.js"></script>
+    <script src="./lib/blink/blinkEngine.js"></script>
+    
+    <script src="./data/data.js"></script>
+    <script src="./js/chat-util.js"></script>
+    <script src="./js/service.js"></script>
+
+    <script src="./config.js"></script>
+
+
+
+    <script src="./js/message.js"></script>
+    <script src="./js/user.js"></script>
+    <script src="./js/routers.js"></script>
+    <script src="./js/chat.js"></script>
+
 </head>
 
 <body>
-    <div class="container">
+    <div class="container"  id="rongchat">
+        
         <div class="banner">
             <div class="logo"><img src="./images/logo.png" /></div>
             <div class="user-toolbar-box">
@@ -17,56 +41,31 @@
             </div>
         </div>
         <div class="chat-message">
-            <div class="video-box"></div>
+            <div class="video-box" v-html=videoTmpl>
+            </div>
+
+            <div class="float-message" :style="{top:item.pos + 'px'}" v-for="item in floatMsgs">
+                <span class="content">{{item.content}}</span>
+            </div>
+
             <div class="message-box">
                 <div class="message-menu">
                     <ul>
-                        <li class="active">会话</li>
-                        <li>观众</li>
+                        <router-link to="/message/0">
+                            <li v-bind:class="{ active: isEqual('message', activeTab)}">会话</li>
+                        </router-link>
+                        <router-link to="/user/0">
+                            <li  v-bind:class="{ active: isEqual('user', activeTab)}">观众</li>
+                        </router-link>
                     </ul>
                 </div>
-                <div class="conversation" style="display: none;">
-                    <div class="message">
-                        <div class="avater">
-                            <img src="./images/avater.jpg" alt="">
-                        </div>
-                        <div class="info">
-                            <div class="content">大王叫我来巡山我把人间转一转</div>
-                            <span class="sent-info">Martin: 20:30</span>
-                        </div>
-                    </div>
-                    <div class="input-box">
-                        <div class="input-toolbar">
-                            <i class="icon-rocket"></i>
-                        </div>
-                        <div class="input-content" contenteditable="true"></div>
-                    </div>
-                </div>
-
-                <div class="userinfo">
-                    <div class="avater">
-                        <img src="./images/avater.jpg" alt="">
-                        <span>Martin</span>
-                    </div>
-
-                    <div class="avater">
-                        <img src="http://7xogjk.com1.z0.glb.clouddn.com/FuN4PYLWgl5-dc7kjMrVTaGrmvWy" alt="">
-                        <span>xiaoli</span>
-                    </div>
-
-                    <div class="avater">
-                        <img src="http://7xogjk.com1.z0.glb.clouddn.com/FnD5DPrQ4zEuxdfoQph3I_GbREXT" alt="">
-                        <span>Fuyun</span>
-                    </div>
-
-                    <div class="avater">
-                        <img src="http://7xogjk.com1.z0.glb.clouddn.com/01fac54313ad977d6e.gif" alt="">
-                        <span>ZhengYi</span>
-                    </div>
-                </div>
+                <router-view></router-view>
             </div>
         </div>
     </div>
 </body>
-
+<script>
+    var config = RongChat.config;
+    RongChat.init(config);
+</script>
 </html>
