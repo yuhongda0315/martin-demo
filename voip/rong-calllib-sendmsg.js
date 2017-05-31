@@ -125,7 +125,7 @@
             sendMessage(params, callback);
         },
         getToken: function(params, callback){
-            // var error = null;
+            var error = null;
             // var token = '';
             // callback(error, token);
             var im = RongIMClient.getInstance();

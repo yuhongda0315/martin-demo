@@ -171,6 +171,7 @@
         // video box
         var videoBox = $('.video-box')[0];
         var config = {
+            currentUserId: userId,
             url: 'wss://119.254.101.80:38443/room'
         };
         RongCallLib.setConfig(config);  
@@ -264,9 +265,7 @@
                 conversationType: conversationType,
                 targetId: targetId,   
             };
-            RongCallLib.hungup(params, function(error, summary){
-                console.log(summary);
-            });
+            RongCallLib.hungup(params);
         }
 
         function acceptCall(){

@@ -53,6 +53,11 @@ var videoItem = {
         clearChild();
     }
 };
+var config = {
+    currentUserId: 'Fn9xCP5vG'
+};
+RongCallLib.setConfig(config);
+
 // 注册视频节点监听
 RongCallLib.videoWatch(function(result) {
     videoItem[result.type](result);
@@ -94,9 +99,7 @@ function hungup() {
         conversationType: conversationType,
         targetId: targetId,
     };
-    RongCallLib.hungup(params, function(error, summary) {
-        console.log(summary);
-    });
+    RongCallLib.hungup(params);
 }
 
 function acceptAudio() {

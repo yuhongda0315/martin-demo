@@ -48,7 +48,7 @@
     };
 
     function Timer() {
-        this.timout = 0;
+        this.timeout = 0;
         this.startTime = 0;
         this.start = function(callback, second) {
             second = second || 0;
@@ -78,6 +78,65 @@
         };
     }
 
+    var callTimer = {};
+
+    var calcTimeout = function(params) {
+        var userIds = params.userIds;
+        var conversationType = params.conversationType;
+        var targetId = params.targetId;
+
+        var timeout = config.timeout + (params.timeout || 0);
+        var currentUserId = config.currentUserId;
+
+        util.forEach(userIds, function(userId) {
+            var timer = callTimer[userId] = new Timer();
+            var isCurrentUser = (userId == currentUserId);
+
+            timer.start(function() {
+                var key = isCurrentUser ? 'NO_RESPONSE5': 'REMOTE_NO_RESPONSE15';
+                var sentItem = {
+                    sent: function(callback) {
+                        var params = {
+                            conversationType: conversationType,
+                            targetId: targetId,
+                            from: 'call-timeout',
+                            reasonKey: key
+                        };
+                        var inviteUsers = cache.get('inviteUsers');
+                        sendHungup(params, function(error, message) {
+                            var senderUserId = message.senderUserId;
+                            delete inviteUsers[senderUserId];
+                        });
+                    },
+                    local: function(callback) {
+                        var reason = Reason.get(key);
+                        var content = {
+                            reason: reason
+                        };
+                        var message = {
+                            messageType: 'HungupMessage',
+                            conversationType: conversationType,
+                            targetId: targetId,
+                            senderUserId: userId,
+                            content: content,
+                            messageDirection: 2
+                        };
+
+                        var inviteUsers = cache.get('inviteUsers');
+                        delete inviteUsers[userId];
+
+                        var error = null;
+                        commandWatcher.notify(message);
+                    }
+                };
+                // 接收方为自己时发送 HungupMessage, 其他人则本地创建 HungupMessage，认为此人已忽略、或者不在线。
+                var method = isCurrentUser ? 'sent' : 'local';
+                sentItem[method]();
+
+            }, timeout);
+        });
+    };
+
     var room = {
         isActive: false,
         init: function(params, callback) {
@@ -103,7 +162,7 @@
             params.token = token;
 
             var videoItem = {
-                added: function(result){
+                added: function(result) {
                     var stream = result.data;
                     var userId = stream.getAttribute('userid');
                     var session = cache.get('session');
@@ -126,7 +185,7 @@
 
     var config = {
         url: '',
-        timeout: 30000,
+        timeout: 10000,
     };
 
     var Reason = (function() {
@@ -224,9 +283,17 @@
         sendCommand(params, callback);
     };
 
+    var array2Obj = function(arrs) {
+        var obj = {};
+        util.forEach(arrs, function(item) {
+            obj[item] = item;
+        });
+        return obj;
+    };
+
     var inviteItem = {
         busy: function(message) {
-            var reasonKey = 'BUSYLINE14'
+            var reasonKey = 'BUSYLINE4'
             var reason = Reason.get(reasonKey);
             var callId = message.content.callId;
 
@@ -251,6 +318,7 @@
             sendCommand(params);
         },
         free: function(message) {
+            commandWatcher.notify(message);
 
             cache.set('session', message);
 
@@ -261,7 +329,23 @@
                 senderUserId: senderUserId
             });
 
-            var callId = message.content.callId;
+            var content = message.content;
+
+            var callId = content.callId;
+
+            var conversationType = message.conversationType;
+            var targetId = message.targetId;
+
+            var userIds = content.inviteUserIds;
+
+            cache.set('inviteUsers', array2Obj(userIds));
+
+            var params = {
+                conversationType: conversationType,
+                targetId: targetId,
+                userIds: userIds
+            };
+            calcTimeout(params);
 
             var data = {
                 conversationType: conversationType,
@@ -279,7 +363,7 @@
         }
     };
 
-    var addUserRelation = function(params){
+    var addUserRelation = function(params) {
         var sentTime = params.sentTime;
         var senderUserId = params.senderUserId;
         var session = cache.get('session');
@@ -297,6 +381,24 @@
         RECEIVED: 2
     };
 
+    var stopItem = {
+        single: function(message) {
+            var senderUserId = message.senderUserId;
+            var timer = callTimer[senderUserId];
+            timer && timer.stop();
+        },
+        multi: function() {
+            util.forEach(callTimer, function(timer) {
+                timer.stop();
+            });
+            cache.remove('inviteUsers');
+        }
+    };
+    var stopTimer = function(message) {
+        var method = message ? 'single' : 'multi';
+        stopItem[method](message);
+    };
+
     var messageHandler = {
         InviteMessage: function(message) {
             var session = cache.get('session');
@@ -305,11 +407,13 @@
 
             inviteItem[method](message);
 
+        },
+        RingingMessage: function(message){
             commandWatcher.notify(message);
         },
         AcceptMessage: function(message) {
 
-            callTimer.stop();
+            stopTimer(message);
 
             var session = cache.get('session');
 
@@ -343,31 +447,44 @@
         },
         HungupMessage: function(message) {
 
-            var isSent = (message.messageDirection == MessgeDirection.RECEIVED);
-            
-            if (isSent) {
+            var inviteUsers = cache.get('inviteUsers') || {};
+
+            var senderUserId = message.senderUserId;
+            if (!(senderUserId in inviteUsers)) {
+                return;
+            }
+
+            stopTimer(message);
+            var inviteUsers = cache.get('inviteUsers');
+            delete inviteUsers[senderUserId];
+
+            var isReceived = (message.messageDirection == MessgeDirection.RECEIVED);
+
+            if (isReceived) {
                 var content = message.content;
                 var reasonCode = content.reason;
-                
-                var getReason = {
-                    2: function(){
+
+                var reasonItem = {
+                    2: function() {
                         return Reason.get('REMOTE_REJECT12');
                     },
-                    3: function(){
+                    3: function() {
                         return Reason.get('REMOTE_HANGUP13');
                     },
-                    14: function(){
-                        return Reason.get('BUSYLINE4');
+                    4: function() {
+                        return Reason.get('REMOTE_BUSYLINE14');
                     },
-                    15: function(){
+                    15: function() {
                         return Reason.get('NO_RESPONSE15');
                     }
                 };
 
-                var reason = getReason[reasonCode]();
-                content.reason = reason && reason.code;
+                var getReason = reasonItem[reasonCode] || util.noop;
+                var reason = getReason();
+                content.reason = reason && reason.code || reasonCode;
             }
             commandWatcher.notify(message);
+
         },
         MediaModifyMessage: function(message) {
             commandWatcher.notify(message);
@@ -384,27 +501,28 @@
     });
 
     var getRoomId = function(params) {
-        var random = Math.floor(Math.random()*1000);
+        var random = Math.floor(Math.random() * 1000);
         var info = [params.conversationType, params.targetId, random];
         return info.join('_');
     };
 
-    var callTimer = new Timer();
-
-    var sendInvite = function(data, callback){
+    var sendCall = function(data, callback) {
         var content = data.content;
         var callId = content.callId;
         var mediaType = content.mediaType;
         var isSharing = data.isSharing;
+        var inviteUserIds = content.inviteUserIds;
 
-        params = {
+        cache.set('inviteUsers', array2Obj(inviteUserIds));
+
+        var params = {
             command: 'invite',
             data: data
         };
 
         sendCommand(params, function(error, result) {
-            var callInfo = { };
-                callInfo[callId] = true;
+            var callInfo = {};
+            callInfo[callId] = true;
 
             result.callInfo = callInfo;
             result.isSharing = isSharing;
@@ -413,9 +531,9 @@
             //被叫方 userId 为 AcceptMessage.sentTime
             var sentTime = result.sentTime;
             var senderUserId = result.senderUserId;
-            
+
             cache.update('session', result);
-            
+
             addUserRelation({
                 sentTime: sentTime,
                 senderUserId: senderUserId
@@ -435,21 +553,13 @@
 
             callback(errorInfo, result);
 
-            var timeout = config.timeout;
-            callTimer.start(function(){
-                var key = 'REMOTE_NO_RESPONSE15';
-                var reason = Reason.get(key);
-                callback(reason);
-
-                var params = {
-                    conversationType: conversationType,
-                    targetId: targetId,
-                    from: 'call-timeout',
-                    reasonKey: key
-                };
-                sendHungup(params);
-
-            }, timeout);
+            var params = {
+                conversationType: conversationType,
+                targetId: targetId,
+                userIds: inviteUserIds,
+                timer: 10
+            };
+            calcTimeout(params);
         });
     };
 
@@ -473,7 +583,7 @@
         var inviteUserIds = params.inviteUserIds;
         var mediaType = params.mediaType;
         var isSharing = params.isSharing;
-        
+
         var callId = getRoomId(params);
         var channel = {
             Key: '',
@@ -493,9 +603,9 @@
             }
         };
 
-        sendInvite(data, function(error, result){
+        sendCall(data, function(error, result) {
             if (error.code) {
-                callback(error); 
+                callback(error);
                 return;
             }
             var params = result.params;
@@ -503,14 +613,14 @@
         });
     };
 
+    var sendInvite = function(data, callback){
 
-    var invite = function(params, callback){
+    };
+
+    var invite = function(params, callback) {
         var cacheKey = 'session';
 
         var session = cache.get(cacheKey);
-        if (!session) {
-            
-        }
 
         var info = 'Invite: Not call yet';
         checkSession({
@@ -525,7 +635,7 @@
         var inviteUserIds = params.inviteUserIds;
         var mediaType = params.mediaType;
         var isSharing = params.isSharing;
-        
+
         var content = session.content;
         var callId = content.callId;
         var channel = {
@@ -549,12 +659,12 @@
     };
     // params.info
     // params.position
-    var errorHandler = function(params){
+    var errorHandler = function(params) {
         var info = params.info;
         throw new Error(info);
     };
 
-    var checkSession = function(params){
+    var checkSession = function(params) {
         if (!params.session) {
             errorHandler(params);
         }
@@ -595,6 +705,8 @@
             var sentTime = command.sentTime;
             var channelId = content.callId;
             var userId = command.senderUserId;
+
+            stopTimer(command);
 
             addUserRelation({
                 sentTime: sentTime,
@@ -656,8 +768,7 @@
             }
         };
 
-        sendCommand(params, function() {
-            room.reset();
+        sendCommand(params, function(error, result) {
 
             var timer = summayTimer.stop();
 
@@ -668,29 +779,39 @@
             var content = session.content;
             var mediaType = content.mediaType;
 
-            var reason = Reason.get('HANGUP3');
-
             var inviteUserIds = content.inviteUserIds;
 
             var summary = {
-                caller: caller,
-                inviter: inviter,
-                mediaType: mediaType,
-                startTime: timer.start,
-                duration: timer.duration,
-                status: reason,
-                memberIdList: inviteUserIds
+                conversationType: conversationType,
+                targetId: targetId,
+                messageDirection: session.messageDirection,
+                content: {
+                    caller: caller,
+                    inviter: inviter,
+                    mediaType: mediaType,
+                    startTime: timer.start,
+                    duration: timer.duration,
+                    status: reason,
+                    memberIdList: inviteUserIds,
+                },
+                senderUserId: result.senderUserId,
+                messageType: 'SummaryMessage'
             };
+
+            commandWatcher.notify(summary);
+
             var error = null;
 
             callback(error, summary);
+
+            room.reset();
         });
 
         quitRoom({
             roomId: callId
         });
 
-        callTimer.stop();
+        stopTimer();
     };
 
     var hungup = function(params, callback) {
@@ -724,7 +845,7 @@
         enableAudio(params);
     };
 
-    var sendMediaModifyMessage = function(mediaType){
+    var sendMediaModifyMessage = function(mediaType) {
         var session = cache.get('session');
         var content = session.content;
         var callId = content.callId;
