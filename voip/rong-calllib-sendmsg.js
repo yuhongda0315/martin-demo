@@ -121,25 +121,44 @@
             sendMessage(params, callback);
         },
         memberModify: function(params, callback) {
-            params.messageType = 'MediaModifyMessage';
+            params.messageType = 'MemberModifyMessage';
             sendMessage(params, callback);
         },
         getToken: function(params, callback){
-            var error = null;
-            // var token = '';
-            // callback(error, token);
+            var engineType = params.engineType || 2;
+
+            var get = function(engineType){
+                var channelId = params.channelId;
+                im.getAgoraDynamicKey(engineType, channelId, {
+                    onSuccess: function(data) {
+                        var error = null;
+                        callback(error, data.dynamicKey);
+                    },
+                    onError: function(error) {
+                        callback(error);
+                    }
+                });
+            };
+
             var im = RongIMClient.getInstance();
-            var engineType = 3;
-            var channelId = params.channelId;
-            im.getAgoraDynamicKey(engineType, channelId, {
-                onSuccess: function(data) {
-                    var error = null;
-                    callback(error, data.dynamicKey);
+            var engineItem = {
+                1: function(){
+                    var engineType = 1;
+                    get(engineType);
                 },
-                onError: function(error) {
-                    callback(error);
+                2: function(){
+                    var error = null;
+                    var token = '';
+                    callback(error, token);
+                },
+                3: function(){
+                    var engineType = 3;
+                    get(engineType);
                 }
-            });
+            };
+            
+            engineItem[engineType]();
+            
         }
     };
     /*

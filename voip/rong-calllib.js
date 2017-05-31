@@ -91,9 +91,12 @@
         util.forEach(userIds, function(userId) {
             var timer = callTimer[userId] = new Timer();
             var isCurrentUser = (userId == currentUserId);
+            var status = params.status;
+            timer.status = status;
+            timer.mediaType = params.nediaType;
 
             timer.start(function() {
-                var key = isCurrentUser ? 'NO_RESPONSE5': 'REMOTE_NO_RESPONSE15';
+                var key = isCurrentUser ? 'NO_RESPONSE5' : 'REMOTE_NO_RESPONSE15';
                 var sentItem = {
                     sent: function(callback) {
                         var params = {
@@ -186,6 +189,26 @@
     var config = {
         url: '',
         timeout: 10000,
+    };
+
+    var CallStatus = {
+        //初始状态
+        CallIdle:0,
+
+        //正在呼出
+        Dialing: 1,
+        
+        //正在呼入
+        Incoming: 2,
+        
+        //收到一个通话呼入后，正在振铃
+        Ringing: 3,
+        
+        //正在通话
+        Active: 4,
+        
+        //已经挂断
+        Hangup: 5,
     };
 
     var Reason = (function() {
@@ -340,10 +363,13 @@
 
             cache.set('inviteUsers', array2Obj(userIds));
 
+            var mediaType = content.mediaType;
             var params = {
                 conversationType: conversationType,
                 targetId: targetId,
-                userIds: userIds
+                userIds: userIds,
+                mediaType: mediaType,
+                status: CallStatus.Incoming
             };
             calcTimeout(params);
 
@@ -408,12 +434,10 @@
             inviteItem[method](message);
 
         },
-        RingingMessage: function(message){
+        RingingMessage: function(message) {
             commandWatcher.notify(message);
         },
         AcceptMessage: function(message) {
-
-            stopTimer(message);
 
             var session = cache.get('session');
 
@@ -430,6 +454,14 @@
             if (already) {
                 return;
             }
+
+            var content = message.content;
+
+            message.callInfo = {
+                mediaType: content.mediaType,
+                status: CallStatus.Active
+            };
+            stopTimer(message);
 
             var channel = session.content.channelInfo;
             var channelId = channel.Id;
@@ -453,6 +485,14 @@
             if (!(senderUserId in inviteUsers)) {
                 return;
             }
+            
+            var session = cache.get('session');
+            var content = session.content;
+
+            message.callInfo = {
+                mediaType: content.mediaType,
+                status: CallStatus.Hangup
+            };
 
             stopTimer(message);
             var inviteUsers = cache.get('inviteUsers');
@@ -490,7 +530,7 @@
             commandWatcher.notify(message);
         },
         MemberModifyMessage: function(message) {
-            commandWatcher.notify(message);
+            inviteItem['free'](message);
         }
     };
 
@@ -557,7 +597,9 @@
                 conversationType: conversationType,
                 targetId: targetId,
                 userIds: inviteUserIds,
-                timer: 10
+                timer: 10,
+                mediaType: mediaType,
+                status: CallStatus.Dialing
             };
             calcTimeout(params);
         });
@@ -573,6 +615,8 @@
             callback(Reason.get(key));
             return;
         }
+
+        var engineType = params.engineType;
 
         cache.set(callback, params);
 
@@ -609,12 +653,50 @@
                 return;
             }
             var params = result.params;
+            params.engineType = engineType;
             initRoom(params);
         });
     };
 
-    var sendInvite = function(data, callback){
+    var sendInvite = function(data, callback) {
+        var content = data.content;
+        var inviteUserIds = content.inviteUserIds;
 
+        var inviteUsers = cache.get('inviteUsers');
+        util.forEach(inviteUserIds, function(userId){
+            inviteUsers[userId] = userId;
+        });
+
+        var params = {
+            command: 'memberModify',
+            data: data
+        };
+
+        sendCommand(params, function(error, result) {
+            var sentTime = result.sentTime;
+            var senderUserId = result.senderUserId;
+
+            addUserRelation({
+                sentTime: sentTime,
+                senderUserId: senderUserId
+            });
+
+            var error = {
+                code: error
+            };
+
+            callback(error, result);
+
+            var params = {
+                conversationType: conversationType,
+                targetId: targetId,
+                userIds: inviteUserIds,
+                timer: 10,
+                mediaType: mediaType,
+                status: CallStatus.Dialing
+            };
+            calcTimeout(params);
+        });
     };
 
     var invite = function(params, callback) {
@@ -630,28 +712,51 @@
 
         callback = callback || util.noop;
 
+        var session = cache.get('session');
         var conversationType = params.conversationType;
         var targetId = params.targetId;
-        var inviteUserIds = params.inviteUserIds;
-        var mediaType = params.mediaType;
-        var isSharing = params.isSharing;
 
         var content = session.content;
         var callId = content.callId;
+
+        var caller = session.senderUserId;
+        var engineType = params.engineType;
         var channel = {
             Key: '',
             Id: callId
         };
 
+        var mediaType = params.mediaType;
+        var inviteUserIds = params.inviteUserIds;
+        var isSharing = params.isSharing;
+
+        var modifyMemType = 1;
+
+        
+        var existList = [];
+
+        util.forEach(callTimer, function(timer, userId){
+            var member = {
+                userId: userId,
+                mediaId: '',
+                mediaType: timer.mediaType,
+                callStatus: timer.status
+            };
+            existList.push(member);
+        });
+
         var data = {
             conversationType: conversationType,
             targetId: targetId,
             content: {
-                engineType: 3,
-                inviteUserIds: inviteUserIds,
-                mediaType: mediaType,
+                modifyMemType: modifyMemType,
                 callId: callId,
-                channelInfo: channel
+                caller: caller,
+                engineType: engineType,
+                channelInfo: channel,
+                mediaType: mediaType,
+                inviteUserIds: inviteUserIds,
+                existedMemberStatusList: existList
             }
         };
 
@@ -686,6 +791,8 @@
             info: info
         });
 
+        var engineType = params.engineType;
+
         var content = session.content;
         var callId = content.callId;
 
@@ -706,6 +813,11 @@
             var channelId = content.callId;
             var userId = command.senderUserId;
 
+            command.callInfo = {
+                mediaType: content.mediaType,
+                status: CallStatus.Active
+            };
+
             stopTimer(command);
 
             addUserRelation({
@@ -714,11 +826,13 @@
             });
 
             var params = {
+
                 channelId: channelId,
                 userId: userId,
                 sentTime: sentTime,
                 mediaType: mediaType,
-                isSharing: isSharing
+                isSharing: isSharing,
+                engineType: engineType
             };
             initRoom(params);
             summayTimer.start();

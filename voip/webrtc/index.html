@@ -235,7 +235,14 @@
         var CallType = RongIMLib.VoIPMediaType;
 
         function call(){
+            /*
+                engineType : 
+                    1: Agora
+                    2: WebRTC
+                    3: Blink
+             */
             var params = {
+                engineType: 2,
                 conversationType: conversationType,
                 targetId: targetId,
                 inviteUserIds: inviteUserIds,
@@ -248,6 +255,7 @@
 
         function invite(){
             var targetId = '1001';
+            
             var params = {
                 conversationType: conversationType,
                 targetId: targetId,
@@ -269,7 +277,14 @@
         }
 
         function acceptCall(){
+            /*
+                engineType : 
+                    1: Agora
+                    2: WebRTC
+                    3: Blink
+             */
             var params = {
+                engineType: 2,
                 conversationType: conversationType,
                 targetId: targetId,
                 mediaType: CallType.MEDIA_VEDIO
