@@ -93,7 +93,7 @@
             var isCurrentUser = (userId == currentUserId);
             var status = params.status;
             timer.status = status;
-            timer.mediaType = params.nediaType;
+            timer.mediaType = params.mediaType;
 
             timer.start(function() {
                 var key = isCurrentUser ? 'NO_RESPONSE5' : 'REMOTE_NO_RESPONSE15';
@@ -114,7 +114,7 @@
                     local: function(callback) {
                         var reason = Reason.get(key);
                         var content = {
-                            reason: reason
+                            reason: reason.code
                         };
                         var message = {
                             messageType: 'HungupMessage',
@@ -891,12 +891,6 @@
         var conversationType = session.conversationType;
         var targetId = session.targetId;
 
-        var reasonKey = cache.get('hungupReason') || params.reasonKey;
-
-        if (isGroup(conversationType)) {
-            reasonKey = params.reasonKey;
-        }
-
         var reason = Reason.get(reasonKey);
 
         params = {
@@ -965,6 +959,9 @@
                 key = 'HANGUP3';
             }
         });
+
+        key = cache.get('hungupReason') || key;
+
         params.reasonKey = key;
         sendHungup(params, callback);
     };
