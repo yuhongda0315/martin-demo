@@ -314,6 +314,10 @@
         return obj;
     };
 
+    var isGroup = function(type){
+        return type == 3;
+    };
+
     var inviteItem = {
         busy: function(message) {
             var reasonKey = 'BUSYLINE4'
@@ -484,14 +488,16 @@
             var senderUserId = message.senderUserId;
             var conversationType = message.conversationType;
 
-            var isGroup = conversationType == 3;
-
-            var isRecover = (!(senderUserId in inviteUsers) && isGroup);
+            var isRecover = (!(senderUserId in inviteUsers) && isGroup(conversationType));
             if (isRecover) {
                 return;
             }
 
             var session = cache.get('session');
+            if (!session) {
+                return;
+            }
+
             var content = session.content;
 
             message.callInfo = {
@@ -510,6 +516,9 @@
                 var reasonCode = content.reason;
 
                 var reasonItem = {
+                    1: function(){
+                        return Reason.get('REMOTE_CANCEL11');
+                    },
                     2: function() {
                         return Reason.get('REMOTE_REJECT12');
                     },
@@ -527,6 +536,8 @@
                 var getReason = reasonItem[reasonCode] || util.noop;
                 var reason = getReason();
                 content.reason = reason && reason.code || reasonCode;
+                cache.set('hungupReason', content.reason);
+
             }
             commandWatcher.notify(message);
 
@@ -562,6 +573,9 @@
         var mediaType = content.mediaType;
         var isSharing = data.isSharing;
         var inviteUserIds = content.inviteUserIds;
+
+        var conversationType = data.conversationType;
+        var targetId = data.targetId;
 
         cache.set('inviteUsers', array2Obj(inviteUserIds));
 
@@ -874,11 +888,16 @@
         var callId = session.content.callId;
         var callId = callId;
 
-        var reasonKey = params.reasonKey;
-        var reason = Reason.get(reasonKey);
+        var conversationType = session.conversationType;
+        var targetId = session.targetId;
 
-        var conversationType = params.conversationType;
-        var targetId = params.targetId;
+        var reasonKey = cache.get('hungupReason') || params.reasonKey;
+
+        if (isGroup(conversationType)) {
+            reasonKey = params.reasonKey;
+        }
+
+        var reason = Reason.get(reasonKey);
 
         params = {
             command: 'hungup',
@@ -918,7 +937,7 @@
                     status: reason,
                     memberIdList: inviteUserIds,
                 },
-                senderUserId: result.senderUserId,
+                senderUserId: inviter,
                 messageType: 'SummaryMessage'
             };
 
@@ -940,11 +959,18 @@
 
     var hungup = function(params, callback) {
         params.from = 'hungup';
-        params.reasonKey = 'HANGUP3';
+        var key = 'CANCEL1';
+        util.forEach(callTimer, function(timer){
+            if (timer.status == CallStatus.Active) {
+                key = 'HANGUP3';
+            }
+        });
+        params.reasonKey = key;
         sendHungup(params, callback);
     };
 
     var reject = function(params) {
+        params = params || {};
         params.from = 'reject';
         params.reasonKey = 'REJECT2';
         sendHungup(params);
