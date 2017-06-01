@@ -86,6 +86,7 @@ function call(mediaType){
         conversationType: conversationType,
         targetId: targetId,
         inviteUserIds: inviteUserIds,
+        engineType: 3,
         mediaType: mediaType
     };
     RongCallLib.call(params, function(error) {
@@ -106,6 +107,7 @@ function acceptAudio() {
     var params = {
         conversationType: conversationType,
         targetId: targetId,
+        engineType: 3,
         mediaType: CallType.MEDIA_AUDIO
     };
     RongCallLib.accept(params);
@@ -115,6 +117,7 @@ function acceptVideo() {
     var params = {
         conversationType: conversationType,
         targetId: targetId,
+        engineType: 3,
         mediaType: CallType.MEDIA_VEDIO
     };
     RongCallLib.accept(params);

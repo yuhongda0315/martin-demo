@@ -193,20 +193,20 @@
 
     var CallStatus = {
         //初始状态
-        CallIdle:0,
+        CallIdle: 0,
 
         //正在呼出
         Dialing: 1,
-        
+
         //正在呼入
         Incoming: 2,
-        
+
         //收到一个通话呼入后，正在振铃
         Ringing: 3,
-        
+
         //正在通话
         Active: 4,
-        
+
         //已经挂断
         Hangup: 5,
     };
@@ -482,10 +482,15 @@
             var inviteUsers = cache.get('inviteUsers') || {};
 
             var senderUserId = message.senderUserId;
-            if (!(senderUserId in inviteUsers)) {
+            var conversationType = message.conversationType;
+
+            var isGroup = conversationType == 3;
+
+            var isRecover = (!(senderUserId in inviteUsers) && isGroup);
+            if (isRecover) {
                 return;
             }
-            
+
             var session = cache.get('session');
             var content = session.content;
 
@@ -531,13 +536,18 @@
         },
         MemberModifyMessage: function(message) {
             inviteItem['free'](message);
+        },
+        otherMessage: function(message) {
+            commandWatcher.notify(message);
         }
     };
 
     watch(function(message) {
         var messageType = message.messageType;
+        messageType = messageType in messageHandler ? messageType : 'otherMessage';
+
         var handler = messageHandler[messageType];
-        handler && handler(message);
+        handler(message);
     });
 
     var getRoomId = function(params) {
@@ -663,7 +673,7 @@
         var inviteUserIds = content.inviteUserIds;
 
         var inviteUsers = cache.get('inviteUsers');
-        util.forEach(inviteUserIds, function(userId){
+        util.forEach(inviteUserIds, function(userId) {
             inviteUsers[userId] = userId;
         });
 
@@ -732,10 +742,10 @@
 
         var modifyMemType = 1;
 
-        
+
         var existList = [];
 
-        util.forEach(callTimer, function(timer, userId){
+        util.forEach(callTimer, function(timer, userId) {
             var member = {
                 userId: userId,
                 mediaId: '',
