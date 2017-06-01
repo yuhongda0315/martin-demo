@@ -934,7 +934,7 @@
                     mediaType: mediaType,
                     startTime: timer.start,
                     duration: timer.duration,
-                    status: reason,
+                    status: reason.code,
                     memberIdList: inviteUserIds,
                 },
                 senderUserId: inviter,
@@ -1003,7 +1003,7 @@
         var conversationType = session.conversationType;
         var targetId = session.targetId;
 
-        params = {
+        var params = {
             command: 'mediaModify',
             data: {
                 conversationType: conversationType,

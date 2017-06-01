@@ -47,7 +47,7 @@
         var isMentioned = false;
         var pushText = params.pushText || '';
         var appData = params.appData || '';
-
+        var methodType = null;
         im.sendMessage(conversationType, targetId, msg, {
             onSuccess: function(message) {
                 var error = null;
@@ -56,7 +56,7 @@
             onError: function(code) {
                 callback(code);
             }
-        }, isMentioned, pushText, appData);
+        }, isMentioned, pushText, appData, methodType, params);
     };
 
     var commandItem = {
@@ -86,6 +86,7 @@
             };
             params.pushText = pushItem[mediaType];
             params.appData = JSON.stringify(appData);
+            params.userIds = inviteUserIds;
             sendMessage(params, callback);
         },
         ringing: function(params, callback){
@@ -122,6 +123,20 @@
         },
         memberModify: function(params, callback) {
             params.messageType = 'MemberModifyMessage';
+            var content = params.content;
+            var userIds = [];
+            var inviteUserIds = content.inviteUserIds
+            var existList = content.existedMemberStatusList;
+
+            util.forEach(inviteUserIds, function(userId){
+                userIds.push(userId);
+            });
+            util.forEach(existList, function(user){
+                var userId = user.userId;
+                userIds.push(userId);
+            });
+            params.userIds = userIds;
+
             sendMessage(params, callback);
         },
         getToken: function(params, callback){
