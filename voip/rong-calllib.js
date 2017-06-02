@@ -85,7 +85,7 @@
         var conversationType = params.conversationType;
         var targetId = params.targetId;
 
-        var timeout = config.timeout + (params.timeout || 0);
+      
         var currentUserId = config.currentUserId;
 
         util.forEach(userIds, function(userId) {
@@ -94,7 +94,10 @@
             var status = params.status;
             timer.status = status;
             timer.mediaType = params.mediaType;
-
+            var timeout = config.timeout;
+            if (!isCurrentUser) {
+                 timeout += (params.timeout || 0);
+            }
             timer.start(function() {
                 var key = isCurrentUser ? 'NO_RESPONSE5' : 'REMOTE_NO_RESPONSE15';
                 var sentItem = {
@@ -129,7 +132,7 @@
                         delete inviteUsers[userId];
 
                         var error = null;
-                        commandWatcher.notify(message);
+                        msgWatcher.notify(message);
                     }
                 };
                 // 接收方为自己时发送 HungupMessage, 其他人则本地创建 HungupMessage，认为此人已忽略、或者不在线。
@@ -479,6 +482,7 @@
             session.already = true;
             summayTimer.start();
 
+            callTimer[senderUserId].status = CallStatus.Active;
             commandWatcher.notify(message);
         },
         HungupMessage: function(message) {
@@ -528,8 +532,8 @@
                     4: function() {
                         return Reason.get('REMOTE_BUSYLINE14');
                     },
-                    15: function() {
-                        return Reason.get('NO_RESPONSE15');
+                    5: function(){
+                         return Reason.get('REMOTE_NO_RESPONSE15');
                     }
                 };
 
@@ -858,6 +862,7 @@
                 isSharing: isSharing,
                 engineType: engineType
             };
+            callTimer[userId].status = CallStatus.Active;
             initRoom(params);
             summayTimer.start();
         });
@@ -891,7 +896,8 @@
         var conversationType = session.conversationType;
         var targetId = session.targetId;
 
-        var reason = Reason.get(reasonKey);
+        var key = params.reasonKey;
+        var reason = Reason.get(key);
 
         params = {
             command: 'hungup',
@@ -942,6 +948,7 @@
             callback(error, summary);
 
             room.reset();
+            cache.remove('hungupReason');
         });
 
         quitRoom({
@@ -960,8 +967,11 @@
             }
         });
 
-        key = cache.get('hungupReason') || key;
+        var conversationType = params.conversationType;
 
+        if (!isGroup(conversationType)) {
+            key = cache.get('hungupReason') || key;
+        }
         params.reasonKey = key;
         sendHungup(params, callback);
     };
