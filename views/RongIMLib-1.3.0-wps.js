@@ -1721,7 +1721,7 @@ var RongIMLib;
             else if (document.location.protocol == 'https:') {
                 wsScheme = 'wss://';
             }
-            var browser = navigator.appName, b_version = navigator.appVersion, version = b_version.split(";"), isPolling = false;
+            var browser = navigator.appName, b_version = navigator.appVersion, version = b_version.split(";"), isPolling = true;
             if (version.length > 1) {
                 var trim_Version = parseInt(version[1].replace(/[ ]/g, "").replace(/MSIE/g, ""));
                 if (trim_Version < 10) {
@@ -1792,8 +1792,7 @@ var RongIMLib;
                 connectAckTime: 0,
                 voipStategy: 0,
                 isFirstPingMsg: true,
-                depend: opts,
-                reconnectCount: 0
+                depend: opts
             };
             if (dataAccessProvider && Object.prototype.toString.call(dataAccessProvider) == "[object Object]") {
                 // RongIMClient._memoryStore.isUseWebSQLProvider = true;  处理不同存储方案
@@ -3351,10 +3350,9 @@ var RongIMLib;
         Socket.prototype.reconnect = function () {            
             if (this.currentURL && RongIMLib.RongIMClient._storageProvider.getItem("rongSDK")) {
                 return this.connect(this.currentURL, null);
-            }else {
-                var strore = RongIMLib.RongIMClient._memoryStore;
-                var imClient = RongIMLib.RongIMClient;
-                imClient.connect(strore.token, strore.callback);
+            }
+            else {
+                console.log("3355: reconnect:no have URL");
             }
         };
         /**
@@ -4355,7 +4353,11 @@ var RongIMLib;
             if (unignore) {
                 //根据token生成MD5截取8-16下标的数据与本地存储的导航信息进行比对
                 //如果信息和上次的通道类型都一样，不执行navi请求，用本地存储的导航信息连接服务器
-                var naviStr = md5(_token).slice(8, 16), _old = RongIMLib.RongIMClient._storageProvider.getItem(RongIMLib.RongIMClient._storageProvider.getItemKey("navi")), _new = RongIMLib.RongIMClient._storageProvider.getItem("navi" + naviStr);
+                var naviStr = md5(_token).slice(8, 16), 
+                    _old = RongIMLib.RongIMClient._storageProvider.getItem(RongIMLib.RongIMClient._storageProvider.getItemKey("navi")), 
+                    _new = RongIMLib.RongIMClient._storageProvider.getItem("navi" + naviStr);
+                    
+                    
                 if (_old == _new && _new !== null && RongIMLib.RongIMClient._storageProvider.getItem("rongSDK") == RongIMLib.Transportations._TransportType) {
                     var obj = decodeURIComponent(_old).split(",");
                     setTimeout(function () {
@@ -5495,13 +5497,6 @@ var RongIMLib;
                 }
             };
             self.socket.onerror = function (ev) {
-                // 处理脏数据
-                var store = RongIMClient._memoryStore;
-                store.reconnectCount++;
-                if (store.reconnectCount > 5) {
-                    RongIMLib.RongIMClient._storageProvider.setItem("rongSDK", "");
-                    store.reconnectCount = 0;
-                }
                 self.onError(ev);
             };
             self.socket.onclose = function (ev) {

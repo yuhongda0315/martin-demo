@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video</title>
+<style>
+    .sight{
+        border-radius: 10px;
+        width: 300px;
+        height: 600px;
+    }
+    .sight .player{
+        background: url('../css/images/player.png');
+        height: 48px;
+        width: 48px;
+        display: block;
+        position: relative;
+        z-index: 999;
+        left: 50%;
+        top: 43%;
+    }
+    .player-display{
+        display: none !important;    
+    }
+
+    .sight span:hover {
+        cursor: pointer;
+    }
+    .sight video{
+        height: inherit;
+        float: left;
+    }
+
+</style>
+</head>
+<body>
+    <div class="sight">
+        <video id="sightId" src="http://rongcloud-file.ronghub.com/video_3gpp__RC-2017-06-02_773_1496389567680?attname=video_1496389508076.mp4&e=2147483647&token=CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:QFFlb426TkKl3qrR63ltPImpcvk=">
+        </video>
+        <span class="player" id="player"></span>
+    </div>
+
+</body>
+<script>
+    var player = document.getElementById('player');
+    var sight = document.getElementById('sightId');
+    
+    sight.onended = function(){
+        player.className = 'player';
+    };
+
+    player.onclick = function(){
+        sight.play();
+        player.className += ' player-display'
+    };
+</script>
+</html>

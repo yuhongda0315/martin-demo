@@ -4,7 +4,7 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>Ws</title>
-<script src="https://cdn.ronghub.com/RongIMLib-dev-1.0.2.js"></script>
+<script src="./RongIMLib-2.2.5.js"></script>
 <!-- <script src="RongIMLib.js"></script> -->
 <style type="text/css">
   body {
@@ -55,10 +55,13 @@
       //   return;
       // }
       // RongIMClient.init("8luwapkvucoil");
-      var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
+      // var token = "sTgQWTjHHWtdjnrFMDpMApA0Eersi27R5vdF4lbvFQGcn4aHnLlbCmbh0t3d2XjHpzE2W1IUYQY=";
 
-      RongIMClient.init("8luwapkvucoil", null, {navi: '120.92.90.34'});
+      // RongIMClient.init("pkfcgjstfqj58");
 
+      var token ='IMx5KLtfOjuiCsOX7PoYvvMO39BOzAfIcFeKELHdMDEWOr6Fo8DXnM54f83tzM3ui9ZXunl/1CQm/UsopE1e/Q=='
+      var appkey = '8brlm7urp1750';
+      RongIMClient.init(appkey, null, {navi: '120.92.9.229:80'});
       RongIMClient.setConnectionStatusListener({
         onChanged: function(status) {
           switch (status) {

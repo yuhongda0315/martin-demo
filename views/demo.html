@@ -1,36 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Demo </title>
-</head>
-<script src="protobuf-2.1.6.js"></script>
-<body>
-<div class="send">
-<div class="arrow"></div>
-</div>
-<style type="text/css">
-.send {
-position:relative;
-width:150px;
-height:35px;
-background:#F8C301;
-border-radius:5px; /* 圆角 */
-margin:30px auto 0;
-}
+<html>
 
-.send .arrow {
-position:absolute;
-top:5px;
-right:-16px; /* 圆角的位置需要细心调试哦 */
-width:0;
-height:0;
-font-size:0;
-border:solid 8px;
-border-color:#4D4948 #4D4948 #4D4948 #F8C301;
-}
-</style>
+<head>
+    <style>
+    .float-message {
+        float: right;
+        height: 30px;
+        position: relative;
+        animation: messagemove 15s infinite;
+        animation-timing-function: linear;
+        -webkit-animation: messagemove 15s infinite;
+        -webkit-animation-timing-function: linear;
+    }
+    
+    @keyframes messagemove {
+        from {
+            right: 0px;
+        }
+        to {
+            right: 100%;
+        }
+    }
+    
+    @-webkit-keyframes messagemove {
+        from {
+            right: 0px;
+        }
+        to {
+            right: 100%;
+        }
+    }
+    
+    .float-message img {
+        height: 30px;
+        width: 30px;
+        border-radius: 15px;
+        float: left;
+    }
+    
+    .float-message .content {
+        position: relative;
+        top: 5px;
+        left: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="float-message" style="top:0px;">
+        <img src="http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963" alt="">
+        <span class="content">天气清凉0</span>
+    </div>
+    
+    <div class="float-message" style="top:180px;">
+        <img src="http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963" alt="">
+        <span class="content">天气清凉1</span>
+    </div>
+
+    <div class="float-message" style="top:200px;">
+        <img src="http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963" alt="">
+        <span class="content">天气清凉2</span>
+    </div>
+
+      <div class="float-message" style="top:159px;">
+        <img src="http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963" alt="">
+        <span class="content">天气清凉3</span>
+    </div>
+
+
+      <div class="float-message" style="top:500px;">
+        <img src="http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963" alt="">
+        <span class="content">天气清凉0</span>
+    </div>
+
+      <div class="float-message" style="top:150px;">
+        <img src="http://7xogjk.com1.z0.glb.clouddn.com/Uz6Sw8GXx1466575289048886963" alt="">
+        <span class="content">天气清凉0</span>
+    </div>
 </body>
 
-
-</html> 
+</html>
