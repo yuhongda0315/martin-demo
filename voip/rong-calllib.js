@@ -128,9 +128,6 @@
                             messageDirection: 2
                         };
 
-                        var inviteUsers = cache.get('inviteUsers');
-                        delete inviteUsers[userId];
-
                         var error = null;
                         msgWatcher.notify(message);
                     }
@@ -510,7 +507,7 @@
             };
 
             stopTimer(message);
-            var inviteUsers = cache.get('inviteUsers');
+            
             delete inviteUsers[senderUserId];
 
             var isReceived = (message.messageDirection == MessgeDirection.RECEIVED);
@@ -539,7 +536,11 @@
 
                 var getReason = reasonItem[reasonCode] || util.noop;
                 var reason = getReason();
-                content.reason = reason && reason.code || reasonCode;
+
+                reasonCode = reason && reason.code || reasonCode;
+
+                content.reason = reasonCode;
+                // message.content.reason = reasonCode;
                 cache.set('hungupReason', content.reason);
 
             }
