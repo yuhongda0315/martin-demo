@@ -85,57 +85,58 @@
         var conversationType = params.conversationType;
         var targetId = params.targetId;
 
-      
+
         var currentUserId = config.currentUserId;
 
         util.forEach(userIds, function(userId) {
             var timer = callTimer[userId] = new Timer();
-            var isCurrentUser = (userId == currentUserId);
+
+            var isPrivate = (conversationType == 1);
+            var isRemote = (userId == currentUserId) || isPrivate;
             var status = params.status;
             timer.status = status;
             timer.mediaType = params.mediaType;
             var timeout = config.timeout;
-            if (!isCurrentUser) {
-                 timeout += (params.timeout || 0);
+            if (!isRemote) {
+                timeout += (params.timeout || 0);
             }
+            var key = isRemote ? 'NO_RESPONSE5' : 'REMOTE_NO_RESPONSE15';
+            var sentItem = {
+                sent: function(callback) {
+                    var params = {
+                        conversationType: conversationType,
+                        targetId: targetId,
+                        from: 'call-timeout',
+                        reasonKey: key
+                    };
+                    var inviteUsers = cache.get('inviteUsers');
+                    sendHungup(params, function(error, message) {
+                        var senderUserId = message.senderUserId;
+                        delete inviteUsers[senderUserId];
+                    });
+                },
+                local: function(callback) {
+                    var reason = Reason.get(key);
+                    var content = {
+                        reason: reason.code
+                    };
+                    var message = {
+                        messageType: 'HungupMessage',
+                        conversationType: conversationType,
+                        targetId: targetId,
+                        senderUserId: userId,
+                        content: content,
+                        messageDirection: 2
+                    };
+
+                    var error = null;
+                    msgWatcher.notify(message);
+                }
+            };
             timer.start(function() {
-                var key = isCurrentUser ? 'NO_RESPONSE5' : 'REMOTE_NO_RESPONSE15';
-                var sentItem = {
-                    sent: function(callback) {
-                        var params = {
-                            conversationType: conversationType,
-                            targetId: targetId,
-                            from: 'call-timeout',
-                            reasonKey: key
-                        };
-                        var inviteUsers = cache.get('inviteUsers');
-                        sendHungup(params, function(error, message) {
-                            var senderUserId = message.senderUserId;
-                            delete inviteUsers[senderUserId];
-                        });
-                    },
-                    local: function(callback) {
-                        var reason = Reason.get(key);
-                        var content = {
-                            reason: reason.code
-                        };
-                        var message = {
-                            messageType: 'HungupMessage',
-                            conversationType: conversationType,
-                            targetId: targetId,
-                            senderUserId: userId,
-                            content: content,
-                            messageDirection: 2
-                        };
-
-                        var error = null;
-                        msgWatcher.notify(message);
-                    }
-                };
-                // 接收方为自己时发送 HungupMessage, 其他人则本地创建 HungupMessage，认为此人已忽略、或者不在线。
-                var method = isCurrentUser ? 'sent' : 'local';
+                // 接收者为自己时发送 HungupMessage, 其他人则本地创建 HungupMessage，认为此人已忽略、或者不在线。
+                var method = isRemote ? 'sent' : 'local';
                 sentItem[method]();
-
             }, timeout);
         });
     };
@@ -314,7 +315,7 @@
         return obj;
     };
 
-    var isGroup = function(type){
+    var isGroup = function(type) {
         return type == 3;
     };
 
@@ -439,6 +440,12 @@
 
         },
         RingingMessage: function(message) {
+            var sendUserId = message.senderUserId;
+            var timer = callTimer[sendUserId];
+            if (timer) {
+                timer.stop();
+                timer.status = CallStatus.Ringing;
+            }
             commandWatcher.notify(message);
         },
         AcceptMessage: function(message) {
@@ -479,7 +486,8 @@
             session.already = true;
             summayTimer.start();
 
-            callTimer[senderUserId].status = CallStatus.Active;
+            var timer = callTimer[senderUserId] || {};
+            timer.status = CallStatus.Active;
             commandWatcher.notify(message);
         },
         HungupMessage: function(message) {
@@ -517,7 +525,7 @@
                 var reasonCode = content.reason;
 
                 var reasonItem = {
-                    1: function(){
+                    1: function() {
                         return Reason.get('REMOTE_CANCEL11');
                     },
                     2: function() {
@@ -529,8 +537,8 @@
                     4: function() {
                         return Reason.get('REMOTE_BUSYLINE14');
                     },
-                    5: function(){
-                         return Reason.get('REMOTE_NO_RESPONSE15');
+                    5: function() {
+                        return Reason.get('REMOTE_NO_RESPONSE15');
                     }
                 };
 
@@ -700,6 +708,9 @@
             command: 'memberModify',
             data: data
         };
+        var conversationType = data.conversationType;
+        var targetId = data.targetId;
+        var mediaType = data.meidaType;
 
         sendCommand(params, function(error, result) {
             var sentTime = result.sentTime;
@@ -774,8 +785,9 @@
             existList.push(member);
         });
 
+        var currentUserId = config.currentUserId;
         var currentUser = {
-            userId: userId,
+            userId: currentUserId,
             mediaId: '',
             mediaType: mediaType,
             callStatus: CallStatus.Active
@@ -971,7 +983,7 @@
     var hungup = function(params, callback) {
         params.from = 'hungup';
         var key = 'CANCEL1';
-        util.forEach(callTimer, function(timer){
+        util.forEach(callTimer, function(timer) {
             if (timer.status == CallStatus.Active) {
                 key = 'HANGUP3';
             }
