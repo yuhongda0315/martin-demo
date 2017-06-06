@@ -507,7 +507,7 @@
             };
 
             stopTimer(message);
-            
+
             delete inviteUsers[senderUserId];
 
             var isReceived = (message.messageDirection == MessgeDirection.RECEIVED);
@@ -773,6 +773,15 @@
             };
             existList.push(member);
         });
+
+        var currentUser = {
+            userId: userId,
+            mediaId: '',
+            mediaType: mediaType,
+            callStatus: CallStatus.Active
+        };
+
+        existList.push(currentUser);
 
         var data = {
             conversationType: conversationType,
