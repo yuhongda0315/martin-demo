@@ -100,9 +100,9 @@
             if (!isRemote) {
                 timeout += (params.timeout || 0);
             }
-            var key = isRemote ? 'NO_RESPONSE5' : 'REMOTE_NO_RESPONSE15';
             var sentItem = {
                 sent: function(callback) {
+                    var key = 'REMOTE_NO_RESPONSE15';
                     var params = {
                         conversationType: conversationType,
                         targetId: targetId,
@@ -116,6 +116,7 @@
                     });
                 },
                 local: function(callback) {
+                    var key = 'NO_RESPONSE5';
                     var reason = Reason.get(key);
                     var content = {
                         reason: reason.code
@@ -430,6 +431,24 @@
         stopItem[method](message);
     };
 
+    var reasonItem = {
+        1: function() {
+            return Reason.get('REMOTE_CANCEL11');
+        },
+        2: function() {
+            return Reason.get('REMOTE_REJECT12');
+        },
+        3: function() {
+            return Reason.get('REMOTE_HANGUP13');
+        },
+        4: function() {
+            return Reason.get('REMOTE_BUSYLINE14');
+        },
+        5: function() {
+            return Reason.get('REMOTE_NO_RESPONSE15');
+        }
+    };
+
     var messageHandler = {
         InviteMessage: function(message) {
             var session = cache.get('session');
@@ -523,24 +542,6 @@
             if (isReceived) {
                 var content = message.content;
                 var reasonCode = content.reason;
-
-                var reasonItem = {
-                    1: function() {
-                        return Reason.get('REMOTE_CANCEL11');
-                    },
-                    2: function() {
-                        return Reason.get('REMOTE_REJECT12');
-                    },
-                    3: function() {
-                        return Reason.get('REMOTE_HANGUP13');
-                    },
-                    4: function() {
-                        return Reason.get('REMOTE_BUSYLINE14');
-                    },
-                    5: function() {
-                        return Reason.get('REMOTE_NO_RESPONSE15');
-                    }
-                };
 
                 var getReason = reasonItem[reasonCode] || util.noop;
                 var reason = getReason();
