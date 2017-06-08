@@ -140,7 +140,7 @@
             sendMessage(params, callback);
         },
         getToken: function(params, callback){
-            var engineType = params.engineType || 2;
+            var engineType = params.engineType || 3;
 
             var get = function(engineType){
                 var channelId = params.channelId;
