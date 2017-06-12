@@ -78,6 +78,8 @@
         };
     }
 
+    cache.set('videoQueue', {});
+
     var callTimer = {};
 
     var calcTimeout = function(params) {
@@ -171,8 +173,13 @@
                 added: function(result) {
                     var stream = result.data;
                     var userId = stream.getAttribute('userid');
+                    // App Server 的用户 Id
+                    result.userId = userId;
+
                     var session = cache.get('session');
-                    userId = session[userId] || userId;
+                    // 加入房间使用的用户 Id
+                    var sourceId = session[userId];
+                    userId = sourceId || userId;
                     stream.setAttribute('userId', userId);
                 }
             };
@@ -184,7 +191,16 @@
                 var handler = videoItem[type];
                 handler && handler(result);
 
-                videoWatcher.notify(result);
+                var sourceId = result.sourceId;
+                var userId = result.userId;
+                var hasUser = (Number(userId) != sourceId);
+                if (hasUser) {
+                    videoWatcher.notify(result);
+                } else {
+                    var queue = cache.get('videoQueue');
+                    queue[sourceId] = result;
+                }
+
             });
         });
     };
@@ -249,6 +265,10 @@
             NETWORK_ERROR7: {
                 code: 7,
                 info: '己方网络出错'
+            },
+            OTHER_CLIENT_HANDLED8: {
+                code: 8,
+                info: '其他设备已处理'
             },
             REMOTE_CANCEL11: {
                 code: 11,
@@ -328,8 +348,15 @@
 
     var inviteItem = {
         busy: function(message) {
-            var reasonKey = 'BUSYLINE4'
+            var reasonKey = 'BUSYLINE4';
             var reason = Reason.get(reasonKey);
+            
+            var isSender = (message.messageDirection ==1 );
+
+            if (isSender) {
+                reasonKey = 'HANGUP3';
+            }
+
             var callId = message.content.callId;
 
             var content = {
@@ -410,7 +437,26 @@
         session[senderUserId] = senderUserId;
         session[userId] = senderUserId;
 
+        return {
+            userId: userId,
+            sender: senderUserId
+        };
     };
+    var Consumer = function(result) {
+        var queue = cache.get('videoQueue');
+
+        var stream = result.data;
+        var userId = stream.getAttribute('userid');
+        var session = cache.get('session');
+
+        if (userId in session) {
+            delete queue[userId];
+            userId = session[userId] || userId;
+            result.sourceId = userId;
+            stream.setAttribute('userid', userId);
+            videoWatcher.notify(result);
+        }
+    }
 
     var summayTimer = new Timer();
 
@@ -453,17 +499,58 @@
         5: function() {
             return Reason.get('REMOTE_NO_RESPONSE15');
         },
-        15: function(){
+        15: function() {
             return Reason.get('NO_RESPONSE5');
         }
+    };
+
+    var otherClientHandler = function(message) {
+        var type = message.conversationType;
+        var targetId = message.targetId;
+        var direction = 1;
+
+        var session = cache.get('session');
+        var senderUserId = session.senderUserId;
+        var caller = senderUserId;
+        var inviter = senderUserId;
+        var content = session.content;
+        var mediaType = content.mediaType;
+        var inviteUserIds = content.inviteUserIds;
+
+        var start = 0;
+        var duration = 0;
+        var reason = Reason.get('OTHER_CLIENT_HANDLED8');
+
+        var summary = {
+            conversationType: type,
+            targetId: targetId,
+            messageDirection: direction,
+            content: {
+                caller: caller,
+                inviter: inviter,
+                mediaType: mediaType,
+                startTime: start,
+                duration: duration,
+                status: reason.code,
+                memberIdList: inviteUserIds,
+            },
+            senderUserId: inviter,
+            messageType: 'SummaryMessage'
+        };
+
+        commandWatcher.notify(summary);
+        cache.remove('session');
     };
 
     var messageHandler = {
         InviteMessage: function(message) {
             var session = cache.get('session');
-
             var method = session ? 'busy' : 'free';
 
+            var isSender = (message.messageDirection == 1);
+            if (isSender) {
+                return;
+            }
             inviteItem[method](message);
 
         },
@@ -475,7 +562,10 @@
                 timer.status = CallStatus.Ringing;
             }
             var session = cache.get('session');
-            session[senderUserId].userOnLine = true;
+            var userOnLine = session.userOnLine || {};
+            userOnLine[senderUserId] = true;
+
+            session.userOnLine = userOnLine;
             commandWatcher.notify(message);
         },
         AcceptMessage: function(message) {
@@ -487,10 +577,23 @@
             var senderUserId = message.senderUserId;
             // 存储用户信息标识
             var sentTime = message.sentTime;
-            addUserRelation({
+            var user = addUserRelation({
                 sentTime: sentTime,
                 senderUserId: senderUserId
             });
+
+            var queue = cache.get('videoQueue');
+            var video = queue[user.userId] || queue[user.sender];
+            if (video) {
+                Consumer(video);
+            }
+
+            var isSender = (message.messageDirection == 1);
+
+            if (isSender) {
+                otherClientHandler(message);
+                return;
+            }
 
             if (already) {
                 return;
@@ -538,6 +641,12 @@
             }
 
             var content = session.content;
+            var callId = content.channelInfo.Id;
+            var hungupContent = message.content;
+            var hungupCallId = hungupContent.callId;
+            if (callId != hungupCallId) {
+                return;
+            }
 
             message.callInfo = {
                 mediaType: content.mediaType,
@@ -622,7 +731,7 @@
             var senderUserId = result.senderUserId;
 
             var userOnLine = result.userOnLine = {};
-            util.forEach(inviteUserIds, function(userId){
+            util.forEach(inviteUserIds, function(userId) {
                 userOnLine[userId] = false;
             });
 
@@ -777,7 +886,7 @@
         var callId = content.callId;
 
         var caller = session.senderUserId;
-        var engineType = params.engineType;
+        var engineType = params.engineType || 2;
         var channel = {
             Key: '',
             Id: callId
@@ -963,7 +1072,7 @@
 
             var inviteUserIds = content.inviteUserIds;
 
-            var userOnLine = session.userOnLine;
+            var userOnLine = session.userOnLine || {};
 
             if (conversationType == 1 && userOnLine[caller]) {
                 var method = reasonItem[reason.code];
