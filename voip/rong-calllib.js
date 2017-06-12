@@ -546,13 +546,7 @@
         InviteMessage: function(message) {
             var session = cache.get('session');
             var method = session ? 'busy' : 'free';
-
-            var isSender = (message.messageDirection == 1);
-            if (isSender) {
-                return;
-            }
             inviteItem[method](message);
-
         },
         RingingMessage: function(message) {
             var senderUserId = message.senderUserId;
@@ -562,11 +556,13 @@
                 timer.status = CallStatus.Ringing;
             }
             var session = cache.get('session');
-            var userOnLine = session.userOnLine || {};
-            userOnLine[senderUserId] = true;
+            if (session) {
+                var userOnLine = session.userOnLine || {};
+                userOnLine[senderUserId] = true;
 
-            session.userOnLine = userOnLine;
-            commandWatcher.notify(message);
+                session.userOnLine = userOnLine;
+                commandWatcher.notify(message);
+            }
         },
         AcceptMessage: function(message) {
 
