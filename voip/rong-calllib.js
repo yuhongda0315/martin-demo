@@ -149,6 +149,7 @@
                 return;
             }
             params.url = config.url;
+            params.ices = config.ices;
             joinRoom(params, callback);
             this.isActive = true;
         },
@@ -191,6 +192,11 @@
     var config = {
         url: '',
         timeout: 10000,
+        ices: [{
+            urls: 'turn:119.254.101.80:3478',
+            credential: 'test',
+            username: 'test'
+        }]
     };
 
     var CallStatus = {
@@ -446,6 +452,9 @@
         },
         5: function() {
             return Reason.get('REMOTE_NO_RESPONSE15');
+        },
+        15: function(){
+            return Reason.get('NO_RESPONSE5');
         }
     };
 
@@ -459,12 +468,14 @@
 
         },
         RingingMessage: function(message) {
-            var sendUserId = message.senderUserId;
-            var timer = callTimer[sendUserId];
+            var senderUserId = message.senderUserId;
+            var timer = callTimer[senderUserId];
             if (timer) {
                 timer.stop();
                 timer.status = CallStatus.Ringing;
             }
+            var session = cache.get('session');
+            session[senderUserId].userOnLine = true;
             commandWatcher.notify(message);
         },
         AcceptMessage: function(message) {
@@ -610,6 +621,11 @@
             var sentTime = result.sentTime;
             var senderUserId = result.senderUserId;
 
+            var userOnLine = result.userOnLine = {};
+            util.forEach(inviteUserIds, function(userId){
+                userOnLine[userId] = false;
+            });
+
             cache.update('session', result);
 
             addUserRelation({
@@ -654,7 +670,7 @@
             return;
         }
 
-        var engineType = params.engineType;
+        var engineType = params.engineType || 2;
 
         cache.set(callback, params);
 
@@ -677,7 +693,7 @@
             conversationType: conversationType,
             targetId: targetId,
             content: {
-                engineType: 3,
+                engineType: engineType,
                 inviteUserIds: inviteUserIds,
                 mediaType: mediaType,
                 callId: callId,
@@ -946,6 +962,13 @@
             var mediaType = content.mediaType;
 
             var inviteUserIds = content.inviteUserIds;
+
+            var userOnLine = session.userOnLine;
+
+            if (conversationType == 1 && userOnLine[caller]) {
+                var method = reasonItem[reason.code];
+                method && (reason = method());
+            }
 
             var summary = {
                 conversationType: conversationType,

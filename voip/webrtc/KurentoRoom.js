@@ -28,6 +28,8 @@ function Room(kurento, options) {
 
     that.name = options.room;
 
+    kurento.ices = options.ices;
+
     var ee = new EventEmitter();
     var streams = {};
     var participants = {};
@@ -439,7 +441,6 @@ function Participant(kurento, local, room, options) {
 }
 
 // Stream --------------------------------
-
 /*
  * options: name: XXX data: true (Maybe this is based on webrtc) audio: true,
  * video: true, url: "file:///..." > Player screen: true > Desktop (implicit
@@ -449,9 +450,10 @@ function Participant(kurento, local, room, options) {
  */
 function Stream(kurento, local, room, options) {
 
-    var that = this;
 
+    var that = this;
     that.room = room;
+    that.ices = options.ices || kurento.ices;
 
     var ee = new EventEmitter();
     var sdpOffer;
@@ -691,6 +693,7 @@ function Stream(kurento, local, room, options) {
             var options = {
                 videoStream: wrStream,
                 onicecandidate: participant.sendIceCandidate.bind(participant),
+                ices: that.ices
             }
             if (dataChannel) {
                 options.dataChannelConfig = {
@@ -726,7 +729,8 @@ function Stream(kurento, local, room, options) {
                 offerConstraints);
             var options = {
                 onicecandidate: participant.sendIceCandidate.bind(participant),
-                connectionConstraints: offerConstraints
+                connectionConstraints: offerConstraints,
+                ices: that.ices
             }
             wp = new kurentoUtils.WebRtcPeer.WebRtcPeerRecvonly(options, function (error) {
                 if (error) {

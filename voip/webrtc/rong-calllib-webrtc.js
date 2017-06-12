@@ -1,11 +1,17 @@
-"use strict";
-;(function(dependencies) {
+"use strict";;
+(function(dependencies) {
     var KurentoRoom = dependencies.KurentoRoom;
     var global = dependencies.win;
     var util = global._;
 
-    var config = { };
-    
+    var config = {
+        ices: [{
+            urls: 'turn:119.254.101.80:3478',
+            credential: 'test',
+            username: 'test'
+        }]
+    };
+
     var videoRoom, localStream;
 
     /*
@@ -25,26 +31,28 @@
             if (error)
                 return console.log(error);
 
-            var config = params.config;
 
             var roomId = params.channelId;
             var userId = params.sentTime;
-                userId = userId & 0x7fffffff;
-                
+            userId = userId & 0x7fffffff;
+            var ices = params.ices;
+
             var room = kurento.Room({
                 room: roomId,
-                user: userId
+                user: userId,
+                ices: ices
             });
 
             localStream = kurento.Stream(room, {
                 audio: true,
                 video: true,
-                data: false
+                data: false,
+                ices: ices
             });
 
             var participant = {
                 add: function(data) {
-                    
+
                     var stream = data.data;
 
                     var video = stream.getVideoPlayer();
@@ -145,14 +153,14 @@
             });
 
             var mediaType = params.mediaType;
-                mediaType = params.isSharing ? 3 : mediaType;
-            
+            mediaType = params.isSharing ? 3 : mediaType;
+
             var constraintItem = {
                 1: {
                     audio: true,
                     video: false
                 },
-                2:{
+                2: {
                     audio: true,
                     video: {
                         width: {
@@ -171,7 +179,7 @@
                             maxWidth: 1920,
                             maxHeight: 1080
                         },
-                        optional: [{ 
+                        optional: [{
                             googTemporalLayeredScreencast: true
                         }, {
                             googLeakyBucket: true
@@ -185,24 +193,24 @@
         });
     };
 
-    var quitRoom = function(){
+    var quitRoom = function() {
         videoRoom && videoRoom.close();
     };
 
-    var getRtcPeer = function(params){
+    var getRtcPeer = function(params) {
 
         if (!localStream) {
             throw new Error('Not call yet, please call first.');
         }
-        
+
         return localStream.getWebRtcPeer();
     };
 
-    var enableAudio = function(params){
+    var enableAudio = function(params) {
         getRtcPeer().audioEnabled = params.isEnabled;
     };
 
-    var enableVideo = function(params){
+    var enableVideo = function(params) {
         getRtcPeer().videoEnabled = params.isEnabled;
     };
 
