@@ -103,8 +103,10 @@
                 timeout += (params.timeout || 0);
             }
             var sentItem = {
-                sent: function(callback) {
-                    var key = 'REMOTE_NO_RESPONSE15';
+                sent: function(timer) {
+                    // 一直处于呼叫状态认为对方不在线。
+                    var isOffLine = timer.status == CallStatus.Dialing;
+                    var key = isOffLine ? 'REMOTE_NO_RESPONSE15' : 'NO_RESPONSE5';
                     var params = {
                         conversationType: conversationType,
                         targetId: targetId,
@@ -118,7 +120,7 @@
                     });
                 },
                 local: function(callback) {
-                    var key = 'NO_RESPONSE5';
+                    var key = 'NO_RESPONSE';
                     var reason = Reason.get(key);
                     var content = {
                         reason: reason.code
@@ -139,7 +141,7 @@
             timer.start(function() {
                 // 接收者为自己时发送 HungupMessage, 其他人则本地创建 HungupMessage，认为此人已忽略、或者不在线。
                 var method = isRemote ? 'sent' : 'local';
-                sentItem[method]();
+                sentItem[method](timer);
             }, timeout);
         });
     };
@@ -626,11 +628,6 @@
             var senderUserId = message.senderUserId;
             var conversationType = message.conversationType;
 
-            var isRecover = (!(senderUserId in inviteUsers) && isGroup(conversationType));
-            if (isRecover) {
-                return;
-            }
-
             var session = cache.get('session');
             if (!session) {
                 return;
@@ -763,7 +760,6 @@
             calcTimeout(params);
         });
     };
-
     var call = function(params, callback) {
 
         var cacheKey = 'session';
@@ -798,6 +794,7 @@
             conversationType: conversationType,
             targetId: targetId,
             content: {
+                sharing: isSharing,
                 engineType: engineType,
                 inviteUserIds: inviteUserIds,
                 mediaType: mediaType,
