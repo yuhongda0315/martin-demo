@@ -509,7 +509,7 @@
     var otherClientHandler = function(message) {
         var type = message.conversationType;
         var targetId = message.targetId;
-        var direction = 1;
+        var direction = 2;
 
         var session = cache.get('session');
         var senderUserId = session.senderUserId;
@@ -546,6 +546,10 @@
 
     var messageHandler = {
         InviteMessage: function(message) {
+            var direction = message.messageDirection;
+            if (direction == 1) {
+                return;
+            }
             var session = cache.get('session');
             var method = session ? 'busy' : 'free';
             inviteItem[method](message);
@@ -789,6 +793,9 @@
             Id: callId
         };
 
+        var extra = {
+            shareScreen: isSharing
+        };
         var data = {
             isSharing: isSharing,
             conversationType: conversationType,
@@ -799,7 +806,8 @@
                 inviteUserIds: inviteUserIds,
                 mediaType: mediaType,
                 callId: callId,
-                channelInfo: channel
+                channelInfo: channel,
+                extra: extra
             }
         };
 
@@ -914,6 +922,9 @@
 
         existList.push(currentUser);
 
+        var extra = {
+            shareScreen: isSharing
+        };
         var data = {
             conversationType: conversationType,
             targetId: targetId,
@@ -925,7 +936,8 @@
                 channelInfo: channel,
                 mediaType: mediaType,
                 inviteUserIds: inviteUserIds,
-                existedMemberStatusList: existList
+                existedUserPofiles: existList,
+                extra: extra
             }
         };
 
@@ -964,7 +976,9 @@
 
         var content = session.content;
         var callId = content.callId;
-
+        var extra = {
+            shareScreen: isSharing
+        };
         params = {
             command: 'accept',
             data: {
@@ -972,7 +986,8 @@
                 targetId: targetId,
                 content: {
                     callId: callId,
-                    mediaType: mediaType
+                    mediaType: mediaType,
+                    extra: extra
                 }
             }
         };
