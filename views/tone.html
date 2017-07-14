@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Convert</title>
+	<style>
+		html,body{
+			overflow: hidden;
+			margin: 0;
+			box-sizing: border-box;
+			height: 100%;
+			width: 100%;
+		}
+		#main{
+			height: 100%;
+		    background-color: #ECECED;
+		}
+		.operation{
+			width: 50%;
+			height: 100%;
+			border-right: 1px solid #DCDCDC;
+		}
+		.result{
+			width: 50%;
+			height: inherit;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+		.result span{
+			font-size: 280px;
+		    position: absolute;
+		    top: 16%;
+    		left: 30%;
+		}
+		.song{
+			width: inherit;
+			position: absolute;
+			top: 0px;
+			height: 50%;
+			border-bottom: 1px solid #DCDCDC;
+		}
+		.flute{
+			width: 50%;
+			position: absolute;
+			bottom: 0;
+			height: 50%;
+		}
+
+		.title{
+			height: 38px;
+		    width: 100%;
+		    background-color: #DCDCDC;
+		    margin: 0;
+		    padding-top: 12px;
+		    z-index: 11;
+		}
+		.button{
+			display: inline-block;
+		    height: 80px;
+		    width: 100px;
+		    background-color: #E0E0E0;
+		    margin: 5px;
+		    text-align: center;
+		    padding: 24px 0 0 0px;
+		    font-size: 30px;
+		    cursor: pointer;
+		}
+		.button:hover{
+			background-color: #E0E8F2;
+		}
+		.list-item{
+			position: absolute;
+			padding: 38px 0 0 0;
+			top: 38px;
+			bottom: 0;
+			overflow: auto;
+		}
+		.active{
+			background-color: #74CFDE !important;
+		}
+	</style>
+	<script src="../js/underscore-1.8.3.js"></script>
+	<script src="../js/jquery-3.1.1.min.js"></script>
+	<script src="../js/vue-2.0.1.js"></script>
+</head>
+<body>
+	<div id="main">
+		<div class="operation">
+			<div class="song">
+				<p class="title">歌曲</p>
+				<div class="list-item">
+					<p class="button" :class="{active: song == item}" v-on:click.stop="singer(item)" v-for="item in tones">{{item}}</p>
+				</div>
+			</div>
+			<div class="flute">
+				<p class="title">笛子</p>
+				<div class="list-item">
+					<p class="button" v-bind:class="{active: tone == item}" v-on:click.stop="toner(item)" v-for="item in tones">{{item}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="result">
+			<p class="title">转换结果:</p>
+			<span>{{showTone}}</span>
+		</div>
+	</div>
+</body>
+<script src="../js/core.js"></script>
+</html>
