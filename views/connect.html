@@ -4,8 +4,7 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>Ws</title>
-<script src="./RongIMLib-2.2.5.js"></script>
-<!-- <script src="RongIMLib.js"></script> -->
+<script src="./RongIMLib-2.2.6.js"></script>
 <style type="text/css">
   body {
     font-size: 13px;
@@ -29,6 +28,7 @@
   Token: <input type="text" id="tokenId"> |
   Navi: <input type="text" id='naviId'> | 
   <input type="button" value='Connect' id='connectId'>
+  <input type="button" value='Send' id="sendId">
   <hr/>
   <div id="content"></div>
   <script type="text/javascript">
@@ -40,28 +40,25 @@
    var showLog = function(content){
      $('content').innerHTML += content + '<br/>'
    };
-    function init() {
-      var appkey =  $('appId').value,
-          token = $('tokenId').value,
-          navi = $('naviId').value || 'nav.cn.ronghub.com';
 
-      // if (!appkey) {
-      //   console.error('appkey is empty.');
-      //   return;
-      // }
+  // //min001
+  // var token = 'k6DyctJsEqJAMCDkUVVszbrkPG6U/xPk3zvPIWf9le0Q1w7UW0DF2jSQ+98gTtcAgpozsa9+UbCvubBvZpEH8A==';
+  // var targetId = 'min002';
+  // var userId = 'min001';
 
-      // if (!token) {
-      //   console.error('token is empty.');
-      //   return;
-      // }
-      // RongIMClient.init("8luwapkvucoil");
-      // var token = "sTgQWTjHHWtdjnrFMDpMApA0Eersi27R5vdF4lbvFQGcn4aHnLlbCmbh0t3d2XjHpzE2W1IUYQY=";
+  //min002
+  // var token = 'xdizrqMfuBJAMCDkUVVszbrkPG6U/xPk3zvPIWf9le0Q1w7UW0DF2tERq/GzNH85yWQyNPHyHdn+iuhft/20bA==';
+  // var targetId = 'min001';
+  // var userId = 'min002';
 
-      // RongIMClient.init("pkfcgjstfqj58");
+  var token = '3FFoPon6gzh2GB8kRuJIoDbFZ3SeVqTR9H0If1bWGxCg47Zc7tTiiMpuK3YsN2oavptwrln3v/3nwKcZPaVUDA==';
+  var targetId = 'min002';
+  var userId = 'min001';
 
-      var token ='IMx5KLtfOjuiCsOX7PoYvvMO39BOzAfIcFeKELHdMDEWOr6Fo8DXnM54f83tzM3ui9ZXunl/1CQm/UsopE1e/Q=='
-      var appkey = '8brlm7urp1750';
-      RongIMClient.init(appkey, null, {navi: '120.92.9.229:80'});
+  function init() {
+      var appkey = 'pgyu6atqpfvmu';
+
+      RongIMClient.init(appkey);
       RongIMClient.setConnectionStatusListener({
         onChanged: function(status) {
           switch (status) {
@@ -137,6 +134,47 @@
     $('connectId').onclick = function(){
         init();
     };
+
+    var conversationType = RongIMLib.ConversationType.PRIVATE;
+    function send(){
+      var content = 'hello, ' + targetId + ', I‘m ' +  userId;
+      var msg = new RongIMLib.TextMessage({content:content});
+      RongIMClient.getInstance().sendMessage(conversationType, targetId, msg, {
+                onSuccess: function (message) {
+                    var log = "Send successfully: ";
+                    log += JSON.stringify(message);
+                    showLog(log);
+                    sendRecall(message);
+                },
+                onError: function (code,message) {
+                    console.log('发送失败:' + code);
+                }
+            }
+        );
+    }
+
+    function sendRecall(message){
+      var {sentTime, messageUId} = message;
+      var params = {
+        conversationType: conversationType,
+        targetId: targetId,
+        sentTime: sentTime,
+        messageUId: messageUId,
+        senderUserId: userId
+      };
+      RongIMClient.getInstance().sendRecallMessage(params, {
+          onSuccess: function(){
+            showLog('撤回消息成功');
+          },
+          onError: function(){
+            showLog('撤回消息失败');
+          }
+      });
+    }
+    $('sendId').onclick = function(){
+      send();
+    };
+
   </script>
 </body>
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dialog</title>
+	<style>
+		html, body{
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
+		div{
+			display: none;
+		}
+		a{
+			margin-left: 30%;
+		}
+		.mask{
+			background-color: #DCDCDC;
+			height: 100%;
+			position: absolute;
+		    top: 0;
+		    right: 0;
+		    left: 0;
+			opacity: 0.8;
+			filter: alpha(opacity=80);
+		}
+		.dialog{
+			height: 300px;
+			width: 500px;
+			background-color: #0099FF;
+			position: relative;
+			border-radius: 20px;
+			left: 30%;
+			top: 20%;
+		}
+	</style>
+	<script src="../js/underscore-1.8.3.js"></script>
+	</head>
+<body>
+	<a href="javascript:show()">[Show]</a>
+	<div class="mask"></div>
+	<div class="dialog">
+		<a href="javascript:hide()">[Hide]</a>
+	</div>
+</body>
+<script>
+	var getDom = (classname) => {
+		return document.getElementsByClassName(classname)[0];
+	};
+
+	var layer = (doms, callback) => {
+		if (!_.isArray(doms)) {
+			doms = [doms];
+		}
+		return _.forEach(doms, (dom) => {
+			callback(dom);
+		});
+	};
+	
+	var mask = getDom('mask');
+	var dialog = getDom('dialog');
+	
+	function show(){
+		layer([mask, dialog], dom => {
+			dom.style.display = 'block';
+		});
+	}
+	function hide(){
+		layer([mask, dialog], dom => {
+			dom.style.display = 'none';
+		});
+	}
+
+</script>
+
+</html>
