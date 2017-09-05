@@ -28,19 +28,47 @@
 // });
 
 
-var rongcloudSDK = require('rongcloud-sdk');
+var fs = require('fs');
+var request = require('request');
 
-rongcloudSDK.init( '8luwapkvucoil', 'y0icysjl4h3LWz');
-rongcloudSDK.message.private.publish("1001","1002","RC:TxtMsg",JSON.stringify({'content':'1111hello1','extra':'helloExtra'}),"","","json",function( err, resultText ) { 
-if( err ) { 
-// Handle the error 
-console.log(err); 
-} 
-else { 
-var result = JSON.parse( resultText ); 
-if( result.code === 200 ) { 
-  console.log(result);
-//Handle the result.token 
-} 
-} 
-} ); 
+var source = 'https://rongcloud-file.cn.ronghub.com/d0432048c5b2cbc5c5.json?attname=module-conf.json&e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:rc7LajEQhUUmUvPEHGyxGOyeiRQ=';
+
+var downloadProcess = (file) => {
+
+	var local = './module-conf.json';
+
+	var promise = new Promise((resolve, reject) => {
+		var received_bytes = 0;
+		var total_bytes = 0;
+
+		var req = request({
+			method: 'GET',
+			uri: source
+		});
+
+		var out = fs.createWriteStream(local);
+		req.pipe(out);
+
+		req.on('response', (data) => {
+			total_bytes = parseInt(data.headers['content-length']);
+		});
+
+		req.on('data', (chunk) => {
+			received_bytes += chunk.length;
+		});
+
+		req.on('error', (error) => {
+			console.log(error);
+			reject();
+		});
+
+		req.on('end', () => {
+			resolve();
+		});
+	});
+	return promise;
+};
+
+downloadProcess().then(function(){
+	console.log('successfully.');
+});

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Drag</title>
+	<style>
+		.drop-box{
+			min-width: 300px;
+			min-height: 100px;
+			border: 3px dashed silver;
+		}
+	</style>
+</head>
+<body>
+	<div id="dropbox"  class="drop-box" ></div>  
+</body>
+<script>
+	var isNW = (typeof require == 'function' && require('gui.nw'));
+	var fileList = [];
+	var addFilesFromDirectory = function(directory, path) {
+		path = path || '';
+      var dirReader, entriesReader;
+      dirReader = directory.createReader();
+      entriesReader = (function(_this) {
+        return function(entries) {
+          var entry, _i, _len;
+          for (_i = 0, _len = entries.length; _i < _len; _i++) {
+            entry = entries[_i];
+            if (entry.isFile) {
+              entry.file(function(file) {
+                file.fullPath = "" + path + "/" + file.name;
+                fileList.push(file);
+              });
+            } else if (entry.isDirectory) {
+              addFilesFromDirectory(entry, "" + path + "/" + entry.name);
+            }
+          }
+        };
+      })(this);
+      return dirReader.readEntries(entriesReader, function(error) {
+        console.log(error);
+      });
+    };
+
+	var directoryEntry = function(entry){
+		console.log(addFilesFromDirectory(entry));
+		console.log(entry);
+	};
+
+	var getEntryType = function(isFile){
+		return isFile ? fileEntry : directoryEntry
+	};
+	var handleEntry = function(e) {  
+		var dataTransfer = e.dataTransfer;
+	    var items = dataTransfer.items;
+	    var files = dataTransfer.files;
+
+	    var len = items.length;
+	    if (len == 0) {
+	    	return;
+	    }
+	    for(var i = 0; i < len; i++){
+	    	var item = items[i];
+	    	var entry = item.webkitGetAsEntry();
+	    	var isFile = entry.isFile;
+	    	var entryType = getEntryType(isFile);
+
+	    	var params = entry;
+	    	if (isFile) {
+	    		params = files[i];
+	    	}
+	    	entryType(params);
+	    }
+	} 
+
+	document.addEventListener("dragenter", function(e){  
+	    dropbox.style.borderColor = 'gray';  
+	}, false);  
+
+	document.addEventListener("dragleave", function(e){  
+	    dropbox.style.borderColor = 'silver';  
+	}, false);  
+	
+	dropbox.addEventListener("dragenter", function(e){  
+	    dropbox.style.borderColor = 'gray';  
+	    dropbox.style.backgroundColor = 'white';  
+	}, false);  
+	
+	dropbox.addEventListener("dragleave", function(e){  
+	    dropbox.style.backgroundColor = 'transparent';  
+	}, false);  
+	
+	dropbox.addEventListener("dragenter", function(e){  
+	    e.stopPropagation();  
+	    e.preventDefault();  
+	}, false);  
+	
+	dropbox.addEventListener("dragover", function(e){  
+	    e.stopPropagation();  
+	    e.preventDefault();  
+	}, false);  
+	
+	dropbox.addEventListener("drop", function(e){  
+	    e.stopPropagation();  
+	    e.preventDefault();  
+	       
+	    handleEntry(e);  
+	       
+	    return false;  
+	}, false);  
+
+</script>
+</html>

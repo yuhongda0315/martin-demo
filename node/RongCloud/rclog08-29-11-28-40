@@ -1,0 +1,1162 @@
+08-29-11-28-40:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-28-40:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-28-40:ConnectivityModule,handle event 0
+08-29-11-28-40:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-28-40:ConnectivityModule,handle event 2
+08-29-11-28-40:RCIMLog,debug level is 0
+08-29-11-28-40:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-28-40:NotificationMessageContent,You not implement unserialize function
+08-29-11-28-40:MessageModule,P-reason-C;;;save_msg_db;;;rowid:32
+08-29-11-28-40:Message,serialize
+08-29-11-28-40:NotificationMessageContent,You not implement serialize function
+08-29-11-28-40:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":32}
+08-29-11-28-40:Message,serialize
+08-29-11-28-40:NotificationMessageContent,You not implement serialize function
+08-29-11-28-40:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977320
+08-29-11-28-40:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-28-40:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977320
+08-29-11-28-40:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-28-46:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-28-46:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-28-46:platform,request run in main loop
+08-29-11-28-46:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-28-46:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-28-46:platform,nodejs start
+08-29-11-28-46:MessageModule,P-reason-C;;;work;;;end
+08-29-11-28-46:ConnectivityModule,handle event 3
+08-29-11-28-46:MessageModule,P-reason-C;;;work;;;destruction:0x102408320,0x102408320
+08-29-11-28-46:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-28-46:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-28-46:ConnectivityModule,exception status:30011
+08-29-11-28-51:platform,request run in main loop
+08-29-11-28-51:platform,nodejs start
+08-29-11-28-51:ConnectivityModule,do connect
+08-29-11-28-51:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-28-51:MessageModule,P-reason-C;;;create;;;channel:0x102408f50
+08-29-11-28-51:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-28-51:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-28-51:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-28-51:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-28-51:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-28-51:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-28-51:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-28-51:MessageModule,P-reason-C;;;connectack;;;b:1503977331,e:1503977331,3
+08-29-11-28-51:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-28-51:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-28-51:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-28-51:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-28-51:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-28-51:platform,request run in main loop
+08-29-11-28-51:platform,nodejs start
+08-29-11-28-51:ConnectivityModule,handle event 2
+08-29-11-28-51:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-28-51:RCIMLog,debug level is 0
+08-29-11-28-51:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-28-51:NotificationMessageContent,You not implement unserialize function
+08-29-11-28-51:MessageModule,P-reason-C;;;save_msg_db;;;rowid:33
+08-29-11-28-51:Message,serialize
+08-29-11-28-51:NotificationMessageContent,You not implement serialize function
+08-29-11-28-51:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":33}
+08-29-11-28-51:Message,serialize
+08-29-11-28-51:NotificationMessageContent,You not implement serialize function
+08-29-11-28-51:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977331
+08-29-11-28-51:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-28-51:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977331
+08-29-11-28-51:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-28-56:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-28-56:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-28-56:platform,request run in main loop
+08-29-11-28-56:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-28-56:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-28-56:MessageModule,P-reason-C;;;work;;;end
+08-29-11-28-56:platform,nodejs start
+08-29-11-28-56:ConnectivityModule,handle event 3
+08-29-11-28-56:MessageModule,P-reason-C;;;work;;;destruction:0x102408f50,0x102408f50
+08-29-11-28-56:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-28-56:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-28-56:ConnectivityModule,exception status:30011
+08-29-11-29-01:platform,request run in main loop
+08-29-11-29-01:platform,nodejs start
+08-29-11-29-01:ConnectivityModule,do connect
+08-29-11-29-01:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-01:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-29-01:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-29-01:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-29-01:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-29-01:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-29-01:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-29-01:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-29-01:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-29-01:MessageModule,P-reason-C;;;connectack;;;b:1503977341,e:1503977341,3
+08-29-11-29-01:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-29-01:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-01:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-29-01:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-29-01:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-29-01:platform,request run in main loop
+08-29-11-29-01:platform,nodejs start
+08-29-11-29-01:ConnectivityModule,handle event 2
+08-29-11-29-01:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-29-01:RCIMLog,debug level is 0
+08-29-11-29-01:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-29-01:NotificationMessageContent,You not implement unserialize function
+08-29-11-29-01:MessageModule,P-reason-C;;;save_msg_db;;;rowid:34
+08-29-11-29-01:Message,serialize
+08-29-11-29-01:NotificationMessageContent,You not implement serialize function
+08-29-11-29-01:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":34}
+08-29-11-29-01:Message,serialize
+08-29-11-29-01:NotificationMessageContent,You not implement serialize function
+08-29-11-29-01:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977341
+08-29-11-29-01:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-29-01:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977341
+08-29-11-29-01:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-29-07:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-29-07:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-29-07:platform,request run in main loop
+08-29-11-29-07:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-29-07:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-29-07:MessageModule,P-reason-C;;;work;;;end
+08-29-11-29-07:platform,nodejs start
+08-29-11-29-07:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-29-07:ConnectivityModule,handle event 3
+08-29-11-29-07:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-29-07:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-29-07:ConnectivityModule,exception status:30011
+08-29-11-29-12:platform,request run in main loop
+08-29-11-29-12:platform,nodejs start
+08-29-11-29-12:ConnectivityModule,do connect
+08-29-11-29-12:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-12:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-29-12:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-29-12:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-29-12:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-29-12:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-29-12:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-29-12:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-29-12:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-29-12:MessageModule,P-reason-C;;;connectack;;;b:1503977352,e:1503977352,3
+08-29-11-29-12:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-29-12:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-12:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-29-12:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-29-12:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-29-12:platform,request run in main loop
+08-29-11-29-12:platform,nodejs start
+08-29-11-29-12:ConnectivityModule,handle event 2
+08-29-11-29-12:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-29-12:RCIMLog,debug level is 0
+08-29-11-29-12:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-29-12:NotificationMessageContent,You not implement unserialize function
+08-29-11-29-12:MessageModule,P-reason-C;;;save_msg_db;;;rowid:35
+08-29-11-29-12:Message,serialize
+08-29-11-29-12:NotificationMessageContent,You not implement serialize function
+08-29-11-29-12:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":35}
+08-29-11-29-12:Message,serialize
+08-29-11-29-12:NotificationMessageContent,You not implement serialize function
+08-29-11-29-12:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977352
+08-29-11-29-12:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-29-12:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977352
+08-29-11-29-12:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-29-17:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-29-17:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-29-17:platform,request run in main loop
+08-29-11-29-17:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-29-17:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-29-17:platform,nodejs start
+08-29-11-29-17:ConnectivityModule,handle event 3
+08-29-11-29-17:MessageModule,P-reason-C;;;work;;;end
+08-29-11-29-17:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-29-17:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-29-17:ConnectivityModule,exception status:30011
+08-29-11-29-17:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-29-22:platform,request run in main loop
+08-29-11-29-22:platform,nodejs start
+08-29-11-29-22:ConnectivityModule,do connect
+08-29-11-29-22:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-22:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-29-22:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-29-22:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-29-22:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-29-22:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-29-22:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-29-22:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-29-22:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-29-22:MessageModule,P-reason-C;;;connectack;;;b:1503977362,e:1503977362,3
+08-29-11-29-22:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-29-22:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-22:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-29-22:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-29-22:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-29-22:platform,request run in main loop
+08-29-11-29-22:platform,nodejs start
+08-29-11-29-22:ConnectivityModule,handle event 2
+08-29-11-29-22:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-29-22:RCIMLog,debug level is 0
+08-29-11-29-22:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-29-22:NotificationMessageContent,You not implement unserialize function
+08-29-11-29-22:MessageModule,P-reason-C;;;save_msg_db;;;rowid:36
+08-29-11-29-22:Message,serialize
+08-29-11-29-22:NotificationMessageContent,You not implement serialize function
+08-29-11-29-22:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":36}
+08-29-11-29-22:Message,serialize
+08-29-11-29-22:NotificationMessageContent,You not implement serialize function
+08-29-11-29-22:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977362
+08-29-11-29-22:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-29-22:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977362
+08-29-11-29-22:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-29-28:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-29-28:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-29-28:platform,request run in main loop
+08-29-11-29-28:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-29-28:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-29-28:platform,nodejs start
+08-29-11-29-28:ConnectivityModule,handle event 3
+08-29-11-29-28:MessageModule,P-reason-C;;;work;;;end
+08-29-11-29-28:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-29-28:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-29-28:ConnectivityModule,exception status:30011
+08-29-11-29-28:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-29-33:platform,request run in main loop
+08-29-11-29-33:platform,nodejs start
+08-29-11-29-33:ConnectivityModule,do connect
+08-29-11-29-33:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-33:MessageModule,P-reason-C;;;create;;;channel:0x10172ca60
+08-29-11-29-33:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-29-33:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-29-33:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-29-33:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-29-33:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-29-33:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-29-33:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-29-33:MessageModule,P-reason-C;;;connectack;;;b:1503977373,e:1503977373,3
+08-29-11-29-33:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-29-33:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-33:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-29-33:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-29-33:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-29-33:platform,request run in main loop
+08-29-11-29-33:platform,nodejs start
+08-29-11-29-33:ConnectivityModule,handle event 2
+08-29-11-29-33:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-29-33:RCIMLog,debug level is 0
+08-29-11-29-33:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-29-33:NotificationMessageContent,You not implement unserialize function
+08-29-11-29-33:MessageModule,P-reason-C;;;save_msg_db;;;rowid:37
+08-29-11-29-33:Message,serialize
+08-29-11-29-33:NotificationMessageContent,You not implement serialize function
+08-29-11-29-33:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":37}
+08-29-11-29-33:Message,serialize
+08-29-11-29-33:NotificationMessageContent,You not implement serialize function
+08-29-11-29-33:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977373
+08-29-11-29-33:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-29-33:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977373
+08-29-11-29-33:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-29-39:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-29-39:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-29-39:platform,request run in main loop
+08-29-11-29-39:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-29-39:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-29-39:platform,nodejs start
+08-29-11-29-39:ConnectivityModule,handle event 3
+08-29-11-29-39:MessageModule,P-reason-C;;;work;;;end
+08-29-11-29-39:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-29-39:MessageModule,P-reason-C;;;work;;;destruction:0x10172ca60,0x10172ca60
+08-29-11-29-39:ConnectivityModule,exception status:30011
+08-29-11-29-39:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-29-44:platform,request run in main loop
+08-29-11-29-44:platform,nodejs start
+08-29-11-29-44:ConnectivityModule,do connect
+08-29-11-29-44:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-44:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-29-44:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-29-44:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-29-44:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-29-44:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-29-44:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-29-44:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-29-44:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-29-44:MessageModule,P-reason-C;;;connectack;;;b:1503977384,e:1503977384,3
+08-29-11-29-44:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-29-44:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-44:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-29-44:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-29-44:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-29-44:platform,request run in main loop
+08-29-11-29-44:platform,nodejs start
+08-29-11-29-44:ConnectivityModule,handle event 2
+08-29-11-29-44:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-29-44:RCIMLog,debug level is 0
+08-29-11-29-44:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-29-44:NotificationMessageContent,You not implement unserialize function
+08-29-11-29-44:MessageModule,P-reason-C;;;save_msg_db;;;rowid:38
+08-29-11-29-44:Message,serialize
+08-29-11-29-44:NotificationMessageContent,You not implement serialize function
+08-29-11-29-44:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":38}
+08-29-11-29-44:Message,serialize
+08-29-11-29-44:NotificationMessageContent,You not implement serialize function
+08-29-11-29-44:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977384
+08-29-11-29-44:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-29-44:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977384
+08-29-11-29-44:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-29-50:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-29-50:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-29-50:platform,request run in main loop
+08-29-11-29-50:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-29-50:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-29-50:platform,nodejs start
+08-29-11-29-50:ConnectivityModule,handle event 3
+08-29-11-29-50:MessageModule,P-reason-C;;;work;;;end
+08-29-11-29-50:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-29-50:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-29-50:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-29-50:ConnectivityModule,exception status:30011
+08-29-11-29-55:platform,request run in main loop
+08-29-11-29-55:platform,nodejs start
+08-29-11-29-55:ConnectivityModule,do connect
+08-29-11-29-55:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-55:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-29-55:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-29-55:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-29-55:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-29-55:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-29-55:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-29-55:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-29-55:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-29-55:MessageModule,P-reason-C;;;connectack;;;b:1503977395,e:1503977395,3
+08-29-11-29-55:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-29-55:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-29-55:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-29-55:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-29-55:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-29-55:platform,request run in main loop
+08-29-11-29-55:platform,nodejs start
+08-29-11-29-55:ConnectivityModule,handle event 2
+08-29-11-29-55:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-29-55:RCIMLog,debug level is 0
+08-29-11-29-55:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-29-55:NotificationMessageContent,You not implement unserialize function
+08-29-11-29-55:MessageModule,P-reason-C;;;save_msg_db;;;rowid:39
+08-29-11-29-55:Message,serialize
+08-29-11-29-55:NotificationMessageContent,You not implement serialize function
+08-29-11-29-55:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":39}
+08-29-11-29-55:Message,serialize
+08-29-11-29-55:NotificationMessageContent,You not implement serialize function
+08-29-11-29-55:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977395
+08-29-11-29-55:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-29-55:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977395
+08-29-11-29-55:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-30-01:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-30-01:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-30-01:platform,request run in main loop
+08-29-11-30-01:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-30-01:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-30-01:platform,nodejs start
+08-29-11-30-01:MessageModule,P-reason-C;;;work;;;end
+08-29-11-30-01:ConnectivityModule,handle event 3
+08-29-11-30-01:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-30-01:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-30-01:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-30-01:ConnectivityModule,exception status:30011
+08-29-11-30-06:platform,request run in main loop
+08-29-11-30-06:platform,nodejs start
+08-29-11-30-06:ConnectivityModule,do connect
+08-29-11-30-06:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-06:MessageModule,P-reason-C;;;create;;;channel:0x10230cca0
+08-29-11-30-06:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-30-06:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-30-06:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-30-06:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-30-06:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-30-06:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-30-06:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-30-06:MessageModule,P-reason-C;;;connectack;;;b:1503977406,e:1503977406,3
+08-29-11-30-06:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-30-06:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-06:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-30-06:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-30-06:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-30-06:platform,request run in main loop
+08-29-11-30-06:platform,nodejs start
+08-29-11-30-06:ConnectivityModule,handle event 2
+08-29-11-30-06:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-30-06:RCIMLog,debug level is 0
+08-29-11-30-06:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-30-06:NotificationMessageContent,You not implement unserialize function
+08-29-11-30-06:MessageModule,P-reason-C;;;save_msg_db;;;rowid:40
+08-29-11-30-06:Message,serialize
+08-29-11-30-06:NotificationMessageContent,You not implement serialize function
+08-29-11-30-06:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":40}
+08-29-11-30-06:Message,serialize
+08-29-11-30-06:NotificationMessageContent,You not implement serialize function
+08-29-11-30-06:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977406
+08-29-11-30-06:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-30-06:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977406
+08-29-11-30-06:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-30-13:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-30-13:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-30-13:platform,request run in main loop
+08-29-11-30-13:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-30-13:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-30-13:MessageModule,P-reason-C;;;work;;;end
+08-29-11-30-13:platform,nodejs start
+08-29-11-30-13:MessageModule,P-reason-C;;;work;;;destruction:0x10230cca0,0x10230cca0
+08-29-11-30-13:ConnectivityModule,handle event 3
+08-29-11-30-13:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-30-13:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-30-13:ConnectivityModule,exception status:30011
+08-29-11-30-18:platform,request run in main loop
+08-29-11-30-18:platform,nodejs start
+08-29-11-30-18:ConnectivityModule,do connect
+08-29-11-30-18:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-18:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-30-18:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-30-18:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-30-18:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-30-18:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-30-18:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-30-18:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-30-18:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-30-18:MessageModule,P-reason-C;;;connectack;;;b:1503977418,e:1503977418,3
+08-29-11-30-18:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-30-18:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-18:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-30-18:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-30-18:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-30-18:platform,request run in main loop
+08-29-11-30-18:platform,nodejs start
+08-29-11-30-18:ConnectivityModule,handle event 2
+08-29-11-30-18:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-30-18:RCIMLog,debug level is 0
+08-29-11-30-18:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-30-18:NotificationMessageContent,You not implement unserialize function
+08-29-11-30-18:MessageModule,P-reason-C;;;save_msg_db;;;rowid:41
+08-29-11-30-18:Message,serialize
+08-29-11-30-18:NotificationMessageContent,You not implement serialize function
+08-29-11-30-18:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":41}
+08-29-11-30-18:Message,serialize
+08-29-11-30-18:NotificationMessageContent,You not implement serialize function
+08-29-11-30-18:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977418
+08-29-11-30-18:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-30-18:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977418
+08-29-11-30-18:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-30-24:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-30-24:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-30-24:platform,request run in main loop
+08-29-11-30-24:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-30-24:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-30-24:platform,nodejs start
+08-29-11-30-24:MessageModule,P-reason-C;;;work;;;end
+08-29-11-30-24:ConnectivityModule,handle event 3
+08-29-11-30-24:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-30-24:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-30-24:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-30-24:ConnectivityModule,exception status:30011
+08-29-11-30-29:platform,request run in main loop
+08-29-11-30-29:platform,nodejs start
+08-29-11-30-29:ConnectivityModule,do connect
+08-29-11-30-29:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-29:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-30-29:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-30-29:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-30-29:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-30-29:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-30-29:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-30-29:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-30-29:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-30-29:MessageModule,P-reason-C;;;connectack;;;b:1503977429,e:1503977429,3
+08-29-11-30-29:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-30-29:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-29:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-30-29:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-30-29:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-30-29:platform,request run in main loop
+08-29-11-30-29:platform,nodejs start
+08-29-11-30-29:ConnectivityModule,handle event 2
+08-29-11-30-29:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-30-29:RCIMLog,debug level is 0
+08-29-11-30-29:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-30-29:NotificationMessageContent,You not implement unserialize function
+08-29-11-30-29:MessageModule,P-reason-C;;;save_msg_db;;;rowid:42
+08-29-11-30-29:Message,serialize
+08-29-11-30-29:NotificationMessageContent,You not implement serialize function
+08-29-11-30-29:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":42}
+08-29-11-30-29:Message,serialize
+08-29-11-30-29:NotificationMessageContent,You not implement serialize function
+08-29-11-30-29:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977429
+08-29-11-30-29:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-30-29:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977429
+08-29-11-30-29:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-30-35:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-30-35:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-30-35:platform,request run in main loop
+08-29-11-30-35:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-30-35:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-30-35:platform,nodejs start
+08-29-11-30-35:MessageModule,P-reason-C;;;work;;;end
+08-29-11-30-35:ConnectivityModule,handle event 3
+08-29-11-30-35:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-30-35:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-30-35:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-30-35:ConnectivityModule,exception status:30011
+08-29-11-30-40:platform,request run in main loop
+08-29-11-30-40:platform,nodejs start
+08-29-11-30-40:ConnectivityModule,do connect
+08-29-11-30-40:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-40:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-30-40:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-30-40:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-30-40:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-30-40:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-30-40:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-30-40:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-30-40:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-30-40:MessageModule,P-reason-C;;;connectack;;;b:1503977440,e:1503977440,3
+08-29-11-30-40:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-30-40:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-40:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-30-40:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-30-40:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-30-40:platform,request run in main loop
+08-29-11-30-40:platform,nodejs start
+08-29-11-30-40:ConnectivityModule,handle event 2
+08-29-11-30-40:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-30-40:RCIMLog,debug level is 0
+08-29-11-30-40:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-30-40:NotificationMessageContent,You not implement unserialize function
+08-29-11-30-40:MessageModule,P-reason-C;;;save_msg_db;;;rowid:43
+08-29-11-30-40:Message,serialize
+08-29-11-30-40:NotificationMessageContent,You not implement serialize function
+08-29-11-30-40:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":43}
+08-29-11-30-40:Message,serialize
+08-29-11-30-40:NotificationMessageContent,You not implement serialize function
+08-29-11-30-40:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977440
+08-29-11-30-40:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-30-40:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977440
+08-29-11-30-40:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-30-45:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-30-45:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-30-45:platform,request run in main loop
+08-29-11-30-45:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-30-45:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-30-45:platform,nodejs start
+08-29-11-30-45:MessageModule,P-reason-C;;;work;;;end
+08-29-11-30-45:ConnectivityModule,handle event 3
+08-29-11-30-45:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-30-45:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-30-45:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-30-45:ConnectivityModule,exception status:30011
+08-29-11-30-50:platform,request run in main loop
+08-29-11-30-50:platform,nodejs start
+08-29-11-30-50:ConnectivityModule,do connect
+08-29-11-30-50:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-50:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-30-50:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-30-50:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-30-50:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-30-50:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-30-50:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-30-50:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-30-50:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-30-50:MessageModule,P-reason-C;;;connectack;;;b:1503977450,e:1503977450,3
+08-29-11-30-50:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-30-50:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-30-50:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-30-50:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-30-50:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-30-50:platform,request run in main loop
+08-29-11-30-50:platform,nodejs start
+08-29-11-30-50:ConnectivityModule,handle event 2
+08-29-11-30-50:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-30-50:RCIMLog,debug level is 0
+08-29-11-30-50:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-30-50:NotificationMessageContent,You not implement unserialize function
+08-29-11-30-50:MessageModule,P-reason-C;;;save_msg_db;;;rowid:44
+08-29-11-30-50:Message,serialize
+08-29-11-30-50:NotificationMessageContent,You not implement serialize function
+08-29-11-30-50:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":44}
+08-29-11-30-50:Message,serialize
+08-29-11-30-50:NotificationMessageContent,You not implement serialize function
+08-29-11-30-50:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977450
+08-29-11-30-50:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-30-50:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977450
+08-29-11-30-50:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-30-56:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-30-56:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-30-56:platform,request run in main loop
+08-29-11-30-56:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-30-56:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-30-56:MessageModule,P-reason-C;;;work;;;end
+08-29-11-30-56:platform,nodejs start
+08-29-11-30-56:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-30-56:ConnectivityModule,handle event 3
+08-29-11-30-56:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-30-56:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-30-56:ConnectivityModule,exception status:30011
+08-29-11-31-01:platform,request run in main loop
+08-29-11-31-01:platform,nodejs start
+08-29-11-31-01:ConnectivityModule,do connect
+08-29-11-31-01:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-01:MessageModule,P-reason-C;;;create;;;channel:0x10172ca60
+08-29-11-31-01:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-31-01:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-31-01:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-31-01:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-31-01:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-31-01:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-31-01:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-31-01:MessageModule,P-reason-C;;;connectack;;;b:1503977461,e:1503977461,3
+08-29-11-31-01:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-31-01:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-01:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-31-01:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-31-01:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-31-01:platform,request run in main loop
+08-29-11-31-01:platform,nodejs start
+08-29-11-31-01:ConnectivityModule,handle event 2
+08-29-11-31-01:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-31-01:RCIMLog,debug level is 0
+08-29-11-31-01:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-31-01:NotificationMessageContent,You not implement unserialize function
+08-29-11-31-01:MessageModule,P-reason-C;;;save_msg_db;;;rowid:45
+08-29-11-31-01:Message,serialize
+08-29-11-31-01:NotificationMessageContent,You not implement serialize function
+08-29-11-31-01:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":45}
+08-29-11-31-01:Message,serialize
+08-29-11-31-01:NotificationMessageContent,You not implement serialize function
+08-29-11-31-01:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977461
+08-29-11-31-01:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-31-01:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977461
+08-29-11-31-01:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-31-06:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-31-06:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-31-06:platform,request run in main loop
+08-29-11-31-06:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-31-06:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-31-06:platform,nodejs start
+08-29-11-31-06:ConnectivityModule,handle event 3
+08-29-11-31-06:MessageModule,P-reason-C;;;work;;;end
+08-29-11-31-06:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-31-06:MessageModule,P-reason-C;;;work;;;destruction:0x10172ca60,0x10172ca60
+08-29-11-31-06:ConnectivityModule,exception status:30011
+08-29-11-31-06:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-31-11:platform,request run in main loop
+08-29-11-31-11:platform,nodejs start
+08-29-11-31-11:ConnectivityModule,do connect
+08-29-11-31-11:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-11:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-31-11:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-31-11:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-31-11:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-31-11:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-31-11:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-31-11:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-31-11:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-31-11:MessageModule,P-reason-C;;;connectack;;;b:1503977471,e:1503977471,3
+08-29-11-31-11:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-31-11:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-11:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-31-11:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-31-11:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-31-11:platform,request run in main loop
+08-29-11-31-11:platform,nodejs start
+08-29-11-31-11:ConnectivityModule,handle event 2
+08-29-11-31-11:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-31-11:RCIMLog,debug level is 0
+08-29-11-31-11:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-31-11:NotificationMessageContent,You not implement unserialize function
+08-29-11-31-11:MessageModule,P-reason-C;;;save_msg_db;;;rowid:46
+08-29-11-31-11:Message,serialize
+08-29-11-31-11:NotificationMessageContent,You not implement serialize function
+08-29-11-31-11:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":46}
+08-29-11-31-11:Message,serialize
+08-29-11-31-11:NotificationMessageContent,You not implement serialize function
+08-29-11-31-11:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977471
+08-29-11-31-11:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-31-11:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977471
+08-29-11-31-11:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-31-17:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-31-17:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-31-17:platform,request run in main loop
+08-29-11-31-17:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-31-17:platform,nodejs start
+08-29-11-31-17:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-31-17:ConnectivityModule,handle event 3
+08-29-11-31-17:MessageModule,P-reason-C;;;work;;;end
+08-29-11-31-17:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-31-17:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-31-17:ConnectivityModule,exception status:30011
+08-29-11-31-17:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-31-22:platform,request run in main loop
+08-29-11-31-22:platform,nodejs start
+08-29-11-31-22:ConnectivityModule,do connect
+08-29-11-31-22:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-22:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-31-22:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-31-22:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-31-22:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-31-22:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-31-22:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-31-22:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-31-22:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-31-22:MessageModule,P-reason-C;;;connectack;;;b:1503977482,e:1503977482,3
+08-29-11-31-22:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-31-22:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-22:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-31-22:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-31-22:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-31-22:platform,request run in main loop
+08-29-11-31-22:platform,nodejs start
+08-29-11-31-22:ConnectivityModule,handle event 2
+08-29-11-31-22:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-31-22:RCIMLog,debug level is 0
+08-29-11-31-22:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-31-22:NotificationMessageContent,You not implement unserialize function
+08-29-11-31-22:MessageModule,P-reason-C;;;save_msg_db;;;rowid:47
+08-29-11-31-22:Message,serialize
+08-29-11-31-22:NotificationMessageContent,You not implement serialize function
+08-29-11-31-22:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":47}
+08-29-11-31-22:Message,serialize
+08-29-11-31-22:NotificationMessageContent,You not implement serialize function
+08-29-11-31-22:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977482
+08-29-11-31-22:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-31-22:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977482
+08-29-11-31-22:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-31-27:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-31-27:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-31-27:platform,request run in main loop
+08-29-11-31-27:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-31-27:platform,nodejs start
+08-29-11-31-27:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-31-27:ConnectivityModule,handle event 3
+08-29-11-31-27:MessageModule,P-reason-C;;;work;;;end
+08-29-11-31-27:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-31-27:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-31-27:ConnectivityModule,exception status:30011
+08-29-11-31-27:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-31-32:platform,request run in main loop
+08-29-11-31-32:platform,nodejs start
+08-29-11-31-32:ConnectivityModule,do connect
+08-29-11-31-32:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-32:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-31-32:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-31-32:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-31-32:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-31-32:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-31-32:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-31-32:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-31-32:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-31-32:MessageModule,P-reason-C;;;connectack;;;b:1503977492,e:1503977492,3
+08-29-11-31-32:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-31-32:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-32:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-31-32:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-31-32:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-31-32:platform,request run in main loop
+08-29-11-31-32:platform,nodejs start
+08-29-11-31-32:ConnectivityModule,handle event 2
+08-29-11-31-32:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-31-32:RCIMLog,debug level is 0
+08-29-11-31-32:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-31-32:NotificationMessageContent,You not implement unserialize function
+08-29-11-31-32:MessageModule,P-reason-C;;;save_msg_db;;;rowid:48
+08-29-11-31-32:Message,serialize
+08-29-11-31-32:NotificationMessageContent,You not implement serialize function
+08-29-11-31-32:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":48}
+08-29-11-31-32:Message,serialize
+08-29-11-31-32:NotificationMessageContent,You not implement serialize function
+08-29-11-31-32:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977492
+08-29-11-31-32:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-31-32:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977492
+08-29-11-31-32:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-31-39:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-31-39:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-31-39:platform,request run in main loop
+08-29-11-31-39:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-31-39:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-31-39:MessageModule,P-reason-C;;;work;;;end
+08-29-11-31-39:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-31-39:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-31-39:platform,nodejs start
+08-29-11-31-39:ConnectivityModule,handle event 3
+08-29-11-31-39:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-31-39:ConnectivityModule,exception status:30011
+08-29-11-31-44:platform,request run in main loop
+08-29-11-31-44:platform,nodejs start
+08-29-11-31-44:ConnectivityModule,do connect
+08-29-11-31-44:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-44:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-31-44:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-31-44:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-31-44:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-31-44:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-31-44:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-31-44:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-31-44:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-31-44:MessageModule,P-reason-C;;;connectack;;;b:1503977504,e:1503977504,3
+08-29-11-31-44:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-31-44:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-44:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-31-44:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-31-44:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-31-44:platform,request run in main loop
+08-29-11-31-44:platform,nodejs start
+08-29-11-31-44:ConnectivityModule,handle event 2
+08-29-11-31-44:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-31-44:RCIMLog,debug level is 0
+08-29-11-31-44:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-31-44:NotificationMessageContent,You not implement unserialize function
+08-29-11-31-44:MessageModule,P-reason-C;;;save_msg_db;;;rowid:49
+08-29-11-31-44:Message,serialize
+08-29-11-31-44:NotificationMessageContent,You not implement serialize function
+08-29-11-31-44:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":49}
+08-29-11-31-44:Message,serialize
+08-29-11-31-44:NotificationMessageContent,You not implement serialize function
+08-29-11-31-44:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977504
+08-29-11-31-44:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-31-44:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977504
+08-29-11-31-44:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-31-50:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-31-50:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-31-50:platform,request run in main loop
+08-29-11-31-50:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-31-50:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-31-50:MessageModule,P-reason-C;;;work;;;end
+08-29-11-31-50:platform,nodejs start
+08-29-11-31-50:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-31-50:ConnectivityModule,handle event 3
+08-29-11-31-50:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-31-50:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-31-50:ConnectivityModule,exception status:30011
+08-29-11-31-55:platform,request run in main loop
+08-29-11-31-55:platform,nodejs start
+08-29-11-31-55:ConnectivityModule,do connect
+08-29-11-31-55:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-55:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-31-55:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-31-55:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-31-55:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-31-55:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-31-55:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-31-55:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-31-55:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-31-55:MessageModule,P-reason-C;;;connectack;;;b:1503977515,e:1503977515,3
+08-29-11-31-55:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-31-55:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-31-55:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-31-55:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-31-55:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-31-55:platform,request run in main loop
+08-29-11-31-55:platform,nodejs start
+08-29-11-31-55:ConnectivityModule,handle event 2
+08-29-11-31-55:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-31-55:RCIMLog,debug level is 0
+08-29-11-31-55:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-31-55:NotificationMessageContent,You not implement unserialize function
+08-29-11-31-55:MessageModule,P-reason-C;;;save_msg_db;;;rowid:50
+08-29-11-31-55:Message,serialize
+08-29-11-31-55:NotificationMessageContent,You not implement serialize function
+08-29-11-31-55:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":50}
+08-29-11-31-55:Message,serialize
+08-29-11-31-55:NotificationMessageContent,You not implement serialize function
+08-29-11-31-55:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977515
+08-29-11-31-55:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-31-55:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977515
+08-29-11-31-55:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-32-01:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-32-01:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-32-01:platform,request run in main loop
+08-29-11-32-01:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-32-01:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-32-01:MessageModule,P-reason-C;;;work;;;end
+08-29-11-32-01:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-32-01:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-32-01:platform,nodejs start
+08-29-11-32-01:ConnectivityModule,handle event 3
+08-29-11-32-01:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-32-01:ConnectivityModule,exception status:30011
+08-29-11-32-06:platform,request run in main loop
+08-29-11-32-06:platform,nodejs start
+08-29-11-32-06:ConnectivityModule,do connect
+08-29-11-32-06:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-06:MessageModule,P-reason-C;;;create;;;channel:0x10172ca60
+08-29-11-32-06:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-32-06:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-32-06:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-32-06:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-32-06:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-32-06:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-32-06:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-32-06:MessageModule,P-reason-C;;;connectack;;;b:1503977526,e:1503977526,3
+08-29-11-32-06:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-32-06:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-06:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-32-06:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-32-06:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-32-06:platform,request run in main loop
+08-29-11-32-06:platform,nodejs start
+08-29-11-32-06:ConnectivityModule,handle event 2
+08-29-11-32-06:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-32-06:RCIMLog,debug level is 0
+08-29-11-32-06:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-32-06:NotificationMessageContent,You not implement unserialize function
+08-29-11-32-06:MessageModule,P-reason-C;;;save_msg_db;;;rowid:51
+08-29-11-32-06:Message,serialize
+08-29-11-32-06:NotificationMessageContent,You not implement serialize function
+08-29-11-32-06:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":51}
+08-29-11-32-06:Message,serialize
+08-29-11-32-06:NotificationMessageContent,You not implement serialize function
+08-29-11-32-06:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977526
+08-29-11-32-06:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-32-06:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977526
+08-29-11-32-06:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-32-11:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-32-11:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-32-11:platform,request run in main loop
+08-29-11-32-11:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-32-11:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-32-11:MessageModule,P-reason-C;;;work;;;end
+08-29-11-32-11:platform,nodejs start
+08-29-11-32-11:ConnectivityModule,handle event 3
+08-29-11-32-11:MessageModule,P-reason-C;;;work;;;destruction:0x10172ca60,0x10172ca60
+08-29-11-32-11:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-32-11:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-32-11:ConnectivityModule,exception status:30011
+08-29-11-32-16:platform,request run in main loop
+08-29-11-32-16:platform,nodejs start
+08-29-11-32-16:ConnectivityModule,do connect
+08-29-11-32-16:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-16:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-32-16:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-32-16:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-32-16:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-32-16:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-32-16:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-32-16:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-32-16:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-32-16:MessageModule,P-reason-C;;;connectack;;;b:1503977536,e:1503977536,3
+08-29-11-32-16:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-32-16:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-16:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-32-16:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-32-16:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-32-16:platform,request run in main loop
+08-29-11-32-16:platform,nodejs start
+08-29-11-32-16:ConnectivityModule,handle event 2
+08-29-11-32-16:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-32-16:RCIMLog,debug level is 0
+08-29-11-32-16:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-32-16:NotificationMessageContent,You not implement unserialize function
+08-29-11-32-16:MessageModule,P-reason-C;;;save_msg_db;;;rowid:52
+08-29-11-32-16:Message,serialize
+08-29-11-32-16:NotificationMessageContent,You not implement serialize function
+08-29-11-32-16:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":52}
+08-29-11-32-16:Message,serialize
+08-29-11-32-16:NotificationMessageContent,You not implement serialize function
+08-29-11-32-17:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977537
+08-29-11-32-17:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-32-17:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977537
+08-29-11-32-17:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-32-22:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-32-22:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-32-22:platform,request run in main loop
+08-29-11-32-22:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-32-22:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-32-22:MessageModule,P-reason-C;;;work;;;end
+08-29-11-32-22:platform,nodejs start
+08-29-11-32-22:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-32-22:ConnectivityModule,handle event 3
+08-29-11-32-22:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-32-22:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-32-22:ConnectivityModule,exception status:30011
+08-29-11-32-27:platform,request run in main loop
+08-29-11-32-27:platform,nodejs start
+08-29-11-32-27:ConnectivityModule,do connect
+08-29-11-32-27:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-27:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-32-27:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-32-27:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-32-27:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-32-27:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-32-27:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-32-27:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-32-27:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-32-27:MessageModule,P-reason-C;;;connectack;;;b:1503977547,e:1503977547,3
+08-29-11-32-27:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-32-27:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-27:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-32-27:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-32-27:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-32-27:platform,request run in main loop
+08-29-11-32-27:platform,nodejs start
+08-29-11-32-27:ConnectivityModule,handle event 2
+08-29-11-32-27:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-32-27:RCIMLog,debug level is 0
+08-29-11-32-27:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-32-27:NotificationMessageContent,You not implement unserialize function
+08-29-11-32-27:MessageModule,P-reason-C;;;save_msg_db;;;rowid:53
+08-29-11-32-27:Message,serialize
+08-29-11-32-27:NotificationMessageContent,You not implement serialize function
+08-29-11-32-27:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":53}
+08-29-11-32-27:Message,serialize
+08-29-11-32-27:NotificationMessageContent,You not implement serialize function
+08-29-11-32-27:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977547
+08-29-11-32-27:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-32-27:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977547
+08-29-11-32-27:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-32-33:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-32-33:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-32-33:platform,request run in main loop
+08-29-11-32-33:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-32-33:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-32-33:MessageModule,P-reason-C;;;work;;;end
+08-29-11-32-33:platform,nodejs start
+08-29-11-32-33:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-32-33:ConnectivityModule,handle event 3
+08-29-11-32-33:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-32-33:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-32-33:ConnectivityModule,exception status:30011
+08-29-11-32-38:platform,request run in main loop
+08-29-11-32-38:platform,nodejs start
+08-29-11-32-38:ConnectivityModule,do connect
+08-29-11-32-38:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-38:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-32-38:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-32-38:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-32-38:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-32-38:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-32-38:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-32-38:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-32-38:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-32-38:MessageModule,P-reason-C;;;connectack;;;b:1503977558,e:1503977558,3
+08-29-11-32-38:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-32-38:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-38:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-32-38:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-32-38:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-32-38:platform,request run in main loop
+08-29-11-32-38:platform,nodejs start
+08-29-11-32-38:ConnectivityModule,handle event 2
+08-29-11-32-38:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-32-38:RCIMLog,debug level is 0
+08-29-11-32-38:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-32-38:NotificationMessageContent,You not implement unserialize function
+08-29-11-32-38:MessageModule,P-reason-C;;;save_msg_db;;;rowid:54
+08-29-11-32-38:Message,serialize
+08-29-11-32-38:NotificationMessageContent,You not implement serialize function
+08-29-11-32-38:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":54}
+08-29-11-32-38:Message,serialize
+08-29-11-32-38:NotificationMessageContent,You not implement serialize function
+08-29-11-32-38:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977558
+08-29-11-32-38:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-32-38:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977558
+08-29-11-32-38:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-32-44:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-32-44:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-32-44:platform,request run in main loop
+08-29-11-32-44:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-32-44:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-32-44:MessageModule,P-reason-C;;;work;;;end
+08-29-11-32-44:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-32-44:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-32-44:platform,nodejs start
+08-29-11-32-44:ConnectivityModule,handle event 3
+08-29-11-32-44:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-32-44:ConnectivityModule,exception status:30011
+08-29-11-32-49:platform,request run in main loop
+08-29-11-32-49:platform,nodejs start
+08-29-11-32-49:ConnectivityModule,do connect
+08-29-11-32-49:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-49:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-32-49:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-32-49:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-32-49:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-32-49:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-32-49:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-32-49:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-32-49:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-32-49:MessageModule,P-reason-C;;;connectack;;;b:1503977569,e:1503977569,3
+08-29-11-32-49:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-32-49:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-49:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-32-49:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-32-49:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-32-49:platform,request run in main loop
+08-29-11-32-49:platform,nodejs start
+08-29-11-32-49:ConnectivityModule,handle event 2
+08-29-11-32-49:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-32-49:RCIMLog,debug level is 0
+08-29-11-32-49:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-32-49:NotificationMessageContent,You not implement unserialize function
+08-29-11-32-49:MessageModule,P-reason-C;;;save_msg_db;;;rowid:55
+08-29-11-32-49:Message,serialize
+08-29-11-32-49:NotificationMessageContent,You not implement serialize function
+08-29-11-32-49:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":55}
+08-29-11-32-49:Message,serialize
+08-29-11-32-49:NotificationMessageContent,You not implement serialize function
+08-29-11-32-49:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977569
+08-29-11-32-49:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-32-49:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977569
+08-29-11-32-49:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-32-54:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-32-54:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-32-54:platform,request run in main loop
+08-29-11-32-54:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-32-54:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-32-54:platform,nodejs start
+08-29-11-32-54:MessageModule,P-reason-C;;;work;;;end
+08-29-11-32-54:ConnectivityModule,handle event 3
+08-29-11-32-54:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-32-54:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-32-54:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-32-54:ConnectivityModule,exception status:30011
+08-29-11-32-59:platform,request run in main loop
+08-29-11-32-59:platform,nodejs start
+08-29-11-32-59:ConnectivityModule,do connect
+08-29-11-32-59:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-59:MessageModule,P-reason-C;;;create;;;channel:0x102408eb0
+08-29-11-32-59:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-32-59:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-32-59:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-32-59:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-32-59:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-32-59:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-32-59:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-32-59:MessageModule,P-reason-C;;;connectack;;;b:1503977579,e:1503977579,3
+08-29-11-32-59:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-32-59:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-32-59:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-32-59:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-32-59:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-32-59:platform,request run in main loop
+08-29-11-32-59:platform,nodejs start
+08-29-11-32-59:ConnectivityModule,handle event 2
+08-29-11-32-59:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-32-59:RCIMLog,debug level is 0
+08-29-11-32-59:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-32-59:NotificationMessageContent,You not implement unserialize function
+08-29-11-32-59:MessageModule,P-reason-C;;;save_msg_db;;;rowid:56
+08-29-11-32-59:Message,serialize
+08-29-11-32-59:NotificationMessageContent,You not implement serialize function
+08-29-11-32-59:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":56}
+08-29-11-32-59:Message,serialize
+08-29-11-32-59:NotificationMessageContent,You not implement serialize function
+08-29-11-32-59:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977579
+08-29-11-32-59:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-32-59:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977579
+08-29-11-32-59:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-36-21:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-36-21:MessageModule,P-reason-C;;;send_query;;;len:16,qos:1,msgid:3,method:pullMsg
+08-29-11-36-21:MessageModule,P-more-C;;;sock_recv;;;54;;;Connection reset by peer
+08-29-11-36-21:MessageModule,P-more-C;;;ondisconnect;;;54;;;13
+08-29-11-36-21:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-36-21:platform,request run in main loop
+08-29-11-36-21:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-36-21:MessageModule,P-reason-C;;;work;;;end
+08-29-11-36-21:MessageModule,P-reason-C;;;work;;;destruction:0x102408eb0,0x102408eb0
+08-29-11-36-21:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-36-21:MessageModule,P-reason-C;;;destroy_map;;;socket ~
+08-29-11-36-21:MessageModule,P-code-C;;;sync_msg;;;30003
+08-29-11-36-21:platform,nodejs start
+08-29-11-36-21:ConnectivityModule,handle event 3
+08-29-11-36-21:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-36-21:ConnectivityModule,exception status:30011

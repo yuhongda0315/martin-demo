@@ -1,0 +1,517 @@
+08-29-11-28-21:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-28-21:ConnectivityModule,handle event 0
+08-29-11-28-23:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-28-23:MessageModule,P-reason-C;;;sync_msg;;;sync[0],send[0]
+08-29-11-28-23:ConnectivityModule,handle event 2
+08-29-11-28-23:RCIMLog,debug level is 0
+08-29-11-28-23:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-28-23:NotificationMessageContent,You not implement unserialize function
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:1
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:NotificationMessageContent,You not implement serialize function
+08-29-11-28-23:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":1}
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:NotificationMessageContent,You not implement serialize function
+08-29-11-28-23:MessageModule,P-reason-C;;;onrawdata;;;large packet:1
+08-29-11-28-23:MessageModule,P-reason-C;;;large_packet;;;begin
+08-29-11-28-23:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977303
+08-29-11-28-23:MessageModule,P-reason-C;;;large_packet;;;large message end
+08-29-11-28-23:MessageModule,P-reason-C;;;qry_account;;;changed:1,nSize:5
+08-29-11-28-23:MessageModule,P-reason-C;;;onrawdata;;;large packet:2
+08-29-11-28-23:MessageModule,P-reason-C;;;large_packet;;;begin
+08-29-11-28-23:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977303
+08-29-11-28-23:MessageModule,P-reason-C;;;large_packet;;;large message end
+08-29-11-28-23:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:51,finish:1
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"GC2lr3GPu","extension":"Rbzowp7aX,4738"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:2
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":3,"operator":"GC2lr3GPu","extension":"new name"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:3
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"GC2lr3GPu","extension":"22,38"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:4
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":4,"operator":"GC2lr3GPu","extension":"4738"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:5
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:6
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:7
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:8
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:9
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:10
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:11
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:12
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:13
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"GC2lr3GPu","extension":"Rbzowp7aX,4738"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:14
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":2,"operator":"GC2lr3GPu","extension":"GC2lr3GPu"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:15
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"😫"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:16
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"😫"})
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"Rbzowp7aX","extension":"GC2lr3GPu,p0Dkf1IXA"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:17
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":4,"operator":"Rbzowp7aX","extension":"GC2lr3GPu"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:18
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":5,"operator":"Rbzowp7aX","extension":"1"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:19
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":3,"operator":"Rbzowp7aX","extension":"Diss"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:20
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"GC2lr3GPu","extension":"Rbzowp7aX,CYXf6GNeM"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:21
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":4,"operator":"GC2lr3GPu","extension":"Rbzowp7aX"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:22
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":4,"operator":"GC2lr3GPu","extension":"Rbzowp7aX"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:23
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:GrpNtf), msgData({"operatorUserId":"GC2lr3GPu","operation":"Create","data":{"operatorNickname":"王平","targetGroupName":"Ttyuii","timestamp":1503911954439,"data":{"operatorNickname":"王平","targetGroupName":"Ttyuii","timestamp":1503911954439}},"message":""})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:24
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"Rrr"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:25
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"Ttt'"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:26
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:GrpNtf), msgData({"operatorUserId":"GC2lr3GPu","operation":"Create","data":{"operatorNickname":"王平","targetGroupName":"Ttt it","timestamp":1503971011048,"data":{"operatorNickname":"王平","targetGroupName":"Ttt it","timestamp":1503971011048}},"message":""})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:27
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:GrpNtf), msgData({"operatorUserId":"GC2lr3GPu","operation":"Kicked","data":{"operatorNickname":"王平","targetUserIds":["u0LUuhzHm"],"targetUserDisplayNames":["于洪达1"],"timestamp":1503971190449,"data":{"operatorNickname":"王平","targetUserIds":["u0LUuhzHm"],"targetUserDisplayNames":["于洪达1"],"timestamp":1503971190449}},"message":""})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:28
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"Fg%"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:29
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"Dc_"})
+08-29-11-28-23:MessageModule,P-reason-C;;;save_msg_db;;;rowid:30
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[ac993222-60ab-4333-8bc2-2d6e8cbc9413],category:[2],time:[1503885186292],msgid:[2],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,received message, left(49)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"GC2lr3GPu","extension":"Rbzowp7aX,4738"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[ac993222-60ab-4333-8bc2-2d6e8cbc9413],category:[2],time:[1503885198518],msgid:[3],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,received message, left(48)
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":3,"operator":"GC2lr3GPu","extension":"new name"})
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[ac993222-60ab-4333-8bc2-2d6e8cbc9413],category:[2],time:[1503885203708],msgid:[4],objname:RC:DizNtf
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:MessageModule,received message, left(47)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"GC2lr3GPu","extension":"22,38"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[ac993222-60ab-4333-8bc2-2d6e8cbc9413],category:[2],time:[1503885206102],msgid:[5],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,received message, left(46)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":4,"operator":"GC2lr3GPu","extension":"4738"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[LEU82p5Zk],category:[1],time:[1503887801985],msgid:[6],objname:RC:ImgMsg
+08-29-11-28-23:MessageModule,received message, left(45)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503887801993],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(44)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503887801993],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(43)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[LEU82p5Zk],category:[1],time:[1503887832709],msgid:[7],objname:RC:ImgMsg
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(42)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503887832725],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(41)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503887832725],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,received message, left(40)
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888021416],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(39)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888021416],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(38)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[LEU82p5Zk],category:[1],time:[1503888022189],msgid:[8],objname:RC:ImgMsg
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(37)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888111217],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(36)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888111217],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,received message, left(35)
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[LEU82p5Zk],category:[1],time:[1503888111224],msgid:[9],objname:RC:ImgMsg
+08-29-11-28-23:MessageModule,received message, left(34)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[LEU82p5Zk],category:[1],time:[1503888115366],msgid:[10],objname:RC:ImgMsg
+08-29-11-28-23:MessageModule,received message, left(33)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888115370],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(32)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888115370],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(31)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888120403],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(30)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888120403],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(29)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[LEU82p5Zk],category:[1],time:[1503888120406],msgid:[11],objname:RC:ImgMsg
+08-29-11-28-23:MessageModule,received message, left(28)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[LEU82p5Zk],category:[1],time:[1503888125480],msgid:[12],objname:RC:ImgMsg
+08-29-11-28-23:MessageModule,received message, left(27)
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888125481],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(26)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888125481],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(25)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888146000],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(24)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[LEU82p5Zk],category:[1],time:[1503888146000],msgid:[13],objname:RC:ImgMsg
+08-29-11-28-23:MessageModule,received message, left(23)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:ImgMsg), msgData({"imageUri":"http://rongcloud-image.ronghub.com/FvrEiTClM2_EiT2Aj4OZKoVLyBTP?e=2147483647&token=livk5rb3__JZjCtEiMxXpQ8QscLxbNLehwhHySnX:dQCVWInYlCAGh6Zu0SBpR8ZUMmU=","content":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAoAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6O
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503888146000],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(22)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5DK2-H0EB-K4U0-35LG","targetId":"Rbzowp7aX","sentTime":1491448630877})
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[dcc24c1c-6af7-4dfa-847f-37ca8bc5b894],category:[2],time:[1503904211336],msgid:[14],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,received message, left(21)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"GC2lr3GPu","extension":"Rbzowp7aX,4738"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[dcc24c1c-6af7-4dfa-847f-37ca8bc5b894],category:[2],time:[1503904214659],msgid:[15],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(20)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":2,"operator":"GC2lr3GPu","extension":"GC2lr3GPu"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[Rbzowp7aX],category:[1],time:[1503909505525],msgid:[16],objname:RC:TxtMsg
+08-29-11-28-23:MessageModule,received message, left(19)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"😫"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[p0Dkf1IXA],category:[1],time:[1503910522059],msgid:[0],objname:RC:RcCmd
+08-29-11-28-23:MessageModule,received message, left(18)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:RcCmd), msgData({"conversationType":1,"messageUId":"5F2G-36N5-O4GP-O0K0","targetId":"p0Dkf1IXA","sentTime":1503910483758})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[249820ff-4a74-4753-af75-952b4b777a94],category:[2],time:[1503910543344],msgid:[17],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,received message, left(17)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"Rbzowp7aX","extension":"GC2lr3GPu,p0Dkf1IXA"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[249820ff-4a74-4753-af75-952b4b777a94],category:[2],time:[1503910552308],msgid:[18],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(16)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":4,"operator":"Rbzowp7aX","extension":"GC2lr3GPu"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[249820ff-4a74-4753-af75-952b4b777a94],category:[2],time:[1503910552311],msgid:[0],objname:RC:UIUMsg
+08-29-11-28-23:MessageModule,received message, left(15)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:UIUMsg), msgData({"updatedUserInfoList":[{"name":"王平","userId":"GC2lr3GPu","portraitUri":"http:\/\/7xogjk.com1.z0.glb.clouddn.com\/GC2lr3GPu1492690378568506104"}]})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[249820ff-4a74-4753-af75-952b4b777a94],category:[2],time:[1503910556212],msgid:[0],objname:RC:UIUMsg
+08-29-11-28-23:MessageModule,received message, left(14)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:UIUMsg), msgData({})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[249820ff-4a74-4753-af75-952b4b777a94],category:[2],time:[1503910556213],msgid:[19],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,received message, left(13)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":5,"operator":"Rbzowp7aX","extension":"1"})
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[249820ff-4a74-4753-af75-952b4b777a94],category:[2],time:[1503910569170],msgid:[20],objname:RC:DizNtf
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:MessageModule,received message, left(12)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":3,"operator":"Rbzowp7aX","extension":"Diss"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[249820ff-4a74-4753-af75-952b4b777a94],category:[2],time:[1503910569174],msgid:[0],objname:RC:UIUMsg
+08-29-11-28-23:MessageModule,received message, left(11)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:UIUMsg), msgData({})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[52d53b49-bfaf-4aed-87f0-107d23046890],category:[2],time:[1503911887909],msgid:[21],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,received message, left(10)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":1,"operator":"GC2lr3GPu","extension":"Rbzowp7aX,CYXf6GNeM"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[52d53b49-bfaf-4aed-87f0-107d23046890],category:[2],time:[1503911897205],msgid:[22],objname:RC:DizNtf
+08-29-11-28-23:MessageModule,received message, left(9)
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":4,"operator":"GC2lr3GPu","extension":"Rbzowp7aX"})
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[ac993222-60ab-4333-8bc2-2d6e8cbc9413],category:[2],time:[1503911930423],msgid:[23],objname:RC:DizNtf
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:MessageModule,received message, left(8)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:DizNtf), msgData({"type":4,"operator":"GC2lr3GPu","extension":"Rbzowp7aX"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[ac993222-60ab-4333-8bc2-2d6e8cbc9413],category:[2],time:[1503911930428],msgid:[0],objname:RC:UIUMsg
+08-29-11-28-23:MessageModule,received message, left(7)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:UIUMsg), msgData({"updatedUserInfoList":[{"name":"aaa","userId":"Rbzowp7aX","portraitUri":"file:\/\/\/Users\/wangping\/Library\/Developer\/CoreSimulator\/Devices\/E18C2B44-97CA-4D8C-BF15-F5C0780A89B0\/data\/Containers\/Data\/Application\/1A5E2A11-3B34-49E9-9AA3-AC4D5E69579A\/Library\/Caches\/CachedIcons\/userRbzowp7aX.png"}]})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[7dOTopsWM],category:[3],time:[1503911954532],msgid:[24],objname:RC:GrpNtf
+08-29-11-28-23:MessageModule,received message, left(6)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:GrpNtf), msgData({"operatorUserId":"GC2lr3GPu","operation":"Create","data":{"operatorNickname":"王平","targetGroupName":"Ttyuii","timestamp":1503911954439,"data":{"operatorNickname":"王平","targetGroupName":"Ttyuii","timestamp":1503911954439}},"message":""})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[7dOTopsWM],category:[3],time:[1503913476381],msgid:[25],objname:RC:TxtMsg
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,received message, left(5)
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"Rrr"})
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[7dOTopsWM],category:[3],time:[1503970721807],msgid:[26],objname:RC:TxtMsg
+08-29-11-28-23:MessageModule,received message, left(4)
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"Ttt'"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[MAuRWi8tc],category:[3],time:[1503971011064],msgid:[27],objname:RC:GrpNtf
+08-29-11-28-23:MessageModule,received message, left(3)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:GrpNtf), msgData({"operatorUserId":"GC2lr3GPu","operation":"Create","data":{"operatorNickname":"王平","targetGroupName":"Ttt it","timestamp":1503971011048,"data":{"operatorNickname":"王平","targetGroupName":"Ttt it","timestamp":1503971011048}},"message":""})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[MAuRWi8tc],category:[3],time:[1503971190422],msgid:[28],objname:RC:GrpNtf
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:MessageModule,received message, left(2)
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:GrpNtf), msgData({"operatorUserId":"GC2lr3GPu","operation":"Kicked","data":{"operatorNickname":"王平","targetUserIds":["u0LUuhzHm"],"targetUserDisplayNames":["于洪达1"],"timestamp":1503971190449,"data":{"operatorNickname":"王平","targetUserIds":["u0LUuhzHm"],"targetUserDisplayNames":["于洪达1"],"timestamp":1503971190449}},"message":""})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[7dOTopsWM],category:[3],time:[1503972861400],msgid:[29],objname:RC:TxtMsg
+08-29-11-28-23:MessageModule,received message, left(1)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"Fg%"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:MessageModule,P-reason-C;;;notify_msg;;;target:[7dOTopsWM],category:[3],time:[1503972867915],msgid:[30],objname:RC:TxtMsg
+08-29-11-28-23:MessageModule,received message, left(0)
+08-29-11-28-23:MessageModule,getMessageContentByObjName(RC:TxtMsg), msgData({"content":"Dc_"})
+08-29-11-28-23:platform,request run in main loop
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:UnknownMessageContent,You not implement serialize function
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-23:platform,nodejs start
+08-29-11-28-23:MessageModule,handle event 3
+08-29-11-28-23:Message,serialize
+08-29-11-28-28:MessageModule,P-more-C;;;ondisconnect;;;2;;;13
+08-29-11-28-28:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-28-28:platform,request run in main loop
+08-29-11-28-28:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-28-28:MessageModule,P-reason-C;;;ondelete;;;13
+08-29-11-28-28:platform,nodejs start
+08-29-11-28-28:MessageModule,P-reason-C;;;work;;;end
+08-29-11-28-28:ConnectivityModule,handle event 3
+08-29-11-28-28:MessageModule,P-reason-C;;;work;;;destruction:0x10171faf0,0x10171faf0
+08-29-11-28-28:ConnectivityModule,connection execption, previous status is 0, and cur status is 30011
+08-29-11-28-28:MessageModule,P-reason-C;;;tcp close sock;;;13
+08-29-11-28-28:ConnectivityModule,exception status:30011
+08-29-11-28-33:platform,request run in main loop
+08-29-11-28-33:platform,nodejs start
+08-29-11-28-33:ConnectivityModule,do connect
+08-29-11-28-33:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-28-33:MessageModule,P-reason-C;;;create;;;channel:0x102300150
+08-29-11-28-33:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-28-33:MessageModule,P-reason-C;;;tcp_connect;;;120.92.13.66
+08-29-11-28-33:MessageModule,P-reason-C;;;work;;;begin
+08-29-11-28-33:MessageModule,P-reason-C;;;onconnect;;;13
+08-29-11-28-33:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-28-33:MessageModule,P-reason-C;;;pkg_connect;;;appKey:n19jmcy59f1q9,token:rH9kY8Mmw4YGh+VkhUxezXxpRjANxKgfakOnYLFljI/cwIqj1TL1WNZ9OBMXlKaihLEVHZrHHo0tE2hP+hlNrw==
+08-29-11-28-33:MessageModule,P-reason-C;;;version;;;PC--2.8.16
+08-29-11-28-33:MessageModule,P-reason-C;;;connectack;;;b:1503977313,e:1503977313,3
+08-29-11-28-33:MessageModule,P-reason-C;;;connectack;;;userid:Rbzowp7aX
+08-29-11-28-33:MessageModule,P-reason-C;;;check_userid;;;db_path:./RongCloud/n19jmcy59f1q9/Rbzowp7aX/
+08-29-11-28-33:MessageModule,P-reason-C;;;send_query;;;len:41,qos:1,msgid:1,method:pullMp
+08-29-11-28-33:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-28-33:MessageModule,P-reason-C;;;send_query;;;len:18,qos:1,msgid:2,method:pullMsg
+08-29-11-28-33:platform,request run in main loop
+08-29-11-28-33:platform,nodejs start
+08-29-11-28-33:ConnectivityModule,handle event 2
+08-29-11-28-33:ConnectivityModule,connect completed, previous status is 10, and cur status is 0
+08-29-11-28-33:RCIMLog,debug level is 0
+08-29-11-28-33:MessageModule,getMessageContentByObjNameForUnity(RC:InfoNtf), msgData({"message":"You are not in current group"})
+08-29-11-28-33:NotificationMessageContent,You not implement unserialize function
+08-29-11-28-33:MessageModule,P-reason-C;;;save_msg_db;;;rowid:31
+08-29-11-28-33:Message,serialize
+08-29-11-28-33:NotificationMessageContent,You not implement serialize function
+08-29-11-28-33:inserted message is %s,{"conversationType":1,"targetId":"GC2lr3GPu","direction":2,"senderUserId":"xxx","status":10,"objectName":"RC:InfoNtf","content":"","messageId":31}
+08-29-11-28-33:Message,serialize
+08-29-11-28-33:NotificationMessageContent,You not implement serialize function
+08-29-11-28-33:MessageModule,P-reason-C;;;queryack;;;msgid:1,status:0,time:1503977313
+08-29-11-28-33:MessageModule,P-reason-C;;;qry_account;;;changed:0,nSize:0
+08-29-11-28-33:MessageModule,P-reason-C;;;queryack;;;msgid:2,status:0,time:1503977313
+08-29-11-28-33:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1

@@ -1,0 +1,67 @@
+1、已读回执 
+
+    （1）群聊
+        // 请求消息回执
+            var msg = {
+                messageUId: message.messageUId
+            };
+            msg = new RongIMLib.ReadReceiptRequestMessage(msg);
+            var sendReadRequest = RongIMClient.getInstance().sendMessage;
+            sendReadRequest(conversationType, targetId, msg, {
+                onSuccess: function () {},
+                onError: function () {}
+            });
+        // 响应消息回执
+            var msg = {
+                receiptMessageDic: {
+                    // userId 需要替换成当前用户的 Id
+                    userId: [message.messageUId]
+                }
+            };
+            msg = new RongIMLib.ReadReceiptResponseMessage(msg);
+            var sendReadResponse = RongIMClient.getInstance().sendMessage;
+            sendReadResponse(conversationType, targetId, msg, {
+                onSuccess: function () {},
+                onError: function () {}
+            });
+
+    （2）单聊
+        //从消息里获取服务器端时间，以某条消息 message 为准
+        var msg = { 
+            messageUId: message.messageUId, 
+            lastMessageSendTime: message.sentTime,
+            // 1 表示会话中消息全部已读
+            type: 1
+        };
+        msg = new RongIMLib.ReadReceiptMessage(msg);
+
+        var sendReadRecepit = RongIMClient.getInstance().sendMessage;
+        sendReadRecepit(conversationType, targetId, msg, {
+            onSuccess: function () {},
+            onError: function () {}
+        });
+
+        // 其它端收到 ReadReceiptMessage 后，根据时间改变消息状态
+
+2、同步未读数
+
+    （1）同步
+        //从消息里获取服务器端时间，以某条消息 message 为准
+        var msg = {
+            lastMessageSendTime: message.sentTime
+        };
+        msg = new RongIMLib.SyncReadStatusMessage(msg);
+
+        var sendSyncStutus = RongIMClient.getInstance().sendMessage;
+        sendSyncStutus(conversationType, targetId, msg, {
+            onSuccess: function () {},
+            onError: function () {}
+        });
+
+    （2）接收
+        //其他端接收到同步消息后，更新处理
+        var clearUnreadCount = RongIMClient.getInstance().clearUnreadCount;
+        clearUnreadCount(conversationType, targetId, {
+            onSuccess: function () {},
+            onError: function (errorCode) {}
+        });

@@ -132,5 +132,56 @@ function iterateUntil(fun, check, init){
 	}
 	return ret;
 }
+
+// function finder(valueFun, bestFun, coll){
+// 	return _.reduce(coll, function(best, current){
+// 		var bestValue = valueFun(best);
+// 		var currentValue = valueFun(current);
+// 		return (bestValue == bestFun(bestValue, currentValue)) ? best : current;
+// 	});
+// }
+function finder(best, coll){
+	return _.reduce(coll, function(x, y){
+		return best(x, y) ? x : y;
+	});
+}
+
+function always(value){
+	return function(){
+		return value;
+	}
+}
+function repeat(times, fun){
+	return _.map(_.range(times), fun);
+}
+repeat(3, always('OK'))
+// => ["OK", "OK", "OK"]
+
+function iterateUtil(func, check, init){
+	var ret = [];
+	var result = func(init);
+	while(check(result)){
+		ret.push(result);
+		result = func(result);
+	}
+	return ret;
+}
+var result = iterateUtil(function(n){
+	return n + n;
+}, function(n){
+	return n < 2048;
+}, 1);
+
+function fnull(func){
+	var defaults = _.rest(arguments);
+	return function(){
+		var args = _.map(arguments, function(e, i){
+			return e ? e : defaults[i];
+		});
+		return func.apply(null, args);
+	};
+}
+var safeMutl = fnull(function(total, n){return total * n }, 1, 1);
+_.reduce([1, 2, 3, null], safeMutl);
 </script>
 </html>

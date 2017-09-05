@@ -4,7 +4,7 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>Ws</title>
-<script src="./RongIMLib-2.2.6.js"></script>
+<script src="./RongIMLib-2.2.7.js"></script>
 <style type="text/css">
   body {
     font-size: 13px;
@@ -32,7 +32,7 @@
   <hr/>
   <div id="content"></div>
   <script type="text/javascript">
-
+  var RongIMClient = RongIMLib.RongIMClient;
    var $ = function(id){
     return document.getElementById(id);
    };
@@ -51,14 +51,21 @@
   // var targetId = 'min001';
   // var userId = 'min002';
 
-  var token = '3FFoPon6gzh2GB8kRuJIoDbFZ3SeVqTR9H0If1bWGxCg47Zc7tTiiMpuK3YsN2oavptwrln3v/3nwKcZPaVUDA==';
-  var targetId = 'min002';
-  var userId = 'min001';
+  // var token = 'hZ/FYFCN0MRB/zUkNoG3j8Lg1HgVe6BNpEIHZDy7fhI1VRF7zfE/Qv7aE2aMdLAzhhkwCwiGcAwLZ2dp77Kizg==';
+  // var targetId = 'tester';
+  // var userId = 'martin';
+  // var appkey = 'e0x9wycfx7flq';
 
+  var token = 'CARGuDdFPEjyYECP2+DLDLrkPG6U/xPk3zvPIWf9le2CsUyfVds6XrnrCAqLkmezZx3IwcxHF4Rfiv9iBuGkHvq2I3apBmAF';
+  var targetId = 'martin9902';
+  var userId = 'martin9901';
+  var appkey = '8luwapkvucoil';
   function init() {
-      var appkey = 'pgyu6atqpfvmu';
 
-      RongIMClient.init(appkey);
+      // RongIMClient.init(appkey, null, {navi: '119.254.111.49:9100'});
+      RongIMClient.init(appkey, null, {
+        isPolling: true
+      });
       RongIMClient.setConnectionStatusListener({
         onChanged: function(status) {
           switch (status) {
@@ -137,14 +144,14 @@
 
     var conversationType = RongIMLib.ConversationType.PRIVATE;
     function send(){
-      var content = 'hello, ' + targetId + ', I‘m ' +  userId;
+      var content = 'hello, ' + targetId + ', I‘m ' +  userId + (+new Date);
       var msg = new RongIMLib.TextMessage({content:content});
       RongIMClient.getInstance().sendMessage(conversationType, targetId, msg, {
                 onSuccess: function (message) {
                     var log = "Send successfully: ";
                     log += JSON.stringify(message);
                     showLog(log);
-                    sendRecall(message);
+                    // sendRecall(message);
                 },
                 onError: function (code,message) {
                     console.log('发送失败:' + code);
@@ -154,7 +161,8 @@
     }
 
     function sendRecall(message){
-      var {sentTime, messageUId} = message;
+      var sentTime = message.sentTime;
+      var messageUId = message.messageUId;
       var params = {
         conversationType: conversationType,
         targetId: targetId,

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <button onclick="start()">录音</button>
+    <button id="stop">停止</button>
+</body>
+<script>
+
+    function play(blob){
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            console.log(e.target.result);
+        };
+        reader.readAsDataURL(blob);
+
+        // var url = URL.createObjectURL(blob);
+        // var audio = new Audio();
+        // audio.src = url;
+        // audio.play();
+    }
+    var stop = document.getElementById('stop');
+    var chunks = [];
+    var handleSuccess = function(stream) {  
+        var mediaRecorder = new MediaRecorder(stream);
+
+        stop.onclick = function() {
+          mediaRecorder.stop();
+        }
+
+        mediaRecorder.onstop = function(e) {
+          var blob = new Blob(chunks, { 'type' : 'audio/wav' });
+          chunks = [];
+          play(blob);
+        }
+
+        mediaRecorder.ondataavailable = function(e) {
+          chunks.push(e.data);
+        }
+        mediaRecorder.start();
+    };
+
+    function start(){
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(handleSuccess);
+    }
+
+</script>
+</html>

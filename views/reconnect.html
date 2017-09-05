@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Reconnect</title>
+</head>
+<body>
+	<script>
+		function createXHR(){
+			var item = {
+				XMLHttpRequest: function(){
+					return new XMLHttpRequest();
+				},
+				XDomainRequest: function(){
+					return new XDomainRequest();
+				},
+				ActiveXObject: function(){
+					return new ActiveXObject('Microsoft.XMLHTTP');
+				}
+			};
+			var isXHR = (typeof XMLHttpRequest == 'function');
+			var isXDR = (typeof XDomainRequest == 'function');
+			var key = isXHR ? 'XMLHttpRequest' : isXDR ? 'XDomainRequest' : 'ActiveXObject'
+            return item[key]();
+		}
+		function request(opts){
+			var url = opts.url;
+			var success = opts.success;
+			var error = opts.error;
+			var method = opts.method || 'GET';
+			var xhr = createXHR();
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == 4) {
+					if (xhr.status == 200) {
+						success();
+					}else{
+						error();
+					}
+				}
+			};
+			xhr.open(method, url, true);
+  			xhr.send(null);
+		}
+		function repeatConnect(options){
+			var step = options.step();
+			var done = 'done';
+			var url = options.url;
+			var ping = function(){
+				request({
+					url: url,
+					success: function(){
+						options.done();
+					},
+					error: function(){
+						repeat();
+					}
+				});
+			};
+			var repeat = function(){
+				var next = step();
+				console.log(next);
+				if (next == 'done') {
+					return;
+				}
+				setTimeout(ping, next);
+			};
+			repeat();
+		}
+		var opts = {
+			url: '//cdn.ronghub.com/RongIMLib-2.2.6.min.js',
+			step: function(){
+				var steps = [1000, 3000, 6000, 10000, 18000, 'done'];
+				var index = 0;
+				return function(){
+					var time = steps[index];
+					index++;
+					return time;
+				}
+			},
+			done: function(){
+				console.log('ping, start connecting.');
+			}
+		};
+		repeatConnect(opts);
+	</script>
+</body>
+</html>

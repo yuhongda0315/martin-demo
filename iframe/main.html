@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Main</title>
+</head>
+<body>
+	<iframe id="child" src="child.html" frameborder="0" ></iframe>
+	<button onclick="count()">Count</button>
+</body>
+<script>
+	var child = document.getElementById('child');
+	var content = child.contentWindow;
+
+	function count(){
+		var num = Math.floor(Math.random() * 1000);
+		content.show(num);
+	}
+</script>
+</html>

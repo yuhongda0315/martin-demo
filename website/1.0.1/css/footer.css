@@ -1,0 +1,66 @@
+.site-footer{
+	height: 260px;
+}
+
+.service{
+	height: 80px;
+	border-bottom: 1px solid #DEDEDE;
+}
+
+.service-list{
+	height: 80px;
+}
+
+.service-item{
+	display: inline-block;
+    line-height: 80px;
+    font-size: 18px;
+    width: 19%;
+    box-sizing: border-box;
+    padding-left: 30px;
+    color: #616161;
+}
+
+.service-item:hover{
+	color: #ff6700;
+	transition: 1s;
+}
+
+.service-nav{
+	height: 180px;
+}
+
+.service-navi-item{
+	float: left;
+    width: 14%;
+}
+
+.service-navi-item dt{
+	margin-left: 39px;
+	font-size: 14px;
+    line-height: 1.25;
+    
+    margin-bottom: 15px;
+}
+.service-navi-item a{
+	color: #424242;
+}
+
+.col-contact{
+    width: 16%;
+    float: right;
+    padding-left: 15px;
+    box-sizing: border-box;
+    border-left: 1px solid #DEDEDE;
+}
+
+.col-contact .phone{
+	color: #FF6700;
+	font-size: 15px;
+}
+
+.footer-slogan{
+	background: url(images/slogan2016.png) no-repeat center;
+	height: 40px;
+	background-color: #fafafa;
+}

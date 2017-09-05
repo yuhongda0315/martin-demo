@@ -1,0 +1,127 @@
+08-29-11-21-21:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-21-21:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-21-21:ConnectivityModule,handle event 0
+08-29-11-21-21:MessageModule,P-reason-C;;;sync_msg;;;sync[0],send[0]
+08-29-11-21-21:ConnectivityModule,handle event 2
+08-29-11-21-21:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:51,finish:1
+08-29-11-21-26:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-21-26:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-21-26:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-21-26:MessageModule,P-reason-C;;;work;;;destruction:0x101911e00,0x101911e00
+08-29-11-21-26:ConnectivityModule,handle event 3
+08-29-11-21-26:ConnectivityModule,exception status:30011
+08-29-11-21-31:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-21-31:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-21-31:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-21-31:ConnectivityModule,handle event 2
+08-29-11-21-31:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-21-37:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-21-37:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-21-37:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-21-37:MessageModule,P-reason-C;;;work;;;destruction:0x101725300,0x101725300
+08-29-11-21-37:ConnectivityModule,handle event 3
+08-29-11-21-37:ConnectivityModule,exception status:30011
+08-29-11-21-42:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-21-42:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-21-42:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-21-42:ConnectivityModule,handle event 2
+08-29-11-21-42:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-21-47:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-21-47:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-21-47:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-21-47:MessageModule,P-reason-C;;;work;;;destruction:0x101725300,0x101725300
+08-29-11-21-47:ConnectivityModule,handle event 3
+08-29-11-21-47:ConnectivityModule,exception status:30011
+08-29-11-21-52:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-21-52:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-21-52:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-21-52:ConnectivityModule,handle event 2
+08-29-11-21-52:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-21-58:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-21-58:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-21-58:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-21-58:MessageModule,P-reason-C;;;work;;;destruction:0x1018079f0,0x1018079f0
+08-29-11-21-58:ConnectivityModule,handle event 3
+08-29-11-21-58:ConnectivityModule,exception status:30011
+08-29-11-22-04:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-22-04:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-22-04:MessageModule,P-reason-C;;;sync_msg;;;sync[0],send[0]
+08-29-11-22-04:ConnectivityModule,handle event 2
+08-29-11-22-04:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:51,finish:1
+08-29-11-22-10:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-22-10:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-22-10:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-22-10:MessageModule,P-reason-C;;;work;;;destruction:0x101915660,0x101915660
+08-29-11-22-10:ConnectivityModule,handle event 3
+08-29-11-22-10:ConnectivityModule,exception status:30011
+08-29-11-22-15:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-22-15:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-22-15:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-22-15:ConnectivityModule,handle event 2
+08-29-11-22-15:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-22-21:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-22-21:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-22-21:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-22-21:MessageModule,P-reason-C;;;work;;;destruction:0x101915660,0x101915660
+08-29-11-22-21:ConnectivityModule,handle event 3
+08-29-11-22-21:ConnectivityModule,exception status:30011
+08-29-11-22-26:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-22-26:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-22-26:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-22-26:ConnectivityModule,handle event 2
+08-29-11-22-26:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-22-31:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-22-31:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-22-31:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-22-31:MessageModule,P-reason-C;;;work;;;destruction:0x1017276b0,0x1017276b0
+08-29-11-22-31:ConnectivityModule,handle event 3
+08-29-11-22-31:ConnectivityModule,exception status:30011
+08-29-11-22-36:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-22-36:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-22-36:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-22-36:ConnectivityModule,handle event 2
+08-29-11-22-36:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-22-42:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-22-42:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-22-42:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-22-42:MessageModule,P-reason-C;;;work;;;destruction:0x101915660,0x101915660
+08-29-11-22-42:ConnectivityModule,handle event 3
+08-29-11-22-42:ConnectivityModule,exception status:30011
+08-29-11-22-47:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-22-47:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-22-47:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-22-47:ConnectivityModule,handle event 2
+08-29-11-22-47:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-22-52:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-22-52:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-22-52:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-22-52:MessageModule,P-reason-C;;;work;;;destruction:0x101915660,0x101915660
+08-29-11-22-52:ConnectivityModule,handle event 3
+08-29-11-22-52:ConnectivityModule,exception status:30011
+08-29-11-22-57:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-22-57:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-22-57:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-22-57:ConnectivityModule,handle event 2
+08-29-11-22-57:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-23-02:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-23-02:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-23-02:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-23-02:MessageModule,P-reason-C;;;work;;;destruction:0x1017276b0,0x1017276b0
+08-29-11-23-02:ConnectivityModule,handle event 3
+08-29-11-23-02:ConnectivityModule,exception status:30011
+08-29-11-23-07:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-23-07:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-23-07:MessageModule,P-reason-C;;;sync_msg;;;sync[1503972867915],send[1503910569174]
+08-29-11-23-07:ConnectivityModule,handle event 2
+08-29-11-23-07:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:0,finish:1
+08-29-11-23-13:MessageModule,P-more-C;;;ondisconnect;;;2;;;14
+08-29-11-23-13:ConnectivityModule,error status:30011,socket disconnect
+08-29-11-23-13:MessageModule,P-more-C;;;recv_timeout;;;2;;;No such file or directory
+08-29-11-23-13:MessageModule,P-reason-C;;;work;;;destruction:0x101915660,0x101915660
+08-29-11-23-13:ConnectivityModule,handle event 3
+08-29-11-23-13:ConnectivityModule,exception status:30011
+08-29-11-23-18:MessageModule,P-reason-C;;;tcp_connect;;;ip:120.92.13.66,port:443
+08-29-11-23-18:MessageModule,P-reason-C;;;send_connect;;;connect
+08-29-11-23-18:MessageModule,P-reason-C;;;sync_msg;;;sync[0],send[0]
+08-29-11-23-18:ConnectivityModule,handle event 2
+08-29-11-23-18:MessageModule,P-reason-C;;;sync_msg;;;time[1503972867915],size:51,finish:1

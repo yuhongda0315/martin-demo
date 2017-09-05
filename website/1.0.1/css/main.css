@@ -1,0 +1,180 @@
+.star-goods{
+	margin-top: 20px;
+	height: 50px;
+}
+
+.star-goods .title{
+	padding-top: 16px;
+    width: 20%;
+    color: #333;
+}
+
+.star-goods .more{
+	float: right;
+    margin-top: -40px;
+    border: 1px solid #DEDEDE;
+}
+
+.star-goods .more a{
+    display: block;
+    float: left;
+    width: 35px;
+    text-align: center;
+}
+
+.star-goods .more .next{
+	border-left: 1px solid #DEDEDE
+}
+
+.star-goods-roll{
+	height: 380px;
+}
+
+.star-goods-list{
+	height: 380px;
+}
+
+.star-goods-item{
+	height: 380px;
+	float: left;
+	width: 19%;
+	background-color: #fafafa;
+	margin-left: 15px;
+	text-align: center;
+	padding-top: 49px;
+	box-sizing: border-box;
+}
+
+.star-goods-list .item1{
+	margin-left: 0px;
+	border-top: 1px solid #ffac13;
+}
+
+.star-goods-list .item2{
+	border-top: 1px solid #83c44e;
+}
+
+.star-goods-list .item3{
+	border-top: 1px solid #2196f3;
+}
+
+.star-goods-list .item4{
+	border-top: 1px solid #e53935;
+}
+
+.star-goods-list .item5{
+	border-top: 1px solid #00c0a5;
+}
+
+.star-goods-item .title{
+	color: #333;
+}
+
+.star-goods-item .price{
+	color: #ff6700;
+}
+
+.star-goods-item .goods-info img{
+	width: 160px;
+	height: 160px;
+}
+
+.home-main{
+	margin-top: 20px;
+	height: 650px;
+	background: #F5F5F5;
+}
+
+.home-app-title{
+	height: 50px;
+}
+
+.home-app-title .name{
+	line-height: 50px;
+	font-size: 20px;
+	width: 10%;
+    float: left;
+}
+
+.home-app-title .nav{
+	float: right;
+}
+
+.home-app-title .nav .app-list{
+	height: 50px;
+}
+
+.home-app-title .nav .app-item{
+	display: inline-block;
+    line-height: 50px;
+    text-align: center;
+    color: #333;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.home-app-title .nav .app-item a{
+	color: #333;
+}
+
+.home-app-title .nav .app-item a:hover{
+	color: #ff6700;
+	border-bottom: 2px solid #ff6700;
+}
+
+.home-goods-box{
+	height: 600px;
+}
+
+.home-goods-list{
+	height: 590px;
+}
+
+.home-goods-item:first-child{
+	margin-left: 0;
+	margin-right: 4px;
+}
+
+.home-goods-item{
+    height: 590px;
+    float: left;
+    width: 19%;
+    margin-left: 14px;
+}
+
+.home-goods-item .brick-l{
+	height: 590px;
+}
+
+.home-goods-item ul{
+	height: 590px;
+}
+
+.home-goods-item li{
+	background-color: #FFF;
+	height: 285px;
+	color: #333;
+	text-align: center;
+    box-shadow: -5px -6px 5px #DEDEDE; 
+}
+
+.home-goods-item li:hover{
+	transition: 0.4s;
+	box-shadow: 5px 6px 5px #DEDEDE;  
+}
+
+.home-goods-item .title{
+	font-size: 13px;
+}
+
+.home-goods-item .price{
+	color: #ff6700;
+}
+
+.home-goods-item img{
+	height: 180px;
+}
+
+.home-goods-item li:last-child{
+	margin-top: 20px;
+}

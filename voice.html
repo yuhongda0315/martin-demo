@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>iOS Safari</title>
+</head>
+<body>
+    <!-- <audio id="bgmusic" controls></audio> -->
+    <button onclick="play()">Play</button>
+    <script>
+    var audioEl = new Audio();
+
+    function play() {
+        // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+        audioEl.load(); 
+        // iOS 7/8 仅需要 play 一下
+        audioEl.play(); 
+    }
+
+
+    audioEl.addEventListener('touchstart', play, false);
+
+    audioEl.src = 'http://www.w3school.com.cn/i/song.mp3';    </script>
+</body>
+</html>

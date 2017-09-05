@@ -1,0 +1,267 @@
+.site-topbar{
+	min-width: 1000px;
+}
+.site-topbar .bn-bar{
+	height: 120px;
+	background: url(//i1.mifile.cn/a4/cms_15040890496958_ByAzU.jpg) center 0 no-repeat;
+}
+
+.site-topbar .container{
+	height: 40px; 
+	background-color: #333;
+}
+
+.container a:hover{
+	color: #FFF;
+}
+
+.topbar-nav{
+	height: 40px; 
+    float: left;
+	margin-right: 5px;
+}
+
+.topbar-nav .nav{
+	height: 40px;
+}
+.topbar-nav .nav .nav-item{
+	display: inline-block;
+	line-height: 40px;
+}
+
+.topbar-nav .nav .nav-item::before{
+	content: "";
+    border-right: 1px solid;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.topbar-nav .nav .first-item::before{
+	content: "";
+	border-right: none;
+}
+
+.topbar-info{
+	height: 40px;
+	width: 200px;
+	float: right;
+}
+
+.topbar-info .info{
+	height: 40px;
+}
+
+.topbar-info .info .info-item{
+	display: inline-block;
+	line-height: 40px;
+	margin-left: 20px;
+}
+
+.topbar-cart{
+	height: 40px;
+    width: 120px;
+    background-color: #424242;
+    float: right;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 6px;
+    cursor: pointer;
+}
+
+.topbar-cart:hover{
+	background-color: #FFF;
+	color: #ff6700;
+	transition: 1s;
+}
+
+.topbar-cart .link-style:hover{
+	color: #ff6700;
+}
+
+.site-header{
+	height: 100px;
+	width: 98%;
+	padding-top: 20px;
+}
+
+.header-logo{
+	height: 60px;
+	float: left;
+}
+
+.header-logo .logo{
+    height: 60px;
+    width: 60px;
+    background: url(images/mi-logo.png) no-repeat center;
+	background-color: #ff6700;
+    display: inline-block;
+}
+
+.header-logo .goods{
+
+}
+
+.header-navbar{
+	height: 60px;
+}
+.header-navbar .navbar-box{
+	height: 60px;
+}
+
+.header-navbar .navbar-item{
+	display: inline-block;
+    line-height: 60px;
+    font-size: 18px;
+    margin-right: 28px;
+}
+
+.header-navbar .navbar-item .link-style{
+	color: #333;
+}
+
+.header-navbar .navbar-item .link-style:hover{
+	color: #ff6700;
+}
+
+.header-search{
+	height: 60px;
+	width: 260px;
+	float: right;
+}
+.header-search .seach-box{
+    position: relative;
+    border: 1px solid #DEDEDE;
+    width: 206px;
+    margin-top: 12px;
+    line-height: 32px
+}
+
+.header-search .input-box{
+	border: none;
+    width: 165px;
+	outline: none;
+	background: none;
+}
+
+.header-search .search-btn{
+	height: 35px;
+    width: 35px;
+    display: inline-block;
+    padding-left: 8px;
+    box-sizing: border-box;
+    border-left: 1px solid #DEDEDE;
+}
+.header-search .search-btn:hover{
+	color: #FFF;
+	background-color: #ff6700;
+	transition: 1s;
+}
+
+.site-category{
+	position: relative;
+	height: 420px;
+	background: url(http://i1.mifile.cn/a4/xmad_15036346601839_FecjP.jpg) no-repeat center 0;
+}
+
+.category-list{
+	height: 400px;
+}
+
+.category-item{
+	line-height: 38px;
+    cursor: pointer;
+    padding-left: 35px;
+    margin-top: 3px;
+}
+
+.category-item:hover{
+	background-color: #ff6700;
+	transition: 0.4s;
+}
+
+.category-item a{
+	color: #FFF;
+}
+
+.category-item a:hover{
+	color: #FFF;
+}
+
+.category-item i{
+	float: right;
+	margin-right: 15px;
+}
+
+.category-box{
+	height: 420px;
+	width: 260px;
+	background-color: #333;
+    opacity: 0.6;
+	float: left;
+}
+
+.category-carousel{
+	height: 420px;
+	width: 100%;
+}
+
+.home-hero-sub{
+    height: 180px;
+    margin-top: 20px;
+}
+
+.home-channel{
+	height: 180px;
+	width: 260px;
+	background-color: #5f5750;
+	float: left;
+}
+
+.home-channel-list{
+	height: 180px;
+}
+
+.home-channel-item{
+	float: left;
+    width: 31%;
+    height: 90px;
+    box-sizing: border-box;
+    padding: 8% 0% 3% 6%;
+    cursor: pointer;
+    font-size: 15px;
+    color: #CFCDCB;
+}
+
+.home-channel-item i{
+    display: block;
+    margin-left: 17px;
+    margin-bottom: 5px;
+}
+
+.home-channel-item:hover{
+	color: #FFF;
+	transition: 1s;
+}
+
+.home-promo{
+	height: 180px;
+}
+
+.home-promo-list{
+	height: 180px;
+}
+
+.home-promo-item{
+	height: 180px;
+	display: inline-block;
+	width: 300px;
+	margin-left: 10px;
+}
+
+.home-promo-item img{
+	height: 180px;
+	width: 300px;
+}
+
+.home-promo-item:last-child{
+	margin-left: 12px;
+}

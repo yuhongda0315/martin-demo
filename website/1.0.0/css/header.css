@@ -1,0 +1,71 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font:14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+.mi-site{
+	height: 100%;
+	width: 100%;
+}
+.site-header{
+	height: 160px;
+}
+.site-bn-bar{
+	height: 120px;
+	background: url(images/header-bn.jpg) no-repeat center 0;
+}
+.topbar-nav{
+	height: 40px;
+	background: #333333;
+	position: relative;
+	min-width: 900px;
+}
+.topbar-nav a{
+	color: #B0B0B0;
+    font-size: 12px;
+    text-decoration: none;
+}
+.topbar-nav a:hover{
+	color: #FFFFFF;
+	font-weight: 12px;
+}
+.top-nav-content{
+	height: inherit;
+    padding-top: 8px;
+    box-sizing: border-box;
+}
+.top-nav-item{
+	position: relative;
+    left: 90px;
+    width: 500px;
+}
+.topbar-info{
+    position: absolute;
+    right: 204px;
+    top: 0;
+    height: inherit;
+    width: 120px;
+}
+.topbar-car{
+	position: absolute;
+    right: 105px;
+    top: 0px;
+    width: 93px;
+    height: inherit;
+}
+.topbar-car:hover{
+	background-color: #FFF;
+}
+.topbar-car a{
+    height: 40px;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 16px;
+    box-sizing: border-box;
+}
+.topbar-car a:hover{
+	color: #FF6609;
+}

@@ -1,0 +1,117 @@
+html, body{
+	height: 100%;
+	margin: 0;
+}
+
+.talk-navi{
+	height: 100%;
+	width: 25%;
+	float: left;
+	background-color: #F4F8FC;
+	position: relative;
+}
+
+.talk-navi .left> div:hover{
+	background-color: #0697EB;
+	cursor: pointer;
+}
+
+.talk-navi .left{
+	height: 100%;
+	width: 70px;
+	background: url(images/bg.png);
+	float: left;
+}
+
+.talk-navi .left .avater{
+	height: 70px;
+	width: 70px;
+}
+.talk-navi .left .avater img{
+	height: 50px;
+	width: 50px;
+	position: relative;
+	left: 10px;
+	top: 10px;
+	border-radius: 50%;
+}
+
+.talk-navi .left .message{
+	height: 70px;
+	width: 70px;
+}
+
+.talk-navi .left .message div{
+	height: 35px;
+    width: 42px;
+    position: relative;
+    top: 22px;
+    left: 18px;
+    background-image: url(images/icons.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: 120px auto;
+}
+
+.talk-navi .left .concat{
+	height: 70px;
+	width: 70px;
+}
+
+.talk-navi .left .concat div{
+	height: 34px;
+    width: 42px;
+    position: relative;
+    top: 22px;
+    left: 18px;
+    background-image: url(images/icons.png);
+    background-repeat: no-repeat;
+    background-position: 0px -50px;
+    background-size: 120px auto;
+}
+
+.talk-navi .left .add{
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+}
+.talk-navi .left .add div{
+	height: 30px;
+	width: 30px;
+	position: relative;
+	top: 22px;
+    left: 18px;
+	background-image: url(images/icons.png);
+    background-repeat: no-repeat;
+    background-position: 0px -92px;
+    background-size: 120px auto;
+}
+
+.talk-main{
+	height: 100%;
+	overflow: hidden;
+	background: #F9FBFD url(images/talk.png) no-repeat center;
+	background-size: contain;
+}
+
+/* ******* 会话列表 ***** */
+.talk-navi .conversation{
+	height: 90%;
+	overflow-y: auto;
+	margin-left: 70px;
+}
+
+.talk-navi .conversation .search{
+	height: 65px;
+	background-color: red;
+	position: fixed;
+	width: 200px;
+}
+
+.talk-navi .conversation .item{
+	height: 65px;
+	border-top: 1px solid #e1e9f1;
+	
+}

@@ -1,0 +1,99 @@
+.site-footer{
+	margin-top: 20px;
+    height: 400px;
+}
+.site-footer .container{
+    padding: 0 20px;
+	height: 250px;
+}
+
+.site-footer .services{
+    height: 80px;
+    text-align: center;
+    border-bottom: 1px solid #DEDEDE;
+}
+.site-footer .services ul{
+	margin: 0;
+	padding: 0;
+	position: relative;
+	top: 26px;
+}
+.site-footer .services-item{
+	float: left;
+	list-style: none;
+	width: 20%;
+	height: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.4s;
+	color: #616161;
+}
+.site-footer .services-item:hover{
+	color: #ff6700;
+}
+/*.site-footer .services-item:after{
+	content: "";
+	width: 1px;
+	height: 58px;
+}*/
+
+.footer-links{
+	height: 170px;
+	position: relative;
+	font-size: 12px;
+}
+.footer-links .col-links{
+	display: inline-block;
+    min-width: 150px;
+    width: 14%;
+    position: relative;
+    top: 20px;
+}
+.footer-links .col-links dt{
+	margin: 0 39px 24px;
+	font-size: 14px;
+    color: #424242;
+}
+
+.footer-links .col-links dt>a{
+    color: #424242;
+}
+
+.footer-links .col-links a:hover{
+	color: #ff6700;
+}
+.footer-links .col-links dd>a{
+	color: #757575;
+}
+.footer-links .col-contact{
+	width: 14%;
+	height: 130px;
+	position: absolute;
+    right: 40px;
+    top: 20px;
+    border-left: 1px solid #DEDEDE;
+    text-align: center;
+}
+.footer-links .col-contact .phone{
+	font-size: 18px;
+	line-height: 8px;
+	color: #ff6700;
+}
+.footer-links .col-contact .memo{
+	font-size: 10px;
+}
+.footer-links .col-contact a{
+	height: 30px;
+	width: 150px;
+	display: inline-block;
+	color: #757575;
+}
+.footer-links .col-contact a:hover{
+	color: #FFF;
+	background-color: #ff6700;
+}
+.site-info{
+	height: 150px;
+	background-color: #fafafa;
+	background: url(images/slogan2016.png) no-repeat center;
+}

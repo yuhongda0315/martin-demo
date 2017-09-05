@@ -1,0 +1,268 @@
+html, body{
+	margin: 0;
+	padding:0;
+	width: 100%;
+	overflow:hidden;
+	font-size: 12px;
+}
+a{
+	text-decoration: none;
+	color: #363636;
+}
+.container{
+	height: 100%;
+	width: 100%;
+}
+.list-range{
+	height: 100%;
+	width: 300px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-right: 1px solid #DCDCDC;
+}
+
+.sidebar{
+	height: 100%;
+	width: 70px;
+	background-color: #ECECED;
+}
+
+.sidebar div{
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	left: 10px;
+	cursor: pointer;
+	background-image: url(img/icon.svg);
+	background-repeat: no-repeat;
+}
+
+.sidebar .avatar{
+	top: 20px;
+}
+
+.sidebar .avatar img{
+	height: inherit;
+	width: inherit;
+	border-radius: 5px;
+}
+
+.sidebar .status{
+	top: 77px;
+	height: 18px;
+	background: none;
+}
+.sidebar .status i{
+	height: 20px;
+    width: 22px;
+    display: block;
+    background-image: url(img/icon.svg);
+    background-position: 0 85%;
+    position: relative;
+    left: -8px;
+}
+.sidebar .status a{
+	position: relative;
+	left: 20px;
+	top: -24px;
+}
+.sidebar .message{
+	top: 140px;
+}
+.sidebar .message:hover{
+	background-position: -51px 0px;
+}
+
+.sidebar .concat{
+	top: 230px;
+	background-position: 0 -45px;
+}
+.sidebar .concat:hover{
+	background-position: -51px -45px;
+}
+
+.sidebar .setting{
+	top: 80%;
+	background-position: 0 -90px;
+}
+.sidebar .setting:hover{
+	background-position: -51px -90px;
+}
+
+.conversation-box{
+	height: 100%;
+	width: 230px;
+	background-color: #F9F9FA;
+	position: absolute;
+	top: 0px;
+	left: 70px;
+}
+
+.conversation-box .search-box{
+	height: 65px;
+	width: 100%;
+	border-bottom: 1px solid #DCDCDC;
+	position: absolute;
+	top: 0;
+}
+
+.conversation-box .search-add{
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	right: 15px;
+    top: 19px;
+    border-radius: 5px;
+    background-image: url(img/icon.svg);
+    background-position: -6px -248px;
+    background-size: 111px auto;
+    background-repeat: no-repeat;
+}
+.conversation-box .search-icon{
+	height: 10px;
+	width: 10px;
+}
+
+.conversation-box .search-main{
+	height: 30px;
+	width: 160px;
+	position: absolute;
+    left: 7px;
+    top: 18px;
+    border-radius: 8px;
+	border: 1px solid #DCDCDC;
+}
+
+.conversation-box .search-input{
+	background: none;
+	border: none;
+  	position: absolute;
+    top: 5px;
+    left: 26px;
+    height: 18px;
+    width: 125px;
+    outline:none;
+}
+
+.conversation-box .search-main i{
+	background: url(img/search.png) no-repeat;
+    height: 16px;
+    width: 16px;
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 4px;
+}
+.conversation-box .list{
+	width: 100%;
+	position: absolute;
+	top: 65px;
+	bottom: 0;
+	overflow: auto;
+}
+.conversation-box .list .conversation-item:hover{
+	background-color: #EFF0F6;
+}
+.conversation-box .list .conversation-item{
+	cursor: pointer;
+	height: 50px;
+	padding: 5px 8px;
+	position: relative;
+}
+.conversation-box .list .avatar{
+	height: 50px;
+    width: 50px;
+    background-color: #DDDFE1;
+    float: left;
+}
+.conversation-box .list .avatar img{
+	height: inherit;
+    width: inherit;
+}
+.conversation-box .list .conversation-mian{
+	height: 50px;
+    margin-left: 55px;
+}
+.conversation-box .list .conversation-mian .title{
+	width: 80px;
+}
+.conversation-box .list .conversation-mian .time{
+	width: 40px;
+	position: absolute;
+    right: 0px;
+    top: 4px;
+}
+.conversation-box .list .conversation-mian .bar{
+	width: 40px;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+}
+.conversation-box .list .conversation-mian .content{
+	position: absolute;
+    top: 30px;
+}
+
+.conversation{
+    margin-left: 300px;
+    background-color: #FBFBFD;
+}
+
+.header{
+	height: 60px;
+	width: 100%;
+	border-bottom: 1px solid #DCDCDC;
+}
+.header .info{
+	width: 120px;
+	margin-left: 10px;
+	height: 55px;
+}
+.header .info span{
+	display: inline-block;
+	position: relative;
+    top: 5px;
+    left: 5px;
+    margin-top: 5px;
+}
+.header .avatar{
+    background-color: #DEDEDE;
+    width: 46px;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    border-radius: 5px;
+    float: left;
+}
+.header .avatar img{
+	height: 40px;
+    width: 40px;
+}
+.message-box{
+	width: 100%;
+	position: absolute;
+	overflow: auto;
+	bottom: 135px;
+	top: 65px;
+	padding: 0px 135px 0 0;
+}
+.input-box{
+	border-top: 1px solid #DCDCDC;
+	height: 135px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+.clear{
+	clear: both;
+}
+.tool-bar{
+	background-color: #DEDEDE;
+	height: 35px;
+}
+.editor{
+	background-color: #800080;
+	height: 100px;
+}
