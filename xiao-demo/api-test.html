@@ -196,7 +196,7 @@ function startInit(){
 	appKey = document.getElementById("appkey").value;
 	token = document.getElementById("token").value;
 	navi = document.getElementById("navi").value;
-	cmp = document.getElementById("cmp").value;
+	cmp = document.getElementById("cmp").value || 'wsproxy.cn.ronghub.com';
 
 	if(appKey == "" || token == ""){
 		alert("必须提供appkey和token");
@@ -1320,7 +1320,7 @@ function getBase64Image(){
 	</p>
 	<p>
 		<span>targetIds</span>
-		<input type="text" id="targetId" size="25" value="tester9">
+		<input type="text" id="targetId" size="25" value="111111">
 		<em>逗号间隔，至少提供两个</em>
 	</p>
 
