@@ -3,114 +3,71 @@
 
 <head lang="en">
   <meta charset="UTF-8">
-  <title>WS-Demo</title>
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-<script src="js/RongIMLib.js"></script>
-  <style type="text/css">
-    body {
-      font-size: 13px;
-      background-color: black;
-      color: white;
-    }
-    #content {
-      float: left;
-      border-right: 1px solid white;
-      margin-right: 20px;
-      padding-right: 20px;
-    }
-    span {
-      margin-right: 50px;
-    }
-  </style>
+  <title>Demo</title>
 </head>
-
 <body>
-  appkey:<input type="text">
-  token:<input type="text">
-  <hr/>
-  <input type="button" name="name" value="Go" id="initId">
-  <input type="button" name="name" value="Clear" id="clearId">
-  <hr/>
-  <div id="content"></div>
-  <script type="text/javascript">
-    function init() {
-      RongIMClient.init("8luwapkvucoil");
-      var token = "hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==";
-      RongIMClient.setConnectionStatusListener({
-        onChanged: function(status) {
-          switch (status) {
-            case RongIMLib.ConnectionStatus.CONNECTED:
-              consoleInfo("链接成功!");
-              break;
-            case RongIMLib.ConnectionStatus.CONNECTING:
-              consoleInfo("正在链接!");
-              break;
-              //重新链接
-            case RongIMLib.ConnectionStatus.RECONNECT:
-              consoleInfo("重新链接!");
-              break;
-            case RongIMLib.ConnectionStatus.OTHER_DEVICE_LOGIN:
-              consoleInfo("其他设备登录!");
-              break;
-            case RongIMLib.ConnectionStatus.CLOSURE:
-              consoleInfo("连接关闭!");
-              break;
-            case RongIMLib.ConnectionStatus.DISCONNECTED:
-              consoleInfo("连接断开!");
-              break;
-            case RongIMLib.ConnectionStatus.LOGOUT:
-              //用户已被封禁
-            case RongIMLib.ConnectionStatus.BLOCK:
-              break;
-          }
-        }
-      });
-      RongIMClient.setOnReceiveMessageListener({
-        onReceived: function(message) {
-            consoleInfo(JSON.stringify(message));
-        }
-      });
-      RongIMClient.connect(token, {
-        onSuccess: function(userId) {
-          consoleInfo("Login successfully." + userId);
-        },
-        onTokenIncorrect: function() {
-          consoleErrorInfo('token无效');
-        },
-        onError:function(errorCode){
-              var info = '';
-              switch (errorCode) {
-                case RongIMLib.ErrorCode.TIMEOUT:
-                  info = '超时';
-                  break;
-                case RongIMLib.ErrorCode.UNKNOWN_ERROR:
-                  info = '未知错误';
-                  break;
-                case RongIMLib.ErrorCode.UNACCEPTABLE_PaROTOCOL_VERSION:
-                  info = '不可接受的协议版本';
-                  break;
-                case RongIMLib.ErrorCode.IDENTIFIER_REJECTED:
-                  info = 'appkey不正确';
-                  break;
-                case RongIMLib.ErrorCode.SERVER_UNAVAILABLE:
-                  info = '服务器不可用';
-                  break;
-                case RongIMLib.ErrorCode.TOKEN_INCORRECT:
-                  info = 'token无效';
-                  break;
-              }
-              consoleErrorInfo(errorCode);
-            }
-      });
-    }
-  </script>
-  <script type="text/javascript">
-  $("a").click(function(event){
-      alert(event.target.href); //获取触发事件的<a>元素的href属性值
-      alert(event.target.tagName); //获取触发事件的元素的标签名称
-      return false; //阻止链接跳转
-    })
-  </script>
 </body>
+<script>
+    /*
+      1、src/imclient.ts 中所有 API onError
+      2、src/util/util.ts : CheckParam.prototype.checkout 
+    */
 
+
+    /*
+      默认向控制台输出，可重写
+    */
+    var showError = function(info){
+        console.log(JSON.stringify(info));
+    };
+    var RongIMClient = {
+        showError: showError
+    }
+
+    var logFactroy = {
+        20604:{
+          /*被调用的函数名称*/
+          funcName: '',
+          /*错误码*/
+          code: '22406',
+          /*错误信息*/
+          msg: '发送频率过快',
+          /*错误信息描述，文档地址、文字性描述或错误解决方法*/
+          desc: 'https://developer.rongcloud.cn/ticket/info/9Q3L6vRKd1cLS7rycA==?type=1'
+        }
+    };
+
+    // 输出 log 开关
+    var showErrorInfo = true;
+    /*
+      funcName: 被调用的函数名称（必选）
+      code: 错误码 （必选）
+      desc: 问题描述 （可选）
+
+      错误信息:
+        
+        1、已定义 logFactroy
+
+        2、未定义直接输出 params
+
+    */
+    var logger = function(params){
+      
+      var {funcName, code, desc} = params;
+
+      var errorInfo = logFactroy[code] || params;
+      errorInfo.funcName = funcName;
+      showErrorInfo && RongIMClient.showError(errorInfo);
+    };
+
+    var params = {
+        code: 20604,
+        funcName: 'sendMessage'
+    };
+
+    logger(params);
+    /*
+      {"funcName":"sendMessage","code":"22406","msg":"发送频率过快","desc":"https://developer.rongcloud.cn/ticket/info/9Q3L6vRKd1cLS7rycA==?type=1"}
+    */
+</script>
 </html>
