@@ -1,0 +1,50 @@
+.home-main{
+	margin-top: 20px;
+    background-color: #F5F5F5;
+}
+
+.household-nav-list{
+	height: 30px;
+}
+
+.household-nav-item{
+	height: 30px;
+	width: 65px;
+	box-sizing: border-box;
+	padding-top: 6px;
+}
+
+.household-nav-item:hover{
+	color: #FF6700;
+	background-color: #F5F5F5;
+	border-bottom: 2px solid #FF6700;
+}
+
+.household-app-box{
+	height: 614px;
+}
+
+.household-left-nav{
+	width: 234px;
+	height: 614px;
+	float: left;
+}
+
+.household-goods-box{
+	height: 614px;
+	margin-left: 234px;
+}
+
+.household-app-list{
+	height: 614px;
+}
+
+.household-app-item{
+    height: 300px;
+    width: 23%;
+    margin-left: 19px;
+    margin-top: 5px;}
+
+.household-app-item .goods-info-item{
+    line-height: 35px;
+}
