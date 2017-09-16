@@ -4,24 +4,54 @@
 <head>
     <meta charset="UTF-8">
 </head>
-
+<script src="../js/pcmdata.min.js"></script>
+<script src="../js/amrnb.js"></script>
 <body>
     <button onclick="start()">录音</button>
     <button id="stop">停止</button>
 </body>
 <script>
 
+    /*
+        var blob = me.base64ToBlob(base64Data,'audio/amr');
+                    var reader = new FileReader();
+                    reader.onload = function(e:any) {
+                        var data = new Uint8Array(e.target.result);
+                        var samples = AMR.decode(data);
+                        var pcm = PCMData.encode({sampleRate: 8000, channelCount: 1, bytesPerSample: 2, data: samples});
+                        var audio = new Audio();
+                        audio.src = "data:audio/wav;base64," + btoa(pcm);;
+                        me.element[str] = audio;
+                        callback && callback();
+                    };
+                    reader.readAsArrayBuffer(blob);
+
+    */
+
     function play(blob){
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            console.log(e.target.result);
-        };
-        reader.readAsDataURL(blob);
+        // var reader = new FileReader();
+        // reader.onload = function(e) {
+        //     console.log(e.target.result);
+        // };
+        // reader.readAsDataURL(blob);
 
         // var url = URL.createObjectURL(blob);
         // var audio = new Audio();
         // audio.src = url;
         // audio.play();
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var data = new Uint8Array(e.target.result);
+            var samples = AMR.decode(data);
+            var pcm = PCMData.encode({sampleRate: 8000, channelCount: 1, bytesPerSample: 2, data: samples});
+            var audio = new Audio();
+            audio.src = "data:audio/wav;base64," + btoa(pcm);;
+            me.element[str] = audio;
+            callback && callback();
+        };
+        reader.readAsArrayBuffer(blob);
+      
     }
     var stop = document.getElementById('stop');
     var chunks = [];
@@ -33,7 +63,7 @@
         }
 
         mediaRecorder.onstop = function(e) {
-          var blob = new Blob(chunks, { 'type' : 'audio/wav' });
+          var blob = new Blob(chunks, { 'type' : 'audio/amr' });
           chunks = [];
           play(blob);
         }

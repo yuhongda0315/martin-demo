@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Socket</title>
+</head>
+<body>
+	<button onclick="sendMessage();">send</button>
+	<button onclick="getConversationList();">getConversationList</button>
+	<script>
+		var toJSON = function(obj){
+			return JSON.stringify(obj);
+		};
+		var url = "ws://127.0.0.1:8585?userId=lisi";
+		var socket = new WebSocket(url);
+		socket.onmessage = function(event){
+		    console.log(event.data);
+		};
+		socket.onerror = function(error, e){
+		    console.log(error);
+		};
+
+		function sendMessage(){
+			var message = {
+			    topic: 'pMsgP',
+			    content: {
+			        objectName: 'WT:TxtMsg',
+			        content: 'testaaa',
+			        messageId: 1
+			    },
+			    type: 1,
+			    targetId: 'zhangsan'
+			};
+			socket.send(toJSON(message));
+		}
+
+		function getConversationList(){
+			var params = {
+                topic: 'qryRelation',
+                type: 1,
+                targetId: 'zhangsan',
+                uId: 2
+			};
+			socket.send(toJSON(params));
+		}
+	</script>
+</body>
+</html>

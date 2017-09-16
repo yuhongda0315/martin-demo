@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Voice</title>
+	<script src="libamr-min-new.js"></script>
+	<script src="voice.js"></script>
+	<script src="voice-amr-base64.json"></script>
+</head>
+<body>
+	<button onclick="play()">Play</button>
+	<script>
+		RongIMVoice.init();
+		function play() {
+			RongIMVoice.Player.play(voice, {
+			    onbeforeplay: function(){
+			        console.log('onbeforeplay');
+			    },
+			    onplayed: function(){
+			        console.log('onplayed');
+			    },
+			    onended: function(){
+			        console.log('onended');
+			    }
+			});
+		}
+	</script>
+</body>
+</html>

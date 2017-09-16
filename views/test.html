@@ -5,7 +5,13 @@
     <title> Demo </title>
 </head>
 <body>
-	
+	<p id="hostElement"></p>
+    <script>
+      // create shadow DOM on the <p> element above
+      var shadow = document.querySelector('#hostElement').createShadowRoot();
+      shadow.innerHTML = '<p>Here is some new text</p>'
+    </script>
+    <input id="foo" type="range"/>
 </body>
 <script>
 //打乱数组顺序
@@ -117,5 +123,35 @@ triangle.name = 'Triangle';
 triangle.getArea = function(){
     return this.side * this.height / 2;
 };
+
+var obj = {a:1};
+
+var newValue = null;
+Object.defineProperty(obj, 'b', {
+    enumerable: true,
+    writable:true
+});
+
+function Dep(){
+    
+}
+
+Dep.prototype = {
+    subs: [],
+    add: function(sub){
+        this.subs.push(sub);
+    }
+}
+
+var url = "ws://10.12.10.163:8585?userId=zhangsan";
+var socket = new WebSocket(url);
+socket.onmessage = function(event){
+    console.log(event.data);
+};
+socket.onerror = function(error, e){
+    console.log(error);
+};
 </script>
+
+
 </html> 

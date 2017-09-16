@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RCE</title>
+	<link rel="icon" type="image/png" href="//f2e.cn.ronghub.com/desktop-client-qa/css/images/logo.png">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<div class="rong-im">
+		<!-- 导航 -->
+		<div class="rong-nav">
+			<a href="#" class="rong-nav-avatar">
+				<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/FtUu6gE0MuHHzx2F1mCz2bhyGSwf');"></div>
+			</a>
+			<div class="rong-online-status">
+				<i class="rong-online-icon iconfont"></i>
+				<a href="#" class="rong-online-memo">在线</a>
+			</div>
+
+			<ul class="rong-navbar-list">
+				<li class="rong-navbar-item">
+					<a href="#" class="rong-nav-btn" title="会话">
+						<i class="iconfont conversation"></i>
+					</a>
+				</li>
+				<li class="rong-navbar-item">
+					<a href="#" class="rong-nav-btn" title="通讯录">
+						<i class="iconfont concat"></i>
+					</a>
+				</li>
+				<li class="rong-navbar-item">
+					<a href="#" class="rong-nav-btn" title="PIN">
+						<i class="iconfont pin"></i>
+					</a>
+				</li>
+			</ul>
+
+			<div class="rong-nav-setting">
+				<a href="#" class="iconfont rong-nav-btn">
+					<i class="iconfont"></i>
+				</a>
+			</div>
+		</div>
+		<!-- 右侧主窗口 -->
+		<div class="rong-main">
+			<!-- 会话列表 -->
+			<div class="rong-contanier">
+				<div class="rong-search-box">
+					<div class="rong-search-input">
+						<i class="iconfont"></i>
+						<input type="text" class="rong-search-content" placeholder="请输入">
+					</div>
+					<div class="rong-create-btn">
+						<a href="#">
+							<i class="iconfont"></i>
+						</a>
+					</div>
+				</div>
+				<div class="rong-conversation-list">
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+
+					<div class="rong-conversation-item">
+						<a href="#">
+							<div class="rong-conversation-avatar">
+								<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+							</div>
+							<div class="rong-conversation-content">
+								<div class="title">RCE－PC</div>
+								<div class="user-name">于洪达:</div>
+								<div class="content">天气不错</div>
+							</div>
+							<div class="rong-conversation-info">10:48</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- 会话界面 -->
+			<div class="rong-conversation">
+				<div class="rong-conversation-title">
+					<div class="rong-conversation-title-avatar">
+						<a href="#">
+							<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+						</a>
+					</div>
+					<div class="title">RCE－PC</div>
+					<div class="online-status">离线</div>
+					<div class="toolbar">
+						<a href="#"><i class="iconfont historymessages"></i></a>
+						<a href="#"><i class="iconfont setting"></i></a>
+					</div>
+				</div>
+				<!-- 消息列表 -->
+				<div class="rong-message-list">
+					<div class="rong-message-receiver">
+						<div class="rong-message-avatar">
+							<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+						</div>
+						<div class="rong-message-item">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum dolores nisi consequuntur, quo voluptatibus excepturi natus a quod eum suscipit fugiat ad quibusdam ea, doloribus nihil dolore temporibus magnam itaque qui. Iste nesciunt, tempore iusto doloremque veniam porro commodi pariatur veritatis eveniet, suscipit inventore! Delectus maiores exercitationem dolorum odio laboriosam fugit veniam sunt vel eaque ut voluptatem est commodi eveniet, atque, ab deleniti molestias repellendus, nam rem id labore doloremque illo suscipit ad. Quidem distinctio quos, eum doloribus impedit perspiciatis eos officiis consequuntur, cum, facere doloremque tempora nulla cumque voluptatem error nobis repellendus commodi minus eveniet odio nostrum porro voluptatum!
+						</div>
+					</div>
+					<div class="rong-clearfix"></div>
+					<div class="rong-message-sender">
+						<div class="rong-message-avatar">
+							<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/FtUu6gE0MuHHzx2F1mCz2bhyGSwf');"></div>
+						</div>
+						<div class="rong-message-item">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum dolores nisi consequuntur, quo voluptatibus excepturi natus a quod eum suscipit fugiat ad quibusdam ea, doloribus nihil dolore temporibus magnam itaque qui. Iste nesciunt, tempore iusto doloremque veniam porro commodi pariatur veritatis eveniet, suscipit inventore! Delectus maiores exercitationem dolorum odio laboriosam fugit veniam sunt vel eaque ut voluptatem est commodi eveniet, atque, ab deleniti molestias repellendus, nam rem id labore doloremque illo suscipit ad. Quidem distinctio quos, eum doloribus impedit perspiciatis eos officiis consequuntur, cum, facere doloremque tempora nulla cumque voluptatem error nobis repellendus commodi minus eveniet odio
+						</div>
+					</div>
+					<div class="rong-clearfix"></div>
+					<div class="rong-message-sender">
+						<div class="rong-message-avatar">
+							<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/FtUu6gE0MuHHzx2F1mCz2bhyGSwf');"></div>
+						</div>
+						<div class="rong-message-item">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum dolores nisi consequuntur, quo voluptatibus excepturi natus a quod eum suscipit fugiat ad quibusdam ea, doloribus nihil dolore temporibus magnam itaque qui. Iste nesciunt, tempore iusto doloremque veniam porro commodi pariatur veritatis eveniet, suscipit inventore! Delectus maiores exercitationem dolorum odio laboriosam fugit veniam sunt vel eaque ut voluptatem est commodi eveniet, atque, ab deleniti molestias repellendus, nam rem id labore doloremque illo suscipit ad. Quidem distinctio quos, eum doloribus impedit perspiciatis eos officiis consequuntur, cum, facere doloremque tempora nulla cumque voluptatem error nobis repellendus commodi minus eveniet odio
+						</div>
+					</div>
+					<div class="rong-clearfix"></div>
+					<div class="rong-message-receiver">
+						<div class="rong-message-avatar">
+							<div class="rong-avatar-img" style="background-image: url('http://oojs2ztoq.bkt.clouddn.com/Fsn4eFfMA8jBTcvcKJhIuS6dSMFp');"></div>
+						</div>
+						<div class="rong-message-item">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum dolores nisi consequuntur, quo voluptatibus excepturi natus a quod eum suscipit fugiat ad quibusdam ea, doloribus nihil dolore temporibus magnam itaque qui. Iste nesciunt, tempore iusto doloremque veniam porro commodi pariatur veritatis eveniet, suscipit inventore! Delectus maiores exercitationem dolorum odio laboriosam fugit veniam sunt vel eaque ut voluptatem est commodi eveniet, atque, ab deleniti molestias repellendus, nam rem id labore doloremque illo suscipit ad. Quidem distinctio quos, eum doloribus impedit perspiciatis eos officiis consequuntur, cum, facere doloremque tempora nulla cumque voluptatem error nobis repellendus commodi minus eveniet odio nostrum porro voluptatum!
+						</div>
+					</div>
+					<div class="rong-clearfix"></div>
+				</div>
+				<!-- 输入区域 -->
+				<div class="rong-conversaton-editor">
+					<div class="rong-editor-bar">
+						<ul class="rong-editor-bar-list">
+							<li class="rong-editor-bar-item">
+								<a href=""><i class="iconfont emoji-btn"></i></a>
+							</li>
+							<li class="rong-editor-bar-item">
+								<a href=""><i class="iconfont file-btn"></i></a>
+							</li>
+							<li class="rong-editor-bar-item">
+								<a href=""><i class="iconfont card-btn"></i></a>
+							</li>
+						</ul>
+					</div>
+					<div class="rong-editor-input">
+						<textarea name="input-box" class="rong-editor-content"></textarea>
+						<div class="rong-send-box">
+							<button class="rong-send-btn">发送</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

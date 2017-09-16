@@ -4,28 +4,37 @@
 	<meta charset="UTF-8">
 	<title>TtT</title>
 	<style>
-		ul li{
-			display: inline;
-			padding: 10px 50px;
-			background-color: #FE8899;
-			border-radius: 10px;
-		}
-		.main{
-			height: 300px;
-			max-width: 600px;
-			background-color: #FF8899;
-			margin: 0 auto;
-		}
+		.triangle{
+                /*content:"";*/
+            /* position:absolute;
+             bottom:0;
+             left:50%; */
+             width: 0px;
+             border:34px solid;
+             border: 20px solid #FBFBFD;
+             border-top-color:#0094ff;
+        }
+        .container{
+            display:block;
+            margin:10px;
+            width:0px;
+            height:0px;
+            border-style:solid;
+            border-width:20px;
+            border-color:transparent #00f transparent transparent;
+            background-color:#fff
+        }
 	</style>
 </head>
 <body>
-	<ul>
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>5</li>
-	</ul>
-	<div class="main"></div>
+    <div class="triangle"></div>
+
+  <div class="container"></div>
+
+
+  <div style="position:relative;display:block;width:50px;height:50px;">
+    <div style="display:block;position:absolute;left:10px;top:10px;width:0;height:0;border-style:solid;border-width:20px;border-color:transparent #00f transparent transparent;"></div>
+    <div style="display:block;position:absolute;left:16px;top:10px;;width:0;height:0;border-style:solid;border-width:20px;border-color:transparent #fff transparent transparent;"></div>
+</div>
 </body>
 </html>

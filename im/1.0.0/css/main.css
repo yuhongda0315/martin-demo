@@ -1,0 +1,401 @@
+.rong-im{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-width: 1200px;
+}
+
+.rong-nav,.rong-contanier,.rong-main,.rong-conversation{
+	height: 100%;
+}
+
+.rong-nav{
+	float: left;
+	width: 65px;
+	background: #ECECED;
+	box-sizing: border-box;
+	min-height: 400px;
+	position: relative;
+}
+
+.rong-nav-avatar{
+	display: block;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.rong-online-status{
+	height: 16px;
+    margin: 10px auto;
+    width: 48px;
+}
+
+.rong-online-icon:after{
+	content: "\e63d";
+    font-size: 12px;
+    color: #0ACD00;
+    margin-left: 5px;
+}
+
+.rong-navbar-list{
+	margin-top: 50px;
+    height: 260px;
+}
+
+.rong-navbar-item{
+	height: 50px;
+	width: 50px;
+	margin-top: 30px;
+	margin-left: 8px;
+	text-align: center;
+}
+
+.rong-nav-btn i{
+	font-size: 28px;
+	color: #999999;
+}
+.rong-nav-btn .conversation:after{
+	content: "\e623";
+}
+.rong-nav-btn .concat:after{
+	content: "\e600";
+}
+.rong-nav-btn .pin:after{
+	content: "\e7b3";
+}
+
+.rong-nav-btn i:hover{
+	color: #3A91F3;
+}
+
+.rong-nav-setting{
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	left: 8px;
+	bottom: 20px;
+	text-align: center;
+}
+
+.rong-nav-setting i:after{
+	content: "\e630";
+}
+.rong-main{
+	margin-left: 65px;
+}
+
+.rong-contanier{
+	background: #F9F9FA;
+	width: 249px;
+	float: left;
+	border-right: 1px solid #DEDEDE;
+}
+
+.rong-search-box{
+	height: 50px;
+	box-sizing: border-box;
+	padding-top: 10px;
+	padding-left: 13px;
+	padding-right: 12px;
+}
+
+.rong-search-input,.rong-create-btn{
+	border: 1px solid #DEDEDE;
+	height: 30px;
+	border-radius: 6px;
+}
+
+.rong-search-input{
+	width: 175px;
+    float: left;
+    margin-right: 5px;
+}
+.rong-search-input i:after{
+    content: "\e60e";
+    position: relative;
+    left: 3px;
+    top: 3px;
+    color: #999999;}
+
+.rong-create-btn{
+	width: 30px;
+	float: right;
+}
+
+.rong-create-btn i:after{
+	content: "\e70a";
+    position: relative;
+    left: 3px;
+    bottom: 1px;
+    color: #999999;
+    font-size: 25px;}
+
+.rong-search-content{
+	margin-left: 3px;
+	outline: none;
+	border: none;
+	background: none;
+}
+
+/*会话列表*/
+.rong-conversation-list{
+	height: 100%;
+	border-top: 1px solid #DEDEDE;
+	overflow-y: auto;
+}
+
+.rong-conversation-item{
+	padding-top: 6px;
+	padding-left: 5px;
+	padding-right: 5px;
+	box-sizing: border-box;
+	height: 60px;
+	background: #F9F9FA;
+	margin-bottom: 10px;
+}
+
+.rong-conversation-item:hover{
+	background: #E0E8F2;
+}
+
+.rong-conversation-avatar{
+	height: 50px;
+	width: 50px;
+	float: left;
+    box-sizing: border-box;
+    padding-top: 5px;
+}
+
+.rong-conversation-content{
+	box-sizing: border-box;
+	padding-top: 5px;
+	height: 50px;
+	width: 144px;
+	float: left;
+}
+
+.rong-conversation-content .user-name,.content{
+	color: #999999;
+}
+
+.rong-conversation-content .title{
+	margin-bottom: 3px;
+}
+
+.rong-conversation-content .user-name{
+	float: left;
+}
+
+.rong-conversation-info{
+	height: 50px;
+	width: 45px;
+	float: right;
+}
+/* 会话界面*/
+.rong-conversation{
+	margin-left: 250px;
+	position: relative;
+}
+
+.rong-conversation-title{
+	background: #FBFBFD;
+    height: 50px;
+    box-sizing: border-box;
+    padding-top: 5px;
+    position: relative;
+}
+
+.rong-conversation-title-avatar{
+	height: 50px;
+	width: 50px;
+	margin-left: 10px;
+	float: left;
+}
+
+.rong-conversation-title .title{
+}
+
+.rong-conversation-title .online-status{
+	color: #999999;
+}
+.rong-conversation-title .toolbar{
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+.rong-conversation-title i:after{
+	position: relative;
+    top: 7px;
+    right: 25px;
+}
+
+.rong-conversation-title .historymessages:after{
+	content: "\e65b";
+	margin-right: 10px;
+}
+
+.rong-conversation-title .setting:after{
+	content: "\e717";
+}
+
+.rong-message-list{
+	background: #FBFBFD;
+    position: absolute;
+    top: 50px;
+    bottom: 120px;
+    width: 100%;
+    border-top: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+    overflow-y: auto;
+}
+
+.rong-message-receiver,.rong-message-sender{
+	box-sizing: border-box;
+	padding: 5px;
+}
+
+.rong-message-item{
+	min-height: 40px;
+	max-width: 500px;
+    word-wrap: break-word;
+    position: relative;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #FFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.rong-message-item:after,.rong-message-item:before{
+    content: "";
+    border: 12px solid transparent;
+    position: absolute;
+    top: 8px;
+}
+
+.rong-message-receiver{
+	margin: 11px 3px 18px 3px;
+}
+
+.rong-message-receiver .rong-message-item{
+	float: left;
+	margin-left:15px;
+	border: 1px solid #999999;
+}
+
+.rong-message-receiver .rong-message-item:before{
+	border: 8px solid transparent;
+}
+
+.rong-message-receiver .rong-message-item:after{
+    left: -14px;
+    top: 12px;
+	border: 8px solid transparent;
+	border-right-color: #FFF;
+}
+
+.rong-message-receiver .rong-message-item:before{
+	left: -16px;
+    top: 12px;
+    border-right-color: #999999;
+}
+
+.rong-message-receiver .rong-message-avatar{
+	float: left;
+}
+
+.rong-message-sender .rong-message-avatar{
+	float: right;
+}
+
+
+.rong-message-sender .rong-message-item{
+	float: right;
+	margin-right: 10px;
+	background-color: #cae7fd;
+}
+
+.rong-message-sender .rong-message-item:after{
+	border-left-color: #cae7fd;
+	right: -21px;
+}
+
+.rong-message-sender{
+	margin-top: 30px;
+}
+
+.rong-clearfix{
+	clear: both;
+}
+
+.rong-conversaton-editor{
+    height: 120px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.rong-editor-bar{
+	height: 35px;
+}
+
+.rong-editor-bar-list{
+	height: 35px;
+}
+
+.rong-editor-bar-item{
+	display: inline-block;
+	line-height: 35px;
+	width: 25px;
+}
+
+.rong-editor-bar-item  .emoji-btn:after{
+	content: "\e739";
+}
+
+.rong-editor-bar-item .file-btn:after{
+	content: "\e689";
+}
+
+.rong-editor-bar-item .card-btn:after{
+	content: "\e69d";
+}
+
+.rong-editor-input{
+	height: 85px;
+}
+
+.rong-send-box{
+	float: right;
+    height: 85px;
+    width: 9%;
+}
+
+.rong-send-btn{
+    margin-left: 32%;
+    margin-top: 20%;
+    background: no-repeat;
+    border: 1px solid;
+    outline: none;
+    width: 50px;
+    border-radius: 5px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.rong-send-btn:hover{
+	color: #0099FD;
+}
+
+.rong-editor-content{
+	float: left;
+	height: 80px;
+	width: 90%;
+	outline: none;
+	resize:none;
+	border: none;
+}
