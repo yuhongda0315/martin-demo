@@ -7,6 +7,7 @@
 <body>
 	<button onclick="sendMessage();">send</button>
 	<button onclick="getConversationList();">getConversationList</button>
+	<button onclick="getHistoryMessages()">getHistoryMessages</button>
 	<script>
 		var toJSON = function(obj){
 			return JSON.stringify(obj);
@@ -29,7 +30,7 @@
 			        messageId: 1
 			    },
 			    type: 1,
-			    targetId: 'zhangsan'
+			    targetId: 'zhaoliu'
 			};
 			socket.send(toJSON(message));
 		}
@@ -37,11 +38,21 @@
 		function getConversationList(){
 			var params = {
                 topic: 'qryRelation',
-                type: 1,
-                targetId: 'zhangsan',
                 uId: 2
 			};
 			socket.send(toJSON(params));
+		}
+
+		function getHistoryMessages(){
+			   var message = {
+	                topic: 'qryPMsg',
+	                type: 1,
+	                targetId: 'zhangsan',
+	                timestamp: 0,
+	                limit: 1,
+	                uId: 3
+	            };
+	        socket.send(toJSON(message));
 		}
 	</script>
 </body>

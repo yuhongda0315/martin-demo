@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>voice</title>
+<style>
+html,body{
+	font-size:200%;
+	width:100%;
+}	
+audio{
+	width:8em;
+}
+</style>
+</head>
+<body>
+
+<script src="libamr-min-new.js"></script>
+<script src="voice.js"></script>
+
+<!-- 引入base64编码的arm音频数据 -->
+<script src="voice-amr-base64.json"></script>
+
+<div>
+	<audio src="" controls id="a1"></audio>
+</div>
+
+<script>
+var message = {
+	content : {
+		content : voice,
+		duration : 10
+	}
+};
+var file = message.content.content;
+
+//document.getElementById("a1").src = "data:audio/amr;base64," + voice;
+
+
+var f1 = RongIMVoice.utils.amr2wav;
+var f2 = RongIMVoice.utils.base64ToBlob;
+
+var wavFile = f1(voice,function(file){
+	// document.getElementById("a2").src = file;
+
+	var blobFile = f2(file,"audio/wav");
+	writeFile(blobFile, function(url){
+		document.getElementById("a1").src = url;
+	});
+
+});
+
+function writeFile(blobFile, callback){
+	function onInitFs(fs) {
+	  fs.root.getFile('local-file5.wav', {create: true}, function(fileEntry) {
+
+	    // Create a FileWriter object for our FileEntry (log.txt).
+	    fileEntry.createWriter(function(fileWriter) {
+
+	      fileWriter.seek(fileWriter.length); // Start write position at EOF.
+
+	      // Create a new Blob and write it to log.txt.
+	      // var blob = new Blob(['Hello World'], {type: 'text/plain'});
+
+	      fileWriter.write(blobFile);
+	    }, errorHandler);
+		var url = fileEntry.toURL(); // 
+		callback(url);
+	  }, errorHandler);
+	}
+
+	function errorHandler(){}
+
+	window.webkitRequestFileSystem(window.TEMPORARY, 5*1024*1024, onInitFs, errorHandler);
+}
+</script>
+
+</body>
+</html>
