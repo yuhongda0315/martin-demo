@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatRoom</title>
+  <script src="http://cdn.ronghub.com/RongIMLib-2.2.7.js"></script>
+  <script src="../js/init.js"></script>
+  <style>
+  	html,body{
+  		height: 100%;
+  		width: 100%;
+  		overflow: hidden;
+  		margin: 0;
+  		padding: 0;
+  	}
+	
+	.api-box{
+		height: 100%;
+		width: 40%;
+		float: left;
+		border-right: 1px solid #DEDEDE;
+	}
+
+	.api-box-btns{
+		height: 200px;
+		border-bottom: 1px solid #DEDEDE;
+	}
+
+	.api-box-result{
+		overflow-y: auto;
+		height: 100%;
+	}
+
+	.log-box{
+		margin-left: 40%;
+	}
+	.input-content{
+		border: 1px solid #DEDEDE;
+		background-image: none;
+		outline: none;
+	}
+	.input-token{
+		width: 90%;
+	}
+	input{
+		margin: 10px 0px 10px 10px;
+	}
+  </style>
+</head>
+<body>
+	<div class="api-box">
+		<div class="api-box-btns">
+			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
+			<br>
+			<input type="text" value="MAo+IhwqEO3+h/DdXg1w6m20V27XsDF2Dx+bgnMVAZjGqt7yGi0NETcraTd/zxAM+czEMSIEMtrEosboWZn9Sg9TIq6kcYNI" placeholder="token" id="token" class="input-content input-token">
+			<br>
+			<input type="text" title="ChartRoomId" value="ChartRoomId" class="input-content" id="chatRoomId">
+			<br>
+			<input type="button" value="连接" onclick="connect()">
+			<input type="button" value="加入" onclick="sendCommand('join')">
+			<input type="button" value="退出" onclick="sendCommand('quit')">
+			<input type="button" value="获取聊天室信息" onclick="sendCommand('get')">
+			<input type="button" value="发送消息" onclick="sendCommand('send')">
+		</div>
+		<div class="api-box-result">2</div>
+	</div>
+	<div class="log-box">3</div>
+	<script>
+		var Rong = null;
+
+		var getDom = function(id){
+			return document.getElementById(id);
+		};
+
+		var userId = 'seal9901';
+		var chatRoomId = '';
+		var conversationType = RongIMLib.ConversationType.CHATROOM;
+
+		function connect(){
+			if (Rong) {
+				return;
+			}
+			var appKey = getDom('appKey').value;
+			var token = getDom('token').value;
+
+			var params = {
+				appKey: appKey,
+				token: token
+			};
+			var callbacks = {
+				connected: function(_Rong){
+					chatRoomId = getDom('chatRoomId').value;
+					Rong = _Rong;
+				},
+				received: function(message){
+					console.log(message.messageUId);
+				}
+			};
+			init(params, callbacks);
+		}
+
+		function callback(msg){
+			return {
+				onSuccess: function(ret) {
+			    	console.log(msg , 'successfully', ret || '');
+			  	},
+			  	onError: function(error) {
+		  			console.log(msg, 'error');	
+			  	}
+			};
+		}
+
+		var handler = {
+			join: function(){
+				// 拉取最近聊天最多 50 条。
+				var count = 10;
+				Rong.joinChatRoom(chatRoomId, count, callback('join'));
+			},
+			quit: function(){
+				Rong.quitChatRoom(chatRoomId, callback('quit'));
+			},
+			get: function(){
+				// 获取聊天室人数 （范围 0-20 ）
+				var count = 10; 
+				// 排序方式
+				var order = RongIMLib.GetChatRoomType.REVERSE;
+				Rong.getChatRoomInfo(chatRoomId, count, order, callback('get'));
+			},
+			send: function(){
+				var content = "hello RongCloud, 当前时间毫秒是: " + Date.now();
+				var msg = new RongIMLib.TextMessage({content: content});
+				Rong.sendMessage(conversationType, chatRoomId, msg, callback('send'));
+			}
+		};
+
+		function sendCommand(type){
+			if (!Rong) {
+				alert('请先连接.');
+				return;
+			}
+			return handler[type]();
+		}
+	</script>
+</body>
+</html>

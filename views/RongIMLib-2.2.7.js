@@ -1826,14 +1826,14 @@ var RongIMLib;
             RongIMLib.RongUtil.forEach(_sourcePath, function (path, key) {
                 _sourcePath[key] = RongIMLib.RongUtil.stringFormat(pathTmpl, [protocol, path]);
             });
-            RongIMLib.RongUtil.extends(_sourcePath, options);
+            RongIMLib.RongUtil.extend(_sourcePath, options);
             var _defaultOpts = {
                 isPolling: isPolling,
                 wsScheme: wsScheme,
                 protocol: protocol,
                 openMp: true
             };
-            RongIMLib.RongUtil.extends(_defaultOpts, options);
+            RongIMLib.RongUtil.extend(_defaultOpts, options);
             if (RongIMLib.RongUtil.isFunction(options.protobuf)) {
                 RongIMClient.Protobuf = options.protobuf;
             }
@@ -9487,7 +9487,7 @@ var RongIMLib;
                 loopArr();
             }
         };
-        RongUtil.extends = function (source, target, callback, force) {
+        RongUtil.extend = function (source, target, callback, force) {
             RongUtil.forEach(source, function (val, key) {
                 var hasProto = (key in target);
                 if (force && hasProto) {

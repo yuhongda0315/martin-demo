@@ -1721,7 +1721,7 @@ var RongIMLib;
             else if (document.location.protocol == 'https:') {
                 wsScheme = 'wss://';
             }
-            var browser = navigator.appName, b_version = navigator.appVersion, version = b_version.split(";"), isPolling = true;
+            var browser = navigator.appName, b_version = navigator.appVersion, version = b_version.split(";"), isPolling = false;
             if (version.length > 1) {
                 var trim_Version = parseInt(version[1].replace(/[ ]/g, "").replace(/MSIE/g, ""));
                 if (trim_Version < 10) {

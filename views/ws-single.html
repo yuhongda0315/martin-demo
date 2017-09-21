@@ -4,8 +4,8 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>WS-Demo</title>
-<script src="https://cdn.ronghub.com/RongIMLib-2.2.5.min.js"></script>
-<!-- <script src="RongIMLib-1.4.0.js"></script> -->
+<!-- <script src="http://cdn.ronghub.com/RongIMLib-2.2.6.min.js"></script> -->
+<script src="RongIMLib-1.3.0-wps.js?123"></script>
   <style type="text/css">
     body {
       font-size: 13px;
@@ -100,9 +100,13 @@
       // var token = "OdbEtserbnoIpyyB4Mv5M7ywMGBz8rrOEvvIt6wnoWtS/djzTfE65gb/yoXhyAhIWl9BJhFW87Vu95c0NMl0pA==";
      
       // 你财富
-      RongIMClient.init("x18ywvqf8pc4c");
-      var token = "VCdyVD6DQfC+ma/RxvHzNhXb0U7dLY0KifGjOgLvrW4kzOGFXXuBVo65LT9tFBDlhBEdHdPjuUffK+WpKQ49YolZIFNI+hIY";
+      // RongIMClient.init("x18ywvqf8pc4c");
+      // var token = "VCdyVD6DQfC+ma/RxvHzNhXb0U7dLY0KifGjOgLvrW4kzOGFXXuBVo65LT9tFBDlhBEdHdPjuUffK+WpKQ49YolZIFNI+hIY";
       
+      RongIMClient.init("8brlm7urp1750", null, {navi:'120.92.9.229:80',
+     protobuf: '60.247.77.151:8085/kfs/public/im/js/core/protobuf-2.1.6.min.js'});
+      var token = "0CdEz4sLGsfXE9hbBVAEbR/bLxvZp+JuxtGPBIZHn+mDaHrAp9shyWC0ebCR0gxRWNh0GwwqVxxrgTK404gihw==";
+     
       RongIMClient.setConnectionStatusListener({
         onChanged: function(status) {
           switch (status) {

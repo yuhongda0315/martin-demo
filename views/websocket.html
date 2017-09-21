@@ -8,11 +8,12 @@
 	<button onclick="sendMessage();">send</button>
 	<button onclick="getConversationList();">getConversationList</button>
 	<button onclick="getHistoryMessages()">getHistoryMessages</button>
+	<button onclick="getUserInfo()">getUserInfo</button>
 	<script>
 		var toJSON = function(obj){
 			return JSON.stringify(obj);
 		};
-		var url = "ws://127.0.0.1:8585?userId=lisi";
+		var url = "ws://127.0.0.1:8585?userId=1001";
 		var socket = new WebSocket(url);
 		socket.onmessage = function(event){
 		    console.log(event.data);
@@ -24,13 +25,22 @@
 		function sendMessage(){
 			var message = {
 			    topic: 'pMsgP',
-			    content: {
-			        objectName: 'WT:TxtMsg',
-			        content: 'testaaa',
-			        messageId: 1
+			    objectName: 'WT:TxtMsg',
+		        content: '唉唉唉!大家不要生气，生气会犯了嗔戒的!悟空你也太调皮了，我跟你说过，叫你不要乱扔东西。乱扔东西这么多……你看我还没说完呢，你把棍子又给扔掉了!月光宝盒是宝物，你把它扔掉会污染环境',
+		        messageId: 1,
+		        type: 1,
+			    targetId: '1003',
+			    senderUserId: '1001',
+			    target:{
+			    	id: "1003",
+			    	name: "孙春",
+					portraitUri: "http://7xogjk.com1.z0.glb.clouddn.com/FhNGcU1t9fqeY8RNU9YLxB_uC0CW"
 			    },
-			    type: 1,
-			    targetId: 'zhaoliu'
+			    sender: {
+			    	id: "1001",
+			    	name: "朱之晴",
+					portraitUri: "http://7xogjk.com1.z0.glb.clouddn.com/Frvl4caHWNcn3HirhUH-4VUfeZh5"
+			    }
 			};
 			socket.send(toJSON(message));
 		}
@@ -47,9 +57,18 @@
 			   var message = {
 	                topic: 'qryPMsg',
 	                type: 1,
-	                targetId: 'zhangsan',
+	                targetId: '1002',
 	                timestamp: 0,
 	                limit: 1,
+	                uId: 3
+	            };
+	        socket.send(toJSON(message));
+		}
+
+		function getUserInfo(){
+			   var message = {
+	                topic: 'qryUser',
+	                userId: '1003',
 	                uId: 3
 	            };
 	        socket.send(toJSON(message));
