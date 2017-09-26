@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ChatRoom</title>
+  <title>UserStatus</title>
   <!-- <script src="http://cdn.ronghub.com/RongIMLib-2.2.7.js"></script> -->
-  <script src="../local-sdk/RongIMLib.js"></script>
+  <script src="http://cdn.ronghub.com/RongIMLib-2.2.8.min.js?0000"></script>
   <script src="../js/init.js"></script>
   <style>
   	html,body{
@@ -55,13 +55,10 @@
 			<br>
 			<input type="text" value="MAo+IhwqEO3+h/DdXg1w6m20V27XsDF2Dx+bgnMVAZjGqt7yGi0NETcraTd/zxAM+czEMSIEMtrEosboWZn9Sg9TIq6kcYNI" placeholder="token" id="token" class="input-content input-token">
 			<br>
-			<input type="text" title="ChartRoomId" value="ChartRoomId" class="input-content" id="chatRoomId">
-			<br>
-			<input type="button" value="连接" onclick="connect()">
-			<input type="button" value="加入" onclick="sendCommand('join')">
-			<input type="button" value="退出" onclick="sendCommand('quit')">
-			<input type="button" value="获取聊天室信息" onclick="sendCommand('get')">
-			<input type="button" value="发送消息" onclick="sendCommand('send')">
+			<input type="button" value="connect" onclick="connect()">
+			<input type="button" value="getUserStatus" onclick="sendCommand('get')">
+			<input type="button" value="setUserStatus" onclick="sendCommand('set')">
+			<input type="button" value="setUserStatusListener" onclick="sendCommand('sub')">
 		</div>
 		<div class="api-box-result">2</div>
 	</div>
@@ -74,8 +71,6 @@
 		};
 
 		var userId = 'seal9901';
-		var chatRoomId = '';
-		var conversationType = RongIMLib.ConversationType.CHATROOM;
 
 		function connect(){
 			if (Rong) {
@@ -86,12 +81,10 @@
 
 			var params = {
 				appKey: appKey,
-				token: token,
-				protobuf: '../local-sdk/protobuf-2.2.8.js'
+				token: token
 			};
 			var callbacks = {
 				connected: function(_Rong){
-					chatRoomId = getDom('chatRoomId').value;
 					Rong = _Rong;
 				},
 				received: function(message){
@@ -113,28 +106,20 @@
 		}
 
 		var handler = {
-			join: function(){
-				// 拉取最近聊天最多 50 条。
-				var count = 10;
-				Rong.joinChatRoom(chatRoomId, count, callback('join'));
-			},
-			quit: function(){
-				Rong.quitChatRoom(chatRoomId, callback('quit'));
-			},
 			get: function(){
-				// 获取聊天室人数 （范围 0-20 ）
-				var count = 10; 
-				// 排序方式
-				var order = RongIMLib.GetChatRoomType.REVERSE;
-				Rong.getChatRoomInfo(chatRoomId, count, order, callback('get'));
+				Rong.getUserStatus(userId, callback('getUserStatus'));
 			},
-			send: function(){
-				var content = "hello RongCloud, 当前时间毫秒是: " + Date.now();
-				var msg = new RongIMLib.TextMessage({content: content});
-				Rong.sendMessage(conversationType, chatRoomId, msg, callback('send'));
+			set: function(){
+				var status = 10;
+				Rong.setUserStatus(status, callback('setUserStatus'));
+			},
+			sub: function(){
+				var userIds = ['seal9902'];
+				Rong.setUserStatusListener({userIds: userIds}, function(status){
+					console.log(status);
+				});
 			}
 		};
-
 		function sendCommand(type){
 			if (!Rong) {
 				alert('请先连接.');

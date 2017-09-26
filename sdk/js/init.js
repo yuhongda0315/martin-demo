@@ -1,12 +1,10 @@
-function init(params, callbacks, modules){	
+function init(params, callbacks){	
 	var appKey = params.appKey;
 	var token = params.token;
 	var navi = params.navi || "";
+	var protobuf = params.protobuf || null;
 
-	modules = modules || {};
-	var RongIMLib = modules.RongIMLib || window.RongIMLib;
 	var RongIMClient = RongIMLib.RongIMClient;
-	var protobuf = modules.protobuf || null;
 
 	var config = {};
 
@@ -27,7 +25,8 @@ function init(params, callbacks, modules){
 	};
 
 
-	RongIMLib.RongIMClient.init(appKey,null,config);
+	// RongIMLib.RongIMClient.init(appKey, new RongIMLib.VCDataProvider(Electron.addon),config);
+	RongIMLib.RongIMClient.init(appKey, null,config);
 
 	var instance = RongIMClient.getInstance();
 
@@ -70,5 +69,5 @@ function init(params, callbacks, modules){
 		onError:function(errorCode){
 		  console.log(errorCode);
 		}
-	});
+	}, '');
 }
