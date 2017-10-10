@@ -1,0 +1,130 @@
+.water-container{
+	height: 100%;
+	width: 100%;
+	background-image: url(images/main-bg.jpg);
+	background-size: 100%;
+	position: relative;
+}
+
+.water-header{
+	height: 60px;
+	background-color: #000000;
+    opacity: 0.7;
+}
+
+.water-header-search,.water-header-btn{
+	float: right;
+	margin: 17px 0;
+	height: 40px;
+}
+
+.water-header-search{
+	width: 200px;
+	height: 28px;
+	margin-right: 20px;
+	border-bottom: 1px solid #DEDEDE;
+	position: relative;
+}
+
+.water-header-search-content{
+	outline: none;
+	width: 155px;
+	height: 20px;
+    border: 0;
+    color: #FFF;
+    background-color: #000;
+}
+
+.water-header-search-content-icon{
+	color: #FFF;
+}
+
+.water-header-search-content-icon:after{
+	content: "\e60d";
+	position: absolute;
+}
+
+.water-header-btn-list{
+	height: 40px;
+}
+
+.water-header-btn-item{
+	min-width: 50px;
+	line-height: 30px;
+}
+
+.water-header-btn-add:after{
+	content: "\e604";
+    font-size: 28px;
+    position: absolute;
+    top: 16px;
+    color: #FFF;
+}
+
+.water-main{
+	position: absolute;
+	top: 60px;
+	bottom: 0;
+	width: 100%;
+	overflow-y: auto;
+}
+
+.water-note-list{
+    background-color: #000000;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 10px;
+    color: #FFF;
+    height: 200px;
+    overflow-y: auto;
+    opacity: 0.7;
+}
+
+.water-note-list-max{
+    background-color: #000000;
+    display: inline-block;
+    border-radius: 10px;
+    color: #FFF;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 99;
+}
+
+.water-note-item{
+	height: 30px;
+}
+
+.water-note-item:first-child{
+	text-align: right;
+}
+
+.water-note-item-min:after{
+	content: "\e6c4";
+	font-size: 18px;
+}
+
+.water-note-item-max:after{
+	content: "\e6cb";
+	font-size: 18px;
+}
+
+.water-note-item-remove:after{
+	content: "\e603";
+	font-size: 18px;
+}
+
+.water-add-box{
+	position: absolute;
+	right: 0;
+    z-index: 10;
+	height: 100%;
+	width: 400px;
+	background-color: #000;
+	color: #FFF;
+	outline: none;
+	font-size: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}

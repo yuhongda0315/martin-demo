@@ -336,6 +336,7 @@
                                     RTCIceCandidate : RTCSessionDescription)(args[0]);
                                 return new Promise(function (resolve, reject)
                                 {
+                                    console.log(nativeMethod);
                                     nativeMethod.apply(self, [args[0],
                                         function ()
                                         {
@@ -347,6 +348,7 @@
                                         },
                                         function (err)
                                         {
+                                            console.log(err);
                                             reject(err);
                                             if (args.length >= 3)
                                             {

@@ -1,0 +1,45 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	font-size: 13px;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+	color: #696969;
+}
+
+a:hover{
+	color: #FFF;
+	transition: all 0.5s;
+}
+
+@font-face {
+  font-family: 'iconfont';  /* project id 384955 */
+  src: url('//at.alicdn.com/t/font_384955_s58qdb9u60w9udi.eot');
+  src: url('//at.alicdn.com/t/font_384955_s58qdb9u60w9udi.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_384955_s58qdb9u60w9udi.woff') format('woff'),
+  url('//at.alicdn.com/t/font_384955_s58qdb9u60w9udi.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_384955_s58qdb9u60w9udi.svg#iconfont') format('svg');
+}
+
+.iconfont{
+    font-family:"iconfont";
+    font-size:20px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale; 
+}

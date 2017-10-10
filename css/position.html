@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Position</title>
+	<style>
+		.test-rect{
+			position: absolute;
+		    clip: rect(auto 145px 20px auto);
+		    width: 230px;
+		    background: #DEDEDE;
+		}
+		.test-fixed{
+			position: fixed;
+			bottom: 0;
+			background: #FF6700;
+			height: 100px;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="test-rect">clip: rect 我要被裁减了</div>
+	<div class="test-fixed">test-fixed</div>
+</body>
+</html>
