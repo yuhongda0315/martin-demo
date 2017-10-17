@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>UserStatus</title>
   <!-- <script src="http://cdn.ronghub.com/RongIMLib-2.2.7.js"></script> -->
+  <link rel="stylesheet" href="../css/common.css">
   <script src="//cdn.ronghub.com/RongIMLib-2.2.8.min.js?0000"></script>
   <script src="../js/init.js"></script>
   <style>
@@ -60,9 +61,9 @@
 			<input type="button" value="setUserStatus" onclick="sendCommand('set')">
 			<input type="button" value="setUserStatusListener" onclick="sendCommand('sub')">
 		</div>
-		<div class="api-box-result">2</div>
 	</div>
-	<div class="log-box">3</div>
+	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
+	<div id="api-log-box"></div>
 	<script>
 		var Rong = null;
 

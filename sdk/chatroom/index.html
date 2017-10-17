@@ -3,55 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>ChatRoom</title>
+  <link rel="stylesheet" href="../css/common.css">
   <!-- <script src="http://cdn.ronghub.com/RongIMLib-2.2.7.js"></script> -->
   <script src="../local-sdk/RongIMLib.js"></script>
   <script src="../js/init.js"></script>
-  <style>
-  	html,body{
-  		height: 100%;
-  		width: 100%;
-  		overflow: hidden;
-  		margin: 0;
-  		padding: 0;
-  	}
-	
-	.api-box{
-		height: 100%;
-		width: 40%;
-		float: left;
-		border-right: 1px solid #DEDEDE;
-	}
-
-	.api-box-btns{
-		height: 200px;
-		border-bottom: 1px solid #DEDEDE;
-	}
-
-	.api-box-result{
-		overflow-y: auto;
-		height: 100%;
-	}
-
-	.log-box{
-		margin-left: 40%;
-	}
-	.input-content{
-		border: 1px solid #DEDEDE;
-		background-image: none;
-		outline: none;
-	}
-	.input-token{
-		width: 90%;
-	}
-	input{
-		margin: 10px 0px 10px 10px;
-	}
-  </style>
+  <script src="../js/utils.js"></script>
 </head>
 <body>
 	<div class="api-box">
 		<div class="api-box-btns">
 			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
+			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
 			<br>
 			<input type="text" value="MAo+IhwqEO3+h/DdXg1w6m20V27XsDF2Dx+bgnMVAZjGqt7yGi0NETcraTd/zxAM+czEMSIEMtrEosboWZn9Sg9TIq6kcYNI" placeholder="token" id="token" class="input-content input-token">
 			<br>
@@ -63,17 +25,25 @@
 			<input type="button" value="获取聊天室信息" onclick="sendCommand('get')">
 			<input type="button" value="发送消息" onclick="sendCommand('send')">
 		</div>
-		<div class="api-box-result">2</div>
 	</div>
-	<div class="log-box">3</div>
+	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
+	<div id="api-log-box"></div>
+
 	<script>
+		var utils = RCUtils.utils;
+		var conversation = RCUtils.conversation;
+		var Log = RCUtils.Log;
+
 		var Rong = null;
 
-		var getDom = function(id){
-			return document.getElementById(id);
-		};
+		var log = new Log({
+			element: utils.getDom('api-log-box')
+		});
 
-		var userId = 'seal9901';
+		function clearResult(){
+			log.clear();
+		}
+
 		var chatRoomId = '';
 		var conversationType = RongIMLib.ConversationType.CHATROOM;
 
@@ -81,57 +51,75 @@
 			if (Rong) {
 				return;
 			}
-			var appKey = getDom('appKey').value;
-			var token = getDom('token').value;
+			var appKey = utils.getDom('appKey').value;
+			var token = utils.getDom('token').value;
+			var navi = utils.getDom('nav').value;
 
 			var params = {
 				appKey: appKey,
 				token: token,
-				protobuf: '../local-sdk/protobuf-2.2.8.js'
+				navi: navi
 			};
 			var callbacks = {
 				connected: function(_Rong){
-					chatRoomId = getDom('chatRoomId').value;
 					Rong = _Rong;
+					log.show('Connect', 'connect successfully');
 				},
 				received: function(message){
-					console.log(message.messageUId);
+					log.show('Received Message', message);
 				}
 			};
 			init(params, callbacks);
-		}
-
-		function callback(msg){
-			return {
-				onSuccess: function(ret) {
-			    	console.log(msg , 'successfully', ret || '');
-			  	},
-			  	onError: function(error) {
-		  			console.log(msg, 'error');	
-			  	}
-			};
 		}
 
 		var handler = {
 			join: function(){
 				// 拉取最近聊天最多 50 条。
 				var count = 10;
-				Rong.joinChatRoom(chatRoomId, count, callback('join'));
+				Rong.joinChatRoom(chatRoomId, count, {
+					onSuccess: function(ret) {
+				    	log.show('Join Successfully', ret || 'success');
+				  	},
+				  	onError: function(error) {
+			  			log.show('Join Error', error);
+				  	}
+				});
 			},
 			quit: function(){
-				Rong.quitChatRoom(chatRoomId, callback('quit'));
+				Rong.quitChatRoom(chatRoomId, {
+					onSuccess: function(ret) {
+				    	log.show('Quit Successfully', ret || 'success');
+				  	},
+				  	onError: function(error) {
+			  			log.show('Quit Error', error);
+				  	}
+				});
 			},
 			get: function(){
 				// 获取聊天室人数 （范围 0-20 ）
 				var count = 10; 
 				// 排序方式
 				var order = RongIMLib.GetChatRoomType.REVERSE;
-				Rong.getChatRoomInfo(chatRoomId, count, order, callback('get'));
+				Rong.getChatRoomInfo(chatRoomId, count, order, {
+					onSuccess: function(ret) {
+				    	log.show('Get Successfully', ret);
+				  	},
+				  	onError: function(error) {
+			  			log.show('Get Error', error);
+				  	}
+				});
 			},
 			send: function(){
 				var content = "hello RongCloud, 当前时间毫秒是: " + Date.now();
 				var msg = new RongIMLib.TextMessage({content: content});
-				Rong.sendMessage(conversationType, chatRoomId, msg, callback('send'));
+				Rong.sendMessage(conversationType, chatRoomId, msg, {
+					onSuccess: function(message) {
+				    	log.show('SendMessage Successfully', message);
+				  	},
+				  	onError: function(error) {
+			  			log.show('SendMessage Error', ret);
+				  	}
+				});
 			}
 		};
 
@@ -140,6 +128,7 @@
 				alert('请先连接.');
 				return;
 			}
+			chatRoomId = utils.getDom('chatRoomId').value;
 			return handler[type]();
 		}
 	</script>

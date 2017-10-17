@@ -1921,7 +1921,7 @@ var RongIMLib;
                 options[key] = path;
             });
             var _sourcePath = {
-                protobuf: 'cdn.ronghub.com/protobuf-2.2.7.min.js'
+                protobuf: 'cdn.ronghub.com/protobuf-2.2.8.min.js'
             };
             RongIMLib.RongUtil.forEach(_sourcePath, function (path, key) {
                 _sourcePath[key] = RongIMLib.RongUtil.stringFormat(pathTmpl, [protocol, path]);
@@ -1931,7 +1931,7 @@ var RongIMLib;
                 isPolling: isPolling,
                 wsScheme: wsScheme,
                 protocol: protocol,
-                showError: false,
+                showError: true,
                 openMp: true
             };
             RongIMLib.RongUtil.extend(_defaultOpts, options);
@@ -3017,6 +3017,9 @@ var RongIMLib;
             }
             RongIMClient._dataAccessProvider.getHistoryMessages(conversationType, targetId, timestamp, count, RongIMClient.logCallback(callback, "getHistoryMessages"), objectname, direction);
         };
+        RongIMClient.prototype.clearHistoryMessages = function (params, callback) {
+            RongIMClient._dataAccessProvider.clearHistoryMessages(params, RongIMClient.logCallback(callback, "clearHistoryMessages"));
+        };
         RongIMClient.prototype.setMessageContent = function (messageId, content, objectName) {
             RongIMClient._dataAccessProvider.setMessageContent(messageId, content, objectName);
         };
@@ -3337,7 +3340,6 @@ var RongIMLib;
                     conver.receivedTime = conver.latestMessage.receiveTime;
                     conver.sentStatus = conver.latestMessage.sentStatus;
                     conver.sentTime = conver.latestMessage.sentTime;
-                    conver._readTime = RongIMLib.MessageUtil.int64ToTimestamp(tempConver.readMsgTime);
                     var mentioneds = RongIMClient._storageProvider.getItem("mentioneds_" + RongIMLib.Bridge._client.userId + '_' + conver.conversationType + '_' + conver.targetId);
                     if (mentioneds) {
                         var info = JSON.parse(mentioneds);
@@ -3971,7 +3973,7 @@ var RongIMLib;
     var Type = RongIMLib.Type;
     var _topic = ["invtDiz", "crDiz", "qnUrl", "userInf", "dizInf", "userInf", "joinGrp", "quitDiz", "exitGrp", "evctDiz",
         ["", "ppMsgP", "pdMsgP", "pgMsgP", "chatMsg", "pcMsgP", "", "pmcMsgN", "pmpMsgN"], "pdOpen", "rename", "uGcmpr", "qnTkn", "destroyChrm",
-        "createChrm", "exitChrm", "queryChrm", "joinChrm", "pGrps", "addBlack", "rmBlack", "getBlack", "blackStat", "addRelation", "qryRelation", "delRelation", "pullMp", "schMp", "qnTkn", "qnUrl", "qryVoipK", "delMsg", "qryCHMsg", "getUserStatus", "setUserStatus", "subUserStatus"];
+        "createChrm", "exitChrm", "queryChrm", "joinChrm", "pGrps", "addBlack", "rmBlack", "getBlack", "blackStat", "addRelation", "qryRelation", "delRelation", "pullMp", "schMp", "qnTkn", "qnUrl", "qryVoipK", "delMsg", "qryCHMsg", "getUserStatus", "setUserStatus", "subUserStatus", "cleanHisMsg"];
     var Channel = (function () {
         function Channel(address, cb, self) {
             this.connectionStatus = -1;
@@ -4178,7 +4180,7 @@ var RongIMLib;
         function Client(token, appId) {
             this.timeoutMillis = 100000;
             this.timeout_ = 0;
-            this.sdkVer = "2.2.7";
+            this.sdkVer = "2.2.8";
             this.apiVer = Math.floor(Math.random() * 1e6);
             this.channel = null;
             this.handler = null;
@@ -8636,6 +8638,23 @@ var RongIMLib;
                 callback.onSuccess(message);
             }
         };
+        ServerDataProvider.prototype.clearHistoryMessages = function (params, callback) {
+            var modules = new RongIMLib.RongIMClient.Protobuf.HistoryMsgInput();
+            var conversationType = params.conversationType;
+            var targetId = params.targetId;
+            var time = params.time;
+            modules.setTargetId(targetId);
+            modules.setTime(time);
+            RongIMLib.RongIMClient.bridge.queryMsg(38, RongIMLib.MessageUtil.ArrayForm(modules.toArrayBuffer()), targetId, {
+                onSuccess: function (result) {
+                    callback.onSuccess(!result);
+                }, onError: function (error) {
+                    setTimeout(function () {
+                        callback.onError(error);
+                    });
+                }
+            });
+        };
         ServerDataProvider.prototype.clearMessages = function (conversationType, targetId, callback) {
             callback.onSuccess(true);
         };
@@ -9417,6 +9436,9 @@ var RongIMLib;
             catch (e) {
                 callback.onError(e);
             }
+        };
+        VCDataProvider.prototype.clearHistoryMessages = function (params, callback) {
+            callback.onSuccess(true);
         };
         VCDataProvider.prototype.getTotalUnreadCount = function (callback, conversationTypes) {
             try {

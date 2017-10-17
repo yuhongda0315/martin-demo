@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Message</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="../local-sdk/RongIMLib.js"></script>
+  <script src="../js/init.js"></script>
+  <script src="../js/utils.js"></script>
+</head>
+<body>
+	<div class="api-box">
+		<div class="api-box-btns">
+			<input type="text" value="e0x9wycfx7flq" placeholder="appKey" id="appKey" class="input-content">
+			<input type="text" value="119.254.111.49:9100" placeholder="nav" id="nav">
+			<br>
+			<input type="text" value="jwPHXs+LyHzHOXGmEpij5irK8Rr8pkWuYi+Vm55bC389MRtilZwVuhjafjBiB2DT8NLSUE4Lxkv/24f9L0hlHfpstQnJaqS2" placeholder="token" id="token" class="input-content input-token">
+			<br>
+			<input type="text" id="conversationType" placeholder="conversationType" value="3">
+			<input type="text" id="targetId" placeholder="targetId" value="group01">
+			<br>
+			<input type="button" value="connect" onclick="connect()">
+			<input type="button" value="sendMessage" onclick="sendCommand('send')">
+			<input type="button" value="clearHistoryMessages" onclick="sendCommand('clearHistory')">
+			<input type="button" value="getHistoryMessages" onclick="sendCommand('getHistory')">
+		</div>
+	</div>
+	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
+	<div id="api-log-box"></div>
+	<script>
+
+		var utils = RCUtils.utils;
+		var conversation = RCUtils.conversation;
+		var Log = RCUtils.Log;
+
+		var Rong = null;
+
+		var log = new Log({
+			element: utils.getDom('api-log-box')
+		});
+
+		function clearResult(){
+			log.clear();
+		}
+
+		function connect(){
+			if (Rong) {
+				return;
+			}
+			var appKey = utils.getDom('appKey').value;
+			var token = utils.getDom('token').value;
+			var navi = utils.getDom('nav').value;
+
+			var params = {
+				appKey: appKey,
+				token: token,
+				navi: navi
+			};
+			var callbacks = {
+				connected: function(_Rong){
+					Rong = _Rong;
+					log.show('Connect', 'connect successfully');
+				},
+				received: function(message){
+					log.show('Received Message', message);
+				}
+			};
+			init(params, callbacks);
+		}
+
+		var handler = {
+			send: function(){
+				var content = "hello: " + Date.now();
+				var msg = new RongIMLib.TextMessage({content: content});
+				var info = conversation.get();
+				Rong.sendMessage(+info.conversationType, info.targetId, msg, {
+					onSuccess: function(ret) {
+						log.show('SendMessage Susccessfully', ret);
+				  	},
+				  	onError: function(error) {
+				  		log.show('SendMessage Error', error);
+				  	}
+				});
+			},
+			clearHistory: function(){
+				var params = conversation.get();
+				params.time = Date.now();
+				Rong.clearHistoryMessages(params, {
+					onSuccess: function(ret) {
+						log.show('ClearHistory Success', ret);
+				  	},
+				  	onError: function(error) {
+				  		log.show('ClearHistory Error', error);
+				  	}
+				});	
+			},
+			getHistory: function(){
+				var params = conversation.get();
+				Rong.getHistoryMessages(+params.conversationType, params.targetId, null, 20, {
+					onSuccess: function(ret) {
+						log.show('getHistoryMessages Successfully Count: '+ret.length,ret);
+				  	},
+				  	onError: function(error) {
+				  		log.show('getHistoryMessages Error',error);
+				  	}
+				});
+			}
+		};
+		function sendCommand(type){
+			if (!Rong) {
+				alert('请先连接.');
+				return;
+			}
+			return handler[type]();
+		}
+	</script>
+</body>
+</html>
