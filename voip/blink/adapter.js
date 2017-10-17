@@ -324,60 +324,39 @@
                         };
                     });
 
-                    // ['setLocalDescription', 'setRemoteDescription', 'addIceCandidate'].forEach(function (method){
-                    //         var nativeMethod = webkitRTCPeerConnection.prototype[method];
-                    //         webkitRTCPeerConnection.prototype[method] = function ()
-                    //         {
-                    //             var args = arguments;
-                    //             var self = this;
-                    //             args[0] = new ((method === 'addIceCandidate') ?
-                    //                 RTCIceCandidate : RTCSessionDescription)(args[0]);
-                    //             return new Promise(function (resolve, reject)
-                    //             {
-                    //                 console.log(nativeMethod);
-                    //                 nativeMethod.apply(self, [args[0],
-                    //                     function ()
-                    //                     {
-                    //                         resolve();
-                    //                         if (args.length >= 2)
-                    //                         {
-                    //                             args[1].apply(null, []);
-                    //                         }
-                    //                     },
-                    //                     function (err)
-                    //                     {
-                    //                         console.log(err);
-                    //                         reject(err);
-                    //                         if (args.length >= 3)
-                    //                         {
-                    //                             args[2].apply(null, [err]);
-                    //                         }
-                    //                     }]
-                    //                   );
-                    //             });
-                    //         };
-                    //     });
-
-                    ["setLocalDescription", "setRemoteDescription", "addIceCandidate"].forEach(function(method) {
-                      var nativeMethod = window.RTCPeerConnection.prototype[method];
-                      window.RTCPeerConnection.prototype[method] = function() {
-                        var args = arguments;
-                        var self = this;
-                        var promise = new Promise(function(resolve, reject) {
-                          nativeMethod.apply(self, [args[0], resolve, reject]);
+                    ['setLocalDescription', 'setRemoteDescription', 'addIceCandidate'].forEach(function (method){
+                            var nativeMethod = webkitRTCPeerConnection.prototype[method];
+                            webkitRTCPeerConnection.prototype[method] = function ()
+                            {
+                                var args = arguments;
+                                var self = this;
+                                args[0] = new ((method === 'addIceCandidate') ?
+                                    RTCIceCandidate : RTCSessionDescription)(args[0]);
+                                return new Promise(function (resolve, reject)
+                                {
+                                    console.log(nativeMethod);
+                                    nativeMethod.apply(self, [args[0],
+                                        function ()
+                                        {
+                                            resolve();
+                                            if (args.length >= 2)
+                                            {
+                                                args[1].apply(null, []);
+                                            }
+                                        },
+                                        function (err)
+                                        {
+                                            console.log(err);
+                                            reject(err);
+                                            if (args.length >= 3)
+                                            {
+                                                args[2].apply(null, [err]);
+                                            }
+                                        }]
+                                      );
+                                });
+                            };
                         });
-                        if (args.length < 2) {
-                          return promise;
-                        }
-                        return promise.then(function() {
-                          args[1].apply(null, []);
-                        }, function(err) {
-                          if (args.length >= 3) {
-                            args[2].apply(null, [err]);
-                          }
-                        });
-                      };
-                    });
                 },
 
                 // Attach a media stream to an element.

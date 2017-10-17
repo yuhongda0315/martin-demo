@@ -995,7 +995,11 @@ BlinkEngine.prototype.exchange = function(data) {
 BlinkEngine.prototype.preparePeerConnection = function(userId) {
 	var blinkEngine = this;
 	if (blinkEngine.peerConnections[userId] == undefined) {
-		var pc = new RTCPeerConnection();
+		var pc = new RTCPeerConnection(null, {
+			optional: [
+			  { RtpDataChannels: false }
+			]
+		});
 		pc.onaddstream = function(evt) {
 			blinkEngine.remoteStreams.push(evt.stream);
 			blinkEngine.remoteStreamCount = blinkEngine.remoteStreams.length;
