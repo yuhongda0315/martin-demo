@@ -1,0 +1,6 @@
+{
+  "port": "3000",
+  "baseDir": "./test/",
+  "types": ["html", "shtml","htm"],
+  "props": ["virtual"]
+}
