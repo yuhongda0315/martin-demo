@@ -1471,7 +1471,12 @@ var RongIMLib;
          */
         ErrorCode[ErrorCode["CONVER_ID_TYPE_UNREAD_ERROR"] = 34006] = "CONVER_ID_TYPE_UNREAD_ERROR";
         ErrorCode[ErrorCode["CONVER_CLEAR_ERROR"] = 34007] = "CONVER_CLEAR_ERROR";
-        ErrorCode[ErrorCode["CONVER_GET_ERROR"] = 34008] = "CONVER_GET_ERROR";
+        ErrorCode[ErrorCode["CLEAR_HIS_TYPE_ERROR"] = 34008] = "CLEAR_HIS_TYPE_ERROR";
+        ErrorCode[ErrorCode["CLEAR_HIS_ERROR"] = 34010] = "CLEAR_HIS_ERROR";
+        /*
+            
+        */
+        ErrorCode[ErrorCode["CONVER_GET_ERROR"] = 34009] = "CONVER_GET_ERROR";
         //群组异常信息
         /**
          *
@@ -2432,6 +2437,14 @@ var RongIMLib;
                 "34008": {
                     code: "34008",
                     msg: "获取会话消息异常"
+                },
+                "34009": {
+                    code: "34009",
+                    msg: "清除历史消息会话类型不正确"
+                },
+                "34010": {
+                    code: "34010",
+                    msg: "清除历史消息失败，请检查传入参数"
                 },
                 /**
                  * 黑名单异常
@@ -4551,6 +4564,13 @@ var RongIMLib;
             }
             //解析实体对象为消息对象。
             message = RongIMLib.MessageUtil.messageParser(entity, this._onReceived, offlineMsg);
+            var isRecall = (msg.getTopic && msg.getTopic() == "recallMsg");
+            if (isRecall) {
+                var content = message.content;
+                message.conversationType = content.conversationType;
+                message.targetId = content.targetId;
+                message.messageId = null;
+            }
             if (pubAckItem) {
                 message.messageUId = pubAckItem.getMessageUId();
                 message.sentTime = pubAckItem.getTimestamp();
@@ -8639,18 +8659,31 @@ var RongIMLib;
             }
         };
         ServerDataProvider.prototype.clearHistoryMessages = function (params, callback) {
-            var modules = new RongIMLib.RongIMClient.Protobuf.HistoryMsgInput();
+            var modules = new RongIMLib.RongIMClient.Protobuf.CleanHisMsgInput();
             var conversationType = params.conversationType;
+            var _topic = {
+                1: 'cleanPMsg',
+                2: 'cleanDMsg',
+                3: 'cleanGMsg',
+                5: 'cleanCMsg',
+                6: 'cleanSMsg'
+            };
+            var topic = _topic[conversationType];
+            if (!topic) {
+                callback.onError(RongIMLib.ErrorCode.CLEAR_HIS_TYPE_ERROR);
+                return;
+            }
             var targetId = params.targetId;
             var time = params.time;
             modules.setTargetId(targetId);
-            modules.setTime(time);
-            RongIMLib.RongIMClient.bridge.queryMsg(38, RongIMLib.MessageUtil.ArrayForm(modules.toArrayBuffer()), targetId, {
+            modules.setDataTime(time);
+            RongIMLib.RongIMClient.bridge.queryMsg(topic, RongIMLib.MessageUtil.ArrayForm(modules.toArrayBuffer()), targetId, {
                 onSuccess: function (result) {
                     callback.onSuccess(!result);
                 }, onError: function (error) {
+                    // error 1 清除失败，1 与其他错误码冲突，所以自定义错误码返回
                     setTimeout(function () {
-                        callback.onError(error);
+                        callback.onError(RongIMLib.ErrorCode.CLEAR_HIS_ERROR);
                     });
                 }
             });
