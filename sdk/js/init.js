@@ -25,11 +25,11 @@ function init(params, callbacks){
 	};
 
 	var imClient = params.imClient;
-
 	var dataProvider = null;
 	if (imClient) {
 		dataProvider = new RongIMLib.VCDataProvider(imClient);
 	}
+	
 	RongIMLib.RongIMClient.init(appKey, dataProvider, config);
 
 	var instance = RongIMClient.getInstance();
