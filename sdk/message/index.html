@@ -5,16 +5,16 @@
   <title>Message</title>
   <link rel="stylesheet" href="../css/common.css">
   <script src="../local-sdk/RongIMLib.js"></script>
-  <script src="../js/init.js"></script>
+  <script src="../js/init.js?123"></script>
   <script src="../js/utils.js"></script>
 </head>
 <body>
 	<div class="api-box">
 		<div class="api-box-btns">
-			<input type="text" value="e0x9wycfx7flq" placeholder="appKey" id="appKey" class="input-content">
-			<input type="text" value="119.254.111.49:9100" placeholder="nav" id="nav">
+			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
+			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
 			<br>
-			<input type="text" value="jwPHXs+LyHzHOXGmEpij5irK8Rr8pkWuYi+Vm55bC389MRtilZwVuhjafjBiB2DT8NLSUE4Lxkv/24f9L0hlHfpstQnJaqS2" placeholder="token" id="token" class="input-content input-token">
+			<input type="text" value="MAo+IhwqEO3+h/DdXg1w6m20V27XsDF2Dx+bgnMVAZjGqt7yGi0NETcraTd/zxAM+czEMSIEMtrEosboWZn9Sg9TIq6kcYNI" placeholder="token" id="token" class="input-content input-token">
 			<br>
 			<input type="text" id="conversationType" placeholder="conversationType" value="3">
 			<input type="text" id="targetId" placeholder="targetId" value="group01">
@@ -66,6 +66,10 @@
 					log.show('Received Message', message);
 				}
 			};
+
+			if (RongDesktop) {
+				params.imClient = RongDesktop.imClient;
+			}
 			init(params, callbacks);
 		}
 

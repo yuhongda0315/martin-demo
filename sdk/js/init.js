@@ -6,7 +6,7 @@ function init(params, callbacks){
 
 	var RongIMClient = RongIMLib.RongIMClient;
 
-	var config = {};
+	var config = {isPolling: true};
 
 	//私有云切换navi导航
 	if(navi !== ""){
@@ -24,9 +24,13 @@ function init(params, callbacks){
 		config.protobuf = protobuf;
 	};
 
+	var imClient = params.imClient;
 
-	// RongIMLib.RongIMClient.init(appKey, new RongIMLib.VCDataProvider(Electron.addon),config);
-	RongIMLib.RongIMClient.init(appKey, null,config);
+	var dataProvider = null;
+	if (imClient) {
+		dataProvider = new RongIMLib.VCDataProvider(imClient);
+	}
+	RongIMLib.RongIMClient.init(appKey, dataProvider, config);
 
 	var instance = RongIMClient.getInstance();
 
