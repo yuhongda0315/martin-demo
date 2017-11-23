@@ -35,6 +35,7 @@
 		var conversation = RCUtils.conversation;
 		var Log = RCUtils.Log;
 
+
 		var Rong = null;
 
 		var log = new Log({
@@ -49,6 +50,7 @@
 		var conversationType = RongIMLib.ConversationType.CHATROOM;
 
 		function connect(){
+			window.Martin = 'Martin';
 			// if (Rong) {
 			// 	return;
 			// }
@@ -72,7 +74,7 @@
 			};
 			init(params, callbacks);
 		}
-
+		window.connect = connect;
 		var handler = {
 			join: function(){
 				// 拉取最近聊天最多 50 条。
