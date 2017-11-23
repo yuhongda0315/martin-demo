@@ -1471,12 +1471,7 @@ var RongIMLib;
          */
         ErrorCode[ErrorCode["CONVER_ID_TYPE_UNREAD_ERROR"] = 34006] = "CONVER_ID_TYPE_UNREAD_ERROR";
         ErrorCode[ErrorCode["CONVER_CLEAR_ERROR"] = 34007] = "CONVER_CLEAR_ERROR";
-        ErrorCode[ErrorCode["CLEAR_HIS_TYPE_ERROR"] = 34008] = "CLEAR_HIS_TYPE_ERROR";
-        ErrorCode[ErrorCode["CLEAR_HIS_ERROR"] = 34010] = "CLEAR_HIS_ERROR";
-        /*
-            
-        */
-        ErrorCode[ErrorCode["CONVER_GET_ERROR"] = 34009] = "CONVER_GET_ERROR";
+        ErrorCode[ErrorCode["CONVER_GET_ERROR"] = 34008] = "CONVER_GET_ERROR";
         //群组异常信息
         /**
          *
@@ -1936,7 +1931,7 @@ var RongIMLib;
                 isPolling: isPolling,
                 wsScheme: wsScheme,
                 protocol: protocol,
-                showError: true,
+                showError: false,
                 openMp: true
             };
             RongIMLib.RongUtil.extend(_defaultOpts, options);
@@ -2437,14 +2432,6 @@ var RongIMLib;
                 "34008": {
                     code: "34008",
                     msg: "获取会话消息异常"
-                },
-                "34009": {
-                    code: "34009",
-                    msg: "清除历史消息会话类型不正确"
-                },
-                "34010": {
-                    code: "34010",
-                    msg: "清除历史消息失败，请检查传入参数"
                 },
                 /**
                  * 黑名单异常
@@ -3029,9 +3016,6 @@ var RongIMLib;
                 throw new Error("ConversationType must be greater than -1");
             }
             RongIMClient._dataAccessProvider.getHistoryMessages(conversationType, targetId, timestamp, count, RongIMClient.logCallback(callback, "getHistoryMessages"), objectname, direction);
-        };
-        RongIMClient.prototype.clearHistoryMessages = function (params, callback) {
-            RongIMClient._dataAccessProvider.clearHistoryMessages(params, RongIMClient.logCallback(callback, "clearHistoryMessages"));
         };
         RongIMClient.prototype.setMessageContent = function (messageId, content, objectName) {
             RongIMClient._dataAccessProvider.setMessageContent(messageId, content, objectName);
@@ -3986,7 +3970,7 @@ var RongIMLib;
     var Type = RongIMLib.Type;
     var _topic = ["invtDiz", "crDiz", "qnUrl", "userInf", "dizInf", "userInf", "joinGrp", "quitDiz", "exitGrp", "evctDiz",
         ["", "ppMsgP", "pdMsgP", "pgMsgP", "chatMsg", "pcMsgP", "", "pmcMsgN", "pmpMsgN"], "pdOpen", "rename", "uGcmpr", "qnTkn", "destroyChrm",
-        "createChrm", "exitChrm", "queryChrm", "joinChrm", "pGrps", "addBlack", "rmBlack", "getBlack", "blackStat", "addRelation", "qryRelation", "delRelation", "pullMp", "schMp", "qnTkn", "qnUrl", "qryVoipK", "delMsg", "qryCHMsg", "getUserStatus", "setUserStatus", "subUserStatus", "cleanHisMsg"];
+        "createChrm", "exitChrm", "queryChrm", "joinChrm", "pGrps", "addBlack", "rmBlack", "getBlack", "blackStat", "addRelation", "qryRelation", "delRelation", "pullMp", "schMp", "qnTkn", "qnUrl", "qryVoipK", "delMsg", "qryCHMsg", "getUserStatus", "setUserStatus", "subUserStatus"];
     var Channel = (function () {
         function Channel(address, cb, self) {
             this.connectionStatus = -1;
@@ -4524,6 +4508,9 @@ var RongIMLib;
                 }
                 else if (msg.getTopic() == "s_stat") {
                     entity = RongIMLib.RongIMClient.Protobuf.GetUserStatusOutput.decode(msg.getData());
+                    if (!entity.status) {
+                        return;
+                    }
                     entity = RongIMLib.RongInnerTools.convertUserStatus(entity);
                     RongIMLib.RongIMClient.userStatusObserver.notify({
                         key: entity.userId,
@@ -4564,13 +4551,6 @@ var RongIMLib;
             }
             //解析实体对象为消息对象。
             message = RongIMLib.MessageUtil.messageParser(entity, this._onReceived, offlineMsg);
-            var isRecall = (msg.getTopic && msg.getTopic() == "recallMsg");
-            if (isRecall) {
-                var content = message.content;
-                message.conversationType = content.conversationType;
-                message.targetId = content.targetId;
-                message.messageId = null;
-            }
             if (pubAckItem) {
                 message.messageUId = pubAckItem.getMessageUId();
                 message.sentTime = pubAckItem.getTimestamp();
@@ -8658,36 +8638,6 @@ var RongIMLib;
                 callback.onSuccess(message);
             }
         };
-        ServerDataProvider.prototype.clearHistoryMessages = function (params, callback) {
-            var modules = new RongIMLib.RongIMClient.Protobuf.CleanHisMsgInput();
-            var conversationType = params.conversationType;
-            var _topic = {
-                1: 'cleanPMsg',
-                2: 'cleanDMsg',
-                3: 'cleanGMsg',
-                5: 'cleanCMsg',
-                6: 'cleanSMsg'
-            };
-            var topic = _topic[conversationType];
-            if (!topic) {
-                callback.onError(RongIMLib.ErrorCode.CLEAR_HIS_TYPE_ERROR);
-                return;
-            }
-            var targetId = params.targetId;
-            var time = params.time;
-            modules.setTargetId(targetId);
-            modules.setDataTime(time);
-            RongIMLib.RongIMClient.bridge.queryMsg(topic, RongIMLib.MessageUtil.ArrayForm(modules.toArrayBuffer()), targetId, {
-                onSuccess: function (result) {
-                    callback.onSuccess(!result);
-                }, onError: function (error) {
-                    // error 1 清除失败，1 与其他错误码冲突，所以自定义错误码返回
-                    setTimeout(function () {
-                        callback.onError(RongIMLib.ErrorCode.CLEAR_HIS_ERROR);
-                    });
-                }
-            });
-        };
         ServerDataProvider.prototype.clearMessages = function (conversationType, targetId, callback) {
             callback.onSuccess(true);
         };
@@ -9007,7 +8957,8 @@ var RongIMLib;
             return RongIMLib.RongIMClient._memoryStore.deltaTime;
         };
         ServerDataProvider.prototype.getCurrentConnectionStatus = function () {
-            return RongIMLib.Bridge._client.channel.connectionStatus;
+            var channel = RongIMLib.Bridge._client || {};
+            return channel.connectionStatus || RongIMLib.ConnectionStatus.CONNECTION_CLOSED;
         };
         ServerDataProvider.prototype.getAgoraDynamicKey = function (engineType, channelName, callback) {
             var modules = new RongIMLib.RongIMClient.Protobuf.VoipDynamicInput();
@@ -9127,7 +9078,7 @@ var RongIMLib;
             /**
             ConnectionStatus_TokenIncorrect = 31004,
             ConnectionStatus_Connected = 0,
-            ConnectionStatus_KickedOff = 6,	// 其他设备登录
+            ConnectionStatus_KickedOff = 6, // 其他设备登录
             ConnectionStatus_Connecting = 10,// 连接中
             ConnectionStatus_SignUp = 12, // 未登录
             ConnectionStatus_NetworkUnavailable = 1, // 连接断开
@@ -9469,9 +9420,6 @@ var RongIMLib;
             catch (e) {
                 callback.onError(e);
             }
-        };
-        VCDataProvider.prototype.clearHistoryMessages = function (params, callback) {
-            callback.onSuccess(true);
         };
         VCDataProvider.prototype.getTotalUnreadCount = function (callback, conversationTypes) {
             try {
@@ -10175,7 +10123,7 @@ var RongIMLib;
                     JSON.rx_escapable = new RegExp('[\\\"\\\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]', "g");
                     JSON.meta = {
                         "\b": "\\b",
-                        "	": "\\t",
+                        "   ": "\\t",
                         "\n": "\\n",
                         "\f": "\\f",
                         "\r": "\\r",
