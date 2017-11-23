@@ -38,17 +38,17 @@ function init(params, callbacks){
 	RongIMClient.setConnectionStatusListener({
 		onChanged: function (status) {
 			console.log(status);
-			alert(status + window.Martin+window.needConnect);
+			alert(status);
 
-			if (!window.needConnect) {
-                window.needConnect = true;
-               window.connect();
-            }
 		    switch (status) {
 		        case RongIMLib.ConnectionStatus.CONNECTED:
 		            callbacks.connected && callbacks.connected(instance);
 		            break;
+		        case 3:
+		        	window.Rongconnect();
+		        break;
 		        }
+		        
 		}
 	});
 
