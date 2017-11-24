@@ -8957,8 +8957,13 @@ var RongIMLib;
             return RongIMLib.RongIMClient._memoryStore.deltaTime;
         };
         ServerDataProvider.prototype.getCurrentConnectionStatus = function () {
-            var channel = RongIMLib.Bridge._client || {};
-            return channel.connectionStatus || RongIMLib.ConnectionStatus.CONNECTION_CLOSED;
+            var client = RongIMLib.Bridge._client || {};
+            var channel = client.channel || {};
+            var status = RongIMLib.ConnectionStatus.CONNECTION_CLOSED;
+            if (typeof channel.connectionStatus == 'number') {
+                status = channel.connectionStatus;
+            }
+            return status;
         };
         ServerDataProvider.prototype.getAgoraDynamicKey = function (engineType, channelName, callback) {
             var modules = new RongIMLib.RongIMClient.Protobuf.VoipDynamicInput();

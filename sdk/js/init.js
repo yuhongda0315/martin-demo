@@ -38,14 +38,16 @@ function init(params, callbacks){
 	RongIMClient.setConnectionStatusListener({
 		onChanged: function (status) {
 			console.log(status);
-			alert(Martin + '-' + status);
+			alert(Martin + '1-23' + status);
 
 		    switch (status) {
 		        case RongIMLib.ConnectionStatus.CONNECTED:
 		            callbacks.connected && callbacks.connected(instance);
 		            break;
 		        case 3:
-		        	RongIMClient.reconnect();
+		        	if (RongIMClient.getInstance().getCurrentConnectionStatus() > 1) {
+		        		RongReconnect();
+		        	}
 		        break;
 		        }
 		        
