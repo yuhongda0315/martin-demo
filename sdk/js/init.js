@@ -38,7 +38,7 @@ function init(params, callbacks){
 	RongIMClient.setConnectionStatusListener({
 		onChanged: function (status) {
 			console.log(status);
-			alert(status);
+			alert(Martin + '-' + status);
 
 		    switch (status) {
 		        case RongIMLib.ConnectionStatus.CONNECTED:
