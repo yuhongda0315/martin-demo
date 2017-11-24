@@ -45,7 +45,7 @@ function init(params, callbacks){
 		            callbacks.connected && callbacks.connected(instance);
 		            break;
 		        case 3:
-		        	window.Rongconnect();
+		        	RongIMClient.reconnect();
 		        break;
 		        }
 		        
