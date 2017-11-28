@@ -1,0 +1,4 @@
+{
+	"title": "GitBook-Docs",
+	"plugins": ["toggle-chapters", "sectionx", "expandable-chapters"]
+}
