@@ -1,5 +1,7 @@
 #### 快速开始
 
+开始前请在 book（ 项目目录 ）打开命令行窗口: [Mac](https://jingyan.baidu.com/article/ce436649281a293773afd3d8.html)、[Windows](https://jingyan.baidu.com/article/4d58d54134bba49dd5e9c049.html) 
+
 1、安装 Node
 
 [Node 版本 (4.0.0+)](http://nodejs.cn/download/)
@@ -14,6 +16,7 @@
 
 4、预览
 
-`gitbook serve`
+在 `book` 目录中 `gitbook serve`
 
 访问 `http://localhost:4000`
+

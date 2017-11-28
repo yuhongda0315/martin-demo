@@ -14,4 +14,6 @@
 
 * [快速开始](quick-start.md)
 
+* [关于](about.md)
+
 * [插件](plugin.md)

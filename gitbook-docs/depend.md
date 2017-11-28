@@ -16,7 +16,7 @@
 
 截止到这里，GitBook 环境已经配置完成, 开始在 GitBook 中畅游吧
 
-1、[深入了解](deep.md)
+1、[详细说明](detail/detail.md)
 
 2、[快速开始](quick-start.md)
 
