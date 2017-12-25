@@ -72,7 +72,8 @@
 				以下逻辑为 RongDesktop 存在即认为在 Electron 中，请一定保证 RongDesktop 唯一、不可破坏、不被污染
 				详细请参考 martin-demo/sdk/js/init.js dataProvider 用法
 			*/
-			if (RongDesktop) {
+			var isDesktopEnv = (typeof RongDesktop != 'undefined')
+			if (isDesktopEnv) {
 				params.imClient = RongDesktop.imClient;
 			}
 			init(params, callbacks);
