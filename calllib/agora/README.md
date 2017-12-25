@@ -1,8 +1,10 @@
 ### Rong CallLib API 说明
 
+测试环境： SealTalk 大乔
+
 ### Demo
 
-使用下面的 URL 可体验 VoIP，App(SealTalk 大乔) 登录使用手机号登录，可以进行多端互通。
+使用下面的 URL 可体验 VoIP。
 
 #### 一对一
 
