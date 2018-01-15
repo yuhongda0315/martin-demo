@@ -1,0 +1,8 @@
+#book-search-input {
+    padding: 0px; 
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+    border-radius: 18px;
+    width: 220px;
+}

@@ -137,11 +137,9 @@
             }
       });
     }
-
     $('connectId').onclick = function(){
         init();
     };
-
     var conversationType = RongIMLib.ConversationType.PRIVATE;
     function send(){
       var content = 'hello, ' + targetId + ', I‘m ' +  userId + (+new Date);

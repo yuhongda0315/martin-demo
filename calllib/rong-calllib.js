@@ -374,7 +374,7 @@
             conversationType: conversationType,
             targetId: targetId,
             content: {
-                engineType: 3,
+                engineType: 1,
                 inviteUserIds: inviteUserIds,
                 mediaType: mediaType,
                 callId: callId,

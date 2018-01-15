@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<title>Div随鼠标拖动改变高度</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="../js/jquery-3.1.1.min.js"></script>
+<style type="text/css">
+html, body{ height: 100%; margin: 0; padding: 0; }
+#footer { 
+    position:absolute; 
+    bottom:0; left:0; width:100%; 
+    height:30px; 
+    background-color:#B8D0FA;
+    min-height: 30px;
+    max-height: 200px;
+}
+
+.navi{
+    position:absolute; 
+    left:0; 
+    width:30px; 
+    background-color:#B8D0FA;
+    min-width: 30px;
+    max-width: 80%;
+    height: 100%;
+}
+
+.expander-height{ 
+    width:100%; height:3px; background-color:#999;
+    cursor:n-resize;
+}
+.expander-width{
+    height:100%; width: 3px; background-color:#999;
+    float: right; 
+    cursor:e-resize;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #CCC;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="navi">
+        <div class="expander expander-width"></div>
+    </div>
+    
+    <div id="footer">
+        <div class="expander expander-height"></div>
+    </div>
+    
+</div>
+</body>
+<script>
+function resizable(params){
+    var el = params.el;
+    var node = params.node;
+
+    var direction = params.direction;
+    var directionMap = {
+        'top': {
+            page: 'pageY',
+            attr: 'height',
+            getRange: function(start, resize){
+                return start - resize;
+            }
+        },
+        'right': {
+            page: 'pageX',
+            attr: 'width',
+            getRange: function(start, resize){
+                return resize - start;
+            }
+        }
+        //... 按需扩展
+    };
+
+    direction = directionMap[direction];
+
+    var page = direction.page;
+    var attr = direction.attr;
+
+    var startP = 0, 
+        resizableP = 0, 
+        isMouseDown = false;
+
+    node.mousedown(function(e){
+        //startP = e[page];
+        isMouseDown = true;
+    });
+
+    el.bind("click mouseup",function(e){
+        if(isMouseDown){
+          isMouseDown = false;
+        }
+    }).mousemove(function(e){
+        if(isMouseDown){
+            resizableP = e[page];
+            var range = direction.getRange(startP, resizableP);
+            range = node[attr]() + range;
+            startP = resizableP;
+            node.css(attr, range);
+        }
+    });
+}
+
+resizable({
+    el: $('.container'),
+    node: $("#footer"),
+    direction: 'top'
+});
+
+resizable({
+    el: $('.container'),
+    node: $(".navi"),
+    direction: 'right'
+});
+</script>
+</html>

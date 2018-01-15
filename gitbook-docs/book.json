@@ -1,4 +1,17 @@
 {
 	"title": "GitBook-Docs",
-	"plugins": ["toggle-chapters", "sectionx", "expandable-chapters", "-sharing"]
+	"plugins": ["mermaid-atom-mden", "custom-js-css", "expandable-chapters", "nestedmd", "toggle-chapters", "sectionx", "search-plus","custom-jquery-postprocessing", "-sharing","search", "-fontsettings"],
+	"pluginsConfig": {
+	    "customJquery": {
+	    	"js": "js/custom.js"
+	    },
+	    "custom-js-css": {
+		    "js": [
+		      "js/website.js"
+		    ]
+		  }
+	},
+	"styles": {
+		"website": "styles/website.css"
+	}
 }

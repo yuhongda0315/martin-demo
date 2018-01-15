@@ -995,11 +995,7 @@ BlinkEngine.prototype.exchange = function(data) {
 BlinkEngine.prototype.preparePeerConnection = function(userId) {
 	var blinkEngine = this;
 	if (blinkEngine.peerConnections[userId] == undefined) {
-		var pc = new RTCPeerConnection(null, {
-			optional: [
-			  { RtpDataChannels: false }
-			]
-		});
+		var pc = new RTCPeerConnection();
 		pc.onaddstream = function(evt) {
 			blinkEngine.remoteStreams.push(evt.stream);
 			blinkEngine.remoteStreamCount = blinkEngine.remoteStreams.length;
@@ -1252,10 +1248,8 @@ function changeVideoDesc(sdp) {
 	
 	var videoDescArr1 = sdpArr[findIndex1].split(sep2);
 	// m=video 9 UDP/TLS/RTP/SAVPF
-	// var videoReplace1 = videoDescArr1[0] + sep2 + videoDescArr1[1] + sep2
-	// 		+ videoDescArr1[2];
-
-	var videoReplace1 = 'm=video 9 RTP/SAVPF';
+	var videoReplace1 = videoDescArr1[0] + sep2 + videoDescArr1[1] + sep2
+			+ videoDescArr1[2];
 	// 查找videoDesc2
 	var findIndex2 = findLineInRange(sdpArr, findStr2, findIndex1 + 1, sdpArr.length - 1);
 	var findIndex3 = findLineInRange(sdpArr, findStr3, findIndex2 + 1, sdpArr.length - 1);

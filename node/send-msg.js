@@ -1,12 +1,12 @@
 var rongCloud = require('rongcloud-sdk')
 
-rongCloud.init('n19jmcy9itc4z', 'Dj1sOLsfy2');
-var msg = {
+rongCloud.init('8luwapkvucoil', 'y0icysjl4h3LWz');
+/*var msg = {
     operatorUserId: 'YuHongDa',
     operation: 'operation',
     data: 'YuHongDa',
     message: 'YuHongDa'
-};
+};*/
 // rongCloud.message.group.publish('__system__', 'dh862', 'RC:GrpNtf', JSON.stringify(msg), function(err, resultText) {
 //     if (err) {
 //         console.log(err.response.text);
@@ -19,6 +19,6 @@ var msg = {
  //    console.log(err.response.text);
  // })
 
- rongCloud.user.getToken('dh1', 'Administrator', '', function(err, res){
-    console.log(res)
- });
+ // rongCloud.user.getToken('dh1', 'Administrator', '', function(err, res){
+ //    console.log(res)
+ // });

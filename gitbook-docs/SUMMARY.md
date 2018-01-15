@@ -8,4 +8,4 @@
     * [命令](detail/command.md)
 * [快速开始](quick-start.md)
 * [插件](plugin.md)
-
+<!-- * [小程序解决方案](mini-program.md) -->

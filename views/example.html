@@ -183,5 +183,23 @@ function fnull(func){
 }
 var safeMutl = fnull(function(total, n){return total * n }, 1, 1);
 _.reduce([1, 2, 3, null], safeMutl);
+
+function insertionSort(array) {
+　　console.time('插入排序耗时');
+　　for (var i = 1; i < array.length; i++) {
+　　　　var key = array[i];
+　　　　var j = i - 1;
+　　　　while ( array[j] > key) {
+　　　　　array[j + 1] = array[j];
+		j--;
+　　　　}
+　　　　array[j + 1] = key;
+　　}
+　　console.timeEnd('插入排序耗时');
+　　return array;
+}
+var arr=[55, 66, 44,38];
+console.log(insertionSort(arr));
+
 </script>
 </html>

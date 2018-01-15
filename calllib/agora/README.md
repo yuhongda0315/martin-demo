@@ -11,16 +11,24 @@
 
 |用户       | UserId    | App                  |Web   
 |:---------:|:----------|:-------------------- |:-------------------------------------------------
-|A          | xNlpDTUmw | 13269772769/admin123.|https://yuhongda0315.github.io/martin-demo/calllib/agora/private.html
-|B          | b5NwvIrW8 | 18310485134/123456   |https://yuhongda0315.github.io/martin-demo/calllib/agora/private.html?peer
+|A          | nSH63LJ3B5sGXHeaHXnZ5Y | 13426250042/123456   |https://yuhongda0315.github.io/martin-demo/calllib/agora/private.html
+|B          | XD3ke8sUKaRHWU5hfvbLmn | 18601253544/123456q  |https://yuhongda0315.github.io/martin-demo/calllib/agora/private.html?peer
 
 #### 多人
 
 |用户       | UserId    | App                  |Web   
 |:---------:|:----------|:-------------------- |:-------------------------------------------------
-|A          | xNlpDTUmw | 13269772769/admin123.| https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html
-|B          | b5NwvIrW8 | 18310485134/123456   | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html?peer1
-|C          | JFTfwU5Zc | 13810123257/123456   | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html?peer2
+|A          | nSH63LJ3B5sGXHeaHXnZ5Y | 13426250042/123456    | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html
+|B          | XD3ke8sUKaRHWU5hfvbLmn | 18601253544/123456q   | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html?peer1
+|C          | Mkt5fei2RfKJZZmURkDp8Z | 15910946839/123456q   | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html?peer2
+
+GroupId: KoEGFGQj8kAYkij84MkEsj
+
+A Token: ZQ9MNlyAxcU1hNX1cFnLSbdo0HEjrdNpsoJjvzzRSyGB1946LlrOg56BoVSv79cn+HbC4kdlHSj86afSYMK1XxrJRt5N53FjeMBnCQVdHB6h7RZ9QvQEbg==
+
+B Token: FNj6usREH9k77Qidicx+F7do0HEjrdNpsoJjvzzRSyFMcCusI5n/EcntbKCxkrOCTLZr0050b8cGqp5CKNxUkqIKd2tawevq6DfbkbpjQuU9BG9hQtX3uA==
+
+C Token: nGiNKIEUzBqkF4F2mMeLeeQT2n65B7OjBiykm8VlpZXvWVFnsDdS63nR83tK61OzAp0bL/u6I2SPXm1gcGJ69nX/TStlaS6vLNTVLyKL11jHJzD+50w9Rw==
 
 ### API
 
