@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <title>ChatRoom</title>
   <link rel="stylesheet" href="../css/common.css">
-  <!-- <script src="http://cdn.ronghub.com/RongIMLib-2.2.7.js"></script> -->
-  <script src="../local-sdk/RongIMLib.js"></script>
-  <script src="../js/init.js"></script>
-  <script src="../js/utils.js"></script>
+  <script src="http://cdn.ronghub.com/RongIMLib-2.2.8.js"></script>
+  <!-- <script src="../local-sdk/RongIMLib-2.2.8.js"></script> -->
+
 </head>
 <body>
+	
 	<div class="api-box">
 		<div class="api-box-btns">
 			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
@@ -29,7 +29,8 @@
 	</div>
 	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
 	<div id="api-log-box"></div>
-
+	  <script src="../js/init.js"></script>
+  <script src="../js/utils.js"></script>
 	<script>
 		var utils = RCUtils.utils;
 		var conversation = RCUtils.conversation;
@@ -50,7 +51,6 @@
 		var conversationType = RongIMLib.ConversationType.CHATROOM;
 
 		function connect(){
-			window.Martin = 'Martin';
 			// if (Rong) {
 			// 	return;
 			// }

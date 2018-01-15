@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>UserStatus</title>
-  <!-- <script src="http://cdn.ronghub.com/RongIMLib-2.2.7.js"></script> -->
+  <script src="http://cdn.ronghub.com/RongIMLib-2.3.0.js"></script>
   <link rel="stylesheet" href="../css/common.css">
-  <script src="//cdn.ronghub.com/RongIMLib-2.2.8.min.js?0000"></script>
   <script src="../js/init.js"></script>
   <style>
   	html,body{
@@ -53,6 +52,7 @@
 	<div class="api-box">
 		<div class="api-box-btns">
 			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
+			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="navi">
 			<br>
 			<input type="text" value="MAo+IhwqEO3+h/DdXg1w6m20V27XsDF2Dx+bgnMVAZjGqt7yGi0NETcraTd/zxAM+czEMSIEMtrEosboWZn9Sg9TIq6kcYNI" placeholder="token" id="token" class="input-content input-token">
 			<br>
@@ -79,10 +79,13 @@
 			}
 			var appKey = getDom('appKey').value;
 			var token = getDom('token').value;
+			var navi = getDom('navi').value;
 
 			var params = {
 				appKey: appKey,
-				token: token
+				token: token,
+				navi: navi,
+
 			};
 			var callbacks = {
 				connected: function(_Rong){
@@ -115,7 +118,7 @@
 				Rong.setUserStatus(status, callback('setUserStatus'));
 			},
 			sub: function(){
-				var userIds = ['seal9902'];
+				var userIds = ['xiaopang'];
 				Rong.setUserStatusListener({userIds: userIds}, function(status){
 					console.log(status);
 				});

@@ -21,16 +21,16 @@
 
    -->
 
-  <script src="../js/init.js?123"></script>
+  <script src="../js/init.js?aaaaa"></script>
   <script src="../js/utils.js"></script>
 </head>
 <body>
 	<div class="api-box">
 		<div class="api-box-btns">
-			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
-			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
+			<input type="text" value="e0x9wycfx7flq" placeholder="appKey" id="appKey" class="input-content">
+			<input type="text" value="60.29.0.9:8082" placeholder="nav" id="nav">
 			<br>
-			<input type="text" value="CdpH9Q5sSc416THmJMNSW8SkAMimzaj6nB20cRPaYWTm/DLRQaleLDuO6jjDS7gY6ZCNZiX2+eVDhuh8o9Ba2Q==" placeholder="token" id="token" class="input-content input-token">
+			<input type="text" value="AAGGoE7nEMh51zp5E/II2pElftNABSaMEwib4WlHuUc6s42LY0G77UXj/Ux/fjnxDmeJlw==" placeholder="token" id="token" class="input-content input-token">
 			<br>
 			<input type="text" id="conversationType" placeholder="conversationType" value="3">
 			<input type="text" id="targetId" placeholder="targetId" value="groupId1219">
@@ -87,10 +87,9 @@
 				以下逻辑为 RongDesktop 存在即认为在 Electron 中，请一定保证 RongDesktop 唯一、不可破坏、不被污染
 				详细请参考 martin-demo/sdk/js/init.js dataProvider 用法
 			*/
-			var isDesktopEnv = (typeof RongDesktop != 'undefined')
-			if (isDesktopEnv) {
-				params.imClient = RongDesktop.addon;
-			}
+
+			
+			params.imClient = require('RongIMLib.node');
 			init(params, callbacks);
 		}
 
@@ -110,7 +109,7 @@
 			},
 			clearHistory: function(){
 				var params = conversation.get();
-				params.timestamp = 1514528324953;
+				params.timestamp = new Date('2019-01-01').getTime();;
 				Rong.clearRemoteHistoryMessages(params, {
 					onSuccess: function(ret) {
 						log.show('ClearHistory Success', ret);

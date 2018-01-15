@@ -6,7 +6,7 @@ function init(params, callbacks){
 
 	var RongIMClient = RongIMLib.RongIMClient;
 
-	var config = {isPolling: false};
+	var config = {isPolling: false, showError: true};
 
 	//私有云切换navi导航
 	if(navi !== ""){
@@ -37,9 +37,7 @@ function init(params, callbacks){
 	// 连接状态监听器
 	RongIMClient.setConnectionStatusListener({
 		onChanged: function (status) {
-			console.log(status);
-			alert(Martin + '1-23' + status);
-
+			console.log('status', status);
 		    switch (status) {
 		        case RongIMLib.ConnectionStatus.CONNECTED:
 		            callbacks.connected && callbacks.connected(instance);
