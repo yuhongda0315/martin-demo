@@ -78,7 +78,7 @@
 
     var remotePeerBox = null;
 
-    client = AgoraRTC.createClient({ mode: 'interop' });
+    client = AgoraRTC.createClient({ mode: 'h264_interop' });
 
     var errorInfo = null;
     var participant = {
