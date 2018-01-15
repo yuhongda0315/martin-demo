@@ -37,11 +37,7 @@ function init(params, callbacks){
 	// 连接状态监听器
 	RongIMClient.setConnectionStatusListener({
 		onChanged: function (status) {
-<<<<<<< HEAD
 			console.log('status', status);
-=======
-			console.log(status);
->>>>>>> a647a941c4d803dc01efe6555c574aa4f16e49af
 		    switch (status) {
 		        case RongIMLib.ConnectionStatus.CONNECTED:
 		            callbacks.connected && callbacks.connected(instance);
