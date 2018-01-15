@@ -15,9 +15,9 @@ var setMain = function(node) {
 var videoItem = {
     added: function(result) {
         var node = result.data;
-        node.onclick = function(){
-            setMain(node);
-        };
+        // node.onclick = function(){
+        //     setMain(node);
+        // };
         
         if (result.isLocal) {
             setMain(node);
