@@ -25,6 +25,7 @@
   <script src="../js/utils.js"></script>
 </head>
 <body>
+	<img src="http://img.zcool.cn/community/01690955496f930000019ae92f3a4e.jpg@2o.jpg" alt="">
 	<div class="api-box">
 		<div class="api-box-btns">
 			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
@@ -139,6 +140,38 @@
 			}
 			return handler[type]();
 		}
+	</script>
+
+	<script>
+		var stringFormat = function(str) {
+		    for (var i = 1; i < arguments.length; i++) {
+		        var val = arguments[i] == undefined ? "" : arguments[i],
+		            reg = new RegExp("\\{" + (i - 1) + "\\}", "g");
+		        str = str.replace(reg, val);
+		    }
+		    return str;
+		};
+
+		var appkey = '8luwapkvucoil';
+		var token = 'hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==';
+
+		var request = RongIMLib.RongUtil.request;
+		var getNavi = function() {
+		    var urlTpl = '{0}//nav.cn.ronghub.com/navi.json?appId={1}&token={2}&callBack=getServerEndpoint&t={3}',
+		        timestamp = +new Date,
+		        token = encodeURIComponent(token);
+		    var url = stringFormat(urlTpl, 'http:', appkey, token, timestamp);
+		    request({
+		    	url: url,
+		        success: function(res) {
+		           console.log(res);
+		        },
+		        error: function(error) {
+		        	console.log(error);
+		        }
+		    });
+		};
+		
 	</script>
 </body>
 </html>
