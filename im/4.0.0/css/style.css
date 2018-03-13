@@ -1,0 +1,55 @@
+html,body{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	list-style: none;
+}
+
+.mt-im{
+	height: 100%;
+	width: 100%;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
+	background-color: #E8EDF3;
+	position: relative;
+}
+
+.mt-navi{
+	height: 60px;
+	background-color: #32CECD;
+}
+
+.mt-container-list{
+	float: left;
+	width: 300px;
+	overflow: auto;
+	border-right: 1px solid #FFF;
+	position: absolute;
+	top: 60px;
+	bottom: 0;
+}
+.mt-conversation-item{
+	height: 65px;
+    padding: 10px 10px 0 10px;
+}
+.mt-conversation{
+	height: 65px;
+	background-color: #FFF;
+}
+
+.mt-conversation-main{
+	position: absolute;
+	left: 300px;
+	right: 0;
+	top: 60px;
+	bottom: 0;
+}
