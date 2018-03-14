@@ -6,7 +6,7 @@ function init(params, callbacks){
 
 	var RongIMClient = RongIMLib.RongIMClient;
 
-	var config = {isPolling: true, showError: true/*, require: RongDesktop.remote.require*/};
+	var config = {isPolling: false, showError: true/*, require: RongDesktop.remote.require*/};
 
 	//私有云切换navi导航
 	if(navi !== ""){
