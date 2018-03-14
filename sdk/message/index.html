@@ -98,7 +98,10 @@
 
 		var handler = {
 			send: function(){
-				var content = "hello: " + Date.now();
+				var content = "hello: ";
+				for(var i = 0; i < 10000; i++){
+					content+='😄';
+				}
 				var msg = new RongIMLib.TextMessage({content: content, extra: JSON.stringify({name: 111})});
 				var info = conversation.get();
 				Rong.sendMessage(+info.conversationType, info.targetId, msg, {
