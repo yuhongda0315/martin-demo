@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Message</title>
   <link rel="stylesheet" href="../css/common.css">
-  <!-- <script src="../local-sdk/RongIMLib-2.3.0.js"></script> -->
+  <!-- <script src="../local-sdk/RongIMLib-2.3.0.0209.fix.js"></script> -->
+  <!-- <script src="../local-sdk/RongIMLib.js"></script> -->
   <script src="//cdn.ronghub.com/RongIMLib-2.3.0.js"></script>
 
   <!-- 
@@ -20,26 +21,26 @@
 	groupId: groupId1219
 
    -->
-
   <script src="../js/init.js?123"></script>
   <script src="../js/utils.js"></script>
 </head>
 <body>
-	<img src="http://img.zcool.cn/community/01690955496f930000019ae92f3a4e.jpg@2o.jpg" alt="">
 	<div class="api-box">
 		<div class="api-box-btns">
 			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
 			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
+			<input type="text" value="" placeholder="clearTimeStamp" id="clearTimeStamp">
 			<br>
 			<input type="text" value="CdpH9Q5sSc416THmJMNSW8SkAMimzaj6nB20cRPaYWTm/DLRQaleLDuO6jjDS7gY6ZCNZiX2+eVDhuh8o9Ba2Q==" placeholder="token" id="token" class="input-content input-token">
 			<br>
 			<input type="text" id="conversationType" placeholder="conversationType" value="3">
-			<input type="text" id="targetId" placeholder="targetId" value="groupId1219">
+			<input type="text" id="targetId" placeholder="targetId" value="group01">
 			<br>
 			<input type="button" value="connect" onclick="connect()">
 			<input type="button" value="sendMessage" onclick="sendCommand('send')">
 			<input type="button" value="clearHistoryMessages" onclick="sendCommand('clearHistory')">
 			<input type="button" value="getHistoryMessages" onclick="sendCommand('getHistory')">
+			<input type="button" value="Reload" onclick="location.reload()">
 		</div>
 	</div>
 	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
@@ -98,7 +99,7 @@
 		var handler = {
 			send: function(){
 				var content = "hello: " + Date.now();
-				var msg = new RongIMLib.TextMessage({content: content});
+				var msg = new RongIMLib.TextMessage({content: content, extra: JSON.stringify({name: 111})});
 				var info = conversation.get();
 				Rong.sendMessage(+info.conversationType, info.targetId, msg, {
 					onSuccess: function(ret) {
@@ -111,7 +112,8 @@
 			},
 			clearHistory: function(){
 				var params = conversation.get();
-				params.timestamp = 1514528324953;
+				var timestamp = +utils.getDom('clearTimeStamp').value;
+				params.timestamp = timestamp || Date.now();
 				Rong.clearRemoteHistoryMessages(params, {
 					onSuccess: function(ret) {
 						log.show('ClearHistory Success', ret);
@@ -152,25 +154,28 @@
 		    return str;
 		};
 
-		var appkey = '8luwapkvucoil';
-		var token = 'hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==';
+        var getNavi = function (callback) {
+            var script = document.createElement("script");
 
-		var request = RongIMLib.RongUtil.request;
-		var getNavi = function() {
-		    var urlTpl = '{0}//nav.cn.ronghub.com/navi.json?appId={1}&token={2}&callBack=getServerEndpoint&t={3}',
+            var appkey = '8luwapkvucoil';
+			var token = 'hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==';
+
+		    var urlTpl = '{0}//nav.cn.ronghub.com/navi.xml?appId={1}&token={2}&callBack=getRongCloudCMPUrl&t={3}',
 		        timestamp = +new Date,
 		        token = encodeURIComponent(token);
-		    var url = stringFormat(urlTpl, 'http:', appkey, token, timestamp);
-		    request({
-		    	url: url,
-		        success: function(res) {
-		           console.log(res);
-		        },
-		        error: function(error) {
-		        	console.log(error);
-		        }
-		    });
-		};
+		    var url = stringFormat(urlTpl, '//', appkey, token, timestamp);
+
+            //进行jsonp请求
+            script.src = url;
+            document.body.appendChild(script);
+
+            script.onerror = function () {
+                console.log(RongIMLib.ConnectionState.TOKEN_INCORRECT);	
+            };
+            window.getRongCloudCMPUrl = function(info){
+            	console.log(info);
+            }
+        };
 		
 	</script>
 </body>

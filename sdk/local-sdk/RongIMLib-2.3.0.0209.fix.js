@@ -1903,7 +1903,7 @@ var RongIMLib;
                 protocol = 'http://';
             }
             if (location.protocol == 'https:') {
-             //   wsScheme = 'wss://';
+                wsScheme = 'wss://';
             }
             var isPolling = false;
             if (typeof WebSocket != 'function') {
@@ -1951,7 +1951,7 @@ var RongIMLib;
                 options[key] = path;
             });
             var _sourcePath = {
-                protobuf: 'cdn.ronghub.com/protobuf-2.3.0.min.js'
+                protobuf: 'cdn.ronghub.com/protobuf-2.3.1.min.js'
             };
             RongIMLib.RongUtil.forEach(_sourcePath, function (path, key) {
                 _sourcePath[key] = RongIMLib.RongUtil.stringFormat(pathTmpl, [protocol, path]);
@@ -1990,6 +1990,8 @@ var RongIMLib;
                 isFirstPingMsg: true,
                 depend: options,
                 listenerList: RongIMClient._memoryStore.listenerList,
+                isPullFinished: true,
+                syncMsgQueue: [],
                 notification: {}
             };
             RongIMClient._memoryStore = tempStore;
@@ -3979,7 +3981,7 @@ var RongIMLib;
         RongIMClient.LogFactory = {};
         RongIMClient.MessageType = {};
         RongIMClient.RegisterMessage = {};
-        RongIMClient._memoryStore = { listenerList: [] };
+        RongIMClient._memoryStore = { listenerList: [], isPullFinished: true, syncMsgQueue: [] };
         RongIMClient.isNotPullMsg = false;
         RongIMClient.userStatusObserver = null;
         RongIMClient.userStatusListener = null;
@@ -4399,6 +4401,7 @@ var RongIMLib;
             //发送queryMessage请求
             this.queryMessage(str, RongIMLib.MessageUtil.ArrayForm(modules.toArrayBuffer()), target, Qos.AT_LEAST_ONCE, {
                 onSuccess: function (collection) {
+
                     var sync = RongIMLib.MessageUtil.int64ToTimestamp(collection.syncTime), symbol = target;
                     //把返回时间戳存入本地，普通消息key为userid，聊天室消息key为userid＋'CST'；value都为服务器返回的时间戳
                     if (str == "chrmPull") {
@@ -4419,10 +4422,27 @@ var RongIMLib;
                     var list = collection.list;
                     for (var i = 0, len = list.length, count = len; i < len; i++) {
                         if (!(list[i].msgId in me.cacheMessageIds)) {
-                            Bridge._client.handler.onReceived(list[i], undefined, offlineMsg, --count);
-                            var arrLen = me.cacheMessageIds.unshift(list[i].msgId);
-                            if (arrLen > 20)
-                                me.cacheMessageIds.length = 20;
+                            count-=1;
+                            var message = list[i];
+                            var sentTime = RongIMLib.MessageUtil.int64ToTimestamp(message.dataTime);
+                            if (sentTime > time) {
+                                Bridge._client.handler.onReceived(message, undefined, offlineMsg, count);
+                                var arrLen = me.cacheMessageIds.unshift(list[i].msgId);
+                                if (arrLen > 20)
+                                    me.cacheMessageIds.length = 20;
+                            }
+                        }
+                    }
+                    var isPullFinished = collection.finished;
+                    RongIMLib.RongIMClient._memoryStore.isPullFinished = isPullFinished;
+                    if (isPullFinished) {
+                        var memoryStore = RongIMLib.RongIMClient._memoryStore;
+                        var syncMsgQueue = memoryStore.syncMsgQueue;
+                        while(syncMsgQueue.length > 0){
+                            var index = 0;
+                            var item = syncMsgQueue[index];
+                            Bridge._client.handler.onReceived(item.msg, item.pubAckItem);
+                            syncMsgQueue.splice(index, 1);
                         }
                     }
                 },
@@ -4547,6 +4567,12 @@ var RongIMLib;
                     return;
                 }
                 else if (msg.getTopic() == "s_msg") {
+                    // 修复: 正在 PullMsg 发送消息, 造成只能拉取部分消息
+                    var memoryStore = RongIMLib.RongIMClient._memoryStore;
+                    var isPullFinished = memoryStore.isPullFinished;
+                    if (!isPullFinished) {
+                        return;
+                    }
                     entity = RongIMLib.RongIMClient.Protobuf.DownStreamMessage.decode(msg.getData());
                     var timestamp = RongIMLib.MessageUtil.int64ToTimestamp(entity.dataTime);
                     RongIMLib.RongIMClient._storageProvider.setItem(this._client.userId, timestamp);
@@ -4563,6 +4589,9 @@ var RongIMLib;
                 }
                 else {
                     if (Bridge._client.sdkVer && Bridge._client.sdkVer == "1.0.0") {
+                        return;
+                    }
+                    if (!RongIMClient._memoryStore.isPullFinished) {
                         return;
                     }
                     entity = RongIMLib.RongIMClient.Protobuf.UpStreamMessage.decode(msg.getData());
@@ -4604,29 +4633,31 @@ var RongIMLib;
             if (pubAckItem) {
                 message.messageUId = pubAckItem.getMessageUId();
                 message.sentTime = pubAckItem.getTimestamp();
+                RongIMLib.RongIMClient._storageProvider.setItem(this._client.userId, message.sentTime);
             }
             if (message === null) {
                 return;
             }
+            var isPersited = (RongIMLib.RongIMClient.MessageParams[message.messageType].msgTag.getMessageTag() > 0);
             // 设置会话时间戳并且判断是否传递 message  发送消息未处理会话时间戳
             // key：'converST_' + 当前用户 + conversationType + targetId
             // RongIMClient._storageProvider.setItem('converST_' + Bridge._client.userId + message.conversationType + message.targetId, message.sentTime);
-            if (message.conversationType != RongIMLib.ConversationType.CHATROOM) {
-                var stKey = 'converST_' + Bridge._client.userId + message.conversationType + message.targetId;
-                var stValue = RongIMLib.RongIMClient._memoryStore.lastReadTime.get(stKey);
-                if (stValue) {
-                    if (message.sentTime > stValue) {
-                        RongIMLib.RongIMClient._memoryStore.lastReadTime.set(stKey, message.sentTime);
-                    }
-                    else {
-                        return;
-                    }
-                }
-                else {
-                    RongIMLib.RongIMClient._memoryStore.lastReadTime.set(stKey, message.sentTime);
-                }
-            }
-            if (RongIMLib.RongIMClient.MessageParams[message.messageType].msgTag.getMessageTag() > 0) {
+            // if (message.conversationType != RongIMLib.ConversationType.CHATROOM) {
+            //     var stKey = 'converST_' + Bridge._client.userId + message.conversationType + message.targetId;
+            //     var stValue = RongIMLib.RongIMClient._memoryStore.lastReadTime.get(stKey);
+            //     if (stValue) {
+            //         if (message.sentTime > stValue && isPersited) {
+            //             RongIMLib.RongIMClient._memoryStore.lastReadTime.set(stKey, message.sentTime);
+            //         }
+            //         else {
+            //             return;
+            //         }
+            //     }
+            //     else {
+            //         RongIMLib.RongIMClient._memoryStore.lastReadTime.set(stKey, message.sentTime);
+            //     }
+            // }
+            if (isPersited) {
                 RongIMLib.RongIMClient._dataAccessProvider.getConversation(message.conversationType, message.targetId, {
                     onSuccess: function (con) {
                         if (!con) {
@@ -4952,8 +4983,12 @@ var RongIMLib;
                 if (_msg) {
                     _msg.setSentStatus = _status;
                 }
-                RongIMLib.RongIMClient._storageProvider.setItem(RongIMLib.Bridge._client.userId, timestamp);
-                RongIMLib.RongIMClient._memoryStore.lastReadTime.get(RongIMLib.Bridge._client.userId, timestamp);
+                var memoryStore = RongIMLib.RongIMClient._memoryStore;
+                var isPullFinished = memoryStore.isPullFinished;
+                if (isPullFinished) {
+                    RongIMLib.RongIMClient._storageProvider.setItem(RongIMLib.Bridge._client.userId, timestamp);
+                    RongIMLib.RongIMClient._memoryStore.lastReadTime.get(RongIMLib.Bridge._client.userId, timestamp);
+                }
                 this._cb({ messageUId: messageUId, timestamp: timestamp, messageId: messageId });
             }
             else {
@@ -6246,7 +6281,6 @@ var RongIMLib;
                 throw new Error("URL can't be empty");
             }
             ;
-            url = url.replace('localhost', '10.12.11.86');
             this.url = url;
             this.socket = new WebSocket(RongIMLib.RongIMClient._memoryStore.depend.wsScheme + url);
             this.socket.binaryType = "arraybuffer";
@@ -8530,9 +8564,10 @@ var RongIMLib;
             msg.messageType = messageContent.messageName;
             RongIMLib.RongIMClient.bridge.pubMsg(conversationType.valueOf(), content, targetId, {
                 onSuccess: function (data) {
-                    if (data && data.timestamp) {
-                        RongIMLib.RongIMClient._memoryStore.lastReadTime.set('converST_' + RongIMLib.Bridge._client.userId + conversationType + targetId, data.timestamp);
-                    }
+                    var memoryStore = RongIMLib.RongIMClient._memoryStore;
+                    // if (data && data.timestamp && !memoryStore.isPullFinished) {
+                    //     RongIMLib.RongIMClient._memoryStore.lastReadTime.set('converST_' + RongIMLib.Bridge._client.userId + conversationType + targetId, data.timestamp);
+                    // }
                     if ((conversationType == RongIMLib.ConversationType.DISCUSSION || conversationType == RongIMLib.ConversationType.GROUP) && messageContent.messageName == RongIMLib.RongIMClient.MessageType["ReadReceiptRequestMessage"]) {
                         var reqMsg = msg.content;
                         var sentkey = RongIMLib.Bridge._client.userId + reqMsg.messageUId + "SENT";

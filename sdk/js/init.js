@@ -6,7 +6,7 @@ function init(params, callbacks){
 
 	var RongIMClient = RongIMLib.RongIMClient;
 
-	var config = {isPolling: false, showError: true};
+	var config = {isPolling: true, showError: true/*, require: RongDesktop.remote.require*/};
 
 	//私有云切换navi导航
 	if(navi !== ""){
@@ -74,7 +74,7 @@ function init(params, callbacks){
 			console.log("链接成功，用户id：" + userId);
 		},
 		onTokenIncorrect: function() {
-			//console.log('token无效');
+			console.log('token无效');
 		},
 		onError:function(errorCode){
 		  console.log(errorCode);
