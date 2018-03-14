@@ -187,6 +187,14 @@
         userId = convertUserId(userId);
 
         var id = getRemoteId(stream);
+        var children = remotePeerBox.children;
+        for(var i = 0, len = children.length; i < len; i++){
+          var child = children[i];
+          var isExists = (child.id == id);
+          if (isExists) {
+            return;
+          }
+        }
         remotePeerBox.appendChild(createDiv({
           id: id,
           userid: userId
