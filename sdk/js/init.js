@@ -6,7 +6,7 @@ function init(params, callbacks){
 
 	var RongIMClient = RongIMLib.RongIMClient;
 
-	var config = {isPolling: false, showError: true/*, require: RongDesktop.remote.require*/};
+	var config = {showError: true/*, require: RongDesktop.remote.require*/};
 
 	//私有云切换navi导航
 	if(navi !== ""){
@@ -43,9 +43,10 @@ function init(params, callbacks){
 		            callbacks.connected && callbacks.connected(instance);
 		            break;
 		        case 3:
-		        	if (RongIMClient.getInstance().getCurrentConnectionStatus() > 1) {
-		        		RongReconnect();
-		        	}
+		        case 4:
+		        case 5:
+		        case 6:
+		        	callbacks.disconnectd && callbacks.disconnectd();
 		        break;
 		        }
 		        
