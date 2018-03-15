@@ -5,8 +5,7 @@
   <title>Message</title>
   <link rel="stylesheet" href="../css/common.css">
   <!-- <script src="../local-sdk/RongIMLib-2.3.0.0209.fix.js"></script> -->
-  <!-- <script src="../local-sdk/RongIMLib.js"></script> -->
-  <script src="//cdn.ronghub.com/RongIMLib-2.3.0.js"></script>
+  <script src="../local-sdk/RongIMLib-2.3.1.js"></script>
 
   <!-- 
 	userId: AUj8X32w1
@@ -23,15 +22,15 @@
    -->
   <script src="../js/init.js?123"></script>
   <script src="../js/utils.js"></script>
-</head>
+</head> 
 <body>
 	<div class="api-box">
 		<div class="api-box-btns">
-			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
+			<input type="text" value="8brlm7ufrg9e3" placeholder="appKey" id="appKey" class="input-content">
 			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
 			<input type="text" value="" placeholder="clearTimeStamp" id="clearTimeStamp">
 			<br>
-			<input type="text" value="CdpH9Q5sSc416THmJMNSW8SkAMimzaj6nB20cRPaYWTm/DLRQaleLDuO6jjDS7gY6ZCNZiX2+eVDhuh8o9Ba2Q==" placeholder="token" id="token" class="input-content input-token">
+			<input type="text" value="xJByRfl/lptRLTUk40zCHj7ehB7EizrQscjx0HJEIPvvh7TBKB8GRem6uXU2jn95exNGWbSCc8wqj7QL2dBTlLUoR+2HwNZW" placeholder="token" id="token" class="input-content input-token">
 			<br>
 			<input type="text" id="conversationType" placeholder="conversationType" value="3">
 			<input type="text" id="targetId" placeholder="targetId" value="group01">
@@ -46,7 +45,6 @@
 	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
 	<div id="api-log-box"></div>
 	<script>
-
 		var utils = RCUtils.utils;
 		var conversation = RCUtils.conversation;
 		var Log = RCUtils.Log;
@@ -72,12 +70,16 @@
 			var params = {
 				appKey: appKey,
 				token: token,
-				navi: navi
+				navi: navi,
+				protobuf: '../local-sdk/protobuf-2.3.1.min.js'
 			};
 			var callbacks = {
 				connected: function(_Rong){
 					Rong = _Rong;
 					log.show('Connect', 'connect successfully');
+				},
+				disconnectd: function(){
+					Rong = null;
 				},
 				received: function(message){
 					log.show('Received Message', message);
@@ -98,10 +100,7 @@
 
 		var handler = {
 			send: function(){
-				var content = "hello: ";
-				for(var i = 0; i < 10000; i++){
-					content+='😄';
-				}
+				var content = "hello";
 				var msg = new RongIMLib.TextMessage({content: content, extra: JSON.stringify({name: 111})});
 				var info = conversation.get();
 				Rong.sendMessage(+info.conversationType, info.targetId, msg, {
