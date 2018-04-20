@@ -121,7 +121,7 @@
             sendMessage(params, callback);
         },
         memberModify: function(params, callback) {
-            params.messageType = 'MediaModifyMessage';
+            params.messageType = 'MemberModifyMessage';
             sendMessage(params, callback);
         },
         getToken: function(params, callback) {

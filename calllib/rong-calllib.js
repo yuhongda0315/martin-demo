@@ -183,7 +183,7 @@
             },
             VOIP_NOT_AVALIABLE18: {
                 code: 18,
-                info: 'VoIP 不可以用'
+                info: '音视频不可以用'
             }
         };
 
@@ -310,11 +310,15 @@
 
             userMap[message.sentTime] = message.senderUserId;
 
+            var callParams = cache.get('call-params');
+            var profile = callParams.profile;
+
             var params = {
                 channelId: channelId,
                 userId: userId,
                 sentTime: sentTime,
-                mediaType: mediaType
+                mediaType: mediaType,
+                profile: profile
             };
             initRoom(params);
             summayTimer.start();
@@ -355,7 +359,7 @@
             return;
         }
 
-        cache.set(callback, params);
+        cache.set('call-params', params);
 
         callback = callback || util.noop;
 
@@ -437,6 +441,8 @@
 
         var session = cache.get('session');
 
+        var profile = params.profile;
+
         var from = params.from;
         var info = from + ': Not call yet';
         checkSession({
@@ -466,11 +472,12 @@
 
             userMap[sentTime] = userId;
 
-            var params = {
+            params = {
                 channelId: channelId,
                 userId: userId,
                 sentTime: sentTime,
-                mediaType: mediaType
+                mediaType: mediaType,
+                profile: profile
             };
             initRoom(params);
             summayTimer.start();

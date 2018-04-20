@@ -1,43 +1,12 @@
 ### Rong CallLib API 说明
 
-测试环境： SealTalk 大乔
+### 启动示例
 
-### Demo
+1、修改 `config` 的 `appKey`、`private`、`group` 属性中的 `userid` 和 `token`
 
-使用下面的 URL 可体验 VoIP。
-
-#### 一对一
-
-
-|用户       | UserId    | App                  |Web   
-|:---------:|:----------|:-------------------- |:-------------------------------------------------
-|A          | J7XqKPint | 18601253544/123456   |https://yuhongda0315.github.io/martin-demo/calllib/agora/private.html
-|B          | rOMJ1vQVd | 18601031141/123456  |https://yuhongda0315.github.io/martin-demo/calllib/agora/private.html?peer
- 
-#### 多人
-
-|用户       | UserId    | App                  |Web   
-|:---------:|:----------|:-------------------- |:-------------------------------------------------
-|A          | J7XqKPint | 18601253544/123456    | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html
-|B          | rOMJ1vQVd | 18601031141/123456   | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html?peer1
-|C          | lofnCGIpR | 18519191750/123456   | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html?peer2
-|D          | cKexnBbWT | 18333109849/123456   | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html?peer3
-|E          | 3ZOMNA50t | 18612019709/123456   | https://yuhongda0315.github.io/martin-demo/calllib/agora/group.html?peer4
-
-GroupId: 4x0y2olLJ
-
-A Token: R4wO7nhIu1PEHMuwJufJgqE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RMgg4P5lS3fb5QdTw7QSCTYSNWDRevdakZlOiOLkcV/v
-
-B Token: hu+ujXgW/AKdJHEq5xaoXKE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RAaO6fk/lPWwalltMGlZQuhrtoh7nVyROu5Wb0m01Avs
-
-C Token: 6YRWv2BZR5MH2c2UuCGSfaE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RJqBw8clze/6nYmFLf1Cjky0cVytDuTcBmEZVNzxGcw3
-
-D Token: EDrtVj7bNw3JjWfmuNGHu3xpRjANxKgfakOnYLFljI+kKqBAlKZ/SN2b2MI5OUNuF3u5BURU8tLv8Y/8BgG1Fg==
-
-E Token: /+/UsgroH8XDNi3JJkAIk6+YsUIoF3ojin3K277sfOmMDgLI9ROp5oKwwQ8F44g8kTWnvr45QJC8XcutUrFjBqtdpZUyLdaH
+2、访问 `private.html` 或者 `group.html`
 
 ### API
-
     
 #### videoWatch
 

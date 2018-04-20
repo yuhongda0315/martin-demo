@@ -95,29 +95,11 @@
 
     <script src="../rong-calllib.js"></script>
 
+    <script src="config.js"></script>
+
     <script>
 
-        var users = [ {
-            userid:"J7XqKPint",
-            phone: "13269772769",
-            token:"R4wO7nhIu1PEHMuwJufJgqE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RMgg4P5lS3fb5QdTw7QSCTYSNWDRevdakZlOiOLkcV/v"
-        }, {
-            userid:"rOMJ1vQVd",
-            phone: "18310485134",
-            token:"hu+ujXgW/AKdJHEq5xaoXKE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RAaO6fk/lPWwalltMGlZQuhrtoh7nVyROu5Wb0m01Avs"
-        },{
-            userid: "lofnCGIpR",
-            phone: "13810123257",
-            token: "6YRWv2BZR5MH2c2UuCGSfaE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RJqBw8clze/6nYmFLf1Cjky0cVytDuTcBmEZVNzxGcw3"
-        },{
-            userid: "cKexnBbWT",
-            phone: "13261258168",
-            token: "EDrtVj7bNw3JjWfmuNGHu3xpRjANxKgfakOnYLFljI+kKqBAlKZ/SN2b2MI5OUNuF3u5BURU8tLv8Y/8BgG1Fg=="
-        },{
-            userid: "3ZOMNA50t",
-            phone: "13810123257",
-            token: "/+/UsgroH8XDNi3JJkAIk6+YsUIoF3ojin3K277sfOmMDgLI9ROp5oKwwQ8F44g8kTWnvr45QJC8XcutUrFjBqtdpZUyLdaH"
-        }];
+        var users = Data.group.members;
 
         var userId = users[0].userid;
         var inviteUserIds = [users[1].userid, users[2].userid, users[3].userid, users[4].userid];
@@ -148,7 +130,7 @@
         }
 
         var conversationType = 3;
-        var targetId = '4x0y2olLJ';
+        var targetId = Data.group.id;
 
         function onInitcomplete(error, callLib){
             console.log(callLib);
@@ -164,10 +146,7 @@
         };
 
         var params = {
-            // appKey : '8luwapkvucoil',
-            // appKey : 'e0x9wycfx7flq',
-            // navi: '119.254.111.49:9100',
-            appKey: 'n19jmcy59f1q9',
+            appKey: Data.appKey,
             token : token
         };
         

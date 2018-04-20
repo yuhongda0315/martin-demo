@@ -133,6 +133,9 @@
           });
           localStream = AgoraRTC.createStream(streamConf);
 
+          var profile = params.profile || '480P_1';
+          localStream.setVideoProfile(profile);
+
           localStream.on("accessAllowed", function() {
             console.log("accessAllowed");
           });

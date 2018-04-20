@@ -70,7 +70,8 @@ function call(mediaType){
         conversationType: conversationType,
         targetId: targetId,
         inviteUserIds: inviteUserIds,
-        mediaType: mediaType
+        mediaType: mediaType,
+        profile: '720P_2'
     };
     RongCallLib.call(params, function(error) {
         console.log(error);
@@ -101,7 +102,8 @@ function acceptVideo() {
     var params = {
         conversationType: conversationType,
         targetId: targetId,
-        mediaType: CallType.MEDIA_VEDIO
+        mediaType: CallType.MEDIA_VEDIO,
+        profile: '720P_6'
     };
     RongCallLib.accept(params);
 }

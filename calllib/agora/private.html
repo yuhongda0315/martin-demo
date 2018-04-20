@@ -94,14 +94,11 @@
 
     <script src="../rong-calllib.js"></script>
 
+    <script src="config.js"></script>
     <script>
-         var users = [ {
-            userid:"J7XqKPint",
-            token:"R4wO7nhIu1PEHMuwJufJgqE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RMgg4P5lS3fb5QdTw7QSCTYSNWDRevdakZlOiOLkcV/v"
-        },{
-            userid:"rOMJ1vQVd",
-            token:"hu+ujXgW/AKdJHEq5xaoXKE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RAaO6fk/lPWwalltMGlZQuhrtoh7nVyROu5Wb0m01Avs"
-        }];
+
+
+        var users = Data.private;
 
         var userId = users[0].userid;
         var inviteUserIds = [users[1].userid];
@@ -131,7 +128,7 @@
         };
 
         var params = {
-            appKey : 'n19jmcy59f1q9',
+            appKey : Data.appKey,
             token : token
         };
         
