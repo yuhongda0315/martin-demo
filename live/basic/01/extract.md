@@ -59,7 +59,7 @@ Server SDK + RongCloud Server
 
 >Server SDK
 
-基于 Server API 封装的 SDK，先有语言 Java、Node，App Server 调用，用来发送系统消息、群通知者其他业务
+基于 Server API 封装的 SDK，现有语言 Java、Node，App Server 调用，用来发送系统消息、群通知者其他业务
 
 文档、API 示例均在 github
 

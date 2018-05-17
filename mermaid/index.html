@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style/mermaid.forest.css">
+</head>
+<body>
+
+  <script src="./js/mermaid.min.js"></script>
+  <script>
+  mermaid.initialize({
+    startOnLoad: true,
+    sequence: {
+       diagramMarginX: 250,
+       useMaxWidth: false,
+        width: 450,
+        height: 15
+    }
+  });
+  </script>
+    <div class="mermaid">
+    sequenceDiagram
+      participant John
+      participant Alice
+      Alice->>John: Hello John, how are you?
+      John-->>Alice: Great!
+
+  </div>
+</body>
+</html>

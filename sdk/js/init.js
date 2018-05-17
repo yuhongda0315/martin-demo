@@ -1,26 +1,30 @@
-function init(params, callbacks){	
-	var appKey = params.appKey;
+function init(params, callbacks) {
+	var appkey = params.appkey;
 	var token = params.token;
 	var navi = params.navi || "";
+	var userId = params.userId;
 	var protobuf = params.protobuf || null;
 
 	var RongIMClient = RongIMLib.RongIMClient;
 
-	var config = {showError: true/*, require: RongDesktop.remote.require*/};
+	var config = {
+		showError: true , 
+		isPolling: false
+	};
 
 	//私有云切换navi导航
-	if(navi !== ""){
+	if (navi !== "") {
 		config.navi = navi;
 	}
 
 	//私有云切换api
 	var api = params.api || "";
-	if(api !== ""){
+	if (api !== "") {
 		config.api = api;
 	}
 
 	//support protobuf url + function
-	if(protobuf != null){
+	if (protobuf != null) {
 		config.protobuf = protobuf;
 	};
 
@@ -29,27 +33,37 @@ function init(params, callbacks){
 	if (imClient) {
 		dataProvider = new RongIMLib.VCDataProvider(imClient);
 	}
-	
-	RongIMLib.RongIMClient.init(appKey, dataProvider, config);
+
+	var sdkInfo = RongIMClient.init(appkey, dataProvider, config) || {};
+
+	if (RongMessageTypes.chatroom) {
+		RongIMClient.getInstance().setMessageTypes(RongMessageTypes.chatroom);
+	}
+
+var messageName = "PersonMessage";
+var objectName = "s:persion";
+var messageTag = new RongIMLib.MessageTag(true, true);
+var prototypes = ["name", "age"];
+RongIMClient.registerMessageType(messageName, objectName, messageTag, prototypes);
 
 	var instance = RongIMClient.getInstance();
 
 	// 连接状态监听器
 	RongIMClient.setConnectionStatusListener({
-		onChanged: function (status) {
+		onChanged: function(status) {
 			console.log('status', status);
-		    switch (status) {
-		        case RongIMLib.ConnectionStatus.CONNECTED:
-		            callbacks.connected && callbacks.connected(instance);
-		            break;
-		        case 3:
-		        case 4:
-		        case 5:
-		        case 6:
-		        	callbacks.disconnectd && callbacks.disconnectd();
-		        break;
-		        }
-		        
+			switch (status) {
+				case RongIMLib.ConnectionStatus.CONNECTED:
+					callbacks.connected && callbacks.connected(instance);
+					break;
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+					callbacks.disconnectd && callbacks.disconnectd();
+					break;
+			}
+
 		}
 	});
 
@@ -64,21 +78,45 @@ function init(params, callbacks){
 	*/
 	RongIMClient.setOnReceiveMessageListener({
 		// 接收到的消息
-		onReceived: function (message) {
-            callbacks.received && callbacks.received(message);
+		onReceived: function(message) {
+			callbacks.received && callbacks.received(message);
 		}
 	});
 
-	//开始链接
-	RongIMClient.connect(token, {
-		onSuccess: function(userId) {
-			console.log("链接成功，用户id：" + userId);
+
+	var connect = function(config) {
+		config = config || {};
+		//开始链接
+		RongIMClient.connect(token, {
+			onSuccess: function(userId) {
+				console.log("链接成功，用户id：" + userId);
+			},
+			onTokenIncorrect: function() {
+				console.log('token无效');
+			},
+			onError: function(errorCode) {
+				console.log(errorCode);
+			}
+		}, config.userId, config);
+	};
+
+	var connectMap = {
+		desktop: function() {
+			var config = {
+				appkey: appkey,
+				userId: 'GVJccf6KwCHLYmWaRAfTeX',
+				token: token,
+				version: sdkInfo.ver,
+				url: "https://" + navi + "/navi.json"
+			};
+			RongDesktop.Navi.get(config, function(error, result){
+				connect(result);
+			});
 		},
-		onTokenIncorrect: function() {
-			console.log('token无效');
-		},
-		onError:function(errorCode){
-		  console.log(errorCode);
+		web: function() {
+			connect();
 		}
-	}, '');
+	};
+	var type = imClient ? 'desktop' : 'web';
+	connectMap[type]();
 }

@@ -27,7 +27,7 @@
 <body>
 	<div class="api-box">
 		<div class="api-box-btns">
-			<input type="text" value="e0x9wycfx7flq" placeholder="appKey" id="appKey" class="input-content">
+			<input type="text" value="e0x9wycfx7flq" placeholder="appkey" id="appkey" class="input-content">
 			<input type="text" value="60.29.0.9:8082" placeholder="nav" id="nav">
 			<br>
 			<input type="text" value="AAGGoE7nEMh51zp5E/II2pElftNABSaMEwib4WlHuUc6s42LY0G77UXj/Ux/fjnxDmeJlw==" placeholder="token" id="token" class="input-content input-token">
@@ -63,12 +63,12 @@
 			if (Rong) {
 				return;
 			}
-			var appKey = utils.getDom('appKey').value;
+			var appkey = utils.getDom('appkey').value;
 			var token = utils.getDom('token').value;
 			var navi = utils.getDom('nav').value;
 
 			var params = {
-				appKey: appKey,
+				appkey: appkey,
 				token: token,
 				navi: navi
 			};

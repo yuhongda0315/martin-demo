@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Like</title>
+</head>
+<style>
+.transition { 
+  margin: 100px auto;
+  height: 100px;
+  width: 100px;
+  background-color: #CCC;
+  transition: all 0.5s ease-in-out;
+}
+.transition:hover {
+    transform: scale(1.5);
+}
+.forever { 
+    transition: all 1s ease-in-out 999999s;
+}
+.forever:hover { 
+    transform: scale(1.5);
+    transition: all 1s ease-in-out;
+}
+
+</style>
+<body>
+
+<div  class="transition">123</div>
+
+</body>
+</html>

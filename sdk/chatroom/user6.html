@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatRoom</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="../local-sdk/vconsole.js"></script>
+  <script>
+  	var vConsole = new VConsole();
+  </script>
+  <script src="http://cdn.ronghub.com/RongIMLib-2.2.8.js"></script>
+  <!-- <script src="../local-sdk/RongIMLib-2.3.1.js"></script> -->
+	
+</head>
+<body>
+	<div class="rong-apis">
+		<div class="api-box-btns">
+			<input type="text" value="8luwapkvucoil" placeholder="appKey" id="appKey" class="input-content">
+			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
+			<br>
+			<input type="text" value="zaa3NDfWKTSpOLo2RB6AALrkPG6U/xPk3zvPIWf9le0CwYpnXkuKa9ut4ux3ClXcVoKB2bOlHx0kn2csADb6q7qw5Xap7yf5" placeholder="token" id="token" class="input-content input-token">
+			<br>
+			<input type="button" value="连接" onclick="connect()">
+			<input type="button" value="发送消息" onclick="sendCommand('send')">
+		</div>
+	</div>
+	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
+	  <script src="../js/init.js"></script>
+  <script src="../js/utils.js"></script>
+	<script>
+		var utils = RCUtils.utils;
+		var conversation = RCUtils.conversation;
+
+		var Rong = null;
+
+		function clearResult(){
+			log.clear();
+		}
+
+		var chatRoomId = '';
+		var conversationType = RongIMLib.ConversationType.CHATROOM;
+		
+		function connect(){
+			// if (Rong) {
+			// 	return;
+			// }
+			var appKey = utils.getDom('appKey').value;
+			var token = utils.getDom('token').value;
+			var navi = utils.getDom('nav').value;
+
+			var params = {
+				appkey: appKey,
+				token: token,
+				navi: navi
+			};
+			var callbacks = {
+				connected: function(_Rong){
+					Rong = _Rong;
+					console.log('Connect', 'connect successfully');
+				},
+				received: function(message){
+					console.warn(JSON.stringify(message.content), 61);
+				}
+			};
+			init(params, callbacks);
+		}
+		window.RongReconnect = connect;
+		
+		var handler = {
+			send: function(){
+				var url = 'http://192.168.1.102:8585/send';
+				utils.request({
+					url: url,
+					method: 'POST',
+					success: function(result){
+						console.log(JSON.stringify(result), '76');
+					}
+				});
+			}
+		};
+
+		function sendCommand(type){
+			if (!Rong) {
+				alert('请先连接.');
+				return;
+			}
+			return handler[type]();
+		}
+	</script>
+</body>
+</html>

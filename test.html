@@ -3,48 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Test</title>
-<script src="http://cdn.ronghub.com/RongIMLib-2.2.4.min.js"></script>
-<script src="im/datamodel.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
 <script>
-var config = {
-    appkey: "8luwapkvucoil",
-    dm: {
-        server_path: 'http://api.hitalk.im/',
-        data: ['Group', 'Friend']
-    },
-    product: {
-        name: 'SealMessager',
-        version: '1.0.0'
-    }
-};
-var dataModel = RongDataModel.init(config);
-var account = {
-    phone: '13800138000',
-    password: '111111',
-    region: '86'
-};
-
-dataModel.Status.watch = function (status) {
-    console.log('status', status);
-};
-
-dataModel.Status.connect("hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==");
-// dataModel.User.login(account, result => {
-//     if(result.code === 200) {
-//         console.info('登录成功');
-//         // getConversation();
-//     } else {
-//         console.log(result.message);
-//     }
-// });
-
-function getConversation() {
-    dataModel.Conversation.get(list => console.info('list=', list));
-}
-
+ axios.get('http://127.0.0.1:8585/test')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  console.log('执行');
 </script>
 </body>
 </html>

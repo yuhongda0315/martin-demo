@@ -1,0 +1,54 @@
+html,body{
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.im-container{
+  height: 600px;
+  width: 400px;
+  margin: 0 auto;
+  border: 1px solid #333;
+}
+
+.im-chat{
+  height: 530px;
+  background-color: #CCC;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.im-message{
+  height: 40px;
+  margin-bottom: 15px;
+}
+
+.im-message-avatar{
+  height: 40px;
+  width: 40px;
+  background-image: url(https://oojs2ztoq.bkt.clouddn.com/FhdbL0RZXaUfH8ZBH9AahK7HawiJ);
+  background-size: cover;
+  float: left;
+  border-radius: 50%;
+}
+
+.im-message-content{
+  padding-top: 9px;
+  margin-left: 10px;
+  float: left;
+}
+
+.im-editor{
+  height: 70px;
+  background-color: #333;
+}
+
+.im-input{
+  height: 66px;
+  border: none;
+  width: 99%;
+  outline: none;
+  resize: none;
+  line-height: 70px;
+  font-size: 18px;
+}

@@ -1,30 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>XHR</title>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <script>
+    var RongIMLib = {
+      RongIMClient: {}
+    };
+  </script>
+  <script src="http://localhost:8686/blink-Web-Release/web-calllib/dist/WebCallLib.js"></script>
 </head>
 <body>
-	<script>
-		function request(config, callback) {
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4) {
-					callback(JSON.parse(xhr.responseText))
-				}
-			};
-			var url = config.url;
-			var method = config.method || 'get';
 
-			xhr.open(method, url);
-			xhr.send(config.data);
-		}
-		request({
-			url: 'http://127.0.0.1:3000/random'
-		}, (result) => {
-			console.log(result);
-		});
-
-	</script>
 </body>
 </html>

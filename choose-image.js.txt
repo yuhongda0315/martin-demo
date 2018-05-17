@@ -1,0 +1,39 @@
+var chooseImage = () => {
+  /*
+  获取 token http://support.rongcloud.cn/kb/Njgx
+  方法: getFileToken
+  */
+  var token = "CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:iCWL8X8AYFiaZpAKMAgSAN3wsfw=:eyJzY29wZSI6InJvbmdjbG91ZC1pbWFnZSIsInJldHVybkJvZHkiOiJ7XCJuYW1lXCI6ICQoZm5hbWUpLFwic2l6ZVwiOiAkKGZzaXplKSxcIndcIjogJChpbWFnZUluZm8ud2lkdGgpLFwiaFwiOiAkKGltYWdlSW5mby5oZWlnaHQpLFwiaGFzaFwiOiAkKGV0YWcpfSIsImRlYWRsaW5lIjoxNTI1MjQ0NjI1fQ==";
+  wx.chooseImage({
+    success: function(res) {
+      var tempFilePaths = res.tempFilePaths
+      wx.uploadFile({
+        url: 'https://up.qbox.me',
+        filePath: tempFilePaths[0],
+        name: 'file',
+        formData: {
+          token: token
+        },
+        success: function(res) {
+          var data = res.data
+          var result = JSON.parse(data);
+          var hash = result.hash;
+          /*
+           通过 hash 获取图片或文件完成 URL
+           rong.getFileUrl(1, hash, null,{ 
+             onSuccess: (info) => {
+               console.log(info);
+             },
+             onError: (error) => {
+               console.log(error);
+             }
+           });
+           文档说明：http://support.rongcloud.cn/kb/Njgx
+           参考：https://github.com/rongcloud/rongcloud-web-im-upload/blob/master/qiniu/message.html
+           方法：getFileUrl
+          */
+        }
+      })
+    }
+  });
+}

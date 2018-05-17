@@ -1,0 +1,27 @@
+{
+    "DanMuMessage": {
+        "name": "RC:DanMu",
+        "flag": 2,
+        "proto":{
+            "content": "hellowrold",
+            "sender": {
+                "name": "martin",
+                "portrait": "http://www.rongcloud.cn/portrait.jpg"
+            }
+        },
+        "verify": {
+            "content": {
+                "type": "String"
+            },
+            "sender": {
+                "type": "JSONObject",
+                "name": {
+                    "type": "String"
+                },
+                "portrait":{
+                    "type": "String"
+                }
+            }
+        }
+    }
+}

@@ -44,6 +44,28 @@
 				}
 			}
 			return isArray ? objs : objs[0];
+		},
+		request: function(options) {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4) {
+					var result = xhr.responseText || "{}";
+					result = JSON.parse(result);
+					options.success && options.success(result);
+				}
+			};
+
+			var method = options.url;
+			var url = options.url;
+			var method = options.method || 'GET';
+			xhr.open(method, url);
+			var headers = options.headers;
+			for (var key in headers) {
+				var value = headers[key];
+				xhr.setRequestHeader(key, value);
+			}
+			var body = JSON.stringify(options.body);
+			xhr.send(body);
 		}
 	};
 
@@ -59,10 +81,10 @@
 		},
 	};
 
-	function Log(params){
+	function Log(params) {
 		var element = params.element;
 		var tpl = '<p class="log-title">{title}</p><pre>{logs}</pre>'
-		this.show = function(title, logs){
+		this.show = function(title, logs) {
 			logs = tools.prettyJSON(logs);
 			logs = JSON.stringify(logs, null, '  ');
 			element.innerHTML += tools.stringFormat(tpl, {
@@ -70,14 +92,15 @@
 				logs: logs
 			});
 		};
-		this.clear = function(){
+		this.clear = function() {
 			element.innerHTML = '';
 		}
 	}
+
 
 	global.RCUtils = {
 		utils: tools,
 		conversation: conversation,
 		Log: Log
-	};	
+	};
 })(this);
