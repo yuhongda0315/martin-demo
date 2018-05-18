@@ -1,12 +1,12 @@
 var Data = {
 	// 在开发者后台创建 appKey ，地址：https://developer.rongcloud.cn/
-	appKey: '8xDrUJSvE2y',
+	appKey: 'n19jmcy59f1q9',
 	private: [{
-		userid: "J7XqKPi2nt",
-		token: "R4wO7nhIu1PEHMuwJufJgqE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RMgg4P5lS3fb5QdTw7QSCTYSNWDRevdakZlOiOLkcV/v"
+		userid: "RYXF50M6h",
+		token: "X1LcAANGwXDJjWfmuNGHu3xpRjANxKgfakOnYLFljI+0dAyM/WM06cxigYQuO3Rsnd2uvzn19zWv+8tfUu6WVQ=="
 	}, {
-		userid: "rOMJ1vQVd",
-		token: "hu+ujXgW/AKdJHEq5xaoXKE4ovwvabHEXU8xDrUJSvE2yj0t4ZY9RAaO6fk/lPWwalltMGlZQuhrtoh7nVyROu5Wb0m01Avs"
+		userid: "ddUia1h8C",
+		token: "avP1k62DFdJ2nnQKAKTQj6+YsUIoF3ojin3K277sfOndgqUTWJVUK2vi+daQZJR4ZoJ3D3o0oimpw1LmjoNFDqtdpZUyLdaH"
 	}],
 
 	group: {
