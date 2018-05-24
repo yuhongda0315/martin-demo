@@ -12,7 +12,7 @@ serviceWorker.register('sw-push.js')
       opts: {
         appkey: '8luwapkvucoil',
         token: '+drDnoaSFUc16THmJMNSW8SkAMimzaj6nB20cRPaYWTXhIiM2IspAPkUejp9kmaaEgDANdo6gtfIf/e5MXMHJw==',
-        server: 'https://comet33.cn.ronghub.com',
+        server: 'https://comet.cn.ronghub.com:8233',
         sdkver: '2.3.0'
       }
     });
