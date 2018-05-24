@@ -9,7 +9,7 @@ function init(params, callbacks) {
 
 	var config = {
 		showError: true , 
-		isPolling: false
+		isPolling: true
 	};
 
 	//私有云切换navi导航
