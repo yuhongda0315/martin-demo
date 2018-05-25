@@ -120,7 +120,7 @@ function Comet(event, option) {
       });
     },
     s_msg: (msg) => {
-
+      console.log(msg);
     }
   };
 

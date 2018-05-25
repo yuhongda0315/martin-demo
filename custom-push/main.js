@@ -4,9 +4,8 @@ serviceWorker.register('sw-push.js')
     console.log('SW registered!', reg);
     reg.update();
     Notification.requestPermission();
-
-    serviceWorker.addEventListener('controllerchange', () => {
-    serviceWorker.controller.postMessage({
+  }).then(() => {
+      serviceWorker.controller.postMessage({
         topic: 'notify',
         opts: {
           appkey: '8luwapkvucoil',
@@ -15,7 +14,6 @@ serviceWorker.register('sw-push.js')
           sdkver: '2.3.0'
         }
       });
-  });
   }).catch(err => {
     console.error(err);
   });
