@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Message</title>
   <link rel="stylesheet" href="../css/common.css">
-  <script src="../local-sdk/RongIMLib.js"></script>
+  <script src="http://cdn.ronghub.com/RongIMLib-2.3.2.js"></script>
   <script src="./chatroom-message-types.js"></script>
   </script>
 
@@ -28,11 +28,11 @@
 <body>
 	<div class="api-box">
 		<div class="api-box-btns">
-			<input type="text" value="tdrvipkst7v85" placeholder="appkey" id="appkey" class="input-content">
-			<input type="text" value="navprodrcx.cn.ronghub.com" placeholder="nav" id="nav">
+			<input type="text" value="8luwapkvucoil" placeholder="appkey" id="appkey" class="input-content">
+			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
 			<input type="text" value="" placeholder="clearTimeStamp" id="clearTimeStamp">
 			<br>
-			<input type="text" value="AAx7BKFi+e+VBQ5I4gRv5G8Q//LPWkDoKwWSItHcBXE2Krz+Y3sa8XpeU26GeeliLn2lVhq0V+Qd1DKzkkV4zDOVb14=" placeholder="token" id="token" class="input-content input-token">
+			<input type="text" value="ZlQBbGPoKK7c+2+/tgoyrMSkAMimzaj6nB20cRPaYWRp3Eh5I0P0+I1b4oc0BZTvfvScGZevARwg4qOfJ08MWw==" placeholder="token" id="token" class="input-content input-token">
 			<br>
 			<input type="text" id="conversationType" placeholder="conversationType" value="1">
 			<input type="text" id="targetId" placeholder="targetId" value="194EtS5cZT5">
@@ -41,6 +41,8 @@
 			<input type="button" value="sendMessage" onclick="sendCommand('send')">
 			<input type="button" value="clearHistoryMessages" onclick="sendCommand('clearHistory')">
 			<input type="button" value="getHistoryMessages" onclick="sendCommand('getHistory')">
+			
+			<input type="button" value="getConversationList" onclick="sendCommand('getConversationList')">
 			<input type="button" value="Reload" onclick="location.reload()">
 		</div>
 	</div>
@@ -103,16 +105,16 @@
 
 		var handler = {
 			send: function(){
-				var content = "hello";
-				var ChatroomBarrage = RongIMClient.RegisterMessage.ChatroomBarrage;
-				var msg = new ChatroomBarrage({content: content});
+				var content = "替";
+				//var ChatroomBarrage = RongIMClient.RegisterMessage.ChatroomBarrage;
+				var msg = new RongIMLib.TextMessage({content: content});
 				var info = conversation.get();
 				Rong.sendMessage(+info.conversationType, info.targetId, msg, {
 					onSuccess: function(ret) {
 						log.show('SendMessage Susccessfully', ret);
 				  	},
-				  	onError: function(error) {
-				  		log.show('SendMessage Error', error);
+				  	onError: function(error, message) {
+				  		log.show('SendMessage Error', error, message);
 				  	}
 				});
 			},
@@ -128,6 +130,16 @@
 				  		log.show('ClearHistory Error', error);
 				  	}
 				});	
+			},
+			getConversationList: function(){
+				Rong.getConversationList({
+					onSuccess: function(list){
+						console.log(list);
+					},
+					onError: function(error){
+						console.log(error);
+					}
+				}, null);
 			},
 			getHistory: function(){
 				var params = conversation.get();

@@ -9,7 +9,7 @@ function init(params, callbacks) {
 
 	var config = {
 		showError: true , 
-		isPolling: true
+		isPolling: false
 	};
 
 	//私有云切换navi导航
@@ -36,9 +36,9 @@ function init(params, callbacks) {
 
 	var sdkInfo = RongIMClient.init(appkey, dataProvider, config) || {};
 
-	if (RongMessageTypes.chatroom) {
-		RongIMClient.getInstance().setMessageTypes(RongMessageTypes.chatroom);
-	}
+	//if (RongMessageTypes.chatroom) {
+		//RongIMClient.getInstance().setMessageTypes(RongMessageTypes.chatroom);
+	//}
 
 var messageName = "PersonMessage";
 var objectName = "s:persion";
@@ -97,7 +97,7 @@ RongIMClient.registerMessageType(messageName, objectName, messageTag, prototypes
 			onError: function(errorCode) {
 				console.log(errorCode);
 			}
-		}, config.userId, config);
+		});
 	};
 
 	var connectMap = {
