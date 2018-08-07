@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Qiniu - Upload </title>
-    <script src = "./qiniu.js"></script>
+    <script src = "./rc.js"></script>
     <script src = "../upload.js"></script>
     <script src="./init.js"></script>
    <style type = "text/css">
@@ -49,8 +49,6 @@
     <div id="success-log">
     	<img src="" alt="" id="showImage">
     </div>
-
-    <img src="" alt="" id="testImage">
 </body>
 <script>
 
@@ -71,9 +69,11 @@
 */
 
 	var config = { 
-			domain: 'http://120.92.9.229:8080',
+			domain: 'http://120.92.88.18:8086',
+			chunk_size: 4 * 1024 * 1024,
 			getToken: function(callback){
-				var token = "Rongcloud142017061219271136001368356704"
+				var token = "Rongcloud142018012403494536002930642463"
+			//	var token = "Rongcloud142018012520362236003400301530";
 				callback(token);
 			}
 		 };
@@ -83,6 +83,9 @@
 		},
 		onProgress : function (loaded, total) {
 			var percent = Math.floor(loaded/total*100);
+			if (percent > 100) {
+				percent = 100;
+			}
 			var progressBar 	= document.getElementById('progressBar'), 
 				progressContent = document.getElementById('progressContent');
 				progressBar.style.width = percent + '%';
@@ -105,16 +108,12 @@
 	var cancelBtn = document.getElementById('cancel-Id');
 	file.onchange = function(){
 		var _file = this.files[0];
-
-		var img = document.getElementById('testImage');
-		img.src = URL.createObjectURL(_file);
-		URL.revokeObjectURL(img.src);
-		// UploadClient.initFile(config, function(uploadFile){
-		// 	uploadFile.upload(_file, callback);
-		// 	cancelBtn.onclick = function(){
-		// 		uploadFile.cancel();
-		// 	};
-		// });
+		UploadClient.initFile(config, function(uploadFile){
+			uploadFile.upload(_file, callback);
+			cancelBtn.onclick = function(){
+				uploadFile.cancel();
+			};
+		});
 	};
 
 
