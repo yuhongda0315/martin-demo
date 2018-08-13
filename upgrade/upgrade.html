@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upgrade</title>
+  <style>
+    body{
+      background-color: ghostwhite;
+    }
+    .log{
+      background-color: green;
+      margin: 20px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 50px;
+      color: #FFF;
+    }
+  </style>
+  <script src="./RongIMLib-2.3.0.js"></script>
+  <script src="./adapter.js"></script>
+</head>
+<body>
+  <div class="logs"></div>
+
+  <script>
+    let appkey = '8luwapkvucoil',
+        token = 'YGT6B7lXszfN9Wg9gPmeCbrkPG6U/xPk3zvPIWf9le0Ft3u/nBdfKBEz5BhTF+jyUH98TWvBWcQkn2csADb6q7qw5Xap7yf5';
+    
+    let node = document.querySelector('.logs')
+    let show = (status) => {
+      let statusMap = {
+        0: '连接成功',
+        1: '正在连接'
+      };
+      let value = statusMap[status.value] || status;
+      if(value){
+        node.innerHTML += '<div class="log">' + value + '</div>';
+      }
+    };
+    
+    //老版本 RongIMClient 替换为 imAdapter
+    imAdapter.init(appkey);
+    imAdapter.setConnectionStatusListener({
+      onChanged: (status) => {
+        show(status);
+      }
+    });
+    imAdapter.setOnReceiveMessageListener({
+      onReceived: (message) => {
+        console.log(message);
+      }
+    });
+    imAdapter.connect(token, {
+      onSuccess: (userId) => {
+        setTimeout(function(){
+          show('当前用户 ID : ' + userId);
+        });
+      },
+      onError: (code) => {
+        console.log(code);
+      }
+    });
+  </script>
+
+</body>
+</html>
