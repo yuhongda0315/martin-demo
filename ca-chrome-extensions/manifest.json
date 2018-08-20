@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "cliper",
+  "short_name": "cliper",
+  "version": "0.3.6",
+  "description": "cliper ",
+  "permissions": [
+    "tabs",
+    "contextMenus"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "38": "logo.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "background": {
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

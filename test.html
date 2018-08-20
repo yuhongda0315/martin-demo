@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Test</title>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-</head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <style>
+    body{
+      background-color: antiquewhite;
+      display:flex;
+      flex-wrap: wrap;
+      flex-direction:row;
+      align-items: stretch;
+    }
+    .modules{
+      border: 1px solid #FF6700;
+      border-radius: 10px;
+      height: 260px;
+      width: 350px;
+      margin: 30px;
+    }
 
+  .ios{
+    border: 1px solid #FF6700; 
+  }  
+  .android{
+    border: 1px solid #008000; 
+  }
+  .web{
+    border: 1px solid #DAADAA; 
+  }
+  </style>
+</head>
 <body>
-<script>
- axios.get('http://127.0.0.1:8585/test')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  console.log('执行');
-</script>
+  <div class="modules ios">
+    <ul class="navs">
+      <li class="nav">接入必读</li>
+    </ul>
+  </div>
+  <div class="modules android">2</div>
+  <div class="modules web">3</div>
 </body>
 </html>

@@ -99,8 +99,17 @@ function Comet(event, option) {
     const options = {
       body: message.content,
     };
-    // event.waitUntil(self.registration.showNotification(title, options));
     self.registration.showNotification(title, options);
+
+    self.addEventListener('notificationclick', function(event) {
+      event.notification.close();
+
+      event.waitUntil(
+        clients.openWindow('http://localhost:8686/martin-demo/custom-push/open.html').then(function(WindowClient) {
+            console.log(WindowClient);
+        })
+      );
+    });
   }; 
 
   let topicMap = {

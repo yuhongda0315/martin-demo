@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Compress</title>
+  <script src="http://cdn.ronghub.com/RongIMLib-2.3.2.js"></script>
+  <script src="./upload/qiniu.js"></script>
+  <script src="./upload/upload.js"></script>
+  <script src="./upload/init.js"></script>
+  <script src="./compress-image.js"></script>
+  <style>
+    .result{
+      background: #CCC;
+    }
+    .before{
+      color: green;
+    }
+    .after{
+      color: red;
+    }
+    .upload{
+      color: #596977;
+    }
+  </style>
+</head>
+<body>
+  <!-- 增加  capture="camera" accept="image/*" 可直接打开摄像头拍照-->
+  <!-- <input type="file" id="fileId" capture="camera" accept="image/*"/> -->
+  <input type="file" id="fileId"/>
+
+  <div class="result" id="result">
+  </div>
+</body>
+<script>
+
+var resultNode = document.getElementById("result");
+var showResult = (before, after) => {
+  var calc = (size) => {
+    var num = size/1024;
+    return num.toFixed(2);
+  };
+  before = calc(before);
+  after = calc(after);
+  var nodes = [
+    '<p class="before">压缩前: ' + before + ' KB </p>',
+    '<p class="after">压缩后: ' + after + ' KB </p>',
+    '<p class="upload">上传大小: ' + after + ' KB </p>'
+  ];
+  resultNode.innerHTML = nodes.join('')
+};
+
+var showImg = (url) => {
+  document.body.innerHTML += '<img src="' + url + '" alt="压缩后图片">'
+}
+
+var connect = function(callback){
+	var appkey = '8luwapkvucoil';
+  var token = '183RX8CR4UcXlV3cANZXnbrkPG6U/xPk3zvPIWf9le0qIwLgOI54+IqjxPVY5a9jZgJ+5WjBf5egVjidhq2Rfg==';
+
+	RongIMLib.RongIMClient.init(appkey);
+	RongIMClient.setConnectionStatusListener({
+    onChanged: function (status) {
+      switch (status) {
+        case RongIMLib.ConnectionStatus.CONNECTED:
+          console.log('connect successfully.');
+          break;
+        }
+    }
+	});
+	RongIMClient.setOnReceiveMessageListener({
+	    onReceived: function (message) {
+	    	console.log(message);
+	    }
+	});
+
+	RongIMClient.connect(token, {
+      onSuccess: function(userId) {
+        callback(RongIMClient.getInstance());
+      },
+      onTokenIncorrect: function() {
+      },
+      onError:function(errorCode){
+      }
+	});
+};
+
+connect((im) => {
+  var uploadImage = (base64, callback) => {
+	  var config = {
+				domain: 'http://upload.qiniu.com/putb64/-1',
+        base64_size: 10 * 1024 * 1024,
+			 	data: UploadClient.dataType.data,
+				getToken: function(callback){
+					im.getFileToken(RongIMLib.FileType.IMAGE, {
+            onSuccess: (result) => {
+              callback(result.token);
+            },
+            onError: (error) => {
+              console.log(error);
+            }
+          });
+				}
+			 };
+    var events = {
+       onError	: function (errorCode) {
+         console.log(errorCode);
+       },
+       onProgress : function (loaded, total) {
+
+       },
+       onCompleted : function (data) {
+          callback(data);
+          im.getFileUrl(RongIMLib.FileType.IMAGE, data.hash, null, {
+    				onSuccess: function(result){
+              showImg(result.downloadUrl);
+    				},
+    				onError: function(error){
+    					console.log('getFileToken error:' + error);
+    				}
+    			});
+       }
+     };
+     UploadClient.initImgBase64(config, function(uploadFile){
+       uploadFile.upload(base64, events);
+     });
+  };
+
+  var file = document.getElementById("fileId");
+  file.onchange = function(){
+    var _file = this.files[0];
+
+    var optioins = {
+      // 高宽可配置，数值越小体积越小
+      maxWidth: 800,
+      maxHeight: 600,
+      // 图片质量， 0 - 1 之间，数越小，图片越模糊，体积越小
+      encoder: 0.8
+    };
+    compressImage(_file, optioins, (base64) => {
+      uploadImage(base64, (result) => {
+        var beforeSize = _file.size;
+        var afterSize = result.size;
+        showResult(beforeSize, afterSize);
+      });
+    })
+  };
+});
+</script>
+</html>

