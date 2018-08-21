@@ -667,7 +667,8 @@
       Package: {
         getList: getPackages
       },
-      extend: extend
+      extend: extend,
+      utils: utils
     };
   };
 
