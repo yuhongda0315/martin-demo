@@ -4,7 +4,7 @@
   } else if (typeof define === 'function' && define.amd) {
     define(factory);
   } else {
-    global.RongSticker = factory();
+    global.RongStickerPackage = factory();
   }
 })(window, function () {
 
@@ -220,7 +220,7 @@
           return typeof c === "string" ? c : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
         }) + '"' : '"' + string + '"';
       };
-    
+
       return {
         parse: parse,
         stringify: stringify
@@ -231,7 +231,7 @@
         target[key] = source[key];
       }
     },
-    noop: function(){},
+    noop: function () { },
     getRandom: function (range) {
       return Math.floor(Math.random() * range);
     },
@@ -242,9 +242,23 @@
       }
       return date.getTime();
     },
-    forEach: function(obj, callback){
-      for(var key in obj){
-        callback(obj[key], key);
+    forEach: function (obj, callback) {
+      callback = callback || RongUtil.noop;
+      var loopObj = function () {
+        for (var key in obj) {
+          callback(obj[key], key, obj);
+        }
+      };
+      var loopArr = function () {
+        for (var i = 0, len = obj.length; i < len; i++) {
+          callback(obj[i], i);
+        }
+      };
+      if (utils.isObject(obj)) {
+        loopObj();
+      }
+      if (utils.isArray(obj)) {
+        loopArr();
       }
     },
     /* 
@@ -258,19 +272,19 @@
     
     */
     ajax: function (option) {
-      var getXHR = function(){
+      var getXHR = function () {
         var xhr = null;
-        var hasXDomain = function(){
+        var hasXDomain = function () {
           return (typeof XDomainRequest != 'undefined');
         };
-        var hasXMLRequest = function(){
+        var hasXMLRequest = function () {
           return (typeof XMLHttpRequest != 'undefined');
         };
-        if(hasXDomain()){
+        if (hasXDomain()) {
           xhr = new XDomainRequest();
-        }else if(hasXMLRequest()){
+        } else if (hasXMLRequest()) {
           xhr = new XMLHttpRequest();
-        }else{
+        } else {
           xhr = new ActiveXObject("Microsoft.XMLHTTP");
         }
         return xhr;
@@ -279,41 +293,94 @@
       var xhr = getXHR();
       var method = option.method || 'GET';
       var url = option.url;
+      var queryStrings = option.queryStrings || {};
+      var tpl = '{key}={value}', strings = [];
+      utils.forEach(queryStrings, function (value, key) {
+        var str = utils.tplEngine(tpl, {
+          key: key,
+          value: value
+        });
+        strings.push(str);
+      });
+      var queryString = strings.join('&');
+      var urlTpl = '{url}?{queryString}';
+      url = utils.tplEngine(urlTpl, {
+        url: url,
+        queryString: queryString
+      });
+
       xhr.open(method, url, true);
 
-      //TODO XDomain 不支持 setRequestHeader 要调整为通过 querystring 传参，需 Server 兼容
       var headers = option.headers || {};
-      utils.forEach(headers, function(header, name){
+      utils.forEach(headers, function (header, name) {
         xhr.setRequestHeader(name, header);
       });
 
       var success = option.success || utils.noop;
       var fail = option.fail || utils.noop;
-      var isSuccess = function(){
+      var isSuccess = function () {
         return /^(200|202)$/.test(xhr.status);
       };
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
           var result = xhr.responseText;
-          if(result != ''){
+          if (result != '') {
             result = utils.JSON.parse(xhr.responseText);
           }
-          if(isSuccess()){
+          if (isSuccess()) {
             success(result);
-          }else{
+          } else {
             fail(result);
           }
         }
       };
       xhr.send(null);
     },
-    getProtocol: function(){
+    getProtocol: function () {
       var protocol = location.protocol;
       var isLocal = (protocol == 'file:');
-      if(isLocal){
+      if (isLocal) {
         protocol = 'http:';
       }
       return protocol;
+    },
+    Cache: function () {
+      var _cache = {};
+      this.set = function (key, value) {
+        _cache[key] = value;
+      };
+      this.get = function (key) {
+        return _cache[key];
+      };
+      this.remove = function (key) {
+        delete _cache[key];
+      };
+    },
+    rename: function (origin, newNames) {
+      var isObject = utils.isObject(origin);
+      if (isObject) {
+        origin = [origin];
+      }
+      var utilJSON = utils.JSON;
+      origin = utilJSON.parse(utilJSON.stringify(origin));
+      var updateProperty = function (val, key, obj) {
+        delete obj[key];
+        key = newNames[key];
+        obj[key] = val;
+      };
+      utils.forEach(origin, function (item) {
+        utils.forEach(item, function (val, key, obj) {
+          var isRename = (key in newNames);
+          (isRename ? updateProperty : utils.noop)(val, key, obj);
+        });
+      });
+      return isObject ? origin[0] : origin;
+    },
+    isObject: function (obj) {
+      return (Object.prototype.toString.call(obj) == '[object Object]');
+    },
+    isArray: function (arr) {
+      return (Object.prototype.toString.call(arr) == '[object Array]');
     }
   };
 
@@ -322,84 +389,285 @@
     url: 'rcx-api-emoticon.rongcloud.net'
   };
 
+  var StickerCache = new utils.Cache();
+
   var getSignature = function (data) {
-    var AppKey = utils.sha1(data.AppKey);
-    var Nonce = data.Nonce;
-    var Timestamp = data.Timestamp;
-    var tpl = '{AppKey}{Nonce}{Timestamp}';
+    var appkey = utils.sha1(data.appkey);
+    var nonce = data.nonce;
+    var timestamp = data.timestamp;
+    var tpl = '{appkey}{nonce}{timestamp}';
     var content = utils.tplEngine(tpl, {
-      AppKey: AppKey,
-      Nonce: Nonce,
-      Timestamp: Timestamp
+      appkey: appkey,
+      nonce: nonce,
+      timestamp: timestamp
     });
     return utils.sha1(content);
   };
 
-  var getReqHeaders = function () {
+  var getQueryStrings = function () {
     var headers = {
-        AppKey: config.appkey,
-        Nonce: utils.getRandom(10000),
-        Timestamp: utils.getTimestamp()
+      appkey: config.appkey,
+      nonce: utils.getRandom(10000),
+      timestamp: utils.getTimestamp()
     };
-    var Signature = getSignature(headers);
+    var signature = getSignature(headers);
     utils.copy(headers, {
-      Signature: Signature
+      signature: signature
     });
     return headers;
   };
 
-  var getUrl = function(params){
+  var getUrl = function (data) {
     var pathes = {
-      get: '/emoticonservice/emopkgs/{packageId}/stickers/{stickerId}'
+      get: '/emoticonservice/emopkgs/{packageId}/stickers/{stickerId}',
+      get_packs: '/emoticonservice/emopkgs',
+      get_stickers: '/emoticonservice/getemoitemsbypkgId/{packageId}'
     };
 
-    var type = params.type,
-        packageId = params.packageId,
-        stickerId = params.stickerId;
-
-    var path = pathes[type] || '';
-    var tpl = utils.tplEngine('{protocol}//{host}{path}',{
+    var path = pathes[data.type] || '';
+    var tpl = utils.tplEngine('{protocol}//{host}{path}', {
       path: path
     });
-    var url = utils.tplEngine(tpl, {
+
+    utils.copy(data, {
       protocol: utils.getProtocol(),
-      host: config.url,
-      packageId: packageId,
-      stickerId: stickerId
+      host: config.url
     });
+    var url = utils.tplEngine(tpl, data);
     return url;
   };
 
-  var get = function (message, callback) {
-    var packageId = message.packageId,
-        stickerId = message.stickerId;
-    var url = getUrl({
-      type: 'get',
-      packageId: packageId,
-      stickerId: stickerId
-    });
-    var headers = getReqHeaders();
+  var errorHandler = function (result) {
+    var errors = {
+      1004: {
+        code: 1004,
+        msg: '签名错误'
+      },
+      403: {
+        code: 403,
+        msg: 'AppKey 无效，请移步融云开发者后台获取 AppKey: https://developer.rongcloud.cn/'
+      }
+    };
+    var error = errors[result.code];
+    if (!error) {
+      error = {
+        code: 20000,
+        msg: result
+      };
+    }
+    return error;
+  }
 
+  var request = function (option, callback) {
+    var url = getUrl(option);
+    var queryStrings = getQueryStrings();
     utils.ajax({
       url: url,
-      headers: headers,
-      success: function(result){
+      queryStrings: queryStrings,
+      success: function (result) {
         var error = null;
-        console.log(result);
         callback(result, error);
       },
-      fail: function(error){
-        console.log(error);
+      fail: function (error) {
         var result = null;
-        callback(result, error);
+        callback(result, errorHandler(error));
       }
     });
   };
 
+  var get = function (message, callback) {
+    var packageId = message.packageId,
+      stickerId = message.stickerId;
+
+    var error = null;
+
+    var stickers = StickerCache.get(packageId) || {};
+    var sticker = stickers[stickerId];
+    if (utils.isObject(sticker)) {
+      utils.copy(sticker, {
+        packageId: packageId,
+        stickerId: stickerId
+      });
+      return callback(sticker, error);
+    }
+
+    var option = {
+      type: 'get',
+      packageId: packageId,
+      stickerId: stickerId
+    };
+    request(option, function (result, error) {
+      if (error) {
+        return callback(result, error);
+      }
+      var sticker = result.data;
+      sticker = utils.rename(sticker, {
+        digest: 'desc',
+        pkgId: 'packageId'
+      });
+      callback(sticker, error)
+    });
+  };
+
+  /* 
+  var packages = [{
+    id: '',
+    icon: '',
+    name: '',
+    order: 10,
+    poster: '',
+    stickers: [{
+      packageId: '',
+      stickerId: '',
+      thumbUrl: '',
+      url: '',
+      desc: '描述',
+      height: 100,
+      width: 100
+    }]
+  }];
+  
+  */
+  var extend = function (packages) {
+    if (!utils.isArray(packages)) {
+      throw new Error('Packages must be array');
+    }
+
+    var packages = [];
+    utils.forEach(packages, function (package, id) {
+      var stickers = package.stickers || [];
+      var tpl = '{id}_list';
+      var key = utils.tplEngine(tpl, {
+        id: id
+      });
+      
+      //远程获取没有 stickers 此处删除为了保证本地、远程获取数据一致
+      delete package.stickers;
+
+      var cacheStickers = {};
+      utils.forEach(stickers, function (sticker) {
+        cacheStickers[sticker.stickerId] = sticker;
+      });
+      if(stickers.length > 0){
+        // 为 getStickers 缓存
+        StickerCache.set(key, stickers);
+        // 为 get 获取单个 Sticker 方法缓存数据
+        StickerCache.set(id, cacheStickers);
+      }
+    });
+    // 为 getPackages 缓存
+    var cachePackages = StickerCache.get('packages');
+    //TODO 排重
+    StickerCache.set('packages', packages.concat(cachePackages));
+  };
+
+  var getPackages = function (callback) {
+    callback = callback || utils.noop;
+
+    var packages = StickerCache.get('packages');
+    var error = null;
+    if (packages) {
+      return callback(packages, error);
+    }
+
+    var option = {
+      type: 'get_packs'
+    };
+    request(option, function (result, error) {
+      if (error) {
+        return callback(result, error);
+      }
+      result = result.data;
+      result = utils.rename(result, {
+        manualLoad: 'packages'
+      });
+
+      var packages = result.packages;
+      packages = packages.concat(result.preload);
+
+      var filterProps = function (pack) {
+        delete pack.createTime;
+        delete pack.pkgType;
+        return pack;
+      };
+
+      utils.forEach(packages, function (pack, index) {
+        pack = utils.rename(pack, {
+          packageId: 'id',
+          digest: 'desc',
+          cover: 'poster',
+          isPreload: 'type'
+        });
+        packages[index] = filterProps(pack);
+      });
+
+      result = {
+        packages: packages
+      };
+      StickerCache.set('packages', result);
+      callback(result, error);
+    });
+  };
+
+  var getStickers = function (package, callback) {
+    var id = package.id;
+    
+    var tpl = '{id}_list';
+    var key = utils.tplEngine(tpl, {
+      id: id
+    });
+    var stickers = StickerCache.get(key);
+    var error = null;
+    if(stickers){
+      return callback(stickers, error);
+    }
+
+    var option = {
+      type: 'get_stickers',
+      packageId: id
+    };
+    request(option, function (result, error) {
+      if (error) {
+        result = { data: { stickers: [] } };
+      }
+      var data = result.data;
+      var stickers = data.stickers;
+
+      var cahcheStickers = StickerCache.get(id) || {};
+
+      utils.forEach(stickers, function (sticker, index) {
+        sticker = utils.rename(sticker, {
+          digest: 'desc'
+        });
+        utils.copy(sticker, {
+          packageId: id
+        });
+        stickers[index] = sticker;
+        var stickerId = sticker.stickerId;
+        cahcheStickers[stickerId] = sticker;
+      });
+      StickerCache.set(id, cahcheStickers);
+
+      var tpl = '{id}_list';
+      var key = utils.tplEngine(tpl, {
+        id: id
+      });
+      result = {stickers: stickers};
+      StickerCache.set(key, result);
+      callback(result, error);
+    });
+  };
   var init = function (_config) {
     utils.copy(config, _config);
     return {
-      get: get
+      Sticker: {
+        get: get,
+        getList: getStickers,
+      },
+      Package: {
+        getList: getPackages
+      },
+      extend: extend
     };
   };
 
