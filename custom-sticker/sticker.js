@@ -382,6 +382,9 @@
     },
     isArray: function (arr) {
       return (Object.prototype.toString.call(arr) == '[object Array]');
+    },
+    isFunction: function (arr) {
+      return (Object.prototype.toString.call(arr) == '[object Function]');
     }
   };
 
@@ -420,9 +423,9 @@
 
   var getUrl = function (data) {
     var pathes = {
-      get: '/emoticonservice/emopkgs/{packageId}/stickers/{stickerId}',
-      get_packs: '/emoticonservice/emopkgs',
-      get_stickers: '/emoticonservice/getemoitemsbypkgId/{packageId}'
+      'get-sticker': '/emoticonservice/emopkgs/{packageId}/stickers/{stickerId}',
+      'get-packages': '/emoticonservice/emopkgs',
+      'get-stickers': '/emoticonservice/getemoitemsbypkgId/{packageId}'
     };
 
     var path = pathes[data.type] || '';
@@ -459,7 +462,21 @@
     return error;
   }
 
-  var request = function (option, callback) {
+  var InterceptorCache = new utils.Cache();
+  /* 
+    sticker.Interceptor.use(function(option, callback){
+      //dosomething request
+      var result = {}, error = null;
+      callback(result, error);
+    });
+  */
+  var requestInterceptor = function(interceptor){
+    if(utils.isFunction(interceptor)){
+      InterceptorCache.set('interceptor', interceptor);
+    }
+  };
+
+  var innerInterceptor = function(option, callback){
     var url = getUrl(option);
     var queryStrings = getQueryStrings();
     utils.ajax({
@@ -474,6 +491,12 @@
         callback(result, errorHandler(error));
       }
     });
+  };
+  InterceptorCache.set('interceptor', innerInterceptor);
+
+  var request = function (option, callback) {
+    var interceptor = InterceptorCache.get('interceptor');
+    interceptor(option, callback);
   };
 
   var get = function (message, callback) {
@@ -493,7 +516,7 @@
     }
 
     var option = {
-      type: 'get',
+      type: 'get-sticker',
       packageId: packageId,
       stickerId: stickerId
     };
@@ -590,7 +613,7 @@
     // }
 
     var option = {
-      type: 'get_packs'
+      type: 'get-packages'
     };
     request(option, function (result, error) {
       if (error) {
@@ -642,7 +665,7 @@
     }
 
     var option = {
-      type: 'get_stickers',
+      type: 'get-stickers',
       packageId: id
     };
     request(option, function (result, error) {
@@ -675,6 +698,9 @@
       },
       Package: {
         getList: getPackages
+      },
+      Interceptor: {
+        use: requestInterceptor
       },
       extend: extend,
       utils: utils
