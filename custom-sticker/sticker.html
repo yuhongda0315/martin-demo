@@ -6,7 +6,7 @@
   <style>
     html,body{
       overflow: hidden;
-      background-color:#F5F5DC;
+      background-color: #f0f8ff;
     }
     ul,li{
       margin: 0;
@@ -16,7 +16,7 @@
       display: inline-block;
     }
     .rong-container{
-      margin: 10% auto;
+      margin: 5% auto;
       height: 480px;
       width: 1000px;
     }
@@ -61,6 +61,9 @@
     .rong-sticker{
       margin: 3px 11px;
     }
+    .rong-sticker img{
+      width: 90px;
+    }
     .rong-sticker:hover{
       background-color: #F5F5DC;
       cursor: pointer;
@@ -81,22 +84,21 @@
       width: 30px;
       margin: 12px 0 0 7px;
       padding-left: 6px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 1px solid #FFF;
+      border-radius: 5px;
     }
     .rong-package:hover{
       cursor: pointer;
       background-color: #F0FFFF;
-      border-radius: 5px;
-    }
-    .rong-rongcloud{
-      background-size: contain;
-      background-image: url(http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/icon_c60plBGwk2686yv4vmv4H9.png);
-      background-repeat: no-repeat;
     }
   </style>
 </head>
 <body>
   <script src="./sticker.js?123"></script>
-
+  <script src="./extend-stickers/extend-sticker.js"></script>
   <div class="rong-container">
     <div class="rong-editor">
       <ul class="rong-stickers rong-editor-stickers"></ul>
@@ -118,19 +120,22 @@
       var Sticker = stickerPkg.Sticker;
       var Package = stickerPkg.Package;
       var utils = stickerPkg.utils;
+      
+      // extendPackages 来源 extend-stickers 目录下 extend-sticker.js
+      stickerPkg.extend(extendPackages);
 
       var getDom = function(name){
         return document.getElementsByClassName(name)[0];
       };
 
       var packagesNode = getDom('rong-packages');
-      var tpl = '<li class="rong-package rong-{name}" packageid={packageId}></li>';
+      var tpl = '<li class="rong-package" packageid={packageId} style="background-image: url({url})"></li>';
       Package.getList(function(result){
         var packages = result.packages;
         utils.forEach(packages, function(package){
           packagesNode.innerHTML += utils.tplEngine(tpl, {
-            name: package.author,
-            packageId: package.id
+            packageId: package.id,
+            url: package.icon
           });
         });
         
@@ -143,15 +148,10 @@
         };
       });
       
-      var Cache = {};
       var stickersNode = getDom('rong-editor-stickers');
       var showNode = getDom('rong-show-stickers');
-      function getStickers(pacakgeId){  
-        var isFetch = Cache[pacakgeId];
-        if(isFetch){
-          return;
-        }
-        Cache[pacakgeId] = true;
+      function getStickers(pacakgeId){ 
+        stickersNode.innerHTML = '';
 
         var package = {
           id: pacakgeId
@@ -159,7 +159,7 @@
    
         var tpl = [
           '<li class="rong-sticker" >',
-            '<img src="{url}" alt="{desc}" packageid={packageId} stickerid={stickerId} width="90">',
+            '<img src="{url}" alt="{desc}" packageid={packageId} stickerid={stickerId}>',
           '</li>'
         ].join('');
         Sticker.getList(package, function(result, error){
@@ -167,7 +167,6 @@
           utils.forEach(stickers, function(sticker){
             stickersNode.innerHTML += utils.tplEngine(tpl, sticker);
           });
-
         });
 
         stickersNode.onclick = function(event){

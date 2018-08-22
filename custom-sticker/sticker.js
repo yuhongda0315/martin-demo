@@ -346,6 +346,7 @@
     },
     Cache: function () {
       var _cache = {};
+      this.cache = _cache;
       this.set = function (key, value) {
         _cache[key] = value;
       };
@@ -509,6 +510,40 @@
     });
   };
 
+  var updatePackageCache = function(packages){
+    var cachePackages = StickerCache.get('packages') || [];
+
+    packages = packages.concat(cachePackages);
+
+    var tmpPkg = {};
+    utils.forEach(packages, function(package){
+      tmpPkg[package.id] = package;
+    });
+    var pkgs = [];
+    utils.forEach(tmpPkg, function(pkg){
+      pkgs.push(pkg);
+    });
+    StickerCache.set('packages', pkgs);
+  };
+
+  var updateStickerCache = function(packageId, stickers){
+    var tpl = '{id}_list';
+    var key = utils.tplEngine(tpl, {
+      id: packageId
+    });
+
+    var cacheStickers = StickerCache.get(key) || {};
+    utils.forEach(stickers, function (sticker) {
+      cacheStickers[sticker.stickerId] = sticker;
+    });
+    if(stickers.length > 0){
+      // 为 getStickers 缓存
+      StickerCache.set(key, stickers);
+      // 为 get 获取单个 Sticker 方法缓存数据
+      StickerCache.set(packageId, cacheStickers);
+    }
+  };
+
   /* 
   var packages = [{
     id: '',
@@ -526,49 +561,33 @@
       width: 100
     }]
   }];
-  
   */
   var extend = function (packages) {
     if (!utils.isArray(packages)) {
       throw new Error('Packages must be array');
     }
 
-    var packages = [];
-    utils.forEach(packages, function (package, id) {
+    utils.forEach(packages, function (package) {
       var stickers = package.stickers || [];
-      var tpl = '{id}_list';
-      var key = utils.tplEngine(tpl, {
-        id: id
-      });
       
       //远程获取没有 stickers 此处删除为了保证本地、远程获取数据一致
       delete package.stickers;
 
-      var cacheStickers = {};
-      utils.forEach(stickers, function (sticker) {
-        cacheStickers[sticker.stickerId] = sticker;
-      });
-      if(stickers.length > 0){
-        // 为 getStickers 缓存
-        StickerCache.set(key, stickers);
-        // 为 get 获取单个 Sticker 方法缓存数据
-        StickerCache.set(id, cacheStickers);
-      }
+      updateStickerCache(package.id, stickers);
     });
-    // 为 getPackages 缓存
-    var cachePackages = StickerCache.get('packages');
-    //TODO 排重
-    StickerCache.set('packages', packages.concat(cachePackages));
+    updatePackageCache(packages);
   };
 
   var getPackages = function (callback) {
     callback = callback || utils.noop;
 
-    var packages = StickerCache.get('packages');
-    var error = null;
-    if (packages) {
-      return callback(packages, error);
-    }
+    // var packages = StickerCache.get('packages') || [];
+    // var error = null;
+    // if (packages.length > 0) {
+    //   return callback({
+    //     packages: packages
+    //   }, error);
+    // }
 
     var option = {
       type: 'get_packs'
@@ -601,10 +620,10 @@
         packages[index] = filterProps(pack);
       });
 
+      updatePackageCache(packages);
       result = {
-        packages: packages
+        packages: StickerCache.get('packages')
       };
-      StickerCache.set('packages', result);
       callback(result, error);
     });
   };
@@ -619,7 +638,7 @@
     var stickers = StickerCache.get(key);
     var error = null;
     if(stickers){
-      return callback(stickers, error);
+      return callback({stickers: stickers}, error);
     }
 
     var option = {
@@ -633,8 +652,6 @@
       var data = result.data;
       var stickers = data.stickers;
 
-      var cahcheStickers = StickerCache.get(id) || {};
-
       utils.forEach(stickers, function (sticker, index) {
         sticker = utils.rename(sticker, {
           digest: 'desc'
@@ -643,17 +660,9 @@
           packageId: id
         });
         stickers[index] = sticker;
-        var stickerId = sticker.stickerId;
-        cahcheStickers[stickerId] = sticker;
       });
-      StickerCache.set(id, cahcheStickers);
-
-      var tpl = '{id}_list';
-      var key = utils.tplEngine(tpl, {
-        id: id
-      });
+      updateStickerCache(id, stickers);
       result = {stickers: stickers};
-      StickerCache.set(key, result);
       callback(result, error);
     });
   };
@@ -662,7 +671,7 @@
     return {
       Sticker: {
         get: get,
-        getList: getStickers,
+        getList: getStickers
       },
       Package: {
         getList: getPackages
