@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Download</title>
+  <style>
+    body{
+      background: url(./dl_cont2_bg.png) repeat 0 0/400px auto;
+    }
+    .weixin-tip{
+      position: fixed; left:0; top:0; 
+      background: rgba(0,0,0,0.8);
+      width: 100%; height:100%; 
+      z-index: 101;
+      text-align:right;
+    } 
+    .weixin-tip p{
+      display:block;
+      background:#fff;
+      padding:0.5em;
+    }
+    .container{
+      position: absolute;
+      left: 30%;
+      top: 20%;
+    }
+    .container a{
+      text-decoration: none;
+      padding: 12px;
+      box-sizing: border-box;
+      color: #FFF;
+      background-color: #0099FA;
+      border-radius: 23px;
+      border: 2px solid #00dcea;
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+      font-size: 25px;
+    }
+    .container a:nth-child(2){
+      border: 2px solid #7dda56;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="weixin"></div>
+    <img src="./qr.png" alt="">
+    <p>
+      <a href="http://downloads.rongcloud.cn/demo_chatroom.apk" target="_blank" download>Android 下载</a>
+      <a href="itms-services://?action=download-manifest&url=https://cdn.ronghub.com/app_chatroom.plist" target="_blank">iOS 下载</a>
+    </p>
+  </div>
+</body>
+<script>
+  (function(){
+  var ua = navigator.userAgent.toLowerCase();
+  var isWeixin = ua.match(/MicroMessenger/i) == "micromessenger";
+
+  if(!isWeixin){
+    return false;
+  }
+
+  var target = document.createElement('div');
+    target.className = 'weixin-tip';
+    target.innerHTML = '<p><img src="./winxin.png" alt="" /></p>';
+  
+  var _parent = document.getElementById("weixin");
+  if(_parent){
+    _parent.appendChild(target);
+  }
+})();
+</script>
+</html>

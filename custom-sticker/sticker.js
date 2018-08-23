@@ -462,21 +462,21 @@
     return error;
   }
 
-  var InterceptorCache = new utils.Cache();
+  var RequestCache = new utils.Cache();
   /* 
-    sticker.Interceptor.use(function(option, callback){
+    rongSticker.Proxy.set(function(option, callback){
       //dosomething request
       var result = {}, error = null;
       callback(result, error);
     });
   */
-  var requestInterceptor = function(interceptor){
-    if(utils.isFunction(interceptor)){
-      InterceptorCache.set('interceptor', interceptor);
+  var requestProxy = function(proxy){
+    if(utils.isFunction(proxy)){
+      RequestCache.set('proxy', proxy);
     }
   };
 
-  var innerInterceptor = function(option, callback){
+  var innerProxy = function(option, callback){
     var url = getUrl(option);
     var queryStrings = getQueryStrings();
     utils.ajax({
@@ -492,11 +492,11 @@
       }
     });
   };
-  InterceptorCache.set('interceptor', innerInterceptor);
+  RequestCache.set('proxy', innerProxy);
 
   var request = function (option, callback) {
-    var interceptor = InterceptorCache.get('interceptor');
-    interceptor(option, callback);
+    var proxy = RequestCache.get('proxy');
+    proxy(option, callback);
   };
 
   var get = function (message, callback) {
@@ -695,8 +695,8 @@
       Package: {
         getList: getPackages
       },
-      Interceptor: {
-        use: requestInterceptor
+      Proxy: {
+        set: requestProxy
       },
       utils: utils
     };

@@ -1,201 +1,230 @@
-### 体验聊天室
+### 动态表情
 
-使用 `聊天室消息库` 版聊天室示例，体验:
+>基本概念
 
-<img src="./chatroom/qr.png" height="320px" width="250px">
+`表情包`: 表情包下包含一组表情，可同时存在多个表情包
 
-[Android 下载](http://downloads.rongcloud.cn/demo_chatroom.apk) | [iOS 下载](http://downloads.rongcloud.cn/demo_chatroom.ipa)
+`表情`: 具体的动态表情，表情一定归属于一个表情包
 
-### 使用指南
+### 引入
 
-> 下载消息类至本地
+```js
+// Noraml
+<script src="http[s]://cdn.ronghub.com/rong-sticker-1.0.0[.min].js"></script>
 
-`消息类型`: [消息类型](./chatroom/messages.md)
-
-`下载地址消息类`: [chatroom-1.0.0.zip](https://fsprodrcx.cn.ronghub.com/wFVzR8BXcnQucXNHwFVzR9CHu5TAVQ4i/chatroom-1.0.0.zip)
-
-`chatroom-1.0.0.zip` 目录一览表: 
-
-```json
-.
-├── chatroom 消息类根目录
-    └── android Android 消息类目录
-      └── *.java 消息类文件
-    └── ios iOS 消息类目录
-      └── *.h iOS 声明类
-      └── *.m iOS 实现类
-    └── web Web 消息类目录
-      └── *.js Web 消息类文件，支持 ADM、CMD 引入
-```
-
-#### 使用说明
-
-> Android
-
-1. 集成融云 Android IMKit SDK，使用方式请参考：[Android SDK 开发指南](http://www.rongcloud.cn/docs/android.html)
-
-2. 下载需要使用的消息类型至本地工程合适位置，比如新建的 RcMessage 目录内
-
-3. 无论发送方还是接收方，都要在调用融云 init 之后，注册下载的消息。如：
-
-```java
-RongIM.registerMessageType(ChatRoomGift.class);
-```
-
-`消息发送`，以 `ChatroomGift` 为例，更多消息类型请参考 [消息类型](./chatroom/messages.md):
-
-```java
-ChatroomGift giftMsg = new ChatroomGift();
-giftMsg.setId("G208");
-giftMsg.setNumber(1);
-giftMsg.setTotal(5);
-Message msg = Message.obtain("User_D", Conversation.ConversationType.CHATROOM, giftMsg);
-RongIM.getInstance().sendMessage(msg, null, null, new IRongCallback.ISendMessageCallback() {
-  @Override
-  public void onAttached(Message message) {
+// RequieJS
+require.config({
+  paths: {
+    RongSticker: 'http[s]://cdn.ronghub.com/rong-sticker-1.0.0[.min]'
   }
-  
-  @Override
-  public void onSuccess(Message message) {
-  }
-  
-  @Override
-  public void onError(Message message, RongIMClient.ErrorCode errorCode) {
-  }
+});
+
+require(['RongSticker'], function(RongSticker) {
+  // 用法请参考: https://github.com/rongcloud/websdk-demo/sticker/sticker.html
 });
 ```
 
-`消息接收`，以 `ChatroomGift` 为例，更多消息类型请参考 [消息类型](./chatroom/messages.md):
+### 示例
 
-```java
-RongIM.setOnReceiveMessageListener(new RongIMClient.OnReceiveMessageListener() {
-  @Override
-  public boolean onReceived(Message message, int i) {
-    MessageContent content = message.getContent();
-    if (content instanceof ChatroomGift) {
-        ChatroomGift chatroomGift = (ChatroomGift) content;
-        // 处理逻辑...
-    }
-    return false;
-  }
+`动态表情`: https://github.com/rongcloud/websdk-demo/sticker/sticker.html
+
+`IM 收发表情`: https://github.com/rongcloud/websdk-demo/sticker/message.html
+
+### 接口
+
+#### 初始化
+
+**API**: `RongSticker.init(config);`
+
+**config 说明**:
+
+| 属性名   | 类型    | 必传 |说明           | 版本   |
+| :-----    | :-----  | :----- |:-------------- | :----- |
+| appkey      | String | 是 | 应用的唯一标识，创建应用请移步 [开发者后台](https://developer.rongcloud.cn/) | 1.0.0 |
+| url  | String | 否| 表情包获取服务地址 | 1.0.0 |
+| extensions  | Array | 否|扩展消息包 | 1.0.0 |
+
+**示例**:
+
+```js
+var config = {
+  appkey: 'appkey'
+};
+var rongSticker = RongSticker.init(config);
+```
+
+**扩展包示例**:
+
+```js
+var extensions = [{
+  // 表情包 Id
+  id: "c60plBGwk2686yv4vmv4H9", 
+  name: "嗨宝宝",  
+  desc: "融云自制表情嗨宝宝", 
+  icon: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/icon_c60plBGwk2686yv4vmv4H9.png", 
+  poster: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/cover_c60plBGwk2686yv4vmv4H9.png", 
+  order: 1, 
+  author: "rongcloud", 
+  copyright: "rongcloud",
+  // 表情列表
+  stickers: [{
+    id: "c60plBGwk2686yv4vmv4H9", 
+    name: "嗨宝宝",  
+    desc: "融云自制表情嗨宝宝", 
+    icon: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/icon_c60plBGwk2686yv4vmv4H9.png", 
+    poster: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/cover_c60plBGwk2686yv4vmv4H9.png", 
+    order: 1, 
+    author: "rongcloud", 
+    copyright: "rongcloud"
+  }]
+}];
+
+var config = {
+  appkey: 'appkey',
+  extensions: extensions
+};
+var rongSticker = RongSticker.init(config);
+```
+
+
+#### 获取表情包列表
+
+**API**: `Package.getList(callback);`
+
+**参数说明**:
+
+| 属性名   | 类型     | 必传 |说明           | 版本   |
+| :-----   | :-----   | :--- |:-------------- | :----- |
+| callback| Function| 是 | 回调函数，用来接收数据| 1.0.0 |
+
+**示例**:
+
+```js
+var config = {
+  appkey: 'appkey'
+};
+var rongSticker = RongSticker.init(config);
+var Package = rongSticker.Package;
+Package.getList(function(result, error){
+  // result.packages => 表情包列表
+  // error => 错误信息，正常返回时 error 为 null
 });
 ```
 
-> iOS
+**packages 结构**:
 
-1. 集成融云 iOS IMKit SDK，使用方式请参考：[iOS SDK 开发指南](http://www.rongcloud.cn/docs/ios.html)
-
-2. 下载需要使用的消息类型至本地工程合适位置，比如新建的 RcMessage 目录内
-
-3. 无论发送方还是接收方，都要在调用融云 init 之后，注册下载的消息。如：
-
-```c
-[[RCIM sharedRCIM] registerMessageType:[RCChatroomGift class]];
+```js
+[
+  {
+    id: "c60plBGwk2686yv4vmv4H9", 
+    name: "嗨宝宝",  
+    desc: "融云自制表情嗨宝宝", 
+    icon: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/icon_c60plBGwk2686yv4vmv4H9.png", 
+    poster: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/cover_c60plBGwk2686yv4vmv4H9.png", 
+    order: 1, 
+    author: "rongcloud", 
+    copyright: "rongcloud"
+  }
+]
 ```
 
-`消息发送`，以 `ChatroomGift` 为例，更多消息类型请参考 [消息类型](./chatroom/messages.md)::
+#### 获取表情列表
 
-```c
-RCChatroomGift *giftMsg = [[RCChatroomGift alloc] init];
-giftMsg.id = @"G208";
-giftMsg.number = 1;
-giftMsg.total = 5;
-[[RCIM sharedRCIM] sendMessage:ConversationType_CHATROOM
-                        targetId:@"UserA"
-                         content:giftMsg
-                     pushContent:nil
-                        pushData:nil
-                         success:^(long messageId) {
-                         } error:^(RCErrorCode nErrorCode, long messageId) {
-      }];
+**API**: `Sticker.getList(package, callback);`
+
+**package**:
+
+| 属性名   | 类型     | 必传 | 说明           | 版本   |
+| :-----   | :-----   | :----| :-------------- | :----- |
+| id      | String  | 是 |表情包 Id | 1.0.0 |
+
+**callback**:
+
+| 属性名   | 类型     | 必传 |说明           | 版本   |
+| :-----   | :-----   | :--- | :-------------- | :----- |
+| callback| Function| 是 | 回调函数，用来接收数据| 1.0.0 |
+
+**示例**:
+
+```js
+var config = {
+  appkey: 'appkey'
+};
+var rongSticker = RongSticker.init(config);
+var Sticker = rongSticker.Sticker;
+
+var package = {
+  id: 'c60plBGwk2686yv4vmv4H9'
+};
+Sticker.getList(function(result, error){
+  // result.stickers => 表情列表
+  // error => 错误信息，正常返回时 error 为 null
+});
 ```
 
-`消息接收`，以 `ChatroomGift` 为例，更多消息类型请参考 [消息类型](./chatroom/messages.md)::
+**stickers 结构**:
 
-```c
-// 设置 Delegate 类。
-[[RCIM sharedRCIM] setReceiveMessageDelegate:self];
-...
-// 实现 onRCIMReceiveMessage 方法。
-- (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left {
-    if ([message.content isMemberOfClass:[RCChatroomGift class]]) {
-        RCChatroomGift *msg = (RCChatroomGift *) message.content;
-        // 处理逻辑...
-    }
+```js
+[
+  {
+    packageId: "c60plBGwk2686yv4vmv4H9"
+    stickerId: "d1PN1xTZ47p9nfMNWfGpyH", 
+    desc: "木问题", 
+    url: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/image_d1PN1xTZ47p9nfMNWfGpyH.gif", 
+    thumbUrl: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/thumb_d1PN1xTZ47p9nfMNWfGpyH.png", 
+    height: 240, 
+    width: 240, 
+    order: 1
+  }
+]
+```
+#### 获取表情
+
+**API**: `Sticker.get(stciker, callback);`
+
+**stciker**:
+
+| 属性名     | 类型     |  必传 | 说明           | 版本   |
+| :-----     | :-----   | :----- | :-------------- | :----- |
+| packageId | String  | 是 | 表情包 Id | 1.0.0 |
+| stickerId | String  | 是 | 表情 Id | 1.0.0 |
+
+**callback**:
+
+| 属性名   | 类型     | 必传 |说明           | 版本   |
+| :-----   | :-----   | :--- | :-------------- | :----- |
+| callback| Function| 是 | 回调函数，用来接收数据| 1.0.0 |
+
+**示例**:
+
+```js
+var config = {
+  appkey: 'appkey'
+};
+var rongSticker = RongSticker.init(config);
+var Sticker = rongSticker.Sticker;
+
+var sticker = {
+  packageId: 'c60plBGwk2686yv4vmv4H9',
+  stickerId: 'd1PN1xTZ47p9nfMNWfGpyH'
+};
+Sticker.get(function(sticker, error){
+  // sticker => 表情
+  // error => 错误信息，正常返回时 error 为 null
+});
+```
+
+**sticker 结构**:
+
+```js
+{
+  packageId: "c60plBGwk2686yv4vmv4H9"
+  stickerId: "d1PN1xTZ47p9nfMNWfGpyH", 
+  desc: "木问题", 
+  url: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/image_d1PN1xTZ47p9nfMNWfGpyH.gif", 
+  thumbUrl: "http://sticker.ronghub.com/c60plBGwk2686yv4vmv4H9/thumb_d1PN1xTZ47p9nfMNWfGpyH.png", 
+  height: 240, 
+  width: 240, 
+  order: 1
 }
 ```
-
-> Web
-
-1、引入 WebSDK，使用方式请移步 [Web 开发指南](http://www.rongcloud.cn/docs/web.html)
-
-2、引入 `chatroom/web/chatroom-messagetyps.js` 
-
-3、设置消息类型
-
-```js
-var appkey = "8iuikmnaldk7m";
-// 初始化 SDK
-RongIMClient.init(appkey);
-
-// 引入 `chatroom-messagetyps.js` 可获取命名空间 `RongMessageTypes`
-var chatroomMessages = RongMessageTypes.chatroom;
-
-// 设置消息类型
-var im = RongIMClient.getInstance();
-im.registerMessageTypes(chatroomMessages);
-
-// 连接
-var token = "183RX8CR4UcXlV3cANZXnbrkPG6U...";
-
-// 详细请参考 http://www.rongcloud.cn/docs/web_api_demo.html#init_connect
-var callback = {};
-RongIMClient.connect(token, callback);
-
-```
-
-`接收消息`，以 `ChatroomGift` 为例，更多消息类型请参考 [消息类型](./chatroom/messages.md):
-
-```js
-// 消息监听器
-RongIMClient.setOnReceiveMessageListener({
-  // 接收到的消息
-  onReceived: function (message) {
-    switch(message.messageType){
-      case RongIMClient.MessageType.ChatroomBarrage:
-        // console.log(message);
-      break;
-    }
-  }
-});
-```
-
-`发送消息`，以 `ChatroomBarrage` 为例，更多消息类型请参考 [消息类型](./chatroom/messages.md)::
-
-```js
-var ChatroomBarrage = RongIMClient.ChatroomBarrage;
-
-var content = "唱的太好听了，赞赞赞";
-
-var msg = new ChatroomBarrage({ 
-  content: content, 
-  senderName: senderName,
-  senderPortrait: senderPortrait 
-});
-
-var chatroomType = RongIMLib.ConversationType.CHATROOM;
-var chatroomId = "chrm2018";
-var im = RongIMClient.getInstance();
-im.sendMessage(chatroomType, chatroomId, msg, {
-  onSuccess: function(message) {
-    console.log(message);
-  },
-  onError: function(error) {
-    console.log(error);
-  }
-});
-```
-
-### 开源项目
-
-[Android](https://github.com/rongcloud/demo-chatroom)、[iOS](https://github.com/rongcloud/demo-chatroom)

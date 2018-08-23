@@ -1,0 +1,1615 @@
+
+<!DOCTYPE HTML>
+<html lang="">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>&#x6D88;&#x606F;&#x7C7B;&#x578B; &#xB7; GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-okaidia.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-codetabs/codetabs.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../style/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../">
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">&#x804A;&#x5929;&#x5BA4;</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    &#x4F7F;&#x7528;&#x6307;&#x5357;
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="messages.html">
+            
+                <a href="messages.html">
+            
+                    
+                    &#x6D88;&#x606F;&#x7C7B;&#x578B;
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    
+
+    <li>
+        
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="..">&#x6D88;&#x606F;&#x7C7B;&#x578B;</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="&#x6D88;&#x606F;&#x7C7B;&#x578B;">&#x6D88;&#x606F;&#x7C7B;&#x578B;</h3>
+<blockquote>
+<p>&#x53D1;&#x9001;&#x6E20;&#x9053;: &#x7531; <a href="http://rongcloud.github.io/server-sdk-nodejs/docs/v1/" target="_blank">App Server</a> &#x6E20;&#x9053;&#x53D1;&#x9001;&#x7684;&#x6D88;&#x606F;, <a href="http://www.rongcloud.cn/docs/quick_start.html" target="_blank">SDK</a> &#x53EA;&#x63A5;&#x6536;, &#x4E0D;&#x53EF;&#x53D1;&#x9001;</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x540D;&#x79F0;</th>
+<th style="text-align:left">&#x6807;&#x8BC6;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x53D1;&#x9001;&#x6E20;&#x9053;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="#chatroomstart">ChatroomStart</a></td>
+<td style="text-align:left">RC:Chatroom:Start</td>
+<td style="text-align:left">&#x5F00;&#x64AD;&#x901A;&#x77E5;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomend">ChatroomEnd</a></td>
+<td style="text-align:left">RC:Chatroom:End</td>
+<td style="text-align:left">&#x7ED3;&#x675F;&#x901A;&#x77E5;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomsummary">ChatroomSummary</a></td>
+<td style="text-align:left">RC:Chatroom:Summary</td>
+<td style="text-align:left">&#x4FE1;&#x606F;&#x6C47;&#x603B;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomfollow">ChatroomFollow</a></td>
+<td style="text-align:left">RC:Chatroom:Follow</td>
+<td style="text-align:left">&#x5173;&#x6CE8;&#x4E3B;&#x64AD;</td>
+<td style="text-align:left">SDK</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomlike">ChatroomLike</a></td>
+<td style="text-align:left">RC:Chatroom:Like</td>
+<td style="text-align:left">&#x70B9;&#x8D5E;</td>
+<td style="text-align:left">SDK</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomgift">ChatroomGift</a></td>
+<td style="text-align:left">RC:Chatroom:Gift</td>
+<td style="text-align:left">&#x793C;&#x7269;</td>
+<td style="text-align:left">SDK</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroombarrage">ChatroomBarrage</a></td>
+<td style="text-align:left">RC:Chatroom:Barrage</td>
+<td style="text-align:left">&#x5F39;&#x5E55;</td>
+<td style="text-align:left">SDK</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomwelcome">ChatroomWelcome</a></td>
+<td style="text-align:left">RC:Chatroom:Welcome</td>
+<td style="text-align:left">&#x6B22;&#x8FCE;&#x7528;&#x6237;&#x8FDB;&#x5165;&#x804A;&#x5929;&#x5BA4;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomadminadd">ChatroomAdminAdd</a></td>
+<td style="text-align:left">RC:Chatroom:Admin:Add</td>
+<td style="text-align:left">&#x8BBE;&#x4E3A;&#x7BA1;&#x7406;&#x5458;&#x6743;&#x9650;&#x901A;&#x77E5;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomadminremove">ChatroomAdminRemove</a></td>
+<td style="text-align:left">RC:Chatroom:Admin:Remove</td>
+<td style="text-align:left">&#x79FB;&#x9664;&#x7BA1;&#x7406;&#x5458;&#x6743;&#x9650;&#x901A;&#x77E5;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomuserblock">ChatroomUserBlock</a></td>
+<td style="text-align:left">RC:Chatroom:User:Block</td>
+<td style="text-align:left">&#x7528;&#x6237;&#x5C01;&#x7981;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomuserunblock">ChatroomUserUnBlock</a></td>
+<td style="text-align:left">RC:Chatroom:User:UnBlock</td>
+<td style="text-align:left">&#x7528;&#x6237;&#x89E3;&#x9664;&#x5C01;&#x7981;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomuserban">ChatroomUserBan</a></td>
+<td style="text-align:left">RC:Chatroom:User:Ban</td>
+<td style="text-align:left">&#x7528;&#x6237;&#x7981;&#x8A00;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomuserunban">ChatroomUserUnBan</a></td>
+<td style="text-align:left">RC:Chatroom:User:UnBan</td>
+<td style="text-align:left">&#x89E3;&#x9664;&#x7528;&#x6237;&#x7981;&#x8A00;</td>
+<td style="text-align:left">App Server</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="#chatroomuserquit">ChatroomUserQuit</a></td>
+<td style="text-align:left">RC:Chatroom:User:Quit</td>
+<td style="text-align:left">&#x7528;&#x6237;&#x9000;&#x51FA;&#x804A;&#x5929;&#x5BA4;</td>
+<td style="text-align:left">SDK</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chatroomstart">ChatroomStart</h3>
+<p>&#x804A;&#x5929;&#x5BA4;&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4E3B;&#x64AD;&#x53EF;&#x901A;&#x8FC7;&#x6B64;&#x6D88;&#x606F;&#x5728;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x53D1;&#x9001;&#x5177;&#x4F53;&#x7684;&#x89C6;&#x9891;&#x5F00;&#x64AD;&#x65F6;&#x95F4;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">time</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x5F00;&#x64AD;&#x65F6;&#x95F4;&#xFF0C;UNIX &#x65F6;&#x95F4;&#x6233;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomStart message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setTime</span><span class="token punctuation">(</span><span class="token string">&quot;1525415951135&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomStart <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomStart alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>time <span class="token operator">=</span> @<span class="token string">&quot;1525415951135&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomStart <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomStart<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomStart</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  time<span class="token punctuation">:</span> <span class="token string">&quot;1525415951135&quot;</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomend">ChatroomEnd</h3>
+<p>&#x89C6;&#x9891;&#x76F4;&#x63A5;&#x7ED3;&#x675F;&#x65F6;&#x901A;&#x8FC7;&#x53D1;&#x9001;&#x6B64;&#x6D88;&#x606F;&#x544A;&#x8BC9;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x6210;&#x5458;&#xFF0C;&#x7ED3;&#x675F;&#x672C;&#x6B21;&#x76F4;&#x64AD;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">duration</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x672C;&#x6B21;&#x76F4;&#x64AD;&#x6301;&#x7EED;&#x65F6;&#x957F;&#xFF0C;&#x5355;&#x4F4D;: &#x5206;&#x949F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomEnd message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomEnd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setDuration</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomEnd <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomEnd alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>duration <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomEnd <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomEnd<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomEnd</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  duration<span class="token punctuation">:</span><span class="token number">60</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomsummary">ChatroomSummary</h3>
+<p>&#x804A;&#x5929;&#x5BA4;&#x4FE1;&#x606F;&#x6C47;&#x603B;&#xFF0C;&#x65B0;&#x7528;&#x6237;&#x52A0;&#x5165;&#x804A;&#x5929;&#x5BA4;&#x540E;&#xFF0C;&#x7528;&#x4E8E;&#x540C;&#x6B65;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x5176;&#x4ED6;&#x6210;&#x5458;&#xFF0C;&#x5F53;&#x524D;&#x804A;&#x5929;&#x5BA4;&#x7684;&#x5B9E;&#x65F6;&#x4EBA;&#x6570;, <a href="http://rongcloud.github.io/App server-sdk-nodejs/docs/v1/" target="_blank">App App Server</a> &#x53D1;&#x9001;&#x6B64;&#x6D88;&#x606F;, &#x5305;&#x542B;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x7684;&#x603B;&#x4EBA;&#x6570;, &#x6B64;&#x6D88;&#x606F;&#x9700;&#x8981;&#x6309;&#x4E00;&#x5B9A;&#x9891;&#x7387;&#x53D1;&#x9001;, &#x4F8B;&#x5982;: &#x6BCF; 2 &#x79D2;&#x53D1;&#x9001;&#x4E00;&#x6761;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">online</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x5B9E;&#x65F6;&#x4EBA;&#x6570;, &#x83B7;&#x53D6;&#x65B9;&#x5F0F;&#x53EF;&#x53C2;&#x8003;&#x83B7;&#x53D6; <a href="http://rongcloud.github.io/server-sdk-nodejs/docs/v1/chatroom/chatroom.html#get" target="_blank">&#x804A;&#x5929;&#x5BA4;&#x4FE1;&#x606F;</a> &#x65B9;&#x6CD5;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomSummary message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomSummary</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setOnline</span><span class="token punctuation">(</span><span class="token number">800</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomSummary <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomSummary alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>online <span class="token operator">=</span> <span class="token number">800</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomSummary <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomSummary<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomSummary</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  online<span class="token punctuation">:</span><span class="token number">800</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomfollow">ChatroomFollow</h3>
+<p>&#x7528;&#x6237;&#x5173;&#x6CE8;&#x4E3B;&#x64AD;&#x540E;&#xFF0C;&#x53D1;&#x9001;&#x6B64;&#x6D88;&#x606F;&#xFF0C;&#x53EF;&#x7528;&#x4E8E;&#x5728;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x5C55;&#x793A;&#x67D0;&#x6210;&#x5458;&#x5173;&#x6CE8;&#x4E86;&#x4E3B;&#x64AD;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x7528;&#x6237; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">rank</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x5E94;&#x7528;&#x5185;&#x7684;&#x7528;&#x6237;&#x7B49;&#x7EA7;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">level</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x7528;&#x6237;&#x5728;&#x5F53;&#x524D;&#x804A;&#x5929;&#x5BA4;&#x7684;&#x7EA7;&#x522B;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomFollow message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomFollow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setRank</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setLevel</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomFollow <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomFollow alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>rank <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>level <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomFollow <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomFollow<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomFollow</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  rank<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+  level<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomlike">ChatroomLike</h3>
+<p>&#x70B9;&#x8D5E;&#x6D88;&#x606F;&#xFF0C;&#x804A;&#x5929;&#x5BA4;&#x6210;&#x5458;&#x5BF9;&#x4E3B;&#x64AD;&#x70B9;&#x8D5E;&#x65F6;&#x53D1;&#x9001;&#x6B64;&#x6D88;&#x606F;&#xFF0C;&#x9274;&#x4E8E;&#x6709;&#x4E9B;&#x7528;&#x6237;&#x4F1A;&#x8FDE;&#x7EED;&#x70B9;&#x51FB;&#xFF0C;&#x5EFA;&#x8BAE;&#x505A;&#x6D88;&#x606F;&#x5408;&#x5E76;&#x673A;&#x5236;&#x5904;&#x7406;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">counts</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x7D2F;&#x8BA1;&#x70B9;&#x8D5E;&#x6B21;&#x6570;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomLike message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomLike</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setCounts</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomLike <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomLike alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>counts <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomLike <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomLike<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomLike</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  counts<span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomgift">ChatroomGift</h3>
+<p>&#x53D1;&#x9001;&#x5404;&#x79CD;&#x793C;&#x7269;&#x81F3;&#x804A;&#x5929;&#x5BA4;&#xFF0C;&#x6210;&#x5458;&#x7ED9;&#x4E3B;&#x64AD;&#x53D1;&#x9001;&#x793C;&#x7269;&#x65F6;&#x4F7F;&#x7528;&#x6B64;&#x6D88;&#x606F;&#xFF0C;&#x901A;&#x8FC7;&#x6B64;&#x6D88;&#x606F;&#x53EF;&#x5B9E;&#x73B0;&#x53D1;&#x9001;&#x3001;&#x63A5;&#x6536;&#x7684;&#x5404;&#x79CD;&#x793C;&#x7269;&#x53CA;&#x53D1;&#x9001;&#x793C;&#x7269;&#x6392;&#x884C;&#x7B49;&#x529F;&#x80FD;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x793C;&#x7269;&#x7F16;&#x53F7;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">number</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x672C;&#x6B21;&#x53D1;&#x9001;&#x793C;&#x7269;&#x6570;&#x91CF;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x5728;&#x672C;&#x804A;&#x5929;&#x5BA4;&#x5F53;&#x524D;&#x7528;&#x6237;&#x603B;&#x5171;&#x53D1;&#x9001;&#x4E86;&#x591A;&#x5C11;&#x4E2A;&#x8BE5;&#x4E2D;&#x793C;&#x7269;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomGift message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomGift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;G008&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setNumber</span><span class="token punctuation">(</span><span class="token number">530</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setTotal</span><span class="token punctuation">(</span><span class="token number">900</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomGift <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomGift alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;G008&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>number <span class="token operator">=</span> <span class="token number">530</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>total <span class="token operator">=</span> <span class="token number">900</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomGift <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomGift<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomGift</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;G008&quot;</span><span class="token punctuation">,</span>
+  number<span class="token punctuation">:</span><span class="token number">530</span><span class="token punctuation">,</span>
+  total<span class="token punctuation">:</span><span class="token number">900</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroombarrage">ChatroomBarrage</h3>
+<p>&#x804A;&#x5929;&#x5BA4;&#x5F39;&#x5E55;&#x6D88;&#x606F;&#xFF0C;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x7279;&#x6B8A;&#x5C55;&#x793A;&#x7684;&#x6D88;&#x606F;&#xFF0C;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x6210;&#x5458;&#x6536;&#x5230;&#x6B64;&#x6D88;&#x606F;&#x540E;&#x6839;&#x636E;&#x81EA;&#x5DF2;&#x7684;&#x5F39;&#x5E55;&#x89C4;&#x5219;&#x8FDB;&#x884C;&#x5C55;&#x793A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">type</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x5F39;&#x5E55;&#x89C4;&#x5219;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">content</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x5F39;&#x5E55;&#x5185;&#x5BB9;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomBarrage message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomBarrage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setType</span><span class="token punctuation">(</span>D201801<span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setContent</span><span class="token punctuation">(</span><span class="token string">&quot;hellowrold&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomBarrage <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomBarrage alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>type <span class="token operator">=</span> D201801<span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>content <span class="token operator">=</span> @<span class="token string">&quot;hellowrold&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomBarrage <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomBarrage<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomBarrage</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  type<span class="token punctuation">:</span><span class="token constant">D201801</span><span class="token punctuation">,</span>
+  content<span class="token punctuation">:</span> <span class="token string">&quot;hellowrold&quot;</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomwelcome">ChatroomWelcome</h3>
+<p>&#x6B22;&#x8FCE;&#x7528;&#x6237;&#x8FDB;&#x5165;&#x804A;&#x5929;&#x5BA4;&#xFF0C;&#x65B0;&#x6210;&#x5458;&#x52A0;&#x5165;&#x804A;&#x5929;&#x5BA4;&#x540E;&#x53EF;&#x53D1;&#x9001;&#x6B64;&#x6761;&#x6D88;&#x606F;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x7528;&#x6237; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">counts</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x5F53;&#x524D;&#x7528;&#x6237;&#x89C2;&#x770B;&#x5F53;&#x524D;&#x4E3B;&#x64AD;&#x7684;&#x6B21;&#x6570;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">rank</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x5E94;&#x7528;&#x5185;&#x7684;&#x7528;&#x6237;&#x7B49;&#x7EA7;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">level</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x7528;&#x6237;&#x5728;&#x5F53;&#x524D;&#x804A;&#x5929;&#x5BA4;&#x7684;&#x7EA7;&#x522B;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomWelcome message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomWelcome</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setCounts</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setRank</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setLevel</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomWelcome <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomWelcome alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>counts <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>rank <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>level <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomWelcome <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomWelcome<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomWelcome</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  counts<span class="token punctuation">:</span><span class="token number">10</span><span class="token punctuation">,</span>
+  rank<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">,</span>
+  level<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomadminadd">ChatroomAdminAdd</h3>
+<p>&#x7528;&#x6237;&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;&#x7BA1;&#x7406;&#x5458;&#x65F6;&#xFF0C;&#x53D1;&#x9001;&#x6B64;&#x6D88;&#x606F;&#x901A;&#x77E5;&#x5176;&#x4ED6;&#x804A;&#x5929;&#x5BA4;&#x6210;&#x5458;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x7528;&#x6237; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">counts</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x5F53;&#x524D;&#x7528;&#x6237;&#x89C2;&#x770B;&#x5F53;&#x524D;&#x4E3B;&#x64AD;&#x7684;&#x6B21;&#x6570;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">level</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x7528;&#x6237;&#x5728;&#x5F53;&#x524D;&#x804A;&#x5929;&#x5BA4;&#x7684;&#x7EA7;&#x522B;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomAdminAdd message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomAdminAdd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setCounts</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setLevel</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomAdminAdd <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomAdminAdd alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>counts <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>level <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomAdminAdd <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomAdminAdd<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomAdminAdd</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  counts<span class="token punctuation">:</span><span class="token number">10</span><span class="token punctuation">,</span>
+  level<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomadminremove">ChatroomAdminRemove</h3>
+<p>&#x7BA1;&#x7406;&#x5458;&#x88AB;&#x79FB;&#x9664;&#x6743;&#x9650;&#x65F6;&#xFF0C;&#x53D1;&#x9001;&#x6B64;&#x6D88;&#x606F;&#x901A;&#x77E5;&#x5176;&#x4ED6;&#x804A;&#x5929;&#x5BA4;&#x6210;&#x5458;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x7BA1;&#x7406;&#x5458; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomAdminRemove message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomAdminRemove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomAdminRemove <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomAdminRemove alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomAdminRemove <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomAdminRemove<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomAdminRemove</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomuserblock">ChatroomUserBlock</h3>
+<p>&#x7528;&#x6237;&#x88AB;&#x5C01;&#x7981;&#x901A;&#x77E5;&#xFF0C;&#x5F53;&#x524D;&#x7528;&#x6237;&#x88AB;&#x63D0;&#x51FA;&#x804A;&#x5929;&#x5BA4;&#xFF0C;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x5185;&#x65E0;&#x6CD5;&#x52A0;&#x5165;&#x5F53;&#x524D;&#x804A;&#x5929;&#x5BA4;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x88AB;&#x5C01;&#x7981;&#x7684;&#x7528;&#x6237; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">duration</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x5C01;&#x7981;&#x65F6;&#x957F;&#xFF0C;&#x5355;&#x4F4D;: &#x5206;&#x949F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomUserBlock message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserBlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setDuration</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomUserBlock <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomUserBlock alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>duration <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomUserBlock <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomUserBlock<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserBlock</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  duration<span class="token punctuation">:</span><span class="token number">60</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomuserunblock">ChatroomUserUnBlock</h3>
+<p>&#x7528;&#x6237;&#x88AB;&#x89E3;&#x9664;&#x5C01;&#x901A;&#x77E5;&#x6D88;&#x606F;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x7528;&#x6237; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomUserUnBlock message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserUnBlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomUserUnBlock <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomUserUnBlock alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomUserUnBlock <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomUserUnBlock<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserUnBlock</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomuserban">ChatroomUserBan</h3>
+<p>&#x7528;&#x6237;&#x88AB;&#x7981;&#x8A00;&#x901A;&#x77E5;&#x6D88;&#x606F;&#xFF0C;&#x7528;&#x4E8E;&#x901A;&#x77E5;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x6210;&#x5458;&#x7528;&#x6237;&#x8BE5;&#x7528;&#x6237;&#x88AB;&#x7981;&#x8A00;&#xFF0C;&#x4E0D;&#x80FD;&#x53D1;&#x9001;&#x6D88;&#x606F;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x7528;&#x6237; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">duration</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">&#x88AB;&#x7981;&#x8A00;&#x65F6;&#x957F;&#xFF0C;&#x5355;&#x4F4D;: &#x5206;&#x949F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomUserBan message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserBan</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setDuration</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomUserBan <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomUserBan alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>duration <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomUserBan <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomUserBan<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserBan</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  duration<span class="token punctuation">:</span><span class="token number">60</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomuserunban">ChatroomUserUnBan</h3>
+<p>&#x7528;&#x6237;&#x88AB;&#x53D6;&#x6D88;&#x7981;&#x8A00;&#x901A;&#x77E5;&#x6D88;&#x606F;&#xFF0C;&#x7528;&#x4E8E;&#x901A;&#x77E5;&#x7528;&#x6237;&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x53D1;&#x9001;&#x804A;&#x5929;&#x5BA4;&#x6D88;&#x606F;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x7528;&#x6237; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomUserUnBan message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserUnBan</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomUserUnBan <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomUserUnBan alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomUserUnBan <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomUserUnBan<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserUnBan</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+<h3 id="chatroomuserquit">ChatroomUserQuit</h3>
+<p>&#x7528;&#x6237;&#x79BB;&#x5F00;&#x804A;&#x5929;&#x5BA4;&#x901A;&#x77E5;&#x6D88;&#x606F;&#xFF0C;&#x9000;&#x51FA;&#x804A;&#x5929;&#x5BA4;&#x65F6;&#x53EF;&#x53D1;&#x9001;&#x6B64;&#x6D88;&#x606F;&#xFF0C;&#x7528;&#x4E8E;&#x901A;&#x77E5;&#x804A;&#x5929;&#x5BA4;&#x4E2D;&#x5176;&#x4ED6;&#x6210;&#x5458;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5C5E;&#x6027;</th>
+<th style="text-align:left">&#x7C7B;&#x578B;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+<th style="text-align:left">&#x6D88;&#x606F;&#x5E93;&#x7248;&#x672C;    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x7528;&#x6237; Id</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+<tr>
+<td style="text-align:left">extra</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">&#x9644;&#x52A0;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">1.0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x793A;&#x4F8B;</strong></p>
+<p><div class="codetabs"><div class="codetabs-header"><div class="tab active" data-codetab="0">Android</div><div class="tab" data-codetab="1">iOS</div><div class="tab" data-codetab="2">Web</div></div><div class="codetabs-body"><div class="tab active" data-codetab="0"><pre class="language-"><code class="lang-java"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+ChatroomUserQuit message <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserQuit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token string">&quot;u2018&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span><span class="token function">setExtra</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Message msg <span class="token operator">=</span> Message<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">,</span> Conversation<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span>CHATROOM<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+RongIM<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> null<span class="token punctuation">,</span> null<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IRongCallback<span class="token punctuation">.</span>ISendMessageCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onAttached</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onSuccess</span><span class="token punctuation">(</span>Message message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onError</span><span class="token punctuation">(</span>Message message<span class="token punctuation">,</span> RongIMClient<span class="token punctuation">.</span>ErrorCode errorCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="1"><pre class="language-"><code class="lang-c"><span class="token comment">// &#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+RCChatroomUserQuit <span class="token operator">*</span>message <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>RCChatroomUserQuit alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>id <span class="token operator">=</span> @<span class="token string">&quot;u2018&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>extra <span class="token operator">=</span> @<span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token punctuation">[</span>RCIM sharedRCIM<span class="token punctuation">]</span> sendMessage<span class="token punctuation">:</span>ConversationType_CHATROOM
+                  targetId<span class="token punctuation">:</span>@<span class="token string">&quot;chrm2018&quot;</span>
+                   content<span class="token punctuation">:</span>message
+               pushContent<span class="token punctuation">:</span>nil
+                  pushData<span class="token punctuation">:</span>nil
+                   success<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   <span class="token punctuation">}</span> error<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>RCErrorCode nErrorCode<span class="token punctuation">,</span> <span class="token keyword">long</span> messageId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre></div><div class="tab" data-codetab="2"><pre class="language-"><code class="lang-js"><span class="token comment">//&#x6D88;&#x606F;&#x53D1;&#x9001;&#x793A;&#x4F8B;</span>
+<span class="token keyword">var</span> ChatroomUserQuit <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span>RegisterMessage<span class="token punctuation">.</span>ChatroomUserQuit<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatroomUserQuit</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+  id<span class="token punctuation">:</span> <span class="token string">&quot;u2018&quot;</span><span class="token punctuation">,</span>
+  extra<span class="token punctuation">:</span> <span class="token string">&quot;&#x9644;&#x52A0;&#x4FE1;&#x606F;&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> im <span class="token operator">=</span> RongIMClient<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomType <span class="token operator">=</span> RongIMLib<span class="token punctuation">.</span>ConversationType<span class="token punctuation">.</span><span class="token constant">CHATROOM</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> chatroomId <span class="token operator">=</span> <span class="token string">&quot;chrm2018&quot;</span><span class="token punctuation">;</span>
+im<span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span>chatroomType<span class="token punctuation">,</span> chatroomId<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onSuccess<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onError<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div></div></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching &quot;<span class="search-query"></span>&quot;</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching &quot;<span class="search-query"></span>&quot;</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev navigation-unique" aria-label="Previous page: &#x4F7F;&#x7528;&#x6307;&#x5357;">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"消息类型","level":"1.2","depth":1,"previous":{"title":"使用指南","level":"1.1","depth":1,"path":"README.md","ref":"./README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["prism","-highlight","codetabs","custom-html","expandable-chapters","-sharing","-fontsettings","livereload"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"custom-html":{},"search":{},"codetabs":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"customHTML":{"js":"js/banner.js"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"style/website.css"}},"file":{"path":"chatroom/messages.md","mtime":"2018-06-01T04:19:57.259Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-08-23T03:03:27.489Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-codetabs/codetabs.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+
+    
+		<div class="rong-head">
+			<div class="rong-head-box">
+				<div class="rong-head-box-logo"></div>
+			</div>
+		<div>
+	</div></div>
+		<div class="rong-head">
+			<div class="rong-head-box">
+				<div class="rong-head-box-logo"></div>
+			</div>
+		<div>
+	</div></div>
+		<div class="rong-head">
+			<div class="rong-head-box">
+				<div class="rong-head-box-logo"></div>
+			</div>
+		<div>
+	</div></div>
+		<div class="rong-head">
+			<div class="rong-head-box">
+				<div class="rong-head-box-logo"></div>
+			</div>
+		<div>
+	</div></div></body>
+</html>
+
