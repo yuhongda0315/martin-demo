@@ -159,23 +159,22 @@
   </div>
 
   <div class="rong-buttons" >
-      <input type="text" value="8luwapkvucoil" placeholder="appkey" id="appkey">
+      <input type="text" value="n19jmcy59f1q9" placeholder="appkey" id="appkey">
       <input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
-      <input type="text" value="ZlQBbGPoKK7c+2+/tgoyrMSkAMimzaj6nB20cRPaYWRp3Eh5I0P0+I1b4oc0BZTvfvScGZevARwg4qOfJ08MWw==" placeholder="token" id="token" class="rong-token">
+      <input type="text" value="48WQuGNh7065SB3WVJYnt6+YsUIoF3ojin3K277sfOlwuO8bLvftw4xaa/DrZEyJMsLZ9PPIg+8Ph5+QmAtoP6tdpZUyLdaH" placeholder="token" id="token" class="rong-token">
       <input type="text" id="conversationType" placeholder="conversationType" value="1">
-      <input type="text" id="targetId" placeholder="targetId" value="194EtS5cZT5">
+      <input type="text" id="targetId" placeholder="targetId" value="sLakct3QJ">
       <input type="button" value="connect" onclick="connect()">
-      <!-- <input type="button" value="getHistoryMessages" onclick="sendCommand('getHistory')"> -->
   </div>
 
   <script>
       var config = {
         appkey: 'appkey'
       };
-      var stickerPkg = RongStickerPackage.init(config);
-      var Sticker = stickerPkg.Sticker;
-      var Package = stickerPkg.Package;
-      var utils = stickerPkg.utils;
+      var rongSticker = RongSticker.init(config);
+      var Sticker = rongSticker.Sticker;
+      var Package = rongSticker.Package;
+      var utils = rongSticker.utils;
       
       var getDom = function(name){
         return document.getElementsByClassName(name)[0] || document.getElementById(name);

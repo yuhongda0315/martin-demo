@@ -114,16 +114,15 @@
 
   <script>
       var config = {
-        appkey: 'appkey'
+        appkey: 'appkey',
+        // extendPackages 来源 extend-stickers 目录下 extend-sticker.js
+        extensions: extendPackages
       };
-      var stickerPkg = RongStickerPackage.init(config);
-      var Sticker = stickerPkg.Sticker;
-      var Package = stickerPkg.Package;
-      var utils = stickerPkg.utils;
+      var rongSticker = RongSticker.init(config);
+      var Sticker = rongSticker.Sticker;
+      var Package = rongSticker.Package;
+      var utils = rongSticker.utils;
       
-      // extendPackages 来源 extend-stickers 目录下 extend-sticker.js
-      stickerPkg.extend(extendPackages);
-
       var getDom = function(name){
         return document.getElementsByClassName(name)[0];
       };

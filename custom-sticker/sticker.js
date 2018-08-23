@@ -4,7 +4,7 @@
   } else if (typeof define === 'function' && define.amd) {
     define(factory);
   } else {
-    global.RongStickerPackage = factory();
+    global.RongSticker = factory();
   }
 })(window, function () {
 
@@ -425,7 +425,7 @@
     var pathes = {
       'get-sticker': '/emoticonservice/emopkgs/{packageId}/stickers/{stickerId}',
       'get-packages': '/emoticonservice/emopkgs',
-      'get-stickers': '/emoticonservice/getemoitemsbypkgId/{packageId}'
+      'get-stickers': '/emoticonservice/emopkgs/{packageId}/stickers'
     };
 
     var path = pathes[data.type] || '';
@@ -604,14 +604,6 @@
   var getPackages = function (callback) {
     callback = callback || utils.noop;
 
-    // var packages = StickerCache.get('packages') || [];
-    // var error = null;
-    // if (packages.length > 0) {
-    //   return callback({
-    //     packages: packages
-    //   }, error);
-    // }
-
     var option = {
       type: 'get-packages'
     };
@@ -691,6 +683,10 @@
   };
   var init = function (_config) {
     utils.copy(config, _config);
+    var extensions = config.extensions;
+    if(utils.isArray(extensions)){
+      extend(extensions);
+    }
     return {
       Sticker: {
         get: get,
@@ -702,7 +698,6 @@
       Interceptor: {
         use: requestInterceptor
       },
-      extend: extend,
       utils: utils
     };
   };
