@@ -219,7 +219,7 @@
    
         var tpl = [
           '<li class="rong-sticker" >',
-            '<img src="{url}" alt="{desc}" packageid={packageId} stickerid={stickerId}>',
+            '<img src="{url}" alt="{desc}" sheight={height} swidth={width} packageid={packageId} stickerid={stickerId}>',
           '</li>'
         ].join('');
         Sticker.getList(package, function(result, error){
@@ -233,12 +233,17 @@
           var target = event.target;
           var packageId = target.getAttribute('packageid');
           var stickerId = target.getAttribute('stickerid');
+          var height = +target.getAttribute('sheight');
+          var width = +target.getAttribute('swidth');
+
           var digest = target.getAttribute('alt');
           if(packageId){
             var params = {
               packageId: packageId,
               stickerId: stickerId,
-              digest: digest
+              digest: digest,
+              height: height,
+              width: width
             };
             sendCommand('sendSticker', params);
           }

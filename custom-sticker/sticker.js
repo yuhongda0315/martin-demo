@@ -390,7 +390,7 @@
 
   var config = {
     appkey: '',
-    url: 'rcx-api-emoticon.rongcloud.net'
+    url: 'stickerservice.ronghub.com'
   };
 
   var StickerCache = new utils.Cache();

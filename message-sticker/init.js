@@ -43,7 +43,7 @@ function init(params, callbacks) {
 var messageName = "StickerMessage"; // 消息名称。
 var objectName = "RC:StkMsg";
 var messageTag = new RongIMLib.MessageTag(true, true);
-var prototypes = ["packageId", "stickerId", "digest"];
+var prototypes = ["packageId", "stickerId", "digest", "height", "width"];
 RongIMClient.registerMessageType(messageName,objectName, messageTag, prototypes);
 
 	var instance = RongIMClient.getInstance();
