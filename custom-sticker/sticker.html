@@ -101,13 +101,13 @@
   <script src="./extend-stickers/extend-sticker.js"></script>
   <div class="rong-container">
     <div class="rong-editor">
-      <ul class="rong-stickers rong-editor-stickers"></ul>
-      <ul class="rong-packages"></ul>
+      <ul class="rong-stickers rong-editor-stickers" id="rong-editor-stickers"></ul>
+      <ul class="rong-packages" id="rong-packages"></ul>
     </div>
     <div class="rong-show">
-      <ul class="rong-stickers rong-show-stickers"></ul>
+      <ul class="rong-stickers rong-show-stickers" id="rong-show-stickers"></ul>
       <div class="rong-buttons">
-        <input class="rong-button rong-button-clear" type="button" value="清空">
+        <input class="rong-button rong-button-clear" id="rong-button-clear" type="button" value="清空">
       </div>
     </div>
   </div>
@@ -123,8 +123,8 @@
       var Package = rongSticker.Package;
       var utils = rongSticker.utils;
       
-      var getDom = function(name){
-        return document.getElementsByClassName(name)[0];
+      var getDom = function(id){
+        return document.getElementById(id);
       };
 
       var packagesNode = getDom('rong-packages');
@@ -138,8 +138,8 @@
           });
         });
         
-        packagesNode.onclick = function(event){
-          var target = event.target;
+        packagesNode.onclick = function(_event){
+          var target = _event.target;
           var pacakgeId = target.getAttribute('packageid');
           if(pacakgeId){
             getStickers(pacakgeId);

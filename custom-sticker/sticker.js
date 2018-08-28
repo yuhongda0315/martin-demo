@@ -144,8 +144,8 @@
     },
     tplEngine: function (temp, data, regexp) {
       if (!(Object.prototype.toString.call(data) === '[object Array]')) data = [data];
-      let ret = [];
-      for (let i = 0, j = data.length; i < j; i++) {
+      var ret = [];
+      for (var i = 0, j = data.length; i < j; i++) {
         ret.push(replaceAction(data[i]));
       }
       return ret.join('');
@@ -318,22 +318,31 @@
 
       var success = option.success || utils.noop;
       var fail = option.fail || utils.noop;
-      var isSuccess = function () {
-        return /^(200|202)$/.test(xhr.status);
+      var isSuccess = function (result ) {
+        return /^(200|202)$/.test(result.code);
       };
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4) {
+
+      var onLoad = function () {
           var result = xhr.responseText;
           if (result != '') {
             result = utils.JSON.parse(xhr.responseText);
           }
-          if (isSuccess()) {
+          if (isSuccess(result )) {
             success(result);
           } else {
             fail(result);
           }
-        }
       };
+      if ('onload' in xhr) {
+        xhr.onload = onLoad;
+      }
+      else {
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            onLoad();
+          }
+        };
+      }
       xhr.send(null);
     },
     getProtocol: function () {
