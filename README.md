@@ -72,3 +72,43 @@
 
 [完整示例](https://github.com/rongcloud/rongcloud-web-im-upload/blob/master/qiniu/message.html)
 
+
+#### 获取历史消息说明
+
+```js
+// 向上获取历史消息
+var conversationType = 1;
+var targetId = 'targetId01';
+// 获取历史消息的起始位置，0 从最近的历史消息开始获取
+var timestamp = 1536315287170;
+var count = 5;
+RongIMClient.getInstance().getHistoryMessages(conversationType, targetId, timestamp, count, {
+	onSuccess: function(list, hasMore) {
+		// list 顺序：按发送时间正序 
+		// hasMore 是否还有更多消息
+	},
+	onError: function(error) {
+		
+	}
+}, objectname, order);
+```
+
+```js
+// 向下获取历史消息
+var conversationType = 1;
+var targetId = 'targetId01';
+// 获取历史消息的起始位置，0 从最早的历史消息开始获取
+var timestamp = 1536315287170;
+var count = 5;
+// 1: 向下获取; 0: 向上获取（默认）
+var order = 1;
+RongIMClient.getInstance().getHistoryMessages(conversationType, targetId, timestamp, count, {
+	onSuccess: function(list, hasMore) {
+		// list 顺序：按发送时间正序 
+		// hasMore 是否还有更多消息
+	},
+	onError: function(error) {
+		
+	}
+}, "", order);
+```

@@ -6,6 +6,8 @@
 
 `表情`: 具体的动态表情，表情一定归属于一个表情包
 
+**兼容性**: IE6+、Chrome、FireFox、Safari、iOS Safari、Android4.0+ 的浏览器
+
 ### 引入
 
 ```js

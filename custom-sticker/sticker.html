@@ -5,7 +5,6 @@
   <title>Sticker</title>
   <style>
     html,body{
-      overflow: hidden;
       background-color: #f0f8ff;
     }
     ul,li{
@@ -94,6 +93,9 @@
       cursor: pointer;
       background-color: #F0FFFF;
     }
+    .rong-warn{
+      color: #FF0000;
+    }
   </style>
 </head>
 <body>
@@ -110,8 +112,11 @@
         <input class="rong-button rong-button-clear" id="rong-button-clear" type="button" value="清空">
       </div>
     </div>
+    <div class="rong-warn">
+      Demo 兼容性：
+      <span>Desktop：IE9+、Chrome、FireFox、Safari 移动端：Android4.4+、iOS、微信浏览器</span>
+    </div>
   </div>
-
   <script>
       var config = {
         appkey: 'appkey',

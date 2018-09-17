@@ -1,42 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home</title>
-  <meta charset="utf-8">
-  <style>
-    body{
-      background-color: antiquewhite;
-      display:flex;
-      flex-wrap: wrap;
-      flex-direction:row;
-      align-items: stretch;
-    }
-    .modules{
-      border: 1px solid #FF6700;
-      border-radius: 10px;
-      height: 260px;
-      width: 350px;
-      margin: 30px;
-    }
-
-  .ios{
-    border: 1px solid #FF6700; 
-  }  
-  .android{
-    border: 1px solid #008000; 
-  }
-  .web{
-    border: 1px solid #DAADAA; 
-  }
-  </style>
+  <meta charset="UTF-8">
+  <title>Video</title>
 </head>
 <body>
-  <div class="modules ios">
-    <ul class="navs">
-      <li class="nav">接入必读</li>
-    </ul>
-  </div>
-  <div class="modules android">2</div>
-  <div class="modules web">3</div>
+  <video src="http://localhost:8686/websdk-demo/res/heal-the-world.mp4" id="videoId" controls></video>
+  <script>
+    var node = document.getElementById('videoId');
+    node.oncanplay = function(event){
+      console.log(event);
+    };
+  </script>
 </body>
 </html>

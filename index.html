@@ -3,16 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
-    <script>
-        var RongIMClient = {};
-        window['RongOpts']= {
-            EMOJI_BG_IMAGE: ''
-        };
-    </script>
-    <script src="./RongIMClient.emoji-private.js"></script>
-    <script src="./RongIMClient.voice-private.js"></script>
+    <style>
+        .container{
+            height: 300px;
+            width: 300px;
+            background-color: #CCC;
+        }
+    </style>
+    
 </head>
 <body>
-    
+    <div class="container"></div>
+    <script>
+        alert(typeof RTCPeerConnection);
+    </script>
 </body>
 </html>
+
+
+<style>
+.rong-nav-tab a, .rong-nav-tab em{
+  cursor:pointer;
+  background-image: url(https://fsprodrcx.cn.ronghub.com/EwVyQxMHc3D8tnJDEwVyQxOsal0TBVXVfmABMHJiFw/base64.png);
+  background-size: 88px auto;
+  width: 32px;
+  height: 32px;
+}
+.rong-nav-conversation a{
+  background-position: 0 0;
+}
+
+.rong-nav-conversation em, .rong-nav-conversation em:hover, .rong-nav-conversation a:hover{
+  background-position: -53px 0px;
+}
+
+.rong-nav-contact a {
+    background-position: 0px -32px;
+}
+
+.rong-nav-contact em, .rong-nav-contact em:hover, .rong-nav-contact a:hover {
+  background-position: -53px -32px;
+}
+
+.rong-nav{
+  background: #1BA3FC;
+}
+
+.rong-nav-collect, .rong-nav-work, .rong-nav-setting{
+  display: none;
+}
+.rong-list{
+  background: #F4F8FC;
+}
+.rong-conversation-editor, .rong-contact-content, .rong-contact-title, .rong-conversation-content, .rong-conversation-hd{
+  background: #F4F8FC;
+}
+</style>
+
+<script>
+var node = document.createElement('style');
+node.innerHTML = `
+.rong-nav-tab a, .rong-nav-tab em{
+  cursor:pointer;
+  background-image: url(http://localhost:8686/icons.png);
+  background-size: 88px auto;
+  width: 32px;
+  height: 32px;
+}
+.rong-nav-conversation a{
+  background-position: 0 0;
+}
+
+.rong-nav-conversation em, .rong-nav-conversation em:hover, .rong-nav-conversation a:hover{
+  background-position: -53px 0px;
+}
+
+.rong-nav-contact a {
+    background-position: 0px -32px;
+}
+
+.rong-nav-contact em, .rong-nav-contact em:hover, .rong-nav-contact a:hover {
+  background-position: -53px -32px;
+}
+
+.rong-nav{
+  background: #1BA3FC;
+}
+
+.rong-nav-collect, .rong-nav-work, .rong-nav-setting{
+  display: none;
+}
+.rong-list{
+  background: #F4F8FC;
+}
+.rong-conversation-editor, .rong-contact-content, .rong-contact-title, .rong-conversation-content, .rong-conversation-hd{
+  background: #F4F8FC;
+}
+.rong-nav-online > a, .rong-nav-online > a:hover{
+    color: #FFF;
+}
+`;
+document.body.appendChild(node);
+</script>
