@@ -6,22 +6,25 @@
   <title>ScreenSharing</title>
   <style>
     video{
-      height: 100%;
-      width: 100%;
+      height: 30%;
+      width: 40%;
     }
   </style>
 </head>
 <body>
-  <video></video>
+  <video id="screen"></video>
+  <video id="video"></video>
   <script>
-   
     RongDesktop.desktopCapturer.getSources({types: ['screen', 'window']}, function(error, sources) {
-      navigator.getUserMedia({
+
+      sources.forEach(function(srouce){
+        if(srouce.name.indexOf('screen') > -1){
+          navigator.getUserMedia({
               audio: false,
               video: {
                   mandatory: {
                       chromeMediaSource: 'screen',
-                      chromeMediaSourceId: sources[0].id,
+                      chromeMediaSourceId: srouce.id,
                       minWidth: 1280,
                       maxWidth: 1920,
                       minHeight: 720,
@@ -29,17 +32,29 @@
                   }
               }
           }, getStream, getUserMediaError);
+        }
+      });
 
-          function getStream(stream) {
-            var node = document.querySelector('video');
-            node.srcObject = stream;
-          }
+      function getStream(stream) {
+        var node = document.getElementById('screen');
+        node.srcObject = stream;
+      }
 
-          function getUserMediaError() {
-              console.log('getUserMediaError');
-          }
-
+      function getUserMediaError() {
+          console.log('getUserMediaError');
+      }
     });
+
+    navigator.getUserMedia({
+          audio: true,
+          video: true
+      }, function(stream){
+        var node = document.getElementById('video');
+        node.srcObject = stream;
+        video.play()
+      }, function(error){
+        console.log(error);
+      });
   </script>
 </body>
 </html>
