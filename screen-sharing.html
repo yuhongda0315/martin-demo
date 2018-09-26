@@ -6,55 +6,120 @@
   <title>ScreenSharing</title>
   <style>
     video{
-      height: 30%;
-      width: 40%;
+      margin-left: 30px;
+      float: left;
+      height: 200px;
+      width: 200px;
+    }
+    .buttons{
+      height: 30px;
+      background-color:#CCC;
     }
   </style>
 </head>
 <body>
-  <video id="screen"></video>
-  <video id="video"></video>
-  <script>
-    RongDesktop.desktopCapturer.getSources({types: ['screen', 'window']}, function(error, sources) {
 
-      sources.forEach(function(srouce){
-        if(srouce.name.indexOf('screen') > -1){
-          navigator.getUserMedia({
-              audio: false,
-              video: {
-                  mandatory: {
-                      chromeMediaSource: 'screen',
-                      chromeMediaSourceId: srouce.id,
-                      minWidth: 1280,
-                      maxWidth: 1920,
-                      minHeight: 720,
-                      maxHeight: 1080
-                  }
-              }
-          }, getStream, getUserMediaError);
+  <div class="buttons">
+    <button onclick="openCamera()">打开摄像头</button>
+    <button onclick="closeCamera()">关闭摄像头</button>
+    <button onclick="startScreen()">开始共享</button>
+    <button onclick="stopScreen()">结束共享</button>
+
+    <button onclick="restartScreen()">开始共享</button>
+    <button onclick="reopenCamera()">再次打开摄像头</button>
+  </div>
+
+  <video id="video1"></video>
+  <video id="video2"></video>
+  <video id="screen1"></video>
+  <video id="screen2"></video>
+ 
+  <script>
+
+    var screenStream1 = null, screenStream2 = null, videoStream1 = null, videoStream2 = null;
+
+    function shareScreen(node, callback){
+      RongDesktop.desktopCapturer.getSources({types: ['screen', 'window']}, function(error, sources) {
+        sources.forEach(function(srouce){
+          if(srouce.name.indexOf('screen') > -1){
+            navigator.getUserMedia({
+                audio: false,
+                video: {
+                    mandatory: {
+                        chromeMediaSource: 'screen',
+                        chromeMediaSourceId: srouce.id,
+                        minWidth: 1280,
+                        maxWidth: 1920,
+                        minHeight: 720,
+                        maxHeight: 1080
+                    }
+                }
+            }, getStream, getUserMediaError);
+          }
+        });
+
+        function getStream(stream) {
+          node.srcObject = stream;
+          callback(stream);
+        }
+
+        function getUserMediaError() {
+            console.log('getUserMediaError');
         }
       });
+    }
 
-      function getStream(stream) {
-        var node = document.getElementById('screen');
-        node.srcObject = stream;
-      }
+    function startScreen(){
+      var node = document.getElementById('screen1');
+      shareScreen(node, function(stream){
+        screenStream1 = stream;
+      })
+    }
+    
+    function restartScreen(){
+      var node = document.getElementById('screen2');
+      shareScreen(node, function(stream){
+        screenStream2 = stream;
+      })
+    }
 
-      function getUserMediaError() {
-          console.log('getUserMediaError');
-      }
-    });
+    function stopScreen(){
+      var streamTrack = screenStream1.getVideoTracks()[0]
+      streamTrack.stop();
+    }
 
-    navigator.getUserMedia({
+    function openCamera(){
+      navigator.getUserMedia({
           audio: true,
           video: true
       }, function(stream){
-        var node = document.getElementById('video');
+        var node = document.getElementById('video1');
         node.srcObject = stream;
-        video.play()
+        videoStream1 = stream;
+        node.play()
       }, function(error){
         console.log(error);
       });
+    }
+    
+    function closeCamera(){
+      var streamTrack = videoStream1.getVideoTracks()[0]
+      streamTrack.stop();
+    }
+
+    function reopenCamera(){
+      navigator.getUserMedia({
+          audio: true,
+          video: true
+      }, function(stream){
+        var node = document.getElementById('video2');
+        node.srcObject = stream;
+        videoStream2 = stream;
+        node.play()
+      }, function(error){
+        console.log(error);
+      });
+    }
   </script>
 </body>
 </html>
