@@ -39,24 +39,18 @@
     var screenStream1 = null, screenStream2 = null, videoStream1 = null, videoStream2 = null;
 
     function shareScreen(node, callback){
-      RongDesktop.desktopCapturer.getSources({types: ['screen', 'window']}, function(error, sources) {
-        sources.forEach(function(srouce){
-          if(srouce.name.indexOf('screen') > -1){
-            navigator.getUserMedia({
-                audio: false,
-                video: {
-                    mandatory: {
-                        chromeMediaSource: 'screen',
-                        chromeMediaSourceId: srouce.id,
-                        minWidth: 1280,
-                        maxWidth: 1920,
-                        minHeight: 720,
-                        maxHeight: 1080
-                    }
+      navigator.getUserMedia({
+            audio: false,
+            video: {
+                mandatory: {
+                    chromeMediaSource: 'desktop',
+                    minWidth: 1280,
+                    maxWidth: 1920,
+                    minHeight: 720,
+                    maxHeight: 1080
                 }
-            }, getStream, getUserMediaError);
-          }
-        });
+            }
+        }, getStream, getUserMediaError);
 
         function getStream(stream) {
           node.srcObject = stream;
@@ -66,7 +60,6 @@
         function getUserMediaError() {
             console.log('getUserMediaError');
         }
-      });
     }
 
     function startScreen(){
