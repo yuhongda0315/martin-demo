@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RongRTC</title>
+  <link rel="icon" href="./css/icon.png" type="image/x-icon"/>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+  <div class="rong-login">
+    <div class="rong-login-main">
+      <ul class="rong-components">
+        <li class="rong-component">
+          <i class="rong-login-logo"></i>
+        </li>
+        <li class="rong-component rong-login-title">
+            <span>欢迎体验实时高质量的远程指导</span>
+            <span>SealRTC V1.6.0</span>
+        </li>
+        <li class="rong-component rong-login-roomid">
+            <input type="text" class="rong-login-button rong-button-room" placeholder="请输入房间号">
+        </li>
+        <li class="rong-component rong-login-join">
+            <input type="button" class="rong-login-button rong-button-join" value="加入">
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="rong-main">
+    <video class="rong-main-item rong-video-remote"></video>
+    <iframe class="rong-main-item rong-whiteboard" frameborder="0"></iframe>
+  </div>
+  <div class="rong-footer">
+    <ul class="rong-footer-blocks">
+      <li class="rong-footer-block">
+        <a href="https://www.rongcloud.cn">RongCloud</a>
+      </li>
+      <li class="rong-footer-block">
+          © Copyright SealRTC
+      </li>
+      <li class="rong-footer-block">
+          浏览器: <a href="http://www.chromeliulanqi.com" target="_blank">谷歌浏览器 57+</a>
+      </li>
+    </ul>
+  </div>
+  <script src="./lib/adapter.js"></script>
+  <script src="./lib/RongRTCEngine.js"></script>
+  <script src="./config.js"></script>
+  <script src="./js/core.js"></script>
+</body>
+</html>
