@@ -1,3 +1,7 @@
+/* 
+version: 1.0.0
+*/
+
 /** This library require adapter.js */
 
 /** ----- 参数定义 ----- */
