@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<title>IM</title>
+<link rel="stylesheet" href="im.css?123">
+<style>
+    body{
+        background-color: #E6F3FB;
+    }
+    .customer-service{
+        margin-top: 7%;
+    }
+</style>
+</head>
+<body>
+	
+<div id="app"></div>
+
+</body>
+
+<script src="//cdn.ronghub.com/RongIMLib-2.3.3.js"></script>
+<!-- <script src="./libs/RongEmoji.js"></script> -->
+<script src="//cdn.ronghub.com/RongEmoji-2.2.6.min.js"></script> 
+
+<script src="./libs/utils.js"></script>
+<script src="./libs/qiniu-upload.js"></script>
+
+<script src="./template.js"></script>
+<script src="./emoji.js"></script>
+<script src="./im.js"></script>
+<script>
+(function(){
+    var appKey = "3argexb6r934e";
+    var token = "b/jvjEFD41TIVT0nsf9+L3ryPPkHsvRwWZV8SVI5ICcZ2I5Nl4OdNO01OjZxjjmVlD2dmk4RZ90=";
+
+    RongIM.init({
+        appKey: appKey,
+        token: token,
+        target: document.getElementById('app'),
+        showConversitionList: true,
+        templates: {
+            button: ['<div class="rongcloud-consult rongcloud-im-consult">',
+                    '   <button onclick="RongIM.showCommon()"><span class="rongcloud-im-icon">进入 IM</span></button>',
+                    '</div>',
+                    '<div class="customer-service" style="display: block;"></div>'].join('')
+        }
+    });
+})()
+
+
+</script>
+
+</html>
