@@ -12,6 +12,7 @@
 	var terminal;
 	var supportNot = false;//页面是否支持notification
 
+	var ConversationCache = utils.Cache();
 	//加载模板
 	var getTemplates = function(callback){
 		templates = RongIM.getTemplates();
@@ -256,6 +257,7 @@
 		conversation.messageContent = [];
 		conversation.id = event.currentTarget.getAttribute("_cid");
 		conversation.mcount = event.currentTarget.getAttribute('_mcount');
+		conversation.targetType = +event.currentTarget.getAttribute('targetType');
 		if (conversation.mcount != 0) {
 			var badge = event.currentTarget.querySelector('.rongcloud-badge');
 			if (badge) {
@@ -312,10 +314,24 @@
 	};
 	
 	var isGroup = function(conversation){
-		return conversation.conversationType == 3;
+		var type = conversation.conversationType;
+		return type == 3 || type == 2;
 	};
 	var isPrivate = function(conversation){
 		return conversation.conversationType == 1;
+	};
+
+	var getConversationName = function(conversation){
+		var types = {
+			1: 'P',
+			2: 'D',
+			3: 'G',
+			4: 'C',
+			6: 'S',
+			7: 'MC',
+			8: 'MP'
+		};
+		return types[conversation.conversationType];
 	};
 	//获取会话列表
 	var getConversationList = function(callback){
@@ -327,10 +343,13 @@
 							var message = conversation.latestMessage;
 							conversation.$sentTime = formatSentTime(message.sentTime);
 							conversation.$content = formatMessage(message);
+							conversation.$name = getConversationName(conversation);
 							_list.push(conversation);
 						}
 					});
-		    	callback && callback(_list);
+
+					var fakeConversations = ConversationCache.get('fake') || [{conversationType: 4, targetId: 'chatRoomi1', $name: 'C'}];
+		    	callback && callback(fakeConversations.concat(_list));
 		  	},
 		  	onError: function(error) {
 		     	console.log('getConversationList error', error);
@@ -350,7 +369,7 @@
 
 	//清楚未读消息数
 	var clearUnreadCount = function(targetId){
-		var conversationType = RongIMLib.ConversationType.PRIVATE;
+		var conversationType = conversation.targetType;
 		RongIMClient.getInstance().clearUnreadCount(conversationType,targetId,{
 		    onSuccess:function(){
 		    	console.log('清除未读消息成功');
@@ -364,7 +383,6 @@
 
 	//进入指定会话
 	var openConversation = function(conversation){
-		conversation.targetType = RongIMLib.ConversationType.PRIVATE;
 		var chat = $(".rcs-chat-wrapper")[0];
 		var callbacks = function(list,hasMsg){
 			var data = {};
@@ -373,7 +391,7 @@
 			messageList.list = modificateMessage(list);
 
 			data.messageList = render(templates.imMessage, messageList);
-			data.targetName = '用户：'+conversation.id;
+			data.targetName = conversation.id;
 			data.terminal = terminal;
 			$(".rcs-chat-wrapper")[0].innerHTML = render(templates.chat, data);
 			scrollBottom();
@@ -397,7 +415,7 @@
 
 	//拉去消息记录
 	var getHisMessage = function(conversationId,timestrap,count,callbacks){
-		var conversationType = RongIMLib.ConversationType.PRIVATE; //私聊,其他会话选择相应的消息类型即可。
+		var conversationType = conversation.targetType; //私聊,其他会话选择相应的消息类型即可。
 		var targetId = conversationId; // 想获取自己和谁的历史消息，targetId 赋值为对方的 Id。
 		// timestrap默认传 null，若从头开始获取历史消息，请赋值为 0 ,timestrap = 0;
 		// count每次获取的历史消息条数，范围 0-20 条，可以多次获取。
@@ -777,35 +795,6 @@
 		}
 	}
 
-	var sendTextMessage = function(instance){
-		var content = {
-			content: [
-				"这是一条测试各种字符的消息",
-				"阿拉伯语：الشرق الأوسط ",
-				"希伯来语：המזרח התיכון",
-				"希腊字母： π，α，β, ",
-				"数字单位部分字符 如：× ",
-				"拉丁文所有字符 如：Ο Ρ σ Ï Æ ",
-				"拼音所有字符 如： ě ì ň ",
-				"英文音标部分字符 如 ： ə ʃ ",
-				"俄文部分字符 如 ：ш ; ⊇ â Œ Š ™ "
-			].join(",")
-		};
-
-		var msg = new RongIMLib.TextMessage(content);
-
-		var conversationType = RongIMLib.ConversationType.PRIVATE; // 私聊
-		var targetId = "bb";
-		instance.sendMessage(conversationType, targetId, msg, {
-	        onSuccess: function (message) {
-	        	console.log(message);
-	        },
-	        onError: function (errorCode,message) {
-				console.log(errorCode);	        
-			}
-	    });
-	}
-
 	//im组件初始化
 	var init = function(config){
 		RongIM.config = config;
@@ -822,9 +811,6 @@
 				getTemplates(callback);
 				emoji.init();
 				createButton(config);
-
-				//发送一条消息，为了确保有会话，实际使用时请删除
-				sendTextMessage(instance);
 			},
 			getCurrentUser: function(userId){
 				showInfo(userId);
@@ -843,12 +829,7 @@
 
 	//页面显示当前用户信息
 	var showInfo = function(userId){
-		var dialog = document.createElement('h2');
-		dialog.innerText = '当前用户：';
-		var userInfo = document.createElement('span');
-		userInfo.innerText = userId;
-		dialog.appendChild(userInfo);
-		document.body.appendChild(dialog);
+		document.title = 'IM - 用户: ' + userId;
 	}
 
 	//对外暴露
