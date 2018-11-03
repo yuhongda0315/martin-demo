@@ -1,20 +1,15 @@
 ;(function(RongIM){
 	var getTemplates = function(callback){
 		var list = {
-	        button: 'templates/button.html',
 	        chat: 'templates/chat.html',
-	        closebefore: 'templates/closebefore.html',
 	        conversation: 'templates/conversation.html',
-	        endconversation: 'templates/endconversation.html',
 	        imageView: 'templates/imageView.html',
-	        leaveword: 'templates/leaveword.html',
-	        main: 'templates/main.html',
 	        imMain: 'templates/imMain.html',
 	        message: 'templates/message.html',
 	        imMessage: 'templates/imMessage.html',
 	        messageTemplate: 'templates/messageTemplate.html',
 	        imMessageTemplate: 'templates/imMessageTemplate.html',
-	        userInfo: 'templates/userInfo.html',
+	        userInfo: 'templates/userInfo.html'
 	    };
 	    var templates = {};
 	    for (var key in list) {

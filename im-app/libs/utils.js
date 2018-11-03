@@ -342,7 +342,23 @@
         return true;
     };
 
-    
+    utils.Cache = function(){
+        var $cache = {};
+        var set = function(key, vlaue){
+            $cache[key] = value;
+        };
+        var get = function(key){
+            return $cache[key];
+        };
+        var remove = function(key){
+            delete $cache[key];
+        };
+        return {
+            set: set,
+            get: get,
+            remove: remove
+        };
+    };
 
     utils.render = render;
 
