@@ -1,0 +1,94 @@
+.rong-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  opacity: 0.8;
+}
+
+.rong-dialog-content {
+  margin: 0 auto;
+  height: 500px;
+  width: 900px;
+  margin-top: 6%;
+}
+
+.rong-dialog-form {
+  height: 100%;
+  width: 100%;
+  background: #F8F8F8;
+  padding: 30px 30px 20px 30px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color: #666;
+  border-radius: 5px;
+}
+
+.rong-dialog-form h1 {
+  font: 18px "Trebuchet MS", Arial, Helvetica, sans-serif;
+  padding: 12px 0px 9px 40px;
+  display: block;
+  margin: -30px -30px 10px -30px;
+  color: #FFF;
+  background: url(//cdn.ronghub.com/customerservice-web-bg.png) 0 0/10px auto repeat;
+  text-shadow: 1px 1px 1px #949494;
+  border-radius: 5px 5px 0px 0px;
+  border-bottom: 1px solid #33B2FE;
+}
+
+.rong-dialog-form h1>span {
+  display: block;
+  font-size: 11px;
+  color: #FFF;
+}
+
+.rong-dialog-form label {
+  display: block;
+  margin: 0px 0px 5px;
+}
+
+.rong-dialog-form label>span {
+  float: left;
+  margin-top: 10px;
+  color: #5E5E5E;
+}
+
+.rong-dialog-form input[type="text"], .rong-dialog-form input[type="email"], .rong-dialog-form textarea, .rong-dialog-form select {
+  color: #555;
+  height: 27px;
+  line-height: 15px;
+  width: 100%;
+  padding: 0 0 0 10px;
+  margin-top: 2px;
+  border: 1px solid #E5E5E5;
+  background: #FBFBFB;
+  outline: 0;
+  box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+  font: normal 14px/14px Arial, Helvetica, sans-serif;
+}
+
+.rong-dialog-form select {
+  appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  width: 100%;
+  height: 30px;
+}
+
+.rong-dialog-form .rong-button {
+  background-color: #33B2FE;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 25px 10px 25px;
+  color: #FFF;
+  text-shadow: 1px 1px 1px #949494;
+  margin-top: 5px;
+  float: right;
+  outline: none;
+}
+
+.rong-dialog-form .rong-button:hover {
+  background-color: #33B2FE;
+  cursor: pointer;
+}

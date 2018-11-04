@@ -61,6 +61,7 @@
     height: 470px;
     border-radius: 5px;
     margin: 0 auto;
+    position: relative;
 }
 #zhichiBtnBox .rongcloud-people{
     background-position: 0 -411px;
@@ -86,6 +87,10 @@
 }
 .rongcloud-kefuListBox .rongcloud-kefuList .rongcloud-rong-header{
     height: 36px;
+    position: absolute;
+    width: 260px;
+    z-index: 99;
+    border-top-left-radius: 4px;
 }
 .rongcloud-kefuListBox .rongcloud-kefuList .rongcloud-toolBar{
     text-align: center;
@@ -123,8 +128,12 @@
     padding: 0;
 }
 .rongcloud-kefuListBox .rongcloud-kefuList .rongcloud-content{
-    width: 100%;
     float: left;
+    position: absolute;
+    width: 260px;
+    top: 36px;
+    bottom: 0;
+    overflow-y: auto;
 }
 .rongcloud-kefuListBox .rongcloud-kefuList .rongcloud-content .rongcloud-netStatus{
     height: 40px;
@@ -1342,8 +1351,8 @@
 .rong-conversation-message{
     height: 24px;
     position: absolute;
-    bottom: 9px;
-    width: 130px;
+    bottom: 6px;
+    width: 108px;
     font-size: 12px;
     overflow:hidden;
     display: inline-block;

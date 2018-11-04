@@ -1,28 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<title>IM</title>
-<link rel="stylesheet" href="im.css?123">
-<style>
-    body{
-        background-color: #E6F3FB;
-    }
-    .customer-service{
-        margin-top: 7%;
-    }
-</style>
-</head>
-<body>
-	
-<div id="app"></div>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>IM</title>
+  <link rel="stylesheet" href="./im.css">
+  <link rel="stylesheet" href="./dialog.css">
+  <style>
+    body {
+      background-color: #E6F3FB;
+    }
+
+    .customer-service {
+      margin-top: 7%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="customer-service" style="display: block;"></div>
+  </div>
+  <div class="rong-dialog">
+    <div class="rong-dialog-content">
+      <form class="rong-dialog-form" method="POST" action="###">
+        <h1>RongCloud IM
+          <span>Please fill all the texts in the fields</span>
+        </h1>
+        <label>
+          <span>App Key :</span>
+          <input type="text" name="appkey"/>
+        </label>
+  
+        <label>
+          <span>Token :</span>
+          <input type="text" name="token"/>
+        </label>
+  
+        <label>
+          <span>Navigator :</span>
+          <input type="text" name="nav" value="nav.cn.ronghub.com"/>
+        </label>
+  
+        <label>
+          <span>TargetIds :</span>
+          <input type="text" name="private" placeholder="targetId1, targetId2, targetId3" />
+        </label>
+  
+        <label>
+          <span>GroupIds :</span>
+          <input type="text" name="group" placeholder="groupId1, groupId2" />
+        </label>
+  
+        <label>
+          <span>ChatroomIds :</span>
+          <input type="text" name="chatroom" placeholder="chatroomId1" />
+        </label>
+  
+        <label>
+          <span>Connect Engine :</span>
+          <select name="connectEngine">
+            <option value="auto">Auto</option>
+            <option value="websocket">WebSocket</option>
+            <option value="comet">Comet</option>
+          </select>
+        </label>
+        <label>
+          <span>&nbsp;</span>
+          <input type="submit" class="rong-button rong-form-submit" value="开始会话" />
+        </label>
+      </form>
+    </div>
+  </div>
 </body>
 
 <script src="//cdn.ronghub.com/RongIMLib-2.3.3.js"></script>
 <!-- <script src="./libs/RongEmoji.js"></script> -->
-<script src="//cdn.ronghub.com/RongEmoji-2.2.6.min.js"></script> 
+<script src="//cdn.ronghub.com/RongEmoji-2.2.6.min.js"></script>
 
 <script src="./libs/utils.js"></script>
 <script src="./libs/qiniu-upload.js"></script>
@@ -30,23 +85,4 @@
 <script src="./template.js"></script>
 <script src="./emoji.js"></script>
 <script src="./im.js"></script>
-<script>
-(function(){
-    var appKey = "3argexb6r934e";
-    var token = "b/jvjEFD41TIVT0nsf9+L3ryPPkHsvRwWZV8SVI5ICcZ2I5Nl4OdNO01OjZxjjmVlD2dmk4RZ90=";
-
-    RongIM.init({
-        appKey: appKey,
-        token: token,
-        target: document.getElementById('app'),
-        showConversitionList: true,
-        templates: {
-            button: ['<div class="customer-service" style="display: block;"></div>'].join('')
-        }
-    });
-})()
-
-
-</script>
-
 </html>

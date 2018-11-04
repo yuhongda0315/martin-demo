@@ -344,7 +344,7 @@
 
     utils.Cache = function(){
         var $cache = {};
-        var set = function(key, vlaue){
+        var set = function(key, value){
             $cache[key] = value;
         };
         var get = function(key){
