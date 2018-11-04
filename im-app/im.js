@@ -439,7 +439,7 @@
 		var targetId = conversationId; // 想获取自己和谁的历史消息，targetId 赋值为对方的 Id。
 		// timestrap默认传 null，若从头开始获取历史消息，请赋值为 0 ,timestrap = 0;
 		// count每次获取的历史消息条数，范围 0-20 条，可以多次获取。
-		RongIMLib.RongIMClient.getInstance().getHistoryMessages(conversationType, targetId, timestrap, count, {
+		var callback = {
 			onSuccess: function (list, hasMsg) {
 				conversation.messageContent = list.concat(conversation.messageContent);
 				callbacks(list, hasMsg);
@@ -447,7 +447,19 @@
 			onError: function (error) {
 				console.log("GetHistoryMessages,errorcode:" + error);
 			}
-		});
+		};
+		var instance = RongIMLib.RongIMClient.getInstance();
+		var type = conversationType == 4 ? 'chatroom' : 'other';
+		var History = {
+			chatroom: function(){
+				var order = 1;  
+				instance.getChatRoomHistoryMessages(targetId, count, order, callback);
+			},
+			other: function(){
+				instance.getHistoryMessages(conversationType, targetId, timestrap, count, callback);
+			}
+		};
+		History[type]();
 	}
 
 	//单条消息修饰
@@ -728,7 +740,18 @@
 			onSuccess: function (userId) {
 				callbacks.getCurrentUser && callbacks.getCurrentUser(userId);
 				console.log("链接成功，用户id：" + userId);
-
+				var chatroomId = ConversationCache.get('chatroomId');
+				if(chatroomId){
+					var count = 10;
+					RongIMClient.getInstance().joinChatRoom(chatroomId, count, {
+						onSuccess: function() {
+								console.log('joinchatroom successfully.');
+						},
+						onError: function(error) {
+								console.log('joinchatroom error', erro);
+						}
+					});
+				}
 			},
 			onTokenIncorrect: function () {
 				showError('Token 无效, 请刷新后重试');
@@ -846,7 +869,7 @@
 				nav = get('nav'),
 				targetIds = get('private'),
 				groupIds = get('group'),
-				chatroomIds = get('chatroom'),
+				chatroomId = get('chatroom'),
 				connectEngine = get('connectEngine');
 		var createConversation = function () {
 			var list = [];
@@ -860,8 +883,7 @@
 			var ConversationType = RongIMLib.ConversationType;
 			targetIds = targetIds.split(',');
 			carete(ConversationType.PRIVATE, targetIds);
-			chatroomIds = chatroomIds.split(',');
-			carete(ConversationType.CHATROOM, chatroomIds);
+			carete(ConversationType.CHATROOM, [chatroomId]);
 			groupIds = groupIds.split(',');
 			carete(ConversationType.GROUP, groupIds);
 			return list;
@@ -871,6 +893,7 @@
 		ConversationCache.set('token', token);
 		ConversationCache.set('nav', nav);
 		ConversationCache.set('connectEngine', connectEngine);
+		ConversationCache.set('chatroomId', chatroomId);
 		ConversationCache.set('fake', fakeList);
 	};
 	var form = document.querySelector('.rong-dialog-form');
