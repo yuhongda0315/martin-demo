@@ -875,12 +875,18 @@
 		formatInput(this.elements);
 		this.reset();
 		rongDialog.style.display = 'none';
-		init({
+		var isPolling = ConversationCache.get('connectEngine') == 'comet';
+		var config = {
 			appKey: ConversationCache.get('appkey'),
 			token: ConversationCache.get('token'),
 			target: document.getElementById('app'),
-			showConversitionList: true
-		});
+			showConversitionList: true,
+			navi: ConversationCache.get('nav')
+		};
+		if(isPolling){
+			config.isPolling = isPolling;	
+		}
+		init(config);
 		return false;
 	};
 	//对外暴露
