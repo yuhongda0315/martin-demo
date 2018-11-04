@@ -7,6 +7,7 @@
   <title>IM</title>
   <link rel="stylesheet" href="./im.css">
   <link rel="stylesheet" href="./dialog.css">
+  <link rel="shortcut icon" href="./images/sealtalk.ico"/>
   <style>
     body {
       background-color: #E6F3FB;
@@ -30,17 +31,17 @@
         </h1>
         <label>
           <span>App Key :</span>
-          <input type="text" name="appkey"/>
+          <input type="text" name="appkey" required/>
         </label>
   
         <label>
           <span>Token :</span>
-          <input type="text" name="token"/>
+          <input type="text" name="token" required/>
         </label>
   
         <label>
           <span>Navigator :</span>
-          <input type="text" name="nav" value="nav.cn.ronghub.com"/>
+          <input type="text" name="nav" value="nav.cn.ronghub.com" required/>
         </label>
   
         <label>
@@ -73,6 +74,7 @@
       </form>
     </div>
   </div>
+  <div class="rong-error"></div>
 </body>
 
 <script src="//cdn.ronghub.com/RongIMLib-2.3.3.js"></script>

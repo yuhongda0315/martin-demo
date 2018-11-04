@@ -1374,3 +1374,16 @@
     position: absolute;
     font-size: 10px;
 }
+
+.rong-error{
+    margin: 0 auto;
+    position: relative;
+    top: 7%;
+    height: 100px;
+    width: 900px;
+    font-size: 30px;
+    color: #0099ff;
+    display: none;
+    text-align: center;
+    line-height: 100px;
+}

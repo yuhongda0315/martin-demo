@@ -11,7 +11,11 @@
 	var $ = utils.$;
 	var terminal;
 	var supportNot = false;//页面是否支持notification
-
+	var rongErrorNode = document.querySelector('.rong-error');
+	var showError = function(error){
+		rongErrorNode.style.display = 'block';
+		rongErrorNode.innerHTML = error;
+	};
 	var ConversationCache = utils.Cache();
 	//加载模板
 	var getTemplates = function (callback) {
@@ -348,8 +352,24 @@
 					}
 				});
 
+				var isEqual = function(conversatioin, another){
+					return conversatioin.conversationType == another.conversationType && conversatioin.targetId == another.targetId;
+				};
 				var fakeConversations = ConversationCache.get('fake') || [];
-				callback && callback(fakeConversations.concat(_list));
+				utils.forEach(fakeConversations, function(fakeConversation){
+					var isExist = false, len = _list.length;
+					for(var i = 0; i < len; i++){
+						var conversation = _list[i];
+						if(isEqual(conversation, fakeConversation)){
+							isExist = true;
+							break;
+						}
+					}
+					if(!isExist){
+						_list.unshift(fakeConversation);	
+					}
+				});
+				callback && callback(_list);
 			},
 			onError: function (error) {
 				console.log('getConversationList error', error);
@@ -562,7 +582,7 @@
 						sendMessage(msg);
 					},
 					onError: function (error) {
-						showResult('getFileToken error:' + error);
+						showError('getFileToken error:' + error);
 					}
 				});
 			}
@@ -585,7 +605,7 @@
 						sendMessage(msg);
 					},
 					onError: function (error) {
-						console.log(error);
+						showError('getFileUrl Error:' + error);
 					}
 				});
 			}
@@ -637,22 +657,7 @@
 	var sdkInit = function (params, callbacks) {
 		var appKey = params.appKey;
 		var token = params.token;
-		var navi = params.navi || "";
-
-		if (navi !== "") {
-			//私有云
-			var config = {
-				navi: navi
-			};
-			console.log("私有云");
-			console.log(params);
-			RongIMLib.RongIMClient.init(appKey, null, config);
-		} else {
-			//公有云
-			console.log("公有云");
-			console.log(params);
-			RongIMLib.RongIMClient.init(appKey);
-		}
+		RongIMLib.RongIMClient.init(appKey, null, params);
 
 		var instance = RongIMClient.getInstance();
 
@@ -726,11 +731,10 @@
 
 			},
 			onTokenIncorrect: function () {
-				console.log('token无效');
+				showError('Token 无效, 请刷新后重试');
 			},
 			onError: function (errorCode) {
-				console.log("=============================================");
-				console.log(errorCode);
+				showError('连接失败:' + errorCode);
 			}
 		});
 	}
