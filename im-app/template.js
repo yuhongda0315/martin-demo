@@ -9,7 +9,8 @@
 	        imMessage: 'templates/imMessage.html',
 	        messageTemplate: 'templates/messageTemplate.html',
 	        imMessageTemplate: 'templates/imMessageTemplate.html',
-	        userInfo: 'templates/userInfo.html'
+					userInfo: 'templates/userInfo.html'
+					
 	    };
 	    var templates = {};
 	    for (var key in list) {
