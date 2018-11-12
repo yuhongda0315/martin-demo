@@ -10,16 +10,12 @@
   <style>
     html,body {
       background-color: #000;
-      height: 80%;
-      width: 90%;
-    }
-
-    .customer-service {
-      margin-top: 7%;
+      height: 98%;
+      width: 99%;
     }
     .rong-container{
       margin: 0 auto;
-      width: 95%;
+      width: 99%;
       height: 100%;
     }
     .rong-iframe{
@@ -39,17 +35,17 @@
         </h1>
         <label>
           <span>App Key :</span>
-          <input type="text" name="appkey" required value="8luwapkvucoil"/>
+          <input type="text" name="appkey" required/>
         </label>
   
         <label>
           <span>Token1 :</span>
-          <input type="text" name="token1" required value="RAkexpKJQnMc/Ualo520RLrkPG6U/xPk3zvPIWf9le2Qkh4TNSY0yJ2mdJOM1BNyXbK2h4NcnVf6tiN2qQZgBQ=="/>
+          <input type="text" name="token1" required/>
         </label>
 
         <label>
           <span>Token2 :</span>
-          <input type="text" name="token2" required value="5F+laG6zeJsyM4FIUJFuE7rkPG6U/xPk3zvPIWf9le2Qkh4TNSY0yKf224LIGesnEuhs+4d1pY/6tiN2qQZgBQ=="/>
+          <input type="text" name="token2" required/>
         </label>
   
         <label>
@@ -59,7 +55,7 @@
   
         <label>
           <span>TargetIds :</span>
-          <input type="text" name="private" placeholder="targetId1, targetId2" value="1111,9901"/>
+          <input type="text" name="private" placeholder="targetId1, targetId2"/>
         </label>
   
         <label>
@@ -108,7 +104,6 @@
   var form = document.querySelector('.rong-dialog-form');
   var rongDialog = document.querySelector('.rong-dialog');
 	form.onsubmit = function () {
-		this.reset();
     rongDialog.style.display = 'none';
     var len = window.frames.length;
     for(var i = 0; i < len; i++){
