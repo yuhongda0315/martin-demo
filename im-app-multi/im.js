@@ -158,7 +158,7 @@
 						info = x;
 						break;
 				}
-				console.log('发送失败:' + info);
+				alert('发送失败:' + info);
 			}
 		});
 	}
@@ -321,7 +321,7 @@
 
 	var isGroup = function (conversation) {
 		var type = conversation.conversationType;
-		return type == 3 || type == 2;
+		return type == 3;
 	};
 	var isPrivate = function (conversation) {
 		return conversation.conversationType == 1;
@@ -731,14 +731,13 @@
 				if (message.offLineMessage) {
 					return;
 				}
-				console.log(message);
-				if (message.conversationType == RongIMLib.ConversationType.PRIVATE) {
-					if (message.targetId == conversation.id) {
-						updateMessage(message);
-						clearUnreadCount(conversation.id);
-					}
-					updateConversationList();
+				// if (message.conversationType == RongIMLib.ConversationType.PRIVATE) {
+				if (message.targetId == conversation.id) {
+					updateMessage(message);
+					clearUnreadCount(conversation.id);
 				}
+				// }
+				updateConversationList();
 			}
 		});
 
