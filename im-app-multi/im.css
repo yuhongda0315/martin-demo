@@ -953,7 +953,7 @@
 }
 .rongcloud-Message-file {
     position: relative;
-    width: 270px;
+    width: 245px;
     overflow: hidden;
     border: 1px solid #b9c1ca;
     border-radius: 3px;
@@ -1391,4 +1391,15 @@
     color: #FF0000;
     width: 300px;
     float: left;
+}
+
+.rong-current-user{
+    position: absolute;
+    height: 30px;
+    width: 200px;
+    color: #FFF;
+    font-size: 15px;
+    left: 0;
+    bottom: 30px;
+    text-align: left;
 }

@@ -6,9 +6,9 @@ class="rcs-chat-wrapper"聊天窗口的容器
     {%if(this.showConversitionList){%}<div class="rongcloud-kefuList rongcloud-imList">
         <div class="rongcloud-rong-header rongcloud-blueBg">
             <div class="rongcloud-toolBar rongcloud-headBtn">
-                <div class="rongcloud-voice"></div>
                 <div class="rongcloud-sprite rongcloud-people"></div>
                 <span class="rongcloud-recent">最近联系人</span>
+                <span class="rong-current-user">当前用户: {%this.currentUser%}</span>
             </div>
         </div>
         <div class="rongcloud-content">

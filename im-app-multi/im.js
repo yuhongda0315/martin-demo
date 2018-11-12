@@ -233,10 +233,12 @@
 
 	var createIMConversation = function (config) {
 		var data = {
-			"showConversitionList": true
+			"showConversitionList": true,
+			currentUser: RongIMLib.Bridge._client.userId
 		}
 		var callback = function (list) {
 			var obj = {};
+			obj.currentUser = RongIMLib.Bridge._client.userId;
 			obj.list = list;
 			data.conversationList = render(templates.conversation, obj);
 			$(".customer-service")[0].innerHTML = render(templates.imMain, data);
