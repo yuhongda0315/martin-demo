@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>IM</title>
+  <link rel="stylesheet" href="./dialog.css">
+  <link rel="shortcut icon" href="./images/sealtalk.ico"/>
+  <style>
+    html,body {
+      background-color: #000;
+      height: 80%;
+      width: 90%;
+    }
+
+    .customer-service {
+      margin-top: 7%;
+    }
+    .rong-container{
+      margin: 0 auto;
+      width: 95%;
+      height: 100%;
+    }
+    .rong-iframe{
+      width: 49%;
+      min-width: 500px;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="rong-dialog">
+    <div class="rong-dialog-content">
+      <form class="rong-dialog-form" method="POST" action="###">
+        <h1>RongCloud IM
+          <span>Please fill all the texts in the fields</span>
+        </h1>
+        <label>
+          <span>App Key :</span>
+          <input type="text" name="appkey" required value="8luwapkvucoil"/>
+        </label>
+  
+        <label>
+          <span>Token1 :</span>
+          <input type="text" name="token1" required value="RAkexpKJQnMc/Ualo520RLrkPG6U/xPk3zvPIWf9le2Qkh4TNSY0yJ2mdJOM1BNyXbK2h4NcnVf6tiN2qQZgBQ=="/>
+        </label>
+
+        <label>
+          <span>Token2 :</span>
+          <input type="text" name="token2" required value="5F+laG6zeJsyM4FIUJFuE7rkPG6U/xPk3zvPIWf9le2Qkh4TNSY0yKf224LIGesnEuhs+4d1pY/6tiN2qQZgBQ=="/>
+        </label>
+  
+        <label>
+          <span>Navigator :</span>
+          <input type="text" name="nav" value="nav.cn.ronghub.com" required/>
+        </label>
+  
+        <label>
+          <span>TargetIds :</span>
+          <input type="text" name="private" placeholder="targetId1, targetId2" value="1111,9901"/>
+        </label>
+  
+        <label>
+          <span>GroupIds :</span>
+          <input type="text" name="group" placeholder="groupId1, groupId2" />
+        </label>
+  
+        <label>
+          <span>ChatroomIds :</span>
+          <input type="text" name="chatroom" placeholder="chatroomId1" />
+        </label>
+  
+        <label>
+          <span>Connect Engine :</span>
+          <select name="connectEngine">
+            <option value="auto">Auto</option>
+            <option value="websocket">WebSocket</option>
+            <option value="comet">Comet</option>
+          </select>
+        </label>
+        <label>
+          <span>&nbsp;</span>
+          <p class="rong-warn">兼容性: Chrome57+、Safari12.0.1+</p>
+          <input type="submit" class="rong-button rong-form-submit" value="开始会话" />
+        </label>
+      </form>
+    </div>
+  </div>
+  <div class="rong-error"></div>
+
+  <div class="rong-container">
+    <iframe class="rong-iframe" src="http://localhost:8686/martin-demo/im-app-multi/im.html?1" frameborder="0"></iframe>
+    <iframe class="rong-iframe" src="http://localhost:8686/martin-demo/im-app-multi/im.html?2" frameborder="0"></iframe>
+  </div>
+</body>
+
+<script>
+  var createIframe = function(url){
+    var iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.frameBorder = 0;
+    return iframe;
+  };
+  var container = document.querySelector('.rong-container');
+
+  var form = document.querySelector('.rong-dialog-form');
+  var rongDialog = document.querySelector('.rong-dialog');
+	form.onsubmit = function () {
+		this.reset();
+    rongDialog.style.display = 'none';
+    var len = window.frames.length;
+    for(var i = 0; i < len; i++){
+      var win = window.frames[i].window;
+      win.RongIM.initApp(this);
+    }
+		return false;
+  };
+</script>
+</html>
