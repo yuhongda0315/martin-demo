@@ -459,11 +459,19 @@
 		var type = conversationType == 4 ? 'chatroom' : 'other';
 		var History = {
 			chatroom: function(){
-				var order = 1;  
-				instance.getChatRoomHistoryMessages(targetId, count, order, callback);
+				// var order = 1;  
+				// instance.getChatRoomHistoryMessages(targetId, count, order, callback);
+				callback.onSuccess([], false);
 			},
 			other: function(){
-				instance.getHistoryMessages(conversationType, targetId, timestrap, count, callback);
+				instance.getHistoryMessages(conversationType, targetId, timestrap, count, {
+					onSuccess: function(list, hasMore){
+						callback.onSuccess(list, hasMore);
+					},
+					onError: function(){
+						callback.onSuccess([], false);
+					}
+				});
 			}
 		};
 		History[type]();
