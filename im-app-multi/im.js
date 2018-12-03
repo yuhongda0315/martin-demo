@@ -12,7 +12,7 @@
 	var terminal;
 	var supportNot = false;//页面是否支持notification
 	var rongErrorNode = document.querySelector('.rong-error');
-	var showError = function(error){
+	var showError = function (error) {
 		rongErrorNode.style.display = 'block';
 		rongErrorNode.innerHTML = error;
 	};
@@ -32,13 +32,51 @@
 			inputChange();
 		}
 	}
+	var sendText = function (content) {
+		content = emoji.symbolToEmoji(content);
+		sendMessage(new RongIMLib.TextMessage({ content: content, extra: "附加信息" }));
+	};
+
+	var registerMessage = function(message){
+		var messageName = 'CustomMessage';
+		var objectName = message.objectName;
+		var isCounted = true;
+		var isPersited = true;
+		var mesasgeTag = new RongIMLib.MessageTag(isCounted, isPersited);
+		var props = utils.jsonKeys(message.content);
+		RongIMClient.registerMessageType(messageName, objectName, mesasgeTag, props);
+	};
+	/* 
+		var message = {
+			objectName: 'App:User',
+			content: {
+				id: 'maondo1p',
+				name: 'Martin',
+				portrait: 'http://www.rongcloud.cn/portrait.png'
+			}
+		};
+	*/
+	var sendCustomMessage = function (message) {
+		registerMessage(message);
+		var msg = new RongIMClient.RegisterMessage.CustomMessage(message.content);
+		sendMessage(msg);
+	};
 	//发送
 	var send = function () {
 		var inputMsg = $(".rongcloud-text")[0];
-		var message = inputMsg.value;
-		if (message) {
-			message = emoji.symbolToEmoji(message);
-			sendMessage(new RongIMLib.TextMessage({ content: message, extra: "附加信息" }));
+		var content = inputMsg.value;
+		if (content) {
+			try {
+				var message = eval(`(${content})`);
+				var isMessage = utils.isObject(message) && message.objectName;
+				if (isMessage) {
+					sendCustomMessage(message);
+				} else {
+					sendText(content);
+				}
+			} catch (e) {
+				sendText(content);
+			}
 			inputMsg.value = '';
 			inputMsg.focus();
 		}
@@ -305,7 +343,7 @@
 		};
 
 		var _default = function () {
-			return '[消息类型未解析]';
+			return '[自定义消息]';
 		};
 
 		var messageType = message.messageType;
@@ -354,26 +392,26 @@
 					}
 				});
 
-				var isEqual = function(conversatioin, another){
+				var isEqual = function (conversatioin, another) {
 					return conversatioin.conversationType == another.conversationType && conversatioin.targetId == another.targetId;
 				};
 				var currentUserId = RongIMLib.Bridge._client.userId;
 				var fakeConversations = ConversationCache.get('fake') || [];
 				// 过滤自己
-				fakeConversations = fakeConversations.filter(function(conversation){
+				fakeConversations = fakeConversations.filter(function (conversation) {
 					return conversation.targetId != currentUserId;
 				});
-				utils.forEach(fakeConversations, function(fakeConversation){
+				utils.forEach(fakeConversations, function (fakeConversation) {
 					var isExist = false, len = _list.length;
-					for(var i = 0; i < len; i++){
+					for (var i = 0; i < len; i++) {
 						var conversation = _list[i];
-						if(isEqual(conversation, fakeConversation)){
+						if (isEqual(conversation, fakeConversation)) {
 							isExist = true;
 							break;
 						}
 					}
-					if(!isExist){
-						_list.unshift(fakeConversation);	
+					if (!isExist) {
+						_list.unshift(fakeConversation);
 					}
 				});
 				callback && callback(_list);
@@ -458,17 +496,17 @@
 		var instance = RongIMLib.RongIMClient.getInstance();
 		var type = conversationType == 4 ? 'chatroom' : 'other';
 		var History = {
-			chatroom: function(){
+			chatroom: function () {
 				// var order = 1;  
 				// instance.getChatRoomHistoryMessages(targetId, count, order, callback);
 				callback.onSuccess([], false);
 			},
-			other: function(){
+			other: function () {
 				instance.getHistoryMessages(conversationType, targetId, timestrap, count, {
-					onSuccess: function(list, hasMore){
+					onSuccess: function (list, hasMore) {
 						callback.onSuccess(list, hasMore);
 					},
-					onError: function(){
+					onError: function () {
 						callback.onSuccess([], false);
 					}
 				});
@@ -755,14 +793,14 @@
 				callbacks.getCurrentUser && callbacks.getCurrentUser(userId);
 				console.log("链接成功，用户id：" + userId);
 				var chatroomId = ConversationCache.get('chatroomId');
-				if(chatroomId){
+				if (chatroomId) {
 					var count = 10;
 					RongIMClient.getInstance().joinChatRoom(chatroomId, count, {
-						onSuccess: function() {
-								console.log('joinchatroom successfully.');
+						onSuccess: function () {
+							console.log('joinchatroom successfully.');
 						},
-						onError: function(error) {
-								console.log('joinchatroom error', erro);
+						onError: function (error) {
+							console.log('joinchatroom error', erro);
 						}
 					});
 				}
@@ -879,18 +917,18 @@
 			return elements[key].value;
 		};
 		var appkey = get('appkey'),
-				token1 = get('token1'),
-				token2 = get('token2'),
-				nav = get('nav'),
-				targetIds = get('private'),
-				groupIds = get('group'),
-				chatroomId = get('chatroom'),
-				connectEngine = get('connectEngine');
+			token1 = get('token1'),
+			token2 = get('token2'),
+			nav = get('nav'),
+			targetIds = get('private'),
+			groupIds = get('group'),
+			chatroomId = get('chatroom'),
+			connectEngine = get('connectEngine');
 		var createConversation = function () {
 			var list = [];
 			var carete = function (type, ids) {
-				utils.forEach(ids, function(id){
-					if(id !=""){
+				utils.forEach(ids, function (id) {
+					if (id != "") {
 						list.push({ conversationType: type, targetId: id, $name: getConversationName(type) });
 					}
 				});
@@ -914,7 +952,7 @@
 	};
 	// var rongDialog = document.querySelector('.rong-dialog');
 	// rongDialog.style.display = 'none';
-	var initApp = function(elements){
+	var initApp = function (elements) {
 		formatInput(elements);
 		var isPolling = ConversationCache.get('connectEngine') == 'comet';
 		var index = location.search.replace('?', '')
@@ -925,8 +963,8 @@
 			showConversitionList: true,
 			navi: ConversationCache.get('nav')
 		};
-		if(isPolling){
-			config.isPolling = isPolling;	
+		if (isPolling) {
+			config.isPolling = isPolling;
 		}
 		init(config);
 	};

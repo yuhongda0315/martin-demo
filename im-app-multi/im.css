@@ -1373,6 +1373,11 @@
     height: 20px;
     position: absolute;
     font-size: 10px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 180px;
 }
 
 .rong-error{
@@ -1402,4 +1407,11 @@
     left: 0;
     bottom: 30px;
     text-align: left;
+}
+
+.rong-custommessage pre{
+    background: #000;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 5px;
 }

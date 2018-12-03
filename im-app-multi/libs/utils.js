@@ -35,6 +35,19 @@
 
 
     var utils = {
+        isObject: function(obj){
+            return Object.prototype.toString.call(obj) == '[object Object]';
+        },
+        jsonKeys: function(obj){
+            obj = JSON.parse(JSON.stringify(obj));
+            var keyList = [];
+            if(utils.isObject(obj)){
+                for(var key in obj){
+                    keyList.push(key);
+                }
+            }
+            return keyList;
+        },
         $ : function(selector){
             return document.querySelectorAll(selector);
         },

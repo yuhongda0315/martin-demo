@@ -16,6 +16,38 @@
             </div>
         </div>
     </div>{%break;%}
+    {%case 'UnknownMessage':%}
+    <div class="rongcloud-Message rongcloud-clearfix {%if(this.list[index].messageDirection == 1){%} {%'rongcloud-Message-send'%} {%}%}" id="RongIM-templte-message-text">
+        <div>
+            <div class="rongcloud-Message-header"><img class="rongcloud-img rongcloud-Message-avatar rongcloud-avatar" src="{%if(this.list[index].messageDirection != 1){%} {%if(this.list[index].content.user.icon){%}{%this.list[index].content.user.icon%}{%}else{%} {%'./images/kefu.png'%} {%}%} {%}else{%} {%'https://fsprodrcx.cn.ronghub.com/MdgKMDHbCwPfSwowMdgKMDHYCjAx2CzIQbd4REO5Y0Q/base64.png'%} {%}%}" alt="">
+                <div class="rongcloud-Message-author rongcloud-clearfix">
+                  <a class="rongcloud-author">{%if(this.list[index].messageDirection != 1){%}{%this.list[index].content.user.name%}{%}else{%} {%'我'%} {%}%}</a>
+                </div>
+            </div>
+        </div>
+        <div class="rongcloud-Message-body">
+            <div class="rongcloud-Message-text">
+                <pre class="rongcloud-Message-entry">{%JSON.stringify(this.list[index].content.message)%}</pre>
+            </div>
+        </div>
+    </div>{%break;%}
+    {%case 'CustomMessage':%}
+    <div class="rongcloud-Message rongcloud-clearfix {%if(this.list[index].messageDirection == 1){%} {%'rongcloud-Message-send'%} {%}%}" id="RongIM-templte-message-text">
+        <div>
+            <div class="rongcloud-Message-header">
+                {%if(this.list[index].messageDirection == 1){%} <img class="rongcloud-img rongcloud-Message-avatar rongcloud-avatar" src="https://fsprodrcx.cn.ronghub.com/MdgKMDHbCwPfSwowMdgKMDHYCjAx2CzIQbd4REO5Y0Q/base64.png" alt=""> {%}%}
+                {%if(this.list[index].messageDirection == 2){%} <img class="rongcloud-img rongcloud-Message-avatar rongcloud-avatar" src="http://oojs2ztoq.bkt.clouddn.com/8464fd0d468e019a9e19c80b62870e00150X150.jpg" alt=""> {%}%}
+                <div class="rongcloud-Message-author rongcloud-clearfix">
+                  <a class="rongcloud-author">{%if(this.list[index].messageDirection != 1){%} {%this.list[index].senderUserId%} {%}else{%} {%'我'%} {%}%}</a>
+                </div>
+            </div>
+        </div>
+        <div class="rongcloud-Message-body">
+            <div class="rongcloud-Message-text">
+                <pre class="rongcloud-Message-entry">{%JSON.stringify(this.list[index].content, null, ' ')%}</pre>
+            </div>
+        </div>
+    </div>{%break;%}
     {%case 'ImageMessage':%}
     <div class="rongcloud-Message rongcloud-clearfix {%if(this.list[index].messageDirection == 1){%} {%'rongcloud-Message-send'%} {%}%}" id="RongIM-templte-message-text">
         <div>

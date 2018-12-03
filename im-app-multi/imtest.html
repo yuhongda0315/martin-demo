@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://shuise.github.io/tech-research/md-import/preview.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>融云 消息审核测试</title>
+
+<!-- 
+https://github.com/chjj/marked
+-->
+<script src="./imtest_files/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="./imtest_files/doc.css" charset="utf-8">
+<script src="./imtest_files/marked.js"></script>
+
+<!-- 
+http://www.ghostchina.com/adding-syntax-highlighting-to-ghost-using-highlight-js/
+-->
+<link href="./imtest_files/monokai_sublime.min.css" rel="stylesheet">  
+<script src="./imtest_files/highlight.min.js"></script> 
+
+</head>
+<body>
+<div id="content" class="doc-content"><h1 id="-">融云 消息审核测试</h1>
+<h2 id="-">工具</h2>
+<ol>
+<li>地址  <a href="http://info.rongcloud.net/im-app-multi/multi.html">http://info.rongcloud.net/im-app-multi/multi.html</a></li>
+</ol>
+<h2 id="-">获取配置方法</h2>
+<ol>
+<li><p>注册融云开发者、创建应用 <a href="https://developer.rongcloud.cn/">https://developer.rongcloud.cn</a>、进入 “API 调用”</p>
+</li>
+<li><p>创建 token，1 个 token 是 1 个用户</p>
+</li>
+<li><p>创建群、并将收发用户加入群（不加入无法收发群消息）</p>
+</li>
+<li><p>聊天室 ID，直接在页面输入自定义 ID 即可，无需后台创建</p>
+</li>
+</ol>
+<h2 id="-">客服相关</h2>
+<p>支持客户时直接联系客户申请相关信息</p>
+<h2 id="-">自定义消息使用说明</h2>
+<p>输入框内输入 JSON 可发送自定消息</p>
+<p>其中 <code>objectName</code>、<code>content</code> 是固定属性，<code>content</code> 内部按需扩展</p>
+<p>程序内部自动过滤 value 是 function、undefined 的属性</p>
+<pre><code class="lang-json hljs ruleslanguage">{
+  <span class="hljs-comment">// 消息名称</span>
+  <span class="hljs-string">"objectName"</span>: <span class="hljs-string">"App:Command"</span>,
+  <span class="hljs-comment">// 消息属性</span>
+  <span class="hljs-string">"content"</span>:{
+    <span class="hljs-string">"cmd"</span>: <span class="hljs-string">"kick member"</span>,
+    <span class="hljs-string">"..."</span>: <span class="hljs-string">"..."</span>
+  }
+}
+</code></pre>
+<p>涉及消息显示，用背景颜色区分 <code>自定义消息</code>、<code>文本消息</code>，如下所示:</p>
+<p>文本消息:</p>
+<p><img src="./imtest_files/base64.png" width="130" height="50" style="border: 3px solid #FF6700;"></p>
+<p>自定义消息:</p>
+<p><img src="./imtest_files/base64(1).png" width="200" height="100" style="border: 3px solid #FF6700;"></p>
+<p>JSON 编写工具：<a href="https://www.json.cn/">https://www.json.cn/</a></p>
+</div>
+<script>
+(function(){
+	var _file = "example/example.md";
+	// var _file = "im-integration.md";
+	$.get(_file, function(response, status, xhr){ 
+		renderMD(response);
+	});
+
+	$("#importMD").on("change",function(e){
+		var file = this.files[0];
+		fileReaderText(file,function(response){
+			renderMD(response);
+		});
+		this.value = "";
+	});
+})();
+
+function fileReaderText(file,callback){
+	var reader = new FileReader();
+	reader.readAsText(file, "utf-8");   //UTF-16
+
+	reader.onload = function(evt){
+		callback(evt.target.result);
+	}
+}
+
+function renderMD(md){
+	var _html = marked(md);
+	$("#content").html(_html);
+	document.title = $("#content h1").html();
+	$('pre > code').each(function(i, block) {
+		hljs.highlightBlock(block);
+	});	
+}
+</script>
+
+
+</body><div style="display: block; opacity: 1;"></div></html>
