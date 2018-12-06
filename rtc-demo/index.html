@@ -1,387 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <meta charset="utf-8">
-<!-- <script src="./sdkbase/BaseSdkTypes.js"></script> -->
-<script type="text/javascript" src="./jquery-2.1.3.min.js"></script>
-
+  <meta charset="UTF-8">
+  <title>RongRTC</title>
+  <script src="本地路径/RongRTC.2.0.0.js"></script>
+  <style>
+    .rong-container{
+      height: 400px;
+      width: 100%;
+      background-color: #000;
+      margin: 0 auto;
+    }
+    .rong-toolbar{
+      height: 50px;
+      border-bottom: 1px solid #FFF;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    .rong-video-box{
+      height: 80%;
+    }
+    .rong-input{
+      outline: none;
+      margin-left: 10px;
+    }
+    .rong-video-box video{
+      height: 100px;
+      width: 100px;
+      margin: 20px;
+      float: left;
+      border: 1px solid #FFF;
+    }
+  </style>
 </head>
-<h1>在控制台查看测试结果</h1>
+
 <body>
-    <script language="javascript">
-        var baseSdk = new RongDesktop.RTC.Lib.RongRTCNode();
-        var Buffer222 = RongDesktop.RTC.Buffer;
-    	var tcp = "tcp://10.13.10.134:8080";
-    	var tokenUrl = "https://t-rtc.ronghub.com/token";
-    	var appId = "1234567890abcdefg";
-    	var selfUserId = guid();
-    	//var token = "sign=405b4d57bdc891b27fd235c661d365c9d455872b1234567890abcdefg153498679100048294&uid=" + selfUserId;
-    	var convId = "";
-    	var selfUserName = "test_" + selfUserId;
-    	
-    	/**
-    	 * guid
-    	 * 
-    	 * @returns
-    	 */
-    	function guid() {
-    		function s4() {
-    			return Math.floor((1 + Math.random()) * 0x10000).toString(16)
-    					.substring(1);
-    		}
-    		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4()
-    				+ s4() + s4();
-    	}
-    	
-    	/**
-    	 * 请求token
-    	 *
-    	 */
-    	function getToken(tokenUrl, uid, appid, callback) {
-    		$.ajax({
-    			url : tokenUrl,
-    			type : "POST",
-    			data : 'uid=' + uid + '&appid=' + appid,
-    			async : true,
-    			success : function(data) {
-    				callback(data);
-    			},
-    			error : function(er) {
-    				alert("请求token失败!");
-    			}
-    		});
-    	}
-    	
-    	$(document).ready(
-    			function() {
-                    getToken (tokenUrl, selfUserId, appId, function(data) {
-                    	token = data;
-    				});
-    			});
-    			
-    	
-	  	function notify(json)
-	  	{
-	  		console.log(json);
-	  		
-	  		if (json.notify_id == 'OnJoinChannel') {
-	  			var canvas = document.createElement("canvas");
-	  			canvas.id = selfUserId;
-	  			canvas.width = 640;
-	  			canvas.setAttribute("view-width", 640);
-	  			canvas.height = 480;
-	  			canvas.setAttribute("view-height", 480);
-	  			var div = document.getElementById("self");
-	  			div.appendChild(canvas);
-	  		}
-	  		if (json.notify_id == 'OnNotifyUserJoinChannel') {
-	  			var userId = json.user_id;
-	  			textureMap[userId] = null;
-	  			var canvas = document.createElement("canvas");
-	  			canvas.id = userId;
-	  			canvas.width = 640;
-	  			canvas.setAttribute("view-width", 640);
-	  			canvas.height = 480;
-	  			canvas.setAttribute("view-height", 480);
-	  			var div = document.createElement("div");
-	  			div.id = "div_" + userId;
-	  			document.body.appendChild(div);
-	  			div.appendChild(canvas);
-	  		}
-	  		if (json.notify_id == 'OnNotifyUserLeaveChannel') {
-	  			var userId = json.user_id;
-	  			textureMap[userId] = null;
-	  			var div = document.getElementById("div_" + userId);
-	  			document.body.removeChild(div);
-	  		}
-	  	}
-	  	function data_notify(userid,width,height,pixelsize,buffer)
-	  	{
-			//console.debug(userid,width,height,pixelsize);
-			
-			var canvas = document.getElementById(userid);
-			if (canvas) {
-				drawGL2(canvas, userid, width, height, buffer);
-			}
-	  	}
-	  	function doGetSDKVersion()
-	  	{
-	  		var ret = baseSdk.doGetSDKVersion();
-	  		console.log(ret);
-	  	}
-	    function doInit()
-	    {
-	    	convId = $('#convId').val();
-	    	if (convId == null || convId == '') {
-	    		alert("请输入会议ID");
-	    		return;
-	    	}
-	    	
-	    	baseSdk.doSetLogEnabled(2, "D:/rong-rtc-log.txt");
-	        var ret = baseSdk.doInit(tcp,"",0,notify,data_notify);
-	        console.log(ret);
-	    }
-	    function doUnInit()
-	    {
-	        var ret = baseSdk.doUninit();
-	        console.log(ret);
-	    }
-	    function doJoinChannel()
-	    {
-	        var ret = baseSdk.doJoinChannel(convId,selfUserId,selfUserName,1,token,3,3,7,"",false);
-	        console.log(ret);
-	    }
-	    
-	    function doLeaveChannel()
-	    {
-		    var ret = baseSdk.doLeaveChannel();
-		    console.log(ret);
-	    }
-	    
-	    var textureMap = {};
-	    function textureOfUser1(user, gl, w, h) {
-	    	var texture = textureMap[user] || {};
-            // 视频大小发生变化
-            if(texture.w !== w || texture.h !== h){
-                console.log("video w:", w, ", h:", h, ",user:",user);
-                texture.w = w;
-                texture.h = h;
-                gl.canvas.width = gl.canvas.height * w/h;
-            }
-            // canvas大小变化，重新设置视口大小
-            if (texture.width !== gl.canvas.width || texture.height !== gl.canvas.height) {
-                console.log("canvas w:", gl.canvas.width, ", h:", gl.canvas.height);
-                texture.width = gl.canvas.width;
-                texture.height = gl.canvas.height;
-                gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-            }
-            if (texture.tex) {
-                return texture;
-            }
-            texture.tex = gl.createTexture();
-            texture.width = gl.canvas.width;
-            texture.height = gl.canvas.height;
-            texture.w = w;
-            texture.h = h;
-            console.log("canvas w:", gl.canvas.width, ", h:", gl.canvas.height, ",user:",user);
-            console.log("video w:", w, ", h:", h, ",user:",user);
 
-            let vs_s =
-                `attribute vec4 position;
-attribute vec4 inputTextureCoordinate;
-varying vec2 textureCoordinate;
-void main()
-{
-gl_Position = position;
-textureCoordinate = inputTextureCoordinate.xy;
-}`;
-            let fs_s =
-                `varying highp vec2 textureCoordinate;
-uniform sampler2D inputImageTexture;
-void main()
-{
-gl_FragColor = texture2D(inputImageTexture, textureCoordinate);
-}`;
-            /*准备*/
-            var  program, shader, vs, fs;
-            program = gl.createProgram();
-            texture.program = program;
-            vs = gl.createShader(gl.VERTEX_SHADER);
-            fs = gl.createShader(gl.FRAGMENT_SHADER);
-            gl.shaderSource(vs, vs_s);
-            gl.shaderSource(fs, fs_s);
-            gl.compileShader(vs);
-            gl.compileShader(fs);
-            gl.attachShader(program, vs);
-            gl.attachShader(program, fs);
-            gl.linkProgram(program);
-            gl.useProgram(program);
-
-            textureMap[user] = texture;
-            return texture;
-        }
-	    
-	    function drawGL1(canvas, userid, width, height, buffer) {
-	    	 // webgl绘制
-			var gl = canvas.getContext("webgl");
-            var texture = textureOfUser1(userid, gl, width, height);
-
-            gl.useProgram(texture.program);
-            /*顶点属性相关*/
-            var position, inputTextureCoordinate;
-            position=gl.getAttribLocation(texture.program,"position");
-            inputTextureCoordinate=gl.getAttribLocation(texture.program,"inputTextureCoordinate");
-            gl.enableVertexAttribArray(position);
-            gl.enableVertexAttribArray(inputTextureCoordinate);
-            gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());
-            let ratioX = 200/320, ratioY = 116/240;
-            gl.bufferData(
-                gl.ARRAY_BUFFER, new Float32Array([
-                    -1.0, -1.0,
-                    1.0, -1.0,
-                    -1.0, 1.0,
-                    1.0, 1.0,
-                ]),gl.STATIC_DRAW
-            );
-            gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-            gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());
-
-            gl.bufferData(
-                gl.ARRAY_BUFFER,new Float32Array([
-                    0.0, 1.0,
-                    1.0, 1.0,
-                    0.0, 0.0,
-                    1.0, 0.0,
-                ]),gl.STATIC_DRAW
-            );
-            gl.vertexAttribPointer(inputTextureCoordinate, 2, gl.FLOAT, false, 0, 0);
-
-            /*全局属性相关*/
-            var inputImageTexture = gl.getUniformLocation(texture.program,"inputImageTexture");
-            gl.uniform1i(inputImageTexture, 0);
-
-            /*贴图相关*/
-            gl.activeTexture(gl.TEXTURE0);
-            gl.bindTexture(gl.TEXTURE_2D,texture.tex);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
-//        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
-//            new Uint8Array([255, 0, 0, 255]));
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-	    }
-	    
-	    function textureOfUser2(user, gl, w, h) {
-            var texture = textureMap[user] || {};
-            // 视频大小发生变化
-            if (texture.w !== w || texture.h !== h) {
-                console.log("video w:", w, ", h:", h, ",user:", user);
-                texture.w = w;
-                texture.h = h;
-                // 预设的显示大小
-                let viewWidth = gl.canvas.getAttribute("view-width");
-                let viewHeight = gl.canvas.getAttribute("view-height");
-                if (w / h <= viewWidth / viewHeight) {
-                    // 比较高的分辨率
-                    gl.canvas.height = viewHeight;
-                    gl.canvas.width = (viewHeight * w) / h;
-                } else {
-                    // 比较宽的分辨率
-                    gl.canvas.width = viewWidth;
-                    gl.canvas.height = (viewWidth * h) / w;
-                }
-                //                this.w = w;
-                //                this.h = h;
-            }
-            // canvas大小变化，重新设置视口大小
-            if (texture.width !== gl.canvas.width || texture.height !== gl.canvas.height) {
-                console.log("canvas w:", gl.canvas.width, ", h:", gl.canvas.height);
-                texture.width = gl.canvas.width;
-                texture.height = gl.canvas.height;
-                gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-            }
-            if (texture.tex) {
-                return texture;
-            }
-            texture.tex = gl.createTexture();
-            texture.width = gl.canvas.width;
-            texture.height = gl.canvas.height;
-            texture.w = w;
-            texture.h = h;
-            // 记录原视频大小
-            gl.canvas.originWidth = w;
-            gl.canvas.originHeight = h;
-
-            console.log("canvas w:", gl.canvas.width, ", h:", gl.canvas.height, ",user:", user);
-            console.log("video w:", w, ", h:", h, ",user:", user);
-
-            let vs_s = `attribute vec4 position;
-attribute vec4 inputTextureCoordinate;
-varying vec2 textureCoordinate;
-void main()
-{
-   gl_Position = position;
-   textureCoordinate = inputTextureCoordinate.xy;
-}`;
-            let fs_s = `varying highp vec2 textureCoordinate;
-uniform sampler2D inputImageTexture;
-void main()
-{
-    gl_FragColor = texture2D(inputImageTexture, textureCoordinate);
-}`;
-            /*准备*/
-            var program, shader, vs, fs;
-            program = gl.createProgram();
-            texture.program = program;
-            vs = gl.createShader(gl.VERTEX_SHADER);
-            fs = gl.createShader(gl.FRAGMENT_SHADER);
-            gl.shaderSource(vs, vs_s);
-            gl.shaderSource(fs, fs_s);
-            gl.compileShader(vs);
-            gl.compileShader(fs);
-            gl.attachShader(program, vs);
-            gl.attachShader(program, fs);
-            gl.linkProgram(program);
-            gl.useProgram(program);
-
-            /*顶点属性相关*/
-            var position, inputTextureCoordinate;
-            position = gl.getAttribLocation(program, "position");
-            inputTextureCoordinate = gl.getAttribLocation(program, "inputTextureCoordinate");
-            gl.enableVertexAttribArray(position);
-            gl.enableVertexAttribArray(inputTextureCoordinate);
-            gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0]), gl.STATIC_DRAW);
-            gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-            gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-
-            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0]), gl.STATIC_DRAW);
-            gl.vertexAttribPointer(inputTextureCoordinate, 2, gl.FLOAT, false, 0, 0);
-
-            /*全局属性相关*/
-            gl.activeTexture(gl.TEXTURE0);
-            gl.bindTexture(gl.TEXTURE_2D, texture.tex);
-            var inputImageTexture = gl.getUniformLocation(program, "inputImageTexture");
-            gl.uniform1i(inputImageTexture, 0);
-
-            /*贴图相关*/
-            gl.activeTexture(gl.TEXTURE0);
-            gl.bindTexture(gl.TEXTURE_2D, texture.tex);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-
-            textureMap[user] = texture;
-            return texture;
-        }
-	    
-	    function drawGL2(canvas, userid, width, height, buffer) {
-	    	 // webgl绘制
-			var gl = canvas.getContext("webgl");
-			var texture = textureOfUser2(userid, gl, width, height);
-
-            gl.bindTexture(gl.TEXTURE_2D, texture.tex);
-            if (!gl.temp || gl.temp.length !== buffer.length) {
-                gl.temp = Buffer222.from(buffer);
-            } else {
-                buffer.copy(gl.temp);
-            }
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, gl.temp);
-            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-	    }
-    </script>
-	<div style="padding: 5px">
-		<input id="convId" type="text" maxlength='40' />
-		<button onclick="doGetSDKVersion()">GetSDKVersion</button>
-	    <button onclick="doInit()">Init</button>
-	    <button onclick="doUnInit()">UnInit</button>
-	    <button onclick="doJoinChannel()">JoinChannel</button>
-	    <button onclick="doLeaveChannel()">LeaveChannel</button>
+  <div class="rong-container">
+    <div class="rong-toolbar">
+      <input class="rong-input rong-roomid" type="text" value="room9901">
+      <input class="rong-input" type="button" value="Join" onclick="joinRoom()">
+      <input class="rong-input" type="button" value="Leave" onclick="leaveRoom()">
+      <input class="rong-input" type="button" value="GetStream" onclick="getStream()">
+      <input class="rong-input" type="button" value="Mute" onclick="mute()">
+      <input class="rong-input" type="button" value="Unmute" onclick="unmute()">
+      <input class="rong-input" type="button" value="DisbaleVideo" onclick="disableVideo()">
+      <input class="rong-input" type="button" value="EnableVideo" onclick="enableVideo()">
+      <input class="rong-input" type="button" value="StartScreenshare" onclick="startScreenshare()">
+      <input class="rong-input" type="button" value="StopScreenshare" onclick="stopScreenshare()">
+      <input class="rong-input" type="button" value="createWB" onclick="createWhiteboard()">
+      <input class="rong-input" type="button" value="getWBList" onclick="getWhiteboardList()">
+      <input class="rong-input" type="button" value="getDeviceList" onclick="getDeviceList()">
+      <input class="rong-input" type="button" value="checkDevice" onclick="checkDevice()">
+      <input class="rong-input" type="button" value="setDevice" onclick="setDevice()">
     </div>
-    <div id="self">
-    </div>
+    <div class="rong-video-box"></div>
+  </div>
+  <script>
+    let currentUser = {
+      id: 'martin9901',
+      token: 'sign=26e4ea1161b41a766405ab0edbdc5a86c7a4de08x4vkb1qpxfrzk1543287170000398fa&uid=martin9901'
+    }
+    let getDom = (key) => {
+      return document.querySelector(key);
+    };
+    let videoBox = getDom('.rong-video-box');
+
+    let rongRTC = new RongRTC();
+    let { Room, Stream, ScreenShare, WhiteBoard, Device } = rongRTC;
+
+    var rtcObserver = new rongRTC.Observer((mutation) => {
+      console.log(mutation);
+    });
+    var rtcConfig = {
+      error: true
+    };
+    rtcObserver.observe(rongRTC, rtcConfig);
+
+    function joinRoom() {
+      var id = getDom('.rong-roomid').value;
+      var room = {
+        id,
+        user: currentUser
+      };
+      Room.join(room).then((user) => {
+        console.log(user);
+      }, error => {
+        console.log(error);
+      });
+    }
+
+    function leaveRoom() {
+      Room.leave().then((user) => {
+        videoBox.innerHTML = '';
+      });
+    }
+
+    let roomConfig = {
+      // 用户加入
+      joined: true,
+      // 用户离开
+      leaved: true,
+      // 用户角色变化
+      changed: true
+    };
+    let roomObserver = new rongRTC.Observer((mutation) => {
+      if (mutation.type == 'leaved') {
+        let { user } = mutation;
+        let videoNode = document.getElementById(user.id);
+        if (videoNode) {
+          videoBox.removeChild(videoNode);
+        }
+      }
+    });
+    roomObserver.observe(Room, roomConfig);
+
+    let streamConfig = {
+      added: true
+    };
+    let createVideo = (id, stream) => {
+      let video = document.createElement('video');
+      video.srcObject = stream;
+      video.autoplay = true;
+      video.id = id;
+      return video;
+    };
+    let appendVideo = (mutation) => {
+      let { stream, user } = mutation;
+      let video = createVideo(user.id, mutation.stream);
+      videoBox.appendChild(video);
+    };
+    let streamObserver = new rongRTC.Observer((mutation) => {
+      if (mutation.type == 'added') {
+        appendVideo(mutation);
+      }
+    });
+    streamObserver.observe(Stream, streamConfig);
+
+    function getStream() {
+      Stream.get(currentUser).then(stream => {
+        console.log(stream);
+      });
+    }
+
+    function mute() {
+      Stream.Audio.mute(currentUser);
+    }
+
+    function unmute() {
+      Stream.Audio.mute(currentUser);
+    }
+
+    function disableVideo() {
+      Stream.Video.disable(currentUser);
+    }
+
+    function enableVideo() {
+      Stream.Video.enable(currentUser);
+    }
+
+    function startScreenshare() {
+      ScreenShare.start().then(() => {
+        console.log('share successfully.');
+      }, error => {
+        console.log(error)
+      });
+    }
+
+    function stopScreenshare() {
+      ScreenShare.stop();
+    }
+
+    function createWhiteboard() {
+      WhiteBoard.create().then(whiteboard => {
+        console.log(whiteboard);
+      });
+    }
+
+    function getWhiteboardList() {
+      WhiteBoard.getList().then(result => {
+        console.log(result);
+      });
+    }
+    function getDeviceList(){
+      Device.getList().then(devices => {
+        console.log(devices);
+      });
+    }
+
+    function checkDevice(){
+      Device.check().then(result => {
+        console.log(result);
+      });
+    }
+
+    function setDevice(){
+      Device.getList().then(devices => {
+        let { 
+          input: { 
+            video: videoInputDevices
+          }
+        } = devices;
+
+        let device = {
+          input: {
+            video: videoInputDevices[0]
+          }
+        };
+        Device.set(device).then(() => {
+          console.log('Set Successfully');
+        }, error => {
+          console.log(error);
+        });
+      });
+    }
+
+  </script>
 </body>
 
 </html>
