@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Message</title>
+	<link rel="stylesheet" href="../css/common.css">
+	<script src="http://localhost:8686/web-sdk-v2/release/2.3.6/protobuf-2.3.4.min.js?123"></script>
+	<script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib.js?12"></script>
+  </script>
+
+  <!-- 
+	userId: AUj8X32w1
+	token: DI3TfJHojSJ1zSdfXkh4egpRCpGrPzwCFuGMdWXYpP6+UI7Tq9xK/PFQHwZvtHqB3HpUJZ/RddS6F3Bdc4wEm6cJF/wOnBc4
+
+	userId: cPiSp04HC
+	token: b3sR1hkNJTt1zSdfXkh4egpRCpGrPzwCFuGMdWXYpP4b1p0NfkfAnnI6NxQ9moArvBa6jsNTFUE2S2vA/0gDI6cJF/wOnBc4
+	
+	userId: Nkz7DAJoM
+	token: PoHeXhmtLICRIyCj2uuPIApRCpGrPzwCFuGMdWXYpP4b1p0NfkfAnq0ZiXNA89m70d21PN8hWflSyP0PqD6UrKcJF/wOnBc4
+
+	groupId: groupId1219
+
+   -->
+  <script src="../js/init.js?123"></script>
+  <script src="../js/utils.js"></script>
+
+</head> 
+<body>
+	<div class="api-box">
+		<div class="api-box-btns">
+			<input type="text" value="e0x9wycfx7flq" placeholder="appkey" id="appkey" class="input-content">
+			<input type="text" value="navxq.rongcloud.net" placeholder="nav" id="nav">
+			<input type="text" value="" placeholder="clearTimeStamp" id="clearTimeStamp">
+			<br>
+			<input type="text" value="Wif0o6e/BPVzJhEGLTP55gpRCpGrPzwCFuGMdWXYpP7HqNp27QlOgCT6Nal/GaYg1oIkmXLMQ+C9TjgxumAXF6cJF/wOnBc4" placeholder="token" id="token" class="input-content input-token">
+			<br>
+			<input type="text" id="conversationType" placeholder="conversationType" value="12">
+			<input type="text" id="targetId" placeholder="roomId" value="room9901">
+			<br>
+			<input type="button" value="connect" onclick="connect()">
+			<input type="button" value="sendMessage" onclick="sendCommand('sendMessage')">
+			<input type="button" value="getUserInfoList" onclick="sendCommand('getUserInfoList')">
+			<input type="button" value="getUserList" onclick="sendCommand('getUserList')">
+			<input type="button" value="setUserInfo" onclick="sendCommand('setUserInfo')">
+			<input type="button" value="removeUserInfo" onclick="sendCommand('removeUserInfo')">
+			<input type="button" value="getRoomInfo" onclick="sendCommand('getRoomInfo')">
+			<input type="button" value="setRoomInfo" onclick="sendCommand('setRoomInfo')">
+			<input type="button" value="removeRoomInfo" onclick="sendCommand('removeRoomInfo')">
+			<input type="button" value="joinRTCRoom" onclick="sendCommand('joinRTCRoom')">
+			<input type="button" value="quitRTCRoom" onclick="sendCommand('quitRTCRoom')">
+		</div>
+	</div>
+	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
+	<div id="api-log-box"></div>
+	<script>
+		var utils = RCUtils.utils;
+		var conversationCache = RCUtils.conversation;
+		var Log = RCUtils.Log;
+
+		var Rong = null;
+		var log = new Log({
+			element: utils.getDom('api-log-box')
+		});
+
+		function clearResult(){
+			log.clear();
+		}
+
+		function connect(){
+			// if (Rong) {
+			// 	return;
+			// }
+			var appkey = utils.getDom('appkey').value;
+			var token = utils.getDom('token').value;
+			var navi = utils.getDom('nav').value;
+
+			var params = {
+				appkey: appkey,
+				token: token,
+				navi: navi
+				// protobuf: '../local-sdk/protobuf-2.3.1.min.js'
+			};
+			var callbacks = {
+				connected: function(_Rong){
+					Rong = _Rong;
+					log.show('Connect', 'connect successfully');
+				},
+				disconnectd: function(){
+					Rong = null;
+				},
+				received: function(message){
+					log.show('Received Message', message);
+				}
+			};
+
+			/*
+				RongDesktop 即为 electron-c++sdk/js/preload.js 中的 `RongDesktop`
+				以下逻辑为 RongDesktop 存在即认为在 Electron 中，请一定保证 RongDesktop 唯一、不可破坏、不被污染
+				详细请参考 martin-demo/sdk/js/init.js dataProvider 用法
+			*/
+			var isDesktopEnv = (typeof RongDesktop != 'undefined')
+			if (isDesktopEnv) {
+				params.imClient = RongDesktop.addon;
+			}
+			init(params, callbacks);
+		}
+		
+		var handler = {
+			sendMessage: function(){
+				var msg = new RongIMClient.RegisterMessage.RTCJoinRoomMessage({});
+				var conversation = conversationCache.get();
+				Rong.sendMessage(+conversation.conversationType, conversation.targetId, msg, {
+					onSuccess: function(ret) {
+						log.show('SendMessage Susccessfully', ret);
+				  	},
+				  	onError: function(error, message) {
+				  		log.show('SendMessage Error', error, message);
+				  	}
+				});
+			},
+			getUserList: function(){
+				var conversation = conversationCache.get();
+				Rong.getRTCUserList({
+					id: conversation.targetId
+				}, {
+					onSuccess: function(ret) {
+						log.show('getRTCUserList Susccessfully', ret);
+					},
+					onError: function(error) {
+						log.show('getRTCUserList Error', error);
+					}
+				});
+			},
+			getUserInfoList: function(){
+				var conversation = conversationCache.get();
+				Rong.getRTCUserInfoList({
+					id: conversation.targetId
+				}, {
+					onSuccess: function(ret) {
+						log.show('getRTCUserInfoList Susccessfully', ret);
+					},
+					onError: function(error) {
+						log.show('getRTCUserInfoList Error', error);
+					}
+				});
+			},
+			setUserInfo: function(){
+				var info = {
+					key: 'uris',
+					value: JSON.stringify([{
+						type: 'audio',
+						streamId: '123',
+						tag: 'screen',
+						uri: '127.0.0.1:8080'
+					},{
+						type: 'video',
+						streamId: '123',
+						tag: 'screen',
+						uri: '127.0.0.1:8081'
+					}])
+				};
+				var conversation = conversationCache.get();
+				Rong.setRTCUserInfo({
+					id: conversation.targetId
+				}, info, {
+					onSuccess: function(ret) {
+						log.show('', 'setRTCUserInfo Susccessfully');
+					},
+					onError: function(error) {
+						log.show('setRTCUserInfo Error', error);
+					}
+				});
+			},
+			removeUserInfo: function(){
+				var info = {
+					keys: ['uris']
+				};
+				var conversation = conversationCache.get();
+				Rong.removeRTCUserInfo({
+					id: conversation.targetId
+				}, info, {
+					onSuccess: function(ret) {
+						log.show('', 'removeUserInfo Susccessfully');
+					},
+					onError: function(error) {
+						log.show('removeUserInfo Error', error);
+					}
+				});
+			},
+			getRoomInfo: function(){
+				var conversation = conversationCache.get();
+				Rong.getRTCRoomInfo({
+					id: conversation.targetId
+				}, {
+					onSuccess: function(ret) {
+						log.show('getRTCRoomInfo Susccessfully', ret);
+					},
+					onError: function(error) {
+						log.show('getRTCRoomInfo Error', error);
+					}
+				});
+			},
+			setRoomInfo: function(){
+				var info = {
+					key: 'name',
+					value: 'RongCloud'
+				};
+				var conversation = conversationCache.get();
+				Rong.setRTCRoomInfo({
+					id: conversation.targetId
+				}, info, {
+					onSuccess: function(ret) {
+						log.show('', 'setRTCRoomInfo Susccessfully');
+					},
+					onError: function(error) {
+						log.show('setRTCRoomInfo Error', error);
+					}
+				});
+			},
+			removeRoomInfo: function(){
+				var conversation = conversationCache.get();
+				var room = {
+					id: conversation.targetId
+				};
+				var info = {
+					keys: ['name']
+				};
+				Rong.removeRTCRoomInfo(room, info, {
+					onSuccess: function(ret) {
+						log.show('', 'removeRTCRoomInfo Susccessfully');
+					},
+					onError: function(error) {
+						log.show('removeRTCRoomInfo Error', error);
+					}
+				});
+			},
+			joinRTCRoom: function(){
+				var conversation = conversationCache.get();
+				var room = {
+					id: conversation.targetId
+				};
+				Rong.joinRTCRoom(room, {
+					onSuccess: function(ret) {
+						log.show('', 'joinRTCRoom Susccessfully');
+						sendCommandMessage('RTCJoinRoomMessage');
+					},
+					onError: function(error) {
+						log.show('joinRTCRoom Error', error);
+					}
+				});
+			},
+			quitRTCRoom: function(){
+				var conversation = conversationCache.get();
+				var room = {
+					id: conversation.targetId
+				};
+				Rong.quitRTCRoom(room, {
+					onSuccess: function(ret) {
+						log.show('', 'quitRTCRoom Susccessfully');
+						sendCommandMessage('RTCLeftRoomMessage');
+					},
+					onError: function(error) {
+						log.show('quitRTCRoom Error', error);
+					}
+				});
+			}
+		};
+		function sendCommandMessage(type){
+			var msg = new RongIMClient.RegisterMessage[type]({});
+			var conversation = conversationCache.get();
+			Rong.sendMessage(+conversation.conversationType, conversation.targetId, msg, {
+				onSuccess: function(ret) {
+					log.show('SendMessage Susccessfully', ret);
+					},
+					onError: function(error, message) {
+						log.show('SendMessage Error', error, message);
+					}
+			});
+		}
+		function sendCommand(type){
+			if (!Rong) {
+				alert('请先连接.');
+				return;
+			}
+			return handler[type]();
+		}
+	</script>
+
+	<script>
+		var stringFormat = function(str) {
+		    for (var i = 1; i < arguments.length; i++) {
+		        var val = arguments[i] == undefined ? "" : arguments[i],
+		            reg = new RegExp("\\{" + (i - 1) + "\\}", "g");
+		        str = str.replace(reg, val);
+		    }
+		    return str;
+		};
+
+        var getNavi = function (callback) {
+            var script = document.createElement("script");
+
+            var appkey = '8luwapkvucoil';
+			var token = 'hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==';
+
+		    var urlTpl = '{0}//nav.cn.ronghub.com/navi.xml?appId={1}&token={2}&callBack=getRongCloudCMPUrl&t={3}',
+		        timestamp = +new Date,
+		        token = encodeURIComponent(token);
+		    var url = stringFormat(urlTpl, '//', appkey, token, timestamp);
+
+            //进行jsonp请求
+            script.src = url;
+            document.body.appendChild(script);
+
+            script.onerror = function () {
+                console.log(RongIMLib.ConnectionState.TOKEN_INCORRECT);	
+            };
+            window.getRongCloudCMPUrl = function(info){
+            	console.log(info);
+            }
+        };
+		
+	</script>
+</body>
+</html>

@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>Message</title>
 	<link rel="stylesheet" href="../css/common.css">
-	<!-- <script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib.js"></script> -->
-	<script src="https://cdn.ronghub.com/RongIMLib-2.3.3.js"></script>
+	<!-- <script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib-2.3.5.js"></script> -->
+	<script src="https://cdn.ronghub.com/RongIMLib-2.3.5.js"></script>
   <script src="./chatroom-message-types.js"></script>
   </script>
 
@@ -29,14 +29,14 @@
 <body>
 	<div class="api-box">
 		<div class="api-box-btns">
-			<input type="text" value="8luwapkvucoil" placeholder="appkey" id="appkey" class="input-content">
-			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
+			<input type="text" value="e0x9wycfx7flq" placeholder="appkey" id="appkey" class="input-content">
+			<input type="text" value="navxq.rongcloud.net:9100" placeholder="nav" id="nav">
 			<input type="text" value="" placeholder="clearTimeStamp" id="clearTimeStamp">
 			<br>
-			<input type="text" value="er+5siO7TmyLaPHZAVJtLm20V27XsDF2Dx+bgnMVAZjBSDWsoTTMR7lZ0YotEDzg2BEF25B0a3cak2QeM9L6Rw9TIq6kcYNI" placeholder="token" id="token" class="input-content input-token">
+			<input type="text" value="B7JzMgPSPmbvE9RogIwJ8gpRCpGrPzwCFuGMdWXYpP7iRh9/jZ0ihnC+TR8SwKWIG/djBN1Apk66F3Bdc4wEm6cJF/wOnBc4" placeholder="token" id="token" class="input-content input-token">
 			<br>
-			<input type="text" id="conversationType" placeholder="conversationType" value="3">
-			<input type="text" id="targetId" placeholder="targetId" value="group_abc001">
+			<input type="text" id="conversationType" placeholder="conversationType" value="1">
+			<input type="text" id="targetId" placeholder="targetId" value="ch9902">
 			<br>
 			<input type="button" value="connect" onclick="connect()">
 			<input type="button" value="sendMessage" onclick="sendCommand('send')">
@@ -51,7 +51,6 @@
 	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
 	<div id="api-log-box"></div>
 	<script>
-
 		var utils = RCUtils.utils;
 		var conversation = RCUtils.conversation;
 		var Log = RCUtils.Log;
@@ -141,7 +140,7 @@
 					onError: function(error){
 						console.log(error);
 					}
-				}, null);
+				}, [1], 10);
 			},
 			getHistory: function(){
 				var params = conversation.get();

@@ -83,7 +83,7 @@
 
 	function Log(params) {
 		var element = params.element;
-		var tpl = '<p class="log-title">{title}</p><pre>{logs}</pre>'
+		var tpl = '<pre>{logs}</pre>'
 		this.show = function(title, logs) {
 			logs = tools.prettyJSON(logs);
 			logs = JSON.stringify(logs, null, '  ');
