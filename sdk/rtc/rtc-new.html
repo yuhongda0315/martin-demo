@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>RongRTC</title>
   <link rel="stylesheet" href="../css/common.css">
-  <script src="http://localhost:8686/web-sdk-v2/release/2.3.6/protobuf-2.3.4.min.js?1223"></script>
-  <script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib.js?13"></script>
-  <script src="http://localhost:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js?12"></script>
+  <script src="http://10.12.8.198:8686/web-sdk-v2/release/2.3.6/protobuf-2.3.4.min.js?1223"></script>
+  <script src="http://10.12.8.198:8686/web-sdk-v2/dist/RongIMLib.js?13"></script>
+  <script src="http://10.12.8.198:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js?12"></script>
   <style>
     html,body{
       height: 100%;
@@ -42,14 +42,14 @@
       border-top: 1px solid #FFF;
       position: absolute;
       width: 60%;
-      height: 200px;
+      height: 100px;
       left: 0;
       bottom: 0;
       padding: 10px;
       box-sizing: border-box;
     }
     .rong-video-srouce video{
-      height: 200px;
+      height: 100px;
     }
     .input-token{
       width: 60%;
@@ -78,11 +78,10 @@
     <div class="rong-toolbar">
       <input type="text" value="e0x9wycfx7flq" placeholder="appkey" id="appkey" class="input-content">
       <input type="text" value="navxq.rongcloud.net" placeholder="nav" id="nav">
-      <input class="rong-input rong-roomid" type="text" value="room9901">
       <br>
-      <input type="text" value="e0FnrQNdGCxPxs3/i7UGcC72CoFcPp5jwTY5b5AeNbBQZD0sq53m5OkuNzqEZn/Fq1GAb/25kOE+cjoRQXZiNA=="
-        placeholder="token" id="token" class="input-content input-token">
-      <br />
+      <!-- <input type="text" value="e0FnrQNdGCxPxs3/i7UGcC72CoFcPp5jwTY5b5AeNbBQZD0sq53m5OkuNzqEZn/Fq1GAb/25kOE+cjoRQXZiNA==" -->
+      <!-- placeholder="token" id="token" class="input-content input-token"> -->
+      <!-- <br /> -->
       <input class="rong-input" type="button" value="Connect" onclick="connect()">
       <input class="rong-input" type="button" value="Join" onclick="joinRoom()">
       <input class="rong-input" type="button" value="Leave" onclick="leaveRoom()">
@@ -92,8 +91,11 @@
       <input class="rong-input" type="button" value="Unmute" onclick="unmute()">
       <input class="rong-input" type="button" value="DisbaleVideo" onclick="disableVideo()">
       <input class="rong-input" type="button" value="EnableVideo" onclick="enableVideo()">
-      <input class="rong-input" type="button" value="addStream" onclick="addStream()">
-      <input class="rong-input" type="button" value="removeStream" onclick="removeStream()">
+      <br />
+      <input class="rong-input" type="button" value="publishMP4" onclick="publishMP4()">
+      <input class="rong-input" type="button" value="unpublishMP4" onclick="unpublishMP4()">
+      <input class="rong-input" type="button" value="publishCamera" onclick="publishCamera()">
+      <input class="rong-input" type="button" value="unpublishCamera" onclick="unpublishCamera()">
       <input class="rong-input" type="button" value="resizeStream" onclick="resizeStream()">
     </div>
     <div class="rong-video-box">
@@ -119,13 +121,40 @@
     function clearResult() {
       log.clear();
     }
-
+    function getAppInfo(){
+      let queryString = location.search.split('?')[1] || 0;
+      let querys = queryString.split('&');
+      let info = {};
+      for(let i = 0; i < querys.length; i++){
+        let query = querys[i];
+        let [key, value] = query.split('=');
+        info[key] = value;
+      }
+      return info;
+    }
+    let app = getAppInfo();
+    let tokens = {
+      mon9900: 'yNsh6/3ujm6RQGK6MQ/j0/8d3dyrkUjx04znTXDsPzzpNDJX9spyaukAngIwvKZFYAMFyq8aKX09uDjU1oB29oLPgPfFBJHe',
+      mon9901: 'prH8uzRILrGYXUZ7qVlxRwpRCpGrPzwCFuGMdWXYpP7HqNp27QlOgBA6rETRwO6Gm1bui6sxnhrPaeM8QnCw2qcJF/wOnBc4',
+      mon9902: 'HeYpdMrd+/IekQY8eBro0t8RUjg9Uz4w00XN+PnPvCfmeIaMXa5q3M1GljJr1am+gbDvOnuUyYXg8V4oKC9u9Q==',
+      mon9903: 'mvlggHVmRB/jhgR/cyVvkP8d3dyrkUjx04znTXDsPzzpNDJX9spyavao8PPooMpA9JdnyFKAyGtdQZQKRFBapoLPgPfFBJHe',
+      mon9904: 'ss8A44xvrJhvtaEXj1Cmpf8d3dyrkUjx04znTXDsPzzpNDJX9spyatAN5Ixm6oQ7v1c1WMNIrhL6nPD8bL7BkYLPgPfFBJHe',
+      web001: 'ubobp2MGnYvaIE8HRo+xTApRCpGrPzwCFuGMdWXYpP4WzyoeiDeGOanLFM9WjLvGjUtK7Wk6BFsI040sOf+LSw==',
+      web002: 'A8UTlUYXnrjBZySi9FvHst8RUjg9Uz4w00XN+PnPvCc9f/g7z/nKphA2pVxWMReCfbwh3el5YQvVmD5XsQ4p8A==',
+      web003: 'xffPNaX3+sJ3pk6yWOLSo98RUjg9Uz4w00XN+PnPvCc9f/g7z/nKpmWEpG2/iDEzfbwh3el5YQudJk+e3r8eOQ==',
+      web004: 'IgReKd/Hgix3pk6yWOLSo98RUjg9Uz4w00XN+PnPvCc9f/g7z/nKphAxQ3/z547Sfbwh3el5YQuisyOS/r3ZEA=='
+    };
+    let currentUser = {
+      id: app.userId,
+      token: tokens[app.userId],
+      roomId: app.roomId
+    }
     function connect() {
       // if (Rong) {
       // 	return;
       // }
       var appkey = utils.getDom('appkey').value;
-      var token = utils.getDom('token').value;
+      var token = currentUser.token;
       var navi = utils.getDom('nav').value;
 
       var params = {
@@ -148,71 +177,88 @@
       init(params, callbacks);
     }
 
-    var index = location.search.split('?')[1] || 0;
-    let currentUser = {
-      id: 'martin990' + index,
-      // token: 'sign=69317f3f337a5a3c512b48a6cffdfd4f22d9e39epvxdm17jp38or1545121808000e5ff5&uid=martin9901'
-      // token: 'sign=f48af22caa4edf940c2b5ca52be184f8957aaad9x4vkb1qpxfrzk154578890600081cf5&uid=martin9901'
-    }
     var getToken = function (user) {
-      var appId = config.appId;
-      var url = config.tokenUrl;
-      return fetch(url, {
-        method: 'POST',
-        body: 'uid=' + user.id + '&appid=' + appId,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset-UTF-8'
-        }
-      }).then(response => response.text());
+      // var appId = config.appId;
+      // var url = config.tokenUrl;
+      // return fetch(url, {
+      //   method: 'POST',
+      //   body: 'uid=' + user.id + '&appid=' + appId,
+      //   headers: {
+      //     'Content-Type': 'application/x-www-form-urlencoded;charset-UTF-8'
+      //   }
+      // }).then(response => response.text());
+      return Promise.resolve();
     };
     let getDom = (key) => {
       return document.querySelector(key);
     };
     let videoBox = getDom('.rong-video-box');
-    let appendVideo = (mutation) => {
-      let { stream: { mediaStream, type }, user } = mutation;
-      let video = createVideo(user.id + '_' + type, mediaStream);
+    let appendVideo = (user) => {
+      let { stream: { mediaStream, tag }, id } = user;
+      let video = createVideo(id + '_' + tag, mediaStream);
       videoBox.appendChild(video);
     };
-
+    let removeVideo = (user) => {
+      let { stream: { tag }, id } = user;
+      let video = getDom('#' + id + '_' + tag);
+      videoBox.appendChild(video);
+    };
     let rongRTC = new RongRTC({
-      url: '',
-      RongIMLib: RongIMLib
+      RongIMLib: RongIMLib,
+      created: function () {
+        console.log('RongRTC:created');
+      },
+      mounted: function () {
+        console.log('RongRTC:mounted');
+      },
+      unmounted: function () {
+        console.log('RongRTC:unmounted');
+      },
+      destroyed: function () {
+        console.log('RongRTC:destroyed');
+      }
     });
-    let { Room, Stream, Device } = rongRTC;
+    let { Room, Stream, StreamType } = rongRTC;
 
     let room = new Room({
-      id: 'room9901',
+      id: currentUser.roomId,
       joined: function (user) {
         log.show('', `${user.id} 加入房间`);
       },
-      left: function(user){
+      left: function (user) {
         log.show('', `${user.id} 离开房间`);
       }
     });
 
     let stream = new Stream({
-      readied: function(user){
-        log.show('', `${user.id} stream 已准备好，可 open`);
+      published: function (user) {
+        user.stream.type = StreamType.AUDIO_AND_VIDEO;
+        stream.subscribe(user).then(user => {
+          appendVideo(user);
+        });
+      },
+      unpublished: function (user) {
         console.log(user);
       },
-      opened: function(user){
-
+      muted: function(user){
+        console.log('muted', user);
       },
-      closed: function(user){
-
+      unmuted: function(user){
+        console.log('unmuted', user);
       },
-      changed: function(user){
-
+      disabled: function(user){
+        console.log('disabled', user);
+      },
+      enabled: function(user){
+        console.log('enabled', user);
       }
     });
 
     function joinRoom() {
-      var id = getDom('.rong-roomid').value;
       getToken(currentUser).then(token => {
         room.join({
           id: currentUser.id,
-          token: token
+          token: currentUser.id
         }).then(() => {
           log.show('', 'join successfully');
         }, error => {
@@ -245,35 +291,85 @@
         console.log(stream);
       });
     }
-
-    function addStream() {
+    function getMedia(callback) {
+      navigator.getUserMedia({ video: true, audio: true }, function (stream) {
+        callback(stream);
+        appendVideo({
+          id: currentUser.id,
+          stream: {
+            tag: 'rtc',
+            mediaStream: stream
+          }
+        });
+      }, function (error) {
+        console.log(error);
+      })
+    }
+    function publishMP4() {
       var sourceNode = document.querySelector('#source');
       var mediaStream = sourceNode.captureStream();
-      stream.publish({
+      let user = {
         id: currentUser.id,
         stream: {
-          // type: 3,
-          tag: 'screen',
+          type: StreamType.AUDIO_AND_VIDEO,
+          tag: 'mp4',
           mediaStream: mediaStream
         }
-      }).then(() => {
-        console.log('publish successfully.')
+      };
+      stream.publish(user).then(() => {
+        log.show('', 'publish successfully.');
+        appendVideo(user);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+
+    function unpublishMP4() {
+      let user = {
+        id: currentUser.id,
+        stream: {
+          tag: 'mp4',
+          type: StreamType.AUDIO_AND_VIDEO
+        }
+      };
+      stream.unpublish(user).then(() => {
+        removeVideo(user);
+        log.show('', 'unpublish successfully.')
       }, (error) => {
         console.log(error);
       })
     }
 
-    function removeStream() {
-      stream.unpublish({
+    function publishCamera() {
+      getMedia(function (mediaStream) {
+        stream.publish({
+          id: currentUser.id,
+          stream: {
+            type: StreamType.AUDIO_AND_VIDEO,
+            tag: 'mp4',
+            mediaStream: mediaStream
+          }
+        }).then(() => {
+          log.show('', 'publish successfully.')
+        }, (error) => {
+          console.log(error);
+        })
+      });
+    }
+    function unpublishCamera() {
+      let user = {
         id: currentUser.id,
         stream: {
-          tag: 'screen'
+          tag: 'rtc',
+          type: StreamType.AUDIO_AND_VIDEO
         }
-      }).then(() => {
-        console.log('unpublish successfully.')
+      };
+      stream.unpublish(user).then(() => {
+        log.show('', 'unpublish successfully.')
+        removeVideo(user);
       }, (error) => {
         console.log(error);
-      })
+      });
     }
 
     function resizeStream() {
@@ -289,19 +385,43 @@
     }
 
     function mute() {
-      stream.audio.mute(currentUser);
+      var user = {
+        id: currentUser.id,
+        stream: {
+          tag: 'mp4'
+        }
+      };
+      stream.audio.mute(user);
     }
 
     function unmute() {
-      stream.audio.mute(currentUser);
+      var user = {
+        id: currentUser.id,
+        stream: {
+          tag: 'mp4'
+        }
+      };
+      stream.audio.unmute(user);
     }
 
     function disableVideo() {
-      stream.video.disable(currentUser);
+      var user = {
+        id: currentUser.id,
+        stream: {
+          tag: 'mp4'
+        }
+      };
+      stream.video.disable(user);
     }
 
     function enableVideo() {
-      stream.video.enable(currentUser);
+      var user = {
+        id: currentUser.id,
+        stream: {
+          tag: 'mp4'
+        }
+      };
+      stream.video.enable(user);
     }
   </script>
 </body>
