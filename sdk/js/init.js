@@ -124,42 +124,46 @@ RongIMClient.registerMessageType(messageName, objectName, messageTag, prototypes
 	var type = imClient ? 'desktop' : 'web';
 	connectMap[type]();
 
-	let Message = {
-		JOIN: 'RTCJoinRoomMessage',
-		LEAVE: 'RTCLeftRoomMessage',
-		PUBLISH: 'RTCPublishResourceMessage',
-		UNPUBLISH: 'RTCUnpublishResourceMessage',
-		MODIFY: 'RTCModifyResourceMessage'
-	};
-	let register = (message) => {
-		let { type, name, props } = message;
-		let isCounted = false;
-		let isPersited = false;
-		let tag = new RongIMLib.MessageTag(isCounted, isPersited);
-		RongIMClient.registerMessageType(type, name, tag, props);
-	};
-	let messages = [{
-		type: Message.JOIN,
-		name: 'RCRTC:Join',
-		props: []
-	}, {
-		type: Message.LEAVE,
-		name: 'RCRTC:Left',
-		props: []
-	}, {
-		type: Message.PUBLISH,
-		name: 'RCRTC:PublishResource',
-		props: ['uris']
-	}, {
-		type: Message.UNPUBLISH,
-		name: 'RCRTC:UnpublishResource',
-		props: ['uris']
-	}, {
-		type: Message.MODIFY,
-		name: 'RCRTC:ModifyResource',
-		props: ['uris']
-	}];
-	messages.forEach(message => {
-		register(message);
-	});
+	// RongIMClient.LoggerWatch((log) => {
+	// 	console.log(log);
+	// });
+
+	// let Message = {
+	// 	JOIN: 'RTCJoinRoomMessage',
+	// 	LEAVE: 'RTCLeftRoomMessage',
+	// 	PUBLISH: 'RTCPublishResourceMessage',
+	// 	UNPUBLISH: 'RTCUnpublishResourceMessage',
+	// 	MODIFY: 'RTCModifyResourceMessage'
+	// };
+	// let register = (message) => {
+	// 	let { type, name, props } = message;
+	// 	let isCounted = false;
+	// 	let isPersited = false;
+	// 	let tag = new RongIMLib.MessageTag(isCounted, isPersited);
+	// 	RongIMClient.registerMessageType(type, name, tag, props);
+	// };
+	// let messages = [{
+	// 	type: Message.JOIN,
+	// 	name: 'RCRTC:Join',
+	// 	props: []
+	// }, {
+	// 	type: Message.LEAVE,
+	// 	name: 'RCRTC:Left',
+	// 	props: []
+	// }, {
+	// 	type: Message.PUBLISH,
+	// 	name: 'RCRTC:PublishResource',
+	// 	props: ['uris']
+	// }, {
+	// 	type: Message.UNPUBLISH,
+	// 	name: 'RCRTC:UnpublishResource',
+	// 	props: ['uris']
+	// }, {
+	// 	type: Message.MODIFY,
+	// 	name: 'RCRTC:ModifyResource',
+	// 	props: ['uris']
+	// }];
+	// messages.forEach(message => {
+	// 	register(message);
+	// });
 }
