@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>RongRTC</title>
   <link rel="stylesheet" href="../css/common.css">
-  <script src="http://10.12.9.185:8686/web-sdk-v2/release/2.3.6/protobuf-2.3.4.min.js?1223"></script>
-  <script src="http://10.12.9.185:8686/web-sdk-v2/dist/RongIMLib.js?13"></script>
-  <script src="http://10.12.9.185:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js?12"></script>
+  <script src="./protobuf-2.3.4.min.js"></script>
+  <script src="./RongIMLib-2.4.0-beta.js"></script>
+  <script src="./RongRTC.3.0.0.js?12"></script>
   <style>
     html,
     body {
@@ -20,16 +20,27 @@
       height: 90%;
     }
 
-    .rong-toolbar {
-      height: 240px;
+    .rong-current-toolbar,
+    .rong-member-toolbar {
       border-bottom: 1px solid #FFF;
       box-sizing: border-box;
       padding: 10px;
-      width: 80%;
+      width: 30%;
+      float: left;
+      height: 50%;
+    }
+
+    .rong-member-toolbar {
+      border-left: 1px solid #FFF;
+      overflow-y: auto;
+      width: 50%;
     }
 
     .rong-video-box {
-      height: 80%;
+      width: 80%;
+      clear: both;
+      overflow-x: auto;
+      height: 38%;
     }
 
     .rong-input {
@@ -73,6 +84,7 @@
       height: 100px;
       width: 100px;
       margin-right: 20px;
+      margin-bottom: 20px;
     }
 
     .rong-video-srouce {
@@ -82,6 +94,7 @@
       height: 100px;
       left: 0;
       bottom: 40px;
+      background-color: #000;
     }
 
     .rong-video-srouce video {
@@ -111,7 +124,26 @@
     .rong-buttons-room,
     .rong-buttons-stream,
     .rong-buttons-operation {
-      display: block;
+      display: none;
+    }
+
+    .rong-member-buttons {
+      border: 1px solid #FFF;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      padding: 0 10px;
+      display: inline-block;
+    }
+
+    .rong-member-name {
+      color: #FFF;
+      padding-left: 10px;
+      margin: 3px;
+      border-bottom: 1px dotted #FFF;
+    }
+
+    .rong-member-operation {
+      display: inline-block;
     }
   </style>
   <script src="./config.js"></script>
@@ -120,12 +152,7 @@
 <body>
 
   <div class="rong-container">
-    <div class="rong-toolbar">
-      <input type="text" value="c9kqb3rdkbb8j" placeholder="appkey" id="appkey" class="input-content">
-      <input type="text" value="navqa.cn.ronghub.com" placeholder="nav" id="nav">
-      <!-- <input type="text" value="e0x9wycfx7flq" placeholder="appkey" id="appkey" class="input-content"> -->
-      <!-- <input type="text" value="navxq.rongcloud.net" placeholder="nav" id="nav"> -->
-      <!-- <br /> -->
+    <div class="rong-current-toolbar">
       <div class="rong-buttons-connect">
         <input class="rong-input" type="button" value="Connect" onclick="connect()">
       </div>
@@ -134,21 +161,29 @@
         <input class="rong-input" type="button" value="Leave" onclick="leaveRoom()">
       </div>
       <div class="rong-buttons-stream">
-        <input class="rong-input" type="button" value="publishMP4" onclick="publishMP4()">
-        <input class="rong-input" type="button" value="unpublishMP4" onclick="unpublishMP4()">
-        <input class="rong-input" type="button" value="publishCamera" onclick="publishCamera()">
-        <input class="rong-input" type="button" value="unpublishCamera" onclick="unpublishCamera()">
-        <input class="rong-input" type="button" value="publishMulti" onclick="publishMulti()">
-        <input class="rong-input" type="button" value="unpublishMulti" onclick="unpublishMulti()">
+        <input class="rong-input" type="button" value="Publish" onclick="publishMulti()">
+        <input class="rong-input" type="button" value="Unpublish" onclick="unpublishMulti()">
       </div>
       <div class="rong-buttons-operation">
         <input class="rong-input" type="button" value="Mute" onclick="mute()">
         <input class="rong-input" type="button" value="Unmute" onclick="unmute()">
-        <input class="rong-input" type="button" value="DisbaleVideo" onclick="disableVideo()">
-        <input class="rong-input" type="button" value="EnableVideo" onclick="enableVideo()">
-        <input class="rong-input" type="button" value="resizeStream" onclick="resizeStream()">
-        <input class="rong-input" type="button" value="GetStream" onclick="getStream()">
+        <input class="rong-input" type="button" value="Disbale" onclick="disableVideo()">
+        <input class="rong-input" type="button" value="Enable" onclick="enableVideo()">
       </div>
+    </div>
+    <div class="rong-member-toolbar">
+      <!-- <div class="rong-member-buttons">
+        <h3 class="rong-member-name">User : Web001</h3>
+        <input class="rong-input" type="button" value="Subscribe" onclick="subscribeStream()">
+        <input class="rong-input" type="button" value="Unsubscribe" onclick="unsubscribeStream()">
+        <div class="rong-member-operation">
+          <input class="rong-input" userid="123" type="button" value="Mute" onclick="mute()">
+          <input class="rong-input" userid="123" type="button" value="Unmute" onclick="unmute()">
+          <input class="rong-input" userid="123" type="button" value="Disbale" onclick="disableVideo()">
+          <input class="rong-input" userid="123" type="button" value="Enable" onclick="enableVideo()">
+          <input class="rong-input" userid="123" type="button" value="Resize" onclick="resizeStream()">
+        </div>
+      </div> -->
     </div>
     <div class="rong-video-box">
     </div>
@@ -184,19 +219,19 @@
       }
       return info;
     }
+    function show(node) {
+      node.style.display = 'block';
+    }
+    function hide(node) {
+      node.style.display = 'none';
+    }
     let app = getAppInfo();
-    // let tokens = {
-    //   mon9900: 'yNsh6/3ujm6RQGK6MQ/j0/8d3dyrkUjx04znTXDsPzzpNDJX9spyaukAngIwvKZFYAMFyq8aKX09uDjU1oB29oLPgPfFBJHe',
-    //   mon9901: 'prH8uzRILrGYXUZ7qVlxRwpRCpGrPzwCFuGMdWXYpP7HqNp27QlOgBA6rETRwO6Gm1bui6sxnhrPaeM8QnCw2qcJF/wOnBc4',
-    //   mon9902: 'HeYpdMrd+/IekQY8eBro0t8RUjg9Uz4w00XN+PnPvCfmeIaMXa5q3M1GljJr1am+gbDvOnuUyYXg8V4oKC9u9Q==',
-    //   mon9903: 'mvlggHVmRB/jhgR/cyVvkP8d3dyrkUjx04znTXDsPzzpNDJX9spyavao8PPooMpA9JdnyFKAyGtdQZQKRFBapoLPgPfFBJHe',
-    //   mon9904: 'ss8A44xvrJhvtaEXj1Cmpf8d3dyrkUjx04znTXDsPzzpNDJX9spyatAN5Ixm6oQ7v1c1WMNIrhL6nPD8bL7BkYLPgPfFBJHe',
-    //   web001: 'ubobp2MGnYvaIE8HRo+xTApRCpGrPzwCFuGMdWXYpP4WzyoeiDeGOanLFM9WjLvGjUtK7Wk6BFsI040sOf+LSw==',
-    //   web002: 'A8UTlUYXnrjBZySi9FvHst8RUjg9Uz4w00XN+PnPvCc9f/g7z/nKphA2pVxWMReCfbwh3el5YQvVmD5XsQ4p8A==',
-    //   web003: 'xffPNaX3+sJ3pk6yWOLSo98RUjg9Uz4w00XN+PnPvCc9f/g7z/nKpmWEpG2/iDEzfbwh3el5YQudJk+e3r8eOQ==',
-    //   web004: 'IgReKd/Hgix3pk6yWOLSo98RUjg9Uz4w00XN+PnPvCc9f/g7z/nKphAxQ3/z547Sfbwh3el5YQuisyOS/r3ZEA=='
-    // };
-
+    let getDom = (key) => {
+      return document.querySelector(key);
+    };
+    let roomBox = getDom('.rong-buttons-room');
+    let streamBox = getDom('.rong-buttons-stream');
+    let operationBox = getDom('.rong-buttons-operation');
     let currentUser = {
       id: app.userId,
       token: '',
@@ -210,8 +245,8 @@
       getToken(currentUser).then(response => {
         var result = response.result;
         var token = result.token;
-        var appkey = utils.getDom('appkey').value;
-        var navi = utils.getDom('nav').value;
+        var appkey = app.appkey || 'c9kqb3rdkbb8j';
+        var navi = app.nav || 'navqa.cn.ronghub.com';
 
         var params = {
           appkey: appkey,
@@ -222,6 +257,7 @@
           connected: function (_Rong) {
             Rong = _Rong;
             log.show('Connect', 'connect successfully');
+            show(roomBox);
           },
           disconnectd: function () {
             Rong = null;
@@ -235,7 +271,7 @@
     }
 
     var getToken = function (user) {
-      let url = config.url;
+      let url = app.url || config.url;
       return fetch(url, {
         method: 'POST',
         body: JSON.stringify({
@@ -246,9 +282,6 @@
         }
       }).then(response => response.json());
     };
-    let getDom = (key) => {
-      return document.querySelector(key);
-    };
     let videoBox = getDom('.rong-video-box');
     let createDiv = (id, classList) => {
       let node = document.createElement('div');
@@ -258,7 +291,7 @@
     };
     let getId = (user, suffix) => {
       let { stream: { tag }, id } = user;
-      let key = id + '_' + tag;
+      let key = 'u_' + id + '_' + tag;
       if (suffix) {
         key += '_' + suffix;
       }
@@ -287,8 +320,14 @@
       videoBox.appendChild(box);
     };
     let removeVideo = (user) => {
-      let { stream: { tag }, id } = user;
-      let video = getDom('#' + id + '_' + tag);
+      let id = getId(user);
+      let video = getDom('#' + id);
+      if (video) {
+        videoBox.removeChild(video);
+      }
+
+      id = getId(user, 'info');
+      video = getDom('#' + id);
       if (video) {
         videoBox.removeChild(video);
       }
@@ -315,7 +354,17 @@
       }
     });
     let { Room, Stream, StreamType, StreamSize } = rongRTC;
-
+    let memberToolBarNode = getDom('.rong-member-toolbar');
+    function removeMemberStreams(user){
+      var id = user.id;
+      var children = memberToolBarNode.children;
+      for(var i = 0; i < children.length; i++){
+        let child = children[i]
+        if(child.id.indexOf(id) > -1){
+          memberToolBarNode.removeChild(child);
+        }
+      }
+    }
     let room = new Room({
       id: currentUser.roomId,
       joined: function (user) {
@@ -323,25 +372,52 @@
       },
       left: function (user) {
         log.show('', `${user.id} 离开房间`);
+        removeMemberStreams(user);
       }
     });
 
     let showTip = (user, style, tip) => {
       let id = getId(user, 'info');
       let node = getDom('#' + id);
-      node.style.display = style;
-      node.innerHTML = tip;
+      if(node){
+        node.style.display = style;
+        node.innerHTML = tip;
+      }
+    };
+    let addMember = (user) => {
+      removeMember(user);
+      let { id: userId, stream: { tag } } = user;
+      let html = `
+        <div class="rong-member-buttons" id="${getId(user, 'handler')}">
+          <h3 class="rong-member-name">User : ${userId} Tag: ${tag}</h3>
+          <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Subscribe" onclick="subscribeStream(this)">
+          <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Unsubscribe" onclick="unsubscribeStream(this)">
+          <div class="rong-member-operation">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Mute" onclick="mute(this)">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Unmute" onclick="unmute(this)">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Disbale" onclick="disableVideo(this)">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Enable" onclick="enableVideo(this)">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Resize" onclick="resizeStream(this)">
+          </div>
+        </div>
+      `;
+      memberToolBarNode.innerHTML += html;
+    };
+    let removeMember = (user) => {
+      let id = getId(user, 'handler');
+      let node = getDom('#' + id);
+      if (node) {
+        memberToolBarNode.removeChild(node);
+      }
     };
     let stream = new Stream({
       published: function (user) {
-        user.stream.type = StreamType.AUDIO_AND_VIDEO;
-        stream.subscribe(user).then(user => {
-          appendVideo(user);
-        });
+        addMember(user);
       },
       unpublished: function (user) {
+        user.stream.type = StreamType.AUDIO_AND_VIDEO;
         stream.unsubscribe(user);
-        removeVideo(user);
+        removeMember(user);
       },
       muted: function (user) {
         console.log('muted', user);
@@ -367,6 +443,7 @@
         token: currentUser.id
       }).then(() => {
         log.show('', 'join successfully');
+        show(streamBox);
       }, error => {
         log.show('', error);
       });
@@ -376,6 +453,8 @@
       room.leave().then((user) => {
         videoBox.innerHTML = '';
         log.show('', 'leave successfully');
+        hide(streamBox);
+        hide(operationBox);
       }, (error) => {
         log.show('', error);
       });
@@ -386,15 +465,83 @@
       video.autoplay = true;
       return video;
     };
-
-    function getStream() {
-      stream.get({
-        id: currentUser.id,
+    function getUser(target) {
+      if (!target) {
+        return {
+          id: currentUser.id,
+          stream: {
+            tag: 'rtc'
+          }
+        };
+      }
+      return {
+        id: target.getAttribute('userid'),
         stream: {
-          tag: 'mp4'
+          tag: target.getAttribute('tag')
         }
-      }).then(stream => {
-        console.log(stream);
+      }
+    }
+    function subscribeStream(target) {
+      var user = getUser(target);
+      user.stream.type = StreamType.AUDIO_AND_VIDEO;
+      stream.subscribe(user).then(user => {
+        log.show('', `订阅 ${user.id} 成功`);
+        appendVideo(user);
+      }, (error) => {
+        log.show('', `订阅 ${user.id} 失败`);
+      });
+    }
+    function unsubscribeStream(target) {
+      var user = getUser(target);
+      user.stream.type = StreamType.AUDIO_AND_VIDEO;
+      stream.unsubscribe(user);
+      log.show('', `取消订阅 ${user.id} 成功`);
+      removeVideo(user);
+    }
+    function mute(target) {
+      var user = getUser(target)
+      stream.audio.mute(user).then(() => {
+        log.show('', `已静音 ${user.id}`);
+        showTip(user, 'block', 'Muted');
+      }, error => {
+        log.show('', error);
+      });
+    }
+    function unmute(target) {
+      var user = getUser(target);
+      stream.audio.unmute(user).then(() => {
+        log.show('', `已取消静音: ${user.id}`);
+        showTip(user, 'none', 'Unmuted');
+      }, error => {
+        log.show('', error);
+      });;
+    }
+    function disableVideo(target) {
+      var user = getUser(target);
+      stream.video.disable(user).then(() => {
+        log.show('', '视频已禁用');
+        showTip(user, 'block', 'Disabled');
+      }, error => {
+        log.show('', error);
+      });;
+    }
+    function enableVideo(target) {
+      var user = getUser(target);
+      stream.video.enable(user).then(() => {
+        log.show('', '视频已启用');
+        showTip(user, 'none', 'Enabled');
+      }, error => {
+        log.show('', error);
+      });;
+    }
+    let isMax = false;
+    function resizeStream(target) {
+      let { StreamType } = rongRTC;
+      isMax = !isMax;
+      var user = getUser(target);
+      user.stream.size = isMax ? StreamSize.MAX : StreamSize.MIN;
+      stream.resize(user).then(() => {
+        log.show('', '切换成功, 当前为 ' + (isMax ? '大' : '小') + ' 流');
       }, error => {
         log.show('', error);
       });
@@ -431,7 +578,6 @@
         log.show('', error);
       });
     }
-
     function unpublishMP4() {
       let user = {
         id: currentUser.id,
@@ -447,8 +593,13 @@
         log.show('', error);
       })
     }
-
+    var isPublishCamera = false;
     function publishCamera() {
+      if (isPublishCamera) {
+        log.show('', '资源已发布')
+        return;
+      }
+      isPublishCamera = true;
       getMedia(function (mediaStream) {
         stream.publish({
           id: currentUser.id,
@@ -459,6 +610,7 @@
           }
         }).then(() => {
           log.show('', 'publish successfully.')
+          show(operationBox);
         }, error => {
           log.show('', error);
         })
@@ -474,13 +626,19 @@
       };
       stream.unpublish(user).then(() => {
         log.show('', 'unpublish successfully.')
+        isPublishCamera = false;
         removeVideo(user);
       }, error => {
         log.show('', error);
       });
     }
-
+    var isPublishMulti = false;
     function publishMulti() {
+      if(isPublishMulti){
+        log.show('', '资源已发布')
+        return;
+      }
+      isPublishMulti = true;
       var sourceNode = document.querySelector('#source');
       var videoStream = sourceNode.captureStream();
       getMedia(function (mediaStream) {
@@ -498,13 +656,13 @@
             size: StreamSize.MIN
           }]
         }).then(() => {
+          show(operationBox);
           log.show('', 'publishMulti successfully.')
         }, error => {
           log.show('', error);
         })
       });
     }
-
     function unpublishMulti() {
       let user = {
         id: currentUser.id,
@@ -515,88 +673,12 @@
       };
       stream.unpublish(user).then(() => {
         log.show('', 'unpublishMulti successfully.')
+        isPublishMulti = false;
+        hide(operationBox);
         removeVideo(user);
       }, error => {
         log.show('', error);
       });
-    }
-    let isMax = false;
-    function resizeStream() {
-      let { StreamType } = rongRTC;
-      isMax = !isMax;
-      let user = {
-        id: 'web001',
-        stream: {
-          tag: 'rtc',
-          type: 1,
-          size: isMax ? StreamSize.MAX : StreamSize.MIN
-        }
-      };
-      stream.resize(user).then(() => {
-        log.show('', '切换成功, 当前为 ' + isMax ? '大' : '小' + ' 流');
-      }, error => {
-        log.show('', error);
-      });
-    }
-
-    function mute() {
-      var user = {
-        id: currentUser.id,
-        stream: {
-          tag: 'mp4'
-        }
-      };
-      stream.audio.mute(user).then(() => {
-        log.show('', '已静音');
-        showTip(user, 'block', 'Muted');
-      }, error => {
-        log.show('', error);
-      });
-    }
-
-    function unmute() {
-      var user = {
-        id: currentUser.id,
-        stream: {
-          tag: 'mp4'
-        }
-      };
-      stream.audio.unmute(user).then(() => {
-        log.show('', '已取消静音');
-        showTip(user, 'none', 'Unmuted');
-      }, error => {
-        log.show('', error);
-      });;
-    }
-
-    function disableVideo() {
-      var user = {
-        id: currentUser.id,
-        stream: {
-          tag: 'mp4'
-        }
-      };
-      stream.video.disable(user).then(() => {
-        log.show('', '视频已禁用');
-        showTip(user, 'block', 'Disabled');
-      }, error => {
-        log.show('', error);
-      });;
-    }
-
-    function enableVideo() {
-      var user = {
-        id: currentUser.id,
-        stream: {
-          tag: 'mp4'
-        }
-      };
-      stream.video.enable(user).then(() => {
-        log.show('', '视频已启用');
-        showTip(user, 'none', 'Enabled');
-      }, error => {
-        log.show('', error);
-      });;
     }
   </script>
 </body>
