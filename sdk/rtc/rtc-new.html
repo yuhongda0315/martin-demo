@@ -194,7 +194,8 @@
     <div class="rong-video-box">
     </div>
     <div class="rong-video-srouce">
-      <video id="source" src="./heal-the-world.mp4" controls></video>
+      <!-- <video id="source" src="./heal-the-world.mp4" controls></video> -->
+      <video id="source" crossorigin="anonymous" src="https://yuhongda0315.github.io/martin-demo/sdk/rtc/heal-the-world.mp4" controls></video>
     </div>
     <div class="rong-logs" id="rong-logs"></div>
   </div>
@@ -504,7 +505,7 @@
         return {
           id: currentUser.id,
           stream: {
-            tag: 'rtc'
+            tag: app.debug ? 'mp4' : 'rtc'
           }
         };
       }
