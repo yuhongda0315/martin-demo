@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>RongRTC</title>
-  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="./common.css">
   <script src="./protobuf-2.3.4.min.js"></script>
   <script src="./RongIMLib-2.4.0-beta.js"></script>
-  <script src="./RongRTC.3.0.0.js?12"></script>
+  <script src="./RongRTC.3.0.0.js?122"></script>
+  <!-- <script src="http://localhost:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js"></script> -->
   <style>
     html,
     body {
@@ -123,6 +124,7 @@
 
     .rong-buttons-room,
     .rong-buttons-stream,
+    .rong-buttons-stream-mp4,
     .rong-buttons-operation {
       display: none;
     }
@@ -164,6 +166,10 @@
         <input class="rong-input" type="button" value="Publish" onclick="publishMulti()">
         <input class="rong-input" type="button" value="Unpublish" onclick="unpublishMulti()">
       </div>
+      <div class="rong-buttons-stream-mp4">
+        <input class="rong-input" type="button" value="PublishMP4" onclick="publishMP4()">
+        <input class="rong-input" type="button" value="UnpublishMP4" onclick="unpublishMP4()">
+      </div>
       <div class="rong-buttons-operation">
         <input class="rong-input" type="button" value="Mute" onclick="mute()">
         <input class="rong-input" type="button" value="Unmute" onclick="unmute()">
@@ -193,8 +199,8 @@
     <div class="rong-logs" id="rong-logs"></div>
   </div>
 
-  <script src="../js/init.js?123"></script>
-  <script src="../js/utils.js?123"></script>
+  <script src="./init.js?123"></script>
+  <script src="./utils.js?123"></script>
   <script>
     var Rong = null;
     var utils = RCUtils.utils;
@@ -204,7 +210,12 @@
     var log = new Log({
       element: utils.getDom('rong-logs')
     });
-
+    function show(node) {
+      node.style.display = 'block';
+    }
+    function hide(node) {
+      node.style.display = 'none';
+    }
     function clearResult() {
       log.clear();
     }
@@ -219,12 +230,6 @@
       }
       return info;
     }
-    function show(node) {
-      node.style.display = 'block';
-    }
-    function hide(node) {
-      node.style.display = 'none';
-    }
     let app = getAppInfo();
     let getDom = (key) => {
       return document.querySelector(key);
@@ -232,11 +237,13 @@
     let roomBox = getDom('.rong-buttons-room');
     let streamBox = getDom('.rong-buttons-stream');
     let operationBox = getDom('.rong-buttons-operation');
+    let mp4Box = getDom('.rong-buttons-stream-mp4');
     let currentUser = {
       id: app.userId,
       token: '',
       roomId: app.roomId
     }
+  
     function connect() {
       if (Rong) {
         return;
@@ -334,7 +341,7 @@
     };
     let rongRTC = new RongRTC({
       // url: 'http://10.13.10.117:7788/',
-      // url: 'http://msqa.rongcloud.net',
+      url: app.ms,
       RongIMLib: RongIMLib,
       // debug: true,
       created: function () {
@@ -356,12 +363,32 @@
     let { Room, Stream, StreamType, StreamSize } = rongRTC;
     let memberToolBarNode = getDom('.rong-member-toolbar');
     function removeMemberStreams(user){
+      user = user || {};
       var id = user.id;
       var children = memberToolBarNode.children;
       for(var i = 0; i < children.length; i++){
         let child = children[i]
-        if(child.id.indexOf(id) > -1){
+        if(!id){
           memberToolBarNode.removeChild(child);
+        }else{
+          if(child.id.indexOf(id) > -1){
+            memberToolBarNode.removeChild(child);
+          }
+        }
+      }
+    }
+    function removeUsers(user){
+      user = user || {};
+      var id = user.id;
+      var children = videoBox.children;
+      for(var i = 0; i < children.length; i++){
+        let child = children[i]
+        if(!id){
+          videoBox.removeChild(child);
+        }else{
+          if(child.id.indexOf(id) > -1){
+            videoBox.removeChild(child);
+          }
         }
       }
     }
@@ -373,6 +400,7 @@
       left: function (user) {
         log.show('', `${user.id} 离开房间`);
         removeMemberStreams(user);
+        removeUsers(user);
       }
     });
 
@@ -443,7 +471,11 @@
         token: currentUser.id
       }).then(() => {
         log.show('', 'join successfully');
-        show(streamBox);
+        if(app.debug){
+          show(mp4Box)
+        }else{
+          show(streamBox);
+        }
       }, error => {
         log.show('', error);
       });
@@ -455,6 +487,8 @@
         log.show('', 'leave successfully');
         hide(streamBox);
         hide(operationBox);
+        removeMemberStreams();
+        removeUsers();
       }, (error) => {
         log.show('', error);
       });
@@ -560,7 +594,13 @@
         log.show('', error);
       })
     }
+    var isPublishMP4 = false;
     function publishMP4() {
+      if (isPublishMP4) {
+        log.show('', '资源已发布')
+        return;
+      }
+      isPublishMP4 = true;
       var sourceNode = document.querySelector('#source');
       var mediaStream = sourceNode.captureStream();
       let user = {
@@ -573,6 +613,7 @@
       };
       stream.publish(user).then(() => {
         log.show('', 'publish successfully.');
+        show(operationBox);
         appendVideo(user);
       }, error => {
         log.show('', error);
@@ -587,8 +628,11 @@
         }
       };
       stream.unpublish(user).then(() => {
-        removeVideo(user);
+        isPublishMP4 = false;
         log.show('', 'unpublish successfully.')
+        removeVideo(user);
+        hide(operationBox);
+        removeVideo(user);
       }, error => {
         log.show('', error);
       })
@@ -671,7 +715,7 @@
           type: StreamType.AUDIO_AND_VIDEO
         }
       };
-      stream.unpublish(user).then(() => {
+      stream.unpublish(user).then((result) => {
         log.show('', 'unpublishMulti successfully.')
         isPublishMulti = false;
         hide(operationBox);

@@ -75,7 +75,9 @@
   var extend = function extend(destination, sources) {
     for (var key in sources) {
       var value = sources[key];
-      destination[key] = value;
+      if (!isUndefined(value)) {
+        destination[key] = value;
+      }
     }
     return destination;
   };
@@ -1381,12 +1383,12 @@
   }(EventEmitter);
 
   var Path = {
-    PUBLISH: 'exchange?{roomId}',
-    UNPUBLISH: 'exchange?{roomId}',
-    RESIZE: 'exchange?{roomId}',
-    SUBSCRIBE: 'exchange?{roomId}',
-    UNSUBSCRIBE: 'exchange?{roomId}',
-    EXIT: 'exit?{roomId}'
+    PUBLISH: '/exchange?{roomId}',
+    UNPUBLISH: '/exchange?{roomId}',
+    RESIZE: '/exchange?{roomId}',
+    SUBSCRIBE: '/exchange?{roomId}',
+    UNSUBSCRIBE: '/exchange?{roomId}',
+    EXIT: '/exit?{roomId}'
   };
 
   var Message = {
@@ -7905,6 +7907,7 @@
             type: EventType.RESPONSE,
             error: error
           });
+          throw error;
         });
       }
     }, {
@@ -7932,7 +7935,7 @@
 
       var context = this;
       var option = {
-        url: 'https://ms-xq.rongcloud.net/',
+        url: 'https://msqa.rongcloud.net/',
         debug: false,
         created: function created() {},
         mounted: function mounted() {},
