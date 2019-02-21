@@ -466,6 +466,8 @@
       }
     });
 
+    var isPublishMulti = false;
+    var isPublishMP4 = false;
     function joinRoom() {
       room.join({
         id: currentUser.id,
@@ -490,6 +492,8 @@
         hide(operationBox);
         removeMemberStreams();
         removeUsers();
+        isPublishMulti = false;
+        isPublishMP4 = false;
       }, (error) => {
         log.show('', error);
       });
@@ -595,7 +599,7 @@
         log.show('', error);
       })
     }
-    var isPublishMP4 = false;
+
     function publishMP4() {
       if (isPublishMP4) {
         log.show('', '资源已发布')
@@ -677,7 +681,6 @@
         log.show('', error);
       });
     }
-    var isPublishMulti = false;
     function publishMulti() {
       if(isPublishMulti){
         log.show('', '资源已发布')
