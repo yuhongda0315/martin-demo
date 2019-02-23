@@ -56,11 +56,12 @@ RongIMClient.registerMessageType(messageName, objectName, messageTag, prototypes
 				case RongIMLib.ConnectionStatus.CONNECTED:
 					callbacks.connected && callbacks.connected(instance);
 					break;
+				case 2:
 				case 3:
 				case 4:
 				case 5:
 				case 6:
-					callbacks.disconnectd && callbacks.disconnectd();
+					callbacks.disconnectd && callbacks.disconnectd(status);
 					break;
 			}
 

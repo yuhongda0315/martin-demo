@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="./common.css">
   <script src="./protobuf-2.3.4.min.js"></script>
   <script src="./RongIMLib-2.4.0-beta.js"></script>
-  <script src="./RongRTC.3.0.0.js?122"></script>
-  <!-- <script src="http://localhost:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js"></script> -->
+  <script src="./RongRTC.3.0.0.js?122123"></script>
+  <!-- <script src="http://10.12.8.147:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js"></script> -->
   <style>
     html,
     body {
@@ -147,6 +147,12 @@
     .rong-member-operation {
       display: inline-block;
     }
+    .rong-button-log{
+      position: absolute;
+      top: 0;
+      right: 20px;
+      z-index: 99;
+    }
   </style>
   <script src="./config.js"></script>
 </head>
@@ -157,6 +163,7 @@
     <div class="rong-current-toolbar">
       <div class="rong-buttons-connect">
         <input class="rong-input" type="button" value="Connect" onclick="connect()">
+        <input class="rong-input" type="button" value="Disconnect" onclick="disconnect()">
       </div>
       <div class="rong-buttons-room">
         <input class="rong-input" type="button" value="Join" onclick="joinRoom()">
@@ -194,10 +201,11 @@
     <div class="rong-video-box">
     </div>
     <div class="rong-video-srouce">
-      <!-- <video id="source" src="./heal-the-world.mp4" controls></video> -->
-      <video id="source" crossorigin="anonymous" src="https://yuhongda0315.github.io/martin-demo/sdk/rtc/heal-the-world.mp4" controls></video>
+      <video id="source" src="./heal-the-world.mp4" controls></video>
+      <!-- <video id="source" crossorigin="anonymous" src="https://yuhongda0315.github.io/martin-demo/sdk/rtc/heal-the-world.mp4" controls></video> -->
     </div>
     <div class="rong-logs" id="rong-logs"></div>
+    <input class="rong-input rong-button-log" type="button" value="Clear Logs" onclick="clearLogs()">
   </div>
 
   <script src="./init.js?123"></script>
@@ -208,9 +216,13 @@
     var conversation = RCUtils.conversation;
     var Log = RCUtils.Log;
 
+    let logNode = utils.getDom('rong-logs');
     var log = new Log({
-      element: utils.getDom('rong-logs')
+      element: logNode
     });
+    function clearLogs(){
+      logNode.innerHTML = '';
+    }
     function show(node) {
       node.style.display = 'block';
     }
@@ -244,7 +256,7 @@
       token: '',
       roomId: app.roomId
     }
-  
+    
     function connect() {
       if (Rong) {
         return;
@@ -267,15 +279,23 @@
             log.show('Connect', 'connect successfully');
             show(roomBox);
           },
-          disconnectd: function () {
+          disconnectd: function (status) {
             Rong = null;
+            log.show('Disconnect', '连接状态为: ' + status);
           },
           received: function (message) {
-            log.show('Received Message', message);
+            // log.show('Received Message', message);
           }
         };
         init(params, callbacks);
       });
+    }
+
+    function disconnect(){
+      if (!Rong) {
+        return log.show('', '请先连接');
+      }
+      Rong.disconnect();
     }
 
     var getToken = function (user) {
@@ -356,6 +376,9 @@
       },
       destroyed: function () {
         console.log('RongRTC:destroyed');
+      },
+      error: function(error){
+        console.error(error);
       },
       logger: function (log) {
         console.log(log);
@@ -485,6 +508,8 @@
     }
 
     function leaveRoom() {
+      isPublishMP4 = false;
+      isPublishMulti = false;
       room.leave().then((user) => {
         videoBox.innerHTML = '';
         log.show('', 'leave successfully');
@@ -492,8 +517,6 @@
         hide(operationBox);
         removeMemberStreams();
         removeUsers();
-        isPublishMulti = false;
-        isPublishMP4 = false;
       }, (error) => {
         log.show('', error);
       });
@@ -621,6 +644,7 @@
         show(operationBox);
         appendVideo(user);
       }, error => {
+        isPublishMP4 = false;
         log.show('', error);
       });
     }
@@ -666,6 +690,7 @@
       });
     }
     function unpublishCamera() {
+      isPublishCamera = false;
       let user = {
         id: currentUser.id,
         stream: {
@@ -675,7 +700,6 @@
       };
       stream.unpublish(user).then(() => {
         log.show('', 'unpublish successfully.')
-        isPublishCamera = false;
         removeVideo(user);
       }, error => {
         log.show('', error);
@@ -707,6 +731,7 @@
           show(operationBox);
           log.show('', 'publishMulti successfully.')
         }, error => {
+          isPublishMulti = false;
           log.show('', error);
         })
       });
@@ -719,9 +744,9 @@
           type: StreamType.AUDIO_AND_VIDEO
         }
       };
+      isPublishMulti = false;
       stream.unpublish(user).then((result) => {
         log.show('', 'unpublishMulti successfully.')
-        isPublishMulti = false;
         hide(operationBox);
         removeVideo(user);
       }, error => {
