@@ -201,7 +201,7 @@
     <div class="rong-video-box">
     </div>
     <div class="rong-video-srouce">
-      <!-- <video id="source" src="./heal-the-world.mp4" controls></video> -->
+      <video id="source" src="./heal-the-world.mp4" controls></video>
       <!-- <video id="source" crossorigin="anonymous" src="https://yuhongda0315.github.io/martin-demo/sdk/rtc/heal-the-world.mp4" controls></video> -->
     </div>
     <div class="rong-logs" id="rong-logs"></div>
@@ -711,22 +711,22 @@
         return;
       }
       isPublishMulti = true;
-      // var sourceNode = document.querySelector('#source');
-      // var videoStream = sourceNode.captureStream();
+      var sourceNode = document.querySelector('#source');
+      var videoStream = sourceNode.captureStream();
       getMedia(function (mediaStream) {
         stream.publish({
           id: currentUser.id,
           stream: [{
             type: StreamType.AUDIO_AND_VIDEO,
             tag: 'rtc',
-            mediaStream: mediaStream,
+            mediaStream: videoStream,
             size: StreamSize.MAX
-          }/*, {
+          },{
             type: StreamType.AUDIO_AND_VIDEO,
             tag: 'rtc',
             mediaStream: mediaStream,
             size: StreamSize.MIN
-          }*/]
+          }]
         }).then(() => {
           show(operationBox);
           log.show('', 'publishMulti successfully.')
