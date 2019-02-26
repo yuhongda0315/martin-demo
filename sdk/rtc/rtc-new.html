@@ -147,7 +147,8 @@
     .rong-member-operation {
       display: inline-block;
     }
-    .rong-button-log{
+
+    .rong-button-log {
       position: absolute;
       top: 0;
       right: 20px;
@@ -216,11 +217,11 @@
     var conversation = RCUtils.conversation;
     var Log = RCUtils.Log;
 
-    let logNode = utils.getDom('rong-logs');
+    var logNode = utils.getDom('rong-logs');
     var log = new Log({
       element: logNode
     });
-    function clearLogs(){
+    function clearLogs() {
       logNode.innerHTML = '';
     }
     function show(node) {
@@ -233,36 +234,37 @@
       log.clear();
     }
     function getAppInfo() {
-      let queryString = location.search.split('?')[1] || 0;
-      let querys = queryString.split('&');
-      let info = {};
-      for (let i = 0; i < querys.length; i++) {
-        let query = querys[i];
-        let [key, value] = query.split('=');
+      var queryString = location.search.split('?')[1] || 0;
+      var querys = queryString.split('&');
+      var info = {};
+      for (var i = 0; i < querys.length; i++) {
+        var query = querys[i];
+        var [key, value] = query.split('=');
         info[key] = value;
       }
       return info;
     }
-    let app = getAppInfo();
-    let getDom = (key) => {
+    var app = getAppInfo();
+    var getDom = function (key) {
       return document.querySelector(key);
     };
-    let roomBox = getDom('.rong-buttons-room');
-    let streamBox = getDom('.rong-buttons-stream');
-    let operationBox = getDom('.rong-buttons-operation');
-    let mp4Box = getDom('.rong-buttons-stream-mp4');
-    let currentUser = {
+    var roomBox = getDom('.rong-buttons-room');
+    var streamBox = getDom('.rong-buttons-stream');
+    var operationBox = getDom('.rong-buttons-operation');
+    var mp4Box = getDom('.rong-buttons-stream-mp4');
+    var currentUser = {
       id: app.userId,
       token: '',
       roomId: app.roomId
     }
-    
+    var connectStatus = -1;
     function connect() {
       if (Rong) {
+        log.show('', '已连接成功，无需重复连接');
         return;
       }
 
-      getToken(currentUser).then(response => {
+      getToken(currentUser).then(function (response) {
         var result = response.result;
         var token = result.token;
         var appkey = app.appkey || 'c9kqb3rdkbb8j';
@@ -280,8 +282,8 @@
             show(roomBox);
           },
           disconnectd: function (status) {
-            Rong = null;
             log.show('Disconnect', '连接状态为: ' + status);
+            Rong = null;
           },
           received: function (message) {
             // log.show('Received Message', message);
@@ -291,16 +293,44 @@
       });
     }
 
-    function disconnect(){
+    function disconnect() {
       if (!Rong) {
         return log.show('', '请先连接');
       }
       Rong.disconnect();
     }
 
+    function request(url, option) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        var method = option.method || 'GET';
+        xhr.open(method, url, true);
+        var headers = option.headers || {};
+        for (var name in headers) {
+          var header = headers[name];
+          xhr.setRequestHeader(name, header);
+        }
+        var body = option.body;
+        var isSuccess = function () {
+          return /^(200|202)$/.test(xhr.status);
+        };
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            var { responseText } = xhr;
+            var result = JSON.parse(responseText);
+            if (isSuccess()) {
+              resolve(result);
+            } else {
+              reject(result);
+            }
+          }
+        };
+        xhr.send(body);
+      })
+    }
     var getToken = function (user) {
-      let url = app.url || config.url;
-      return fetch(url, {
+      var url = app.url || config.url;
+      return request(url, {
         method: 'POST',
         body: JSON.stringify({
           id: user.id
@@ -308,48 +338,48 @@
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         }
-      }).then(response => response.json());
+      });
     };
-    let videoBox = getDom('.rong-video-box');
-    let createDiv = (id, classList) => {
-      let node = document.createElement('div');
+    var videoBox = getDom('.rong-video-box');
+    var createDiv = function (id, classList) {
+      var node = document.createElement('div');
       node.id = id;
       node.classList = classList;
       return node;
     };
-    let getId = (user, suffix) => {
-      let { stream: { tag }, id } = user;
-      let key = 'u_' + id + '_' + tag;
+    var getId = function (user, suffix) {
+      var { stream: { tag }, id } = user;
+      var key = 'u_' + id + '_' + tag;
       if (suffix) {
         key += '_' + suffix;
       }
       return key;
     };
-    let appendVideo = (user) => {
-      let { stream: streams } = user;
+    var appendVideo = function (user) {
+      var { stream: streams } = user;
       if (Object.prototype.toString.call(streams) != '[object Array]') {
         streams = [streams];
       }
-      let ms = streams.filter((ms) => {
+      var ms = streams.filter(function (ms) {
         return ms.size != StreamSize.MIN;
       })[0];
-      let { mediaStream } = ms;
-      let video = createVideo(mediaStream);
-      let userInfo = {
+      var { mediaStream } = ms;
+      var video = createVideo(mediaStream);
+      var userInfo = {
         id: user.id,
         stream: ms
       };
-      let id = getId(userInfo);
-      let box = createDiv(id, ['rong-video']);
-      let childId = getId(userInfo, 'info');
-      let child = createDiv(childId, ['rong-video-child'])
+      var id = getId(userInfo);
+      var box = createDiv(id, ['rong-video']);
+      var childId = getId(userInfo, 'info');
+      var child = createDiv(childId, ['rong-video-child'])
       box.appendChild(video);
       box.appendChild(child);
       videoBox.appendChild(box);
     };
-    let removeVideo = (user) => {
-      let id = getId(user);
-      let video = getDom('#' + id);
+    var removeVideo = function (user) {
+      var id = getId(user);
+      var video = getDom('#' + id);
       if (video) {
         videoBox.removeChild(video);
       }
@@ -360,7 +390,7 @@
         videoBox.removeChild(video);
       }
     };
-    let rongRTC = new RongRTC({
+    var rongRTC = new RongRTC({
       // url: 'http://10.13.10.117:7788/',
       url: app.ms,
       RongIMLib: RongIMLib,
@@ -377,46 +407,46 @@
       destroyed: function () {
         console.log('RongRTC:destroyed');
       },
-      error: function(error){
+      error: function (error) {
         console.error(error);
       },
       logger: function (log) {
         console.log(log);
       }
     });
-    let { Room, Stream, StreamType, StreamSize } = rongRTC;
-    let memberToolBarNode = getDom('.rong-member-toolbar');
-    function removeMemberStreams(user){
+    var { Room, Stream, StreamType, StreamSize } = rongRTC;
+    var memberToolBarNode = getDom('.rong-member-toolbar');
+    function removeMemberStreams(user) {
       user = user || {};
       var id = user.id;
       var children = memberToolBarNode.children;
-      for(var i = 0; i < children.length; i++){
-        let child = children[i]
-        if(!id){
+      for (var i = 0; i < children.length; i++) {
+        var child = children[i]
+        if (!id) {
           memberToolBarNode.removeChild(child);
-        }else{
-          if(child.id.indexOf(id) > -1){
+        } else {
+          if (child.id.indexOf(id) > -1) {
             memberToolBarNode.removeChild(child);
           }
         }
       }
     }
-    function removeUsers(user){
+    function removeUsers(user) {
       user = user || {};
       var id = user.id;
       var children = videoBox.children;
-      for(var i = 0; i < children.length; i++){
-        let child = children[i]
-        if(!id){
+      for (var i = 0; i < children.length; i++) {
+        var child = children[i]
+        if (!id) {
           videoBox.removeChild(child);
-        }else{
-          if(child.id.indexOf(id) > -1){
+        } else {
+          if (child.id.indexOf(id) > -1) {
             videoBox.removeChild(child);
           }
         }
       }
     }
-    let room = new Room({
+    var room = new Room({
       id: currentUser.roomId,
       joined: function (user) {
         log.show('', `${user.id} 加入房间`);
@@ -428,41 +458,107 @@
       }
     });
 
-    let showTip = (user, style, tip) => {
-      let id = getId(user, 'info');
-      let node = getDom('#' + id);
-      if(node){
+    var showTip = function (user, style, tip) {
+      var id = getId(user, 'info');
+      var node = getDom('#' + id);
+      if (node) {
         node.style.display = style;
         node.innerHTML = tip;
       }
     };
-    let addMember = (user) => {
+
+    var addMember = function (user) {
       removeMember(user);
-      let { id: userId, stream: { tag } } = user;
-      let html = `
+      var { id: userId, stream: { tag } } = user;
+      var html = `
         <div class="rong-member-buttons" id="${getId(user, 'handler')}">
           <h3 class="rong-member-name">User : ${userId} Tag: ${tag}</h3>
-          <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Subscribe" onclick="subscribeStream(this)">
-          <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Unsubscribe" onclick="unsubscribeStream(this)">
+          <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Subscribe" onclick="">
+          <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Unsubscribe" onclick="">
           <div class="rong-member-operation">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Mute" onclick="mute(this)">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Unmute" onclick="unmute(this)">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Disbale" onclick="disableVideo(this)">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Enable" onclick="enableVideo(this)">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Resize" onclick="resizeStream(this)">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Mute" onclick="">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Unmute" onclick="">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Disbale" onclick="">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Enable" onclick="">
+            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Resize" onclick="">
           </div>
         </div>
       `;
-      memberToolBarNode.innerHTML += html;
+
+      var createEl = function (type, attrs) {
+        var button = document.createElement(type);
+        for (var name in attrs) {
+          var attr = attrs[name];
+          button.setAttribute(name, attr);
+        }
+        return button;
+      };
+      var memberButtons = createEl('div', {
+        id: getId(user, 'handler'),
+        class: "rong-member-buttons"
+      });
+
+      var memberName = createEl('h3', {
+        class: "rong-member-name"
+      });
+      memberName.innerHTML = "User : " + userId + " Tag : " + tag;
+
+      var createButton = function (name) {
+        return createEl('input', {
+          class: "rong-input",
+          userid: userId,
+          tag: tag,
+          type: "button",
+          value: name
+        });
+      };
+
+      var subscribeNode = createButton("Subscribe");
+      var unsubscribeNode = createButton("Unsubscribe");
+
+      var memberOperate = createEl('div', {
+        class: "rong-member-operation"
+      });
+      var muteNode = createButton("Mute");
+      var unmuteNode = createButton("Unmute");
+      var disbaleNode = createButton("Disbale");
+      var enableNode = createButton("Enable");
+      var resizeNode = createButton("Resize");
+
+      subscribeNode.onclick = function(event){
+        subscribeStream(event.currentTarget);
+      };
+      unsubscribeNode.onclick = function(event){
+        unsubscribeStream(event.currentTarget);
+      };
+      muteNode.onclick = function(event){
+        mute(event.currentTarget);
+      };
+      unmuteNode.onclick = function(event){
+        unmute(event.currentTarget);
+      };
+      disbaleNode.onclick = function(event){
+        disableVideo(event.currentTarget);
+      };
+      enableNode.onclick = function(event){
+        enableVideo(event.currentTarget);
+      };
+      resizeNode.onclick = function(event){
+        resizeStream(event.currentTarget);
+      };
+
+      memberOperate.append(muteNode,unmuteNode,disbaleNode,enableNode,resizeNode);
+      memberButtons.append(memberName, subscribeNode, unsubscribeNode, memberOperate);
+      memberToolBarNode.append(memberButtons);
     };
-    let removeMember = (user) => {
-      let id = getId(user, 'handler');
-      let node = getDom('#' + id);
+    var removeMember = function (user) {
+      var id = getId(user, 'handler');
+      var node = getDom('#' + id);
       if (node) {
         memberToolBarNode.removeChild(node);
       }
     };
-    let stream = new Stream({
+    var stream = new Stream({
       published: function (user) {
         addMember(user);
       },
@@ -495,34 +591,36 @@
       room.join({
         id: currentUser.id,
         token: currentUser.id
-      }).then(() => {
+      }).then(function () {
         log.show('', 'join successfully');
-        if(app.debug){
+        if (app.debug) {
           show(mp4Box)
-        }else{
+        } else {
           show(streamBox);
         }
-      }, error => {
+      }, function (error) {
         log.show('', error);
       });
     }
-
+    function clearAll() {
+      videoBox.innerHTML = '';
+      log.show('', 'leave successfully');
+      hide(streamBox);
+      hide(operationBox);
+      removeMemberStreams();
+      removeUsers();
+    }
     function leaveRoom() {
       isPublishMP4 = false;
       isPublishMulti = false;
-      room.leave().then((user) => {
-        videoBox.innerHTML = '';
-        log.show('', 'leave successfully');
-        hide(streamBox);
-        hide(operationBox);
-        removeMemberStreams();
-        removeUsers();
-      }, (error) => {
+      room.leave().then(function (user) {
+        clearAll();
+      }, function (error) {
         log.show('', error);
       });
     }
-    let createVideo = (stream) => {
-      let video = document.createElement('video');
+    var createVideo = function (stream) {
+      var video = document.createElement('video');
       video.srcObject = stream;
       video.autoplay = true;
       return video;
@@ -546,10 +644,10 @@
     function subscribeStream(target) {
       var user = getUser(target);
       user.stream.type = StreamType.AUDIO_AND_VIDEO;
-      stream.subscribe(user).then(user => {
+      stream.subscribe(user).then(function (user) {
         log.show('', `订阅 ${user.id} 成功`);
         appendVideo(user);
-      }, (error) => {
+      }, function (error) {
         log.show('', `订阅 ${user.id} 失败`);
       });
     }
@@ -562,49 +660,49 @@
     }
     function mute(target) {
       var user = getUser(target)
-      stream.audio.mute(user).then(() => {
+      stream.audio.mute(user).then(function () {
         log.show('', `已静音 ${user.id}`);
         showTip(user, 'block', 'Muted');
-      }, error => {
+      }, function (error) {
         log.show('', error);
       });
     }
     function unmute(target) {
       var user = getUser(target);
-      stream.audio.unmute(user).then(() => {
+      stream.audio.unmute(user).then(function () {
         log.show('', `已取消静音: ${user.id}`);
         showTip(user, 'none', 'Unmuted');
-      }, error => {
+      }, function (error) {
         log.show('', error);
       });;
     }
     function disableVideo(target) {
       var user = getUser(target);
-      stream.video.disable(user).then(() => {
+      stream.video.disable(user).then(function () {
         log.show('', '视频已禁用');
         showTip(user, 'block', 'Disabled');
-      }, error => {
+      }, function (error) {
         log.show('', error);
       });;
     }
     function enableVideo(target) {
       var user = getUser(target);
-      stream.video.enable(user).then(() => {
+      stream.video.enable(user).then(function () {
         log.show('', '视频已启用');
         showTip(user, 'none', 'Enabled');
-      }, error => {
+      }, function (error) {
         log.show('', error);
       });;
     }
-    let isMax = false;
+    var isMax = false;
     function resizeStream(target) {
-      let { StreamType } = rongRTC;
+      var { StreamType } = rongRTC;
       isMax = !isMax;
       var user = getUser(target);
       user.stream.size = isMax ? StreamSize.MAX : StreamSize.MIN;
-      stream.resize(user).then(() => {
+      stream.resize(user).then(function () {
         log.show('', '切换成功, 当前为 ' + (isMax ? '大' : '小') + ' 流');
-      }, error => {
+      }, function (error) {
         log.show('', error);
       });
     }
@@ -618,7 +716,7 @@
             mediaStream: stream
           }
         });
-      }, error => {
+      }, function (error) {
         log.show('', error);
       })
     }
@@ -631,7 +729,7 @@
       isPublishMP4 = true;
       var sourceNode = document.querySelector('#source');
       var mediaStream = sourceNode.captureStream();
-      let user = {
+      var user = {
         id: currentUser.id,
         stream: [{
           type: StreamType.AUDIO_AND_VIDEO,
@@ -639,30 +737,30 @@
           mediaStream: mediaStream
         }]
       };
-      stream.publish(user).then(() => {
+      stream.publish(user).then(function () {
         log.show('', 'publish successfully.');
         show(operationBox);
         appendVideo(user);
-      }, error => {
+      }, function (error) {
         isPublishMP4 = false;
         log.show('', error);
       });
     }
     function unpublishMP4() {
-      let user = {
+      var user = {
         id: currentUser.id,
         stream: {
           type: StreamType.AUDIO_AND_VIDEO,
           tag: 'mp4'
         }
       };
-      stream.unpublish(user).then(() => {
+      stream.unpublish(user).then(function () {
         isPublishMP4 = false;
         log.show('', 'unpublish successfully.')
         removeVideo(user);
         hide(operationBox);
         removeVideo(user);
-      }, error => {
+      }, function (error) {
         log.show('', error);
       })
     }
@@ -681,32 +779,32 @@
             tag: 'rtc',
             mediaStream: mediaStream
           }
-        }).then(() => {
+        }).then(function () {
           log.show('', 'publish successfully.')
           show(operationBox);
-        }, error => {
+        }, function (error) {
           log.show('', error);
         })
       });
     }
     function unpublishCamera() {
       isPublishCamera = false;
-      let user = {
+      var user = {
         id: currentUser.id,
         stream: {
           tag: 'rtc',
           type: StreamType.AUDIO_AND_VIDEO
         }
       };
-      stream.unpublish(user).then(() => {
+      stream.unpublish(user).then(function () {
         log.show('', 'unpublish successfully.')
         removeVideo(user);
-      }, error => {
+      }, function (error) {
         log.show('', error);
       });
     }
     function publishMulti() {
-      if(isPublishMulti){
+      if (isPublishMulti) {
         log.show('', '资源已发布')
         return;
       }
@@ -721,23 +819,23 @@
             tag: 'rtc',
             mediaStream: videoStream,
             size: StreamSize.MAX
-          },{
+          }, {
             type: StreamType.AUDIO_AND_VIDEO,
             tag: 'rtc',
             mediaStream: mediaStream,
             size: StreamSize.MIN
           }]
-        }).then(() => {
+        }).then(function () {
           show(operationBox);
           log.show('', 'publishMulti successfully.')
-        }, error => {
+        }, function (error) {
           isPublishMulti = false;
           log.show('', error);
         })
       });
     }
     function unpublishMulti() {
-      let user = {
+      var user = {
         id: currentUser.id,
         stream: {
           tag: 'rtc',
@@ -745,11 +843,11 @@
         }
       };
       isPublishMulti = false;
-      stream.unpublish(user).then((result) => {
+      stream.unpublish(user).then(function (result) {
         log.show('', 'unpublishMulti successfully.')
         hide(operationBox);
         removeVideo(user);
-      }, error => {
+      }, function (error) {
         log.show('', error);
       });
     }
