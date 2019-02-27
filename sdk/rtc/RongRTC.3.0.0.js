@@ -2276,14 +2276,7 @@
         DataCache.set(key, uri);
       });
     });
-    im.on(DownEvent.STREAM_UNPUBLISHED, function (error, user) {
-      if (error) {
-        throw error;
-      }
-      dispatchStreamEvent(user, function (key) {
-        DataCache.remove(key);
-      });
-    });
+
     im.on(DownEvent.STREAM_CHANGED, function (error, user) {
       if (error) {
         throw error;
@@ -2869,6 +2862,55 @@
       var isEnabled = true;
       return modifyTrack(user, StreamType.VIDEO, StreamState.ENABLE, isEnabled);
     };
+    var getUsersById = function getUsersById(user) {
+      var id = user.id;
+
+      var subs = SubscribeCache.get(id);
+      var streams = {},
+          msTypes = {};
+      utils.forEach(subs, function (_ref4) {
+        var msid = _ref4.msid,
+            tag = _ref4.tag,
+            type = _ref4.type;
+
+        streams[msid] = tag;
+        var types = msTypes[msid] || [];
+        types.push(type);
+        msTypes[msid] = types;
+      });
+      var users = [];
+      utils.forEach(streams, function (tag, msid) {
+        var types = msTypes[msid] || [];
+        var type = msTypes[0];
+        type = utils.isEqual(types.length, 2) ? StreamType.AUDIO_AND_VIDEO : type;
+        users.push({
+          id: id,
+          stream: {
+            tag: tag,
+            type: type
+          }
+        });
+      });
+      return users;
+    };
+    im.on(DownEvent.ROOM_USER_LEFT, function (error, user) {
+      if (error) {
+        throw error;
+      }
+      var users = getUsersById(user);
+      utils.forEach(users, function (user) {
+        unsubscribe(user);
+      });
+    });
+    im.on(DownEvent.STREAM_UNPUBLISHED, function (error, user) {
+      if (error) {
+        throw error;
+      }
+      dispatchStreamEvent(user, function (key) {
+        DataCache.remove(key);
+      });
+      unsubscribe(user);
+    });
     var dispatch = function dispatch(event, args) {
       switch (event) {
         case UpEvent.STREAM_PUBLISH:
