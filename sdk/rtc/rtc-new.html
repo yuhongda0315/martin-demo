@@ -368,7 +368,7 @@
         };
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
-            var { responseText } = xhr;
+            var responseText = xhr.responseText;
             var result = JSON.parse(responseText);
             if (isSuccess()) {
               resolve(result);
@@ -400,7 +400,8 @@
       return node;
     };
     var getId = function (user, suffix) {
-      var { stream: { tag }, id } = user;
+      var id = user.id;
+      var tag = user.stream.tag;
       var key = 'u_' + id + '_' + tag;
       if (suffix) {
         key += '_' + suffix;
@@ -408,14 +409,14 @@
       return key;
     };
     var appendVideo = function (user) {
-      var { stream: streams } = user;
+      var streams = user.stream;
       if (Object.prototype.toString.call(streams) != '[object Array]') {
         streams = [streams];
       }
       var ms = streams.filter(function (ms) {
         return ms.size != StreamSize.MIN;
       })[0];
-      var { mediaStream } = ms;
+      var mediaStream = ms.mediaStream;
       var video = createVideo(mediaStream);
       var userInfo = {
         id: user.id,
@@ -466,7 +467,10 @@
         console.log(log);
       }
     });
-    var { Room, Stream, StreamType, StreamSize } = rongRTC;
+    var Room = rongRTC.Room;
+    var Stream = rongRTC.Stream;
+    var StreamType = rongRTC.StreamType;
+    var StreamSize = rongRTC.StreamSize;
     var memberToolBarNode = getDom('.rong-member-toolbar');
     function removeMemberStreams(user) {
       user = user || {};
@@ -521,8 +525,8 @@
 
     var addMember = function (user) {
       removeMember(user);
-      var { id: userId, stream: { tag } } = user;
-
+      var userId = user.id;
+      var tag = user.stream.tag;
       var createEl = function (type, attrs) {
         var button = document.createElement(type);
         for (var name in attrs) {
@@ -734,7 +738,7 @@
     }
     var isMax = false;
     function resizeStream(target) {
-      var { StreamType } = rongRTC;
+      var StreamType = rongRTC.StreamType;
       isMax = !isMax;
       var user = getUser(target);
       user.stream.size = isMax ? StreamSize.MAX : StreamSize.MIN;
