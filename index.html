@@ -13,6 +13,7 @@
     
 </head>
 <body>
+  <script src="http://localhost:8686/rtc/rtc-web-sdk/src/js/rongRTC/RongRTCLib_Web_1.7.0.js"></script>
     <div class="container"></div>
     <script>
         alert(typeof RTCPeerConnection);
@@ -105,3 +106,29 @@ node.innerHTML = `
 `;
 document.body.appendChild(node);
 </script>
+<script>
+var name = '张三';
+var user = {
+  name: '李四',
+  say: () => {
+    console.log(this.anme);
+  },
+  getName: function(){
+    console.log(this.name);
+  }
+};
+
+// 输出？
+var say = user.say;
+say();
+
+// 输出？
+user.say();
+
+// 输出？
+var getName = user.getName;
+getName();
+
+
+// 输出？
+user.getName();

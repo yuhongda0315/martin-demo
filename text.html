@@ -1,11 +1,44 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>jsonp</title>
-    <script>
-        var a = 10;
-        switch (true) { case a < 2: console.log(a); }
-    </script>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        @keyframes spin {
+            to {
+                transform: rotate(1turn);
+            }
+        }
+
+        .avatar {
+            animation: spin 5s infinite linear;
+            transform-origin: 50% 150px;
+        }
+
+        .path {
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            border-radius: 50%;
+            background: #fb3;
+            margin: 50px auto;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            background-color: #FF6700;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            display: block;
+        }
+    </style>
 </head>
+
 <body>
+   <img src="./RongRTC-Lifecycle.svg" alt="">
 </body>
+
 </html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>RongRTC</title>
+  <script src="./adapter.js"></script>
+  <script src="./RongRTCEngine.js"></script>
+  <style>
+    body{
+      background-color: #000;
+    }
+    .rong-container{
+      height: 400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .rong-toolbar{
+      height: 100px;
+      border-bottom: 1px solid #FFF;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    .rong-video-box{
+      height: 60%;
+      float: left;
+    }
+    .rong-input{
+      outline: none;
+      margin-left: 10px;
+    }
+    .rong-video-box video{
+      height: 100px;
+      width: 100px;
+      margin: 20px;
+      float: left;
+      border: 1px solid #FFF;
+    }
+    .rong-video-srouce video{
+      width: 300px;
+      margin: 33px 100px 0 0;
+      float:right;
+    }
+  </style>
+  <script src="./config.js"></script>
+</head>
+
+<body>
+
+  <div class="rong-container">
+    <div class="rong-toolbar">
+      <input class="rong-input rong-roomid" type="text" value="room9901">
+      <br/>
+      <br/>
+      <input class="rong-input" type="button" value="加入" onclick="joinRoom()">
+      <input class="rong-input" type="button" value="退出" onclick="leaveRoom()">
+      <input class="rong-input" type="button" value="添加视频流流" onclick="addStream()">
+      <input class="rong-input" type="button" value="添加屏幕共享流" onclick="addScreenStream()">
+      <input class="rong-input" type="button" value="移除流" onclick="removeStream()">
+    </div>
+    <div class="rong-video-box"></div>
+    <div class="rong-video-srouce">
+      <video id="source" src="./heal-the-world.mp4" controls autoplay></video>
+    </div>
+  </div>
+  <script>
+    var index = location.search.split('?')[1] || 0;
+    let currentUser = {
+      id: 'martin990' + index,
+    }
+    var getToken = function(user){
+      var appId = config.appId;
+      var url = config.tokenUrl;
+      return fetch(url, {
+        method: 'POST',
+        body: 'uid=' + user.id + '&appid=' + appId,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset-UTF-8'
+        }
+      }).then(response => response.text());
+    };
+    let getDom = (key) => {
+      return document.querySelector(key);
+    };
+    let createVideo = (id, stream) => {
+      let video = document.createElement('video');
+      video.srcObject = stream;
+      video.autoplay = true;
+      video.id = id;
+      return video;
+    };
+    let videoBox = getDom('.rong-video-box');
+    let appendVideo = (userId, resource, stream) => {
+      let video = createVideo(userId + '_' + resource, stream);
+      videoBox.appendChild(video);
+    };
+    let removeVideo = function(userId, type){
+      let node = getDom('#' + userId + '_' + type);
+      videoBox.removeChild(node);
+    }
+    let isJoinRoom = false;
+    var nav = config.nav;
+    var rongRTCEngine =new RongRTCEngine(nav)
+    var rongRTCHandler = new RongRTCEngineEventHandle();
+    rongRTCHandler.on('onJoinComplete', function(data) {
+      var stream = rongRTCEngine.getLocalStream();
+      appendVideo(currentUser.id, 3, stream);
+      console.log("加入成功");
+      isJoinRoom = true;
+    });
+    rongRTCHandler.on('onLeaveComplete', function(data) {
+      console.log("离开成功");
+      isJoinRoom = false;
+    });
+    rongRTCHandler.on('onNotifyUserVideoCreated', function(data) {
+      let { userId, resource } = data;
+      let stream = rongRTCEngine.getNewRemoteStream(userId, resource);
+      appendVideo(userId, resource, stream);
+    });
+    rongRTCHandler.on('OnNotifyUserVideoDestroyed', function(data) {
+      removeVideo(data.userId, data.resource);
+    });
+    rongRTCHandler.on('onUserJoined', function(data) {
+      console.log(data);
+    });
+
+    rongRTCEngine.setRongRTCEngineEventHandle(rongRTCHandler);
+    
+    function joinRoom() {
+      var roomId = getDom('.rong-roomid').value;
+      getToken(currentUser).then(token => {
+        rongRTCEngine.joinChannel(roomId, currentUser.id, token)
+      });
+    }
+
+    function leaveRoom() {
+      if(isJoinRoom){
+        rongRTCEngine.leaveChannel();
+        videoBox.innerHTML = '';
+      }
+    }
+    /* 
+      此处捕捉的是视频文件的 MediaStream，在 Electron 中捕获屏幕共享视频流
+      Electron 捕捉屏幕共享流：https://electronjs.org/docs/api/desktop-capturer
+      示例请参考注释的 addStream
+    */
+    function addStream(){
+      if(!isJoinRoom){
+        return alert('请先加入房间');
+      }
+      var sourceNode = document.querySelector('#source');
+      var mediaStream = sourceNode.captureStream();
+      rongRTCEngine.addStream({
+        id: currentUser.id,
+        stream: {
+          type: 'screen',
+          mediaStream: mediaStream
+        }
+      }, function(error, user){
+        if(error){
+          return console.log(error);
+        }
+        appendVideo(currentUser.id, 'screen', mediaStream);
+        console.log(user);
+      });
+    }
+     // Electron 共享屏幕
+    function addScreenStream(){
+      return alert('请修改 Electron 获取方式后再行测试');
+      /* 
+        由于 Electron 的暴露方式不同，此处主动检查一下
+        修改后删除 return alert('请修改 Electron 获取方式后再行测试'); 
+      */
+     let { desktopCapturer } = require('electron');
+     
+      let handleStream = function(stream){
+        // 同时只能添加一路流，如果已添加，优先删除
+        removeStream();
+        rongRTCEngine.addStream({
+          id: currentUser.id,
+          stream: {
+            type: 'screen',
+            mediaStream: stream
+          }
+        }, function(error, user){
+          if(error){
+            return console.log(error);
+          }
+          console.log(user);
+          appendVideo(currentUser.id, 'screen', stream);
+        });
+      };
+      desktopCapturer.getSources({ types: ['window', 'screen'] }, (error, sources) => {
+        if (error) throw error
+        for (let i = 0; i < sources.length; ++i) {
+          if (sources[i].name.indexOf('Electron') > -1) {
+            navigator.mediaDevices.getUserMedia({
+              audio: false,
+              video: {
+                mandatory: {
+                  chromeMediaSource: 'desktop',
+                  chromeMediaSourceId: sources[i].id,
+                  minWidth: 1280,
+                  maxWidth: 1280,
+                  minHeight: 720,
+                  maxHeight: 720
+                }
+              }
+            }).then((stream) => handleStream(stream))
+              .catch((e) => handleError(e))
+            return
+          }
+        }
+      })
+    }
+
+    function removeStream(){
+      if(!isJoinRoom){
+        return alert('请先加入房间');
+      }
+      rongRTCEngine.removeStream({
+        id: currentUser.id,
+        stream: {
+          type: 'screen'
+        }
+      }, function(error){
+        if(error){
+          return console.log(error);
+        }
+        console.log('remove successfully');
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RTC-Signal</title>
+	<link rel="stylesheet" href="../css/common.css">
+	<script src="http://localhost:8686/web-sdk-v2/release/2.3.6/protobuf-2.3.4.min.js"></script>
+	<script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib.js"></script>
+  </script>
+
+  <!-- 
+	userId: AUj8X32w1
+	token: DI3TfJHojSJ1zSdfXkh4egpRCpGrPzwCFuGMdWXYpP6+UI7Tq9xK/PFQHwZvtHqB3HpUJZ/RddS6F3Bdc4wEm6cJF/wOnBc4
+
+	userId: cPiSp04HC
+	token: b3sR1hkNJTt1zSdfXkh4egpRCpGrPzwCFuGMdWXYpP4b1p0NfkfAnnI6NxQ9moArvBa6jsNTFUE2S2vA/0gDI6cJF/wOnBc4
+	
+	userId: Nkz7DAJoM
+	token: PoHeXhmtLICRIyCj2uuPIApRCpGrPzwCFuGMdWXYpP4b1p0NfkfAnq0ZiXNA89m70d21PN8hWflSyP0PqD6UrKcJF/wOnBc4
+
+	groupId: groupId1219
+
+   -->
+  <script src="../js/init.js?123"></script>
+  <script src="../js/utils.js"></script>
+
+</head> 
+<body>
+	<div class="api-box">
+		<div class="api-box-btns">
+			<input type="text" value="e0x9wycfx7flq" placeholder="appkey" id="appkey" class="input-content">
+			<input type="text" value="navxq.rongcloud.net:9100" placeholder="nav" id="nav">
+			<br>
+			<input type="text" value="CCvTtZ53cTOyI7YIUMW09f4HZYNbqeH580JpZu9WN8MOElAwaPIEXIRxKynFbz9BTVrEs76rgufLb8Iokxuhl86UKwKW+eVY" placeholder="token" id="token" class="input-content input-token">
+			<br>
+			<input type="text" id="roomid" placeholder="roomId" value="room9901">
+			<br>
+			<input type="button" value="connect" onclick="connect()">
+			<br>
+			<input type="button" value="joinRoom" onclick="sendCommand('joinRoom')">
+			<input type="button" value="leaveRoom" onclick="sendCommand('leaveRoom')">
+			<br>
+			<input type="button" value="setInnerUserData" onclick="sendCommand('setInnerUserData')">
+			<input type="button" value="getInnerUserData" onclick="sendCommand('getInnerUserData')">
+			<input type="button" value="removeInnerUserData" onclick="sendCommand('removeInnerUserData')">
+			<br>
+			<input type="button" value="setOuterUserData" onclick="sendCommand('setOuterUserData')">
+			<input type="button" value="getOuterUserData" onclick="sendCommand('getOuterUserData')">
+			<input type="button" value="removeOuterUserData" onclick="sendCommand('removeOuterUserData')">
+			<br>
+			<input type="button" value="setInnerRoomData" onclick="sendCommand('setInnerRoomData')">
+			<input type="button" value="getInnerRoomData" onclick="sendCommand('getInnerRoomData')">
+			<input type="button" value="removeInnerRoomData" onclick="sendCommand('removeInnerRoomData')">
+			<br>
+			<input type="button" value="setOuterRoomData" onclick="sendCommand('setOuterRoomData')">
+			<input type="button" value="getOuterRoomData" onclick="sendCommand('getOuterRoomData')">
+			<input type="button" value="removeOuterRoomData" onclick="sendCommand('removeOuterRoomData')">
+			<br>
+
+		</div>
+	</div>
+	<input type="button" class="clear-result" value="Clear" onclick="clearResult()">
+	<div id="api-log-box"></div>
+	<script>
+		var utils = RCUtils.utils;
+		var conversation = RCUtils.conversation;
+		var Log = RCUtils.Log;
+
+		var Rong = null;
+
+		var log = new Log({
+			element: utils.getDom('api-log-box')
+		});
+
+		function clearResult(){
+			log.clear();
+		}
+
+		function connect(){
+			// if (Rong) {
+			// 	return;
+			// }
+			var appkey = utils.getDom('appkey').value;
+			var token = utils.getDom('token').value;
+			var navi = utils.getDom('nav').value;
+
+			var params = {
+				appkey: appkey,
+				token: token,
+				navi: navi
+				// protobuf: '../local-sdk/protobuf-2.3.1.min.js'
+			};
+			var callbacks = {
+				connected: function(_Rong){
+					Rong = _Rong;
+					log.show('Connect', 'connect successfully');
+				},
+				disconnectd: function(){
+					Rong = null;
+				},
+				received: function(message){
+					if(message.messageType == 'TextMessage' && message.targetId == '27513' && 1548054747837 == message.sentTime){
+						console.log(message);
+					}
+					// log.show('Received Message', message);
+				}
+			};
+
+			/*
+				RongDesktop 即为 electron-c++sdk/js/preload.js 中的 `RongDesktop`
+				以下逻辑为 RongDesktop 存在即认为在 Electron 中，请一定保证 RongDesktop 唯一、不可破坏、不被污染
+				详细请参考 martin-demo/sdk/js/init.js dataProvider 用法
+			*/
+			var isDesktopEnv = (typeof RongDesktop != 'undefined')
+			if (isDesktopEnv) {
+				params.imClient = RongDesktop.addon;
+			}
+			init(params, callbacks);
+		}
+		
+		var roomNode = utils.getDom('roomid');
+		var handler = {
+			joinRoom: function(){
+				var roomId = roomNode.value;
+				Rong.joinRTCRoom({id: roomId}, {
+					onSuccess: function() {
+						log.show('JoinRoom', "successfully");
+					},
+					onError: function(error) {
+						log.show('JoinRoom Error', error);
+					}
+				});
+			},
+			leaveRoom: function(){
+				var roomId = roomNode.value;
+				Rong.quitRTCRoom({id: roomId}, {
+					onSuccess: function() {
+						log.show('leaveRoom', "successfully");
+					},
+					onError: function(error) {
+						log.show('leaveRoom Error', error);
+					}
+				});
+			},
+			setInnerUserData: function(){
+				var roomId = roomNode.value;
+				var key = "uris";
+				var value = JSON.stringify({data: Date.now()});
+				var isInner = true;
+				var message = {
+					name: 'RC:TxtMsg',
+					content: '哈哈: setInnerUserData'
+				};
+				Rong.setRTCUserData(roomId, key, value, isInner, {
+					onSuccess: function() {
+						log.show('setInnerUserData', "successfully");
+					},
+					onError: function(error) {
+						log.show('setInnerUserData Error', error);
+					}
+				}, message);
+			},
+			getInnerUserData: function(){
+				var roomId = roomNode.value;
+				var keys = ["uris"];
+				var isInner = true;
+				Rong.getRTCUserData(roomId, keys, isInner, {
+					onSuccess: function(list) {
+						log.show('setInnerUserData', list);
+					},
+					onError: function(error) {
+						log.show('setInnerUserData Error', error);
+					}
+				});
+			},
+			removeInnerUserData: function(){
+				var roomId = roomNode.value;
+				var keys = ["uris"];
+				var isInner = false;
+				var message = {
+					name: 'RC:TxtMsg',
+					content: '哈哈: removeInnerUserData'
+				};
+				Rong.removeRTCUserData(roomId, keys, isInner, {
+					onSuccess: function() {
+						log.show('removeInnerUserData', "successfully");
+					},
+					onError: function(error) {
+						log.show('removeInnerUserData Error', error);
+					}
+				}, message);
+			},
+			setOuterUserData: function(){
+				var roomId = roomNode.value;
+				var key = "uris";
+				var value = JSON.stringify({data: Date.now()});
+				var isInner = false;
+				var message = {
+					name: 'RC:TxtMsg',
+					content: '哈哈: setOuterUserData'
+				};
+				Rong.setRTCUserData(roomId, key, value, isInner, {
+					onSuccess: function() {
+						log.show('setOuterUserData', "successfully");
+					},
+					onError: function(error) {
+						log.show('setOuterUserData Error', error);
+					}
+				}, message);
+			},
+			getOuterUserData: function(){
+				var roomId = roomNode.value;
+				var keys = ["uris"];
+				var isInner = false;
+				Rong.getRTCUserData(roomId, keys, isInner, {
+					onSuccess: function(list) {
+						log.show('setInnerUserData', list);
+					},
+					onError: function(error) {
+						log.show('setInnerUserData Error', error);
+					}
+				});
+			},
+			removeOuterUserData: function(){
+				var roomId = roomNode.value;
+				var keys = ["uris"];
+				var isInner = false;
+				var message = {
+					name: 'RC:TxtMsg',
+					content: '哈哈: removeOuterUserData'
+				};
+				Rong.removeRTCUserData(roomId, keys, isInner, {
+					onSuccess: function() {
+						log.show('removeOuterUserData', "successfully");
+					},
+					onError: function(error) {
+						log.show('removeOuterUserData Error', error);
+					}
+				}, message);
+			},
+			setInnerRoomData: function(){
+				var roomId = roomNode.value;
+				var key = "uris";
+				var value = JSON.stringify({data: Date.now()});
+				var isInner = true;
+				var message = {
+					name: 'RC:TxtMsg',
+					content: '哈哈: setInnerRoomData'
+				};
+				Rong.setRTCRoomData(roomId, key, value, isInner, {
+					onSuccess: function() {
+						log.show('setInnerRoomData', "successfully");
+					},
+					onError: function(error) {
+						log.show('setInnerRoomData Error', error);
+					}
+				}, message);
+			},
+			getInnerRoomData: function(){
+				var roomId = roomNode.value;
+				var keys = ["uris"];
+				var isInner = true;
+				Rong.getRTCRoomData(roomId, keys, isInner, {
+					onSuccess: function(list) {
+						log.show('getInnerRoomData', list);
+					},
+					onError: function(error) {
+						log.show('getInnerRoomData Error', error);
+					}
+				});
+			},
+			removeInnerRoomData: function(){
+				var roomId = roomNode.value;
+				var keys = ["uris"];
+				var isInner = true;
+				var message = {
+					name: 'RC:TxtMsg',
+					content: '哈哈: removeInnerRoomData'
+				};
+				Rong.removeRTCUserData(roomId, keys, isInner, {
+					onSuccess: function() {
+						log.show('removeInnerRoomData', "successfully");
+					},
+					onError: function(error) {
+						log.show('removeInnerRoomData Error', error);
+					}
+				}, message);
+			},
+			setOuterRoomData: function(){
+				var roomId = roomNode.value;
+				var key = "uris";
+				var value = JSON.stringify({data: Date.now()});
+				var isInner = false;
+				var message = {
+					name: 'RC:TxtMsg',
+					content: '哈哈: setOuterRoomData'
+				};
+				Rong.setRTCRoomData(roomId, key, value, isInner, {
+					onSuccess: function() {
+						log.show('setOuterRoomData', "successfully");
+					},
+					onError: function(error) {
+						log.show('setOuterRoomData Error', error);
+					}
+				}, message);
+			},
+			getOuterRoomData: function(){
+				var roomId = roomNode.value;
+				var keys = ["uris"];
+				var isInner = false;
+				Rong.getRTCRoomData(roomId, keys, isInner, {
+					onSuccess: function(list) {
+						log.show('getOuterRoomData', list);
+					},
+					onError: function(error) {
+						log.show('getOuterRoomData Error', error);
+					}
+				});
+			},
+			removeOuterRoomData: function(){
+				var roomId = roomNode.value;
+				var keys = ["uris"];
+				var isInner = false;
+				var message = {
+					name: 'RC:TxtMsg',
+					content: '哈哈: removeOuterRoomData'
+				};
+				Rong.removeRTCUserData(roomId, keys, isInner, {
+					onSuccess: function() {
+						log.show('removeOuterRoomData', "successfully");
+					},
+					onError: function(error) {
+						log.show('removeOuterRoomData Error', error);
+					}
+				}, message);
+			},
+		};
+		function sendCommand(type){
+			if (!Rong) {
+				alert('请先连接.');
+				return;
+			}
+			return handler[type]();
+		}
+	</script>
+
+	<script>
+		var stringFormat = function(str) {
+		    for (var i = 1; i < arguments.length; i++) {
+		        var val = arguments[i] == undefined ? "" : arguments[i],
+		            reg = new RegExp("\\{" + (i - 1) + "\\}", "g");
+		        str = str.replace(reg, val);
+		    }
+		    return str;
+		};
+
+        var getNavi = function (callback) {
+            var script = document.createElement("script");
+
+            var appkey = '8luwapkvucoil';
+			var token = 'hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==';
+
+		    var urlTpl = '{0}//nav.cn.ronghub.com/navi.xml?appId={1}&token={2}&callBack=getRongCloudCMPUrl&t={3}',
+		        timestamp = +new Date,
+		        token = encodeURIComponent(token);
+		    var url = stringFormat(urlTpl, '//', appkey, token, timestamp);
+
+            //进行jsonp请求
+            script.src = url;
+            document.body.appendChild(script);
+
+            script.onerror = function () {
+                console.log(RongIMLib.ConnectionState.TOKEN_INCORRECT);	
+            };
+            window.getRongCloudCMPUrl = function(info){
+            	console.log(info);
+            }
+        };
+		
+	</script>
+</body>
+</html>

@@ -1,9 +1,4 @@
 <style scoped>
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
 .layout {
   border: 1px solid #d7dde4;
   background: #f5f7f9;
@@ -32,27 +27,18 @@ body {
 .layout-footer-center {
   text-align: center;
 }
-.demo-split {
-  height: 900px;
-  border: 1px solid #dcdee2;
-}
-.demo-split-pane {
-  padding: 10px;
-}
+
 .road-map-box {
   width: 100%;
-  height: 100%;
+  height: 550px;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
+  right: 0;
   text-align: center;
 }
 
-.road-map {
-  width: 100%;
-  height: 800px;
-}
 .road-card-box {
   position: relative;
   top: -60px;
@@ -83,6 +69,19 @@ body {
   resize: none;
   margin-top: 5px;
 }
+.rong-bottom-point {
+  margin-top: 10px;
+}
+.inmap-scale-group {
+  position: absolute;
+  left: 10px;
+  bottom: 500px;
+  z-index: 999999;
+  opacity: 1;
+}
+.rong-button-reverselag {
+  margin-left: 10px;
+}
 </style>
 
 <template>
@@ -96,7 +95,7 @@ body {
             </MenuItem>
           </div>
           <div>
-            <Button type="primary" @click="todo()">自动计算对面边缘点</Button>
+            <Button type="primary" @click="autoCalcPoints()">自动计算对面边缘点</Button>
             <Button type="primary" @click="remark()">保存，并开始标注新道路</Button>
           </div>
         </Menu>
@@ -105,16 +104,14 @@ body {
         <Row>
           <Col span="15">
             <Card dis-hover>
-              <div class="road-map-box">
-                <div class="map flex-1 road-map" ref="map"></div>
-              </div>
+              <div class="road-map-box" ref="map"></div>
             </Card>
           </Col>
           <Col span="8" class="road-card-box">
             <Card dis-hover class="road-card">
               <Row class="road-card-row">
                 <Col>
-                  <Input placeholder="道路名称" v-model="roadName"/>
+                  <Input placeholder="道路名称" v-model="roadName" disabled/>
                 </Col>
               </Row>
 
@@ -123,19 +120,20 @@ body {
                   <Input placeholder="经纬度" v-model="pointPos"/>
                 </Col>
               </Row>
-
               <Row class="road-card-row">
-                <Col>
-                  <Input placeholder="本侧车道数量" v-model="count"/>
+                <Col span="18">
+                  <Input placeholder="起点另一侧经纬度" v-model="reversePointPos"/>
+                </Col>
+                <Col span="5">
+                  <Button
+                    class="rong-button-reverselag"
+                    type="primary"
+                    size="default"
+                    long
+                    @click="getReversePoints()"
+                  >开始获取</Button>
                 </Col>
               </Row>
-
-              <Row class="road-card-row">
-                <Col>
-                  <Input placeholder="对面车道数量" v-model="reverseCount"/>
-                </Col>
-              </Row>
-
               <Row class="road-card-row">
                 <Col span="5">道路方向</Col>
                 <Col span="19">
@@ -152,6 +150,17 @@ body {
                     <Option value="1">起点</Option>
                     <Option value="2">中间点</Option>
                     <Option value="3">终点</Option>
+                  </Select>
+                </Col>
+              </Row>
+              <Row class="road-card-row">
+                <Col span="5">补充属性</Col>
+                <Col span="19">
+                  <Select v-model="wheelType">
+                    <Option value="0">==</Option>
+                    <Option value="1">左转</Option>
+                    <Option value="2">左转补充</Option>
+                    <Option value="3">右转</Option>
                   </Select>
                 </Col>
               </Row>
@@ -186,38 +195,73 @@ body {
       </Content>
     </Layout>
     <Modal v-model="removePointModel" width="360">
-      <p slot="header" style="color:#f60;text-align:center">
+      <p slot="header" style="color:#2d8cf0;text-align:center">
         <Icon type="ios-information-circle"></Icon>
-        <span>Delete confirmation</span>
+        <span>请选择</span>
       </p>
-      <div style="text-align:center">
-        <p>是否删除道路点？</p>
-      </div>
-      <div slot="footer">
-        <Button type="error" size="large" long @click="removePoint()">删除</Button>
-      </div>
+      <Row>
+        <Col class="rong-bottom-point">
+          <Button type="primary" size="default" long @click="removePoint()">删除当前点</Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col class="rong-bottom-point">
+          <Button
+            type="primary"
+            size="default"
+            long
+            @click="removeRoad()"
+            :disabled="!markPoint.markPoint.roadId"
+          >删除该点所在道路</Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col class="rong-bottom-point">
+          <Button
+            type="primary"
+            size="default"
+            long
+            @click="editPoint()"
+            :disabled="!markPoint.markPoint.roadId"
+          >编辑该点所在道路</Button>
+        </Col>
+      </Row>
+      <div slot="footer"></div>
     </Modal>
   </div>
 </template>
 
 <script>
 import inMap from "inmap";
+import { stations } from "./mock.js";
 var isInsert = true;
-var imageOverlay,overlay;
-var overlayData = [], imageData = [];
+var imageOverlay, overlay;
+var overlayData = [],
+  imageData = [],
+  realLineData = [];
 export default {
   data() {
     return {
+      markPoint: {
+        markPoint: {
+          roadId: ""
+        }
+      },
+      reversePointPos: "",
+      roadId: "",
       roadName: "",
       pointPos: "",
-      count: "",
-      reverseCount: "",
+      count: 0,
+      reverseCount: 0,
+      wheelType: "",
       roadDirection: "",
       pointType: "",
       crossType: "",
       crossInfo: "",
       road: {},
-      removePointModel: false
+      removePointModel: false,
+      lineCoordinates: [],
+      isMarkReversePoint: false
     };
   },
   methods: {
@@ -238,29 +282,39 @@ export default {
         createPoint(this);
       }
     },
+    getReversePoints() {
+      this.isMarkReversePoint = true;
+      this.$Message.success("请点击地图获取对面坐标");
+    },
     remark: function() {
       updateRoadStatus(this);
     },
-    todo: function() {
-      this.$Message.warning("未完待续...");
+    autoCalcPoints: function() {
+      autoCalcPoints(this);
     },
     removePoint() {
       removeRoadPoint(this);
+    },
+    removeRoad() {
+      removeRoad(this);
+    },
+    editPoint() {
+      editPoint(this);
     }
   },
   mounted() {
     var inmap = new inMap.Map({
       id: this.$refs.map,
-      skin: "",
       center: [105.403119, 38.028658],
       zoom: {
-        // value: 18,
+        value: 5,
         show: true,
         max: 18,
-        min: 2
+        min: 5
       }
     });
 
+    var realTimeLineOverlay;
     var img = new Image();
     img.src =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAACWCAYAAAA/mr2PAAAACXBIWXMAAAsTAAALEwEAmpwYAAA4KmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgICAgICAgICAgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIgogICAgICAgICAgICB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIKICAgICAgICAgICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIj4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoTWFjaW50b3NoKTwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8eG1wOkNyZWF0ZURhdGU+MjAxOC0xMi0wOFQxNjo1Njo0OCswODowMDwveG1wOkNyZWF0ZURhdGU+CiAgICAgICAgIDx4bXA6TW9kaWZ5RGF0ZT4yMDE4LTEyLTA5VDEzOjQ0OjI5KzA4OjAwPC94bXA6TW9kaWZ5RGF0ZT4KICAgICAgICAgPHhtcDpNZXRhZGF0YURhdGU+MjAxOC0xMi0wOVQxMzo0NDoyOSswODowMDwveG1wOk1ldGFkYXRhRGF0ZT4KICAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9wbmc8L2RjOmZvcm1hdD4KICAgICAgICAgPHBob3Rvc2hvcDpDb2xvck1vZGU+MzwvcGhvdG9zaG9wOkNvbG9yTW9kZT4KICAgICAgICAgPHhtcE1NOkluc3RhbmNlSUQ+eG1wLmlpZDplOTY1NDk4NS1lZDk1LTQ4MmQtODljOC04ZDJkMTliYTZjNjc8L3htcE1NOkluc3RhbmNlSUQ+CiAgICAgICAgIDx4bXBNTTpEb2N1bWVudElEPnhtcC5kaWQ6ZTk2NTQ5ODUtZWQ5NS00ODJkLTg5YzgtOGQyZDE5YmE2YzY3PC94bXBNTTpEb2N1bWVudElEPgogICAgICAgICA8eG1wTU06T3JpZ2luYWxEb2N1bWVudElEPnhtcC5kaWQ6ZTk2NTQ5ODUtZWQ5NS00ODJkLTg5YzgtOGQyZDE5YmE2YzY3PC94bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ+CiAgICAgICAgIDx4bXBNTTpIaXN0b3J5PgogICAgICAgICAgICA8cmRmOlNlcT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24+Y3JlYXRlZDwvc3RFdnQ6YWN0aW9uPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6aW5zdGFuY2VJRD54bXAuaWlkOmU5NjU0OTg1LWVkOTUtNDgyZC04OWM4LThkMmQxOWJhNmM2Nzwvc3RFdnQ6aW5zdGFuY2VJRD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OndoZW4+MjAxOC0xMi0wOFQxNjo1Njo0OCswODowMDwvc3RFdnQ6d2hlbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnNvZnR3YXJlQWdlbnQ+QWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCk8L3N0RXZ0OnNvZnR3YXJlQWdlbnQ+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICA8L3JkZjpTZXE+CiAgICAgICAgIDwveG1wTU06SGlzdG9yeT4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzIwMDAwLzEwMDAwPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43MjAwMDAvMTAwMDA8L3RpZmY6WVJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+NjU1MzU8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgICAgPGV4aWY6UGl4ZWxYRGltZW5zaW9uPjExMDwvZXhpZjpQaXhlbFhEaW1lbnNpb24+CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj4xNTA8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAg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";
@@ -287,30 +341,106 @@ export default {
       }
     });
     inmap.add(overlay);
+
+    realTimeLineOverlay = createLineOverlay();
+    inmap.add(realTimeLineOverlay);
+
+    var stationImage = new Image();
+    stationImage.src =
+      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABvCAYAAAAaJWWXAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzdEMTk2NzlGODk4MTFFOEJGRjJEMEZEQTNENkE4MUYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzdEMTk2N0FGODk4MTFFOEJGRjJEMEZEQTNENkE4MUYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozN0QxOTY3N0Y4OTgxMUU4QkZGMkQwRkRBM0Q2QTgxRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozN0QxOTY3OEY4OTgxMUU4QkZGMkQwRkRBM0Q2QTgxRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ppmq9dIAAA1CSURBVHja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";
+    var stationOverlay = new inMap.ImgOverlay({
+      style: {
+        tooltip: {
+          show: true,
+          formatter: "{name}"
+        },
+        normal: {
+          icon: stationImage,
+          width: 15,
+          height: 15,
+          offsets: {
+            top: "-100%",
+            left: "-50%"
+          }
+        }
+      },
+      data: stations
+    });
+    inmap.add(stationOverlay);
+
     let bmap = inmap.getMap();
     bmap.centerAndZoom("承德", 16);
     var context = this;
     context.overlay = overlay;
+    context.realTimeLineOverlay = realTimeLineOverlay;
+    context.inmap = inmap;
+
+    var myGeo = new BMap.Geocoder();
+
     function showInfo(e) {
       if (!isInsert) {
         isInsert = true;
         return;
       }
-      overlayData.push({
-        geometry: {
-          type: "Point",
-          coordinates: [e.point.lng, e.point.lat]
-        },
-        style: {},
-        overlayType: 'overlay'
+      if (context.isMarkReversePoint) {
+        context.reversePointPos = [e.point.lng, e.point.lat].join(",");
+        context.isMarkReversePoint = false;
+        context.$Message.success("道路对面坐标点获取称可进行自动计算");
+        return;
+      }
+      myGeo.getLocation(new BMap.Point(e.point.lng, e.point.lat), function(
+        result
+      ) {
+        let { address: roadName } = result;
+        context.roadName = roadName;
+        overlayData.push({
+          name: context.roadName,
+          geometry: {
+            type: "Point",
+            coordinates: [e.point.lng, e.point.lat]
+          },
+          style: {},
+          markPoint: {
+            roadId: context.roadId || ""
+          },
+          overlayType: "overlay"
+        });
+        overlay.setData(overlayData);
+        context.lineCoordinates.push([e.point.lng, e.point.lat]);
+
+        var realLineData = context.realTimeLineOverlay.getData();
+        var existLineData = realLineData.filter(line => {
+          return line.id == context.roadId;
+        });
+        if (existLineData.length == 0) {
+          realLineData.push({
+            id: context.roadId,
+            name: context.roadName,
+            geometry: {
+              type: "LineString",
+              coordinates: context.lineCoordinates
+            },
+            overlayType: "overlay",
+            count: 1
+          });
+        }
+        // realLineData = utils.deepCopy(realLineData);
+        // context.realTimeLineOverlay.clearAll();
+        realLineData.forEach(line => {
+          if (line.id == context.roadId) {
+            line.geometry.coordinates = context.lineCoordinates;
+          }
+          delete line.geometry.pixels;
+          delete line.geometry.medianCoordinates;
+        });
+        context.realTimeLineOverlay.setData(realLineData);
+        context.pointPos = [e.point.lng, e.point.lat].join(",");
       });
-      overlay.setData(overlayData);
-      context.pointPos = [e.point.lng, e.point.lat].join(",");
     }
-    bmap.addEventListener("click", function(e){
+    bmap.addEventListener("click", function(e) {
       setTimeout(showInfo, 50, e);
     });
-    getRoads(function(_data) {
+    getRoads(function(_data, lines) {
       imageData = _data;
       var img = new Image();
       img.src =
@@ -339,10 +469,133 @@ export default {
       });
       inmap.add(imageOverlay);
       imageOverlay.setData(imageData);
+      context.imageOverlay = imageOverlay;
+
+      var oldLineOverlay = createLineOverlay();
+      inmap.add(oldLineOverlay);
+      oldLineOverlay.setData(lines);
+      context.oldLineOverlay = oldLineOverlay;
     });
   }
 };
 
+function removeLineOverlay(context) {
+  let {
+    markPoint,
+    markPoint: {
+      name,
+      markPoint: { roadId },
+      geometry: { coordinates }
+    }
+  } = context;
+  var lineOverlay;
+  var isRealTime = markPoint.overlayType == "overlay";
+  if (isRealTime) {
+    lineOverlay = context.realTimeLineOverlay;
+  } else {
+    lineOverlay = context.oldLineOverlay;
+  }
+
+  var data = lineOverlay.getData();
+  var point = coordinates.join(",");
+  for (var i = 0, len = data.length; i < len; i++) {
+    var line = data[i];
+    if (line.id == roadId) {
+      var lineData = line.geometry.coordinates;
+      lineData = lineData.filter($point => {
+        return point != $point.join(",");
+      });
+      line.geometry.coordinates = lineData;
+      if (isRealTime) {
+        context.lineCoordinates = lineData;
+      }
+    }
+    delete line.geometry.medianCoordinates;
+    delete line.geometry.pixels;
+  }
+  lineOverlay.setData(data);
+}
+function createLineOverlay() {
+  var overlay = new inMap.LineStringOverlay({
+    tooltip: {
+      show: false
+    },
+    style: {
+      normal: {
+        borderColor: "#2d8cf0",
+        borderWidth: 2,
+        lineOrCurive: "line"
+      },
+      splitList: []
+    },
+    data: []
+  });
+  return overlay;
+}
+function editPoint(context) {
+  let {
+    markPoint: { markPoint: road }
+  } = context;
+
+  var lineData = context.oldLineOverlay.getData();
+  var line = lineData.filter(line => {
+    return line.id == road.roadId;
+  })[0];
+  utils.copy(context, {
+    roadName: road.name,
+    pointPos: [road.latitude, road.longitude].join(","),
+    count: road.count,
+    reverseCount: road.reverseCount,
+    roadDirection: road.direction,
+    pointType: road.type,
+    crossType: road.crossType,
+    crossInfo: road.crossInfo,
+    road: {
+      id: road.roadId
+    },
+    lineCoordinates: line.geometry.coordinates,
+    removePointModel: false
+  });
+}
+function removeRoad(context) {
+  let {
+    markPoint: {
+      markPoint: { name, roadId }
+    }
+  } = context;
+  utils.ajax({
+    url: config.url + "/road/remove/" + roadId,
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    success: function(result) {
+      var data = imageOverlay.getData();
+      data = data.filter(road => {
+        return road.markPoint.roadId != roadId;
+      });
+      imageOverlay.setData(data);
+
+      let lineData = context.oldLineOverlay.getData();
+      lineData.map(function(road) {
+        delete road.geometry.medianCoordinates;
+        delete road.geometry.pixels;
+        if(road.id == roadId){
+          road.geometry.coordinates = [1,1];
+        }
+        return road;
+      });
+      context.oldLineOverlay.setData(lineData);
+      // context.oldLineOverlay.remove();
+      // var oldNewLineOverlay = createLineOverlay();
+      // oldNewLineOverlay.setData(lineData);
+      // context.inmap.add(oldNewLineOverlay);
+      context.$Message.success("删除道路成功");
+      // context.oldLineOverlay = oldNewLineOverlay;
+      context.removePointModel = false;
+    }
+  });
+}
 function removeRoadPoint(context) {
   let { markPoint } = context;
   let {
@@ -350,20 +603,27 @@ function removeRoadPoint(context) {
     overlayType
   } = markPoint;
   removePoint(markPoint.markPoint);
-  var tmpData = overlayType == 'overlay' ? overlayData : imageData;
+  var tempOverlay = null;
+  if (overlayType == "overlay") {
+    tempOverlay = overlay;
+  } else {
+    tempOverlay = imageOverlay;
+  }
+  var tmpData = tempOverlay.getData();
   tmpData = tmpData.filter(function(point) {
     let { geometry } = point;
     let points = geometry.coordinates;
-    return points[0] != coordinates[0] && points[1] != coordinates[1];
+    return points.join(',') != coordinates.join(',');
   });
-  if(overlayType == 'overlay'){
-    overlay.setData(tmpData);
+  if (overlayType == "overlay") {
     overlayData = tmpData;
-  }else{
-    imageOverlay.setData(tmpData);
+  } else {
     imageData = tmpData;
   }
+  
+  tempOverlay.setData(tmpData);
   context.removePointModel = false;
+  removeLineOverlay(context);
 }
 
 var utils = {
@@ -406,6 +666,9 @@ var utils = {
     if (utils.isArray(obj)) {
       loopArr();
     }
+  },
+  deepCopy: function(obj){
+    return JSON.parse(JSON.stringify(obj));
   },
   isObject: function(obj) {
     return Object.prototype.toString.call(obj) == "[object Object]";
@@ -501,6 +764,7 @@ var getUserId = function() {
 
 var config = {
   url: "http://47.95.11.208:8585"
+  // url: "http://127.0.0.1:8585"
 };
 function createRoad(context) {
   utils.ajax({
@@ -516,6 +780,10 @@ function createRoad(context) {
     success: function(result) {
       let { result: road } = result;
       context.road = road;
+      let realTimeLineOverlay = context.realTimeLineOverlay;
+      let data = realTimeLineOverlay.getData();
+      data[0].id = road.id;
+      realTimeLineOverlay.setData(data);
       createPoint(context);
     }
   });
@@ -529,7 +797,9 @@ function createPoint(context) {
     roadDirection,
     pointType,
     crossType,
-    crossInfo
+    crossInfo,
+    wheelType,
+    reversePointPos
   } = context;
   if (!road.id) {
     return context.$Message.error("请先创建起点");
@@ -537,6 +807,9 @@ function createPoint(context) {
   let pos = pointPos.split(",");
   let log = pos[0],
     lat = pos[1];
+  let reversePos = reversePointPos.split(",");
+  let reverseLng = reversePos[0] || 0;
+  let reverseLat = reversePos[1] || 0;
   utils.ajax({
     url: config.url + "/point/create",
     method: "POST",
@@ -548,11 +821,14 @@ function createPoint(context) {
       direction: roadDirection,
       longitude: log,
       latitude: lat,
+      reverseLng: reverseLng,
+      reverseLat: reverseLat,
       type: pointType,
       count: count,
       reverseCount: reverseCount,
-      crossType: crossType,
-      crossInfo: crossInfo
+      crossType: Number(crossType),
+      crossInfo: crossInfo,
+      wheelType: Number(wheelType)
     },
     success: function(result) {
       var { result } = result;
@@ -580,9 +856,11 @@ function clear(context) {
     pointType: "",
     crossType: "",
     crossInfo: "",
-    road: {}
+    road: {},
+    lineCoordinates: []
   });
 }
+
 function updateRoadStatus(context) {
   let { road } = context;
   if (!road.id) {
@@ -605,7 +883,7 @@ function updateRoadStatus(context) {
   });
 }
 function removePoint(point) {
-  if (!point) {
+  if (!point.id) {
     return;
   }
   utils.ajax({
@@ -615,7 +893,9 @@ function removePoint(point) {
       "Content-Type": "application/json"
     },
     body: {
-      id: point.id
+      id: point.id,
+      longitude: point.longitude,
+      latitude: point.latitude
     },
     success: function(result) {
       console.log("删除点成功");
@@ -635,28 +915,301 @@ function getRoads(callback) {
     },
     success: function(result) {
       let { result: points } = result;
-      let data = [];
+      let data = [],
+        roads = {},
+        lines = [];
       points.forEach(point => {
-        let roadId = point.roadId;
-        let r = roadId * 27;
-        let g = roadId * 18;
-        let a = roadId * 7;
-        data.push({
-          geometry: {
-            type: "Point",
-            coordinates: [point.longitude, point.latitude]
-          },
-          style: {
-            backgroundColor: "rgb(" + r + "," + g + "," + a + ")"
-          },
-          count: [point.longitude, point.latitude].join(','),
-          overlayType: 'image',
-          markPoint: point
-        });
+        if(point.longitude){
+          let roadId = point.roadId;
+          let road = roads[roadId] || {
+            roadId: roadId,
+            name: point.name,
+            coordinates: []
+          };
+          roads[roadId] = road;
+          road.coordinates.push([point.longitude, point.latitude]);
+          data.push({
+            id: point.id,
+            geometry: {
+              type: "Point",
+              coordinates: [point.longitude, point.latitude]
+            },
+            count: [point.longitude, point.latitude].join(","),
+            overlayType: "image",
+            markPoint: point
+          });
+        }
       });
-      callback(data);
+      for (let id in roads) {
+        let road = roads[id];
+        let line = {
+          id: road.roadId,
+          name: road.name,
+          geometry: {
+            type: "LineString",
+            coordinates: road.coordinates
+          },
+          overlayType: "image",
+          count: 1
+        };
+        lines.push(line);
+      }
+      callback(data, lines);
     }
   });
 }
-</script>
 
+function calcPoint(option) {
+  let {
+    startX,
+    startY,
+    endX,
+    endY,
+    reverseStartX,
+    reverseStratY,
+    originalX,
+    originalY
+  } = option;
+  /**
+  1、求 h 宽度
+  2、求 B2x,B2y 
+  3、求 reverseEndX、reverseEndY
+  */
+  var h = Math.sqrt(
+    Math.pow(reverseStartX - originalX, 2) +
+      Math.pow(reverseStratY - originalY, 2)
+  );
+
+  /* 
+endY Yb
+endX Xb
+*/
+  //var k = Math.pow((endY - startY) / (endX - startX), 2);
+
+  var x = 0,
+    y = 0;
+
+  // 1
+  if (endX > startX && endY > startY) {
+    var a = Math.abs(endY - startY);
+    var b = Math.abs(endX - startX);
+    var k = Math.sqrt(Math.pow(a, 2)+Math.pow(b, 2));
+    x = endX - h*(a/k);
+    y = endY + h*(b/k);
+  }
+  // 2
+  if (endX > startX && endY < startY) {
+    var a = Math.abs(endY - startY);
+    var b = Math.abs(endX - startX);
+    var k = Math.sqrt(Math.pow(a, 2)+Math.pow(b, 2));
+    x = endX + h*(a/k);
+    y = endY + h*(b/k);
+  }
+  // 3
+  if (endX < startX && endY < startY) {
+    var a = Math.abs(endY - startY);
+    var b = Math.abs(endX - startX);
+    var k = Math.sqrt(Math.pow(a, 2)+Math.pow(b, 2));
+    x = endX + h*(a/k);
+    y = endY - h*(b/k);
+  }
+  // 4
+  if (endX < startX && endY > startY) {
+    var a = Math.abs(endY - startY);
+    var b = Math.abs(endX - startX);
+    var k = Math.sqrt(Math.pow(a, 2)+Math.pow(b, 2));
+    x = endX - h*(a/k);
+    y = endY - h*(b/k);
+  }
+  // 5
+  if (endX > startX && endX == startY) {
+    var k = 0;
+    x = endX;
+    y = endY + h;
+  }
+  // 6
+  if (endX == startX && endY < startY) {
+    x = endX + h;
+    y = endY;
+  }
+  // 7
+  if (endX < startX && endY == startY) {
+    var k = 0;
+    x = endX;
+    y = endY - h;
+  }
+  // 8
+  if (endX == startX && endY > startX) {
+    x = endX - h;
+    y = endY;
+  }
+  return [x, y];
+}
+
+function getPoints(option, callback) {
+  utils.ajax({
+    url: config.url + "/point/" + option.roadId + "/findAll",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: {
+      userId: getUserId()
+    },
+    success: callback
+  });
+}
+
+function autoCalcPoints(context) {
+  let {
+    road: { id: roadId }
+  } = context;
+  if (!roadId) {
+    return context.$Message.error("创建道路后方可自动计算");
+  }
+
+  var reversePointPos = context.reversePointPos;
+  if (!reversePointPos) {
+    return context.$Message.error("请优先选择道路对面坐标点");
+  }
+  reversePointPos = reversePointPos.split(",");
+  getPoints({ roadId: roadId }, function(result) {
+    let { result: points } = result;
+    let len = points.length;
+    let newPos = [reversePointPos];
+
+    for (let i = 0; i < len; i++) {
+      let point = points[i];
+      let nextPoint = points[i + 1];
+      if (!nextPoint) {
+        break;
+      }
+      let newPoint = calcPoint({
+        startX: +point.longitude,
+        startY: +point.latitude,
+        endX: +nextPoint.longitude,
+        endY: +nextPoint.latitude,
+        reverseStartX: reversePointPos[0],
+        reverseStratY: reversePointPos[1],
+        originalX: points[0].longitude,
+        originalY: points[0].latitude
+      });
+      newPos.push(newPoint);
+    }
+
+    var data = context.imageOverlay.getData();
+
+    var newData = [],
+      newLineData = [];
+
+    var {
+      road,
+      pointPos,
+      count,
+      reverseCount,
+      roadDirection,
+      pointType,
+      crossType,
+      crossInfo,
+      roadName
+    } = context;
+
+    utils.ajax({
+      url: config.url + "/road/create",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: {
+        name: roadName,
+        userId: getUserId()
+      },
+      success: function(result) {
+        let { result: road } = result;
+        newPos.forEach(point => {
+          newData.push({
+            geometry: {
+              type: "Point",
+              coordinates: point
+            },
+            count: point.join(","),
+            overlayType: "image",
+            markPoint: {
+              id: Math.random(),
+              roadId: road.id,
+              longitude: point[0],
+              latitude: point[1],
+              name: roadName
+            }
+          });
+        });
+        data.forEach(point => {
+          newData.push({
+            id: point.id,
+            geometry: {
+              type: "Point",
+              coordinates: point.geometry.coordinates
+            },
+            overlayType: "image",
+            markPoint: point.markPoint
+          });
+        });
+        context.imageOverlay.setData(newData);
+
+        var lineData = context.oldLineOverlay.getData();
+        newLineData.push({
+          id: road.id,
+          name: Math.random() * 100,
+          geometry: {
+            type: "LineString",
+            coordinates: newPos
+          },
+          overlayType: "image",
+          count: 1
+        });
+        lineData.forEach(line => {
+          newLineData.push({
+            id: line.id,
+            name: line.name,
+            geometry: {
+              type: "LineString",
+              coordinates: line.geometry.coordinates
+            },
+            overlayType: "image",
+            count: 1
+          });
+        });
+        context.oldLineOverlay.remove();
+        var oldNewLineOverlay = createLineOverlay();
+        oldNewLineOverlay.setData(newLineData);
+        context.inmap.add(oldNewLineOverlay);
+        context.oldLineOverlay = oldNewLineOverlay;
+
+        roadDirection = roadDirection == 1 ? 2 : 1;
+        newPos.forEach(pos => {
+          utils.ajax({
+            url: config.url + "/point/create",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: {
+              roadId: road.id,
+              direction: roadDirection,
+              longitude: String(pos[0]),
+              latitude: String(pos[1]),
+              type: pointType || 2,
+              count: count || 0,
+              reverseCount: reverseCount || 0,
+              crossType: Number(crossType),
+              crossInfo: crossInfo || ''
+            },
+            success: function(result) {}
+          });
+        });
+        context.$Message.success("添加道路边缘点成功");
+      }
+    });
+  });
+}
+</script>

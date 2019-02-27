@@ -16,3 +16,26 @@
      </body>
 </html>
 
+var name = '张三';
+var user = {
+  name: '李四',
+  say: () => {
+    console.log(this.anme);
+  },
+  getName: function(){
+    console.log(this.name);
+  }
+};
+
+var say = user.say;
+say();
+
+user.say();
+
+var getName = user.getName;
+getName();
+
+user.getName();
+
+
+
