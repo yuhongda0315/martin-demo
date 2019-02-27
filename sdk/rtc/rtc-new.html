@@ -163,26 +163,26 @@
   <div class="rong-container">
     <div class="rong-current-toolbar">
       <div class="rong-buttons-connect">
-        <input class="rong-input" type="button" value="Connect" onclick="connect()">
-        <input class="rong-input" type="button" value="Disconnect" onclick="disconnect()">
+        <input class="rong-input" id="connect" type="button" value="Connect">
+        <input class="rong-input" id="disconnect" type="button" value="Disconnect">
       </div>
       <div class="rong-buttons-room">
-        <input class="rong-input" type="button" value="Join" onclick="joinRoom()">
-        <input class="rong-input" type="button" value="Leave" onclick="leaveRoom()">
+        <input class="rong-input" id="joinroom" type="button" value="Join">
+        <input class="rong-input" id="leaveroom" type="button" value="Leave">
       </div>
       <div class="rong-buttons-stream">
-        <input class="rong-input" type="button" value="Publish" onclick="publishMulti()">
-        <input class="rong-input" type="button" value="Unpublish" onclick="unpublishMulti()">
+        <input class="rong-input" id="publish" type="button" value="Publish">
+        <input class="rong-input" id="unpublish" type="button" value="Unpublish">
       </div>
       <div class="rong-buttons-stream-mp4">
-        <input class="rong-input" type="button" value="PublishMP4" onclick="publishMP4()">
-        <input class="rong-input" type="button" value="UnpublishMP4" onclick="unpublishMP4()">
+        <input class="rong-input" id="publishmp4" type="button" value="PublishMP4">
+        <input class="rong-input" id="unpublishmp4" type="button" value="UnpublishMP4">
       </div>
       <div class="rong-buttons-operation">
-        <input class="rong-input" type="button" value="Mute" onclick="mute()">
-        <input class="rong-input" type="button" value="Unmute" onclick="unmute()">
-        <input class="rong-input" type="button" value="Disbale" onclick="disableVideo()">
-        <input class="rong-input" type="button" value="Enable" onclick="enableVideo()">
+        <input class="rong-input" id="mute" type="button" value="Mute">
+        <input class="rong-input" id="unmute" type="button" value="Unmute">
+        <input class="rong-input" id="disablevideo" type="button" value="Disbale">
+        <input class="rong-input" id="enablevideo" type="button" value="Enable">
       </div>
     </div>
     <div class="rong-member-toolbar">
@@ -252,6 +252,56 @@
     var streamBox = getDom('.rong-buttons-stream');
     var operationBox = getDom('.rong-buttons-operation');
     var mp4Box = getDom('.rong-buttons-stream-mp4');
+
+    var connectNode = getDom("#connect");
+    var disconnectNode = getDom("#disconnect");
+    var joinroomNode = getDom("#joinroom");
+    var leaveroomNode = getDom("#leaveroom");
+    var publishNode = getDom("#publish");
+    var unpublishNode = getDom("#unpublish");
+    var publishmp4Node = getDom("#publishmp4");
+    var unpublishmp4Node = getDom("#unpublishmp4");
+    var muteNode = getDom("#mute");
+    var unmuteNode = getDom("#unmute");
+    var disablevideoNode = getDom("#disablevideo");
+    var enablevideoNode = getDom("#enablevideo");
+
+    connectNode.onclick = function(){
+      connect();
+    };
+    disconnectNode.onclick = function(){
+      disconnect();
+    };
+    joinroomNode.onclick = function(){
+      joinRoom();
+    };
+    leaveroomNode.onclick = function(){
+      leaveRoom();
+    };
+    publishNode.onclick = function(){
+      publishMulti();
+    };
+    unpublishNode.onclick = function(){
+      unpublishMulti();
+    };
+    publishmp4Node.onclick = function(){
+      publishMP4();
+    };
+    unpublishmp4Node.onclick = function(){
+      unpublishMP4();
+    };
+    muteNode.onclick = function(){
+      mute();
+    };
+    unmuteNode.onclick = function(){
+      unmute();
+    };
+    disablevideoNode.onclick = function(){
+      disableVideo();
+    };
+    enablevideoNode.onclick = function(){
+      enableVideo();
+    };
     var currentUser = {
       id: app.userId,
       token: '',
@@ -470,20 +520,6 @@
     var addMember = function (user) {
       removeMember(user);
       var { id: userId, stream: { tag } } = user;
-      var html = `
-        <div class="rong-member-buttons" id="${getId(user, 'handler')}">
-          <h3 class="rong-member-name">User : ${userId} Tag: ${tag}</h3>
-          <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Subscribe" onclick="">
-          <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Unsubscribe" onclick="">
-          <div class="rong-member-operation">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Mute" onclick="">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Unmute" onclick="">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Disbale" onclick="">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Enable" onclick="">
-            <input class="rong-input" userid="${userId}" tag="${tag}" type="button" value="Resize" onclick="">
-          </div>
-        </div>
-      `;
 
       var createEl = function (type, attrs) {
         var button = document.createElement(type);
