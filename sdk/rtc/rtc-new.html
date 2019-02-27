@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="./common.css">
   <script src="./protobuf-2.3.4.min.js"></script>
   <script src="./RongIMLib-2.4.0-beta.js"></script>
-  <script src="./RongRTC.3.0.0.js?122123"></script>
-  <!-- <script src="http://localhost:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js"></script> -->
+  <script src="./RongRTC.3.0.0.js?2222222"></script>
+  <!-- <script src="http://10.12.8.137:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js"></script> -->
   <style>
     html,
     body {
@@ -268,40 +268,40 @@
     var disablevideoNode = getDom("#disablevideo");
     var enablevideoNode = getDom("#enablevideo");
 
-    connectNode.onclick = function(){
+    connectNode.onclick = function () {
       connect();
     };
-    disconnectNode.onclick = function(){
+    disconnectNode.onclick = function () {
       disconnect();
     };
-    joinroomNode.onclick = function(){
+    joinroomNode.onclick = function () {
       joinRoom();
     };
-    leaveroomNode.onclick = function(){
+    leaveroomNode.onclick = function () {
       leaveRoom();
     };
-    publishNode.onclick = function(){
+    publishNode.onclick = function () {
       publishMulti();
     };
-    unpublishNode.onclick = function(){
+    unpublishNode.onclick = function () {
       unpublishMulti();
     };
-    publishmp4Node.onclick = function(){
+    publishmp4Node.onclick = function () {
       publishMP4();
     };
-    unpublishmp4Node.onclick = function(){
+    unpublishmp4Node.onclick = function () {
       unpublishMP4();
     };
-    muteNode.onclick = function(){
+    muteNode.onclick = function () {
       mute();
     };
-    unmuteNode.onclick = function(){
+    unmuteNode.onclick = function () {
       unmute();
     };
-    disablevideoNode.onclick = function(){
+    disablevideoNode.onclick = function () {
       disableVideo();
     };
-    enablevideoNode.onclick = function(){
+    enablevideoNode.onclick = function () {
       enableVideo();
     };
     var currentUser = {
@@ -527,6 +527,7 @@
       removeMember(user);
       var userId = user.id;
       var tag = user.stream.tag;
+      var streamtype = user.stream.type;
       var createEl = function (type, attrs) {
         var button = document.createElement(type);
         for (var name in attrs) {
@@ -551,6 +552,7 @@
           userid: userId,
           tag: tag,
           type: "button",
+          streamtype: streamtype,
           value: name
         });
       };
@@ -567,29 +569,29 @@
       var enableNode = createButton("Enable");
       var resizeNode = createButton("Resize");
 
-      subscribeNode.onclick = function(event){
+      subscribeNode.onclick = function (event) {
         subscribeStream(event.currentTarget);
       };
-      unsubscribeNode.onclick = function(event){
+      unsubscribeNode.onclick = function (event) {
         unsubscribeStream(event.currentTarget);
       };
-      muteNode.onclick = function(event){
+      muteNode.onclick = function (event) {
         mute(event.currentTarget);
       };
-      unmuteNode.onclick = function(event){
+      unmuteNode.onclick = function (event) {
         unmute(event.currentTarget);
       };
-      disbaleNode.onclick = function(event){
+      disbaleNode.onclick = function (event) {
         disableVideo(event.currentTarget);
       };
-      enableNode.onclick = function(event){
+      enableNode.onclick = function (event) {
         enableVideo(event.currentTarget);
       };
-      resizeNode.onclick = function(event){
+      resizeNode.onclick = function (event) {
         resizeStream(event.currentTarget);
       };
 
-      memberOperate.append(muteNode,unmuteNode,disbaleNode,enableNode,resizeNode);
+      memberOperate.append(muteNode, unmuteNode, disbaleNode, enableNode, resizeNode);
       memberButtons.append(memberName, subscribeNode, unsubscribeNode, memberOperate);
       memberToolBarNode.append(memberButtons);
     };
@@ -672,14 +674,16 @@
         return {
           id: currentUser.id,
           stream: {
-            tag: app.debug ? 'mp4' : 'rtc'
+            tag: app.debug ? 'mp4' : 'rtc',
+            type: StreamType.AUDIO_AND_VIDEO
           }
         };
       }
       return {
         id: target.getAttribute('userid'),
         stream: {
-          tag: target.getAttribute('tag')
+          tag: target.getAttribute('tag'),
+          type: Number(target.getAttribute('streamtype'))
         }
       }
     }
@@ -851,21 +855,16 @@
         return;
       }
       isPublishMulti = true;
-      var sourceNode = document.querySelector('#source');
-      var videoStream = sourceNode.captureStream();
+      // var sourceNode = document.querySelector('#source');
+      // var videoStream = sourceNode.captureStream();
       getMedia(function (mediaStream) {
         stream.publish({
           id: currentUser.id,
           stream: [{
             type: StreamType.AUDIO_AND_VIDEO,
             tag: 'rtc',
-            mediaStream: videoStream,
-            size: StreamSize.MAX
-          }, {
-            type: StreamType.AUDIO_AND_VIDEO,
-            tag: 'rtc',
             mediaStream: mediaStream,
-            size: StreamSize.MIN
+            size: StreamSize.MAX
           }]
         }).then(function () {
           show(operationBox);

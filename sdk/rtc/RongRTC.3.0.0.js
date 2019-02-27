@@ -105,6 +105,9 @@
   var isContain = function isContain(str, keyword) {
     return str.indexOf(keyword) > -1;
   };
+  var isEqual = function isEqual(source, target) {
+    return source === target;
+  };
   var Cache = function Cache(cache) {
     if (!isObject(cache)) {
       cache = {};
@@ -137,7 +140,34 @@
     };
   };
   var request = function request(url, option) {
-    return fetch(url, option);
+    return deferred(function (resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      var method = option.method || 'GET';
+      xhr.open(method, url, true);
+      var headers = option.headers || {};
+      forEach(headers, function (header, name) {
+        xhr.setRequestHeader(name, header);
+      });
+      var body = option.body;
+      var isSuccess = function isSuccess() {
+        return (/^(200|202)$/.test(xhr.status)
+        );
+      };
+      xhr.onreadystatechange = function () {
+        if (isEqual(xhr.readyState, 4)) {
+          var responseText = xhr.responseText;
+
+          var result = JSON.parse(responseText);
+          if (isSuccess()) {
+            resolve(result);
+          } else {
+            reject(result);
+          }
+        }
+      };
+      xhr.send(body);
+    });
+    // return fetch(url, option);
   };
   var map = function map(arrs, callback) {
     return arrs.map(callback);
@@ -159,9 +189,6 @@
   };
   var some = function some(arrs, callback) {
     return arrs.some(callback);
-  };
-  var isEqual = function isEqual(source, target) {
-    return source === target;
   };
   var isEmpty = function isEmpty(obj) {
     var result = true;
@@ -1094,8 +1121,6 @@
           headers: {
             'Content-Type': 'application/json'
           }
-        }).then(function (response) {
-          return response.json();
         });
       }
     }]);
@@ -1133,7 +1158,9 @@
 
       var context = _this;
       var pc = new RTCPeerConnection({
-        sdpSemantics: 'plan-b'
+        sdpSemantics: 'plan-b',
+        // Chrome 49 Test
+        iceServers: []
       });
       var events = {
         onaddstream: function onaddstream(event) {
@@ -1254,29 +1281,33 @@
           stream = [stream];
         }
         var option = context.getOption();
-        return pc.createOffer(option).then(function (desc) {
-          utils.forEach(stream, function (_ref3) {
-            var mediaStream = _ref3.mediaStream,
-                size = _ref3.size;
+        return utils.deferred(function (resole, reject) {
+          pc.createOffer(function (desc) {
+            utils.forEach(stream, function (_ref3) {
+              var mediaStream = _ref3.mediaStream,
+                  size = _ref3.size;
 
-            var newStreamId = context.getStreamId(user, size);
-            var streamId = mediaStream.id;
-            var _desc = desc,
-                sdp = _desc.sdp;
+              var newStreamId = context.getStreamId(user, size);
+              var streamId = mediaStream.id;
+              var _desc = desc,
+                  sdp = _desc.sdp;
 
-            sdp = context.renameStream(sdp, {
-              name: streamId,
-              newName: newStreamId
+              sdp = context.renameStream(sdp, {
+                name: streamId,
+                newName: newStreamId
+              });
+              utils.extend(desc, {
+                sdp: sdp
+              });
             });
-            utils.extend(desc, {
-              sdp: sdp
+            desc = context.renameCodec(desc);
+            utils.extend(context, {
+              desc: desc
             });
-          });
-          desc = context.renameCodec(desc);
-          utils.extend(context, {
-            desc: desc
-          });
-          return desc;
+            resole(desc);
+          }, function (error) {
+            reject(error);
+          }, option);
         });
       }
     }, {
@@ -1286,9 +1317,12 @@
         var pc = context.pc;
 
         var option = context.getOption();
-        pc.createOffer(option).then(function (desc) {
+        pc.createOffer(function (desc) {
           callback(context.renameCodec(desc));
-        });
+        }, function () {}, option);
+        // pc.createOffer(option).then(desc => {
+        //   callback(context.renameCodec(desc));
+        // });
       }
     }, {
       key: 'renameStream',
@@ -1469,16 +1503,16 @@
         });
       }
       var CONNECTED = RongIMLib.ConnectionStatus.CONNECTED;
-      // 如果实例化 RongRTC 时，IM 已连接成功，主动触发内部 init
 
-      if (utils.isEqual(connectState, CONNECTED)) {
-        init();
-      }
       utils.extend(context, {
         connectState: connectState,
         im: im,
         RongIMLib: RongIMLib
       });
+      // 如果实例化 RongRTC 时，IM 已连接成功，主动触发内部 init
+      if (utils.isEqual(connectState, CONNECTED)) {
+        init();
+      }
       im.statusWatch(function (status) {
         switch (status) {
           case CONNECTED:
@@ -2001,6 +2035,7 @@
     */
     var subCache = utils.Cache();
     var prosumer = new utils.Prosumer();
+    var pc = null;
     var SubscribeCache = {
       get: function get$$1(userId) {
         return subCache.get(userId);
@@ -2011,14 +2046,15 @@
       getKeys: function getKeys() {
         return subCache.getKeys();
       },
-      remove: function remove(userId, tag, type) {
-        var subs = subCache.get(userId);
-        type = type || StreamType.AUDIO_AND_VIDEO;
-        subs = utils.filter(subs, function (_ref) {
-          var mediaTag = _ref.tag,
-              mediaType = _ref.mediaType;
+      remove: function remove(user) {
+        var userId = user.id;
 
-          return !utils.isEqual(mediaTag, tag) && utils.isEqual(mediaType, type);
+        var subs = subCache.get(userId) || [];
+        var streamId = pc.getStreamId(user);
+        subs = utils.filter(subs, function (_ref) {
+          var msid = _ref.msid;
+
+          return !utils.isEqual(streamId, msid);
         });
         subCache.set(userId, subs);
       },
@@ -2033,7 +2069,6 @@
       StreamCache.clear();
       SubscribeCache.clear();
     };
-    var pc = null;
     var eventEmitter = new EventEmitter();
     var getSubPromiseUId = function getSubPromiseUId(user) {
       var id = user.id,
@@ -2136,33 +2171,44 @@
 
       pc.setAnwser(sdp);
       var uris = getUris(publishList);
+
+      var getTempUris = function getTempUris(type) {
+        var userId = user.id;
+
+        var cacheUris = PubResourceCache.get(userId) || [];
+        var isPublish = utils.isEqual(type, Message.PUBLISH);
+        if (isPublish) {
+          cacheUris = uris;
+        }
+        var streamId = pc.getStreamId(user);
+        var getCondition = function getCondition(stream) {
+          var msid = stream.msid;
+
+          return utils.isEqual(msid, streamId);
+        };
+        var tempUris = utils.filter(cacheUris, function (stream) {
+          return getCondition(stream);
+        });
+        // 第一次 publish 过滤后 tempUris 为空，使用默认值
+        return utils.isEmpty(tempUris) ? uris : tempUris;
+      };
+      var sendUris = getTempUris(type);
       switch (type) {
         case Message.PUBLISH:
           im.sendMessage({
             type: type,
             content: {
-              uris: uris
+              uris: sendUris
             }
           });
           break;
         case Message.UNPUBLISH:
-          {
-            var userId = user.id;
-
-            var publishUris = PubResourceCache.get(userId);
-            var streamId = pc.getStreamId(user);
-            var unpublishUris = utils.filter(publishUris, function (stream) {
-              var msid = stream.msid;
-
-              return utils.isEqual(msid, streamId);
-            });
-            im.sendMessage({
-              type: type,
-              content: {
-                uris: unpublishUris
-              }
-            });
-          }
+          im.sendMessage({
+            type: type,
+            content: {
+              uris: sendUris
+            }
+          });
           break;
       }
       PubResourceCache.set(user.id, uris);
@@ -2631,12 +2677,7 @@
       });
     };
     var unsubscribe = function unsubscribe(user) {
-      var id = user.id,
-          _user$stream4 = user.stream,
-          type = _user$stream4.type,
-          tag = _user$stream4.tag;
-
-      SubscribeCache.remove(id, tag, type);
+      SubscribeCache.remove(user);
       var roomId = im.getRoomId();
       Logger$1.log(LogTag.STREAM_HANDLER, {
         msg: 'unsubscribe:start',
@@ -2792,6 +2833,10 @@
       var uris = getFitUris(user, type, state);
       // uris 为空表示没有发布资源，不需要修改
       if (!utils.isEmpty(uris)) {
+        var id = user.id;
+
+        var fullUris = PubResourceCache.get(id);
+        im.setUserInfo(User.SET_USERINFO, fullUris);
         im.sendMessage({
           type: Message.MODIFY,
           content: {
@@ -7984,9 +8029,10 @@
       var getMSType = function getMSType(uris) {
         var check = function check(msType) {
           return utils.some(uris, function (_ref) {
-            var mediaType = _ref.mediaType;
+            var mediaType = _ref.mediaType,
+                state = _ref.state;
 
-            return utils.isEqual(msType, mediaType);
+            return utils.isEqual(msType, mediaType) && utils.isEqual(state, StreamState.ENABLE);
           });
         };
         var type = StreamType.NODE;
