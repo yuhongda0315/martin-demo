@@ -239,7 +239,9 @@
       var info = {};
       for (var i = 0; i < querys.length; i++) {
         var query = querys[i];
-        var [key, value] = query.split('=');
+        var values = query.split('=');
+        var key = values[0];
+        var value = values[1];
         info[key] = value;
       }
       return info;
