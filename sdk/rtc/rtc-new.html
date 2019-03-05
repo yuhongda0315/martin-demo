@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <title>RongRTC</title>
   <link rel="stylesheet" href="./common.css">
-  <script src="./protobuf-2.3.4.min.js"></script>
-  <script src="./RongIMLib-2.4.0-beta.js"></script>
-  <script src="./RongRTC.3.0.0.js?222223322"></script>
-  <!-- <script src="http://10.12.8.137:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js"></script> -->
+  <script src="./protobuf-2.3.4.min.js?999000"></script>
+  <script src="./RongIMLib-2.4.1-beta.js?333444"></script>
+  <script src="./RongRTC.3.0.0.js?11222"></script>
+  <!-- <script src="http://localhost:8686/web-sdk-v2/release/2.3.6/protobuf-2.3.4.min.js"></script>
+  <script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib.js?123"></script>
+  <script src="http://localhost:8686/web-rtc-sdk/dist/RongRTC.3.0.0.js?555"></script> -->
   <style>
     html,
     body {
@@ -203,7 +205,7 @@
     </div>
     <div class="rong-video-srouce">
       <!-- <video id="source" src="./heal-the-world.mp4" controls></video> -->
-      <video id="source" crossorigin="anonymous" src="https://yuhongda0315.github.io/martin-demo/sdk/rtc/heal-the-world.mp4" controls></video>
+      <!-- <video id="source" crossorigin="anonymous" src="https://yuhongda0315.github.io/martin-demo/sdk/rtc/heal-the-world.mp4" controls></video> -->
     </div>
     <div class="rong-logs" id="rong-logs"></div>
     <input class="rong-input rong-button-log" type="button" value="Clear Logs" onclick="clearLogs()">
@@ -321,7 +323,8 @@
         var token = result.token;
         var appkey = app.appkey || 'c9kqb3rdkbb8j';
         var navi = app.nav || 'navqa.cn.ronghub.com';
-
+        var secret = app.secret;
+        currentUser.token = token;
         var params = {
           appkey: appkey,
           token: token,
@@ -382,11 +385,20 @@
     }
     var getToken = function (user) {
       var url = app.url || config.url;
+      let body = {
+        id: user.id
+      };
+      var appkey = app.appkey;
+      var secret = app.secret;
+      var api = app.api;
+      if (appkey && secret && api) {
+        body["appkey"] = appkey;
+        body["secret"] = secret;
+        body["url"] = api;
+      }
       return request(url, {
         method: 'POST',
-        body: JSON.stringify({
-          id: user.id
-        }),
+        body: JSON.stringify(body),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         }
@@ -422,6 +434,9 @@
         id: user.id,
         stream: ms
       };
+      if (user.id == currentUser.id) {
+        video.muted = true;
+      }
       var id = getId(userInfo);
       var box = createDiv(id, ['rong-video']);
       var childId = getId(userInfo, 'info');
@@ -445,6 +460,7 @@
     };
     var rongRTC = new RongRTC({
       // url: 'http://10.13.10.117:7788/',
+      appkey: app.appkey,
       url: app.ms,
       RongIMLib: RongIMLib,
       // debug: true,
@@ -634,7 +650,7 @@
     function joinRoom() {
       room.join({
         id: currentUser.id,
-        token: currentUser.id
+        token: currentUser.token
       }).then(function () {
         log.show('', 'join successfully');
         if (app.debug) {
@@ -753,7 +769,11 @@
       });
     }
     function getMedia(callback) {
-      navigator.getUserMedia({ video: true, audio: true }, function (stream) {
+      navigator.getUserMedia({
+        video: true, audio: {
+          advanced: [{ googEchoCancellation: { exact: true } }, { googAutoGainControl: { exact: true } }, { googNoiseReduction: { exact: true } }]
+        }
+      }, function (stream) {
         callback(stream);
         appendVideo({
           id: currentUser.id,

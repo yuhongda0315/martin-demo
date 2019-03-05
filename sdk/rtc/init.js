@@ -61,13 +61,13 @@ RongIMClient.registerMessageType(messageName, objectName, messageTag, prototypes
 				case 4:
 				case 5:
 				case 6:
-					callbacks.disconnectd && callbacks.disconnectd(status);
-					break;
+				connect();
+				callbacks.disconnectd && callbacks.disconnectd(status);
+				break;
 			}
 
 		}
 	});
-
 	/*
 	文档：http://www.rongcloud.cn/docs/web.html#3、设置消息监听器
 
@@ -89,7 +89,7 @@ RongIMClient.registerMessageType(messageName, objectName, messageTag, prototypes
 	// });
 
 
-	var connect = function(config) {
+	function connect(config) {
 		config = config || {};
 		//开始链接
 		RongIMClient.connect(token, {

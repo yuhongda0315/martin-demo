@@ -53,6 +53,18 @@
       loopArr();
     }
   };
+  var isEmpty = function isEmpty(obj) {
+    var result = true;
+    if (isObject(obj)) {
+      forEach(obj, function () {
+        result = false;
+      });
+    }
+    if (isString(obj) || isArray(obj)) {
+      result = obj.length === 0;
+    }
+    return result;
+  };
   var rename = function rename(origin, newNames) {
     var isObj = isObject(origin);
     if (isObj) {
@@ -141,6 +153,7 @@
   };
   var request = function request(url, option) {
     return deferred(function (resolve, reject) {
+      option = option || {};
       var xhr = new XMLHttpRequest();
       var method = option.method || 'GET';
       xhr.open(method, url, true);
@@ -148,7 +161,7 @@
       forEach(headers, function (header, name) {
         xhr.setRequestHeader(name, header);
       });
-      var body = option.body;
+      var body = option.body || {};
       var isSuccess = function isSuccess() {
         return (/^(200|202)$/.test(xhr.status)
         );
@@ -157,11 +170,20 @@
         if (isEqual(xhr.readyState, 4)) {
           var responseText = xhr.responseText;
 
+          if (isEmpty(responseText)) {
+            return reject({
+              status: xhr
+            });
+          }
           var result = JSON.parse(responseText);
           if (isSuccess()) {
             resolve(result);
           } else {
-            reject(result);
+            var status = xhr.status;
+
+            reject({
+              status: status
+            });
           }
         }
       };
@@ -189,18 +211,6 @@
   };
   var some = function some(arrs, callback) {
     return arrs.some(callback);
-  };
-  var isEmpty = function isEmpty(obj) {
-    var result = true;
-    if (isObject(obj)) {
-      forEach(obj, function () {
-        result = false;
-      });
-    }
-    if (isString(obj) || isArray(obj)) {
-      result = obj.length === 0;
-    }
-    return result;
   };
   var toJSON = function toJSON(value) {
     return JSON.stringify(value);
@@ -286,7 +296,7 @@
     this.produce = function (res) {
       data.push(res);
     };
-    this.consume = function (callback) {
+    this.consume = function (callback, finished) {
       if (isConsuming) {
         return;
       }
@@ -295,11 +305,15 @@
         var res = data.shift();
         if (isUndefined(res)) {
           isConsuming = false;
+          finished && finished();
           return;
         }
         callback(res, next);
       };
       next();
+    };
+    this.isExeuting = function () {
+      return isConsuming;
     };
   }
   /* 
@@ -430,6 +444,10 @@
       code: 10004,
       name: 'NETWORK_UNAVAILABLE',
       msg: '网络不可用'
+    }, {
+      code: 10005,
+      name: 'APPKEY_ILLEGAL',
+      msg: 'AppKey 不可为空'
     }, {
       code: 20001,
       name: 'STREAM_NOT_EXIST',
@@ -1115,12 +1133,18 @@
           domain: domain,
           path: path
         });
+        var headers = {
+          'Content-Type': 'application/json'
+        };
+        var _headers = option.headers;
+
+        if (utils.isObject(_headers)) {
+          utils.extend(headers, _headers);
+        }
         return utils.request(url, {
           method: 'POST',
           body: JSON.stringify(body),
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          headers: headers
         });
       }
     }]);
@@ -1145,7 +1169,8 @@
     JOINED: 'common_joined',
     LEFT: 'common_left',
     ERROR: 'common_error',
-    CONSUME: 'common_consume'
+    CONSUME: 'common_consume',
+    CONSUME_FINISHED: 'common_consume_finished'
   };
 
   var PeerConnection = function (_EventEmitter) {
@@ -1317,12 +1342,12 @@
         var pc = context.pc;
 
         var option = context.getOption();
-        pc.createOffer(function (desc) {
-          callback(context.renameCodec(desc));
-        }, function () {}, option);
-        // pc.createOffer(option).then(desc => {
-        //   callback(context.renameCodec(desc));
-        // });
+        var success = function success(desc) {
+          desc = context.renameCodec(desc);
+          callback && callback(desc);
+          return desc;
+        };
+        return pc.createOffer(option).then(success);
       }
     }, {
       key: 'renameStream',
@@ -1456,7 +1481,18 @@
     PUBLISH: 'RTCPublishResourceMessage',
     UNPUBLISH: 'RTCUnpublishResourceMessage',
     MODIFY: 'RTCModifyResourceMessage',
-    STATE: 'RTCUserChangeMessage'
+    STATE: 'RTCUserChangeMessage',
+    ROOM_NOTIFY: 'RTCRoomDataNotifyMessage',
+    USER_NOTIFY: 'RTCUserDataNotifyMessage'
+  };
+
+  var MessageName = {
+    PUBLISH: 'RCRTC:PublishResource',
+    UNPUBLISH: 'RCRTC:UnpublishResource',
+    MODIFY: 'RCRTC:ModifyResource',
+    STATE: 'RCRTC:state',
+    ROOM_NOTIFY: 'RCRTC:RoomNtf',
+    USER_NOTIFY: 'RCRTC:UserNtf'
   };
   var Timeout = {
     TIME: 10 * 1000
@@ -1466,6 +1502,22 @@
       code: code
     };
     reject(error);
+  };
+  var getMsgName = function getMsgName(type) {
+    switch (type) {
+      case Message.PUBLISH:
+        return MessageName.PUBLISH;
+      case Message.UNPUBLISH:
+        return MessageName.UNPUBLISH;
+      case Message.MODIFY:
+        return MessageName.MODIFY;
+      case Message.STATE:
+        return MessageName.STATE;
+      case Message.ROOM_NOTIFY:
+        return MessageName.ROOM_NOTIFY;
+      case Message.USER_NOTIFY:
+        return MessageName.USER_NOTIFY;
+    }
   };
   var IM = function (_EventEmitter) {
     inherits(IM, _EventEmitter);
@@ -1669,20 +1721,28 @@
         };
         var messages = [{
           type: Message.PUBLISH,
-          name: 'RCRTC:PublishResource',
+          name: getMsgName(Message.PUBLISH),
           props: ['uris']
         }, {
           type: Message.UNPUBLISH,
-          name: 'RCRTC:UnpublishResource',
+          name: getMsgName(Message.UNPUBLISH),
           props: ['uris']
         }, {
           type: Message.MODIFY,
-          name: 'RCRTC:ModifyResource',
+          name: getMsgName(Message.MODIFY),
           props: ['uris']
         }, {
           type: Message.STATE,
-          name: 'RCRTC:state',
+          name: getMsgName(Message.STATE),
           props: ['users']
+        }, {
+          type: Message.ROOM_NOTIFY,
+          name: getMsgName(Message.ROOM_NOTIFY),
+          props: ['content']
+        }, {
+          type: Message.USER_NOTIFY,
+          name: getMsgName(Message.USER_NOTIFY),
+          props: ['content']
         }];
         utils.forEach(messages, function (message) {
           register(message);
@@ -1700,7 +1760,10 @@
         });
         return utils.deferred(function (resolve, reject) {
           im.getInstance().joinRTCRoom(room, {
-            onSuccess: function onSuccess() {
+            onSuccess: function onSuccess(users) {
+              utils.extend(room, {
+                users: users
+              });
               context.emit(CommonEvent.JOINED, room);
               context.rtcPing(room);
               resolve();
@@ -1821,6 +1884,89 @@
         });
       }
     }, {
+      key: 'setUserData',
+      value: function setUserData(key, value, isInner, message) {
+        var id = this.room.id,
+            im = this.im;
+
+        value = utils.toJSON(value);
+        return utils.deferred(function (resolve, reject) {
+          im.getInstance().setRTCUserData(id, key, value, isInner, {
+            onSuccess: resolve,
+            onError: reject
+          }, message);
+        });
+      }
+    }, {
+      key: 'getUserData',
+      value: function getUserData(keys, isInner) {
+        var id = this.room.id,
+            im = this.im;
+
+        return utils.deferred(function (resolve, reject) {
+          im.getInstance().getRTCUserData(id, keys, isInner, {
+            onSuccess: resolve,
+            onError: function onError(error) {
+              reject(error);
+            }
+          });
+        });
+      }
+    }, {
+      key: 'removeUserData',
+      value: function removeUserData(keys, isInner, message) {
+        var id = this.room.id,
+            im = this.im;
+
+        return utils.deferred(function (resolve, reject) {
+          im.getInstance().removeRTCUserData(id, keys, isInner, {
+            onSuccess: resolve,
+            onError: reject
+          }, message);
+        });
+      }
+    }, {
+      key: 'setRoomData',
+      value: function setRoomData(key, value, isInner, message) {
+        var id = this.room.id,
+            im = this.im;
+
+        return utils.deferred(function (resolve, reject) {
+          im.getInstance().setRTCRoomData(id, key, value, isInner, {
+            onSuccess: resolve,
+            onError: reject
+          }, message);
+        });
+      }
+    }, {
+      key: 'getRoomData',
+      value: function getRoomData(keys, isInner) {
+        var id = this.room.id,
+            im = this.im;
+
+        return utils.deferred(function (resolve, reject) {
+          im.getInstance().getRTCRoomData(id, keys, isInner, {
+            onSuccess: function onSuccess(data) {
+              resolve(data);
+            },
+            onError: reject
+          });
+        });
+      }
+    }, {
+      key: 'removeRoomData',
+      value: function removeRoomData(keys, isInner, message) {
+        var id = this.room.id,
+            im = this.im;
+
+        return utils.deferred(function (resolve, reject) {
+          im.getInstance().removeRTCRoomData(id, keys, isInner, {
+            onSuccess: resolve,
+            onError: reject
+          }, message);
+        });
+      }
+    }, {
       key: 'getExistUsers',
       value: function getExistUsers() {
         var im = this.im,
@@ -1872,6 +2018,16 @@
             }
           });
         });
+      }
+    }, {
+      key: 'getMessage',
+      value: function getMessage(type, content) {
+        var name = getMsgName(type);
+        content = utils.toJSON(content);
+        return {
+          name: name,
+          content: content
+        };
       }
     }, {
       key: 'isReady',
@@ -1994,13 +2150,16 @@
         var isOnline = false;
         var ajax = function ajax() {
           count = getCount();
-          utils.request(url).then(function () {
-            utils.extend(context, {
-              detecting: false
-            });
-            isOnline = true;
-            callback(isOnline);
-          }, function () {
+          utils.request(url).then(function () {}, function (_ref) {
+            var status = _ref.status;
+
+            if (utils.isEqual(status, 404)) {
+              utils.extend(context, {
+                detecting: false
+              });
+              isOnline = true;
+              return callback(isOnline);
+            }
             if (utils.isEqual(max, count)) {
               return callback(isOnline);
             }
@@ -2036,6 +2195,12 @@
     var subCache = utils.Cache();
     var prosumer = new utils.Prosumer();
     var pc = null;
+    var User = {
+      set: function set$$1(key, data, isInner, message) {
+        return im.setUserData(key, data, isInner, message);
+      },
+      SET_USERINFO: 'uris'
+    };
     var SubscribeCache = {
       get: function get$$1(userId) {
         return subCache.get(userId);
@@ -2094,21 +2259,35 @@
       });
       return subs;
     };
-    var getBody = function getBody() {
-      return utils.deferred(function (resolve) {
-        pc.getOffer(function (offer) {
-          var token = im.getToken();
-          var subs = getSubs();
-          resolve({
-            token: token,
-            sdp: offer,
-            subscribeList: subs
-          });
+    var appkey = option.appkey;
+
+    var getHeaders = function getHeaders() {
+      return {
+        'App-Key': appkey
+      };
+    };
+    var getBody = function getBody(desc) {
+      var token = im.getToken();
+      var subs = getSubs();
+      var body = {
+        token: token,
+        subscribeList: subs
+      };
+      if (desc) {
+        utils.extend(body, {
+          sdp: desc
         });
+        return utils.Defer.resolve(body);
+      }
+      return pc.getOffer().then(function (offer) {
+        utils.extend(body, {
+          sdp: offer
+        });
+        return body;
       });
     };
     var negotiate = function negotiate(response) {
-      pc.getOffer(function (offer) {
+      pc.getOffer().then(function (offer) {
         pc.setOffer(offer);
         var sdp = response.sdp;
 
@@ -2126,9 +2305,11 @@
           roomId: roomId,
           body: body
         });
+        var headers = getHeaders();
         return request$1.post({
           path: url,
-          body: body
+          body: body,
+          headers: headers
         }).then(function (response) {
           Logger$1.log(LogTag.STREAM_HANDLER, {
             msg: 'publish:reconnect:response',
@@ -2193,26 +2374,13 @@
         return utils.isEmpty(tempUris) ? uris : tempUris;
       };
       var sendUris = getTempUris(type);
-      switch (type) {
-        case Message.PUBLISH:
-          im.sendMessage({
-            type: type,
-            content: {
-              uris: sendUris
-            }
-          });
-          break;
-        case Message.UNPUBLISH:
-          im.sendMessage({
-            type: type,
-            content: {
-              uris: sendUris
-            }
-          });
-          break;
-      }
-      PubResourceCache.set(user.id, uris);
-      return utils.Defer.resolve();
+      var content = {
+        uris: sendUris
+      };
+      var message = im.getMessage(type, content);
+      var isInner = true;
+      User.set(User.SET_USERINFO, uris, isInner, message);
+      return PubResourceCache.set(user.id, uris);
     };
     eventEmitter.on(CommonEvent.CONSUME, function () {
       var user = im.getUser();
@@ -2239,6 +2407,8 @@
           });
           next();
         });
+      }, function () {
+        eventEmitter.emit(CommonEvent.CONSUME_FINISHED);
       });
     });
     var getUId = function getUId(user, tpl) {
@@ -2371,7 +2541,9 @@
           });
         }
       });
-      im.getUsers(room).then(function (users) {
+      var users = room.users;
+
+      var usersHandler = function usersHandler() {
         DataCache.set(DataCacheName.USERS, users);
         if (utils.isEmpty(users)) {
           DataCache.set(DataCacheName.IS_NOTIFY_READY, true);
@@ -2427,7 +2599,8 @@
           });
         });
         DataCache.set(DataCacheName.IS_NOTIFY_READY, true);
-      });
+      };
+      usersHandler();
     });
     var isCurrentUser = function isCurrentUser(user) {
       var _im$getUser2 = im.getUser(),
@@ -2435,17 +2608,68 @@
 
       return utils.isEqual(user.id, id);
     };
-    var User = {
-      set: function set$$1(key, data) {
-        var publishList = data.publishList;
+    var publishTempStreams = [];
+    var publishInvoke = function publishInvoke(users) {
+      if (!utils.isArray(users)) {
+        users = [users];
+      }
+      utils.forEach(users, function (user) {
+        pc.addStream(user);
+      });
 
-        var uris = getUris(publishList);
-        return im.setUserInfo(key, uris).then(function () {
-          return data;
+      var _users = users,
+          _users2 = slicedToArray(_users, 1),
+          user = _users2[0];
+
+      var roomId = im.getRoomId();
+      Logger$1.log(LogTag.STREAM_HANDLER, {
+        msg: 'publish:start',
+        roomId: roomId,
+        user: user
+      });
+      return pc.createOffer(user).then(function (desc) {
+        pc.setOffer(desc);
+        return getBody(desc).then(function (body) {
+          var url = utils.tplEngine(Path.SUBSCRIBE, {
+            roomId: roomId
+          });
+          Logger$1.log(LogTag.STREAM_HANDLER, {
+            msg: 'publish:request',
+            roomId: roomId,
+            user: user,
+            body: body
+          });
+          var headers = getHeaders();
+          return request$1.post({
+            path: url,
+            body: body,
+            headers: headers
+          }).then(function (response) {
+            Logger$1.log(LogTag.STREAM_HANDLER, {
+              msg: 'publish:response',
+              roomId: roomId,
+              user: user,
+              response: response
+            });
+            publishTempStreams.length = 0;
+            exchangeHandler(response, user, Message.PUBLISH);
+          }, function (error) {
+            Logger$1.log(LogTag.STREAM_HANDLER, {
+              msg: 'publish:response',
+              roomId: roomId,
+              user: user,
+              error: error
+            });
+            return error;
+          });
         });
-      },
-      SET_USERINFO: 'uris'
+      });
     };
+    eventEmitter.on(CommonEvent.CONSUME_FINISHED, function () {
+      if (!utils.isEmpty(publishTempStreams)) {
+        publishInvoke(publishTempStreams);
+      }
+    });
     var publish = function publish(user) {
       var streams = user.stream;
 
@@ -2464,48 +2688,12 @@
         }, size);
         StreamCache.set(streamId, mediaStream);
       });
-      var roomId = im.getRoomId();
-      Logger$1.log(LogTag.STREAM_HANDLER, {
-        msg: 'publish:start',
-        roomId: roomId,
-        user: user
-      });
-      return pc.addStream(user).then(function (desc) {
-        pc.setOffer(desc);
-        return getBody().then(function (body) {
-          var url = utils.tplEngine(Path.SUBSCRIBE, {
-            roomId: roomId
-          });
-          Logger$1.log(LogTag.STREAM_HANDLER, {
-            msg: 'publish:request',
-            roomId: roomId,
-            user: user,
-            body: body
-          });
-          return request$1.post({
-            path: url,
-            body: body
-          }).then(function (response) {
-            Logger$1.log(LogTag.STREAM_HANDLER, {
-              msg: 'publish:response',
-              roomId: roomId,
-              user: user,
-              response: response
-            });
-            return User.set(User.SET_USERINFO, response);
-          }, function (error) {
-            Logger$1.log(LogTag.STREAM_HANDLER, {
-              msg: 'publish:response',
-              roomId: roomId,
-              user: user,
-              error: error
-            });
-            return error;
-          }).then(function (result) {
-            return exchangeHandler(result, user, Message.PUBLISH);
-          });
-        });
-      });
+
+      if (prosumer.isExeuting()) {
+        publishTempStreams.push(user);
+        return utils.Defer.resolve();
+      }
+      return publishInvoke(user);
     };
     var unpublish = function unpublish(user) {
       user = utils.clone(user);
@@ -2567,9 +2755,11 @@
             user: user,
             body: body
           });
+          var headers = getHeaders();
           return request$1.post({
             path: url,
-            body: body
+            body: body,
+            headers: headers
           }).then(function (response) {
             Logger$1.log(LogTag.STREAM_HANDLER, {
               msg: 'unpublish:response',
@@ -2578,7 +2768,7 @@
               response: response
             });
             StreamCache.remove(streamId);
-            return User.set(User.SET_USERINFO, response);
+            exchangeHandler(response, user, Message.UNPUBLISH);
           }, function (error) {
             Logger$1.log(LogTag.STREAM_HANDLER, {
               msg: 'unpublish:response',
@@ -2586,8 +2776,6 @@
               user: user,
               error: error
             });
-          }).then(function (result) {
-            return exchangeHandler(result, user, Message.UNPUBLISH);
           });
         });
       });
@@ -2655,9 +2843,11 @@
               path: url,
               body: body
             };
+            var headers = getHeaders();
             prosumer.produce({
               sdp: sdp,
-              body: body
+              body: body,
+              headers: headers
             });
             eventEmitter.emit(CommonEvent.CONSUME);
           });
@@ -2687,9 +2877,11 @@
           user: user,
           body: body
         });
+        var headers = getHeaders();
         return request$1.post({
           path: url,
-          body: body
+          body: body,
+          headers: headers
         }).then(function (response) {
           Logger$1.log(LogTag.STREAM_HANDLER, {
             msg: 'unsubscribe:response',
@@ -2757,9 +2949,11 @@
           user: user,
           body: body
         });
+        var headers = getHeaders();
         return request$1.post({
           path: url,
-          body: body
+          body: body,
+          headers: headers
         }).then(function (response) {
           Logger$1.log(LogTag.STREAM_HANDLER, {
             msg: 'resize:response',
@@ -2822,27 +3016,26 @@
       });
       return uris;
     };
-    var sendModify = function sendModify(user, type, state) {
+    var saveModify = function saveModify(user, type, state) {
       var uris = getFitUris(user, type, state);
       // uris 为空表示没有发布资源，不需要修改
       if (!utils.isEmpty(uris)) {
         var id = user.id;
 
         var fullUris = PubResourceCache.get(id);
-        im.setUserInfo(User.SET_USERINFO, fullUris);
-        im.sendMessage({
-          type: Message.MODIFY,
-          content: {
-            uris: uris
-          }
-        });
+        var content = {
+          uris: uris
+        };
+        var message = im.getMessage(Message.MODIFY, content);
+        var isInner = true;
+        User.set(User.SET_USERINFO, fullUris, isInner, message);
       }
       return utils.Defer.resolve();
     };
     var modifyTrack = function modifyTrack(user, type, state, isEnabled) {
       trackHandler(user, type, isEnabled);
       if (isCurrentUser(user)) {
-        sendModify(user, type, state);
+        saveModify(user, type, state);
       }
       return utils.Defer.resolve();
     };
@@ -8196,6 +8389,7 @@
 
       var context = this;
       var option = {
+        appkey: '',
         url: 'https://msqa.rongcloud.net/',
         debug: false,
         created: function created() {},
@@ -8230,11 +8424,17 @@
         option: option,
         client: client
       });
-      var created = option.created,
+      var appkey = option.appkey,
+          created = option.created,
           mounted = option.mounted,
           unmounted = option.unmounted,
           error = option.error;
 
+      if (utils.isEmpty(appkey)) {
+        var Inner = ErrorType.Inner;
+
+        return error(Inner.APPKEY_ILLEGAL);
+      }
       created();
       Logger$1.log(LogTag.LIFECYCLE, {
         state: 'created'
