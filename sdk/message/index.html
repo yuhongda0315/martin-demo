@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Message</title>
-	<link rel="stylesheet" href="../css/common.css">
-	<script src="https://cdn.ronghub.com/RongIMLib-2.3.5.js"></script>
-  </script>
 
-  <!-- 
+<head>
+	<meta charset="UTF-8">
+	<title>Message</title>
+	<link rel="stylesheet" href="../css/common.css">
+	<script src="https://cdn.ronghub.com/protobuf-2.3.4.min.js"></script>
+	<script src="https://cdn.ronghub.com/RongIMLib-2.4.0.js"></script>
+	</script>
+
+	<!-- 
 	userId: AUj8X32w1
 	token: DI3TfJHojSJ1zSdfXkh4egpRCpGrPzwCFuGMdWXYpP6+UI7Tq9xK/PFQHwZvtHqB3HpUJZ/RddS6F3Bdc4wEm6cJF/wOnBc4
 
@@ -20,28 +22,31 @@
 	groupId: groupId1219
 
    -->
-  <script src="../js/init.js?123"></script>
-  <script src="../js/utils.js"></script>
+	<script src="../js/init.js?123"></script>
+	<script src="../js/utils.js"></script>
 
-</head> 
+</head>
+
 <body>
 	<div class="api-box">
 		<div class="api-box-btns">
-			<input type="text" value="4z3hlwrv3lpst" placeholder="appkey" id="appkey" class="input-content">
+			<input type="text" value="8luwapkvucoil" placeholder="appkey" id="appkey" class="input-content">
 			<input type="text" value="nav.cn.ronghub.com" placeholder="nav" id="nav">
 			<input type="text" value="" placeholder="clearTimeStamp" id="clearTimeStamp">
 			<br>
-			<input type="text" value="ALP6WVTxViEeIexA8o/+nT0QMTFgKhEeZcfwSQFsO1ifONPQ4/n9xj05wZPSvg8tWfzvR1NVAK11OeJAAccYYQ==" placeholder="token" id="token" class="input-content input-token">
+			<input type="text"
+				value="9TWMT8tzfTpEjRjDY+VIzcSkAMimzaj6nB20cRPaYWRSdTlzPudZjMDfa3RWTLAahqV7Q68DB6pDhuh8o9Ba2Q=="
+				placeholder="token" id="token" class="input-content input-token">
 			<br>
 			<input type="text" id="conversationType" placeholder="conversationType" value="1">
-			<input type="text" id="targetId" placeholder="targetId" value="27513">
+			<input type="text" id="targetId" placeholder="targetId" value="D-nA3Nx9kybeE4m4RpQlgv">
 			<br>
 			<input type="button" value="connect" onclick="connect()">
 			<input type="button" value="sendMessage" onclick="sendCommand('send')">
 			<input type="button" value="clearHistoryMessages" onclick="sendCommand('clearHistory')">
 			<input type="button" value="getHistoryMessages" onclick="sendCommand('getHistory')">
 			<input type="button" value="getNextHistoryMessages" onclick="sendCommand('getNextHistory')">
-			
+
 			<input type="button" value="getConversationList" onclick="sendCommand('getConversationList')">
 			<input type="button" value="Reload" onclick="location.reload()">
 		</div>
@@ -59,11 +64,11 @@
 			element: utils.getDom('api-log-box')
 		});
 
-		function clearResult(){
+		function clearResult() {
 			log.clear();
 		}
 
-		function connect(){
+		function connect() {
 			// if (Rong) {
 			// 	return;
 			// }
@@ -74,19 +79,24 @@
 			var params = {
 				appkey: appkey,
 				token: token,
-				navi: navi
+				navi: navi,
+				navigaters: [navi],
+				maxNaviRetry: 3
 				// protobuf: '../local-sdk/protobuf-2.3.1.min.js'
 			};
+			var start = Date.now(), end = 0;
 			var callbacks = {
-				connected: function(_Rong){
+				connected: function (_Rong) {
+					end = Date.now();
+					console.log(start, end, end - start);
 					Rong = _Rong;
 					log.show('Connect', 'connect successfully');
 				},
-				disconnectd: function(){
+				disconnectd: function () {
 					Rong = null;
 				},
-				received: function(message){
-					if(message.messageType == 'TextMessage' && message.targetId == '27513' && 1548054747837 == message.sentTime){
+				received: function (message) {
+					if (message.messageType == 'TextMessage' && message.targetId == '27513' && 1548054747837 == message.sentTime) {
 					}
 					console.log(message);
 					log.show('Received Message', message);
@@ -104,71 +114,71 @@
 			}
 			init(params, callbacks);
 		}
-		
+
 		var handler = {
-			send: function(){
+			send: function () {
 				// var content = index;
 				//var ChatroomBarrage = RongIMClient.RegisterMessage.ChatroomBarrage;
-				var msg = new RongIMLib.TextMessage({content: "Hi" + Date.now()});
+				var msg = new RongIMLib.TextMessage({ content: "Hi" + Date.now() });
 				var info = conversation.get();
 				Rong.sendMessage(+info.conversationType, info.targetId, msg, {
-					onSuccess: function(ret) {
+					onSuccess: function (ret) {
 						log.show('SendMessage Susccessfully', ret);
-				  	},
-				  	onError: function(error, message) {
-				  		log.show('SendMessage Error', error, message);
-				  	}
+					},
+					onError: function (error, message) {
+						log.show('SendMessage Error', error, message);
+					}
 				});
 			},
-			clearHistory: function(){
+			clearHistory: function () {
 				var params = conversation.get();
 				var timestamp = +utils.getDom('clearTimeStamp').value;
 				params.timestamp = timestamp || Date.now();
 				Rong.clearRemoteHistoryMessages(params, {
-					onSuccess: function(ret) {
+					onSuccess: function (ret) {
 						log.show('ClearHistory Success', ret);
-				  	},
-				  	onError: function(error) {
-				  		log.show('ClearHistory Error', error);
-				  	}
-				});	
+					},
+					onError: function (error) {
+						log.show('ClearHistory Error', error);
+					}
+				});
 			},
-			getConversationList: function(){
+			getConversationList: function () {
 				Rong.getConversationList({
-					onSuccess: function(list){
+					onSuccess: function (list) {
 						console.log(list);
 					},
-					onError: function(error){
+					onError: function (error) {
 						console.log(error);
 					}
 				}, [1], 10);
 			},
-			getHistory: function(){
+			getHistory: function () {
 				var params = conversation.get();
 				Rong.getHistoryMessages(+params.conversationType, params.targetId, null, 5, {
-					onSuccess: function(ret) {
-						log.show('getHistoryMessages Successfully Count: '+ret.length,ret);
-				  	},
-				  	onError: function(error) {
-				  		log.show('getHistoryMessages Error',error);
-				  	}
+					onSuccess: function (ret) {
+						log.show('getHistoryMessages Successfully Count: ' + ret.length, ret);
+					},
+					onError: function (error) {
+						log.show('getHistoryMessages Error', error);
+					}
 				});
 			},
-			getNextHistory: function(){
+			getNextHistory: function () {
 				var params = conversation.get();
 				var objectname = "";
 				var order = 1;
 				Rong.getHistoryMessages(+params.conversationType, params.targetId, null, 5, {
-					onSuccess: function(ret) {
-						log.show('getHistoryMessages Successfully Count: '+ret.length,ret);
-				  	},
-				  	onError: function(error) {
-				  		log.show('getHistoryMessages Error',error);
-				  	}
+					onSuccess: function (ret) {
+						log.show('getHistoryMessages Successfully Count: ' + ret.length, ret);
+					},
+					onError: function (error) {
+						log.show('getHistoryMessages Error', error);
+					}
 				}, objectname, order);
 			}
 		};
-		function sendCommand(type){
+		function sendCommand(type) {
 			if (!Rong) {
 				alert('请先连接.');
 				return;
@@ -176,40 +186,6 @@
 			return handler[type]();
 		}
 	</script>
-
-	<script>
-		var stringFormat = function(str) {
-		    for (var i = 1; i < arguments.length; i++) {
-		        var val = arguments[i] == undefined ? "" : arguments[i],
-		            reg = new RegExp("\\{" + (i - 1) + "\\}", "g");
-		        str = str.replace(reg, val);
-		    }
-		    return str;
-		};
-
-        var getNavi = function (callback) {
-            var script = document.createElement("script");
-
-            var appkey = '8luwapkvucoil';
-			var token = 'hsYEW1+K1JHASMHGUrJJJLrkPG6U/xPk3zvPIWf9le1hEGTTL55/U3+F/iaeDmXmOvEHh5CgU1f6tiN2qQZgBQ==';
-
-		    var urlTpl = '{0}//nav.cn.ronghub.com/navi.xml?appId={1}&token={2}&callBack=getRongCloudCMPUrl&t={3}',
-		        timestamp = +new Date,
-		        token = encodeURIComponent(token);
-		    var url = stringFormat(urlTpl, '//', appkey, token, timestamp);
-
-            //进行jsonp请求
-            script.src = url;
-            document.body.appendChild(script);
-
-            script.onerror = function () {
-                console.log(RongIMLib.ConnectionState.TOKEN_INCORRECT);	
-            };
-            window.getRongCloudCMPUrl = function(info){
-            	console.log(info);
-            }
-        };
-		
-	</script>
 </body>
+
 </html>
