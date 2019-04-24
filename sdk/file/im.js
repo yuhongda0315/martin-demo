@@ -2,9 +2,14 @@ function initIM(params, callbacks) {
   var appkey = params.appkey;
   var token = params.token;
   var navi = params.navi;
+  var fileServerPingTime = params.fileServerPingTime;
+
   var option = {};
   if (navi) {
-    option = { navi: navi };
+    option.navi = navi;
+  }
+  if(fileServerPingTime){
+    option.fileServerPingTime = fileServerPingTime;
   }
   RongIMClient.init(appkey, null, option);
   RongIMClient.setConnectionStatusListener({

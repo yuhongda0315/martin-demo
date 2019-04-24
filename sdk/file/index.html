@@ -2,7 +2,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>RongRTC</title>
+  <title>RongCloud</title>
   <style>
     html,
     body {
@@ -22,32 +22,93 @@
       cursor: pointer;
       line-height: 16px;
       border-radius: 5px;
-      padding: 4px;
+      padding: 4px 8px;
       margin: 5px 20px;
     }
 
     .rong-member-input {
       margin: 5px 12px;
     }
+
+    .rong-files,
+    .rong-images {
+      height: 90%;
+      width: 46%;
+      overflow-y: auto;
+      box-shadow: 3px 3px 5px 6px #CCC;
+    }
+
+    .rong-files {
+      float: left;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .rong-images {
+      float: right;
+      margin-right: 30px;
+    }
+
+    .rong-images img {
+      height: 150px;
+      margin: 20px;
+    }
+
+    .rongcloud-fileinput {
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 9px;
+      cursor: pointer;
+    }
+
+    .rongcloud-fileinput+label {
+      font-size: 12px;
+      display: inline-block;
+      border-radius: 4px;
+      padding: 0 10px;
+      border: 1px solid #ccc;
+      height: 22px;
+      line-height: 22px;
+      margin: 0 20px;
+    }
+
+    .rong-tools {
+      display: inline;
+      visibility: hidden;
+    }
   </style>
-  <!-- <script src="//cdn.ronghub.com/RongIMLib-2.4.0.js"></script> -->
   <script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib.js"></script>
-  <script src="//cdn.ronghub.com/RongRTC.3.0.0.js"></script>
   <script src="./im.js"></script>
   <script src="./utils.js"></script>
 
-  <!-- <script src="./upload/rc.js"></script> -->
-  <script src="./upload/qiniu.js"></script>
+  <script src="./upload/rc.js"></script>
+  <!-- <script src="./upload/qiniu.js"></script> -->
   <script src="./upload/upload.js"></script>
   <script src="./upload/client.js"></script>
+
+  <script src="./mock.js"></script>
 </head>
 
 <body>
   <div class="rong-container">
     <div class="rong-buttons-connect">
       <input class="rong-input" onclick="connect()" type="button" value="连接服务">
-      <input class="rong-input" onclick="disconnect()" type="button" value="断开连接">
-      <input class="rong-input" type="file" id="sendmessage" value="发送文件" />
+      <div class="rong-tools">
+        <input class="rong-input" onclick="disconnect()" type="button" value="断开连接">
+
+        <input type="file" name="file" id="sendfilemessage" class="rongcloud-fileinput" />
+        <label for="file">选择文件</label>
+
+        <input type="file" name="image" id="sendimagemessage" accept="image/*" class="rongcloud-fileinput" />
+        <label for="image">发送图片</label>
+      </div>
+    </div>
+    <div class="rong-files">
+      <!-- <pre><a href="http://172.29.203.12:8087/v3/BA9SNBJB0261U9PM/200x200.png">http://172.29.203.12:8087/v3/BA9SNBJB0261U9PM/200x200.png</a></pre> -->
+    </div>
+    <div class="rong-images">
+      <!-- <img src="http://172.29.203.12:8087/v3/BA9SNBJB0261U9PM/200x200.png" alt=""> -->
     </div>
   </div>
 
@@ -55,8 +116,13 @@
     var getDom = function (key) {
       return document.querySelector(key);
     };
+    var filesNode = getDom('.rong-files');
+    var imagesNode = getDom('.rong-images');
+    var toolsNode = getDom('.rong-tools');
+
     function getAppInfo() {
-      var queryString = location.search.split('?')[1] || 0;
+      var search = location.search || '';
+      var queryString = search.split('?')[1] || '';
       var querys = queryString.split('&');
       var info = {};
       for (var i = 0; i < querys.length; i++) {
@@ -72,10 +138,7 @@
     var currentUser = {
       id: ''
     }
-    var users = [
-      'fGf3CvgGGRV7jHnMYZGJunYNDAey+CFwhZPcG3x/Kb7zUM+9RGhoSsFCbCcopcqnYXRdZ6tmMDMPOM9QAQypjg==',
-      '9fEIrRmMdCeAAZ3u4YEFPcXZO74SCBcJ+lQ6rhLFlLuZ10eb7WRL78QdBwfPcA2KoXTjnj+hCRf+ilRfoG9tHQ=='
-    ];
+    var users = Mock.users;
     /* 开始: IM 连接相关 */
     var imInstance = null;
     function connect() {
@@ -83,15 +146,17 @@
         return;
       }
       var params = {
-        appkey: App.appkey,
+        appkey: App.appkey || Mock.appKey,
         token: users[App.userid],
-        navi: App.navi
+        navi: App.navi || Mock.navi,
+        fileServerPingTime: 1000
       };
       var callbacks = {
         connected: function (instance, user) {
           var userId = user.id;
           currentUser.id = userId;
           imInstance = instance;
+          toolsNode.style = "visibility:visible;"
           console.log('连接成功，用户 ID: ' + userId);
         },
         disconnectd: function (status) {
@@ -107,9 +172,21 @@
         },
         received: function (message) {
           console.log(message);
+          showMessage(message);
         }
       };
       initIM(params, callbacks);
+    }
+    function showMessage(message) {
+      var content = message.content;
+      if (message.messageType == RongIMClient.MessageType.ImageMessage) {
+        var url = content.imageUri;
+        imagesNode.innerHTML += '<img src="' + url + '" alt="">';
+      }
+      if (message.messageType == RongIMClient.MessageType.FileMessage) {
+        var url = content.fileUrl;
+        imagesNode.innerHTML += '<pre><a href="' + url + '">' + url + '</a></pre>';
+      }
     }
     function disconnect() {
       if (!imInstance) {
@@ -117,73 +194,139 @@
       }
       imInstance.disconnect();
     }
-    var file = getDom('#sendmessage');
-    var config = {
-      domain: 'https://upload.qiniu.com',
-      chunk_size: 4 * 1024 * 1024,
-      getToken: function (callback) {
-        imInstance.getFileToken(RongIMLib.FileType.FILE, {
-          onSuccess: function (result) {
-            var token = result.token;
-            callback(token);
+    var fileNode = getDom('#sendfilemessage');
+    var imageNode = getDom('#sendimagemessage');
+
+    function sendMessage(result, type) {
+      var send = function (message) {
+        var targetId = App.targetid;
+        imInstance.sendMessage(RongIMLib.ConversationType.PRIVATE, targetId, message, {
+          onSuccess: function (message) {
+            console.log(message);
+            showMessage(message);
           },
-          onError: function (e) {
-            console.log(e);
+          onError: function (error) {
+            console.log(error);
           }
         });
-      }
-    };
-    function sendMessage(result) {
-      var url = result.url;
-      url = url.replace('https://rongcloud-file.cn.ronghub.com', '');
-      var message = new RongIMLib.FileMessage({
-        name: result.name,
-        size: result.size,
-        type: RongIMLib.FileType.FILE,
-        fileUrl: url
-      });
-      console.log(message);
-      var targetId = App.targetid;
-      imInstance.sendMessage(RongIMLib.ConversationType.PRIVATE, targetId, message, {
-        onSuccess: function (message) {
-          console.log(message);
+      };
+
+      var messageHandler = {
+        image: function (result, callback) {
+          var url = result.url;
+          var _file = result._file;
+          let reader = new FileReader()
+          reader.readAsDataURL(_file);
+          reader.onload = function (e) {
+            var content = e.target.result;
+            var reg = new RegExp('^data:image/[^;]+;base64,');
+            content = content.replace(reg, '');
+            var message = new RongIMLib.ImageMessage({
+              content: content,
+              imageUri: url
+            });
+            callback(message);
+          }
         },
-        onError: function (error) {
-          console.log(error);
+        file: function (result, callback) {
+          var url = result.url;
+          var message = new RongIMLib.FileMessage({
+            name: result.name,
+            size: result.size,
+            type: RongIMLib.FileType.FILE,
+            fileUrl: url
+          });
+          callback(message);
         }
-      })
-    }
-    var callbacks = {
-      onError: function (errorCode) {
-        console.log(errorCode);
-      },
-      onProgress: function (loaded, total) {
-        var percent = Math.floor(loaded / total * 100);
-        if (percent > 100) {
-          percent = 100;
-        }
-        console.log(percent);
-      },
-      onCompleted: function (result) {
-        getFileUrl(result, function (result) {
-          sendMessage(result);
-        });
-      }
-    };
-    function getFileUrl(result, callback) {
-      imInstance.getFileUrl(RongIMLib.FileType.FILE, result.filename, result.name, {
-        onSuccess: function (data) {
-          result.url = data.downloadUrl;
-          callback(result);
-        },
-        onError: function (error) {
-          showResult('getFileToken error:' + error);
-        }
+      };
+      messageHandler[type](result, function (message) {
+        send(message)
       });
     }
-    file.onchange = function () {
+    function getFile(result, _file) {
+      var rc_url = result.rc_url;
+      return {
+        url: rc_url.path,
+        name: _file.name,
+        size: _file.size
+      }
+    }
+
+    fileNode.onchange = function () {
       var _file = this.files[0];
       console.log(_file);
+
+      var callbacks = {
+        onError: function (errorCode) {
+          console.log(errorCode);
+        },
+        onProgress: function (loaded, total) {
+          var percent = Math.floor(loaded / total * 100);
+          if (percent > 100) {
+            percent = 100;
+          }
+          console.log(percent);
+        },
+        onCompleted: function (result) {
+          var file = getFile(result, _file);
+          sendMessage(file, 'file');
+        }
+      };
+
+      var config = {
+        domain: imInstance.getFileServer(),
+        chunk_size: 4 * 1024 * 1024,
+        getToken: function (callback) {
+          imInstance.getFileToken(RongIMLib.FileType.FILE, {
+            onSuccess: function (result) {
+              var token = result.token;
+              callback(token);
+            },
+            onError: function (e) {
+              console.log(e);
+            }
+          });
+        }
+      };
+      UploadClient.initFile(config, function (uploadFile) {
+        uploadFile.upload(_file, callbacks);
+      });
+    };
+    imageNode.onchange = function () {
+      var _file = this.files[0];
+      var callbacks = {
+        onError: function (errorCode) {
+          console.log(errorCode);
+        },
+        onProgress: function (loaded, total) {
+          var percent = Math.floor(loaded / total * 100);
+          if (percent > 100) {
+            percent = 100;
+          }
+          console.log(percent);
+        },
+        onCompleted: function (result) {
+          var file = getFile(result, _file);
+          file._file = _file;
+          sendMessage(file, 'image');
+        }
+      };
+
+      var config = {
+        domain: imInstance.getFileServer(),
+        chunk_size: 4 * 1024 * 1024,
+        getToken: function (callback) {
+          imInstance.getFileToken(RongIMLib.FileType.IMAGE, {
+            onSuccess: function (result) {
+              var token = result.token;
+              callback(token);
+            },
+            onError: function (e) {
+              console.log(e);
+            }
+          });
+        }
+      };
       UploadClient.initFile(config, function (uploadFile) {
         uploadFile.upload(_file, callbacks);
       });
