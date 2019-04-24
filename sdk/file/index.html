@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>RongRTC</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #F8F8F8;
+    }
+
+    .rong-container {
+      height: 100%;
+    }
+
+    .rong-input {
+      outline: none;
+      background: none;
+      cursor: pointer;
+      line-height: 16px;
+      border-radius: 5px;
+      padding: 4px;
+      margin: 5px 20px;
+    }
+
+    .rong-member-input {
+      margin: 5px 12px;
+    }
+  </style>
+  <!-- <script src="//cdn.ronghub.com/RongIMLib-2.4.0.js"></script> -->
+  <script src="http://localhost:8686/web-sdk-v2/dist/RongIMLib.js"></script>
+  <script src="//cdn.ronghub.com/RongRTC.3.0.0.js"></script>
+  <script src="./im.js"></script>
+  <script src="./utils.js"></script>
+
+  <!-- <script src="./upload/rc.js"></script> -->
+  <script src="./upload/qiniu.js"></script>
+  <script src="./upload/upload.js"></script>
+  <script src="./upload/client.js"></script>
+</head>
+
+<body>
+  <div class="rong-container">
+    <div class="rong-buttons-connect">
+      <input class="rong-input" onclick="connect()" type="button" value="连接服务">
+      <input class="rong-input" onclick="disconnect()" type="button" value="断开连接">
+      <input class="rong-input" type="file" id="sendmessage" value="发送文件" />
+    </div>
+  </div>
+
+  <script>
+    var getDom = function (key) {
+      return document.querySelector(key);
+    };
+    function getAppInfo() {
+      var queryString = location.search.split('?')[1] || 0;
+      var querys = queryString.split('&');
+      var info = {};
+      for (var i = 0; i < querys.length; i++) {
+        var query = querys[i];
+        var values = query.split('=');
+        var key = values[0];
+        var value = values[1];
+        info[key] = value;
+      }
+      return info;
+    }
+    var App = getAppInfo();
+    var currentUser = {
+      id: ''
+    }
+    var users = [
+      'fGf3CvgGGRV7jHnMYZGJunYNDAey+CFwhZPcG3x/Kb7zUM+9RGhoSsFCbCcopcqnYXRdZ6tmMDMPOM9QAQypjg==',
+      '9fEIrRmMdCeAAZ3u4YEFPcXZO74SCBcJ+lQ6rhLFlLuZ10eb7WRL78QdBwfPcA2KoXTjnj+hCRf+ilRfoG9tHQ=='
+    ];
+    /* 开始: IM 连接相关 */
+    var imInstance = null;
+    function connect() {
+      if (imInstance) {
+        return;
+      }
+      var params = {
+        appkey: App.appkey,
+        token: users[App.userid],
+        navi: App.navi
+      };
+      var callbacks = {
+        connected: function (instance, user) {
+          var userId = user.id;
+          currentUser.id = userId;
+          imInstance = instance;
+          console.log('连接成功，用户 ID: ' + userId);
+        },
+        disconnectd: function (status) {
+          imInstance = null;
+          console.log('连接断开');
+        },
+        error: function () {
+          imInstance = null;
+          console.log('连接异常，状态码: ' + status);
+        },
+        onTokenIncorrect: function () {
+          console.log('Token 不正确，可在融云开发者后台获取 https://developer.rongcloud.cn/');
+        },
+        received: function (message) {
+          console.log(message);
+        }
+      };
+      initIM(params, callbacks);
+    }
+    function disconnect() {
+      if (!imInstance) {
+        return
+      }
+      imInstance.disconnect();
+    }
+    var file = getDom('#sendmessage');
+    var config = {
+      domain: 'https://upload.qiniu.com',
+      chunk_size: 4 * 1024 * 1024,
+      getToken: function (callback) {
+        imInstance.getFileToken(RongIMLib.FileType.FILE, {
+          onSuccess: function (result) {
+            var token = result.token;
+            callback(token);
+          },
+          onError: function (e) {
+            console.log(e);
+          }
+        });
+      }
+    };
+    function sendMessage(result) {
+      var url = result.url;
+      url = url.replace('https://rongcloud-file.cn.ronghub.com', '');
+      var message = new RongIMLib.FileMessage({
+        name: result.name,
+        size: result.size,
+        type: RongIMLib.FileType.FILE,
+        fileUrl: url
+      });
+      console.log(message);
+      var targetId = App.targetid;
+      imInstance.sendMessage(RongIMLib.ConversationType.PRIVATE, targetId, message, {
+        onSuccess: function (message) {
+          console.log(message);
+        },
+        onError: function (error) {
+          console.log(error);
+        }
+      })
+    }
+    var callbacks = {
+      onError: function (errorCode) {
+        console.log(errorCode);
+      },
+      onProgress: function (loaded, total) {
+        var percent = Math.floor(loaded / total * 100);
+        if (percent > 100) {
+          percent = 100;
+        }
+        console.log(percent);
+      },
+      onCompleted: function (result) {
+        getFileUrl(result, function (result) {
+          sendMessage(result);
+        });
+      }
+    };
+    function getFileUrl(result, callback) {
+      imInstance.getFileUrl(RongIMLib.FileType.FILE, result.filename, result.name, {
+        onSuccess: function (data) {
+          result.url = data.downloadUrl;
+          callback(result);
+        },
+        onError: function (error) {
+          showResult('getFileToken error:' + error);
+        }
+      });
+    }
+    file.onchange = function () {
+      var _file = this.files[0];
+      console.log(_file);
+      UploadClient.initFile(config, function (uploadFile) {
+        uploadFile.upload(_file, callbacks);
+      });
+    };
+  </script>
+</body>
+
+</html>
