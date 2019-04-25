@@ -36,6 +36,7 @@
       width: 46%;
       overflow-y: auto;
       box-shadow: 3px 3px 5px 6px #CCC;
+      background-color: #a7a08f42;
     }
 
     .rong-files {
@@ -52,6 +53,7 @@
     .rong-images img {
       height: 150px;
       margin: 20px;
+      border-radius: 10px;
     }
 
     .rongcloud-fileinput {
@@ -185,7 +187,7 @@
       }
       if (message.messageType == RongIMClient.MessageType.FileMessage) {
         var url = content.fileUrl;
-        imagesNode.innerHTML += '<pre><a href="' + url + '">' + url + '</a></pre>';
+        filesNode.innerHTML += '<pre><a href="' + url + '" target="_blank">' + url + '</a></pre>';
       }
     }
     function disconnect() {
@@ -211,14 +213,38 @@
         });
       };
 
+      var compress = (base64, quality, mimeType) => {
+        var MAX_WIDTH = 120;
+        var cvs = document.createElement('canvas')
+        var img = document.createElement('img')
+        img.crossOrigin = 'anonymous'
+        return new Promise((resolve, reject) => {
+          img.src = base64
+          // 图片偏移值
+          var offetX = 0
+          img.onload = () => {
+            if (img.width > MAX_WIDTH) {
+              cvs.width = MAX_WIDTH
+              cvs.height = img.height * MAX_WIDTH / img.width
+              offetX = (img.width - MAX_WIDTH) / 2
+            } else {
+              cvs.width = img.width
+              cvs.height = img.height
+            }
+            var ctx = cvs.getContext("2d").drawImage(img, 0, 0, cvs.width, cvs.height)
+            var imageData = cvs.toDataURL(mimeType, quality / 100)
+            resolve(imageData)
+          }
+        })
+      }
+
       var messageHandler = {
         image: function (result, callback) {
           var url = result.url;
           var _file = result._file;
-          let reader = new FileReader()
-          reader.readAsDataURL(_file);
-          reader.onload = function (e) {
-            var content = e.target.result;
+          var quality = 0.5;
+          var type = _file.type;
+          compress(URL.createObjectURL(_file), quality, type).then((content) => {
             var reg = new RegExp('^data:image/[^;]+;base64,');
             content = content.replace(reg, '');
             var message = new RongIMLib.ImageMessage({
@@ -226,7 +252,7 @@
               imageUri: url
             });
             callback(message);
-          }
+          });
         },
         file: function (result, callback) {
           var url = result.url;
